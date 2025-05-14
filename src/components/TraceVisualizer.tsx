@@ -1,6 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { h3 } from 'framer-motion/client';
 import React, { useEffect, useState } from 'react';
+import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
+import { MdSkipNext, MdSkipPrevious } from 'react-icons/md';
+
+import { renderValue } from './visualizers/renderValue';
 
 export type TraceData = {
     metadata: {
@@ -27,6 +30,8 @@ interface VisualizerProps {
 export default function TraceVisualizer({ traceUrl, traceData: initialData }: VisualizerProps) {
     const [traceData, setTraceData] = useState<TraceData | null>(initialData || null);
     const [step, setStep] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [playSpeed, setPlaySpeed] = useState(1000); // milliseconds between steps
 
     useEffect(() => {
         if (!initialData && traceUrl) {
@@ -37,6 +42,26 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
         }
     }, [traceUrl, initialData]);
 
+    useEffect(() => {
+        let intervalId: number | null = null;
+
+        if (isPlaying && traceData) {
+            intervalId = window.setInterval(() => {
+                setStep(s => {
+                    if (s >= traceData.trace.length - 1) {
+                        setIsPlaying(false);
+                        return s;
+                    }
+                    return s + 1;
+                });
+            }, playSpeed);
+        }
+
+        return () => {
+            if (intervalId) window.clearInterval(intervalId);
+        };
+    }, [isPlaying, playSpeed, traceData]);
+
     if (!traceData) return <p>Loading trace...</p>;
 
     const current = traceData.trace[step];
@@ -45,75 +70,16 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
     const next = () => setStep(s => Math.min(s + 1, maxStep));
     const prev = () => setStep(s => Math.max(s - 1, 0));
 
-    // Helper: render a value based on its type
-    function renderValue(val: any, isNew: boolean = false) {
-        const valueVariants = {
-            initial: { opacity: 0, y: 20 },
-            animate: { opacity: 1, y: 0 },
-            exit: { opacity: 0, y: -20 }
-        };
-
-        if (Array.isArray(val)) {
-            return (
-                <motion.div
-                    className="flex space-x-1"
-                    initial={isNew ? "initial" : false}
-                    animate="animate"
-                    variants={valueVariants}
-                >
-                    {val.map((item, idx) => (
-                        <motion.div
-                            key={idx}
-                            className="border p-1 rounded"
-                            whileHover={{ scale: 1.05 }}
-                        >
-                            {renderValue(item)}
-                        </motion.div>
-                    ))}
-                </motion.div>
-            );
-        }
-        if (val && typeof val === 'object') {
-            return (
-                <motion.table
-                    className="table-auto border-collapse border"
-                    initial={isNew ? "initial" : false}
-                    animate="animate"
-                    variants={valueVariants}
-                >
-                    <tbody>
-                        {Object.entries(val).map(([k, v]) => (
-                            <motion.tr
-                                key={k}
-                                initial={isNew ? "initial" : false}
-                                animate="animate"
-                                variants={valueVariants}
-                            >
-                                <td className="border p-1 font-semibold">{k}</td>
-                                <td className="border p-1">{renderValue(v)}</td>
-                            </motion.tr>
-                        ))}
-                    </tbody>
-                </motion.table>
-            );
-        }
-        // primitive
-        return (
-            <motion.span
-                initial={isNew ? "initial" : false}
-                animate="animate"
-                variants={valueVariants}
-            >
-                {String(val)}
-            </motion.span>
-        );
-    }
+    const togglePlay = () => setIsPlaying(!isPlaying);
 
     return (
         <div>
             {/* Title */}
             <h1 className="text-3xl font-bold text-center py-8">
-                LeetCode Trace Visualizer
+                {traceData.metadata.function
+                    .split(/(?=[A-Z])|_/)
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                    .join(' ')}
             </h1>
             {/* Main content */}
             <div className="w-full flex flex-row mx-auto px-8">
@@ -133,11 +99,8 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
                     <h2 className="text-xl font-semibold mb-4">Code</h2>
                     <div className="font-mono bg-gray-50 rounded-md overflow-hidden">
                         {traceData.metadata.code.split('\n').map((line, idx) => {
-                            // Add 1 because line numbers in trace are 1-indexed
                             const lineNum = idx + 1;
                             const isCurrentLine = current?.line_number === lineNum;
-
-                            // Calculate leading spaces and convert to non-breaking spaces
                             const leadingSpaces = line.match(/^\s*/)?.[0].length || 0;
                             const indentedLine = '\u00A0'.repeat(leadingSpaces) + line.trimStart();
 
@@ -165,6 +128,59 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
                             );
                         })}
                     </div>
+
+                    {/* Controls */}
+                    <div className="mt-4 mb-8 flex justify-center items-center">
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 flex items-center p-1 space-x-1">
+                            <motion.button
+                                onClick={prev}
+                                className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                disabled={step === 0 || isPlaying}
+                                title="Previous"
+                            >
+                                <MdSkipPrevious size={20} />
+                            </motion.button>
+
+                            <motion.button
+                                onClick={togglePlay}
+                                className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                disabled={step === maxStep}
+                                title={isPlaying ? "Pause" : "Play"}
+                            >
+                                {isPlaying ? <BsFillPauseFill size={20} /> : <BsFillPlayFill size={20} />}
+                            </motion.button>
+
+                            <motion.button
+                                onClick={next}
+                                className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                disabled={step === maxStep || isPlaying}
+                                title="Next"
+                            >
+                                <MdSkipNext size={20} />
+                            </motion.button>
+
+                            <div className="w-px h-6 bg-gray-200 mx-1"></div>
+
+                            <select
+                                value={playSpeed}
+                                onChange={(e) => setPlaySpeed(Number(e.target.value))}
+                                className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed border-none focus:ring-0 focus:outline-none"
+                                disabled={isPlaying}
+                                title="Playback Speed"
+                            >
+                                <option value={2000}>0.5×</option>
+                                <option value={1000}>1×</option>
+                                <option value={500}>2×</option>
+                                <option value={250}>4×</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Variables panel */}
@@ -175,42 +191,40 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
                         animate={{ scale: [1, 1.02, 1] }}
                         transition={{ duration: 0.3 }}
                     >
-                        Variables & State
+                        Variable State
                     </motion.h2>
                     <div className="bg-white p-6 rounded-lg shadow-inner overflow-auto flex-grow">
                         <div className="space-y-4">
                             <div className="space-y-3">
-                                <AnimatePresence mode="wait">
-                                    {current?.locals && Object.entries(current.locals).map(([name, value]) => {
-                                        const isNewValue = current.delta && current.delta[name];
-                                        return (
-                                            <motion.div
-                                                key={name}
-                                                className="flex items-start gap-4"
-                                                initial={{ opacity: 0, x: -20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                exit={{ opacity: 0, x: 20 }}
-                                                transition={{ duration: 0.3 }}
+                                {current?.locals && Object.entries(current.locals).map(([name, value]) => {
+                                    const isNewValue = current.delta && current.delta[name];
+                                    return (
+                                        <div
+                                            key={name}
+                                            className="flex items-start gap-4"
+                                        >
+                                            <div
+                                                className="font-mono w-32 pt-2 text-sm text-gray-600"
                                             >
-                                                <motion.div
-                                                    className="font-mono w-32 pt-2 shrink-0"
-                                                    whileHover={{ scale: 1.05 }}
-                                                >
-                                                    {name}
-                                                </motion.div>
-                                                <motion.div
-                                                    className={`p-3 rounded-md border transition-colors duration-300 flex-1 ${isNewValue ? 'border-green-500 bg-green-50' : ''}`}
-                                                    animate={{
-                                                        borderColor: isNewValue ? '#22c55e' : '#e5e7eb',
-                                                        backgroundColor: isNewValue ? 'rgb(240 253 244)' : 'transparent'
-                                                    }}
-                                                >
-                                                    {renderValue(value, isNewValue)}
-                                                </motion.div>
-                                            </motion.div>
-                                        );
-                                    })}
-                                </AnimatePresence>
+                                                {name}
+                                            </div>
+                                            <div className="flex-none">
+                                                <AnimatePresence mode="popLayout">
+                                                    <motion.div
+                                                        key={`${name}-${JSON.stringify(value)}`}
+                                                        className={isNewValue ? 'bg-green-50 rounded-lg' : ''}
+                                                        initial={{ opacity: 0, x: -20 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                        exit={{ opacity: 0, x: 20 }}
+                                                        transition={{ duration: 0.3 }}
+                                                    >
+                                                        {renderValue(value, isNewValue)}
+                                                    </motion.div>
+                                                </AnimatePresence>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             <AnimatePresence>
@@ -237,28 +251,6 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
                                 </motion.div>
                             )}
                         </div>
-                    </div>
-
-                    {/* Controls */}
-                    <div className="mt-4 flex justify-center space-x-4">
-                        <motion.button
-                            onClick={prev}
-                            className="px-4 py-2 bg-gray-200 rounded-md text-gray-700 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            disabled={step === 0}
-                        >
-                            ← Previous
-                        </motion.button>
-                        <motion.button
-                            onClick={next}
-                            className="px-4 py-2 bg-blue-500 text-white rounded-md font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            disabled={step === maxStep}
-                        >
-                            Next →
-                        </motion.button>
                     </div>
                 </div>
             </div>

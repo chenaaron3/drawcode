@@ -33,6 +33,17 @@ def normalize_indentation(code_str):
     
     return '\n'.join(normalized_lines)
 
+def serialize_value(val):
+    if isinstance(val, (int, float, bool, str)):
+        return val
+    elif isinstance(val, (list, tuple)):
+        return [serialize_value(x) for x in val]
+    elif isinstance(val, dict):
+        return {str(k): serialize_value(v) for k, v in val.items()}
+    elif val is None:
+        return None
+    return str(val)  # fallback for other types
+
 def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwargs):
     # Clean up and normalize input code
     normalized_code = normalize_indentation(code_str)
@@ -72,7 +83,8 @@ def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwarg
             if not (1 <= rel_lineno <= len(code_lines)):
                 return
 
-            curr_locals = {k: repr(v).strip() for k, v in frame.f_locals.items()}
+            print(frame.f_locals)
+            curr_locals = {k: serialize_value(v) for k, v in frame.f_locals.items()}
             
             # Calculate delta: new or changed variables
             delta = {
