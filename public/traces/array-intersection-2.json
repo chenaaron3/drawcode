@@ -1,0 +1,622 @@
+{
+  "metadata": {
+    "code": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    # Build frequency map for nums1\n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    # Check nums2 against the map\n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    return result",
+    "function": "intersect",
+    "inputs": {
+      "kwargs": {
+        "nums1": "[1, 2, 2, 1]",
+        "nums2": "[2, 2]"
+      }
+    }
+  },
+  "trace": [
+    {
+      "line_number": 2,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ]
+      },
+      "delta": {
+        "nums1": {
+          "0": 1,
+          "1": 2,
+          "2": 2,
+          "3": 1
+        },
+        "nums2": {
+          "0": 2,
+          "1": 2
+        }
+      }
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {}
+      },
+      "delta": {
+        "freq": {}
+      }
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {},
+        "result": []
+      },
+      "delta": {
+        "result": []
+      }
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {},
+        "result": [],
+        "num": 1
+      },
+      "delta": {
+        "num": 1
+      },
+      "eval_result": false
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {},
+        "result": [],
+        "num": 1
+      },
+      "delta": null
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": {
+        "freq": {
+          "1": 1
+        }
+      }
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": {
+        "num": 2
+      },
+      "eval_result": false
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": null
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": {
+        "freq": {
+          "2": 1
+        }
+      }
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": null,
+      "eval_result": true
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": null
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 2
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": {
+        "freq": {
+          "2": 2
+        }
+      }
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": {
+        "num": 1
+      },
+      "eval_result": true
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": null
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": {
+        "freq": {
+          "1": 2
+        }
+      }
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": null
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": {
+        "num": 2
+      },
+      "eval_result": true
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": null
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [
+          2
+        ],
+        "num": 2
+      },
+      "delta": {
+        "result": {
+          "0": 2
+        }
+      }
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 1
+        },
+        "result": [
+          2
+        ],
+        "num": 2
+      },
+      "delta": {
+        "freq": {
+          "2": 1
+        }
+      }
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 1
+        },
+        "result": [
+          2
+        ],
+        "num": 2
+      },
+      "delta": null,
+      "eval_result": true
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 1
+        },
+        "result": [
+          2
+        ],
+        "num": 2
+      },
+      "delta": null
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 1
+        },
+        "result": [
+          2,
+          2
+        ],
+        "num": 2
+      },
+      "delta": {
+        "result": {
+          "1": 2
+        }
+      }
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 0
+        },
+        "result": [
+          2,
+          2
+        ],
+        "num": 2
+      },
+      "delta": {
+        "freq": {
+          "2": 0
+        }
+      }
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 0
+        },
+        "result": [
+          2,
+          2
+        ],
+        "num": 2
+      },
+      "delta": null
+    }
+  ],
+  "result": [
+    2,
+    2
+  ]
+}

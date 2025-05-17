@@ -1,10 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
-import { MdSkipNext, MdSkipPrevious } from 'react-icons/md';
+import { MdRefresh, MdResetTv, MdRestore, MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 
 import { renderValue } from './visualizers/renderValue';
-import { valueVariants } from './visualizers/variants';
 
 export type TraceData = {
     metadata: {
@@ -70,7 +69,7 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
 
     const next = () => setStep(s => Math.min(s + 1, maxStep));
     const prev = () => setStep(s => Math.max(s - 1, 0));
-
+    const reset = () => setStep(0);
     const togglePlay = () => setIsPlaying(!isPlaying);
 
     return (
@@ -133,6 +132,19 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
                     {/* Controls */}
                     <div className="mt-4 mb-8 flex justify-center items-center">
                         <div className="bg-white rounded-lg shadow-sm border border-gray-200 flex items-center p-1 space-x-1">
+                            <motion.button
+                                onClick={reset}
+                                className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                disabled={step === 0 || isPlaying}
+                                title="Reset"
+                            >
+                                <MdRefresh size={20} />
+                            </motion.button>
+
+                            <div className="w-px h-6 bg-gray-200 mx-1"></div>
+
                             <motion.button
                                 onClick={prev}
                                 className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"

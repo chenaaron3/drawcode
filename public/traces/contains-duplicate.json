@@ -1,0 +1,220 @@
+{
+  "metadata": {
+    "code": "def containsDuplicate(nums):\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False",
+    "function": "containsDuplicate",
+    "inputs": {
+      "kwargs": {
+        "nums": "[1, 2, 3, 1]"
+      }
+    }
+  },
+  "trace": [
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "delta": {
+        "nums": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 1
+        }
+      }
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "set()"
+      },
+      "delta": {
+        "seen": "set()"
+      }
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "set()",
+        "num": 1
+      },
+      "delta": {
+        "num": 1
+      },
+      "eval_result": false
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "set()",
+        "num": 1
+      },
+      "delta": null
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "{1}",
+        "num": 1
+      },
+      "delta": {
+        "seen": "{1}"
+      }
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "{1}",
+        "num": 2
+      },
+      "delta": {
+        "num": 2
+      },
+      "eval_result": false
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "{1}",
+        "num": 2
+      },
+      "delta": null
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "{1, 2}",
+        "num": 2
+      },
+      "delta": {
+        "seen": "{1, 2}"
+      }
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "{1, 2}",
+        "num": 3
+      },
+      "delta": {
+        "num": 3
+      },
+      "eval_result": false
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "{1, 2}",
+        "num": 3
+      },
+      "delta": null
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "{1, 2, 3}",
+        "num": 3
+      },
+      "delta": {
+        "seen": "{1, 2, 3}"
+      }
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "{1, 2, 3}",
+        "num": 1
+      },
+      "delta": {
+        "num": 1
+      },
+      "eval_result": true
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "seen": "{1, 2, 3}",
+        "num": 1
+      },
+      "delta": null
+    }
+  ],
+  "result": true
+}

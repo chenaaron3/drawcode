@@ -2,7 +2,7 @@ import sys
 import textwrap
 import ast
 import json
-from collections import Counter
+import os
 
 def normalize_indentation(code_str):
     """Normalize code indentation to use 4 spaces and remove unnecessary whitespace."""
@@ -45,17 +45,15 @@ def serialize_value(val):
         return None
     return str(val)  # fallback for other types
 
-# the locals are just a subset of this problem as a dictionary
-# should just define the keys that have changed
+# identify deltas by unique identifier
 # for dict: dict keys
 # for lists: list indices
 # for primitives: the value
-# if no change, just don't have any entries
-# always returns a list
-# distinguish modified and added
+# if no change, just return None
+# node knows if it has changed if delta is non-null
+# node knows if children has changed based on children field
+# what to do if curr is None?
 def get_delta(prev, curr):
-    print("prev", prev)
-    print("curr", curr)
     delta = None
     if isinstance(curr, dict):
         was_none = False
@@ -104,8 +102,27 @@ def get_delta(prev, curr):
         delta = curr
     return delta
 
+# Convert AST node to dict, stripping ast. prefix and quotes
+def ast_to_dict(node):
+    if isinstance(node, ast.AST):
+        fields = {}
+        for field, value in ast.iter_fields(node):
+            if isinstance(value, list):
+                fields[field] = [ast_to_dict(item) for item in value]
+            else:
+                fields[field] = ast_to_dict(value)
+        return {
+            "type": node.__class__.__name__,
+            **fields
+        }
+    elif isinstance(node, str):
+        return node
+    elif isinstance(node, (int, float, bool, type(None))):
+        return node
+    else:
+        return str(node)
 
-def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwargs):
+def run_code_with_json_trace(code_str, func_name, **kwargs):
     # Clean up and normalize input code
     normalized_code = normalize_indentation(code_str)
     code_lines = normalized_code.splitlines()
@@ -115,12 +132,16 @@ def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwarg
     # Identify lines with conditionals (e.g., if, while)
     conditional_lines = {node.lineno for node in ast.walk(ast.parse(normalized_code)) if isinstance(node, (ast.If, ast.While))}
 
-    # for node in ast.walk(ast.parse(normalized_code)):
-    #     try:
-    #         print(node.lineno)
-    #     except:
-    #         pass
-    #     print(ast.dump(node))
+    ast_lookup = {}
+    # lets just keep the highst level node
+    for node in ast.walk(ast.parse(normalized_code)):
+        try:
+            if node.lineno not in ast_lookup:
+                ast_lookup[node.lineno] = []
+            ast_lookup[node.lineno].append(ast_to_dict(node))
+        except:
+            pass
+    print(json.dumps(ast_lookup, indent=2))
 
     # Initialize the structured output
     output = {
@@ -136,7 +157,6 @@ def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwarg
     }
 
     prev_locals = {}
-
     def trace_lines(frame, event, arg):
         nonlocal prev_locals
 
@@ -195,16 +215,12 @@ def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwarg
 
 # === Example usage ===
 if __name__ == "__main__":
-    code_input = """
-    def twoSum(nums, target):
-        num_to_index = {}  # maps number to its index
-        for i, num in enumerate(nums):
-            complement = target - num
-            if complement in num_to_index:
-                return [num_to_index[complement], i]
-            num_to_index[num] = i
-    """
-
-    trace = run_code_with_json_trace(code_input, "twoSum", nums=[2, 11, 15, 7], target=9)
-    with open("../public/trace.json", "w") as f:
-        json.dump(trace, f, indent=2)
+    PROBLEM_DIR = os.path.abspath(os.path.join(__file__, ".."))
+    OUTPUT_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "public", "traces"))
+    problems = []
+    with open(os.path.join(PROBLEM_DIR, "problems.json"), "r") as f:
+        problems = json.load(f)['problems']
+    for problem in problems:
+        trace = run_code_with_json_trace(problem['solution'], problem['entrypoint'], **problem['inputs'])
+        with open(os.path.join(OUTPUT_DIR, f"{problem['id']}.json"), "w") as f:
+            json.dump(trace, f, indent=2)

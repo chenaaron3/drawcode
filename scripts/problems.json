@@ -1,0 +1,119 @@
+{
+    "problems": [
+        {
+            "id": "two-sum",
+            "number": 1,
+            "inputs": {
+                "nums": [
+                    2,
+                    11,
+                    15,
+                    7
+                ],
+                "target": 9
+            },
+            "entrypoint": "twoSum",
+            "solution": "def twoSum(nums, target):\n        num_to_index = {}  # maps number to its index\n        for i, num in enumerate(nums):\n            complement = target - num\n            if complement in num_to_index:\n                return [num_to_index[complement], i]\n            num_to_index[num] = i\n"
+        },
+        {
+            "id": "remove-duplicates",
+            "number": 26,
+            "title": "Remove Duplicates from Sorted Array",
+            "inputs": {
+                "nums": [
+                    1,
+                    1,
+                    2
+                ]
+            },
+            "entrypoint": "removeDuplicates",
+            "solution": "def removeDuplicates(nums):\n    if not nums:\n        return 0\n    # Pointer for the position of the last unique element\n    i = 0\n    for j in range(1, len(nums)):\n        if nums[j] != nums[i]:\n            i += 1\n            nums[i] = nums[j]\n    return i + 1\n"
+        },
+        {
+            "id": "buy-sell-stocks-2",
+            "number": 122,
+            "title": " Best Time to Buy and Sell Stock II",
+            "inputs": {
+                "prices": [
+                    7,
+                    1,
+                    5,
+                    3,
+                    6,
+                    4
+                ]
+            },
+            "entrypoint": "maxProfit",
+            "solution": "def maxProfit(prices):\n    profit = 0\n    for i in range(1, len(prices)):\n        if prices[i] > prices[i - 1]:\n            profit += prices[i] - prices[i - 1]\n    return profit\n"
+        },
+        {
+            "id": "rotate-array",
+            "number": 189,
+            "title": "Rotate Array",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ],
+                "k": 3
+            },
+            "entrypoint": "rotate",
+            "solution": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]"
+        },
+        {
+            "id": "contains-duplicate",
+            "number": 217,
+            "title": "Contains Duplicate",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3,
+                    1
+                ]
+            },
+            "entrypoint": "containsDuplicate",
+            "solution": "def containsDuplicate(nums):\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False"
+        },
+        {
+            "id": "single-number",
+            "number": 136,
+            "title": "Single Number",
+            "inputs": {
+                "nums": [
+                    4,
+                    1,
+                    2,
+                    1,
+                    2
+                ]
+            },
+            "entrypoint": "singleNumber",
+            "solution": "def singleNumber(nums):\n    result = 0\n    for num in nums:\n        result ^= num  # XOR cancels out pairs\n    return result"
+        },
+        {
+            "id": "array-intersection-2",
+            "number": 350,
+            "title": "Intersection of Two Arrays II",
+            "inputs": {
+                "nums1": [
+                    1,
+                    2,
+                    2,
+                    1
+                ],
+                "nums2": [
+                    2,
+                    2
+                ]
+            },
+            "entrypoint": "intersect",
+            "solution": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    # Build frequency map for nums1\n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    # Check nums2 against the map\n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    return result"
+        }
+    ]
+}

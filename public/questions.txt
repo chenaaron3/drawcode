@@ -1,0 +1,53 @@
+
+
+122. Best Time to Buy and Sell Stock II
+prices = [7,1,5,3,6,4]
+def maxProfit(prices):
+    profit = 0
+    for i in range(1, len(prices)):
+        if prices[i] > prices[i - 1]:
+            profit += prices[i] - prices[i - 1]
+    return profit
+
+189. Rotate Array
+nums = [1,2,3,4,5,6,7], k = 3 
+def rotate(nums, k):
+    n = len(nums)
+    k %= n
+    nums[:] = nums[-k:] + nums[:-k]
+
+217. Contains Duplicate
+nums = [1,2,3,1]
+def containsDuplicate(nums):
+    seen = set()
+    for num in nums:
+        if num in seen:
+            return True
+        seen.add(num)
+    return False
+
+136. Single Number
+nums = [4,1,2,1,2]
+def singleNumber(nums):
+    result = 0
+    for num in nums:
+        result ^= num  # XOR cancels out pairs
+    return result
+
+350. Intersection of Two Arrays II
+nums1 = [1,2,2,1], nums2 = [2,2]
+def intersect(nums1, nums2):
+    freq = {}
+    result = []
+    # Build frequency map for nums1
+    for num in nums1:
+        if num in freq:
+            freq[num] += 1
+        else:
+            freq[num] = 1
+    # Check nums2 against the map
+    for num in nums2:
+        if num in freq and freq[num] > 0:
+            result.append(num)
+            freq[num] -= 1
+    return result

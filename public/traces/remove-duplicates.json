@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "code": "def removeDuplicates(nums):\n    if not nums:\n        return 0\n    # Pointer for the position of the last unique element\n    i = 0\n    for j in range(1, len(nums)):\n        if nums[j] != nums[i]:\n            i += 1\n            nums[i] = nums[j]\n    return i + 1",
+    "function": "removeDuplicates",
+    "inputs": {
+      "kwargs": {
+        "nums": "[1, 1, 2]"
+      }
+    }
+  },
+  "trace": [
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          2
+        ]
+      },
+      "delta": {
+        "nums": {
+          "0": 1,
+          "1": 1,
+          "2": 2
+        }
+      },
+      "eval_result": false
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          2
+        ]
+      },
+      "delta": null
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "i": 0
+      },
+      "delta": {
+        "i": 0
+      }
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "i": 0,
+        "j": 1
+      },
+      "delta": {
+        "j": 1
+      },
+      "eval_result": false
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "i": 0,
+        "j": 1
+      },
+      "delta": null
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "i": 0,
+        "j": 2
+      },
+      "delta": {
+        "j": 2
+      },
+      "eval_result": true
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "i": 0,
+        "j": 2
+      },
+      "delta": null
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "i": 1,
+        "j": 2
+      },
+      "delta": {
+        "i": 1
+      }
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          2
+        ],
+        "i": 1,
+        "j": 2
+      },
+      "delta": {
+        "nums": {
+          "1": 2
+        }
+      }
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          2
+        ],
+        "i": 1,
+        "j": 2
+      },
+      "delta": null
+    }
+  ],
+  "result": 2
+}
