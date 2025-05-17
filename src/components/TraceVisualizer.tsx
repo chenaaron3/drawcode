@@ -4,6 +4,7 @@ import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
 import { MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 
 import { renderValue } from './visualizers/renderValue';
+import { valueVariants } from './visualizers/variants';
 
 export type TraceData = {
     metadata: {
@@ -197,7 +198,7 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
                         <div className="space-y-4">
                             <div className="space-y-3">
                                 {current?.locals && Object.entries(current.locals).map(([name, value]) => {
-                                    const isNewValue = current.delta && current.delta[name];
+                                    const delta = current.delta?.[name];
                                     return (
                                         <div
                                             key={name}
@@ -212,13 +213,12 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
                                                 <AnimatePresence mode="popLayout">
                                                     <motion.div
                                                         key={`${name}-${JSON.stringify(value)}`}
-                                                        className={isNewValue ? 'bg-green-50 rounded-lg' : ''}
                                                         initial={{ opacity: 0, x: -20 }}
                                                         animate={{ opacity: 1, x: 0 }}
                                                         exit={{ opacity: 0, x: 20 }}
                                                         transition={{ duration: 0.3 }}
                                                     >
-                                                        {renderValue(value, isNewValue)}
+                                                        {renderValue(value, delta)}
                                                     </motion.div>
                                                 </AnimatePresence>
                                             </div>
@@ -243,7 +243,7 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData }: Vi
                             {/* Final Result */}
                             {step === maxStep && (
                                 <motion.div
-                                    className="mt-4 p-3 border-l-4 border-green-400 bg-green-50 rounded-r-md"
+                                    className="mt-4 p-3 border-l-4 border-green-400 bg-green-200 rounded-r-md"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                 >

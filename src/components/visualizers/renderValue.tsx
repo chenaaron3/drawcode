@@ -2,13 +2,19 @@ import { ArrayVisualizer } from './ArrayVisualizer';
 import { DictionaryVisualizer } from './DictionaryVisualizer';
 import { PrimitiveBox } from './PrimitiveBox';
 
-export function renderValue(val: any, isNew: boolean = false) {
+export function renderValue(val: any, delta: any) {
     if (Array.isArray(val)) {
-        return <ArrayVisualizer values={val} isNew={isNew} />;
+        return <ArrayVisualizer
+            values={val}
+            delta={delta}
+        />;
     }
     if (val && typeof val === 'object') {
-        return <DictionaryVisualizer dict={val} isNew={isNew} />;
+        return <DictionaryVisualizer
+            dict={val}
+            delta={delta}
+        />;
     }
     // primitive
-    return <PrimitiveBox value={val} isNew={isNew} />;
+    return <PrimitiveBox value={val} delta={delta} />;
 } 

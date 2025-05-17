@@ -2,6 +2,7 @@ import sys
 import textwrap
 import ast
 import json
+from collections import Counter
 
 def normalize_indentation(code_str):
     """Normalize code indentation to use 4 spaces and remove unnecessary whitespace."""
@@ -44,6 +45,66 @@ def serialize_value(val):
         return None
     return str(val)  # fallback for other types
 
+# the locals are just a subset of this problem as a dictionary
+# should just define the keys that have changed
+# for dict: dict keys
+# for lists: list indices
+# for primitives: the value
+# if no change, just don't have any entries
+# always returns a list
+# distinguish modified and added
+def get_delta(prev, curr):
+    print("prev", prev)
+    print("curr", curr)
+    delta = None
+    if isinstance(curr, dict):
+        was_none = False
+        if prev is None:
+            was_none = True
+            prev = {}
+        # Compare dictionaries
+        changed_keys = {}
+        for k, v in curr.items():
+            # new variable, we still have to recurse to bottom
+            if k not in prev:
+                changed_keys[k] = get_delta(None, curr[k])
+            # changed variable
+            else:
+                maybe_delta = get_delta(prev[k], curr[k])
+                if maybe_delta is not None:
+                    changed_keys[k] = maybe_delta
+        # if something changed, we can assign the delta
+        if changed_keys:
+            delta = changed_keys
+        # if there was nothing previously, assigning something still counts
+        elif was_none:
+            delta = {}
+    elif isinstance(curr, list):
+        was_none = False
+        if prev is None:
+            was_none = True
+            prev = []
+        changed_keys = {}
+        # detect changes in the same index
+        for i in range(min(len(curr), len(prev))):
+            maybe_delta = get_delta(prev[i], curr[i])
+            if maybe_delta is not None:
+                changed_keys[i] = maybe_delta
+        # assign extra values
+        if len(curr) > len(prev):
+            for i in range(len(prev), len(curr)):
+                changed_keys[i] = get_delta(None, curr[i])
+        if changed_keys:
+            delta = changed_keys
+        # if there was nothing previously, assigning something still counts
+        elif was_none:
+            delta = []
+    elif curr != prev:
+        # Changed primitive value
+        delta = curr
+    return delta
+
+
 def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwargs):
     # Clean up and normalize input code
     normalized_code = normalize_indentation(code_str)
@@ -53,6 +114,13 @@ def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwarg
 
     # Identify lines with conditionals (e.g., if, while)
     conditional_lines = {node.lineno for node in ast.walk(ast.parse(normalized_code)) if isinstance(node, (ast.If, ast.While))}
+
+    # for node in ast.walk(ast.parse(normalized_code)):
+    #     try:
+    #         print(node.lineno)
+    #     except:
+    #         pass
+    #     print(ast.dump(node))
 
     # Initialize the structured output
     output = {
@@ -78,19 +146,14 @@ def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwarg
         if event == 'line':
             abs_lineno = frame.f_lineno
             rel_lineno = abs_lineno - compiled_code.co_firstlineno + 1
-            
+
             # Only process if we're within the function's code
             if not (1 <= rel_lineno <= len(code_lines)):
                 return
 
-            print(frame.f_locals)
             curr_locals = {k: serialize_value(v) for k, v in frame.f_locals.items()}
-            
             # Calculate delta: new or changed variables
-            delta = {
-                k: v for k, v in curr_locals.items()
-                if k not in prev_locals or prev_locals[k] != v
-            }
+            delta = get_delta(prev_locals, curr_locals)
 
             trace_entry = {
                 "line_number": rel_lineno,
@@ -128,12 +191,6 @@ def run_code_with_json_trace(code_str, func_name, json_output_path=None, **kwarg
 
     # Store the result
     output["result"] = result
-
-    # Save JSON file if desired
-    if json_output_path:
-        with open(json_output_path, "w") as f:
-            json.dump(output, f, indent=2)
-
     return output
 
 # === Example usage ===
