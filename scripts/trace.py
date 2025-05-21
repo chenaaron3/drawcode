@@ -37,7 +37,7 @@ def normalize_indentation(code_str):
 def serialize_value(val):
     if isinstance(val, (int, float, bool, str)):
         return val
-    elif isinstance(val, (list, tuple)):
+    elif isinstance(val, (list, tuple, set)):
         return [serialize_value(x) for x in val]
     elif isinstance(val, dict):
         return {str(k): serialize_value(v) for k, v in val.items()}
@@ -107,6 +107,9 @@ def ast_to_dict(node):
     if isinstance(node, ast.AST):
         fields = {}
         for field, value in ast.iter_fields(node):
+            # body is too verbose, it will be covered in later iterations anyways
+            if field == 'body':
+                continue
             if isinstance(value, list):
                 fields[field] = [ast_to_dict(item) for item in value]
             else:
@@ -121,6 +124,13 @@ def ast_to_dict(node):
         return node
     else:
         return str(node)
+    
+def sort_keys(d: dict):
+    keys = d.keys();
+    sorted_d = {}
+    for key in sorted(int(k) for k in keys):
+        sorted_d[key] = d[key]
+    return sorted_d
 
 def run_code_with_json_trace(code_str, func_name, **kwargs):
     # Clean up and normalize input code
@@ -141,7 +151,6 @@ def run_code_with_json_trace(code_str, func_name, **kwargs):
             ast_lookup[node.lineno].append(ast_to_dict(node))
         except:
             pass
-    print(json.dumps(ast_lookup, indent=2))
 
     # Initialize the structured output
     output = {
@@ -150,7 +159,8 @@ def run_code_with_json_trace(code_str, func_name, **kwargs):
             "function": func_name,
             "inputs": {
                 "kwargs": {k: repr(v) for k, v in kwargs.items()}
-            }
+            },
+            "ast": sort_keys(ast_lookup)
         },
         "trace": [],
         "result": None
