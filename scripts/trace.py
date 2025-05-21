@@ -147,8 +147,7 @@ def run_code_with_json_trace(code_str, func_name, **kwargs):
     for node in ast.walk(ast.parse(normalized_code)):
         try:
             if node.lineno not in ast_lookup:
-                ast_lookup[node.lineno] = []
-            ast_lookup[node.lineno].append(ast_to_dict(node))
+                ast_lookup[node.lineno] = ast_to_dict(node)
         except:
             pass
 

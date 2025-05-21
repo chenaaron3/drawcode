@@ -1,3 +1,6 @@
+import type { AST } from "./ast";
+
+// Trace types
 export type TraceEntry = {
   line_number: number;
   locals: Record<string, any>;
@@ -12,6 +15,7 @@ export type TraceData = {
     inputs: {
       kwargs: Record<string, string>;
     };
+    ast: Record<string, AST[]>;
   };
   trace: Array<TraceEntry>;
   result: any;
