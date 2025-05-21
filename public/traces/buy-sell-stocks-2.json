@@ -6,6 +6,702 @@
       "kwargs": {
         "prices": "[7, 1, 5, 3, 6, 4]"
       }
+    },
+    "ast": {
+      "1": [
+        {
+          "type": "FunctionDef",
+          "name": "maxProfit",
+          "args": {
+            "type": "arguments",
+            "posonlyargs": [],
+            "args": [
+              {
+                "type": "arg",
+                "arg": "prices",
+                "annotation": null,
+                "type_comment": null
+              }
+            ],
+            "vararg": null,
+            "kwonlyargs": [],
+            "kw_defaults": [],
+            "kwarg": null,
+            "defaults": []
+          },
+          "decorator_list": [],
+          "returns": null,
+          "type_comment": null
+        },
+        {
+          "type": "arg",
+          "arg": "prices",
+          "annotation": null,
+          "type_comment": null
+        }
+      ],
+      "2": [
+        {
+          "type": "Assign",
+          "targets": [
+            {
+              "type": "Name",
+              "id": "profit",
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "value": {
+            "type": "Constant",
+            "value": 0,
+            "kind": null
+          },
+          "type_comment": null
+        },
+        {
+          "type": "Name",
+          "id": "profit",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Constant",
+          "value": 0,
+          "kind": null
+        }
+      ],
+      "3": [
+        {
+          "type": "For",
+          "target": {
+            "type": "Name",
+            "id": "i",
+            "ctx": {
+              "type": "Store"
+            }
+          },
+          "iter": {
+            "type": "Call",
+            "func": {
+              "type": "Name",
+              "id": "range",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "args": [
+              {
+                "type": "Constant",
+                "value": 1,
+                "kind": null
+              },
+              {
+                "type": "Call",
+                "func": {
+                  "type": "Name",
+                  "id": "len",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "args": [
+                  {
+                    "type": "Name",
+                    "id": "prices",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  }
+                ],
+                "keywords": []
+              }
+            ],
+            "keywords": []
+          },
+          "orelse": [],
+          "type_comment": null
+        },
+        {
+          "type": "Name",
+          "id": "i",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Call",
+          "func": {
+            "type": "Name",
+            "id": "range",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "args": [
+            {
+              "type": "Constant",
+              "value": 1,
+              "kind": null
+            },
+            {
+              "type": "Call",
+              "func": {
+                "type": "Name",
+                "id": "len",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "type": "Name",
+                  "id": "prices",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          ],
+          "keywords": []
+        },
+        {
+          "type": "Name",
+          "id": "range",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Constant",
+          "value": 1,
+          "kind": null
+        },
+        {
+          "type": "Call",
+          "func": {
+            "type": "Name",
+            "id": "len",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "args": [
+            {
+              "type": "Name",
+              "id": "prices",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          ],
+          "keywords": []
+        },
+        {
+          "type": "Name",
+          "id": "len",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "prices",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "4": [
+        {
+          "type": "If",
+          "test": {
+            "type": "Compare",
+            "left": {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "prices",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "Name",
+                "id": "i",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "ops": [
+              {
+                "type": "Gt"
+              }
+            ],
+            "comparators": [
+              {
+                "type": "Subscript",
+                "value": {
+                  "type": "Name",
+                  "id": "prices",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "slice": {
+                  "type": "BinOp",
+                  "left": {
+                    "type": "Name",
+                    "id": "i",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  },
+                  "op": {
+                    "type": "Sub"
+                  },
+                  "right": {
+                    "type": "Constant",
+                    "value": 1,
+                    "kind": null
+                  }
+                },
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            ]
+          },
+          "orelse": []
+        },
+        {
+          "type": "Compare",
+          "left": {
+            "type": "Subscript",
+            "value": {
+              "type": "Name",
+              "id": "prices",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "slice": {
+              "type": "Name",
+              "id": "i",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ops": [
+            {
+              "type": "Gt"
+            }
+          ],
+          "comparators": [
+            {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "prices",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "BinOp",
+                "left": {
+                  "type": "Name",
+                  "id": "i",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "op": {
+                  "type": "Sub"
+                },
+                "right": {
+                  "type": "Constant",
+                  "value": 1,
+                  "kind": null
+                }
+              },
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "prices",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Name",
+            "id": "i",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "prices",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "BinOp",
+            "left": {
+              "type": "Name",
+              "id": "i",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "op": {
+              "type": "Sub"
+            },
+            "right": {
+              "type": "Constant",
+              "value": 1,
+              "kind": null
+            }
+          },
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "prices",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "i",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "prices",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "BinOp",
+          "left": {
+            "type": "Name",
+            "id": "i",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "op": {
+            "type": "Sub"
+          },
+          "right": {
+            "type": "Constant",
+            "value": 1,
+            "kind": null
+          }
+        },
+        {
+          "type": "Name",
+          "id": "i",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Constant",
+          "value": 1,
+          "kind": null
+        }
+      ],
+      "5": [
+        {
+          "type": "AugAssign",
+          "target": {
+            "type": "Name",
+            "id": "profit",
+            "ctx": {
+              "type": "Store"
+            }
+          },
+          "op": {
+            "type": "Add"
+          },
+          "value": {
+            "type": "BinOp",
+            "left": {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "prices",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "Name",
+                "id": "i",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "op": {
+              "type": "Sub"
+            },
+            "right": {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "prices",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "BinOp",
+                "left": {
+                  "type": "Name",
+                  "id": "i",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "op": {
+                  "type": "Sub"
+                },
+                "right": {
+                  "type": "Constant",
+                  "value": 1,
+                  "kind": null
+                }
+              },
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          }
+        },
+        {
+          "type": "Name",
+          "id": "profit",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "BinOp",
+          "left": {
+            "type": "Subscript",
+            "value": {
+              "type": "Name",
+              "id": "prices",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "slice": {
+              "type": "Name",
+              "id": "i",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "op": {
+            "type": "Sub"
+          },
+          "right": {
+            "type": "Subscript",
+            "value": {
+              "type": "Name",
+              "id": "prices",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "slice": {
+              "type": "BinOp",
+              "left": {
+                "type": "Name",
+                "id": "i",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "op": {
+                "type": "Sub"
+              },
+              "right": {
+                "type": "Constant",
+                "value": 1,
+                "kind": null
+              }
+            },
+            "ctx": {
+              "type": "Load"
+            }
+          }
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "prices",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Name",
+            "id": "i",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "prices",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "BinOp",
+            "left": {
+              "type": "Name",
+              "id": "i",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "op": {
+              "type": "Sub"
+            },
+            "right": {
+              "type": "Constant",
+              "value": 1,
+              "kind": null
+            }
+          },
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "prices",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "i",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "prices",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "BinOp",
+          "left": {
+            "type": "Name",
+            "id": "i",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "op": {
+            "type": "Sub"
+          },
+          "right": {
+            "type": "Constant",
+            "value": 1,
+            "kind": null
+          }
+        },
+        {
+          "type": "Name",
+          "id": "i",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Constant",
+          "value": 1,
+          "kind": null
+        }
+      ],
+      "6": [
+        {
+          "type": "Return",
+          "value": {
+            "type": "Name",
+            "id": "profit",
+            "ctx": {
+              "type": "Load"
+            }
+          }
+        },
+        {
+          "type": "Name",
+          "id": "profit",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ]
     }
   },
   "trace": [

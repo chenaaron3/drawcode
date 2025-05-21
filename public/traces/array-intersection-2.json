@@ -7,6 +7,864 @@
         "nums1": "[1, 2, 2, 1]",
         "nums2": "[2, 2]"
       }
+    },
+    "ast": {
+      "1": [
+        {
+          "type": "FunctionDef",
+          "name": "intersect",
+          "args": {
+            "type": "arguments",
+            "posonlyargs": [],
+            "args": [
+              {
+                "type": "arg",
+                "arg": "nums1",
+                "annotation": null,
+                "type_comment": null
+              },
+              {
+                "type": "arg",
+                "arg": "nums2",
+                "annotation": null,
+                "type_comment": null
+              }
+            ],
+            "vararg": null,
+            "kwonlyargs": [],
+            "kw_defaults": [],
+            "kwarg": null,
+            "defaults": []
+          },
+          "decorator_list": [],
+          "returns": null,
+          "type_comment": null
+        },
+        {
+          "type": "arg",
+          "arg": "nums1",
+          "annotation": null,
+          "type_comment": null
+        },
+        {
+          "type": "arg",
+          "arg": "nums2",
+          "annotation": null,
+          "type_comment": null
+        }
+      ],
+      "2": [
+        {
+          "type": "Assign",
+          "targets": [
+            {
+              "type": "Name",
+              "id": "freq",
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "value": {
+            "type": "Dict",
+            "keys": [],
+            "values": []
+          },
+          "type_comment": null
+        },
+        {
+          "type": "Name",
+          "id": "freq",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Dict",
+          "keys": [],
+          "values": []
+        }
+      ],
+      "3": [
+        {
+          "type": "Assign",
+          "targets": [
+            {
+              "type": "Name",
+              "id": "result",
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "value": {
+            "type": "List",
+            "elts": [],
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "type_comment": null
+        },
+        {
+          "type": "Name",
+          "id": "result",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "List",
+          "elts": [],
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "5": [
+        {
+          "type": "For",
+          "target": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Store"
+            }
+          },
+          "iter": {
+            "type": "Name",
+            "id": "nums1",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "orelse": [],
+          "type_comment": null
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "nums1",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "6": [
+        {
+          "type": "If",
+          "test": {
+            "type": "Compare",
+            "left": {
+              "type": "Name",
+              "id": "num",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "ops": [
+              {
+                "type": "In"
+              }
+            ],
+            "comparators": [
+              {
+                "type": "Name",
+                "id": "freq",
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            ]
+          },
+          "orelse": [
+            {
+              "type": "Assign",
+              "targets": [
+                {
+                  "type": "Subscript",
+                  "value": {
+                    "type": "Name",
+                    "id": "freq",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  },
+                  "slice": {
+                    "type": "Name",
+                    "id": "num",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  },
+                  "ctx": {
+                    "type": "Store"
+                  }
+                }
+              ],
+              "value": {
+                "type": "Constant",
+                "value": 1,
+                "kind": null
+              },
+              "type_comment": null
+            }
+          ]
+        },
+        {
+          "type": "Compare",
+          "left": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ops": [
+            {
+              "type": "In"
+            }
+          ],
+          "comparators": [
+            {
+              "type": "Name",
+              "id": "freq",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "freq",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "7": [
+        {
+          "type": "AugAssign",
+          "target": {
+            "type": "Subscript",
+            "value": {
+              "type": "Name",
+              "id": "freq",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "slice": {
+              "type": "Name",
+              "id": "num",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "ctx": {
+              "type": "Store"
+            }
+          },
+          "op": {
+            "type": "Add"
+          },
+          "value": {
+            "type": "Constant",
+            "value": 1,
+            "kind": null
+          }
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "freq",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Constant",
+          "value": 1,
+          "kind": null
+        },
+        {
+          "type": "Name",
+          "id": "freq",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "9": [
+        {
+          "type": "Assign",
+          "targets": [
+            {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "freq",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "Name",
+                "id": "num",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "value": {
+            "type": "Constant",
+            "value": 1,
+            "kind": null
+          },
+          "type_comment": null
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "freq",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Constant",
+          "value": 1,
+          "kind": null
+        },
+        {
+          "type": "Name",
+          "id": "freq",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "11": [
+        {
+          "type": "For",
+          "target": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Store"
+            }
+          },
+          "iter": {
+            "type": "Name",
+            "id": "nums2",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "orelse": [],
+          "type_comment": null
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "nums2",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "12": [
+        {
+          "type": "If",
+          "test": {
+            "type": "BoolOp",
+            "op": {
+              "type": "And"
+            },
+            "values": [
+              {
+                "type": "Compare",
+                "left": {
+                  "type": "Name",
+                  "id": "num",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "ops": [
+                  {
+                    "type": "In"
+                  }
+                ],
+                "comparators": [
+                  {
+                    "type": "Name",
+                    "id": "freq",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "Compare",
+                "left": {
+                  "type": "Subscript",
+                  "value": {
+                    "type": "Name",
+                    "id": "freq",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  },
+                  "slice": {
+                    "type": "Name",
+                    "id": "num",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  },
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "ops": [
+                  {
+                    "type": "Gt"
+                  }
+                ],
+                "comparators": [
+                  {
+                    "type": "Constant",
+                    "value": 0,
+                    "kind": null
+                  }
+                ]
+              }
+            ]
+          },
+          "orelse": []
+        },
+        {
+          "type": "BoolOp",
+          "op": {
+            "type": "And"
+          },
+          "values": [
+            {
+              "type": "Compare",
+              "left": {
+                "type": "Name",
+                "id": "num",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "ops": [
+                {
+                  "type": "In"
+                }
+              ],
+              "comparators": [
+                {
+                  "type": "Name",
+                  "id": "freq",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Compare",
+              "left": {
+                "type": "Subscript",
+                "value": {
+                  "type": "Name",
+                  "id": "freq",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "slice": {
+                  "type": "Name",
+                  "id": "num",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "ops": [
+                {
+                  "type": "Gt"
+                }
+              ],
+              "comparators": [
+                {
+                  "type": "Constant",
+                  "value": 0,
+                  "kind": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Compare",
+          "left": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ops": [
+            {
+              "type": "In"
+            }
+          ],
+          "comparators": [
+            {
+              "type": "Name",
+              "id": "freq",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Compare",
+          "left": {
+            "type": "Subscript",
+            "value": {
+              "type": "Name",
+              "id": "freq",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "slice": {
+              "type": "Name",
+              "id": "num",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ops": [
+            {
+              "type": "Gt"
+            }
+          ],
+          "comparators": [
+            {
+              "type": "Constant",
+              "value": 0,
+              "kind": null
+            }
+          ]
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "freq",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "freq",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Constant",
+          "value": 0,
+          "kind": null
+        },
+        {
+          "type": "Name",
+          "id": "freq",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "13": [
+        {
+          "type": "Expr",
+          "value": {
+            "type": "Call",
+            "func": {
+              "type": "Attribute",
+              "value": {
+                "type": "Name",
+                "id": "result",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "attr": "append",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "args": [
+              {
+                "type": "Name",
+                "id": "num",
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            ],
+            "keywords": []
+          }
+        },
+        {
+          "type": "Call",
+          "func": {
+            "type": "Attribute",
+            "value": {
+              "type": "Name",
+              "id": "result",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "attr": "append",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "args": [
+            {
+              "type": "Name",
+              "id": "num",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          ],
+          "keywords": []
+        },
+        {
+          "type": "Attribute",
+          "value": {
+            "type": "Name",
+            "id": "result",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "attr": "append",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "result",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "14": [
+        {
+          "type": "AugAssign",
+          "target": {
+            "type": "Subscript",
+            "value": {
+              "type": "Name",
+              "id": "freq",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "slice": {
+              "type": "Name",
+              "id": "num",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "ctx": {
+              "type": "Store"
+            }
+          },
+          "op": {
+            "type": "Sub"
+          },
+          "value": {
+            "type": "Constant",
+            "value": 1,
+            "kind": null
+          }
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "freq",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Constant",
+          "value": 1,
+          "kind": null
+        },
+        {
+          "type": "Name",
+          "id": "freq",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "15": [
+        {
+          "type": "Return",
+          "value": {
+            "type": "Name",
+            "id": "result",
+            "ctx": {
+              "type": "Load"
+            }
+          }
+        },
+        {
+          "type": "Name",
+          "id": "result",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ]
     }
   },
   "trace": [

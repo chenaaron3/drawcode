@@ -7,6 +7,511 @@
         "nums": "[1, 2, 3, 4, 5, 6, 7]",
         "k": "3"
       }
+    },
+    "ast": {
+      "1": [
+        {
+          "type": "FunctionDef",
+          "name": "rotate",
+          "args": {
+            "type": "arguments",
+            "posonlyargs": [],
+            "args": [
+              {
+                "type": "arg",
+                "arg": "nums",
+                "annotation": null,
+                "type_comment": null
+              },
+              {
+                "type": "arg",
+                "arg": "k",
+                "annotation": null,
+                "type_comment": null
+              }
+            ],
+            "vararg": null,
+            "kwonlyargs": [],
+            "kw_defaults": [],
+            "kwarg": null,
+            "defaults": []
+          },
+          "decorator_list": [],
+          "returns": null,
+          "type_comment": null
+        },
+        {
+          "type": "arg",
+          "arg": "nums",
+          "annotation": null,
+          "type_comment": null
+        },
+        {
+          "type": "arg",
+          "arg": "k",
+          "annotation": null,
+          "type_comment": null
+        }
+      ],
+      "2": [
+        {
+          "type": "Assign",
+          "targets": [
+            {
+              "type": "Name",
+              "id": "n",
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "value": {
+            "type": "Call",
+            "func": {
+              "type": "Name",
+              "id": "len",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "args": [
+              {
+                "type": "Name",
+                "id": "nums",
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            ],
+            "keywords": []
+          },
+          "type_comment": null
+        },
+        {
+          "type": "Name",
+          "id": "n",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Call",
+          "func": {
+            "type": "Name",
+            "id": "len",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "args": [
+            {
+              "type": "Name",
+              "id": "nums",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          ],
+          "keywords": []
+        },
+        {
+          "type": "Name",
+          "id": "len",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "nums",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "3": [
+        {
+          "type": "AugAssign",
+          "target": {
+            "type": "Name",
+            "id": "k",
+            "ctx": {
+              "type": "Store"
+            }
+          },
+          "op": {
+            "type": "Mod"
+          },
+          "value": {
+            "type": "Name",
+            "id": "n",
+            "ctx": {
+              "type": "Load"
+            }
+          }
+        },
+        {
+          "type": "Name",
+          "id": "k",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "n",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "4": [
+        {
+          "type": "Assign",
+          "targets": [
+            {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "nums",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "Slice",
+                "lower": null,
+                "upper": null,
+                "step": null
+              },
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "value": {
+            "type": "BinOp",
+            "left": {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "nums",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "Slice",
+                "lower": {
+                  "type": "UnaryOp",
+                  "op": {
+                    "type": "USub"
+                  },
+                  "operand": {
+                    "type": "Name",
+                    "id": "k",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  }
+                },
+                "upper": null,
+                "step": null
+              },
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "op": {
+              "type": "Add"
+            },
+            "right": {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "nums",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "Slice",
+                "lower": null,
+                "upper": {
+                  "type": "UnaryOp",
+                  "op": {
+                    "type": "USub"
+                  },
+                  "operand": {
+                    "type": "Name",
+                    "id": "k",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  }
+                },
+                "step": null
+              },
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          },
+          "type_comment": null
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "nums",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Slice",
+            "lower": null,
+            "upper": null,
+            "step": null
+          },
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "BinOp",
+          "left": {
+            "type": "Subscript",
+            "value": {
+              "type": "Name",
+              "id": "nums",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "slice": {
+              "type": "Slice",
+              "lower": {
+                "type": "UnaryOp",
+                "op": {
+                  "type": "USub"
+                },
+                "operand": {
+                  "type": "Name",
+                  "id": "k",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                }
+              },
+              "upper": null,
+              "step": null
+            },
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "op": {
+            "type": "Add"
+          },
+          "right": {
+            "type": "Subscript",
+            "value": {
+              "type": "Name",
+              "id": "nums",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "slice": {
+              "type": "Slice",
+              "lower": null,
+              "upper": {
+                "type": "UnaryOp",
+                "op": {
+                  "type": "USub"
+                },
+                "operand": {
+                  "type": "Name",
+                  "id": "k",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                }
+              },
+              "step": null
+            },
+            "ctx": {
+              "type": "Load"
+            }
+          }
+        },
+        {
+          "type": "Name",
+          "id": "nums",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Slice",
+          "lower": null,
+          "upper": null,
+          "step": null
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "nums",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Slice",
+            "lower": {
+              "type": "UnaryOp",
+              "op": {
+                "type": "USub"
+              },
+              "operand": {
+                "type": "Name",
+                "id": "k",
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            },
+            "upper": null,
+            "step": null
+          },
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "nums",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Slice",
+            "lower": null,
+            "upper": {
+              "type": "UnaryOp",
+              "op": {
+                "type": "USub"
+              },
+              "operand": {
+                "type": "Name",
+                "id": "k",
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            },
+            "step": null
+          },
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "nums",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Slice",
+          "lower": {
+            "type": "UnaryOp",
+            "op": {
+              "type": "USub"
+            },
+            "operand": {
+              "type": "Name",
+              "id": "k",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          },
+          "upper": null,
+          "step": null
+        },
+        {
+          "type": "Name",
+          "id": "nums",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Slice",
+          "lower": null,
+          "upper": {
+            "type": "UnaryOp",
+            "op": {
+              "type": "USub"
+            },
+            "operand": {
+              "type": "Name",
+              "id": "k",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          },
+          "step": null
+        },
+        {
+          "type": "UnaryOp",
+          "op": {
+            "type": "USub"
+          },
+          "operand": {
+            "type": "Name",
+            "id": "k",
+            "ctx": {
+              "type": "Load"
+            }
+          }
+        },
+        {
+          "type": "UnaryOp",
+          "op": {
+            "type": "USub"
+          },
+          "operand": {
+            "type": "Name",
+            "id": "k",
+            "ctx": {
+              "type": "Load"
+            }
+          }
+        },
+        {
+          "type": "Name",
+          "id": "k",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "k",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ]
     }
   },
   "trace": [

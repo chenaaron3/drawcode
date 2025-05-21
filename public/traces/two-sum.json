@@ -7,6 +7,539 @@
         "nums": "[2, 11, 15, 7]",
         "target": "9"
       }
+    },
+    "ast": {
+      "1": [
+        {
+          "type": "FunctionDef",
+          "name": "twoSum",
+          "args": {
+            "type": "arguments",
+            "posonlyargs": [],
+            "args": [
+              {
+                "type": "arg",
+                "arg": "nums",
+                "annotation": null,
+                "type_comment": null
+              },
+              {
+                "type": "arg",
+                "arg": "target",
+                "annotation": null,
+                "type_comment": null
+              }
+            ],
+            "vararg": null,
+            "kwonlyargs": [],
+            "kw_defaults": [],
+            "kwarg": null,
+            "defaults": []
+          },
+          "decorator_list": [],
+          "returns": null,
+          "type_comment": null
+        },
+        {
+          "type": "arg",
+          "arg": "nums",
+          "annotation": null,
+          "type_comment": null
+        },
+        {
+          "type": "arg",
+          "arg": "target",
+          "annotation": null,
+          "type_comment": null
+        }
+      ],
+      "2": [
+        {
+          "type": "Assign",
+          "targets": [
+            {
+              "type": "Name",
+              "id": "num_to_index",
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "value": {
+            "type": "Dict",
+            "keys": [],
+            "values": []
+          },
+          "type_comment": null
+        },
+        {
+          "type": "Name",
+          "id": "num_to_index",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Dict",
+          "keys": [],
+          "values": []
+        }
+      ],
+      "3": [
+        {
+          "type": "For",
+          "target": {
+            "type": "Tuple",
+            "elts": [
+              {
+                "type": "Name",
+                "id": "i",
+                "ctx": {
+                  "type": "Store"
+                }
+              },
+              {
+                "type": "Name",
+                "id": "num",
+                "ctx": {
+                  "type": "Store"
+                }
+              }
+            ],
+            "ctx": {
+              "type": "Store"
+            }
+          },
+          "iter": {
+            "type": "Call",
+            "func": {
+              "type": "Name",
+              "id": "enumerate",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "args": [
+              {
+                "type": "Name",
+                "id": "nums",
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            ],
+            "keywords": []
+          },
+          "orelse": [],
+          "type_comment": null
+        },
+        {
+          "type": "Tuple",
+          "elts": [
+            {
+              "type": "Name",
+              "id": "i",
+              "ctx": {
+                "type": "Store"
+              }
+            },
+            {
+              "type": "Name",
+              "id": "num",
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Call",
+          "func": {
+            "type": "Name",
+            "id": "enumerate",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "args": [
+            {
+              "type": "Name",
+              "id": "nums",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          ],
+          "keywords": []
+        },
+        {
+          "type": "Name",
+          "id": "i",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "enumerate",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "nums",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "4": [
+        {
+          "type": "Assign",
+          "targets": [
+            {
+              "type": "Name",
+              "id": "complement",
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "value": {
+            "type": "BinOp",
+            "left": {
+              "type": "Name",
+              "id": "target",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "op": {
+              "type": "Sub"
+            },
+            "right": {
+              "type": "Name",
+              "id": "num",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          },
+          "type_comment": null
+        },
+        {
+          "type": "Name",
+          "id": "complement",
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "BinOp",
+          "left": {
+            "type": "Name",
+            "id": "target",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "op": {
+            "type": "Sub"
+          },
+          "right": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Load"
+            }
+          }
+        },
+        {
+          "type": "Name",
+          "id": "target",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "5": [
+        {
+          "type": "If",
+          "test": {
+            "type": "Compare",
+            "left": {
+              "type": "Name",
+              "id": "complement",
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            "ops": [
+              {
+                "type": "In"
+              }
+            ],
+            "comparators": [
+              {
+                "type": "Name",
+                "id": "num_to_index",
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            ]
+          },
+          "orelse": []
+        },
+        {
+          "type": "Compare",
+          "left": {
+            "type": "Name",
+            "id": "complement",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ops": [
+            {
+              "type": "In"
+            }
+          ],
+          "comparators": [
+            {
+              "type": "Name",
+              "id": "num_to_index",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Name",
+          "id": "complement",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num_to_index",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "6": [
+        {
+          "type": "Return",
+          "value": {
+            "type": "List",
+            "elts": [
+              {
+                "type": "Subscript",
+                "value": {
+                  "type": "Name",
+                  "id": "num_to_index",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "slice": {
+                  "type": "Name",
+                  "id": "complement",
+                  "ctx": {
+                    "type": "Load"
+                  }
+                },
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              {
+                "type": "Name",
+                "id": "i",
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            ],
+            "ctx": {
+              "type": "Load"
+            }
+          }
+        },
+        {
+          "type": "List",
+          "elts": [
+            {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "num_to_index",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "Name",
+                "id": "complement",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "ctx": {
+                "type": "Load"
+              }
+            },
+            {
+              "type": "Name",
+              "id": "i",
+              "ctx": {
+                "type": "Load"
+              }
+            }
+          ],
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "num_to_index",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Name",
+            "id": "complement",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "i",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num_to_index",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "complement",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ],
+      "7": [
+        {
+          "type": "Assign",
+          "targets": [
+            {
+              "type": "Subscript",
+              "value": {
+                "type": "Name",
+                "id": "num_to_index",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "slice": {
+                "type": "Name",
+                "id": "num",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "ctx": {
+                "type": "Store"
+              }
+            }
+          ],
+          "value": {
+            "type": "Name",
+            "id": "i",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "type_comment": null
+        },
+        {
+          "type": "Subscript",
+          "value": {
+            "type": "Name",
+            "id": "num_to_index",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "slice": {
+            "type": "Name",
+            "id": "num",
+            "ctx": {
+              "type": "Load"
+            }
+          },
+          "ctx": {
+            "type": "Store"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "i",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num_to_index",
+          "ctx": {
+            "type": "Load"
+          }
+        },
+        {
+          "type": "Name",
+          "id": "num",
+          "ctx": {
+            "type": "Load"
+          }
+        }
+      ]
     }
   },
   "trace": [

@@ -24,6 +24,9 @@ export const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({ values, delta 
             variants={valueVariants}
         >
             <div className="flex flex-wrap gap-2">
+                {values.length == 0 && <>
+                    Empty
+                </>}
                 {values.map((item, idx) => {
                     const subDelta = delta && delta[idx];
                     return (
