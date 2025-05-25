@@ -1,235 +1,457 @@
 import sys
-import textwrap
-import ast
 import json
+import ast
+import builtins
 import os
 
-def normalize_indentation(code_str):
-    """Normalize code indentation to use 4 spaces and remove unnecessary whitespace."""
-    # Remove leading/trailing blank lines and common leading whitespace
-    code_str = textwrap.dedent(code_str).strip()
-    
-    # Split into lines and remove trailing whitespace
-    lines = [line.rstrip() for line in code_str.splitlines()]
-    
-    # Find first non-empty line's indentation to determine base level
-    base_indent = 0
-    for line in lines:
-        if line.strip():
-            base_indent = len(line) - len(line.lstrip())
-            break
-    
-    # Adjust indentation to be relative to base_indent
-    normalized_lines = []
-    for line in lines:
-        if line.strip():  # Non-empty line
-            # Remove base indentation and replace with 4-space multiples
-            stripped = line[base_indent:] if len(line) >= base_indent else line
-            current_indent = len(line) - len(line.lstrip())
-            relative_indent = max(0, current_indent - base_indent)
-            spaces = relative_indent // 4 * 4  # Round to nearest 4 spaces
-            normalized_lines.append(' ' * spaces + stripped.lstrip())
-        else:  # Empty line
-            normalized_lines.append('')
-    
-    return '\n'.join(normalized_lines)
+# Marker function names - using same names as Thonny for consistency
+BEFORE_STATEMENT_MARKER = "_thonny_hidden_before_stmt"
+AFTER_STATEMENT_MARKER = "_thonny_hidden_after_stmt"  
+BEFORE_EXPRESSION_MARKER = "_thonny_hidden_before_expr"
+AFTER_EXPRESSION_MARKER = "_thonny_hidden_after_expr"
 
-def serialize_value(val):
-    if isinstance(val, (int, float, bool, str)):
-        return val
-    elif isinstance(val, (list, tuple, set)):
-        return [serialize_value(x) for x in val]
-    elif isinstance(val, dict):
-        return {str(k): serialize_value(v) for k, v in val.items()}
-    elif val is None:
-        return None
-    return str(val)  # fallback for other types
-
-# identify deltas by unique identifier
-# for dict: dict keys
-# for lists: list indices
-# for primitives: the value
-# if no change, just return None
-# node knows if it has changed if delta is non-null
-# node knows if children has changed based on children field
-# what to do if curr is None?
-def get_delta(prev, curr):
-    delta = None
-    if isinstance(curr, dict):
-        was_none = False
-        if prev is None:
-            was_none = True
-            prev = {}
-        # Compare dictionaries
-        changed_keys = {}
-        for k, v in curr.items():
-            # new variable, we still have to recurse to bottom
-            if k not in prev:
-                changed_keys[k] = get_delta(None, curr[k])
-            # changed variable
-            else:
-                maybe_delta = get_delta(prev[k], curr[k])
-                if maybe_delta is not None:
-                    changed_keys[k] = maybe_delta
-        # if something changed, we can assign the delta
-        if changed_keys:
-            delta = changed_keys
-        # if there was nothing previously, assigning something still counts
-        elif was_none:
-            delta = {}
-    elif isinstance(curr, list):
-        was_none = False
-        if prev is None:
-            was_none = True
-            prev = []
-        changed_keys = {}
-        # detect changes in the same index
-        for i in range(min(len(curr), len(prev))):
-            maybe_delta = get_delta(prev[i], curr[i])
-            if maybe_delta is not None:
-                changed_keys[i] = maybe_delta
-        # assign extra values
-        if len(curr) > len(prev):
-            for i in range(len(prev), len(curr)):
-                changed_keys[i] = get_delta(None, curr[i])
-        if changed_keys:
-            delta = changed_keys
-        # if there was nothing previously, assigning something still counts
-        elif was_none:
-            delta = []
-    elif curr != prev:
-        # Changed primitive value
-        delta = curr
-    return delta
-
-# Convert AST node to dict, stripping ast. prefix and quotes
-def ast_to_dict(node):
-    if isinstance(node, ast.AST):
-        fields = {}
-        for field, value in ast.iter_fields(node):
-            # body is too verbose, it will be covered in later iterations anyways
-            if field == 'body':
-                continue
-            if isinstance(value, list):
-                fields[field] = [ast_to_dict(item) for item in value]
-            else:
-                fields[field] = ast_to_dict(value)
-        return {
-            "type": node.__class__.__name__,
-            **fields
-        }
-    elif isinstance(node, str):
-        return node
-    elif isinstance(node, (int, float, bool, type(None))):
-        return node
-    else:
-        return str(node)
-    
-def sort_keys(d: dict):
-    keys = d.keys();
-    sorted_d = {}
-    for key in sorted(int(k) for k in keys):
-        sorted_d[key] = d[key]
-    return sorted_d
-
-def run_code_with_json_trace(code_str, func_name, **kwargs):
-    # Clean up and normalize input code
-    normalized_code = normalize_indentation(code_str)
-    code_lines = normalized_code.splitlines()
-    compiled_code = compile(normalized_code, "<user_code>", 'exec')
-    local_ns = {}
-
-    # Identify lines with conditionals (e.g., if, while)
-    conditional_lines = {node.lineno for node in ast.walk(ast.parse(normalized_code)) if isinstance(node, (ast.If, ast.While))}
-
-    ast_lookup = {}
-    # lets just keep the highst level node
-    for node in ast.walk(ast.parse(normalized_code)):
-        try:
-            if node.lineno not in ast_lookup:
-                ast_lookup[node.lineno] = ast_to_dict(node)
-        except:
-            pass
-
-    # Initialize the structured output
-    output = {
-        "metadata": {
-            "code": normalized_code,
-            "function": func_name,
-            "inputs": {
-                "kwargs": {k: repr(v) for k, v in kwargs.items()}
-            },
-            "ast": sort_keys(ast_lookup)
-        },
-        "trace": [],
-        "result": None
-    }
-
-    prev_locals = {}
-    def trace_lines(frame, event, arg):
-        nonlocal prev_locals
-
-        if frame.f_globals.get("__name__") != "__main__":
-            return
-
-        if event == 'line':
-            abs_lineno = frame.f_lineno
-            rel_lineno = abs_lineno - compiled_code.co_firstlineno + 1
-
-            # Only process if we're within the function's code
-            if not (1 <= rel_lineno <= len(code_lines)):
-                return
-
-            curr_locals = {k: serialize_value(v) for k, v in frame.f_locals.items()}
-            # Calculate delta: new or changed variables
-            delta = get_delta(prev_locals, curr_locals)
-
-            trace_entry = {
-                "line_number": rel_lineno,
-                "locals": curr_locals,
-                "delta": delta
+class ASTTransformer(ast.NodeTransformer):
+    """Handles AST transformation and node tracking"""
+    def __init__(self):
+        self.reset()
+        
+    def reset(self):
+        """Reset the transformer's state"""
+        self.node_id_counter = 0
+        self._nodes = {}  # node_id -> node mapping
+        
+    def get_node_id(self, node):
+        """Get a unique ID for an AST node"""
+        node_id = getattr(node, '_tracer_id', None)
+        if node_id is None:
+            node_id = self.node_id_counter
+            self.node_id_counter += 1
+            setattr(node, '_tracer_id', node_id)
+            self._nodes[node_id] = node
+        return node_id
+        
+    def get_node(self, node_id):
+        """Get node by ID, returns None if not found"""
+        return self._nodes.get(node_id)
+        
+    def ast_to_dict(self, node, source_lines=None):
+        """Convert AST node to dict while maintaining structure and node IDs"""
+        if isinstance(node, ast.AST):
+            node_id = self.get_node_id(node)
+            
+            fields = {}
+            for field, value in ast.iter_fields(node):
+                if isinstance(value, list):
+                    fields[field] = [self.ast_to_dict(item, source_lines) for item in value]
+                else:
+                    fields[field] = self.ast_to_dict(value, source_lines)
+                    
+            node_info = {
+                "node_id": node_id,
+                "type": node.__class__.__name__,
             }
+            
+            # Add location info if available
+            if hasattr(node, 'lineno'):
+                node_info["location"] = {
+                    "lineno": node.lineno,
+                    "col_offset": node.col_offset,
+                    "end_lineno": node.end_lineno,
+                    "end_col_offset": node.end_col_offset
+                }
+                # Add source code segment if location is available
+                if source_lines:
+                    focus = ast.get_source_segment(''.join(source_lines), node)
+                    if focus:
+                        node_info["focus"] = focus
+            
+            # Add other fields
+            node_info.update(fields)
+            return node_info
+        elif isinstance(node, (str, int, float, bool, type(None))):
+            return node
+        else:
+            return str(node)
+            
+    def wrap_with_markers(self, node, before_marker, after_marker, args=None):
+        """Wrap a node with before/after marker calls"""
+        if args is None:
+            args = []
+            
+        node_id = self.get_node_id(node)
+        return ast.Call(
+            func=ast.Name(id=after_marker, ctx=ast.Load()),
+            args=[
+                ast.Call(
+                    func=ast.Name(id=before_marker, ctx=ast.Load()),
+                    args=[ast.Constant(value=node_id)] + args,
+                    keywords=[]
+                ),
+                node,
+                ast.Constant(value="expression")
+            ],
+            keywords=[]
+        )
+        
+    def visit_stmt(self, node):
+        """Visit a statement node"""
+        if not isinstance(node, ast.stmt):
+            return self.generic_visit(node)
+            
+        # Transform child nodes first
+        node = self.generic_visit(node)
+        
+        node_id = self.get_node_id(node)
+        before_marker = ast.Expr(
+            value=ast.Call(
+                func=ast.Name(id=BEFORE_STATEMENT_MARKER, ctx=ast.Load()),
+                args=[ast.Constant(value=node_id)],
+                keywords=[]
+            )
+        )
+        
+        after_marker = ast.Expr(
+            value=ast.Call(
+                func=ast.Name(id=AFTER_STATEMENT_MARKER, ctx=ast.Load()),
+                args=[ast.Constant(value=node_id)],
+                keywords=[]
+            )
+        )
+        
+        # For compound statements, wrap their body
+        if hasattr(node, 'body'):
+            if isinstance(node.body, list):
+                node.body = [before_marker] + node.body + [after_marker]
+            else:
+                node.body = [before_marker, node.body, after_marker]
+        else:
+            # For simple statements, wrap in a list
+            return [before_marker, node, after_marker]
+                
+        return node
+        
+    def visit_expr(self, node):
+        """Visit an expression node"""
+        if not isinstance(node, ast.expr) or not hasattr(node, "lineno"):
+            return self.generic_visit(node)
+            
+        # Transform child nodes first
+        node = self.generic_visit(node)
+        
+        # Skip nodes that are targets of assignments or comprehensions
+        parent = getattr(node, "parent", None)
+        if (isinstance(parent, ast.Assign) and node in parent.targets) or \
+           (isinstance(parent, ast.For) and node == parent.target) or \
+           (isinstance(parent, ast.comprehension) and node == parent.target) or \
+           (isinstance(parent, ast.AugAssign) and node == parent.target) or \
+           (isinstance(parent, ast.withitem) and node == parent.optional_vars) or \
+           (isinstance(parent, ast.ExceptHandler) and node == parent.name) or \
+           (isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store)):
+            return node
+        
+        # Skip lambda arguments
+        if isinstance(parent, ast.Lambda) and node in parent.args.args:
+            return node
+        
+        # Wrap with markers
+        return self.wrap_with_markers(node, BEFORE_EXPRESSION_MARKER, AFTER_EXPRESSION_MARKER)
+        
+    def visit(self, node):
+        """Visit a node"""
+        if isinstance(node, ast.stmt):
+            return self.visit_stmt(node)
+        elif isinstance(node, ast.expr):
+            return self.visit_expr(node)
+        else:
+            return self.generic_visit(node)
+            
+    def transform(self, source):
+        """Transform source code by adding marker function calls"""
+        root = ast.parse(source)
+        
+        # First assign IDs to all nodes
+        for node in ast.walk(root):
+            if isinstance(node, ast.AST):
+                self.get_node_id(node)
+                
+            # Set parent for all AST nodes for context detection
+            for child in ast.iter_child_nodes(node):
+                setattr(child, "parent", node)
+        
+        # Transform the AST
+        root = self.visit(root)
+        
+        # Handle top-level statements in Module
+        if isinstance(root, ast.Module):
+            new_body = []
+            for node in root.body:
+                if isinstance(node, list):
+                    new_body.extend(node)
+                else:
+                    new_body.append(node)
+            root.body = new_body
+        
+        ast.fix_missing_locations(root)
+        return root
 
-            # Handle conditional evaluation
-            if rel_lineno in conditional_lines:
-                try:
-                    code_line = code_lines[rel_lineno - 1]
-                    if code_line.lstrip().startswith(('if ', 'while ')):
-                        condition = code_line.split(':', 1)[0]
-                        if condition.lstrip().startswith('if '):
-                            condition = condition.split('if ', 1)[1]
-                        else:
-                            condition = condition.split('while ', 1)[1]
-                        eval_result = eval(condition.strip(), frame.f_globals, frame.f_locals)
-                        trace_entry["eval_result"] = eval_result
-                except Exception as e:
-                    trace_entry["eval_result"] = f"Error: {str(e).strip()}"
+class PythonTracer:
+    """Tracer that tracks execution of all statements and expressions"""
+    def __init__(self):
+        self.reset()
+        self._install_marker_functions()
+        
+    def reset(self):
+        """Reset the tracer's state"""
+        self.steps = []
+        self.step_id = 0
+        self.source_lines = None
+        self.source_code = None
+        self.transformer = ASTTransformer()
+        self.entrypoint = None
+        self.inputs = {}
+        self.result = None
+        
+    def _install_marker_functions(self):
+        """Make marker functions available in builtin scope"""
+        marker_functions = {
+            BEFORE_STATEMENT_MARKER: self._thonny_hidden_before_stmt,
+            AFTER_STATEMENT_MARKER: self._thonny_hidden_after_stmt,
+            BEFORE_EXPRESSION_MARKER: self._thonny_hidden_before_expr,
+            AFTER_EXPRESSION_MARKER: self._thonny_hidden_after_expr
+        }
+        
+        for name, func in marker_functions.items():
+            if not hasattr(builtins, name):
+                setattr(builtins, name, func)
+                
+    def _record_step(self, frame, event, value=None, node=None):
+        """Record a step in the execution"""
+        if node is None or not hasattr(node, "lineno"):
+            return
+            
+        # Get local variables, filtering out special ones
+        local_vars = {}
+        if frame is not None:
+            local_vars = {
+                name: self._serialize_value(val)
+                for name, val in frame.f_locals.items()
+                if not name.startswith('_') and not callable(val)
+            }
+                
+        step = {
+            "step": self.step_id,
+            "event": event,
+            "focus": ast.get_source_segment(''.join(self.source_lines), node),
+            "node_id": self.transformer.get_node_id(node),
+            "locals": local_vars
+        }
 
-            output["trace"].append(trace_entry)
-            prev_locals = curr_locals.copy()
+        if value is not None:
+            step["value"] = self._serialize_value(value)
+        
+        self.step_id += 1
+        self.steps.append(step)
 
-        return trace_lines
+    def _thonny_hidden_before_stmt(self, node_id):
+        """Marker function called before statements"""
+        node = self.transformer.get_node(node_id)
+        if node is None:
+            return node_id
+        frame = sys._getframe(1)
+        self._record_step(frame, "before_statement", node=node)
+        return node_id
+        
+    def _thonny_hidden_after_stmt(self, node_id):
+        """Marker function called after statements"""
+        node = self.transformer.get_node(node_id)
+        if node is None:
+            return node_id
+        frame = sys._getframe(1)
+        self._record_step(frame, "after_statement", node=node)
+        return node_id
+        
+    def _thonny_hidden_before_expr(self, node_id):
+        """Marker function called before expressions"""
+        node = self.transformer.get_node(node_id)
+        if node is None:
+            return node_id
+        frame = sys._getframe(1)
+        self._record_step(frame, "before_expression", node=node)
+        return node_id
+        
+    def _thonny_hidden_after_expr(self, node_id, value, role=None):
+        """Marker function called after expressions with their values"""
+        node = self.transformer.get_node(node_id)
+        if node is None:
+            return value
+        frame = sys._getframe(1)
+        self._record_step(frame, "after_expression", value=value, node=node)
+        return value
 
-    # Execute code to define function
-    exec(compiled_code, {"__name__": "__main__"}, local_ns)
+    def _serialize_value(self, val):
+        """Convert value to a JSON-serializable representation"""
+        if isinstance(val, (int, float, bool, str)):
+            return val
+        elif isinstance(val, (list, tuple, set)):
+            return [self._serialize_value(x) for x in val]
+        elif isinstance(val, dict):
+            return {str(k): self._serialize_value(v) for k, v in val.items()}
+        elif val is None:
+            return None
+        return str(val)  # fallback for other types
 
-    # Trace execution
-    sys.settrace(trace_lines)
-    result = local_ns[func_name](**kwargs)
-    sys.settrace(None)
+    def _get_delta(self, prev, curr):
+        """Calculate delta between previous and current values"""
+        delta = None
+        if isinstance(curr, dict):
+            was_none = False
+            if prev is None:
+                was_none = True
+                prev = {}
+            # Compare dictionaries
+            changed_keys = {}
+            for k, v in curr.items():
+                # new variable, we still have to recurse to bottom
+                if k not in prev:
+                    changed_keys[k] = self._get_delta(None, curr[k])
+                # changed variable
+                else:
+                    maybe_delta = self._get_delta(prev[k], curr[k])
+                    if maybe_delta is not None:
+                        changed_keys[k] = maybe_delta
+            # if something changed, we can assign the delta
+            if changed_keys:
+                delta = changed_keys
+            # if there was nothing previously, assigning something still counts
+            elif was_none:
+                delta = {}
+        elif isinstance(curr, list):
+            was_none = False
+            if prev is None:
+                was_none = True
+                prev = []
+            changed_keys = {}
+            # detect changes in the same index
+            for i in range(min(len(curr), len(prev))):
+                maybe_delta = self._get_delta(prev[i], curr[i])
+                if maybe_delta is not None:
+                    changed_keys[i] = maybe_delta
+            # assign extra values
+            if len(curr) > len(prev):
+                for i in range(len(prev), len(curr)):
+                    changed_keys[i] = self._get_delta(None, curr[i])
+            if changed_keys:
+                delta = changed_keys
+            # if there was nothing previously, assigning something still counts
+            elif was_none:
+                delta = []
+        elif curr != prev:
+            # Changed primitive value
+            delta = curr
+        return delta
 
-    # Store the result
-    output["result"] = result
-    return output
+    def run_code(self, code: str, entrypoint: str = None, **kwargs):
+        """Run code with expression tracking"""
+        self.source_code = code
+        self.source_lines = code.splitlines(keepends=True)
+        self.entrypoint = entrypoint
+        self.inputs = kwargs
+        tree = self.transformer.transform(code)
+        
+        namespace = {
+            '__name__': '__main__',
+            '__file__': '<string>',
+            '__builtins__': __builtins__,
+        }
+        
+        compiled = compile(tree, '<string>', 'exec')
+        exec(compiled, namespace)
+        
+        # If entrypoint is specified, call the function with kwargs
+        if entrypoint and entrypoint in namespace:
+            self.result = namespace[entrypoint](**kwargs)
+            return self.result
 
-# === Example usage ===
-if __name__ == "__main__":
+    def save_results(self, filename: str):
+        """Save results to a JSON file with steps grouped by line number"""
+        print(f"Total steps recorded: {len(self.steps)}")
+        
+        trace = []
+        current_line = None
+        current_steps = []
+        line_locals = {}
+        prev_locals = {}  # Track previous locals for delta calculation
+        
+        def _create_trace_entry(line, locals, steps):
+            # Calculate delta from previous locals
+            delta = self._get_delta(prev_locals, locals)
+            
+            return {
+                "line_number": line,
+                "locals": locals,
+                "delta": delta,
+                "steps": [
+                    {k: v for k, v in s.items() if k != "locals"}
+                    if s["locals"] == locals
+                    else s
+                    for s in steps
+                ]
+            }
+            
+        for step in self.steps:
+            node = self.transformer.get_node(step["node_id"])
+            if node is None:
+                print(f"Warning: No node found for ID {step['node_id']}")
+                continue
+                
+            line = node.lineno
+            
+            if current_line != line:
+                if current_steps:
+                    trace.append(_create_trace_entry(current_line, line_locals, current_steps))
+                current_line = line
+                current_steps = []
+                prev_locals = line_locals.copy()  # Save previous line's locals
+                line_locals = step["locals"]
+            current_steps.append(step)
+        
+        if current_steps:
+            trace.append(_create_trace_entry(current_line, line_locals, current_steps))
+            
+        print(f"Generated {len(trace)} trace entries")
+        
+        with open(filename, 'w') as f:
+            json.dump({
+                'metadata': {
+                    'code': self.source_code,
+                    'function': getattr(self, 'entrypoint', None),
+                    'inputs': {
+                        'kwargs': {k: repr(v) for k, v in getattr(self, 'inputs', {}).items()}
+                    }
+                },
+                'ast': self.transformer.ast_to_dict(ast.parse(self.source_code), self.source_lines),
+                'trace': trace,
+                'result': self._serialize_value(getattr(self, 'result', None))
+            }, f, indent=2)
+
+if __name__ == '__main__':
     PROBLEM_DIR = os.path.abspath(os.path.join(__file__, ".."))
     OUTPUT_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "public", "traces"))
+    
+    # Create output directory if it doesn't exist
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    
     problems = []
-    with open(os.path.join(PROBLEM_DIR, "problems.json"), "r") as f:
-        problems = json.load(f)['problems']
+    try:
+        with open(os.path.join(PROBLEM_DIR, "problems.json"), "r") as f:
+            problems = json.load(f)['problems']
+    except FileNotFoundError:
+        print("problems.json not found")
+    
+    tracer = PythonTracer()
     for problem in problems:
-        trace = run_code_with_json_trace(problem['solution'], problem['entrypoint'], **problem['inputs'])
-        with open(os.path.join(OUTPUT_DIR, f"{problem['id']}.json"), "w") as f:
-            json.dump(trace, f, indent=2)
+        print(f"Processing problem {problem['id']}...")
+        tracer.reset()  # Reset tracer state for each problem
+        tracer.run_code(problem['solution'], problem['entrypoint'], **problem['inputs'])
+        tracer.save_results(os.path.join(OUTPUT_DIR, f"{problem['id']}.json"))
+    print("Done!") 

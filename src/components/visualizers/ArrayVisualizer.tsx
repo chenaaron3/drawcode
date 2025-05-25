@@ -15,7 +15,7 @@ export const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({ values, delta 
     const isNew = delta !== undefined;
     return (
         <motion.div
-            className={clsx("border shadow-sm flex flex-col space-y-1 rounded-md p-2", {
+            className={clsx("border shadow-sm flex space-y-1 rounded-md p-2", {
                 "border-green-500": isNew,
                 "bg-green-50": isNew,
             })}

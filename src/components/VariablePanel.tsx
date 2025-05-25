@@ -1,16 +1,47 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect } from 'react';
 
-import { selectCurrent, useTraceStore } from '../store/traceStore';
+import { selectAST, selectCurrentLine, useTraceStore } from '../store/traceStore';
 import { renderValue } from './visualizers/renderValue';
+
+import type { Assign, If, For } from '../types/ast';
 
 export default function VariablePanel() {
     const { step, maxStep, traceData } = useTraceStore();
-    const current = useTraceStore(selectCurrent);
+    const current = useTraceStore(selectCurrentLine);
+    const ast = useTraceStore(selectAST);
+
+    useEffect(() => {
+        console.log(current);
+        console.log(ast);
+        if (ast === null) {
+            return;
+        }
+        console.log(ast.type);
+        // Process ast types here
+        if (ast.type === "If") {
+            const typedAST = ast as If;
+            const condition = typedAST.test;
+            console.log("Condition", condition);
+        } else if (ast.type === "Assign") {
+            const typedAST = ast as Assign;
+            const targets = typedAST.targets;
+            const value = typedAST.value;
+            console.log("Targets", targets);
+            console.log("Value", value);
+        } else if (ast.type === "For") {
+            const typedAST = ast as For;
+            const iter = typedAST.iter;
+            const target = typedAST.target;
+            console.log("Iter", iter);
+            console.log("Target", target);
+        }
+    }, [ast, current]);
 
     if (!traceData || !current) return null;
 
     return (
-        <div className="flex-1 flex flex-col min-w-[400px]">
+        <div className="flex-1 flex flex-col">
             <motion.h2
                 className="text-xl font-semibold mb-4"
                 initial={false}
@@ -23,7 +54,7 @@ export default function VariablePanel() {
                 <div className="space-y-4">
                     <div className="space-y-3">
                         {Object.entries(current.locals).map(([name, value]) => {
-                            const delta = current.delta[name];
+                            const delta = current.delta?.[name];
                             return (
                                 <div
                                     key={name}
@@ -34,7 +65,7 @@ export default function VariablePanel() {
                                     >
                                         {name}
                                     </div>
-                                    <div className="flex-1">
+                                    <div>
                                         <AnimatePresence mode="popLayout">
                                             <motion.div
                                                 key={`${name}-${JSON.stringify(value)}`}
@@ -51,19 +82,6 @@ export default function VariablePanel() {
                             );
                         })}
                     </div>
-
-                    <AnimatePresence>
-                        {current.eval_result !== undefined && (
-                            <motion.div
-                                className="mt-4 p-3 border-l-4 border-yellow-400 bg-yellow-50 rounded-r-md"
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                            >
-                                <strong>Eval:</strong> {JSON.stringify(current.eval_result)}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
 
                     {/* Final Result */}
                     {step === maxStep && (

@@ -4,519 +4,425 @@
     "function": "rotate",
     "inputs": {
       "kwargs": {
-        "nums": "[1, 2, 3, 4, 5, 6, 7]",
+        "nums": "[5, 6, 7, 1, 2, 3, 4]",
         "k": "3"
       }
-    },
-    "ast": {
-      "1": [
-        {
-          "type": "FunctionDef",
-          "name": "rotate",
-          "args": {
-            "type": "arguments",
-            "posonlyargs": [],
-            "args": [
-              {
-                "type": "arg",
-                "arg": "nums",
-                "annotation": null,
-                "type_comment": null
-              },
-              {
-                "type": "arg",
-                "arg": "k",
-                "annotation": null,
-                "type_comment": null
-              }
-            ],
-            "vararg": null,
-            "kwonlyargs": [],
-            "kw_defaults": [],
-            "kwarg": null,
-            "defaults": []
-          },
-          "decorator_list": [],
-          "returns": null,
-          "type_comment": null
+    }
+  },
+  "ast": {
+    "node_id": 30,
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 31,
+        "type": "FunctionDef",
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 4,
+          "end_col_offset": 35
         },
-        {
-          "type": "arg",
-          "arg": "nums",
-          "annotation": null,
-          "type_comment": null
-        },
-        {
-          "type": "arg",
-          "arg": "k",
-          "annotation": null,
-          "type_comment": null
-        }
-      ],
-      "2": [
-        {
-          "type": "Assign",
-          "targets": [
-            {
-              "type": "Name",
-              "id": "n",
-              "ctx": {
-                "type": "Store"
-              }
-            }
-          ],
-          "value": {
-            "type": "Call",
-            "func": {
-              "type": "Name",
-              "id": "len",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "args": [
-              {
-                "type": "Name",
-                "id": "nums",
-                "ctx": {
-                  "type": "Load"
-                }
-              }
-            ],
-            "keywords": []
-          },
-          "type_comment": null
-        },
-        {
-          "type": "Name",
-          "id": "n",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Call",
-          "func": {
-            "type": "Name",
-            "id": "len",
-            "ctx": {
-              "type": "Load"
-            }
-          },
+        "focus": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]",
+        "name": "rotate",
+        "args": {
+          "node_id": 32,
+          "type": "arguments",
+          "posonlyargs": [],
           "args": [
             {
-              "type": "Name",
-              "id": "nums",
-              "ctx": {
-                "type": "Load"
-              }
+              "node_id": 33,
+              "type": "arg",
+              "location": {
+                "lineno": 1,
+                "col_offset": 11,
+                "end_lineno": 1,
+                "end_col_offset": 15
+              },
+              "focus": "nums",
+              "arg": "nums",
+              "annotation": null,
+              "type_comment": null
+            },
+            {
+              "node_id": 34,
+              "type": "arg",
+              "location": {
+                "lineno": 1,
+                "col_offset": 17,
+                "end_lineno": 1,
+                "end_col_offset": 18
+              },
+              "focus": "k",
+              "arg": "k",
+              "annotation": null,
+              "type_comment": null
             }
           ],
-          "keywords": []
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
         },
-        {
-          "type": "Name",
-          "id": "len",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "nums",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "3": [
-        {
-          "type": "AugAssign",
-          "target": {
-            "type": "Name",
-            "id": "k",
-            "ctx": {
-              "type": "Store"
-            }
-          },
-          "op": {
-            "type": "Mod"
-          },
-          "value": {
-            "type": "Name",
-            "id": "n",
-            "ctx": {
-              "type": "Load"
-            }
-          }
-        },
-        {
-          "type": "Name",
-          "id": "k",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "n",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "4": [
-        {
-          "type": "Assign",
-          "targets": [
-            {
-              "type": "Subscript",
-              "value": {
+        "body": [
+          {
+            "node_id": 35,
+            "type": "Assign",
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 17
+            },
+            "focus": "n = len(nums)",
+            "targets": [
+              {
+                "node_id": 36,
                 "type": "Name",
-                "id": "nums",
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 5
+                },
+                "focus": "n",
+                "id": "n",
                 "ctx": {
+                  "node_id": 14,
+                  "type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "node_id": 37,
+              "type": "Call",
+              "location": {
+                "lineno": 2,
+                "col_offset": 8,
+                "end_lineno": 2,
+                "end_col_offset": 17
+              },
+              "focus": "len(nums)",
+              "func": {
+                "node_id": 38,
+                "type": "Name",
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 8,
+                  "end_lineno": 2,
+                  "end_col_offset": 11
+                },
+                "focus": "len",
+                "id": "len",
+                "ctx": {
+                  "node_id": 25,
                   "type": "Load"
                 }
               },
-              "slice": {
-                "type": "Slice",
-                "lower": null,
-                "upper": null,
-                "step": null
+              "args": [
+                {
+                  "node_id": 39,
+                  "type": "Name",
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 12,
+                    "end_lineno": 2,
+                    "end_col_offset": 16
+                  },
+                  "focus": "nums",
+                  "id": "nums",
+                  "ctx": {
+                    "node_id": 25,
+                    "type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "node_id": 40,
+            "type": "AugAssign",
+            "location": {
+              "lineno": 3,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 10
+            },
+            "focus": "k %= n",
+            "target": {
+              "node_id": 41,
+              "type": "Name",
+              "location": {
+                "lineno": 3,
+                "col_offset": 4,
+                "end_lineno": 3,
+                "end_col_offset": 5
               },
+              "focus": "k",
+              "id": "k",
               "ctx": {
+                "node_id": 14,
                 "type": "Store"
               }
-            }
-          ],
-          "value": {
-            "type": "BinOp",
-            "left": {
-              "type": "Subscript",
-              "value": {
-                "type": "Name",
-                "id": "nums",
-                "ctx": {
-                  "type": "Load"
-                }
-              },
-              "slice": {
-                "type": "Slice",
-                "lower": {
-                  "type": "UnaryOp",
-                  "op": {
-                    "type": "USub"
-                  },
-                  "operand": {
-                    "type": "Name",
-                    "id": "k",
-                    "ctx": {
-                      "type": "Load"
-                    }
-                  }
-                },
-                "upper": null,
-                "step": null
-              },
-              "ctx": {
-                "type": "Load"
-              }
             },
             "op": {
-              "type": "Add"
+              "node_id": 11,
+              "type": "Mod"
             },
-            "right": {
-              "type": "Subscript",
-              "value": {
-                "type": "Name",
-                "id": "nums",
-                "ctx": {
-                  "type": "Load"
-                }
-              },
-              "slice": {
-                "type": "Slice",
-                "lower": null,
-                "upper": {
-                  "type": "UnaryOp",
-                  "op": {
-                    "type": "USub"
-                  },
-                  "operand": {
-                    "type": "Name",
-                    "id": "k",
-                    "ctx": {
-                      "type": "Load"
-                    }
-                  }
-                },
-                "step": null
-              },
-              "ctx": {
-                "type": "Load"
-              }
-            }
-          },
-          "type_comment": null
-        },
-        {
-          "type": "Subscript",
-          "value": {
-            "type": "Name",
-            "id": "nums",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "slice": {
-            "type": "Slice",
-            "lower": null,
-            "upper": null,
-            "step": null
-          },
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "BinOp",
-          "left": {
-            "type": "Subscript",
             "value": {
+              "node_id": 42,
               "type": "Name",
-              "id": "nums",
+              "location": {
+                "lineno": 3,
+                "col_offset": 9,
+                "end_lineno": 3,
+                "end_col_offset": 10
+              },
+              "focus": "n",
+              "id": "n",
               "ctx": {
+                "node_id": 25,
                 "type": "Load"
               }
+            }
+          },
+          {
+            "node_id": 43,
+            "type": "Assign",
+            "location": {
+              "lineno": 4,
+              "col_offset": 4,
+              "end_lineno": 4,
+              "end_col_offset": 35
             },
-            "slice": {
-              "type": "Slice",
-              "lower": {
-                "type": "UnaryOp",
-                "op": {
-                  "type": "USub"
+            "focus": "nums[:] = nums[-k:] + nums[:-k]",
+            "targets": [
+              {
+                "node_id": 44,
+                "type": "Subscript",
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 4,
+                  "end_lineno": 4,
+                  "end_col_offset": 11
                 },
-                "operand": {
+                "focus": "nums[:]",
+                "value": {
+                  "node_id": 45,
                   "type": "Name",
-                  "id": "k",
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 4,
+                    "end_lineno": 4,
+                    "end_col_offset": 8
+                  },
+                  "focus": "nums",
+                  "id": "nums",
                   "ctx": {
+                    "node_id": 25,
                     "type": "Load"
                   }
-                }
-              },
-              "upper": null,
-              "step": null
-            },
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "op": {
-            "type": "Add"
-          },
-          "right": {
-            "type": "Subscript",
-            "value": {
-              "type": "Name",
-              "id": "nums",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "slice": {
-              "type": "Slice",
-              "lower": null,
-              "upper": {
-                "type": "UnaryOp",
-                "op": {
-                  "type": "USub"
                 },
-                "operand": {
+                "slice": {
+                  "node_id": 46,
+                  "type": "Slice",
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 9,
+                    "end_lineno": 4,
+                    "end_col_offset": 10
+                  },
+                  "focus": ":",
+                  "lower": null,
+                  "upper": null,
+                  "step": null
+                },
+                "ctx": {
+                  "node_id": 14,
+                  "type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "node_id": 47,
+              "type": "BinOp",
+              "location": {
+                "lineno": 4,
+                "col_offset": 14,
+                "end_lineno": 4,
+                "end_col_offset": 35
+              },
+              "focus": "nums[-k:] + nums[:-k]",
+              "left": {
+                "node_id": 48,
+                "type": "Subscript",
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 14,
+                  "end_lineno": 4,
+                  "end_col_offset": 23
+                },
+                "focus": "nums[-k:]",
+                "value": {
+                  "node_id": 49,
                   "type": "Name",
-                  "id": "k",
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 14,
+                    "end_lineno": 4,
+                    "end_col_offset": 18
+                  },
+                  "focus": "nums",
+                  "id": "nums",
                   "ctx": {
+                    "node_id": 25,
                     "type": "Load"
                   }
+                },
+                "slice": {
+                  "node_id": 50,
+                  "type": "Slice",
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 19,
+                    "end_lineno": 4,
+                    "end_col_offset": 22
+                  },
+                  "focus": "-k:",
+                  "lower": {
+                    "node_id": 51,
+                    "type": "UnaryOp",
+                    "location": {
+                      "lineno": 4,
+                      "col_offset": 19,
+                      "end_lineno": 4,
+                      "end_col_offset": 21
+                    },
+                    "focus": "-k",
+                    "op": {
+                      "node_id": 27,
+                      "type": "USub"
+                    },
+                    "operand": {
+                      "node_id": 52,
+                      "type": "Name",
+                      "location": {
+                        "lineno": 4,
+                        "col_offset": 20,
+                        "end_lineno": 4,
+                        "end_col_offset": 21
+                      },
+                      "focus": "k",
+                      "id": "k",
+                      "ctx": {
+                        "node_id": 25,
+                        "type": "Load"
+                      }
+                    }
+                  },
+                  "upper": null,
+                  "step": null
+                },
+                "ctx": {
+                  "node_id": 25,
+                  "type": "Load"
                 }
               },
-              "step": null
-            },
-            "ctx": {
-              "type": "Load"
-            }
-          }
-        },
-        {
-          "type": "Name",
-          "id": "nums",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Slice",
-          "lower": null,
-          "upper": null,
-          "step": null
-        },
-        {
-          "type": "Subscript",
-          "value": {
-            "type": "Name",
-            "id": "nums",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "slice": {
-            "type": "Slice",
-            "lower": {
-              "type": "UnaryOp",
               "op": {
-                "type": "USub"
+                "node_id": 26,
+                "type": "Add"
               },
-              "operand": {
-                "type": "Name",
-                "id": "k",
+              "right": {
+                "node_id": 53,
+                "type": "Subscript",
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 26,
+                  "end_lineno": 4,
+                  "end_col_offset": 35
+                },
+                "focus": "nums[:-k]",
+                "value": {
+                  "node_id": 54,
+                  "type": "Name",
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 26,
+                    "end_lineno": 4,
+                    "end_col_offset": 30
+                  },
+                  "focus": "nums",
+                  "id": "nums",
+                  "ctx": {
+                    "node_id": 25,
+                    "type": "Load"
+                  }
+                },
+                "slice": {
+                  "node_id": 55,
+                  "type": "Slice",
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 31,
+                    "end_lineno": 4,
+                    "end_col_offset": 34
+                  },
+                  "focus": ":-k",
+                  "lower": null,
+                  "upper": {
+                    "node_id": 56,
+                    "type": "UnaryOp",
+                    "location": {
+                      "lineno": 4,
+                      "col_offset": 32,
+                      "end_lineno": 4,
+                      "end_col_offset": 34
+                    },
+                    "focus": "-k",
+                    "op": {
+                      "node_id": 27,
+                      "type": "USub"
+                    },
+                    "operand": {
+                      "node_id": 57,
+                      "type": "Name",
+                      "location": {
+                        "lineno": 4,
+                        "col_offset": 33,
+                        "end_lineno": 4,
+                        "end_col_offset": 34
+                      },
+                      "focus": "k",
+                      "id": "k",
+                      "ctx": {
+                        "node_id": 25,
+                        "type": "Load"
+                      }
+                    }
+                  },
+                  "step": null
+                },
                 "ctx": {
+                  "node_id": 25,
                   "type": "Load"
                 }
               }
             },
-            "upper": null,
-            "step": null
-          },
-          "ctx": {
-            "type": "Load"
+            "type_comment": null
           }
-        },
-        {
-          "type": "Subscript",
-          "value": {
-            "type": "Name",
-            "id": "nums",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "slice": {
-            "type": "Slice",
-            "lower": null,
-            "upper": {
-              "type": "UnaryOp",
-              "op": {
-                "type": "USub"
-              },
-              "operand": {
-                "type": "Name",
-                "id": "k",
-                "ctx": {
-                  "type": "Load"
-                }
-              }
-            },
-            "step": null
-          },
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "nums",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Slice",
-          "lower": {
-            "type": "UnaryOp",
-            "op": {
-              "type": "USub"
-            },
-            "operand": {
-              "type": "Name",
-              "id": "k",
-              "ctx": {
-                "type": "Load"
-              }
-            }
-          },
-          "upper": null,
-          "step": null
-        },
-        {
-          "type": "Name",
-          "id": "nums",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Slice",
-          "lower": null,
-          "upper": {
-            "type": "UnaryOp",
-            "op": {
-              "type": "USub"
-            },
-            "operand": {
-              "type": "Name",
-              "id": "k",
-              "ctx": {
-                "type": "Load"
-              }
-            }
-          },
-          "step": null
-        },
-        {
-          "type": "UnaryOp",
-          "op": {
-            "type": "USub"
-          },
-          "operand": {
-            "type": "Name",
-            "id": "k",
-            "ctx": {
-              "type": "Load"
-            }
-          }
-        },
-        {
-          "type": "UnaryOp",
-          "op": {
-            "type": "USub"
-          },
-          "operand": {
-            "type": "Name",
-            "id": "k",
-            "ctx": {
-              "type": "Load"
-            }
-          }
-        },
-        {
-          "type": "Name",
-          "id": "k",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "k",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ]
-    }
+        ],
+        "decorator_list": [],
+        "returns": null,
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
   },
   "trace": [
     {
-      "line_number": 2,
+      "line_number": 1,
       "locals": {
         "nums": [
           1,
@@ -540,7 +446,105 @@
           "6": 7
         },
         "k": 3
-      }
+      },
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "k": 3
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 1,
+          "event": "before_statement",
+          "focus": "n = len(nums)",
+          "node_id": 3
+        },
+        {
+          "step": 2,
+          "event": "before_expression",
+          "focus": "len(nums)",
+          "node_id": 9
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "len",
+          "node_id": 15
+        },
+        {
+          "step": 4,
+          "event": "after_expression",
+          "focus": "len",
+          "node_id": 15,
+          "value": "<built-in function len>"
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 16
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 16,
+          "value": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "len(nums)",
+          "node_id": 9,
+          "value": 7
+        },
+        {
+          "step": 8,
+          "event": "after_statement",
+          "focus": "n = len(nums)",
+          "node_id": 3,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "k": 3,
+            "n": 7
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -559,7 +563,34 @@
       },
       "delta": {
         "n": 7
-      }
+      },
+      "steps": [
+        {
+          "step": 9,
+          "event": "before_statement",
+          "focus": "k %= n",
+          "node_id": 4
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 12
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 12,
+          "value": 7
+        },
+        {
+          "step": 12,
+          "event": "after_statement",
+          "focus": "k %= n",
+          "node_id": 4
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -576,7 +607,279 @@
         "k": 3,
         "n": 7
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 13,
+          "event": "before_statement",
+          "focus": "nums[:] = nums[-k:] + nums[:-k]",
+          "node_id": 5
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "nums[-k:] + nums[:-k]",
+          "node_id": 14
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "nums[-k:]",
+          "node_id": 19
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 21
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 21,
+          "value": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "-k:",
+          "node_id": 22
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "-k",
+          "node_id": 25
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "k",
+          "node_id": 28
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "k",
+          "node_id": 28,
+          "value": 3
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "-k",
+          "node_id": 25,
+          "value": -3
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "-k:",
+          "node_id": 22,
+          "value": "slice(-3, None, None)"
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "nums[-k:]",
+          "node_id": 19,
+          "value": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "nums[:-k]",
+          "node_id": 20
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 23
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 23,
+          "value": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": ":-k",
+          "node_id": 24
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "-k",
+          "node_id": 26
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "k",
+          "node_id": 29
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "k",
+          "node_id": 29,
+          "value": 3
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "-k",
+          "node_id": 26,
+          "value": -3
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": ":-k",
+          "node_id": 24,
+          "value": "slice(None, -3, None)"
+        },
+        {
+          "step": 34,
+          "event": "after_expression",
+          "focus": "nums[:-k]",
+          "node_id": 20,
+          "value": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "nums[-k:] + nums[:-k]",
+          "node_id": 14,
+          "value": [
+            5,
+            6,
+            7,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 17
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 17,
+          "value": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": ":",
+          "node_id": 18
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": ":",
+          "node_id": 18,
+          "value": "slice(None, None, None)"
+        },
+        {
+          "step": 40,
+          "event": "after_statement",
+          "focus": "nums[:] = nums[-k:] + nums[:-k]",
+          "node_id": 5,
+          "locals": {
+            "nums": [
+              5,
+              6,
+              7,
+              1,
+              2,
+              3,
+              4
+            ],
+            "k": 3,
+            "n": 7
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 1,
+      "locals": {
+        "nums": [
+          5,
+          6,
+          7,
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 3,
+        "n": 7
+      },
+      "delta": {
+        "nums": {
+          "0": 5,
+          "1": 6,
+          "2": 7,
+          "3": 1,
+          "4": 2,
+          "5": 3,
+          "6": 4
+        }
+      },
+      "steps": [
+        {
+          "step": 41,
+          "event": "after_statement",
+          "focus": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]",
+          "node_id": 1
+        }
+      ]
     }
   ],
   "result": null

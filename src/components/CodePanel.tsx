@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
 import { MdRefresh, MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 
-import { selectCurrent, useTraceStore } from '../store/traceStore';
+import { selectCurrentLine, useTraceStore } from '../store/traceStore';
 
 export default function CodePanel() {
     const {
@@ -20,7 +20,7 @@ export default function CodePanel() {
         next,
         togglePlay
     } = useTraceStore();
-    const current = useTraceStore(selectCurrent);
+    const current = useTraceStore(selectCurrentLine);
 
     // Handle auto-play
     useEffect(() => {
@@ -44,7 +44,7 @@ export default function CodePanel() {
     if (!traceData || !current) return null;
 
     return (
-        <div className="flex-1 min-w-[600px]">
+        <div className="flex-1">
             {/* Test Inputs */}
             <h2 className="text-xl font-semibold mb-4">Test Inputs</h2>
             <div className="font-mono bg-gray-50 p-4 rounded-md mb-8">

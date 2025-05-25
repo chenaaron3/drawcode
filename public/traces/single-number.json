@@ -6,167 +6,225 @@
       "kwargs": {
         "nums": "[4, 1, 2, 1, 2]"
       }
-    },
-    "ast": {
-      "1": [
-        {
-          "type": "FunctionDef",
-          "name": "singleNumber",
-          "args": {
-            "type": "arguments",
-            "posonlyargs": [],
-            "args": [
-              {
-                "type": "arg",
-                "arg": "nums",
-                "annotation": null,
-                "type_comment": null
-              }
-            ],
-            "vararg": null,
-            "kwonlyargs": [],
-            "kw_defaults": [],
-            "kwarg": null,
-            "defaults": []
-          },
-          "decorator_list": [],
-          "returns": null,
-          "type_comment": null
+    }
+  },
+  "ast": {
+    "node_id": 16,
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 17,
+        "type": "FunctionDef",
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 5,
+          "end_col_offset": 17
         },
-        {
-          "type": "arg",
-          "arg": "nums",
-          "annotation": null,
-          "type_comment": null
-        }
-      ],
-      "2": [
-        {
-          "type": "Assign",
-          "targets": [
+        "focus": "def singleNumber(nums):\n    result = 0\n    for num in nums:\n        result ^= num  # XOR cancels out pairs\n    return result",
+        "name": "singleNumber",
+        "args": {
+          "node_id": 18,
+          "type": "arguments",
+          "posonlyargs": [],
+          "args": [
             {
-              "type": "Name",
-              "id": "result",
-              "ctx": {
-                "type": "Store"
-              }
+              "node_id": 19,
+              "type": "arg",
+              "location": {
+                "lineno": 1,
+                "col_offset": 17,
+                "end_lineno": 1,
+                "end_col_offset": 21
+              },
+              "focus": "nums",
+              "arg": "nums",
+              "annotation": null,
+              "type_comment": null
             }
           ],
-          "value": {
-            "type": "Constant",
-            "value": 0,
-            "kind": null
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 20,
+            "type": "Assign",
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 14
+            },
+            "focus": "result = 0",
+            "targets": [
+              {
+                "node_id": 21,
+                "type": "Name",
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 10
+                },
+                "focus": "result",
+                "id": "result",
+                "ctx": {
+                  "node_id": 14,
+                  "type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "node_id": 22,
+              "type": "Constant",
+              "location": {
+                "lineno": 2,
+                "col_offset": 13,
+                "end_lineno": 2,
+                "end_col_offset": 14
+              },
+              "focus": "0",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
           },
-          "type_comment": null
-        },
-        {
-          "type": "Name",
-          "id": "result",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Constant",
-          "value": 0,
-          "kind": null
-        }
-      ],
-      "3": [
-        {
-          "type": "For",
-          "target": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Store"
-            }
+          {
+            "node_id": 23,
+            "type": "For",
+            "location": {
+              "lineno": 3,
+              "col_offset": 4,
+              "end_lineno": 4,
+              "end_col_offset": 21
+            },
+            "focus": "for num in nums:\n        result ^= num",
+            "target": {
+              "node_id": 24,
+              "type": "Name",
+              "location": {
+                "lineno": 3,
+                "col_offset": 8,
+                "end_lineno": 3,
+                "end_col_offset": 11
+              },
+              "focus": "num",
+              "id": "num",
+              "ctx": {
+                "node_id": 14,
+                "type": "Store"
+              }
+            },
+            "iter": {
+              "node_id": 25,
+              "type": "Name",
+              "location": {
+                "lineno": 3,
+                "col_offset": 15,
+                "end_lineno": 3,
+                "end_col_offset": 19
+              },
+              "focus": "nums",
+              "id": "nums",
+              "ctx": {
+                "node_id": 25,
+                "type": "Load"
+              }
+            },
+            "body": [
+              {
+                "node_id": 26,
+                "type": "AugAssign",
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 8,
+                  "end_lineno": 4,
+                  "end_col_offset": 21
+                },
+                "focus": "result ^= num",
+                "target": {
+                  "node_id": 27,
+                  "type": "Name",
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 8,
+                    "end_lineno": 4,
+                    "end_col_offset": 14
+                  },
+                  "focus": "result",
+                  "id": "result",
+                  "ctx": {
+                    "node_id": 14,
+                    "type": "Store"
+                  }
+                },
+                "op": {
+                  "node_id": 14,
+                  "type": "BitXor"
+                },
+                "value": {
+                  "node_id": 28,
+                  "type": "Name",
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 18,
+                    "end_lineno": 4,
+                    "end_col_offset": 21
+                  },
+                  "focus": "num",
+                  "id": "num",
+                  "ctx": {
+                    "node_id": 25,
+                    "type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
           },
-          "iter": {
-            "type": "Name",
-            "id": "nums",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "orelse": [],
-          "type_comment": null
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "nums",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "4": [
-        {
-          "type": "AugAssign",
-          "target": {
-            "type": "Name",
-            "id": "result",
-            "ctx": {
-              "type": "Store"
-            }
-          },
-          "op": {
-            "type": "BitXor"
-          },
-          "value": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Load"
+          {
+            "node_id": 29,
+            "type": "Return",
+            "location": {
+              "lineno": 5,
+              "col_offset": 4,
+              "end_lineno": 5,
+              "end_col_offset": 17
+            },
+            "focus": "return result",
+            "value": {
+              "node_id": 30,
+              "type": "Name",
+              "location": {
+                "lineno": 5,
+                "col_offset": 11,
+                "end_lineno": 5,
+                "end_col_offset": 17
+              },
+              "focus": "result",
+              "id": "result",
+              "ctx": {
+                "node_id": 25,
+                "type": "Load"
+              }
             }
           }
-        },
-        {
-          "type": "Name",
-          "id": "result",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "5": [
-        {
-          "type": "Return",
-          "value": {
-            "type": "Name",
-            "id": "result",
-            "ctx": {
-              "type": "Load"
-            }
-          }
-        },
-        {
-          "type": "Name",
-          "id": "result",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ]
-    }
+        ],
+        "decorator_list": [],
+        "returns": null,
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
   },
   "trace": [
     {
-      "line_number": 2,
+      "line_number": 1,
       "locals": {
         "nums": [
           4,
@@ -184,7 +242,65 @@
           "3": 1,
           "4": 2
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def singleNumber(nums):\n    result = 0\n    for num in nums:\n        result ^= num  # XOR cancels out pairs\n    return result",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          4,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 1,
+          "event": "before_statement",
+          "focus": "result = 0",
+          "node_id": 3
+        },
+        {
+          "step": 2,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 8
+        },
+        {
+          "step": 3,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 8,
+          "value": 0
+        },
+        {
+          "step": 4,
+          "event": "after_statement",
+          "focus": "result = 0",
+          "node_id": 3,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 0
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -200,7 +316,45 @@
       },
       "delta": {
         "result": 0
-      }
+      },
+      "steps": [
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 10
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 10,
+          "value": [
+            4,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        {
+          "step": 7,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 0,
+            "num": 4
+          }
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -217,7 +371,45 @@
       },
       "delta": {
         "num": 4
-      }
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "result ^= num",
+          "node_id": 11
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 15
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 15,
+          "value": 4
+        },
+        {
+          "step": 11,
+          "event": "after_statement",
+          "focus": "result ^= num",
+          "node_id": 11,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 4,
+            "num": 4
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -234,7 +426,32 @@
       },
       "delta": {
         "result": 4
-      }
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "after_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4
+        },
+        {
+          "step": 13,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 4,
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -251,7 +468,45 @@
       },
       "delta": {
         "num": 1
-      }
+      },
+      "steps": [
+        {
+          "step": 14,
+          "event": "before_statement",
+          "focus": "result ^= num",
+          "node_id": 11
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 15
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 15,
+          "value": 1
+        },
+        {
+          "step": 17,
+          "event": "after_statement",
+          "focus": "result ^= num",
+          "node_id": 11,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 5,
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -268,7 +523,32 @@
       },
       "delta": {
         "result": 5
-      }
+      },
+      "steps": [
+        {
+          "step": 18,
+          "event": "after_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4
+        },
+        {
+          "step": 19,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 5,
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -285,7 +565,45 @@
       },
       "delta": {
         "num": 2
-      }
+      },
+      "steps": [
+        {
+          "step": 20,
+          "event": "before_statement",
+          "focus": "result ^= num",
+          "node_id": 11
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 15
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 15,
+          "value": 2
+        },
+        {
+          "step": 23,
+          "event": "after_statement",
+          "focus": "result ^= num",
+          "node_id": 11,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 7,
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -302,7 +620,32 @@
       },
       "delta": {
         "result": 7
-      }
+      },
+      "steps": [
+        {
+          "step": 24,
+          "event": "after_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4
+        },
+        {
+          "step": 25,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 7,
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -319,7 +662,45 @@
       },
       "delta": {
         "num": 1
-      }
+      },
+      "steps": [
+        {
+          "step": 26,
+          "event": "before_statement",
+          "focus": "result ^= num",
+          "node_id": 11
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 15
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 15,
+          "value": 1
+        },
+        {
+          "step": 29,
+          "event": "after_statement",
+          "focus": "result ^= num",
+          "node_id": 11,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 6,
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -336,7 +717,32 @@
       },
       "delta": {
         "result": 6
-      }
+      },
+      "steps": [
+        {
+          "step": 30,
+          "event": "after_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4
+        },
+        {
+          "step": 31,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 6,
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -353,7 +759,45 @@
       },
       "delta": {
         "num": 2
-      }
+      },
+      "steps": [
+        {
+          "step": 32,
+          "event": "before_statement",
+          "focus": "result ^= num",
+          "node_id": 11
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 15
+        },
+        {
+          "step": 34,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 15,
+          "value": 2
+        },
+        {
+          "step": 35,
+          "event": "after_statement",
+          "focus": "result ^= num",
+          "node_id": 11,
+          "locals": {
+            "nums": [
+              4,
+              1,
+              2,
+              1,
+              2
+            ],
+            "result": 4,
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -370,7 +814,15 @@
       },
       "delta": {
         "result": 4
-      }
+      },
+      "steps": [
+        {
+          "step": 36,
+          "event": "after_statement",
+          "focus": "for num in nums:\n        result ^= num",
+          "node_id": 4
+        }
+      ]
     },
     {
       "line_number": 5,
@@ -385,7 +837,28 @@
         "result": 4,
         "num": 2
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 37,
+          "event": "before_statement",
+          "focus": "return result",
+          "node_id": 5
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "result",
+          "node_id": 12
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "result",
+          "node_id": 12,
+          "value": 4
+        }
+      ]
     }
   ],
   "result": 4

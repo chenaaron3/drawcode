@@ -3,12 +3,7 @@ import json
 from trace import ast_to_dict, sort_keys
 
 code = """
-def maxProfit(prices):
-    profit = 0
-    for i in range(1, len(prices)):
-        if prices[i] > prices[i - 1]:
-            profit += prices[i] - prices[i - 1]
-    return profit
+a = b = c = 0
 """
 ast_lookup = {}
 for node in ast.walk(ast.parse(code)):

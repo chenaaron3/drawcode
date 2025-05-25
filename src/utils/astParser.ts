@@ -144,13 +144,11 @@ export function parseASTNode(json: any): AST {
 }
 
 // Helper function to parse the entire AST from trace data
-export function parseTraceAST(
-  ast: Record<string, any[]>
-): Record<string, AST[]> {
-  const parsed: Record<string, AST[]> = {};
+export function parseTraceAST(ast: Record<string, any>): Record<string, AST> {
+  const parsed: Record<string, AST> = {};
 
-  for (const [line, nodes] of Object.entries(ast)) {
-    parsed[line] = nodes.map((node) => parseASTNode(node));
+  for (const [line, node] of Object.entries(ast)) {
+    parsed[line] = parseASTNode(node);
   }
 
   return parsed;

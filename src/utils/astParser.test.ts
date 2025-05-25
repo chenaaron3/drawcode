@@ -1,3 +1,5 @@
+import { input } from 'framer-motion/client';
+
 import { parseASTNode, parseTraceAST } from './astParser';
 
 import type {
@@ -8,9 +10,7 @@ import type {
   Dict,
   Tuple,
   Call,
-  expr_context,
 } from "../types/ast";
-
 describe("AST Parser", () => {
   describe("parseASTNode", () => {
     test("parses FunctionDef node correctly", () => {
@@ -143,49 +143,45 @@ describe("AST Parser", () => {
   describe("parseTraceAST", () => {
     test("parses multiple lines of AST nodes correctly", () => {
       const input = {
-        "1": [
-          {
-            type: "FunctionDef",
-            name: "twoSum",
-            args: {
-              type: "arguments",
-              posonlyargs: [],
-              args: [],
-              vararg: null,
-              kwonlyargs: [],
-              kw_defaults: [],
-              kwarg: null,
-              defaults: [],
-            },
-            decorator_list: [],
-            returns: null,
-            type_comment: null,
+        "1": {
+          type: "FunctionDef",
+          name: "twoSum",
+          args: {
+            type: "arguments",
+            posonlyargs: [],
+            args: [],
+            vararg: null,
+            kwonlyargs: [],
+            kw_defaults: [],
+            kwarg: null,
+            defaults: [],
           },
-        ],
-        "2": [
-          {
-            type: "Assign",
-            targets: [
-              {
-                type: "Name",
-                id: "num_to_index",
-                ctx: { type: "Store" },
-              },
-            ],
-            value: {
-              type: "Dict",
-              keys: [],
-              values: [],
+          decorator_list: [],
+          returns: null,
+          type_comment: null,
+        },
+        "2": {
+          type: "Assign",
+          targets: [
+            {
+              type: "Name",
+              id: "num_to_index",
+              ctx: { type: "Store" },
             },
-            type_comment: null,
+          ],
+          value: {
+            type: "Dict",
+            keys: [],
+            values: [],
           },
-        ],
+          type_comment: null,
+        },
       };
 
       const result = parseTraceAST(input);
       expect(Object.keys(result)).toHaveLength(2);
-      expect(result["1"][0].type).toBe("FunctionDef");
-      expect(result["2"][0].type).toBe("Assign");
+      expect(result["1"].type).toBe("FunctionDef");
+      expect(result["2"].type).toBe("Assign");
     });
   });
 

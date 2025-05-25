@@ -7,869 +7,809 @@
         "nums1": "[1, 2, 2, 1]",
         "nums2": "[2, 2]"
       }
-    },
-    "ast": {
-      "1": [
-        {
-          "type": "FunctionDef",
-          "name": "intersect",
-          "args": {
-            "type": "arguments",
-            "posonlyargs": [],
-            "args": [
-              {
-                "type": "arg",
-                "arg": "nums1",
-                "annotation": null,
-                "type_comment": null
-              },
-              {
-                "type": "arg",
-                "arg": "nums2",
-                "annotation": null,
-                "type_comment": null
-              }
-            ],
-            "vararg": null,
-            "kwonlyargs": [],
-            "kw_defaults": [],
-            "kwarg": null,
-            "defaults": []
-          },
-          "decorator_list": [],
-          "returns": null,
-          "type_comment": null
+    }
+  },
+  "ast": {
+    "node_id": 54,
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 55,
+        "type": "FunctionDef",
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 15,
+          "end_col_offset": 17
         },
-        {
-          "type": "arg",
-          "arg": "nums1",
-          "annotation": null,
-          "type_comment": null
-        },
-        {
-          "type": "arg",
-          "arg": "nums2",
-          "annotation": null,
-          "type_comment": null
-        }
-      ],
-      "2": [
-        {
-          "type": "Assign",
-          "targets": [
-            {
-              "type": "Name",
-              "id": "freq",
-              "ctx": {
-                "type": "Store"
-              }
-            }
-          ],
-          "value": {
-            "type": "Dict",
-            "keys": [],
-            "values": []
-          },
-          "type_comment": null
-        },
-        {
-          "type": "Name",
-          "id": "freq",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Dict",
-          "keys": [],
-          "values": []
-        }
-      ],
-      "3": [
-        {
-          "type": "Assign",
-          "targets": [
-            {
-              "type": "Name",
-              "id": "result",
-              "ctx": {
-                "type": "Store"
-              }
-            }
-          ],
-          "value": {
-            "type": "List",
-            "elts": [],
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "type_comment": null
-        },
-        {
-          "type": "Name",
-          "id": "result",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "List",
-          "elts": [],
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "5": [
-        {
-          "type": "For",
-          "target": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Store"
-            }
-          },
-          "iter": {
-            "type": "Name",
-            "id": "nums1",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "orelse": [],
-          "type_comment": null
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "nums1",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "6": [
-        {
-          "type": "If",
-          "test": {
-            "type": "Compare",
-            "left": {
-              "type": "Name",
-              "id": "num",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "ops": [
-              {
-                "type": "In"
-              }
-            ],
-            "comparators": [
-              {
-                "type": "Name",
-                "id": "freq",
-                "ctx": {
-                  "type": "Load"
-                }
-              }
-            ]
-          },
-          "orelse": [
-            {
-              "type": "Assign",
-              "targets": [
-                {
-                  "type": "Subscript",
-                  "value": {
-                    "type": "Name",
-                    "id": "freq",
-                    "ctx": {
-                      "type": "Load"
-                    }
-                  },
-                  "slice": {
-                    "type": "Name",
-                    "id": "num",
-                    "ctx": {
-                      "type": "Load"
-                    }
-                  },
-                  "ctx": {
-                    "type": "Store"
-                  }
-                }
-              ],
-              "value": {
-                "type": "Constant",
-                "value": 1,
-                "kind": null
-              },
-              "type_comment": null
-            }
-          ]
-        },
-        {
-          "type": "Compare",
-          "left": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "ops": [
-            {
-              "type": "In"
-            }
-          ],
-          "comparators": [
-            {
-              "type": "Name",
-              "id": "freq",
-              "ctx": {
-                "type": "Load"
-              }
-            }
-          ]
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "freq",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "7": [
-        {
-          "type": "AugAssign",
-          "target": {
-            "type": "Subscript",
-            "value": {
-              "type": "Name",
-              "id": "freq",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "slice": {
-              "type": "Name",
-              "id": "num",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "ctx": {
-              "type": "Store"
-            }
-          },
-          "op": {
-            "type": "Add"
-          },
-          "value": {
-            "type": "Constant",
-            "value": 1,
-            "kind": null
-          }
-        },
-        {
-          "type": "Subscript",
-          "value": {
-            "type": "Name",
-            "id": "freq",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "slice": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Constant",
-          "value": 1,
-          "kind": null
-        },
-        {
-          "type": "Name",
-          "id": "freq",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "9": [
-        {
-          "type": "Assign",
-          "targets": [
-            {
-              "type": "Subscript",
-              "value": {
-                "type": "Name",
-                "id": "freq",
-                "ctx": {
-                  "type": "Load"
-                }
-              },
-              "slice": {
-                "type": "Name",
-                "id": "num",
-                "ctx": {
-                  "type": "Load"
-                }
-              },
-              "ctx": {
-                "type": "Store"
-              }
-            }
-          ],
-          "value": {
-            "type": "Constant",
-            "value": 1,
-            "kind": null
-          },
-          "type_comment": null
-        },
-        {
-          "type": "Subscript",
-          "value": {
-            "type": "Name",
-            "id": "freq",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "slice": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Constant",
-          "value": 1,
-          "kind": null
-        },
-        {
-          "type": "Name",
-          "id": "freq",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "11": [
-        {
-          "type": "For",
-          "target": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Store"
-            }
-          },
-          "iter": {
-            "type": "Name",
-            "id": "nums2",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "orelse": [],
-          "type_comment": null
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "nums2",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "12": [
-        {
-          "type": "If",
-          "test": {
-            "type": "BoolOp",
-            "op": {
-              "type": "And"
-            },
-            "values": [
-              {
-                "type": "Compare",
-                "left": {
-                  "type": "Name",
-                  "id": "num",
-                  "ctx": {
-                    "type": "Load"
-                  }
-                },
-                "ops": [
-                  {
-                    "type": "In"
-                  }
-                ],
-                "comparators": [
-                  {
-                    "type": "Name",
-                    "id": "freq",
-                    "ctx": {
-                      "type": "Load"
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "Compare",
-                "left": {
-                  "type": "Subscript",
-                  "value": {
-                    "type": "Name",
-                    "id": "freq",
-                    "ctx": {
-                      "type": "Load"
-                    }
-                  },
-                  "slice": {
-                    "type": "Name",
-                    "id": "num",
-                    "ctx": {
-                      "type": "Load"
-                    }
-                  },
-                  "ctx": {
-                    "type": "Load"
-                  }
-                },
-                "ops": [
-                  {
-                    "type": "Gt"
-                  }
-                ],
-                "comparators": [
-                  {
-                    "type": "Constant",
-                    "value": 0,
-                    "kind": null
-                  }
-                ]
-              }
-            ]
-          },
-          "orelse": []
-        },
-        {
-          "type": "BoolOp",
-          "op": {
-            "type": "And"
-          },
-          "values": [
-            {
-              "type": "Compare",
-              "left": {
-                "type": "Name",
-                "id": "num",
-                "ctx": {
-                  "type": "Load"
-                }
-              },
-              "ops": [
-                {
-                  "type": "In"
-                }
-              ],
-              "comparators": [
-                {
-                  "type": "Name",
-                  "id": "freq",
-                  "ctx": {
-                    "type": "Load"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Compare",
-              "left": {
-                "type": "Subscript",
-                "value": {
-                  "type": "Name",
-                  "id": "freq",
-                  "ctx": {
-                    "type": "Load"
-                  }
-                },
-                "slice": {
-                  "type": "Name",
-                  "id": "num",
-                  "ctx": {
-                    "type": "Load"
-                  }
-                },
-                "ctx": {
-                  "type": "Load"
-                }
-              },
-              "ops": [
-                {
-                  "type": "Gt"
-                }
-              ],
-              "comparators": [
-                {
-                  "type": "Constant",
-                  "value": 0,
-                  "kind": null
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Compare",
-          "left": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "ops": [
-            {
-              "type": "In"
-            }
-          ],
-          "comparators": [
-            {
-              "type": "Name",
-              "id": "freq",
-              "ctx": {
-                "type": "Load"
-              }
-            }
-          ]
-        },
-        {
-          "type": "Compare",
-          "left": {
-            "type": "Subscript",
-            "value": {
-              "type": "Name",
-              "id": "freq",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "slice": {
-              "type": "Name",
-              "id": "num",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "ops": [
-            {
-              "type": "Gt"
-            }
-          ],
-          "comparators": [
-            {
-              "type": "Constant",
-              "value": 0,
-              "kind": null
-            }
-          ]
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "freq",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Subscript",
-          "value": {
-            "type": "Name",
-            "id": "freq",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "slice": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Constant",
-          "value": 0,
-          "kind": null
-        },
-        {
-          "type": "Name",
-          "id": "freq",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "13": [
-        {
-          "type": "Expr",
-          "value": {
-            "type": "Call",
-            "func": {
-              "type": "Attribute",
-              "value": {
-                "type": "Name",
-                "id": "result",
-                "ctx": {
-                  "type": "Load"
-                }
-              },
-              "attr": "append",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "args": [
-              {
-                "type": "Name",
-                "id": "num",
-                "ctx": {
-                  "type": "Load"
-                }
-              }
-            ],
-            "keywords": []
-          }
-        },
-        {
-          "type": "Call",
-          "func": {
-            "type": "Attribute",
-            "value": {
-              "type": "Name",
-              "id": "result",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "attr": "append",
-            "ctx": {
-              "type": "Load"
-            }
-          },
+        "focus": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    # Build frequency map for nums1\n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    # Check nums2 against the map\n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    return result",
+        "name": "intersect",
+        "args": {
+          "node_id": 56,
+          "type": "arguments",
+          "posonlyargs": [],
           "args": [
             {
-              "type": "Name",
-              "id": "num",
-              "ctx": {
-                "type": "Load"
-              }
+              "node_id": 57,
+              "type": "arg",
+              "location": {
+                "lineno": 1,
+                "col_offset": 14,
+                "end_lineno": 1,
+                "end_col_offset": 19
+              },
+              "focus": "nums1",
+              "arg": "nums1",
+              "annotation": null,
+              "type_comment": null
+            },
+            {
+              "node_id": 58,
+              "type": "arg",
+              "location": {
+                "lineno": 1,
+                "col_offset": 21,
+                "end_lineno": 1,
+                "end_col_offset": 26
+              },
+              "focus": "nums2",
+              "arg": "nums2",
+              "annotation": null,
+              "type_comment": null
             }
           ],
-          "keywords": []
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
         },
-        {
-          "type": "Attribute",
-          "value": {
-            "type": "Name",
-            "id": "result",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "attr": "append",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "result",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "14": [
-        {
-          "type": "AugAssign",
-          "target": {
-            "type": "Subscript",
+        "body": [
+          {
+            "node_id": 59,
+            "type": "Assign",
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 13
+            },
+            "focus": "freq = {}",
+            "targets": [
+              {
+                "node_id": 60,
+                "type": "Name",
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 8
+                },
+                "focus": "freq",
+                "id": "freq",
+                "ctx": {
+                  "node_id": 14,
+                  "type": "Store"
+                }
+              }
+            ],
             "value": {
-              "type": "Name",
-              "id": "freq",
+              "node_id": 61,
+              "type": "Dict",
+              "location": {
+                "lineno": 2,
+                "col_offset": 11,
+                "end_lineno": 2,
+                "end_col_offset": 13
+              },
+              "focus": "{}",
+              "keys": [],
+              "values": []
+            },
+            "type_comment": null
+          },
+          {
+            "node_id": 62,
+            "type": "Assign",
+            "location": {
+              "lineno": 3,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 15
+            },
+            "focus": "result = []",
+            "targets": [
+              {
+                "node_id": 63,
+                "type": "Name",
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 4,
+                  "end_lineno": 3,
+                  "end_col_offset": 10
+                },
+                "focus": "result",
+                "id": "result",
+                "ctx": {
+                  "node_id": 14,
+                  "type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "node_id": 64,
+              "type": "List",
+              "location": {
+                "lineno": 3,
+                "col_offset": 13,
+                "end_lineno": 3,
+                "end_col_offset": 15
+              },
+              "focus": "[]",
+              "elts": [],
               "ctx": {
+                "node_id": 25,
                 "type": "Load"
               }
             },
-            "slice": {
+            "type_comment": null
+          },
+          {
+            "node_id": 65,
+            "type": "For",
+            "location": {
+              "lineno": 5,
+              "col_offset": 4,
+              "end_lineno": 9,
+              "end_col_offset": 25
+            },
+            "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+            "target": {
+              "node_id": 66,
               "type": "Name",
+              "location": {
+                "lineno": 5,
+                "col_offset": 8,
+                "end_lineno": 5,
+                "end_col_offset": 11
+              },
+              "focus": "num",
               "id": "num",
               "ctx": {
+                "node_id": 14,
+                "type": "Store"
+              }
+            },
+            "iter": {
+              "node_id": 67,
+              "type": "Name",
+              "location": {
+                "lineno": 5,
+                "col_offset": 15,
+                "end_lineno": 5,
+                "end_col_offset": 20
+              },
+              "focus": "nums1",
+              "id": "nums1",
+              "ctx": {
+                "node_id": 25,
                 "type": "Load"
               }
             },
-            "ctx": {
-              "type": "Store"
-            }
+            "body": [
+              {
+                "node_id": 68,
+                "type": "If",
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 8,
+                  "end_lineno": 9,
+                  "end_col_offset": 25
+                },
+                "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+                "test": {
+                  "node_id": 69,
+                  "type": "Compare",
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 11,
+                    "end_lineno": 6,
+                    "end_col_offset": 22
+                  },
+                  "focus": "num in freq",
+                  "left": {
+                    "node_id": 70,
+                    "type": "Name",
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 11,
+                      "end_lineno": 6,
+                      "end_col_offset": 14
+                    },
+                    "focus": "num",
+                    "id": "num",
+                    "ctx": {
+                      "node_id": 25,
+                      "type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 30,
+                      "type": "In"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 71,
+                      "type": "Name",
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 18,
+                        "end_lineno": 6,
+                        "end_col_offset": 22
+                      },
+                      "focus": "freq",
+                      "id": "freq",
+                      "ctx": {
+                        "node_id": 25,
+                        "type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 72,
+                    "type": "AugAssign",
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 12,
+                      "end_lineno": 7,
+                      "end_col_offset": 26
+                    },
+                    "focus": "freq[num] += 1",
+                    "target": {
+                      "node_id": 73,
+                      "type": "Subscript",
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 12,
+                        "end_lineno": 7,
+                        "end_col_offset": 21
+                      },
+                      "focus": "freq[num]",
+                      "value": {
+                        "node_id": 74,
+                        "type": "Name",
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 12,
+                          "end_lineno": 7,
+                          "end_col_offset": 16
+                        },
+                        "focus": "freq",
+                        "id": "freq",
+                        "ctx": {
+                          "node_id": 25,
+                          "type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "node_id": 75,
+                        "type": "Name",
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 17,
+                          "end_lineno": 7,
+                          "end_col_offset": 20
+                        },
+                        "focus": "num",
+                        "id": "num",
+                        "ctx": {
+                          "node_id": 25,
+                          "type": "Load"
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 14,
+                        "type": "Store"
+                      }
+                    },
+                    "op": {
+                      "node_id": 26,
+                      "type": "Add"
+                    },
+                    "value": {
+                      "node_id": 76,
+                      "type": "Constant",
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 25,
+                        "end_lineno": 7,
+                        "end_col_offset": 26
+                      },
+                      "focus": "1",
+                      "value": 1,
+                      "kind": null
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "node_id": 77,
+                    "type": "Assign",
+                    "location": {
+                      "lineno": 9,
+                      "col_offset": 12,
+                      "end_lineno": 9,
+                      "end_col_offset": 25
+                    },
+                    "focus": "freq[num] = 1",
+                    "targets": [
+                      {
+                        "node_id": 78,
+                        "type": "Subscript",
+                        "location": {
+                          "lineno": 9,
+                          "col_offset": 12,
+                          "end_lineno": 9,
+                          "end_col_offset": 21
+                        },
+                        "focus": "freq[num]",
+                        "value": {
+                          "node_id": 79,
+                          "type": "Name",
+                          "location": {
+                            "lineno": 9,
+                            "col_offset": 12,
+                            "end_lineno": 9,
+                            "end_col_offset": 16
+                          },
+                          "focus": "freq",
+                          "id": "freq",
+                          "ctx": {
+                            "node_id": 25,
+                            "type": "Load"
+                          }
+                        },
+                        "slice": {
+                          "node_id": 80,
+                          "type": "Name",
+                          "location": {
+                            "lineno": 9,
+                            "col_offset": 17,
+                            "end_lineno": 9,
+                            "end_col_offset": 20
+                          },
+                          "focus": "num",
+                          "id": "num",
+                          "ctx": {
+                            "node_id": 25,
+                            "type": "Load"
+                          }
+                        },
+                        "ctx": {
+                          "node_id": 14,
+                          "type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 81,
+                      "type": "Constant",
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 24,
+                        "end_lineno": 9,
+                        "end_col_offset": 25
+                      },
+                      "focus": "1",
+                      "value": 1,
+                      "kind": null
+                    },
+                    "type_comment": null
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
           },
-          "op": {
-            "type": "Sub"
+          {
+            "node_id": 82,
+            "type": "For",
+            "location": {
+              "lineno": 11,
+              "col_offset": 4,
+              "end_lineno": 14,
+              "end_col_offset": 26
+            },
+            "focus": "for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+            "target": {
+              "node_id": 83,
+              "type": "Name",
+              "location": {
+                "lineno": 11,
+                "col_offset": 8,
+                "end_lineno": 11,
+                "end_col_offset": 11
+              },
+              "focus": "num",
+              "id": "num",
+              "ctx": {
+                "node_id": 14,
+                "type": "Store"
+              }
+            },
+            "iter": {
+              "node_id": 84,
+              "type": "Name",
+              "location": {
+                "lineno": 11,
+                "col_offset": 15,
+                "end_lineno": 11,
+                "end_col_offset": 20
+              },
+              "focus": "nums2",
+              "id": "nums2",
+              "ctx": {
+                "node_id": 25,
+                "type": "Load"
+              }
+            },
+            "body": [
+              {
+                "node_id": 85,
+                "type": "If",
+                "location": {
+                  "lineno": 12,
+                  "col_offset": 8,
+                  "end_lineno": 14,
+                  "end_col_offset": 26
+                },
+                "focus": "if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+                "test": {
+                  "node_id": 86,
+                  "type": "BoolOp",
+                  "location": {
+                    "lineno": 12,
+                    "col_offset": 11,
+                    "end_lineno": 12,
+                    "end_col_offset": 40
+                  },
+                  "focus": "num in freq and freq[num] > 0",
+                  "op": {
+                    "node_id": 33,
+                    "type": "And"
+                  },
+                  "values": [
+                    {
+                      "node_id": 87,
+                      "type": "Compare",
+                      "location": {
+                        "lineno": 12,
+                        "col_offset": 11,
+                        "end_lineno": 12,
+                        "end_col_offset": 22
+                      },
+                      "focus": "num in freq",
+                      "left": {
+                        "node_id": 88,
+                        "type": "Name",
+                        "location": {
+                          "lineno": 12,
+                          "col_offset": 11,
+                          "end_lineno": 12,
+                          "end_col_offset": 14
+                        },
+                        "focus": "num",
+                        "id": "num",
+                        "ctx": {
+                          "node_id": 25,
+                          "type": "Load"
+                        }
+                      },
+                      "ops": [
+                        {
+                          "node_id": 30,
+                          "type": "In"
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "node_id": 89,
+                          "type": "Name",
+                          "location": {
+                            "lineno": 12,
+                            "col_offset": 18,
+                            "end_lineno": 12,
+                            "end_col_offset": 22
+                          },
+                          "focus": "freq",
+                          "id": "freq",
+                          "ctx": {
+                            "node_id": 25,
+                            "type": "Load"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "node_id": 90,
+                      "type": "Compare",
+                      "location": {
+                        "lineno": 12,
+                        "col_offset": 27,
+                        "end_lineno": 12,
+                        "end_col_offset": 40
+                      },
+                      "focus": "freq[num] > 0",
+                      "left": {
+                        "node_id": 91,
+                        "type": "Subscript",
+                        "location": {
+                          "lineno": 12,
+                          "col_offset": 27,
+                          "end_lineno": 12,
+                          "end_col_offset": 36
+                        },
+                        "focus": "freq[num]",
+                        "value": {
+                          "node_id": 92,
+                          "type": "Name",
+                          "location": {
+                            "lineno": 12,
+                            "col_offset": 27,
+                            "end_lineno": 12,
+                            "end_col_offset": 31
+                          },
+                          "focus": "freq",
+                          "id": "freq",
+                          "ctx": {
+                            "node_id": 25,
+                            "type": "Load"
+                          }
+                        },
+                        "slice": {
+                          "node_id": 93,
+                          "type": "Name",
+                          "location": {
+                            "lineno": 12,
+                            "col_offset": 32,
+                            "end_lineno": 12,
+                            "end_col_offset": 35
+                          },
+                          "focus": "num",
+                          "id": "num",
+                          "ctx": {
+                            "node_id": 25,
+                            "type": "Load"
+                          }
+                        },
+                        "ctx": {
+                          "node_id": 25,
+                          "type": "Load"
+                        }
+                      },
+                      "ops": [
+                        {
+                          "node_id": 21,
+                          "type": "Gt"
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "node_id": 94,
+                          "type": "Constant",
+                          "location": {
+                            "lineno": 12,
+                            "col_offset": 39,
+                            "end_lineno": 12,
+                            "end_col_offset": 40
+                          },
+                          "focus": "0",
+                          "value": 0,
+                          "kind": null
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 95,
+                    "type": "Expr",
+                    "location": {
+                      "lineno": 13,
+                      "col_offset": 12,
+                      "end_lineno": 13,
+                      "end_col_offset": 30
+                    },
+                    "focus": "result.append(num)",
+                    "value": {
+                      "node_id": 96,
+                      "type": "Call",
+                      "location": {
+                        "lineno": 13,
+                        "col_offset": 12,
+                        "end_lineno": 13,
+                        "end_col_offset": 30
+                      },
+                      "focus": "result.append(num)",
+                      "func": {
+                        "node_id": 97,
+                        "type": "Attribute",
+                        "location": {
+                          "lineno": 13,
+                          "col_offset": 12,
+                          "end_lineno": 13,
+                          "end_col_offset": 25
+                        },
+                        "focus": "result.append",
+                        "value": {
+                          "node_id": 98,
+                          "type": "Name",
+                          "location": {
+                            "lineno": 13,
+                            "col_offset": 12,
+                            "end_lineno": 13,
+                            "end_col_offset": 18
+                          },
+                          "focus": "result",
+                          "id": "result",
+                          "ctx": {
+                            "node_id": 25,
+                            "type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "node_id": 25,
+                          "type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 99,
+                          "type": "Name",
+                          "location": {
+                            "lineno": 13,
+                            "col_offset": 26,
+                            "end_lineno": 13,
+                            "end_col_offset": 29
+                          },
+                          "focus": "num",
+                          "id": "num",
+                          "ctx": {
+                            "node_id": 25,
+                            "type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  },
+                  {
+                    "node_id": 100,
+                    "type": "AugAssign",
+                    "location": {
+                      "lineno": 14,
+                      "col_offset": 12,
+                      "end_lineno": 14,
+                      "end_col_offset": 26
+                    },
+                    "focus": "freq[num] -= 1",
+                    "target": {
+                      "node_id": 101,
+                      "type": "Subscript",
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 12,
+                        "end_lineno": 14,
+                        "end_col_offset": 21
+                      },
+                      "focus": "freq[num]",
+                      "value": {
+                        "node_id": 102,
+                        "type": "Name",
+                        "location": {
+                          "lineno": 14,
+                          "col_offset": 12,
+                          "end_lineno": 14,
+                          "end_col_offset": 16
+                        },
+                        "focus": "freq",
+                        "id": "freq",
+                        "ctx": {
+                          "node_id": 25,
+                          "type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "node_id": 103,
+                        "type": "Name",
+                        "location": {
+                          "lineno": 14,
+                          "col_offset": 17,
+                          "end_lineno": 14,
+                          "end_col_offset": 20
+                        },
+                        "focus": "num",
+                        "id": "num",
+                        "ctx": {
+                          "node_id": 25,
+                          "type": "Load"
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 14,
+                        "type": "Store"
+                      }
+                    },
+                    "op": {
+                      "node_id": 27,
+                      "type": "Sub"
+                    },
+                    "value": {
+                      "node_id": 104,
+                      "type": "Constant",
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 25,
+                        "end_lineno": 14,
+                        "end_col_offset": 26
+                      },
+                      "focus": "1",
+                      "value": 1,
+                      "kind": null
+                    }
+                  }
+                ],
+                "orelse": []
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
           },
-          "value": {
-            "type": "Constant",
-            "value": 1,
-            "kind": null
-          }
-        },
-        {
-          "type": "Subscript",
-          "value": {
-            "type": "Name",
-            "id": "freq",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "slice": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Constant",
-          "value": 1,
-          "kind": null
-        },
-        {
-          "type": "Name",
-          "id": "freq",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "15": [
-        {
-          "type": "Return",
-          "value": {
-            "type": "Name",
-            "id": "result",
-            "ctx": {
-              "type": "Load"
+          {
+            "node_id": 105,
+            "type": "Return",
+            "location": {
+              "lineno": 15,
+              "col_offset": 4,
+              "end_lineno": 15,
+              "end_col_offset": 17
+            },
+            "focus": "return result",
+            "value": {
+              "node_id": 106,
+              "type": "Name",
+              "location": {
+                "lineno": 15,
+                "col_offset": 11,
+                "end_lineno": 15,
+                "end_col_offset": 17
+              },
+              "focus": "result",
+              "id": "result",
+              "ctx": {
+                "node_id": 25,
+                "type": "Load"
+              }
             }
           }
-        },
-        {
-          "type": "Name",
-          "id": "result",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ]
-    }
+        ],
+        "decorator_list": [],
+        "returns": null,
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
   },
   "trace": [
     {
-      "line_number": 2,
+      "line_number": 1,
       "locals": {
         "nums1": [
           1,
@@ -893,7 +833,71 @@
           "0": 2,
           "1": 2
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    # Build frequency map for nums1\n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    # Check nums2 against the map\n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    return result",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 1,
+          "event": "before_statement",
+          "focus": "freq = {}",
+          "node_id": 3
+        },
+        {
+          "step": 2,
+          "event": "before_expression",
+          "focus": "{}",
+          "node_id": 11
+        },
+        {
+          "step": 3,
+          "event": "after_expression",
+          "focus": "{}",
+          "node_id": 11,
+          "value": {}
+        },
+        {
+          "step": 4,
+          "event": "after_statement",
+          "focus": "freq = {}",
+          "node_id": 3,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {}
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -912,7 +916,48 @@
       },
       "delta": {
         "freq": {}
-      }
+      },
+      "steps": [
+        {
+          "step": 5,
+          "event": "before_statement",
+          "focus": "result = []",
+          "node_id": 4
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "[]",
+          "node_id": 13
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "[]",
+          "node_id": 13,
+          "value": []
+        },
+        {
+          "step": 8,
+          "event": "after_statement",
+          "focus": "result = []",
+          "node_id": 4,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {},
+            "result": []
+          }
+        }
+      ]
     },
     {
       "line_number": 5,
@@ -932,7 +977,48 @@
       },
       "delta": {
         "result": []
-      }
+      },
+      "steps": [
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "nums1",
+          "node_id": 15
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "nums1",
+          "node_id": 15,
+          "value": [
+            1,
+            2,
+            2,
+            1
+          ]
+        },
+        {
+          "step": 11,
+          "event": "before_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {},
+            "result": [],
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 6,
@@ -954,7 +1040,47 @@
       "delta": {
         "num": 1
       },
-      "eval_result": false
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 21
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 27
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 27,
+          "value": 1
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 28
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 28,
+          "value": {}
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 21,
+          "value": false
+        }
+      ]
     },
     {
       "line_number": 9,
@@ -973,7 +1099,77 @@
         "result": [],
         "num": 1
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 18,
+          "event": "before_statement",
+          "focus": "freq[num] = 1",
+          "node_id": 23
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 32
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 32,
+          "value": 1
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 41
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 41,
+          "value": {}
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 42
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 42,
+          "value": 1
+        },
+        {
+          "step": 25,
+          "event": "after_statement",
+          "focus": "freq[num] = 1",
+          "node_id": 23,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 1
+            },
+            "result": [],
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 5,
@@ -998,7 +1194,38 @@
         "freq": {
           "1": 1
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 26,
+          "event": "after_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5
+        },
+        {
+          "step": 27,
+          "event": "before_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 1
+            },
+            "result": [],
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 6,
@@ -1022,7 +1249,49 @@
       "delta": {
         "num": 2
       },
-      "eval_result": false
+      "steps": [
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 21
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 27
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 27,
+          "value": 2
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 28
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 28,
+          "value": {
+            "1": 1
+          }
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 21,
+          "value": false
+        }
+      ]
     },
     {
       "line_number": 9,
@@ -1043,7 +1312,80 @@
         "result": [],
         "num": 2
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 34,
+          "event": "before_statement",
+          "focus": "freq[num] = 1",
+          "node_id": 23
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 32
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 32,
+          "value": 1
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 41
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 41,
+          "value": {
+            "1": 1
+          }
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 42
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 42,
+          "value": 2
+        },
+        {
+          "step": 41,
+          "event": "after_statement",
+          "focus": "freq[num] = 1",
+          "node_id": 23,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 1,
+              "2": 1
+            },
+            "result": [],
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 5,
@@ -1069,7 +1411,21 @@
         "freq": {
           "2": 1
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 42,
+          "event": "after_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5
+        },
+        {
+          "step": 43,
+          "event": "before_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5
+        }
+      ]
     },
     {
       "line_number": 6,
@@ -1092,7 +1448,56 @@
         "num": 2
       },
       "delta": null,
-      "eval_result": true
+      "steps": [
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 21
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 27
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 27,
+          "value": 2
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 28
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 28,
+          "value": {
+            "1": 1,
+            "2": 1
+          }
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 21,
+          "value": true
+        },
+        {
+          "step": 50,
+          "event": "before_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        }
+      ]
     },
     {
       "line_number": 7,
@@ -1114,10 +1519,84 @@
         "result": [],
         "num": 2
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 51,
+          "event": "before_statement",
+          "focus": "freq[num] += 1",
+          "node_id": 22
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 39
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 39,
+          "value": {
+            "1": 1,
+            "2": 1
+          }
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 40
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 40,
+          "value": 2
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 30
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 30,
+          "value": 1
+        },
+        {
+          "step": 58,
+          "event": "after_statement",
+          "focus": "freq[num] += 1",
+          "node_id": 22,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 1,
+              "2": 2
+            },
+            "result": [],
+            "num": 2
+          }
+        }
+      ]
     },
     {
-      "line_number": 5,
+      "line_number": 6,
       "locals": {
         "nums1": [
           1,
@@ -1140,7 +1619,69 @@
         "freq": {
           "2": 2
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 59,
+          "event": "after_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 2
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 60,
+          "event": "after_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5
+        },
+        {
+          "step": 61,
+          "event": "before_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 1,
+              "2": 2
+            },
+            "result": [],
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 6,
@@ -1165,7 +1706,56 @@
       "delta": {
         "num": 1
       },
-      "eval_result": true
+      "steps": [
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 21
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 27
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 27,
+          "value": 1
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 28
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 28,
+          "value": {
+            "1": 1,
+            "2": 2
+          }
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 21,
+          "value": true
+        },
+        {
+          "step": 68,
+          "event": "before_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        }
+      ]
     },
     {
       "line_number": 7,
@@ -1187,10 +1777,84 @@
         "result": [],
         "num": 1
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 69,
+          "event": "before_statement",
+          "focus": "freq[num] += 1",
+          "node_id": 22
+        },
+        {
+          "step": 70,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 39
+        },
+        {
+          "step": 71,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 39,
+          "value": {
+            "1": 1,
+            "2": 2
+          }
+        },
+        {
+          "step": 72,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 40
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 40,
+          "value": 1
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 30
+        },
+        {
+          "step": 75,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 30,
+          "value": 1
+        },
+        {
+          "step": 76,
+          "event": "after_statement",
+          "focus": "freq[num] += 1",
+          "node_id": 22,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 2
+            },
+            "result": [],
+            "num": 1
+          }
+        }
+      ]
     },
     {
-      "line_number": 5,
+      "line_number": 6,
       "locals": {
         "nums1": [
           1,
@@ -1213,7 +1877,45 @@
         "freq": {
           "1": 2
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 77,
+          "event": "after_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 78,
+          "event": "after_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5
+        }
+      ]
     },
     {
       "line_number": 11,
@@ -1235,7 +1937,49 @@
         "result": [],
         "num": 1
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "nums2",
+          "node_id": 18
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "nums2",
+          "node_id": 18,
+          "value": [
+            2,
+            2
+          ]
+        },
+        {
+          "step": 81,
+          "event": "before_statement",
+          "focus": "for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 6,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 2
+            },
+            "result": [],
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 12,
@@ -1260,7 +2004,137 @@
       "delta": {
         "num": 2
       },
-      "eval_result": true
+      "steps": [
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "num in freq and freq[num] > 0",
+          "node_id": 24
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 34
+        },
+        {
+          "step": 84,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 43
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 43,
+          "value": 2
+        },
+        {
+          "step": 86,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 44
+        },
+        {
+          "step": 87,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 44,
+          "value": {
+            "1": 2,
+            "2": 2
+          }
+        },
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 34,
+          "value": true
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "freq[num] > 0",
+          "node_id": 35
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "freq[num]",
+          "node_id": 45
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 51
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 51,
+          "value": {
+            "1": 2,
+            "2": 2
+          }
+        },
+        {
+          "step": 93,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 52
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 52,
+          "value": 2
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "freq[num]",
+          "node_id": 45,
+          "value": 2
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 46
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 98,
+          "event": "after_expression",
+          "focus": "freq[num] > 0",
+          "node_id": 35,
+          "value": true
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "num in freq and freq[num] > 0",
+          "node_id": 24,
+          "value": true
+        },
+        {
+          "step": 100,
+          "event": "before_statement",
+          "focus": "if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 19
+        }
+      ]
     },
     {
       "line_number": 13,
@@ -1282,7 +2156,112 @@
         "result": [],
         "num": 2
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 101,
+          "event": "before_statement",
+          "focus": "result.append(num)",
+          "node_id": 25
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "result.append(num)",
+          "node_id": 36
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "result.append",
+          "node_id": 47
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "result",
+          "node_id": 53
+        },
+        {
+          "step": 105,
+          "event": "after_expression",
+          "focus": "result",
+          "node_id": 53,
+          "value": []
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "result.append",
+          "node_id": 47,
+          "value": "<built-in method append of list object at 0x105088d80>"
+        },
+        {
+          "step": 107,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 48
+        },
+        {
+          "step": 108,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 48,
+          "value": 2
+        },
+        {
+          "step": 109,
+          "event": "after_expression",
+          "focus": "result.append(num)",
+          "node_id": 36,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 2
+            },
+            "result": [
+              2
+            ],
+            "num": 2
+          }
+        },
+        {
+          "step": 110,
+          "event": "after_statement",
+          "focus": "result.append(num)",
+          "node_id": 25,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 2
+            },
+            "result": [
+              2
+            ],
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 14,
@@ -1310,10 +2289,86 @@
         "result": {
           "0": 2
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 111,
+          "event": "before_statement",
+          "focus": "freq[num] -= 1",
+          "node_id": 26
+        },
+        {
+          "step": 112,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 49
+        },
+        {
+          "step": 113,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 49,
+          "value": {
+            "1": 2,
+            "2": 2
+          }
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 50
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 50,
+          "value": 2
+        },
+        {
+          "step": 116,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 38
+        },
+        {
+          "step": 117,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 38,
+          "value": 1
+        },
+        {
+          "step": 118,
+          "event": "after_statement",
+          "focus": "freq[num] -= 1",
+          "node_id": 26,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 1
+            },
+            "result": [
+              2
+            ],
+            "num": 2
+          }
+        }
+      ]
     },
     {
-      "line_number": 11,
+      "line_number": 12,
       "locals": {
         "nums1": [
           1,
@@ -1338,7 +2393,53 @@
         "freq": {
           "2": 1
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 119,
+          "event": "after_statement",
+          "focus": "if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 1
+        },
+        "result": [
+          2
+        ],
+        "num": 2
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 120,
+          "event": "after_statement",
+          "focus": "for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 6
+        },
+        {
+          "step": 121,
+          "event": "before_statement",
+          "focus": "for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 6
+        }
+      ]
     },
     {
       "line_number": 12,
@@ -1363,7 +2464,137 @@
         "num": 2
       },
       "delta": null,
-      "eval_result": true
+      "steps": [
+        {
+          "step": 122,
+          "event": "before_expression",
+          "focus": "num in freq and freq[num] > 0",
+          "node_id": 24
+        },
+        {
+          "step": 123,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 34
+        },
+        {
+          "step": 124,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 43
+        },
+        {
+          "step": 125,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 43,
+          "value": 2
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 44
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 44,
+          "value": {
+            "1": 2,
+            "2": 1
+          }
+        },
+        {
+          "step": 128,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 34,
+          "value": true
+        },
+        {
+          "step": 129,
+          "event": "before_expression",
+          "focus": "freq[num] > 0",
+          "node_id": 35
+        },
+        {
+          "step": 130,
+          "event": "before_expression",
+          "focus": "freq[num]",
+          "node_id": 45
+        },
+        {
+          "step": 131,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 51
+        },
+        {
+          "step": 132,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 51,
+          "value": {
+            "1": 2,
+            "2": 1
+          }
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 52
+        },
+        {
+          "step": 134,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 52,
+          "value": 2
+        },
+        {
+          "step": 135,
+          "event": "after_expression",
+          "focus": "freq[num]",
+          "node_id": 45,
+          "value": 1
+        },
+        {
+          "step": 136,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 46
+        },
+        {
+          "step": 137,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 138,
+          "event": "after_expression",
+          "focus": "freq[num] > 0",
+          "node_id": 35,
+          "value": true
+        },
+        {
+          "step": 139,
+          "event": "after_expression",
+          "focus": "num in freq and freq[num] > 0",
+          "node_id": 24,
+          "value": true
+        },
+        {
+          "step": 140,
+          "event": "before_statement",
+          "focus": "if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 19
+        }
+      ]
     },
     {
       "line_number": 13,
@@ -1387,7 +2618,116 @@
         ],
         "num": 2
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 141,
+          "event": "before_statement",
+          "focus": "result.append(num)",
+          "node_id": 25
+        },
+        {
+          "step": 142,
+          "event": "before_expression",
+          "focus": "result.append(num)",
+          "node_id": 36
+        },
+        {
+          "step": 143,
+          "event": "before_expression",
+          "focus": "result.append",
+          "node_id": 47
+        },
+        {
+          "step": 144,
+          "event": "before_expression",
+          "focus": "result",
+          "node_id": 53
+        },
+        {
+          "step": 145,
+          "event": "after_expression",
+          "focus": "result",
+          "node_id": 53,
+          "value": [
+            2
+          ]
+        },
+        {
+          "step": 146,
+          "event": "after_expression",
+          "focus": "result.append",
+          "node_id": 47,
+          "value": "<built-in method append of list object at 0x105088d80>"
+        },
+        {
+          "step": 147,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 48
+        },
+        {
+          "step": 148,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 48,
+          "value": 2
+        },
+        {
+          "step": 149,
+          "event": "after_expression",
+          "focus": "result.append(num)",
+          "node_id": 36,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 1
+            },
+            "result": [
+              2,
+              2
+            ],
+            "num": 2
+          }
+        },
+        {
+          "step": 150,
+          "event": "after_statement",
+          "focus": "result.append(num)",
+          "node_id": 25,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 1
+            },
+            "result": [
+              2,
+              2
+            ],
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 14,
@@ -1416,10 +2756,87 @@
         "result": {
           "1": 2
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 151,
+          "event": "before_statement",
+          "focus": "freq[num] -= 1",
+          "node_id": 26
+        },
+        {
+          "step": 152,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 49
+        },
+        {
+          "step": 153,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 49,
+          "value": {
+            "1": 2,
+            "2": 1
+          }
+        },
+        {
+          "step": 154,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 50
+        },
+        {
+          "step": 155,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 50,
+          "value": 2
+        },
+        {
+          "step": 156,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 38
+        },
+        {
+          "step": 157,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 38,
+          "value": 1
+        },
+        {
+          "step": 158,
+          "event": "after_statement",
+          "focus": "freq[num] -= 1",
+          "node_id": 26,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 0
+            },
+            "result": [
+              2,
+              2
+            ],
+            "num": 2
+          }
+        }
+      ]
     },
     {
-      "line_number": 11,
+      "line_number": 12,
       "locals": {
         "nums1": [
           1,
@@ -1445,7 +2862,48 @@
         "freq": {
           "2": 0
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 159,
+          "event": "after_statement",
+          "focus": "if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 0
+        },
+        "result": [
+          2,
+          2
+        ],
+        "num": 2
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 160,
+          "event": "after_statement",
+          "focus": "for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 6
+        }
+      ]
     },
     {
       "line_number": 15,
@@ -1470,7 +2928,31 @@
         ],
         "num": 2
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 161,
+          "event": "before_statement",
+          "focus": "return result",
+          "node_id": 7
+        },
+        {
+          "step": 162,
+          "event": "before_expression",
+          "focus": "result",
+          "node_id": 20
+        },
+        {
+          "step": 163,
+          "event": "after_expression",
+          "focus": "result",
+          "node_id": 20,
+          "value": [
+            2,
+            2
+          ]
+        }
+      ]
     }
   ],
   "result": [

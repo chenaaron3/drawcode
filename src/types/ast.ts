@@ -1,14 +1,19 @@
 // Base AST node type
-export type AST = {
+export interface AST {
+  node_id: number;
   type: string;
-  lineno?: number;
-  col_offset?: number;
-  end_lineno?: number | null;
-  end_col_offset?: number | null;
-};
+  location?: {
+    lineno: number;
+    col_offset: number;
+    end_lineno: number;
+    end_col_offset: number;
+  };
+  focus?: string; // Source code segment for this node
+  [key: string]: any; // Allow additional fields
+}
 
 // Base statement type
-export type stmt = AST & {
+export interface stmt extends AST {
   type:
     | "FunctionDef"
     | "AsyncFunctionDef"
@@ -35,10 +40,11 @@ export type stmt = AST & {
     | "Pass"
     | "Break"
     | "Continue";
-};
+  body?: AST[];
+}
 
 // Base expression type
-export type expr = AST & {
+export interface expr extends AST {
   type:
     | "BoolOp"
     | "BinOp"
@@ -66,20 +72,20 @@ export type expr = AST & {
     | "Name"
     | "List"
     | "Tuple";
-};
+  ctx?: expr_context;
+}
 
 // Expression context
-export type expr_context = {
+export interface expr_context extends AST {
   type: "Load" | "Store" | "Del";
-};
+}
 
 // Operators
-export type operator = {
+export interface operator extends AST {
   type:
     | "Add"
     | "Sub"
     | "Mult"
-    | "MatMult"
     | "Div"
     | "Mod"
     | "Pow"
@@ -89,13 +95,13 @@ export type operator = {
     | "BitXor"
     | "BitAnd"
     | "FloorDiv";
-};
+}
 
-export type unaryop = {
+export interface unaryop extends AST {
   type: "Invert" | "Not" | "UAdd" | "USub";
-};
+}
 
-export type cmpop = {
+export interface cmpop extends AST {
   type:
     | "Eq"
     | "NotEq"
@@ -107,261 +113,265 @@ export type cmpop = {
     | "IsNot"
     | "In"
     | "NotIn";
-};
+}
 
-export type boolop = {
+export interface boolop extends AST {
   type: "And" | "Or";
-};
+}
 
 // Statement types
-export type FunctionDef = stmt & {
+export interface FunctionDef extends stmt {
   name: string;
   args: arguments;
   body: stmt[];
   decorator_list: expr[];
   returns: expr | null;
   type_comment: string | null;
-};
+}
 
-export type AsyncFunctionDef = Omit<FunctionDef, "type"> & {
+export interface AsyncFunctionDef extends Omit<FunctionDef, "type"> {
   type: "AsyncFunctionDef";
-};
+}
 
-export type ClassDef = stmt & {
+export interface ClassDef extends stmt {
   name: string;
   bases: expr[];
   keywords: keyword[];
   body: stmt[];
   decorator_list: expr[];
-};
+}
 
-export type Return = stmt & {
+export interface Return extends stmt {
   value: expr | null;
-};
+}
 
-export type Delete = stmt & {
+export interface Delete extends stmt {
   targets: expr[];
-};
+}
 
-export type Assign = stmt & {
+export interface Assign extends stmt {
   targets: expr[];
   value: expr;
   type_comment: string | null;
-};
+}
 
-export type AugAssign = stmt & {
+export interface AugAssign extends stmt {
   target: Name | Attribute | Subscript;
   op: operator;
   value: expr;
-};
+}
 
-export type AnnAssign = stmt & {
+export interface AnnAssign extends stmt {
   target: Name | Attribute | Subscript;
   annotation: expr;
   value: expr | null;
   simple: number;
-};
+}
 
-export type For = stmt & {
+export interface For extends stmt {
   target: expr;
   iter: expr;
   body: stmt[];
   orelse: stmt[];
   type_comment: string | null;
-};
+}
 
-export type AsyncFor = Omit<For, "type"> & { type: "AsyncFor" };
+export interface AsyncFor extends Omit<For, "type"> {
+  type: "AsyncFor";
+}
 
-export type While = stmt & {
+export interface While extends stmt {
   test: expr;
   body: stmt[];
   orelse: stmt[];
-};
+}
 
-export type If = stmt & {
+export interface If extends stmt {
   test: expr;
   body: stmt[];
   orelse: stmt[];
-};
+}
 
-export type With = stmt & {
+export interface With extends stmt {
   items: withitem[];
   body: stmt[];
   type_comment: string | null;
-};
+}
 
-export type AsyncWith = Omit<With, "type"> & { type: "AsyncWith" };
+export interface AsyncWith extends Omit<With, "type"> {
+  type: "AsyncWith";
+}
 
-export type Raise = stmt & {
+export interface Raise extends stmt {
   exc: expr | null;
   cause: expr | null;
-};
+}
 
-export type Try = stmt & {
+export interface Try extends stmt {
   body: stmt[];
   handlers: ExceptHandler[];
   orelse: stmt[];
   finalbody: stmt[];
-};
+}
 
-export type Assert = stmt & {
+export interface Assert extends stmt {
   test: expr;
   msg: expr | null;
-};
+}
 
-export type Import = stmt & {
+export interface Import extends stmt {
   names: alias[];
-};
+}
 
-export type ImportFrom = stmt & {
+export interface ImportFrom extends stmt {
   module: string | null;
   names: alias[];
   level: number;
-};
+}
 
-export type Global = stmt & {
+export interface Global extends stmt {
   names: string[];
-};
+}
 
-export type Nonlocal = stmt & {
+export interface Nonlocal extends stmt {
   names: string[];
-};
+}
 
-export type Expr = stmt & {
+export interface Expr extends stmt {
   value: expr;
-};
+}
 
 // Expression types
-export type BoolOp = expr & {
+export interface BoolOp extends expr {
   op: boolop;
   values: expr[];
-};
+}
 
-export type BinOp = expr & {
+export interface BinOp extends expr {
   left: expr;
   op: operator;
   right: expr;
-};
+}
 
-export type UnaryOp = expr & {
+export interface UnaryOp extends expr {
   op: unaryop;
   operand: expr;
-};
+}
 
-export type Lambda = expr & {
+export interface Lambda extends expr {
   args: arguments;
   body: expr;
-};
+}
 
-export type IfExp = expr & {
+export interface IfExp extends expr {
   test: expr;
   body: expr;
   orelse: expr;
-};
+}
 
-export type Dict = expr & {
+export interface Dict extends expr {
   keys: (expr | null)[];
   values: expr[];
-};
+}
 
-export type Set = expr & {
+export interface Set extends expr {
   elts: expr[];
-};
+}
 
-export type ListComp = expr & {
+export interface ListComp extends expr {
   elt: expr;
   generators: comprehension[];
-};
+}
 
-export type SetComp = expr & {
+export interface SetComp extends expr {
   elt: expr;
   generators: comprehension[];
-};
+}
 
-export type DictComp = expr & {
+export interface DictComp extends expr {
   key: expr;
   value: expr;
   generators: comprehension[];
-};
+}
 
-export type GeneratorExp = expr & {
+export interface GeneratorExp extends expr {
   elt: expr;
   generators: comprehension[];
-};
+}
 
-export type Await = expr & {
+export interface Await extends expr {
   value: expr;
-};
+}
 
-export type Yield = expr & {
+export interface Yield extends expr {
   value: expr | null;
-};
+}
 
-export type YieldFrom = expr & {
+export interface YieldFrom extends expr {
   value: expr;
-};
+}
 
-export type Compare = expr & {
+export interface Compare extends expr {
   left: expr;
   ops: cmpop[];
   comparators: expr[];
-};
+}
 
-export type Call = expr & {
+export interface Call extends expr {
   func: expr;
   args: expr[];
   keywords: keyword[];
-};
+}
 
-export type FormattedValue = expr & {
+export interface FormattedValue extends expr {
   value: expr;
   conversion: number;
   format_spec: expr | null;
-};
+}
 
-export type JoinedStr = expr & {
+export interface JoinedStr extends expr {
   values: expr[];
-};
+}
 
-export type Constant = expr & {
+export interface Constant extends expr {
   value: any;
   kind: string | null;
-};
+}
 
-export type Attribute = expr & {
+export interface Attribute extends expr {
   value: expr;
   attr: string;
   ctx: expr_context;
-};
+}
 
-export type Subscript = expr & {
+export interface Subscript extends expr {
   value: expr;
   slice: expr;
   ctx: expr_context;
-};
+}
 
-export type Starred = expr & {
+export interface Starred extends expr {
   value: expr;
   ctx: expr_context;
-};
+}
 
-export type Name = expr & {
+export interface Name extends expr {
   id: string;
   ctx: expr_context;
-};
+}
 
-export type List = expr & {
+export interface List extends expr {
   elts: expr[];
   ctx: expr_context;
-};
+}
 
-export type Tuple = expr & {
+export interface Tuple extends expr {
   elts: expr[];
   ctx: expr_context;
-};
+}
 
 // Helper types
-export type arguments = {
+export interface arguments extends AST {
   posonlyargs: arg[];
   args: arg[];
   vararg: arg | null;
@@ -369,39 +379,39 @@ export type arguments = {
   kw_defaults: (expr | null)[];
   kwarg: arg | null;
   defaults: expr[];
-};
+}
 
-export type arg = {
+export interface arg extends AST {
   arg: string;
   annotation: expr | null;
   type_comment: string | null;
-};
+}
 
-export type keyword = {
+export interface keyword extends AST {
   arg: string | null;
   value: expr;
-};
+}
 
-export type alias = {
+export interface alias extends AST {
   name: string;
   asname: string | null;
-};
+}
 
-export type withitem = {
+export interface withitem extends AST {
   context_expr: expr;
   optional_vars: expr | null;
-};
+}
 
-export type comprehension = {
+export interface comprehension extends AST {
   target: expr;
   iter: expr;
   ifs: expr[];
   is_async: number;
-};
+}
 
-export type ExceptHandler = {
+export interface ExceptHandler extends AST {
   type: "ExceptHandler";
   type_node: expr | null;
   name: string | null;
   body: stmt[];
-};
+}

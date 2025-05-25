@@ -6,318 +6,353 @@
       "kwargs": {
         "nums": "[1, 2, 3, 1]"
       }
-    },
-    "ast": {
-      "1": [
-        {
-          "type": "FunctionDef",
-          "name": "containsDuplicate",
-          "args": {
-            "type": "arguments",
-            "posonlyargs": [],
-            "args": [
-              {
-                "type": "arg",
-                "arg": "nums",
-                "annotation": null,
-                "type_comment": null
-              }
-            ],
-            "vararg": null,
-            "kwonlyargs": [],
-            "kw_defaults": [],
-            "kwarg": null,
-            "defaults": []
-          },
-          "decorator_list": [],
-          "returns": null,
-          "type_comment": null
+    }
+  },
+  "ast": {
+    "node_id": 24,
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 25,
+        "type": "FunctionDef",
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 7,
+          "end_col_offset": 16
         },
-        {
-          "type": "arg",
-          "arg": "nums",
-          "annotation": null,
-          "type_comment": null
-        }
-      ],
-      "2": [
-        {
-          "type": "Assign",
-          "targets": [
+        "focus": "def containsDuplicate(nums):\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False",
+        "name": "containsDuplicate",
+        "args": {
+          "node_id": 26,
+          "type": "arguments",
+          "posonlyargs": [],
+          "args": [
             {
-              "type": "Name",
-              "id": "seen",
-              "ctx": {
-                "type": "Store"
-              }
+              "node_id": 27,
+              "type": "arg",
+              "location": {
+                "lineno": 1,
+                "col_offset": 22,
+                "end_lineno": 1,
+                "end_col_offset": 26
+              },
+              "focus": "nums",
+              "arg": "nums",
+              "annotation": null,
+              "type_comment": null
             }
           ],
-          "value": {
-            "type": "Call",
-            "func": {
-              "type": "Name",
-              "id": "set",
-              "ctx": {
-                "type": "Load"
-              }
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 28,
+            "type": "Assign",
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 16
             },
-            "args": [],
-            "keywords": []
-          },
-          "type_comment": null
-        },
-        {
-          "type": "Name",
-          "id": "seen",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Call",
-          "func": {
-            "type": "Name",
-            "id": "set",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "args": [],
-          "keywords": []
-        },
-        {
-          "type": "Name",
-          "id": "set",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "3": [
-        {
-          "type": "For",
-          "target": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Store"
-            }
-          },
-          "iter": {
-            "type": "Name",
-            "id": "nums",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "orelse": [],
-          "type_comment": null
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Store"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "nums",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "4": [
-        {
-          "type": "If",
-          "test": {
-            "type": "Compare",
-            "left": {
-              "type": "Name",
-              "id": "num",
-              "ctx": {
-                "type": "Load"
-              }
-            },
-            "ops": [
+            "focus": "seen = set()",
+            "targets": [
               {
-                "type": "In"
-              }
-            ],
-            "comparators": [
-              {
+                "node_id": 29,
                 "type": "Name",
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 8
+                },
+                "focus": "seen",
                 "id": "seen",
                 "ctx": {
-                  "type": "Load"
+                  "node_id": 14,
+                  "type": "Store"
                 }
               }
-            ]
-          },
-          "orelse": []
-        },
-        {
-          "type": "Compare",
-          "left": {
-            "type": "Name",
-            "id": "num",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "ops": [
-            {
-              "type": "In"
-            }
-          ],
-          "comparators": [
-            {
-              "type": "Name",
-              "id": "seen",
-              "ctx": {
-                "type": "Load"
-              }
-            }
-          ]
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "seen",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "5": [
-        {
-          "type": "Return",
-          "value": {
-            "type": "Constant",
-            "value": true,
-            "kind": null
-          }
-        },
-        {
-          "type": "Constant",
-          "value": true,
-          "kind": null
-        }
-      ],
-      "6": [
-        {
-          "type": "Expr",
-          "value": {
-            "type": "Call",
-            "func": {
-              "type": "Attribute",
-              "value": {
+            ],
+            "value": {
+              "node_id": 30,
+              "type": "Call",
+              "location": {
+                "lineno": 2,
+                "col_offset": 11,
+                "end_lineno": 2,
+                "end_col_offset": 16
+              },
+              "focus": "set()",
+              "func": {
+                "node_id": 31,
                 "type": "Name",
-                "id": "seen",
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 11,
+                  "end_lineno": 2,
+                  "end_col_offset": 14
+                },
+                "focus": "set",
+                "id": "set",
                 "ctx": {
+                  "node_id": 25,
                   "type": "Load"
                 }
               },
-              "attr": "add",
+              "args": [],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "node_id": 32,
+            "type": "For",
+            "location": {
+              "lineno": 3,
+              "col_offset": 4,
+              "end_lineno": 6,
+              "end_col_offset": 21
+            },
+            "focus": "for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)",
+            "target": {
+              "node_id": 33,
+              "type": "Name",
+              "location": {
+                "lineno": 3,
+                "col_offset": 8,
+                "end_lineno": 3,
+                "end_col_offset": 11
+              },
+              "focus": "num",
+              "id": "num",
               "ctx": {
+                "node_id": 14,
+                "type": "Store"
+              }
+            },
+            "iter": {
+              "node_id": 34,
+              "type": "Name",
+              "location": {
+                "lineno": 3,
+                "col_offset": 15,
+                "end_lineno": 3,
+                "end_col_offset": 19
+              },
+              "focus": "nums",
+              "id": "nums",
+              "ctx": {
+                "node_id": 25,
                 "type": "Load"
               }
             },
-            "args": [
+            "body": [
               {
-                "type": "Name",
-                "id": "num",
-                "ctx": {
-                  "type": "Load"
+                "node_id": 35,
+                "type": "If",
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 8,
+                  "end_lineno": 5,
+                  "end_col_offset": 23
+                },
+                "focus": "if num in seen:\n            return True",
+                "test": {
+                  "node_id": 36,
+                  "type": "Compare",
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 11,
+                    "end_lineno": 4,
+                    "end_col_offset": 22
+                  },
+                  "focus": "num in seen",
+                  "left": {
+                    "node_id": 37,
+                    "type": "Name",
+                    "location": {
+                      "lineno": 4,
+                      "col_offset": 11,
+                      "end_lineno": 4,
+                      "end_col_offset": 14
+                    },
+                    "focus": "num",
+                    "id": "num",
+                    "ctx": {
+                      "node_id": 25,
+                      "type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 30,
+                      "type": "In"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 38,
+                      "type": "Name",
+                      "location": {
+                        "lineno": 4,
+                        "col_offset": 18,
+                        "end_lineno": 4,
+                        "end_col_offset": 22
+                      },
+                      "focus": "seen",
+                      "id": "seen",
+                      "ctx": {
+                        "node_id": 25,
+                        "type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 39,
+                    "type": "Return",
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 12,
+                      "end_lineno": 5,
+                      "end_col_offset": 23
+                    },
+                    "focus": "return True",
+                    "value": {
+                      "node_id": 40,
+                      "type": "Constant",
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 19,
+                        "end_lineno": 5,
+                        "end_col_offset": 23
+                      },
+                      "focus": "True",
+                      "value": true,
+                      "kind": null
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 41,
+                "type": "Expr",
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 8,
+                  "end_lineno": 6,
+                  "end_col_offset": 21
+                },
+                "focus": "seen.add(num)",
+                "value": {
+                  "node_id": 42,
+                  "type": "Call",
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 8,
+                    "end_lineno": 6,
+                    "end_col_offset": 21
+                  },
+                  "focus": "seen.add(num)",
+                  "func": {
+                    "node_id": 43,
+                    "type": "Attribute",
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 8,
+                      "end_lineno": 6,
+                      "end_col_offset": 16
+                    },
+                    "focus": "seen.add",
+                    "value": {
+                      "node_id": 44,
+                      "type": "Name",
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 8,
+                        "end_lineno": 6,
+                        "end_col_offset": 12
+                      },
+                      "focus": "seen",
+                      "id": "seen",
+                      "ctx": {
+                        "node_id": 25,
+                        "type": "Load"
+                      }
+                    },
+                    "attr": "add",
+                    "ctx": {
+                      "node_id": 25,
+                      "type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 45,
+                      "type": "Name",
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 17,
+                        "end_lineno": 6,
+                        "end_col_offset": 20
+                      },
+                      "focus": "num",
+                      "id": "num",
+                      "ctx": {
+                        "node_id": 25,
+                        "type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
                 }
               }
             ],
-            "keywords": []
-          }
-        },
-        {
-          "type": "Call",
-          "func": {
-            "type": "Attribute",
-            "value": {
-              "type": "Name",
-              "id": "seen",
-              "ctx": {
-                "type": "Load"
-              }
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "node_id": 46,
+            "type": "Return",
+            "location": {
+              "lineno": 7,
+              "col_offset": 4,
+              "end_lineno": 7,
+              "end_col_offset": 16
             },
-            "attr": "add",
-            "ctx": {
-              "type": "Load"
+            "focus": "return False",
+            "value": {
+              "node_id": 47,
+              "type": "Constant",
+              "location": {
+                "lineno": 7,
+                "col_offset": 11,
+                "end_lineno": 7,
+                "end_col_offset": 16
+              },
+              "focus": "False",
+              "value": false,
+              "kind": null
             }
-          },
-          "args": [
-            {
-              "type": "Name",
-              "id": "num",
-              "ctx": {
-                "type": "Load"
-              }
-            }
-          ],
-          "keywords": []
-        },
-        {
-          "type": "Attribute",
-          "value": {
-            "type": "Name",
-            "id": "seen",
-            "ctx": {
-              "type": "Load"
-            }
-          },
-          "attr": "add",
-          "ctx": {
-            "type": "Load"
           }
-        },
-        {
-          "type": "Name",
-          "id": "num",
-          "ctx": {
-            "type": "Load"
-          }
-        },
-        {
-          "type": "Name",
-          "id": "seen",
-          "ctx": {
-            "type": "Load"
-          }
-        }
-      ],
-      "7": [
-        {
-          "type": "Return",
-          "value": {
-            "type": "Constant",
-            "value": false,
-            "kind": null
-          }
-        },
-        {
-          "type": "Constant",
-          "value": false,
-          "kind": null
-        }
-      ]
-    }
+        ],
+        "decorator_list": [],
+        "returns": null,
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
   },
   "trace": [
     {
-      "line_number": 2,
+      "line_number": 1,
       "locals": {
         "nums": [
           1,
@@ -333,7 +368,76 @@
           "2": 3,
           "3": 1
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def containsDuplicate(nums):\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 1,
+          "event": "before_statement",
+          "focus": "seen = set()",
+          "node_id": 3
+        },
+        {
+          "step": 2,
+          "event": "before_expression",
+          "focus": "set()",
+          "node_id": 8
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "set",
+          "node_id": 14
+        },
+        {
+          "step": 4,
+          "event": "after_expression",
+          "focus": "set",
+          "node_id": 14,
+          "value": "<class 'set'>"
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "set()",
+          "node_id": 8,
+          "value": []
+        },
+        {
+          "step": 6,
+          "event": "after_statement",
+          "focus": "seen = set()",
+          "node_id": 3,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": []
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -348,7 +452,43 @@
       },
       "delta": {
         "seen": []
-      }
+      },
+      "steps": [
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 10
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 10,
+          "value": [
+            1,
+            2,
+            3,
+            1
+          ]
+        },
+        {
+          "step": 9,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [],
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -365,7 +505,47 @@
       "delta": {
         "num": 1
       },
-      "eval_result": false
+      "steps": [
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "num in seen",
+          "node_id": 15
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 18
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 18,
+          "value": 1
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "seen",
+          "node_id": 19
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "seen",
+          "node_id": 19,
+          "value": []
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "num in seen",
+          "node_id": 15,
+          "value": false
+        }
+      ]
     },
     {
       "line_number": 6,
@@ -379,7 +559,96 @@
         "seen": [],
         "num": 1
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 16,
+          "event": "before_statement",
+          "focus": "seen.add(num)",
+          "node_id": 12
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "seen.add(num)",
+          "node_id": 17
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "seen.add",
+          "node_id": 21
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "seen",
+          "node_id": 23
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "seen",
+          "node_id": 23,
+          "value": []
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "seen.add",
+          "node_id": 21,
+          "value": "<built-in method add of set object at 0x105009f20>"
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 22
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 22,
+          "value": 1
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "seen.add(num)",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [
+              1
+            ],
+            "num": 1
+          }
+        },
+        {
+          "step": 25,
+          "event": "after_statement",
+          "focus": "seen.add(num)",
+          "node_id": 12,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [
+              1
+            ],
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -399,7 +668,33 @@
         "seen": {
           "0": 1
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 26,
+          "event": "after_statement",
+          "focus": "for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)",
+          "node_id": 4
+        },
+        {
+          "step": 27,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [
+              1
+            ],
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -418,7 +713,49 @@
       "delta": {
         "num": 2
       },
-      "eval_result": false
+      "steps": [
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "num in seen",
+          "node_id": 15
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 18
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 18,
+          "value": 2
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "seen",
+          "node_id": 19
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "seen",
+          "node_id": 19,
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "num in seen",
+          "node_id": 15,
+          "value": false
+        }
+      ]
     },
     {
       "line_number": 6,
@@ -434,7 +771,100 @@
         ],
         "num": 2
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 34,
+          "event": "before_statement",
+          "focus": "seen.add(num)",
+          "node_id": 12
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "seen.add(num)",
+          "node_id": 17
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "seen.add",
+          "node_id": 21
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "seen",
+          "node_id": 23
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "seen",
+          "node_id": 23,
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "seen.add",
+          "node_id": 21,
+          "value": "<built-in method add of set object at 0x105009f20>"
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 22
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 22,
+          "value": 2
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "seen.add(num)",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [
+              1,
+              2
+            ],
+            "num": 2
+          }
+        },
+        {
+          "step": 43,
+          "event": "after_statement",
+          "focus": "seen.add(num)",
+          "node_id": 12,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [
+              1,
+              2
+            ],
+            "num": 2
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -455,7 +885,34 @@
         "seen": {
           "1": 2
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 44,
+          "event": "after_statement",
+          "focus": "for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)",
+          "node_id": 4
+        },
+        {
+          "step": 45,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [
+              1,
+              2
+            ],
+            "num": 3
+          }
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -475,7 +932,50 @@
       "delta": {
         "num": 3
       },
-      "eval_result": false
+      "steps": [
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "num in seen",
+          "node_id": 15
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 18
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 18,
+          "value": 3
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "seen",
+          "node_id": 19
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "seen",
+          "node_id": 19,
+          "value": [
+            1,
+            2
+          ]
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "num in seen",
+          "node_id": 15,
+          "value": false
+        }
+      ]
     },
     {
       "line_number": 6,
@@ -492,7 +992,103 @@
         ],
         "num": 3
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 52,
+          "event": "before_statement",
+          "focus": "seen.add(num)",
+          "node_id": 12
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "seen.add(num)",
+          "node_id": 17
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "seen.add",
+          "node_id": 21
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": "seen",
+          "node_id": 23
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "seen",
+          "node_id": 23,
+          "value": [
+            1,
+            2
+          ]
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "seen.add",
+          "node_id": 21,
+          "value": "<built-in method add of set object at 0x105009f20>"
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 22
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 22,
+          "value": 3
+        },
+        {
+          "step": 60,
+          "event": "after_expression",
+          "focus": "seen.add(num)",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [
+              1,
+              2,
+              3
+            ],
+            "num": 3
+          }
+        },
+        {
+          "step": 61,
+          "event": "after_statement",
+          "focus": "seen.add(num)",
+          "node_id": 12,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [
+              1,
+              2,
+              3
+            ],
+            "num": 3
+          }
+        }
+      ]
     },
     {
       "line_number": 3,
@@ -514,7 +1110,35 @@
         "seen": {
           "2": 3
         }
-      }
+      },
+      "steps": [
+        {
+          "step": 62,
+          "event": "after_statement",
+          "focus": "for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)",
+          "node_id": 4
+        },
+        {
+          "step": 63,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              1,
+              2,
+              3,
+              1
+            ],
+            "seen": [
+              1,
+              2,
+              3
+            ],
+            "num": 1
+          }
+        }
+      ]
     },
     {
       "line_number": 4,
@@ -535,7 +1159,57 @@
       "delta": {
         "num": 1
       },
-      "eval_result": true
+      "steps": [
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "num in seen",
+          "node_id": 15
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 18
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 18,
+          "value": 1
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "seen",
+          "node_id": 19
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "seen",
+          "node_id": 19,
+          "value": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "num in seen",
+          "node_id": 15,
+          "value": true
+        },
+        {
+          "step": 70,
+          "event": "before_statement",
+          "focus": "if num in seen:\n            return True",
+          "node_id": 11
+        }
+      ]
     },
     {
       "line_number": 5,
@@ -553,7 +1227,28 @@
         ],
         "num": 1
       },
-      "delta": null
+      "delta": null,
+      "steps": [
+        {
+          "step": 71,
+          "event": "before_statement",
+          "focus": "return True",
+          "node_id": 16
+        },
+        {
+          "step": 72,
+          "event": "before_expression",
+          "focus": "True",
+          "node_id": 20
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "True",
+          "node_id": 20,
+          "value": true
+        }
+      ]
     }
   ],
   "result": true
