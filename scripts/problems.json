@@ -114,6 +114,16 @@
             },
             "entrypoint": "intersect",
             "solution": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    # Build frequency map for nums1\n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    # Check nums2 against the map\n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    return result"
+        },
+        {
+            "id": "n-queens",
+            "number": 51,
+            "title": "N-Queens",
+            "inputs": {
+                "n": 4
+            },
+            "entrypoint": "solveNQueens",
+            "solution": "\ndef solveNQueens(n):\n    def is_valid(board, row, col):\n        for i in range(row):\n            if board[i] == col or abs(board[i] - col) == row - i:\n                return False\n        return True\n\n    def backtrack(row, board, solutions):\n        if row == n:\n            solutions.append(board[:])\n            return\n        for col in range(n):\n            if is_valid(board, row, col):\n                board[row] = col\n                backtrack(row + 1, board, solutions)\n\n    solutions = []\n    board = [-1] * n\n    backtrack(0, board, solutions)\n    return solutions\n"
         }
     ]
 }

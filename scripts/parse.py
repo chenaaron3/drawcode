@@ -1,18 +1,23 @@
 import json
 print(json.dumps("""
-def intersect(nums1, nums2):
-    freq = {}
-    result = []
-    # Build frequency map for nums1
-    for num in nums1:
-        if num in freq:
-            freq[num] += 1
-        else:
-            freq[num] = 1
-    # Check nums2 against the map
-    for num in nums2:
-        if num in freq and freq[num] > 0:
-            result.append(num)
-            freq[num] -= 1
-    return result
+def solve_n_queens(n):
+    def is_valid(board, row, col):
+        for i in range(row):
+            if board[i] == col or abs(board[i] - col) == row - i:
+                return False
+        return True
+
+    def backtrack(row, board, solutions):
+        if row == n:
+            solutions.append(board[:])
+            return
+        for col in range(n):
+            if is_valid(board, row, col):
+                board[row] = col
+                backtrack(row + 1, board, solutions)
+
+    solutions = []
+    board = [-1] * n
+    backtrack(0, board, solutions)
+    return solutions
 """))

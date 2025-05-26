@@ -204,13 +204,12 @@ class PythonTracer:
         """Reset the tracer's state"""
         self.steps = []
         self.step_id = 0
-        self.source_lines = None
         self.source_code = None
         self.transformer = ASTTransformer()
         self.entrypoint = None
         self.inputs = {}
         self.result = None
-        
+
     def _install_marker_functions(self):
         """Make marker functions available in builtin scope"""
         marker_functions = {
@@ -241,7 +240,7 @@ class PythonTracer:
         step = {
             "step": self.step_id,
             "event": event,
-            "focus": ast.get_source_segment(''.join(self.source_lines), node),
+            "focus": ast.get_source_segment(self.source_code, node),
             "node_id": self.transformer.get_node_id(node),
             "locals": local_vars
         }
@@ -353,9 +352,10 @@ class PythonTracer:
     def run_code(self, code: str, entrypoint: str = None, **kwargs):
         """Run code with expression tracking"""
         self.source_code = code
-        self.source_lines = code.splitlines(keepends=True)
         self.entrypoint = entrypoint
         self.inputs = kwargs
+        
+        # Transform the AST for execution
         tree = self.transformer.transform(code)
         
         namespace = {
@@ -370,9 +370,10 @@ class PythonTracer:
         # If entrypoint is specified, call the function with kwargs
         if entrypoint and entrypoint in namespace:
             self.result = namespace[entrypoint](**kwargs)
-            return self.result
+        
+        return tree
 
-    def save_results(self, filename: str):
+    def save_results(self, filename: str, transformed_ast):
         """Save results to a JSON file with steps grouped by line number"""
         print(f"Total steps recorded: {len(self.steps)}")
         
@@ -419,6 +420,9 @@ class PythonTracer:
             trace.append(_create_trace_entry(current_line, line_locals, current_steps))
             
         print(f"Generated {len(trace)} trace entries")
+
+        # Use the transformed AST but filter out marker nodes
+        json_ast = self.transformer.ast_to_dict(transformed_ast, self.source_code)
         
         with open(filename, 'w') as f:
             json.dump({
@@ -429,9 +433,9 @@ class PythonTracer:
                         'kwargs': {k: repr(v) for k, v in getattr(self, 'inputs', {}).items()}
                     }
                 },
-                'ast': self.transformer.ast_to_dict(ast.parse(self.source_code), self.source_lines),
+                'ast': json_ast,
                 'trace': trace,
-                'result': self._serialize_value(getattr(self, 'result', None))
+                'result': self._serialize_value(self.result)
             }, f, indent=2)
 
 if __name__ == '__main__':
@@ -452,6 +456,6 @@ if __name__ == '__main__':
     for problem in problems:
         print(f"Processing problem {problem['id']}...")
         tracer.reset()  # Reset tracer state for each problem
-        tracer.run_code(problem['solution'], problem['entrypoint'], **problem['inputs'])
-        tracer.save_results(os.path.join(OUTPUT_DIR, f"{problem['id']}.json"))
+        transformed_ast = tracer.run_code(problem['solution'], problem['entrypoint'], **problem['inputs'])
+        tracer.save_results(os.path.join(OUTPUT_DIR, f"{problem['id']}.json"), transformed_ast)
     print("Done!") 
