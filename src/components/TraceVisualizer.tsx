@@ -61,17 +61,10 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData, onEr
 
     if (!traceData) return null;
 
-    const formatFunctionName = (name: string) => {
-        return name
-            .split(/(?=[A-Z])|_/)
-            .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-            .join(' ');
-    };
-
     return (
-        <div className="space-y-2">
+        <div className="space-y-2 h-full">
             {/* Code and Variables - Optimized for variables space */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 min-h-[calc(100vh-160px)]">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 min-h-[calc(100vh-160px)] my-auto">
                 <CodePanel />
                 <VariablePanel />
             </div>
