@@ -73,26 +73,6 @@ class ASTTransformer(ast.NodeTransformer):
         else:
             return str(node)
             
-    def wrap_with_markers(self, node, before_marker, after_marker, args=None):
-        """Wrap a node with before/after marker calls"""
-        if args is None:
-            args = []
-            
-        node_id = self.get_node_id(node)
-        return ast.Call(
-            func=ast.Name(id=after_marker, ctx=ast.Load()),
-            args=[
-                ast.Call(
-                    func=ast.Name(id=before_marker, ctx=ast.Load()),
-                    args=[ast.Constant(value=node_id)] + args,
-                    keywords=[]
-                ),
-                node,
-                ast.Constant(value="expression")
-            ],
-            keywords=[]
-        )
-        
     def visit_stmt(self, node):
         """Visit a statement node"""
         if not isinstance(node, ast.stmt):
@@ -118,17 +98,25 @@ class ASTTransformer(ast.NodeTransformer):
             )
         )
         
-        # For compound statements, wrap their body
-        if hasattr(node, 'body'):
-            if isinstance(node.body, list):
-                node.body = [before_marker] + node.body + [after_marker]
-            else:
-                node.body = [before_marker, node.body, after_marker]
-        else:
-            # For simple statements, wrap in a list
-            return [before_marker, node, after_marker]
-                
-        return node
+        # # For control flow statements (if, for, while), wrap the entire statement
+        # # to capture the decision/iteration logic
+        # if isinstance(node, (ast.If, ast.For, ast.While)):
+        #     return [before_marker, node, after_marker]
+        # # For compound statements with bodies (function/class definitions), 
+        # # wrap their body to trace execution inside
+        # elif hasattr(node, 'body'):
+        #     if isinstance(node.body, list):
+        #         node.body = [before_marker] + node.body + [after_marker]
+        #     else:
+        #         node.body = [before_marker, node.body, after_marker]
+        #     return node
+        
+        # # For simple statements, wrap in a list
+        # else:
+        #     return [before_marker, node, after_marker]
+
+        # For all statements, wrap with before/after markers
+        return [before_marker, node, after_marker]
         
     def visit_expr(self, node):
         """Visit an expression node"""
@@ -138,23 +126,94 @@ class ASTTransformer(ast.NodeTransformer):
         # Transform child nodes first
         node = self.generic_visit(node)
         
-        # Skip nodes that are targets of assignments or comprehensions
+        # Check if this node or any of its ancestors is in a Store/Del context
+        if self._is_assignment_target(node):
+            return node
+        
+        # Skip function/lambda parameters
+        if self._is_function_parameter(node):
+            return node
+        
+        # Wrap with markers inline - only expressions being evaluated
+        node_id = self.get_node_id(node)
+        return ast.Call(
+            func=ast.Name(id=AFTER_EXPRESSION_MARKER, ctx=ast.Load()),
+            args=[
+                ast.Call(
+                    func=ast.Name(id=BEFORE_EXPRESSION_MARKER, ctx=ast.Load()),
+                    args=[ast.Constant(value=node_id)],
+                    keywords=[]
+                ),
+                node
+            ],
+            keywords=[]
+        )
+    
+    def _is_assignment_target(self, node):
+        """Check if a node is an assignment target (being stored to, not evaluated)"""
+        # Direct check for Store/Del context
+        if isinstance(node, ast.Name) and isinstance(node.ctx, (ast.Store, ast.Del)):
+            return True
+            
+        # Check for subscript in Store context (e.g., freq[num] = 1)
+        if isinstance(node, ast.Subscript) and isinstance(node.ctx, ast.Store):
+            return True
+            
+        # Check if we're inside a Store context (for complex targets like tuple unpacking)
+        current = node
+        while hasattr(current, 'parent'):
+            parent = current.parent
+            
+            # If parent is a tuple/list in Store context, we're an assignment target
+            if isinstance(parent, (ast.Tuple, ast.List)) and isinstance(parent.ctx, ast.Store):
+                return True
+                
+            # If parent is an assignment and we're in the targets
+            if isinstance(parent, ast.Assign) and current in parent.targets:
+                return True
+                
+            # If parent is an augmented assignment and we're the target
+            if isinstance(parent, ast.AugAssign) and current == parent.target:
+                return True
+                
+            # If parent is a for loop and we're the target
+            if isinstance(parent, ast.For) and current == parent.target:
+                return True
+                
+            # If parent is a comprehension and we're the target
+            if isinstance(parent, ast.comprehension) and current == parent.target:
+                return True
+                
+            # If parent is a with statement and we're the optional_vars
+            if isinstance(parent, ast.withitem) and current == parent.optional_vars:
+                return True
+                
+            # If parent is an exception handler and we're the name
+            if isinstance(parent, ast.ExceptHandler) and current == parent.name:
+                return True
+                
+            current = parent
+            
+        return False
+    
+    def _is_function_parameter(self, node):
+        """Check if a node is a function parameter"""
         parent = getattr(node, "parent", None)
-        if (isinstance(parent, ast.Assign) and node in parent.targets) or \
-           (isinstance(parent, ast.For) and node == parent.target) or \
-           (isinstance(parent, ast.comprehension) and node == parent.target) or \
-           (isinstance(parent, ast.AugAssign) and node == parent.target) or \
-           (isinstance(parent, ast.withitem) and node == parent.optional_vars) or \
-           (isinstance(parent, ast.ExceptHandler) and node == parent.name) or \
-           (isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store)):
-            return node
-        
-        # Skip lambda arguments
-        if isinstance(parent, ast.Lambda) and node in parent.args.args:
-            return node
-        
-        # Wrap with markers
-        return self.wrap_with_markers(node, BEFORE_EXPRESSION_MARKER, AFTER_EXPRESSION_MARKER)
+        if not parent:
+            return False
+            
+        # Check if we're in function arguments
+        if isinstance(parent, ast.arguments):
+            return True
+            
+        # Check if we're lambda arguments
+        if isinstance(parent, ast.Lambda) and hasattr(parent, 'args'):
+            # Walk through all argument nodes in the lambda
+            for arg_node in ast.walk(parent.args):
+                if arg_node is node:
+                    return True
+                    
+        return False
         
     def visit(self, node):
         """Visit a node"""
@@ -278,7 +337,7 @@ class PythonTracer:
         self._record_step(frame, "before_expression", node=node)
         return node_id
         
-    def _thonny_hidden_after_expr(self, node_id, value, role=None):
+    def _thonny_hidden_after_expr(self, node_id, value):
         """Marker function called after expressions with their values"""
         node = self.transformer.get_node(node_id)
         if node is None:
@@ -454,6 +513,8 @@ if __name__ == '__main__':
     
     tracer = PythonTracer()
     for problem in problems:
+        # if problem['id'] != "two-sum":
+        #     continue
         print(f"Processing problem {problem['id']}...")
         tracer.reset()  # Reset tracer state for each problem
         transformed_ast = tracer.run_code(problem['solution'], problem['entrypoint'], **problem['inputs'])
