@@ -17,7 +17,6 @@ export default function VariablePanel() {
 
     useEffect(() => {
         console.log(current);
-        console.log(steps);
         if (current !== null && nodeLookup !== null) {
             setSteps(current.steps.map(step => ({
                 ...step,
