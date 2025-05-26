@@ -10,6 +10,324 @@ AFTER_STATEMENT_MARKER = "_thonny_hidden_after_stmt"
 BEFORE_EXPRESSION_MARKER = "_thonny_hidden_before_expr"
 AFTER_EXPRESSION_MARKER = "_thonny_hidden_after_expr"
 
+class RelationshipAnalyzer:
+    """Analyzes AST to identify relationships between primitive variables and containers"""
+    
+    def __init__(self):
+        self.relationships = []
+        self.variable_assignments = {}  # Track variable assignments
+        self.function_calls = {}  # Track function call relationships
+        
+    def reset(self):
+        """Reset the analyzer's state"""
+        self.relationships = []
+        self.variable_assignments = {}
+        self.function_calls = {}
+        
+    def analyze_ast(self, root):
+        """Analyze the AST to find various relationships"""
+        self.reset()
+        
+        # Single pass to analyze all relationships
+        for node in ast.walk(root):
+            if isinstance(node, ast.Subscript):
+                self._analyze_subscript(node)
+            elif isinstance(node, ast.For):
+                self._analyze_for_loop(node)
+            elif isinstance(node, ast.Compare):
+                self._analyze_membership_test(node)
+            elif isinstance(node, ast.Assign):
+                self._analyze_assignment(node)
+            elif isinstance(node, ast.AugAssign):
+                self._analyze_augmented_assignment(node)
+            elif isinstance(node, ast.Call):
+                self._analyze_function_call(node)
+            elif isinstance(node, ast.ListComp):
+                self._analyze_list_comprehension(node)
+            elif isinstance(node, ast.DictComp):
+                self._analyze_dict_comprehension(node)
+                    
+        return self.relationships
+        
+    def _analyze_subscript(self, node):
+        """Analyze subscript operations like container[key]"""
+        if not isinstance(node.value, ast.Name):
+            return
+            
+        container_name = node.value.id
+        
+        # Skip if this is an assignment target (e.g., container[key] = value)
+        if isinstance(node.ctx, ast.Store):
+            # This is actually a container-cursor relationship for assignment
+            if isinstance(node.slice, ast.Name):
+                cursor_name = node.slice.id
+                self._add_relationship(container_name, cursor_name, 'key_assignment')
+            return
+            
+        # Analyze the slice/index for read operations
+        if isinstance(node.slice, ast.Name):
+            cursor_name = node.slice.id
+            self._add_relationship(container_name, cursor_name, 'key')
+        elif isinstance(node.slice, ast.BinOp):
+            # Handle cases like arr[i+1], arr[i-1]
+            self._analyze_binary_operation_in_slice(node.value.id, node.slice)
+            
+    def _analyze_binary_operation_in_slice(self, container_name, binop_node):
+        """Analyze binary operations used in slicing like arr[i+1]"""
+        if isinstance(binop_node.left, ast.Name):
+            cursor_name = binop_node.left.id
+            self._add_relationship(container_name, cursor_name, 'key_offset')
+        if isinstance(binop_node.right, ast.Name):
+            cursor_name = binop_node.right.id
+            self._add_relationship(container_name, cursor_name, 'key_offset')
+            
+    def _analyze_for_loop(self, node):
+        """Analyze for loops to identify iteration patterns"""
+        # Container is always in the iter part
+        container_node = node.iter
+        target_node = node.target
+        
+        if isinstance(container_node, ast.Name):
+            # Simple iteration: for item in container
+            container_name = container_node.id
+            if isinstance(target_node, ast.Name):
+                cursor_name = target_node.id
+                self._add_relationship(container_name, cursor_name, 'value')
+        elif isinstance(container_node, ast.Call):
+            # Handle function calls like enumerate, range, zip, etc.
+            if isinstance(container_node.func, ast.Name):
+                func_name = container_node.func.id
+                if func_name == 'enumerate':
+                    self._analyze_enumerate_in_for(container_node, target_node)
+                elif func_name == 'range':
+                    self._analyze_range_in_for(container_node, target_node)
+                elif func_name == 'zip':
+                    self._analyze_zip_in_for(container_node, target_node)
+                elif func_name == 'reversed':
+                    self._analyze_reversed_in_for(container_node, target_node)
+                    
+    def _analyze_enumerate_in_for(self, enumerate_call, target_node):
+        """Analyze enumerate() calls in for loops"""
+        if len(enumerate_call.args) > 0 and isinstance(enumerate_call.args[0], ast.Name):
+            container_name = enumerate_call.args[0].id
+            
+            # Handle tuple unpacking: for i, item in enumerate(container)
+            if isinstance(target_node, ast.Tuple) and len(target_node.elts) == 2:
+                if isinstance(target_node.elts[0], ast.Name) and isinstance(target_node.elts[1], ast.Name):
+                    index_name = target_node.elts[0].id
+                    value_name = target_node.elts[1].id
+                    
+                    self._add_relationship(container_name, index_name, 'key')
+                    self._add_relationship(container_name, value_name, 'value')
+                    
+    def _analyze_range_in_for(self, range_call, target_node):
+        """Analyze range() calls in for loops"""
+        if isinstance(target_node, ast.Name):
+            cursor_name = target_node.id
+            
+            # Check if range uses len(container)
+            for arg in range_call.args:
+                if isinstance(arg, ast.Call) and isinstance(arg.func, ast.Name):
+                    if arg.func.id == 'len' and len(arg.args) > 0:
+                        if isinstance(arg.args[0], ast.Name):
+                            container_name = arg.args[0].id
+                            self._add_relationship(container_name, cursor_name, 'key')
+                            
+    def _analyze_zip_in_for(self, zip_call, target_node):
+        """Analyze zip() calls in for loops"""
+        if isinstance(target_node, ast.Tuple):
+            # for a, b in zip(container1, container2)
+            for i, arg in enumerate(zip_call.args):
+                if isinstance(arg, ast.Name) and i < len(target_node.elts):
+                    if isinstance(target_node.elts[i], ast.Name):
+                        container_name = arg.id
+                        cursor_name = target_node.elts[i].id
+                        self._add_relationship(container_name, cursor_name, 'value')
+                        
+    def _analyze_reversed_in_for(self, reversed_call, target_node):
+        """Analyze reversed() calls in for loops"""
+        if len(reversed_call.args) > 0 and isinstance(reversed_call.args[0], ast.Name):
+            container_name = reversed_call.args[0].id
+            if isinstance(target_node, ast.Name):
+                cursor_name = target_node.id
+                self._add_relationship(container_name, cursor_name, 'value_reversed')
+                    
+    def _analyze_membership_test(self, node):
+        """Analyze membership tests like 'key in container'"""
+        if len(node.ops) != 1 or len(node.comparators) != 1:
+            return
+            
+        # Handle 'key in container' pattern
+        if isinstance(node.ops[0], (ast.In, ast.NotIn)):
+            if isinstance(node.left, ast.Name) and isinstance(node.comparators[0], ast.Name):
+                cursor_name = node.left.id  # The key being tested
+                container_name = node.comparators[0].id  # The container being tested against
+                self._add_relationship(container_name, cursor_name, 'membership_test')
+                
+    def _analyze_assignment(self, node):
+        """Analyze assignment operations to track variable relationships"""
+        if len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            target_name = node.targets[0].id
+            
+            # Track what this variable is assigned from
+            if isinstance(node.value, ast.Name):
+                # Simple assignment: a = b
+                source_name = node.value.id
+                self._add_relationship(source_name, target_name, 'assignment')
+            elif isinstance(node.value, ast.BinOp):
+                # Binary operation: c = a + b
+                self._analyze_binary_operation_assignment(target_name, node.value)
+            elif isinstance(node.value, ast.Call):
+                # Function call assignment: result = func(args)
+                self._analyze_function_call_assignment(target_name, node.value)
+            elif isinstance(node.value, ast.Subscript):
+                # Subscript assignment: val = container[key]
+                self._analyze_subscript_assignment(target_name, node.value)
+                
+    def _analyze_binary_operation_assignment(self, target_name, binop_node):
+        """Analyze binary operations in assignments"""
+        left_vars = self._extract_variable_names(binop_node.left)
+        right_vars = self._extract_variable_names(binop_node.right)
+        
+        for var in left_vars + right_vars:
+            self._add_relationship(var, target_name, 'derived_from')
+            
+    def _analyze_function_call_assignment(self, target_name, call_node):
+        """Analyze function calls in assignments"""
+        if isinstance(call_node.func, ast.Name):
+            func_name = call_node.func.id
+            
+            # Extract variables from arguments and relate them to the target variable
+            for arg in call_node.args:
+                arg_vars = self._extract_variable_names(arg)
+                for var in arg_vars:
+                    # Only create relationships between actual variables
+                    if var != target_name:  # Avoid self-relationships
+                        self._add_relationship(var, target_name, f'function_input_{func_name}')
+        elif isinstance(call_node.func, ast.Attribute):
+            # Method call assignment like result = obj.method()
+            if isinstance(call_node.func.value, ast.Name):
+                object_name = call_node.func.value.id
+                method_name = call_node.func.attr
+                
+                # Create relationship between object and result
+                self._add_relationship(object_name, target_name, f'method_{method_name}_result')
+                
+                # Extract variables from arguments
+                for arg in call_node.args:
+                    arg_vars = self._extract_variable_names(arg)
+                    for var in arg_vars:
+                        if var != target_name and var != object_name:
+                            self._add_relationship(var, target_name, f'method_{method_name}_input')
+                    
+    def _analyze_subscript_assignment(self, target_name, subscript_node):
+        """Analyze subscript operations in assignments"""
+        if isinstance(subscript_node.value, ast.Name):
+            container_name = subscript_node.value.id
+            self._add_relationship(container_name, target_name, 'extracted_from')
+            
+            if isinstance(subscript_node.slice, ast.Name):
+                cursor_name = subscript_node.slice.id
+                self._add_relationship(cursor_name, target_name, 'indexed_by')
+                
+    def _analyze_augmented_assignment(self, node):
+        """Analyze augmented assignments like +=, -=, etc."""
+        if isinstance(node.target, ast.Name):
+            target_name = node.target.id
+            value_vars = self._extract_variable_names(node.value)
+            
+            for var in value_vars:
+                self._add_relationship(var, target_name, 'augmented_by')
+                
+    def _analyze_function_call(self, node):
+        """Analyze function calls to identify relationships"""
+        if isinstance(node.func, ast.Name):
+            func_name = node.func.id
+            
+            # Extract variables from arguments and relate them to a result variable
+            # Only create relationships if we're in an assignment context
+            # This will be handled by _analyze_function_call_assignment instead
+            
+            # Special handling for common functions
+            if func_name == 'len' and len(node.args) == 1:
+                if isinstance(node.args[0], ast.Name):
+                    container_name = node.args[0].id
+                    # This creates a relationship that len() operates on the container
+                    pass
+        elif isinstance(node.func, ast.Attribute):
+            # Method calls like obj.method()
+            self._analyze_method_call(node)
+            
+    def _analyze_method_call(self, node):
+        """Analyze method calls to identify relationships"""
+        if isinstance(node.func.value, ast.Name):
+            object_name = node.func.value.id
+            method_name = node.func.attr
+            
+            # Extract variables from arguments
+            for arg in node.args:
+                arg_vars = self._extract_variable_names(arg)
+                for var in arg_vars:
+                    # Only create relationships between variables
+                    if var != object_name:  # Avoid self-relationships
+                        self._add_relationship(object_name, var, f'method_{method_name}_input')
+                    
+            # Special method handling
+            if method_name in ['append', 'extend', 'insert']:
+                # Container modification methods
+                for arg in node.args:
+                    arg_vars = self._extract_variable_names(arg)
+                    for var in arg_vars:
+                        if var != object_name:  # Avoid self-relationships
+                            self._add_relationship(object_name, var, 'container_modification')
+            elif method_name in ['get', 'setdefault']:
+                # Dictionary access methods
+                if len(node.args) > 0:
+                    key_vars = self._extract_variable_names(node.args[0])
+                    for var in key_vars:
+                        if var != object_name:  # Avoid self-relationships
+                            self._add_relationship(object_name, var, 'dict_key_access')
+                
+    def _analyze_list_comprehension(self, node):
+        """Analyze list comprehensions to identify relationships"""
+        # Analyze the iterator
+        if isinstance(node.generators[0].iter, ast.Name):
+            container_name = node.generators[0].iter.id
+            if isinstance(node.generators[0].target, ast.Name):
+                cursor_name = node.generators[0].target.id
+                self._add_relationship(container_name, cursor_name, 'comprehension_iter')
+                    
+    def _analyze_dict_comprehension(self, node):
+        """Analyze dictionary comprehensions to identify relationships"""
+        # Analyze the iterator
+        if isinstance(node.generators[0].iter, ast.Name):
+            container_name = node.generators[0].iter.id
+            if isinstance(node.generators[0].target, ast.Name):
+                cursor_name = node.generators[0].target.id
+                self._add_relationship(container_name, cursor_name, 'comprehension_iter')
+                    
+    def _extract_variable_names(self, node):
+        """Extract all variable names from an AST node"""
+        variables = []
+        if isinstance(node, ast.Name):
+            variables.append(node.id)
+        elif hasattr(node, '__dict__'):
+            for child in ast.iter_child_nodes(node):
+                variables.extend(self._extract_variable_names(child))
+        return variables
+                
+    def _add_relationship(self, container, cursor, rel_type):
+        """Add a relationship if it doesn't already exist"""
+        relationship = {
+            'container': container,
+            'cursor': cursor,
+            'type': rel_type
+        }
+        
+        # Avoid duplicates
+        if relationship not in self.relationships:
+            self.relationships.append(relationship)
+
 class ASTTransformer(ast.NodeTransformer):
     """Handles AST transformation and node tracking"""
     def __init__(self):
@@ -38,18 +356,30 @@ class ASTTransformer(ast.NodeTransformer):
         """Convert AST node to dict while maintaining structure and node IDs"""
         if isinstance(node, ast.AST):
             node_id = self.get_node_id(node)
+            parent = getattr(node, "parent", None)
             
             fields = {}
+            children = []
+            # collect children values
             for field, value in ast.iter_fields(node):
                 if isinstance(value, list):
-                    fields[field] = [self.ast_to_dict(item, source_lines) for item in value]
+                    field_values = []
+                    for item in value:
+                        children.append(item)
+                        field_values.append(self.ast_to_dict(item, source_lines))
+                    fields[field] = field_values
                 else:
+                    children.append(value)
                     fields[field] = self.ast_to_dict(value, source_lines)
-                    
+            
             node_info = {
                 "node_id": node_id,
+                "children_node_ids": [self.get_node_id(child) for child in children if isinstance(child, ast.AST)],
                 "type": node.__class__.__name__,
             }
+
+            if parent:
+                node_info['parent_node_id'] = self.get_node_id(parent)
             
             # Add location info if available
             if hasattr(node, 'lineno'):
@@ -97,23 +427,6 @@ class ASTTransformer(ast.NodeTransformer):
                 keywords=[]
             )
         )
-        
-        # # For control flow statements (if, for, while), wrap the entire statement
-        # # to capture the decision/iteration logic
-        # if isinstance(node, (ast.If, ast.For, ast.While)):
-        #     return [before_marker, node, after_marker]
-        # # For compound statements with bodies (function/class definitions), 
-        # # wrap their body to trace execution inside
-        # elif hasattr(node, 'body'):
-        #     if isinstance(node.body, list):
-        #         node.body = [before_marker] + node.body + [after_marker]
-        #     else:
-        #         node.body = [before_marker, node.body, after_marker]
-        #     return node
-        
-        # # For simple statements, wrap in a list
-        # else:
-        #     return [before_marker, node, after_marker]
 
         # For all statements, wrap with before/after markers
         return [before_marker, node, after_marker]
@@ -265,6 +578,7 @@ class PythonTracer:
         self.step_id = 0
         self.source_code = None
         self.transformer = ASTTransformer()
+        self.relationship_analyzer = RelationshipAnalyzer()
         self.entrypoint = None
         self.inputs = {}
         self.result = None
@@ -436,6 +750,11 @@ class PythonTracer:
         """Save results to a JSON file with steps grouped by line number"""
         print(f"Total steps recorded: {len(self.steps)}")
         
+        # Analyze relationships from the original AST (before transformation)
+        original_ast = ast.parse(self.source_code)
+        relationships = self.relationship_analyzer.analyze_ast(original_ast)
+        print(f"Found {len(relationships)} relationships")
+        
         trace = []
         current_line = None
         current_steps = []
@@ -493,6 +812,7 @@ class PythonTracer:
                     }
                 },
                 'ast': json_ast,
+                'relationships': relationships,
                 'trace': trace,
                 'result': self._serialize_value(self.result)
             }, f, indent=2)
