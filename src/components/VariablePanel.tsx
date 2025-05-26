@@ -16,7 +16,6 @@ export default function VariablePanel() {
     const [steps, setSteps] = useState<AugmentedTraceStep[] | null>(null);
 
     useEffect(() => {
-        console.log(current);
         if (current !== null && nodeLookup !== null) {
             setSteps(current.steps.map(step => ({
                 ...step,

@@ -17,8 +17,11 @@ import {
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 
+import { useCurrentStep } from '../hooks/useCurrentStep';
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
+import { SimpleHighlightOverlay } from './SimpleHighlightOverlay';
 
 export default function CodePanel() {
     const {
@@ -34,9 +37,15 @@ export default function CodePanel() {
         reset,
         prev,
         next,
-        togglePlay
+        togglePlay,
+        hasNext
     } = useTraceStore();
-    const current = useTraceStore(selectCurrentLine);
+    const currentLine = useTraceStore(selectCurrentLine);
+    const currentStep = useCurrentStep();
+
+    useEffect(() => {
+        console.log(currentStep);
+    }, [currentStep]);
 
     // Handle auto-play
     useEffect(() => {
@@ -45,11 +54,7 @@ export default function CodePanel() {
         if (isPlaying && traceData) {
             intervalId = window.setInterval(() => {
                 console.log(lineIndex, traceData.trace.length);
-                if (lineIndex >= traceData.trace.length - 1) {
-                    setIsPlaying(false);
-                } else {
-                    next();
-                }
+                next();
             }, playSpeed);
         }
 
@@ -58,7 +63,18 @@ export default function CodePanel() {
         };
     }, [isPlaying, playSpeed, traceData, lineIndex, setIsPlaying, next]);
 
-    if (!traceData || !current) return null;
+    if (!traceData || !currentLine || !currentStep) {
+        return (
+            <Card className={cn('flex flex-col')}>
+                <CardHeader>
+                    <CardTitle>Code</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1 flex items-center justify-center text-muted-foreground">
+                    No trace data loaded
+                </CardContent>
+            </Card>
+        );
+    }
 
     const formatFunctionName = (name: string) => {
         return name
@@ -116,7 +132,7 @@ export default function CodePanel() {
                                 variant={isPlaying ? "default" : "outline"}
                                 size="sm"
                                 onClick={togglePlay}
-                                disabled={lineIndex === maxLine}
+                                disabled={!hasNext() && !isPlaying}
                             >
                                 {isPlaying ? <BsFillPauseFill className="h-4 w-4" /> : <BsFillPlayFill className="h-4 w-4" />}
                             </Button>
@@ -125,7 +141,7 @@ export default function CodePanel() {
                                 variant="outline"
                                 size="sm"
                                 onClick={next}
-                                disabled={lineIndex === maxLine || isPlaying}
+                                disabled={!hasNext() || isPlaying}
                             >
                                 <MdSkipNext className="h-4 w-4" />
                             </Button>
@@ -190,7 +206,7 @@ export default function CodePanel() {
                         </div>
                     </CardHeader>
                     <CardContent className="flex-1 overflow-hidden">
-                        <div className="rounded-md overflow-hidden bg-muted/30 h-full">
+                        <div className="rounded-md overflow-hidden bg-muted/30 h-full relative">
                             <SyntaxHighlighter
                                 language="python"
                                 style={oneLight}
@@ -214,7 +230,8 @@ export default function CodePanel() {
                                 }}
                                 wrapLines={true}
                                 lineProps={(lineNumber) => {
-                                    const isCurrentLine = current.line_number === lineNumber;
+                                    const isCurrentLine = currentLine.line_number === lineNumber;
+
                                     return {
                                         style: {
                                             display: 'block',
@@ -224,11 +241,18 @@ export default function CodePanel() {
                                             padding: '0.5rem 1rem',
                                             transition: 'all 0.2s ease',
                                         },
+                                        'data-line-number': lineNumber,
+                                        'data-is-current': isCurrentLine
                                     };
                                 }}
                             >
                                 {traceData.metadata.code}
                             </SyntaxHighlighter>
+                            <SimpleHighlightOverlay
+                                currentLineNumber={currentLine.line_number}
+                                location={currentStep.ast.location}
+                                code={traceData.metadata.code}
+                            />
                         </div>
                     </CardContent>
                 </Card>

@@ -1,13 +1,15 @@
+export interface ASTLocation {
+  lineno: number;
+  col_offset: number;
+  end_lineno: number;
+  end_col_offset: number;
+}
+
 // Base AST node type
 export interface AST {
   node_id: number;
   type: string;
-  location?: {
-    lineno: number;
-    col_offset: number;
-    end_lineno: number;
-    end_col_offset: number;
-  };
+  location?: ASTLocation;
   focus?: string; // Source code segment for this node
   [key: string]: any; // Allow additional fields
 }

@@ -61,6 +61,9 @@ interface TraceActions {
   prevStep: () => void; // Step to previous expression within line
   reset: () => void;
   togglePlay: () => void;
+
+  // Helpers
+  hasNext: () => boolean; // Check if there are more steps available
 }
 
 type TraceStore = TraceState & TraceActions;
@@ -77,7 +80,7 @@ const initialState: TraceState = {
 };
 
 export const useTraceStore = create<TraceStore>()(
-  immer((set) => ({
+  immer((set, get) => ({
     ...initialState,
 
     setTraceData: (data) =>
@@ -121,11 +124,13 @@ export const useTraceStore = create<TraceStore>()(
 
     next: () =>
       set((state) => {
-        console.log("nexting!", state.lineIndex, state.maxLine, state.mode);
         if (state.mode === "line") {
           if (state.lineIndex < state.maxLine) {
             state.lineIndex += 1;
             state.stepIndex = 0;
+          } else {
+            // At the end of trace, stop playing
+            state.isPlaying = false;
           }
         } else if (state.mode === "step") {
           const currentSteps = state.traceData?.trace[state.lineIndex]?.steps;
@@ -135,6 +140,9 @@ export const useTraceStore = create<TraceStore>()(
             // Move to next line if at end of current line's steps
             state.lineIndex += 1;
             state.stepIndex = 0;
+          } else {
+            // At the end of trace, stop playing
+            state.isPlaying = false;
           }
         }
       }),
@@ -212,6 +220,21 @@ export const useTraceStore = create<TraceStore>()(
           state.isPlaying = !state.isPlaying;
         }
       }),
+
+    hasNext: () => {
+      const state = get();
+      if (state.mode === "line") {
+        return state.lineIndex < state.maxLine;
+      } else if (state.mode === "step") {
+        const currentSteps = state.traceData?.trace[state.lineIndex]?.steps;
+        if (currentSteps && state.stepIndex < currentSteps.length - 1) {
+          return true;
+        }
+        // Check if we can move to next line
+        return state.lineIndex < state.maxLine;
+      }
+      return false;
+    },
   }))
 );
 
