@@ -1,9 +1,12 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-import { parseTraceAST } from '../utils/astParser';
-
-import type { TraceData, TraceEntry, TraceStep } from "../types/trace";
+import type {
+  AugmentedTraceStep,
+  TraceData,
+  TraceLine,
+  TraceStep,
+} from "../types/trace";
 import type { AST } from "../types/ast";
 
 // Helper to build node ID lookup
@@ -36,19 +39,18 @@ function buildNodeLookup(ast: AST): Map<number, AST> {
 interface TraceState {
   // Data
   traceData: TraceData | null;
-  step: number;
+  line: number;
   stepIndex: number; // Index within the current line's steps
   isPlaying: boolean;
   playSpeed: number;
-  maxStep: number;
-  maxStepIndex: number; // Max index within current line's steps
+  maxLine: number;
   nodeLookup: Map<number, AST>; // Lookup map for AST nodes by ID
 }
 
 interface TraceActions {
   // Setters
   setTraceData: (data: TraceData | null) => void;
-  setStep: (step: number) => void;
+  setLine: (line: number) => void;
   setStepIndex: (index: number) => void;
   setIsPlaying: (isPlaying: boolean) => void;
   setPlaySpeed: (speed: number) => void;
@@ -66,12 +68,11 @@ type TraceStore = TraceState & TraceActions;
 
 const initialState: TraceState = {
   traceData: null,
-  step: 0,
+  line: 0,
   stepIndex: 0,
   isPlaying: false,
   playSpeed: 1000,
-  maxStep: 0,
-  maxStepIndex: 0,
+  maxLine: 0,
   nodeLookup: new Map(),
 };
 
@@ -82,10 +83,7 @@ export const useTraceStore = create<TraceStore>()(
     setTraceData: (data) =>
       set((state) => {
         state.traceData = data;
-        state.maxStep = data?.trace.length ? data.trace.length - 1 : 0;
-        state.maxStepIndex = data?.trace[0]?.steps.length
-          ? data.trace[0].steps.length - 1
-          : 0;
+        state.maxLine = data?.trace.length ? data.trace.length - 1 : 0;
         // Build node lookup when setting new trace data
         if (data?.ast) {
           state.nodeLookup = buildNodeLookup(data.ast);
@@ -94,14 +92,11 @@ export const useTraceStore = create<TraceStore>()(
         }
       }),
 
-    setStep: (step) =>
+    setLine: (line) =>
       set((state) => {
-        state.step = step;
+        state.line = line;
         // Reset step index when changing lines
         state.stepIndex = 0;
-        state.maxStepIndex = state.traceData?.trace[step]?.steps.length
-          ? state.traceData.trace[step].steps.length - 1
-          : 0;
       }),
 
     setStepIndex: (index) =>
@@ -121,37 +116,33 @@ export const useTraceStore = create<TraceStore>()(
 
     next: () =>
       set((state) => {
-        if (!state.isPlaying && state.step < state.maxStep) {
-          state.step += 1;
+        if (!state.isPlaying && state.line < state.maxLine) {
+          state.line += 1;
           state.stepIndex = 0;
-          state.maxStepIndex = state.traceData?.trace[state.step]?.steps.length
-            ? state.traceData.trace[state.step].steps.length - 1
-            : 0;
         }
       }),
 
     prev: () =>
       set((state) => {
-        if (!state.isPlaying && state.step > 0) {
-          state.step -= 1;
+        if (!state.isPlaying && state.line > 0) {
+          state.line -= 1;
           state.stepIndex = 0;
-          state.maxStepIndex = state.traceData?.trace[state.step]?.steps.length
-            ? state.traceData.trace[state.step].steps.length - 1
-            : 0;
         }
       }),
 
     nextExpression: () =>
       set((state) => {
-        if (!state.isPlaying && state.stepIndex < state.maxStepIndex) {
+        const currentSteps = state.traceData?.trace[state.line]?.steps;
+        if (
+          !state.isPlaying &&
+          currentSteps &&
+          state.stepIndex < currentSteps.length - 1
+        ) {
           state.stepIndex += 1;
-        } else if (!state.isPlaying && state.step < state.maxStep) {
+        } else if (!state.isPlaying && state.line < state.maxLine) {
           // Move to next line if at end of current line's steps
-          state.step += 1;
+          state.line += 1;
           state.stepIndex = 0;
-          state.maxStepIndex = state.traceData?.trace[state.step]?.steps.length
-            ? state.traceData.trace[state.step].steps.length - 1
-            : 0;
         }
       }),
 
@@ -159,30 +150,25 @@ export const useTraceStore = create<TraceStore>()(
       set((state) => {
         if (!state.isPlaying && state.stepIndex > 0) {
           state.stepIndex -= 1;
-        } else if (!state.isPlaying && state.step > 0) {
+        } else if (!state.isPlaying && state.line > 0) {
           // Move to previous line if at start of current line's steps
-          state.step -= 1;
-          state.maxStepIndex = state.traceData?.trace[state.step]?.steps.length
-            ? state.traceData.trace[state.step].steps.length - 1
-            : 0;
-          state.stepIndex = state.maxStepIndex;
+          state.line -= 1;
+          const prevSteps = state.traceData?.trace[state.line]?.steps;
+          state.stepIndex = prevSteps ? prevSteps.length - 1 : 0;
         }
       }),
 
     reset: () =>
       set((state) => {
         if (!state.isPlaying) {
-          state.step = 0;
+          state.line = 0;
           state.stepIndex = 0;
-          state.maxStepIndex = state.traceData?.trace[0]?.steps.length
-            ? state.traceData.trace[0].steps.length - 1
-            : 0;
         }
       }),
 
     togglePlay: () =>
       set((state) => {
-        if (state.step < state.maxStep || !state.isPlaying) {
+        if (state.line < state.maxLine || !state.isPlaying) {
           state.isPlaying = !state.isPlaying;
         }
       }),
@@ -190,16 +176,19 @@ export const useTraceStore = create<TraceStore>()(
 );
 
 // Selectors
-export const selectCurrentLine = (state: TraceState): TraceEntry | null =>
-  state.traceData?.trace[state.step] ?? null;
+export const selectCurrentLine = (state: TraceState): TraceLine | null =>
+  state.traceData?.trace[state.line] ?? null;
 
-export const selectCurrentStep = (state: TraceState): TraceStep | null =>
-  state.traceData?.trace[state.step]?.steps[state.stepIndex] ?? null;
+export const selectCurrentSteps = (
+  state: TraceState
+): AugmentedTraceStep[] | null => {
+  debugger;
+  // Join the steps of the current line with the ast lookup
+  const currentLine = state.traceData?.trace[state.line];
+  if (!currentLine?.steps) return null;
 
-export const selectAST = (state: TraceState): AST | null => {
-  const currentStep = selectCurrentStep(state);
-  if (currentStep?.node_id !== undefined) {
-    return state.nodeLookup.get(currentStep.node_id) ?? null;
-  }
-  return null;
+  return currentLine.steps.map((step) => ({
+    ...step,
+    ast: state.nodeLookup.get(step.node_id)!,
+  }));
 };

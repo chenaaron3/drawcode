@@ -9,7 +9,8 @@ const AVAILABLE_TRACES = [
   "buy-sell-stocks-2.json",
   "contains-duplicate.json",
   "rotate-array.json",
-  "single-number.json"
+  "single-number.json",
+  "n-queens.json",
 ] as const;
 
 type TraceFile = typeof AVAILABLE_TRACES[number];

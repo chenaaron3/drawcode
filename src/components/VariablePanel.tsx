@@ -1,42 +1,31 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { AnimatePresence, motion, steps } from 'framer-motion';
+import { line } from 'framer-motion/client';
+import { useEffect, useState } from 'react';
 
-import { selectAST, selectCurrentLine, useTraceStore } from '../store/traceStore';
+import { selectCurrentLine, useTraceStore } from '../store/traceStore';
 import { renderValue } from './visualizers/renderValue';
 
-import type { Assign, If, For } from '../types/ast';
-
+import type { AugmentedTraceStep } from '../types/trace';
 export default function VariablePanel() {
-    const { step, maxStep, traceData } = useTraceStore();
+    const { line, maxLine: maxStep, traceData } = useTraceStore();
     const current = useTraceStore(selectCurrentLine);
-    const ast = useTraceStore(selectAST);
+    const nodeLookup = useTraceStore(state => state.nodeLookup);
+    const [steps, setSteps] = useState<AugmentedTraceStep[] | null>(null);
 
     useEffect(() => {
         console.log(current);
-        console.log(ast);
-        if (ast === null) {
-            return;
+        console.log(steps);
+        if (current !== null && nodeLookup !== null) {
+            setSteps(current.steps.map(step => ({
+                ...step,
+                ast: nodeLookup.get(step.node_id)!
+            })));
         }
-        console.log(ast.type);
-        // Process ast types here
-        if (ast.type === "If") {
-            const typedAST = ast as If;
-            const condition = typedAST.test;
-            console.log("Condition", condition);
-        } else if (ast.type === "Assign") {
-            const typedAST = ast as Assign;
-            const targets = typedAST.targets;
-            const value = typedAST.value;
-            console.log("Targets", targets);
-            console.log("Value", value);
-        } else if (ast.type === "For") {
-            const typedAST = ast as For;
-            const iter = typedAST.iter;
-            const target = typedAST.target;
-            console.log("Iter", iter);
-            console.log("Target", target);
-        }
-    }, [ast, current]);
+    }, [current, nodeLookup]);
+
+    useEffect(() => {
+        console.log(steps);
+    }, [steps]);
 
     if (!traceData || !current) return null;
 
@@ -84,7 +73,7 @@ export default function VariablePanel() {
                     </div>
 
                     {/* Final Result */}
-                    {step === maxStep && (
+                    {line === maxStep && (
                         <motion.div
                             className="mt-4 p-3 border-l-4 border-green-400 bg-green-200 rounded-r-md"
                             initial={{ opacity: 0 }}

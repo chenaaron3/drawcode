@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { line } from 'framer-motion/client';
 import React, { useEffect } from 'react';
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
 import { MdRefresh, MdSkipNext, MdSkipPrevious } from 'react-icons/md';
@@ -8,11 +9,11 @@ import { selectCurrentLine, useTraceStore } from '../store/traceStore';
 export default function CodePanel() {
     const {
         traceData,
-        step,
-        maxStep,
+        line,
+        maxLine,
         isPlaying,
         playSpeed,
-        setStep,
+        setLine,
         setIsPlaying,
         setPlaySpeed,
         reset,
@@ -28,10 +29,10 @@ export default function CodePanel() {
 
         if (isPlaying && traceData) {
             intervalId = window.setInterval(() => {
-                if (step >= traceData.trace.length - 1) {
+                if (line >= traceData.trace.length - 1) {
                     setIsPlaying(false);
                 } else {
-                    setStep(step + 1);
+                    setLine(line + 1);
                 }
             }, playSpeed);
         }
@@ -39,7 +40,7 @@ export default function CodePanel() {
         return () => {
             if (intervalId) window.clearInterval(intervalId);
         };
-    }, [isPlaying, playSpeed, traceData, step, setStep, setIsPlaying]);
+    }, [isPlaying, playSpeed, traceData, line, setLine, setIsPlaying]);
 
     if (!traceData || !current) return null;
 
@@ -99,7 +100,7 @@ export default function CodePanel() {
                         className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        disabled={step === 0 || isPlaying}
+                        disabled={line === 0 || isPlaying}
                         title="Reset"
                     >
                         <MdRefresh size={20} />
@@ -112,7 +113,7 @@ export default function CodePanel() {
                         className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        disabled={step === 0 || isPlaying}
+                        disabled={line === 0 || isPlaying}
                         title="Previous"
                     >
                         <MdSkipPrevious size={20} />
@@ -123,7 +124,7 @@ export default function CodePanel() {
                         className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        disabled={step === maxStep}
+                        disabled={line === maxLine}
                         title={isPlaying ? "Pause" : "Play"}
                     >
                         {isPlaying ? <BsFillPauseFill size={20} /> : <BsFillPlayFill size={20} />}
@@ -134,7 +135,7 @@ export default function CodePanel() {
                         className="p-2 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        disabled={step === maxStep || isPlaying}
+                        disabled={line === maxLine || isPlaying}
                         title="Next"
                     >
                         <MdSkipNext size={20} />

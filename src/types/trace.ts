@@ -1,5 +1,10 @@
 import type { AST } from "./ast";
 
+// Augmented trace step joins the node_id with the lookup AST
+export type AugmentedTraceStep = TraceStep & {
+  ast: AST;
+};
+
 // Step types for expression-level tracing
 export type TraceStep = {
   step: number;
@@ -15,7 +20,7 @@ export type TraceStep = {
 };
 
 // Trace types
-export type TraceEntry = {
+export type TraceLine = {
   line_number: number;
   locals: Record<string, any>;
   delta: Record<string, any> | null;
@@ -31,6 +36,6 @@ export type TraceData = {
     };
   };
   ast: AST;
-  trace: TraceEntry[];
+  trace: TraceLine[];
   result: any;
 };
