@@ -1,5 +1,11 @@
 import { useState } from 'react';
 
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Select, SelectContent, SelectItem, SelectTrigger, SelectValue
+} from '@/components/ui/select';
+
 import TraceVisualizer from './components/TraceVisualizer';
 
 const AVAILABLE_TRACES = [
@@ -19,33 +25,62 @@ export default function App() {
   const [selectedTrace, setSelectedTrace] = useState<TraceFile>(AVAILABLE_TRACES[0]);
   const [error, setError] = useState<string | null>(null);
 
-  return (
-    <div className="p-4">
-      <select
-        value={selectedTrace}
-        onChange={(e) => {
-          setError(null);
-          setSelectedTrace(e.target.value as TraceFile);
-        }}
-        className="mb-4 p-2 rounded border border-gray-300"
-      >
-        {AVAILABLE_TRACES.map(trace => (
-          <option key={trace} value={trace}>
-            {trace.replace(/-/g, ' ').replace('.json', '')}
-          </option>
-        ))}
-      </select>
+  const formatTraceName = (trace: string) => {
+    return trace.replace(/-/g, ' ').replace('.json', '').replace(/\b\w/g, l => l.toUpperCase());
+  };
 
-      {error ? (
-        <div className="p-4 bg-red-100 border-l-4 border-red-500 text-red-700">
-          {error}
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <div className="border-b bg-card">
+        <div className="container mx-auto px-6 py-2">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold text-foreground">Leetcode Debugger</h1>
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-muted-foreground">Select trace:</span>
+              <Select
+                value={selectedTrace}
+                onValueChange={(value) => {
+                  setError(null);
+                  setSelectedTrace(value as TraceFile);
+                }}
+              >
+                <SelectTrigger className="w-[200px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {AVAILABLE_TRACES.map(trace => (
+                    <SelectItem key={trace} value={trace}>
+                      {formatTraceName(trace)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
         </div>
-      ) : (
-        <TraceVisualizer
-          traceUrl={`/traces/${selectedTrace}`}
-          onError={(err) => setError(err.message)}
-        />
-      )}
+      </div>
+
+      {/* Main Content */}
+      <div className="container mx-auto px-6 py-2">
+        {error ? (
+          <Card className="border-l-4 border-l-destructive">
+            <CardHeader>
+              <CardTitle className="text-destructive">
+                Error Loading Trace
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">{error}</p>
+            </CardContent>
+          </Card>
+        ) : (
+          <TraceVisualizer
+            traceUrl={`/traces/${selectedTrace}`}
+            onError={(err) => setError(err.message)}
+          />
+        )}
+      </div>
     </div>
   );
 }

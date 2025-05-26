@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
 import { useTraceStore } from '../store/traceStore';
 import CodePanel from './CodePanel';
 import VariablePanel from './VariablePanel';
@@ -46,25 +48,30 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData, onEr
 
     if (isLoading) {
         return (
-            <div className="flex items-center justify-center min-h-[200px]">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-            </div>
+            <Card>
+                <CardContent className="flex items-center justify-center min-h-[200px]">
+                    <div className="flex flex-col items-center gap-3">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                        <p className="text-muted-foreground">Loading trace data...</p>
+                    </div>
+                </CardContent>
+            </Card>
         );
     }
 
     if (!traceData) return null;
 
+    const formatFunctionName = (name: string) => {
+        return name
+            .split(/(?=[A-Z])|_/)
+            .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    };
+
     return (
-        <div className="container mx-auto">
-            {/* Title */}
-            <h1 className="text-3xl font-bold text-center py-8">
-                {traceData.metadata.function
-                    .split(/(?=[A-Z])|_/)
-                    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                    .join(' ')}
-            </h1>
-            {/* Main content */}
-            <div className="flex flex-row gap-8 mx-auto px-8">
+        <div className="space-y-2">
+            {/* Code and Variables - Optimized for variables space */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 min-h-[calc(100vh-160px)]">
                 <CodePanel />
                 <VariablePanel />
             </div>
