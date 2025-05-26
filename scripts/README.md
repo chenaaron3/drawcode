@@ -1,0 +1,170 @@
+# Python Code Tracer
+
+This directory contains a modular Python code tracer that analyzes and traces the execution of algorithmic code, capturing **focused container-cursor relationships** and execution steps.
+
+## File Structure
+
+### Core Modules
+
+#### `relationship_analyzer.py`
+
+- **Class**: `RelationshipAnalyzer`
+- **Purpose**: Analyzes AST to identify relationships between **container objects** and **key-like primitives**
+- **Key Features**:
+  - Detects 5 focused relationship types (key_access, value_access, key_assignment, membership_test, key_offset)
+  - Ensures containers are actual container-like objects (list, dict, set, tuple)
+  - Ensures cursors are key-like primitives used for indexing/accessing
+  - Two-pass analysis: type inference then relationship detection
+
+#### `ast_transformer.py`
+
+- **Class**: `ASTTransformer`
+- **Purpose**: Transforms AST by adding execution markers and tracking nodes
+- **Key Features**:
+  - Adds before/after markers for statements and expressions
+  - Maintains node ID mapping for execution tracking
+  - Handles assignment target detection to avoid tracing store operations
+
+#### `python_tracer.py`
+
+- **Class**: `PythonTracer`
+- **Purpose**: Main tracer that orchestrates execution tracking and result generation
+- **Key Features**:
+  - Executes instrumented code and captures execution steps
+  - Integrates relationship analysis with execution traces
+  - Generates JSON output with metadata, AST, relationships, and trace data
+
+#### `trace.py`
+
+- **Purpose**: Main entry point and execution script
+- **Features**:
+  - Loads problems from `problems.json`
+  - Processes each problem and generates trace files
+  - Outputs results to `../public/traces/` directory
+
+## Focused Relationship Types
+
+The analyzer detects these **5 focused relationship types** between containers and cursors:
+
+1. **key_access** (7 occurrences) - Variable used as index to access container elements: `container[cursor]`
+2. **value_access** (5 occurrences) - Variable receives values from container iteration: `for cursor in container`
+3. **key_assignment** (4 occurrences) - Variable used as key when assigning to container: `container[cursor] = value`
+4. **membership_test** (3 occurrences) - Variable tested for membership in container: `cursor in container`
+5. **key_offset** (1 occurrence) - Variable used in offset indexing: `container[cursor+1]`
+
+## Container and Cursor Requirements
+
+### Containers (must be container-like objects):
+
+- Variables assigned to container literals: `nums = [1, 2, 3]`, `cache = {}`
+- Variables used in subscript operations: `nums[i]`
+- Variables used as iterables in for loops: `for item in nums`
+- Variables used in membership tests: `key in cache`
+
+### Cursors (key-like primitives):
+
+- Variables used for indexing: `i`, `j`, `index`
+- Variables used as keys: `key`, `complement`
+- Variables receiving iteration values: `item`, `num`
+
+## Usage
+
+### Basic Usage
+
+```bash
+cd scripts
+python3 trace.py
+```
+
+### Individual Module Usage
+
+```python
+from relationship_analyzer import RelationshipAnalyzer
+from ast_transformer import ASTTransformer
+from python_tracer import PythonTracer
+
+# Analyze relationships only
+analyzer = RelationshipAnalyzer()
+relationships = analyzer.analyze_ast(ast.parse(code))
+
+# Transform AST only
+transformer = ASTTransformer()
+transformed_ast = transformer.transform(code)
+
+# Full tracing
+tracer = PythonTracer()
+tracer.run_code(code, entrypoint="function_name", **inputs)
+tracer.save_results("output.json", transformed_ast)
+```
+
+## Results Summary
+
+**Total relationships found**: **20** (down from 33 with broader scope)
+
+### Per Problem:
+
+- **array-intersection-2**: 5 relationships
+- **two-sum**: 5 relationships
+- **remove-duplicates**: 3 relationships
+- **buy-sell-stocks-2**: 2 relationships
+- **contains-duplicate**: 2 relationships
+- **n-queens**: 2 relationships
+- **single-number**: 1 relationship
+- **rotate-array**: 0 relationships
+
+### Most Active Containers:
+
+- **nums**: 7 relationships (most common container name)
+- **freq**: 3 relationships (frequency maps)
+- **num_to_index**: 3 relationships (lookup tables)
+
+### Most Active Cursors:
+
+- **num**: 10 relationships (iteration values)
+- **i**: 6 relationships (index variables)
+- **complement**: 2 relationships (computed keys)
+
+## Output Format
+
+Generated JSON files contain:
+
+```json
+{
+  "metadata": {
+    "code": "source code string",
+    "function": "entry function name",
+    "inputs": { "kwargs": "input parameters" }
+  },
+  "ast": "transformed AST structure",
+  "relationships": [
+    { "container": "nums", "cursor": "i", "type": "key_access" },
+    { "container": "nums", "cursor": "num", "type": "value_access" }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": { "var": "value" },
+      "delta": { "changed_vars": "new_values" },
+      "steps": ["execution steps for this line"]
+    }
+  ],
+  "result": "function return value"
+}
+```
+
+## Key Design Principles
+
+1. **Focused Scope**: Only container-cursor relationships, not general variable relationships
+2. **Type-Aware**: Infers variable types to ensure containers are actually containers
+3. **Clean Relationships**: Only meaningful container access patterns
+4. **Efficient Analysis**: Two-pass AST traversal (type inference + relationship detection)
+5. **JSON Serializable**: All output is JSON-compatible for visualization tools
+
+## Dependencies
+
+- Python 3.7+
+- Standard library only (ast, json, sys, builtins, os)
+
+## Testing
+
+The focused analyzer has been tested with 8 different algorithmic problems, generating clean container-cursor relationships that are directly relevant for visualizing data access patterns in algorithms.

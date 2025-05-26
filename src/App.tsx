@@ -30,9 +30,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen overflow-hidden h-screen bg-background flex flex-col">
+    <div className="min-h-screen overflow-auto h-screen bg-background flex flex-col">
       {/* Header */}
-      <div className="border-b bg-card">
+      <div className="border-b bg-card h-[10vh]">
         <div className="container mx-auto p-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-foreground">Leetcode Debugger</h1>
@@ -62,7 +62,7 @@ export default function App() {
       </div>
 
       {/* Main Content */}
-      <div className="mx-auto p-6 my-auto flex flex-1">
+      <div className="px-24 w-full p-6 my-auto h-[90vh]">
         {error ? (
           <Card className="border-l-4 border-l-destructive">
             <CardHeader>

@@ -17,7 +17,7 @@ export const DictionaryVisualizer: React.FC<DictionaryVisualizerProps> = ({ dict
     return (
         <motion.div
             className={clsx(
-                "inline-block border rounded-lg overflow-hidden transition-all duration-200 shadow-sm",
+                "inline-block border rounded-md overflow-hidden transition-all duration-200",
                 {
                     "bg-gradient-to-br from-amber-50 to-amber-100/50 border-amber-200": isNew,
                     "bg-white border-slate-200": !isNew,
@@ -27,22 +27,10 @@ export const DictionaryVisualizer: React.FC<DictionaryVisualizerProps> = ({ dict
             animate="animate"
             variants={valueVariants}
         >
-            <div className={clsx("px-3 py-2 border-b", {
-                "bg-amber-100/50 border-amber-200": isNew,
-                "bg-slate-50 border-slate-200": !isNew
-            })}>
-                <div className="flex items-center gap-2">
-                    <span className={clsx("text-xs font-medium", {
-                        "text-amber-700": isNew,
-                        "text-slate-600": !isNew
-                    })}>
-                        Dictionary ({entries.length})
-                    </span>
-                </div>
-            </div>
+
 
             {entries.length === 0 ? (
-                <div className="text-slate-500 text-sm italic text-center py-3 bg-slate-50">
+                <div className="text-slate-500 text-xs italic text-center p-2 bg-slate-50">
                     Empty
                 </div>
             ) : (
@@ -55,22 +43,22 @@ export const DictionaryVisualizer: React.FC<DictionaryVisualizerProps> = ({ dict
                             <div
                                 key={k}
                                 className={clsx(
-                                    "flex items-center gap-3 p-3 transition-all duration-200",
+                                    "flex items-center gap-2 p-2 transition-all duration-200",
                                     {
                                         "bg-gradient-to-r from-emerald-50 to-emerald-100/30": hasChange,
                                         "hover:bg-slate-50": !hasChange
                                     }
                                 )}
                             >
-                                <div className="flex items-center gap-2 flex-shrink-0 min-w-[40px]">
-                                    <span className={clsx("font-mono text-sm font-semibold", {
+                                <div className="flex items-center gap-1 flex-shrink-0">
+                                    <span className={clsx("font-mono text-xs font-semibold", {
                                         "text-emerald-700": hasChange,
                                         "text-slate-700": !hasChange
                                     })}>
                                         {k}
                                     </span>
                                     {hasChange && (
-                                        <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+                                        <div className="w-1 h-1 bg-emerald-500 rounded-full"></div>
                                     )}
                                 </div>
                                 <div className="flex-1">

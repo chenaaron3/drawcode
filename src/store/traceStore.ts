@@ -87,6 +87,9 @@ export const useTraceStore = create<TraceStore>()(
       set((state) => {
         state.traceData = data;
         state.maxLine = data?.trace.length ? data.trace.length - 1 : 0;
+        state.lineIndex = 0;
+        state.stepIndex = 0;
+        state.isPlaying = false;
         // Build node lookup when setting new trace data
         if (data?.ast) {
           state.nodeLookup = buildNodeLookup(data.ast);

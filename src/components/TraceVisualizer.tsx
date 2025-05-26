@@ -62,10 +62,11 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData, onEr
     if (!traceData) return null;
 
     return (
-        <div className="space-y-2 h-full">
-            {/* Code and Variables - Optimized for variables space */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 min-h-[calc(100vh-160px)] my-auto">
+        <div className="flex h-full  gap-6">
+            <div className="flex-1">
                 <CodePanel />
+            </div>
+            <div className="flex-[2]">
                 <VariablePanel />
             </div>
         </div>

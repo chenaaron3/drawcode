@@ -3,6 +3,7 @@
         {
             "id": "two-sum",
             "number": 1,
+            "title": "Two Sum",
             "inputs": {
                 "nums": [
                     2,
@@ -13,7 +14,128 @@
                 "target": 9
             },
             "entrypoint": "twoSum",
-            "solution": "def twoSum(nums, target):\n        num_to_index = {}  # maps number to its index\n        for i, num in enumerate(nums):\n            complement = target - num\n            if complement in num_to_index:\n                return [num_to_index[complement], i]\n            num_to_index[num] = i\n"
+            "solution": "def twoSum(nums, target):\n    num_to_index = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_to_index:\n            return [num_to_index[complement], i]\n        num_to_index[num] = i\n"
+        },
+        {
+            "id": "add-two-numbers",
+            "number": 2,
+            "title": "Add Two Numbers",
+            "inputs": {
+                "l1": [
+                    2,
+                    4,
+                    3
+                ],
+                "l2": [
+                    5,
+                    6,
+                    4
+                ]
+            },
+            "entrypoint": "addTwoNumbers",
+            "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef addTwoNumbers(l1, l2):\n    def list_to_linked(arr):\n        if not arr: return None\n        head = ListNode(arr[0])\n        curr = head\n        for val in arr[1:]:\n            curr.next = ListNode(val)\n            curr = curr.next\n        return head\n    \n    l1 = list_to_linked(l1)\n    l2 = list_to_linked(l2)\n    \n    dummy = ListNode(0)\n    curr = dummy\n    carry = 0\n    \n    while l1 or l2 or carry:\n        val1 = l1.val if l1 else 0\n        val2 = l2.val if l2 else 0\n        total = val1 + val2 + carry\n        \n        carry = total // 10\n        curr.next = ListNode(total % 10)\n        curr = curr.next\n        \n        if l1: l1 = l1.next\n        if l2: l2 = l2.next\n    \n    result = []\n    curr = dummy.next\n    while curr:\n        result.append(curr.val)\n        curr = curr.next\n    return result\n"
+        },
+        {
+            "id": "longest-substring-without-repeating",
+            "number": 3,
+            "title": "Longest Substring Without Repeating Characters",
+            "inputs": {
+                "s": "abcabcbb"
+            },
+            "entrypoint": "lengthOfLongestSubstring",
+            "solution": "def lengthOfLongestSubstring(s):\n    char_set = set()\n    left = 0\n    max_len = 0\n    \n    for right in range(len(s)):\n        while s[right] in char_set:\n            char_set.remove(s[left])\n            left += 1\n        char_set.add(s[right])\n        max_len = max(max_len, right - left + 1)\n    \n    return max_len\n"
+        },
+        {
+            "id": "median-two-sorted-arrays",
+            "number": 4,
+            "title": "Median of Two Sorted Arrays",
+            "inputs": {
+                "nums1": [
+                    1,
+                    3
+                ],
+                "nums2": [
+                    2
+                ]
+            },
+            "entrypoint": "findMedianSortedArrays",
+            "solution": "def findMedianSortedArrays(nums1, nums2):\n    merged = sorted(nums1 + nums2)\n    n = len(merged)\n    if n % 2 == 1:\n        return float(merged[n // 2])\n    else:\n        return (merged[n // 2 - 1] + merged[n // 2]) / 2.0\n"
+        },
+        {
+            "id": "longest-palindromic-substring",
+            "number": 5,
+            "title": "Longest Palindromic Substring",
+            "inputs": {
+                "s": "babad"
+            },
+            "entrypoint": "longestPalindrome",
+            "solution": "def longestPalindrome(s):\n    def expand_around_center(left, right):\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        return right - left - 1\n    \n    start = 0\n    max_len = 0\n    \n    for i in range(len(s)):\n        len1 = expand_around_center(i, i)\n        len2 = expand_around_center(i, i + 1)\n        curr_len = max(len1, len2)\n        \n        if curr_len > max_len:\n            max_len = curr_len\n            start = i - (curr_len - 1) // 2\n    \n    return s[start:start + max_len]\n"
+        },
+        {
+            "id": "container-with-most-water",
+            "number": 11,
+            "title": "Container With Most Water",
+            "inputs": {
+                "height": [
+                    1,
+                    8,
+                    6,
+                    2,
+                    5,
+                    4,
+                    8,
+                    3,
+                    7
+                ]
+            },
+            "entrypoint": "maxArea",
+            "solution": "def maxArea(height):\n    left, right = 0, len(height) - 1\n    max_area = 0\n    \n    while left < right:\n        area = min(height[left], height[right]) * (right - left)\n        max_area = max(max_area, area)\n        \n        if height[left] < height[right]:\n            left += 1\n        else:\n            right -= 1\n    \n    return max_area\n"
+        },
+        {
+            "id": "3sum",
+            "number": 15,
+            "title": "3Sum",
+            "inputs": {
+                "nums": [
+                    -1,
+                    0,
+                    1,
+                    2,
+                    -1,
+                    -4
+                ]
+            },
+            "entrypoint": "threeSum",
+            "solution": "def threeSum(nums):\n    nums.sort()\n    result = []\n    \n    for i in range(len(nums) - 2):\n        if i > 0 and nums[i] == nums[i - 1]:\n            continue\n        \n        left, right = i + 1, len(nums) - 1\n        \n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            \n            if total < 0:\n                left += 1\n            elif total > 0:\n                right -= 1\n            else:\n                result.append([nums[i], nums[left], nums[right]])\n                while left < right and nums[left] == nums[left + 1]:\n                    left += 1\n                while left < right and nums[right] == nums[right - 1]:\n                    right -= 1\n                left += 1\n                right -= 1\n    \n    return result\n"
+        },
+        {
+            "id": "valid-parentheses",
+            "number": 20,
+            "title": "Valid Parentheses",
+            "inputs": {
+                "s": "()[]{}"
+            },
+            "entrypoint": "isValid",
+            "solution": "def isValid(s):\n    stack = []\n    mapping = {')': '(', '}': '{', ']': '['}\n    \n    for char in s:\n        if char in mapping:\n            if not stack or stack.pop() != mapping[char]:\n                return False\n        else:\n            stack.append(char)\n    \n    return not stack\n"
+        },
+        {
+            "id": "merge-two-sorted-lists",
+            "number": 21,
+            "title": "Merge Two Sorted Lists",
+            "inputs": {
+                "list1": [
+                    1,
+                    2,
+                    4
+                ],
+                "list2": [
+                    1,
+                    3,
+                    4
+                ]
+            },
+            "entrypoint": "mergeTwoLists",
+            "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef mergeTwoLists(list1, list2):\n    def list_to_linked(arr):\n        if not arr: return None\n        head = ListNode(arr[0])\n        curr = head\n        for val in arr[1:]:\n            curr.next = ListNode(val)\n            curr = curr.next\n        return head\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    l1 = list_to_linked(list1)\n    l2 = list_to_linked(list2)\n    \n    dummy = ListNode(0)\n    curr = dummy\n    \n    while l1 and l2:\n        if l1.val <= l2.val:\n            curr.next = l1\n            l1 = l1.next\n        else:\n            curr.next = l2\n            l2 = l2.next\n        curr = curr.next\n    \n    curr.next = l1 or l2\n    return linked_to_list(dummy.next)\n"
         },
         {
             "id": "remove-duplicates",
@@ -27,12 +149,169 @@
                 ]
             },
             "entrypoint": "removeDuplicates",
-            "solution": "def removeDuplicates(nums):\n    if not nums:\n        return 0\n    # Pointer for the position of the last unique element\n    i = 0\n    for j in range(1, len(nums)):\n        if nums[j] != nums[i]:\n            i += 1\n            nums[i] = nums[j]\n    return i + 1\n"
+            "solution": "def removeDuplicates(nums):\n    if not nums:\n        return 0\n    i = 0\n    for j in range(1, len(nums)):\n        if nums[j] != nums[i]:\n            i += 1\n            nums[i] = nums[j]\n    return i + 1\n"
+        },
+        {
+            "id": "search-insert-position",
+            "number": 35,
+            "title": "Search Insert Position",
+            "inputs": {
+                "nums": [
+                    1,
+                    3,
+                    5,
+                    6
+                ],
+                "target": 5
+            },
+            "entrypoint": "searchInsert",
+            "solution": "def searchInsert(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return left\n"
+        },
+        {
+            "id": "maximum-subarray",
+            "number": 53,
+            "title": "Maximum Subarray",
+            "inputs": {
+                "nums": [
+                    -2,
+                    1,
+                    -3,
+                    4,
+                    -1,
+                    2,
+                    1,
+                    -5,
+                    4
+                ]
+            },
+            "entrypoint": "maxSubArray",
+            "solution": "def maxSubArray(nums):\n    max_sum = nums[0]\n    current_sum = nums[0]\n    \n    for i in range(1, len(nums)):\n        current_sum = max(nums[i], current_sum + nums[i])\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum\n"
+        },
+        {
+            "id": "climbing-stairs",
+            "number": 70,
+            "title": "Climbing Stairs",
+            "inputs": {
+                "n": 3
+            },
+            "entrypoint": "climbStairs",
+            "solution": "def climbStairs(n):\n    if n <= 2:\n        return n\n    \n    prev2, prev1 = 1, 2\n    \n    for i in range(3, n + 1):\n        curr = prev1 + prev2\n        prev2, prev1 = prev1, curr\n    \n    return prev1\n"
+        },
+        {
+            "id": "merge-sorted-array",
+            "number": 88,
+            "title": "Merge Sorted Array",
+            "inputs": {
+                "nums1": [
+                    1,
+                    2,
+                    3,
+                    0,
+                    0,
+                    0
+                ],
+                "m": 3,
+                "nums2": [
+                    2,
+                    5,
+                    6
+                ],
+                "n": 3
+            },
+            "entrypoint": "merge",
+            "solution": "def merge(nums1, m, nums2, n):\n    i, j, k = m - 1, n - 1, m + n - 1\n    \n    while j >= 0:\n        if i >= 0 and nums1[i] > nums2[j]:\n            nums1[k] = nums1[i]\n            i -= 1\n        else:\n            nums1[k] = nums2[j]\n            j -= 1\n        k -= 1\n    \n    return nums1\n"
+        },
+        {
+            "id": "binary-tree-inorder-traversal",
+            "number": 94,
+            "title": "Binary Tree Inorder Traversal",
+            "inputs": {
+                "root": [
+                    1,
+                    null,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "inorderTraversal",
+            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef inorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def inorder(node):\n        if node:\n            inorder(node.left)\n            result.append(node.val)\n            inorder(node.right)\n    \n    inorder(root)\n    return result\n"
+        },
+        {
+            "id": "same-tree",
+            "number": 100,
+            "title": "Same Tree",
+            "inputs": {
+                "p": [
+                    1,
+                    2,
+                    3
+                ],
+                "q": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "isSameTree",
+            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef isSameTree(p, q):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(p, list):\n        p = build_tree(p)\n    if isinstance(q, list):\n        q = build_tree(q)\n    \n    if not p and not q:\n        return True\n    if not p or not q:\n        return False\n    \n    return p.val == q.val and isSameTree(p.left, q.left) and isSameTree(p.right, q.right)\n"
+        },
+        {
+            "id": "symmetric-tree",
+            "number": 101,
+            "title": "Symmetric Tree",
+            "inputs": {
+                "root": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    3
+                ]
+            },
+            "entrypoint": "isSymmetric",
+            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef isSymmetric(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    def is_mirror(left, right):\n        if not left and not right:\n            return True\n        if not left or not right:\n            return False\n        return left.val == right.val and is_mirror(left.left, right.right) and is_mirror(left.right, right.left)\n    \n    return not root or is_mirror(root.left, root.right)\n"
+        },
+        {
+            "id": "maximum-depth-binary-tree",
+            "number": 104,
+            "title": "Maximum Depth of Binary Tree",
+            "inputs": {
+                "root": [
+                    3,
+                    9,
+                    20,
+                    null,
+                    null,
+                    15,
+                    7
+                ]
+            },
+            "entrypoint": "maxDepth",
+            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef maxDepth(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return 0\n    \n    return 1 + max(maxDepth(root.left), maxDepth(root.right))\n"
+        },
+        {
+            "id": "best-time-buy-sell-stock",
+            "number": 121,
+            "title": "Best Time to Buy and Sell Stock",
+            "inputs": {
+                "prices": [
+                    7,
+                    1,
+                    5,
+                    3,
+                    6,
+                    4
+                ]
+            },
+            "entrypoint": "maxProfit",
+            "solution": "def maxProfit(prices):\n    min_price = float('inf')\n    max_profit = 0\n    \n    for price in prices:\n        if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price\n    \n    return max_profit\n"
         },
         {
             "id": "buy-sell-stocks-2",
             "number": 122,
-            "title": " Best Time to Buy and Sell Stock II",
+            "title": "Best Time to Buy and Sell Stock II",
             "inputs": {
                 "prices": [
                     7,
@@ -47,38 +326,14 @@
             "solution": "def maxProfit(prices):\n    profit = 0\n    for i in range(1, len(prices)):\n        if prices[i] > prices[i - 1]:\n            profit += prices[i] - prices[i - 1]\n    return profit\n"
         },
         {
-            "id": "rotate-array",
-            "number": 189,
-            "title": "Rotate Array",
+            "id": "valid-palindrome",
+            "number": 125,
+            "title": "Valid Palindrome",
             "inputs": {
-                "nums": [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6,
-                    7
-                ],
-                "k": 3
+                "s": "A man, a plan, a canal: Panama"
             },
-            "entrypoint": "rotate",
-            "solution": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]"
-        },
-        {
-            "id": "contains-duplicate",
-            "number": 217,
-            "title": "Contains Duplicate",
-            "inputs": {
-                "nums": [
-                    1,
-                    2,
-                    3,
-                    1
-                ]
-            },
-            "entrypoint": "containsDuplicate",
-            "solution": "def containsDuplicate(nums):\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False"
+            "entrypoint": "isPalindrome",
+            "solution": "def isPalindrome(s):\n    cleaned = ''.join(char.lower() for char in s if char.isalnum())\n    return cleaned == cleaned[::-1]\n"
         },
         {
             "id": "single-number",
@@ -94,7 +349,222 @@
                 ]
             },
             "entrypoint": "singleNumber",
-            "solution": "def singleNumber(nums):\n    result = 0\n    for num in nums:\n        result ^= num  # XOR cancels out pairs\n    return result"
+            "solution": "def singleNumber(nums):\n    result = 0\n    for num in nums:\n        result ^= num\n    return result\n"
+        },
+        {
+            "id": "linked-list-cycle",
+            "number": 141,
+            "title": "Linked List Cycle",
+            "inputs": {
+                "head": [
+                    3,
+                    2,
+                    0,
+                    -4
+                ],
+                "pos": 1
+            },
+            "entrypoint": "hasCycle",
+            "solution": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None\n\ndef hasCycle(head, pos=-1):\n    def create_linked_list(arr, pos):\n        if not arr:\n            return None\n        \n        nodes = [ListNode(val) for val in arr]\n        for i in range(len(nodes) - 1):\n            nodes[i].next = nodes[i + 1]\n        \n        if pos >= 0:\n            nodes[-1].next = nodes[pos]\n        \n        return nodes[0]\n    \n    if isinstance(head, list):\n        head = create_linked_list(head, pos)\n    \n    slow = fast = head\n    \n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n    \n    return False\n"
+        },
+        {
+            "id": "binary-tree-preorder-traversal",
+            "number": 144,
+            "title": "Binary Tree Preorder Traversal",
+            "inputs": {
+                "root": [
+                    1,
+                    null,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "preorderTraversal",
+            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef preorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def preorder(node):\n        if node:\n            result.append(node.val)\n            preorder(node.left)\n            preorder(node.right)\n    \n    preorder(root)\n    return result\n"
+        },
+        {
+            "id": "binary-tree-postorder-traversal",
+            "number": 145,
+            "title": "Binary Tree Postorder Traversal",
+            "inputs": {
+                "root": [
+                    1,
+                    null,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "postorderTraversal",
+            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef postorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def postorder(node):\n        if node:\n            postorder(node.left)\n            postorder(node.right)\n            result.append(node.val)\n    \n    postorder(root)\n    return result\n"
+        },
+        {
+            "id": "min-stack",
+            "number": 155,
+            "title": "Min Stack",
+            "inputs": {
+                "operations": [
+                    "MinStack",
+                    "push",
+                    "push",
+                    "push",
+                    "getMin",
+                    "pop",
+                    "top",
+                    "getMin"
+                ],
+                "values": [
+                    [],
+                    [
+                        -2
+                    ],
+                    [
+                        0
+                    ],
+                    [
+                        -3
+                    ],
+                    [],
+                    [],
+                    [],
+                    []
+                ]
+            },
+            "entrypoint": "MinStack",
+            "solution": "class MinStack:\n    def __init__(self):\n        self.stack = []\n        self.min_stack = []\n    \n    def push(self, val):\n        self.stack.append(val)\n        if not self.min_stack or val <= self.min_stack[-1]:\n            self.min_stack.append(val)\n    \n    def pop(self):\n        if self.stack:\n            val = self.stack.pop()\n            if self.min_stack and val == self.min_stack[-1]:\n                self.min_stack.pop()\n    \n    def top(self):\n        return self.stack[-1] if self.stack else None\n    \n    def getMin(self):\n        return self.min_stack[-1] if self.min_stack else None\n\ndef MinStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MinStack\":\n            obj = MinStack()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            obj.pop()\n            results.append(None)\n        elif op == \"top\":\n            results.append(obj.top())\n        elif op == \"getMin\":\n            results.append(obj.getMin())\n    \n    return results\n"
+        },
+        {
+            "id": "intersection-two-linked-lists",
+            "number": 160,
+            "title": "Intersection of Two Linked Lists",
+            "inputs": {
+                "listA": [
+                    4,
+                    1,
+                    8,
+                    4,
+                    5
+                ],
+                "listB": [
+                    5,
+                    6,
+                    1,
+                    8,
+                    4,
+                    5
+                ],
+                "skipA": 2,
+                "skipB": 3
+            },
+            "entrypoint": "getIntersectionNode",
+            "solution": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None\n\ndef getIntersectionNode(listA, listB, skipA=0, skipB=0):\n    def create_lists(listA, listB, skipA, skipB):\n        if not listA or not listB:\n            return None, None\n        \n        nodesA = [ListNode(val) for val in listA]\n        nodesB = [ListNode(val) for val in listB]\n        \n        for i in range(len(nodesA) - 1):\n            nodesA[i].next = nodesA[i + 1]\n        \n        for i in range(len(nodesB) - 1):\n            nodesB[i].next = nodesB[i + 1]\n        \n        # Create intersection\n        if skipA < len(nodesA) and skipB < len(nodesB):\n            nodesB[skipB - 1].next = nodesA[skipA]\n        \n        return nodesA[0], nodesB[0]\n    \n    if isinstance(listA, list):\n        headA, headB = create_lists(listA, listB, skipA, skipB)\n    else:\n        headA, headB = listA, listB\n    \n    if not headA or not headB:\n        return None\n    \n    pA, pB = headA, headB\n    \n    while pA != pB:\n        pA = pA.next if pA else headB\n        pB = pB.next if pB else headA\n    \n    return pA.val if pA else None\n"
+        },
+        {
+            "id": "majority-element",
+            "number": 169,
+            "title": "Majority Element",
+            "inputs": {
+                "nums": [
+                    3,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "majorityElement",
+            "solution": "def majorityElement(nums):\n    count = 0\n    candidate = None\n    \n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1\n    \n    return candidate\n"
+        },
+        {
+            "id": "reverse-linked-list",
+            "number": 206,
+            "title": "Reverse Linked List",
+            "inputs": {
+                "head": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            "entrypoint": "reverseList",
+            "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverseList(head):\n    def list_to_linked(arr):\n        if not arr:\n            return None\n        head = ListNode(arr[0])\n        curr = head\n        for val in arr[1:]:\n            curr.next = ListNode(val)\n            curr = curr.next\n        return head\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head = list_to_linked(head)\n    \n    prev = None\n    curr = head\n    \n    while curr:\n        next_temp = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_temp\n    \n    return linked_to_list(prev)\n"
+        },
+        {
+            "id": "contains-duplicate",
+            "number": 217,
+            "title": "Contains Duplicate",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3,
+                    1
+                ]
+            },
+            "entrypoint": "containsDuplicate",
+            "solution": "def containsDuplicate(nums):\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False\n"
+        },
+        {
+            "id": "invert-binary-tree",
+            "number": 226,
+            "title": "Invert Binary Tree",
+            "inputs": {
+                "root": [
+                    4,
+                    2,
+                    7,
+                    1,
+                    3,
+                    6,
+                    9
+                ]
+            },
+            "entrypoint": "invertTree",
+            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef invertTree(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    def tree_to_list(root):\n        if not root:\n            return []\n        result = []\n        queue = [root]\n        while queue:\n            node = queue.pop(0)\n            if node:\n                result.append(node.val)\n                queue.append(node.left)\n                queue.append(node.right)\n            else:\n                result.append(None)\n        while result and result[-1] is None:\n            result.pop()\n        return result\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return []\n    \n    root.left, root.right = root.right, root.left\n    invertTree(root.left)\n    invertTree(root.right)\n    \n    return tree_to_list(root)\n"
+        },
+        {
+            "id": "palindromic-substrings",
+            "number": 647,
+            "title": "Palindromic Substrings",
+            "inputs": {
+                "s": "abc"
+            },
+            "entrypoint": "countSubstrings",
+            "solution": "def countSubstrings(s):\n    def expand_around_center(left, right):\n        count = 0\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            count += 1\n            left -= 1\n            right += 1\n        return count\n    \n    total = 0\n    for i in range(len(s)):\n        total += expand_around_center(i, i)  # odd length\n        total += expand_around_center(i, i + 1)  # even length\n    \n    return total\n"
+        },
+        {
+            "id": "move-zeroes",
+            "number": 283,
+            "title": "Move Zeroes",
+            "inputs": {
+                "nums": [
+                    0,
+                    1,
+                    0,
+                    3,
+                    12
+                ]
+            },
+            "entrypoint": "moveZeroes",
+            "solution": "def moveZeroes(nums):\n    left = 0\n    \n    for right in range(len(nums)):\n        if nums[right] != 0:\n            nums[left], nums[right] = nums[right], nums[left]\n            left += 1\n    \n    return nums\n"
+        },
+        {
+            "id": "find-disappeared-numbers",
+            "number": 448,
+            "title": "Find All Numbers Disappeared in an Array",
+            "inputs": {
+                "nums": [
+                    4,
+                    3,
+                    2,
+                    7,
+                    8,
+                    2,
+                    3,
+                    1
+                ]
+            },
+            "entrypoint": "findDisappearedNumbers",
+            "solution": "def findDisappearedNumbers(nums):\n    num_set = set(nums)\n    result = []\n    \n    for i in range(1, len(nums) + 1):\n        if i not in num_set:\n            result.append(i)\n    \n    return result\n"
         },
         {
             "id": "array-intersection-2",
@@ -113,17 +583,291 @@
                 ]
             },
             "entrypoint": "intersect",
-            "solution": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    # Build frequency map for nums1\n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    # Check nums2 against the map\n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    return result"
+            "solution": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    \n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    \n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    \n    return result\n"
         },
         {
-            "id": "n-queens",
-            "number": 51,
-            "title": "N-Queens",
+            "id": "first-unique-character",
+            "number": 387,
+            "title": "First Unique Character in a String",
             "inputs": {
-                "n": 4
+                "s": "leetcode"
             },
-            "entrypoint": "solveNQueens",
-            "solution": "\ndef solveNQueens(n):\n    def is_valid(board, row, col):\n        for i in range(row):\n            if board[i] == col or abs(board[i] - col) == row - i:\n                return False\n        return True\n\n    def backtrack(row, board, solutions):\n        if row == n:\n            solutions.append(board[:])\n            return\n        for col in range(n):\n            if is_valid(board, row, col):\n                board[row] = col\n                backtrack(row + 1, board, solutions)\n\n    solutions = []\n    board = [-1] * n\n    backtrack(0, board, solutions)\n    return solutions\n"
+            "entrypoint": "firstUniqChar",
+            "solution": "def firstUniqChar(s):\n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i\n    \n    return -1\n"
+        },
+        {
+            "id": "fizz-buzz",
+            "number": 412,
+            "title": "Fizz Buzz",
+            "inputs": {
+                "n": 15
+            },
+            "entrypoint": "fizzBuzz",
+            "solution": "def fizzBuzz(n):\n    result = []\n    \n    for i in range(1, n + 1):\n        if i % 15 == 0:\n            result.append(\"FizzBuzz\")\n        elif i % 3 == 0:\n            result.append(\"Fizz\")\n        elif i % 5 == 0:\n            result.append(\"Buzz\")\n        else:\n            result.append(str(i))\n    \n    return result\n"
+        },
+        {
+            "id": "rotate-array",
+            "number": 189,
+            "title": "Rotate Array",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ],
+                "k": 3
+            },
+            "entrypoint": "rotate",
+            "solution": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]\n    return nums\n"
+        },
+        {
+            "id": "house-robber",
+            "number": 198,
+            "title": "House Robber",
+            "inputs": {
+                "nums": [
+                    2,
+                    7,
+                    9,
+                    3,
+                    1
+                ]
+            },
+            "entrypoint": "rob",
+            "solution": "def rob(nums):\n    if not nums:\n        return 0\n    if len(nums) == 1:\n        return nums[0]\n    \n    prev2, prev1 = 0, 0\n    \n    for num in nums:\n        curr = max(prev1, prev2 + num)\n        prev2, prev1 = prev1, curr\n    \n    return prev1\n"
+        },
+        {
+            "id": "happy-number",
+            "number": 202,
+            "title": "Happy Number",
+            "inputs": {
+                "n": 19
+            },
+            "entrypoint": "isHappy",
+            "solution": "def isHappy(n):\n    def get_sum_of_squares(num):\n        total = 0\n        while num > 0:\n            digit = num % 10\n            total += digit * digit\n            num //= 10\n        return total\n    \n    seen = set()\n    \n    while n != 1 and n not in seen:\n        seen.add(n)\n        n = get_sum_of_squares(n)\n    \n    return n == 1\n"
+        },
+        {
+            "id": "count-primes",
+            "number": 204,
+            "title": "Count Primes",
+            "inputs": {
+                "n": 10
+            },
+            "entrypoint": "countPrimes",
+            "solution": "def countPrimes(n):\n    if n <= 2:\n        return 0\n    \n    is_prime = [True] * n\n    is_prime[0] = is_prime[1] = False\n    \n    for i in range(2, int(n ** 0.5) + 1):\n        if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False\n    \n    return sum(is_prime)\n"
+        },
+        {
+            "id": "isomorphic-strings",
+            "number": 205,
+            "title": "Isomorphic Strings",
+            "inputs": {
+                "s": "egg",
+                "t": "add"
+            },
+            "entrypoint": "isIsomorphic",
+            "solution": "def isIsomorphic(s, t):\n    if len(s) != len(t):\n        return False\n    \n    s_to_t = {}\n    t_to_s = {}\n    \n    for i in range(len(s)):\n        char_s, char_t = s[i], t[i]\n        \n        if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t\n        \n        if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s\n    \n    return True\n"
+        },
+        {
+            "id": "remove-linked-list-elements",
+            "number": 203,
+            "title": "Remove Linked List Elements",
+            "inputs": {
+                "head": [
+                    1,
+                    2,
+                    6,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "val": 6
+            },
+            "entrypoint": "removeElements",
+            "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef removeElements(head, val):\n    def list_to_linked(arr):\n        if not arr:\n            return None\n        head = ListNode(arr[0])\n        curr = head\n        for v in arr[1:]:\n            curr.next = ListNode(v)\n            curr = curr.next\n        return head\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head = list_to_linked(head)\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    curr = dummy\n    \n    while curr.next:\n        if curr.next.val == val:\n            curr.next = curr.next.next\n        else:\n            curr = curr.next\n    \n    return linked_to_list(dummy.next)\n"
+        },
+        {
+            "id": "implement-queue-using-stacks",
+            "number": 232,
+            "title": "Implement Queue using Stacks",
+            "inputs": {
+                "operations": [
+                    "MyQueue",
+                    "push",
+                    "push",
+                    "peek",
+                    "pop",
+                    "empty"
+                ],
+                "values": [
+                    [],
+                    [
+                        1
+                    ],
+                    [
+                        2
+                    ],
+                    [],
+                    [],
+                    []
+                ]
+            },
+            "entrypoint": "MyQueue",
+            "solution": "class MyQueue:\n    def __init__(self):\n        self.stack1 = []\n        self.stack2 = []\n    \n    def push(self, x):\n        self.stack1.append(x)\n    \n    def pop(self):\n        self.peek()\n        return self.stack2.pop()\n    \n    def peek(self):\n        if not self.stack2:\n            while self.stack1:\n                self.stack2.append(self.stack1.pop())\n        return self.stack2[-1]\n    \n    def empty(self):\n        return not self.stack1 and not self.stack2\n\ndef MyQueue(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyQueue\":\n            obj = MyQueue()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"peek\":\n            results.append(obj.peek())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
+        },
+        {
+            "id": "implement-stack-using-queues",
+            "number": 225,
+            "title": "Implement Stack using Queues",
+            "inputs": {
+                "operations": [
+                    "MyStack",
+                    "push",
+                    "push",
+                    "top",
+                    "pop",
+                    "empty"
+                ],
+                "values": [
+                    [],
+                    [
+                        1
+                    ],
+                    [
+                        2
+                    ],
+                    [],
+                    [],
+                    []
+                ]
+            },
+            "entrypoint": "MyStack",
+            "solution": "from collections import deque\n\nclass MyStack:\n    def __init__(self):\n        self.queue = deque()\n    \n    def push(self, x):\n        self.queue.append(x)\n        for _ in range(len(self.queue) - 1):\n            self.queue.append(self.queue.popleft())\n    \n    def pop(self):\n        return self.queue.popleft()\n    \n    def top(self):\n        return self.queue[0]\n    \n    def empty(self):\n        return not self.queue\n\ndef MyStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyStack\":\n            obj = MyStack()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"top\":\n            results.append(obj.top())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
+        },
+        {
+            "id": "power-of-two",
+            "number": 231,
+            "title": "Power of Two",
+            "inputs": {
+                "n": 16
+            },
+            "entrypoint": "isPowerOfTwo",
+            "solution": "def isPowerOfTwo(n):\n    return n > 0 and (n & (n - 1)) == 0\n"
+        },
+        {
+            "id": "delete-node-linked-list",
+            "number": 237,
+            "title": "Delete Node in a Linked List",
+            "inputs": {
+                "head": [
+                    4,
+                    5,
+                    1,
+                    9
+                ],
+                "node": 5
+            },
+            "entrypoint": "deleteNode",
+            "solution": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None\n\ndef deleteNode(head, node=None):\n    def list_to_linked(arr):\n        if not arr:\n            return None, None\n        head = ListNode(arr[0])\n        curr = head\n        target_node = None\n        for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr\n        if arr[0] == node:\n            target_node = head\n        return head, target_node\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head, node_to_delete = list_to_linked(head)\n        node = node_to_delete\n    \n    if node and node.next:\n        node.val = node.next.val\n        node.next = node.next.next\n    \n    return linked_to_list(head)\n"
+        },
+        {
+            "id": "valid-anagram",
+            "number": 242,
+            "title": "Valid Anagram",
+            "inputs": {
+                "s": "anagram",
+                "t": "nagaram"
+            },
+            "entrypoint": "isAnagram",
+            "solution": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            del char_count[char]\n    \n    return len(char_count) == 0\n"
+        },
+        {
+            "id": "missing-number",
+            "number": 268,
+            "title": "Missing Number",
+            "inputs": {
+                "nums": [
+                    3,
+                    0,
+                    1
+                ]
+            },
+            "entrypoint": "missingNumber",
+            "solution": "def missingNumber(nums):\n    n = len(nums)\n    expected_sum = n * (n + 1) // 2\n    actual_sum = sum(nums)\n    return expected_sum - actual_sum\n"
+        },
+        {
+            "id": "ugly-number",
+            "number": 263,
+            "title": "Ugly Number",
+            "inputs": {
+                "n": 6
+            },
+            "entrypoint": "isUgly",
+            "solution": "def isUgly(n):\n    if n <= 0:\n        return False\n    \n    for factor in [2, 3, 5]:\n        while n % factor == 0:\n            n //= factor\n    \n    return n == 1\n"
+        },
+        {
+            "id": "add-digits",
+            "number": 258,
+            "title": "Add Digits",
+            "inputs": {
+                "num": 38
+            },
+            "entrypoint": "addDigits",
+            "solution": "def addDigits(num):\n    if num == 0:\n        return 0\n    return 1 + (num - 1) % 9\n"
+        },
+        {
+            "id": "excel-sheet-column-number",
+            "number": 171,
+            "title": "Excel Sheet Column Number",
+            "inputs": {
+                "columnTitle": "AB"
+            },
+            "entrypoint": "titleToNumber",
+            "solution": "def titleToNumber(columnTitle):\n    result = 0\n    for char in columnTitle:\n        result = result * 26 + (ord(char) - ord('A') + 1)\n    return result\n"
+        },
+        {
+            "id": "factorial-trailing-zeroes",
+            "number": 172,
+            "title": "Factorial Trailing Zeroes",
+            "inputs": {
+                "n": 5
+            },
+            "entrypoint": "trailingZeroes",
+            "solution": "def trailingZeroes(n):\n    count = 0\n    while n >= 5:\n        n //= 5\n        count += n\n    return count\n"
+        },
+        {
+            "id": "excel-sheet-column-title",
+            "number": 168,
+            "title": "Excel Sheet Column Title",
+            "inputs": {
+                "columnNumber": 28
+            },
+            "entrypoint": "convertToTitle",
+            "solution": "def convertToTitle(columnNumber):\n    result = \"\"\n    while columnNumber > 0:\n        columnNumber -= 1\n        result = chr(columnNumber % 26 + ord('A')) + result\n        columnNumber //= 26\n    return result\n"
+        },
+        {
+            "id": "pascals-triangle",
+            "number": 118,
+            "title": "Pascal's Triangle",
+            "inputs": {
+                "numRows": 5
+            },
+            "entrypoint": "generate",
+            "solution": "def generate(numRows):\n    triangle = []\n    \n    for i in range(numRows):\n        row = [1] * (i + 1)\n        for j in range(1, i):\n            row[j] = triangle[i-1][j-1] + triangle[i-1][j]\n        triangle.append(row)\n    \n    return triangle\n"
+        },
+        {
+            "id": "pascals-triangle-ii",
+            "number": 119,
+            "title": "Pascal's Triangle II",
+            "inputs": {
+                "rowIndex": 3
+            },
+            "entrypoint": "getRow",
+            "solution": "def getRow(rowIndex):\n    row = [1]\n    \n    for i in range(rowIndex):\n        row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]\n    \n    return row\n"
         }
     ]
 }
