@@ -1,0 +1,6047 @@
+{
+  "metadata": {
+    "code": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None\n    \n    return all(v is None or v == 0 for v in char_count.values())\n",
+    "function": "isAnagram",
+    "inputs": {
+      "kwargs": {
+        "s": "'anagram'",
+        "t": "'nagaram'"
+      }
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 17,
+          "end_col_offset": 64
+        },
+        "focus": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None\n    \n    return all(v is None or v == 0 for v in char_count.values())",
+        "name": "isAnagram",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            8,
+            9
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 8,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 14,
+                "end_lineno": 1,
+                "end_col_offset": 15
+              },
+              "focus": "s",
+              "arg": "s"
+            },
+            {
+              "node_id": 9,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 17,
+                "end_lineno": 1,
+                "end_col_offset": 18
+              },
+              "focus": "t",
+              "arg": "t"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              10,
+              11
+            ],
+            "type": "If",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 20
+            },
+            "focus": "if len(s) != len(t):\n        return False",
+            "test": {
+              "node_id": 10,
+              "children_node_ids": [
+                23,
+                38,
+                24
+              ],
+              "type": "Compare",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 7,
+                "end_lineno": 2,
+                "end_col_offset": 23
+              },
+              "focus": "len(s) != len(t)",
+              "left": {
+                "node_id": 23,
+                "children_node_ids": [
+                  36,
+                  37
+                ],
+                "type": "Call",
+                "parent_node_id": 10,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 7,
+                  "end_lineno": 2,
+                  "end_col_offset": 13
+                },
+                "focus": "len(s)",
+                "func": {
+                  "node_id": 36,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 23,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 7,
+                    "end_lineno": 2,
+                    "end_col_offset": 10
+                  },
+                  "focus": "len",
+                  "id": "len",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 36
+                  }
+                },
+                "args": [
+                  {
+                    "node_id": 37,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 23,
+                    "location": {
+                      "lineno": 2,
+                      "col_offset": 11,
+                      "end_lineno": 2,
+                      "end_col_offset": 12
+                    },
+                    "focus": "s",
+                    "id": "s",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 37
+                    }
+                  }
+                ],
+                "keywords": []
+              },
+              "ops": [
+                {
+                  "node_id": 38,
+                  "children_node_ids": [],
+                  "type": "NotEq",
+                  "parent_node_id": 10
+                }
+              ],
+              "comparators": [
+                {
+                  "node_id": 24,
+                  "children_node_ids": [
+                    38,
+                    39
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 17,
+                    "end_lineno": 2,
+                    "end_col_offset": 23
+                  },
+                  "focus": "len(t)",
+                  "func": {
+                    "node_id": 38,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 24,
+                    "location": {
+                      "lineno": 2,
+                      "col_offset": 17,
+                      "end_lineno": 2,
+                      "end_col_offset": 20
+                    },
+                    "focus": "len",
+                    "id": "len",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 38
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 39,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 24,
+                      "location": {
+                        "lineno": 2,
+                        "col_offset": 21,
+                        "end_lineno": 2,
+                        "end_col_offset": 22
+                      },
+                      "focus": "t",
+                      "id": "t",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 39
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              ]
+            },
+            "body": [
+              {
+                "node_id": 11,
+                "children_node_ids": [
+                  25
+                ],
+                "type": "Return",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 8,
+                  "end_lineno": 3,
+                  "end_col_offset": 20
+                },
+                "focus": "return False",
+                "value": {
+                  "node_id": 25,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 3,
+                    "col_offset": 15,
+                    "end_lineno": 3,
+                    "end_col_offset": 20
+                  },
+                  "focus": "False",
+                  "value": false
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              12,
+              13
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 5,
+              "col_offset": 4,
+              "end_lineno": 5,
+              "end_col_offset": 19
+            },
+            "focus": "char_count = {}",
+            "targets": [
+              {
+                "node_id": 12,
+                "children_node_ids": [
+                  14
+                ],
+                "type": "Name",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 4,
+                  "end_lineno": 5,
+                  "end_col_offset": 14
+                },
+                "focus": "char_count",
+                "id": "char_count",
+                "ctx": {
+                  "node_id": 14,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 12
+                }
+              }
+            ],
+            "value": {
+              "node_id": 13,
+              "children_node_ids": [],
+              "type": "Dict",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 5,
+                "col_offset": 17,
+                "end_lineno": 5,
+                "end_col_offset": 19
+              },
+              "focus": "{}",
+              "keys": [],
+              "values": []
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              14,
+              15,
+              16
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 7,
+              "col_offset": 4,
+              "end_lineno": 8,
+              "end_col_offset": 54
+            },
+            "focus": "for char in s:\n        char_count[char] = char_count.get(char, 0) + 1",
+            "target": {
+              "node_id": 14,
+              "children_node_ids": [
+                14
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 7,
+                "col_offset": 8,
+                "end_lineno": 7,
+                "end_col_offset": 12
+              },
+              "focus": "char",
+              "id": "char",
+              "ctx": {
+                "node_id": 14,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 14
+              }
+            },
+            "iter": {
+              "node_id": 15,
+              "children_node_ids": [
+                25
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 7,
+                "col_offset": 16,
+                "end_lineno": 7,
+                "end_col_offset": 17
+              },
+              "focus": "s",
+              "id": "s",
+              "ctx": {
+                "node_id": 25,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 15
+              }
+            },
+            "body": [
+              {
+                "node_id": 16,
+                "children_node_ids": [
+                  26,
+                  27
+                ],
+                "type": "Assign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 8,
+                  "end_lineno": 8,
+                  "end_col_offset": 54
+                },
+                "focus": "char_count[char] = char_count.get(char, 0) + 1",
+                "targets": [
+                  {
+                    "node_id": 26,
+                    "children_node_ids": [
+                      40,
+                      41,
+                      14
+                    ],
+                    "type": "Subscript",
+                    "parent_node_id": 16,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 8,
+                      "end_lineno": 8,
+                      "end_col_offset": 24
+                    },
+                    "focus": "char_count[char]",
+                    "value": {
+                      "node_id": 40,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 26,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 8,
+                        "end_lineno": 8,
+                        "end_col_offset": 18
+                      },
+                      "focus": "char_count",
+                      "id": "char_count",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 40
+                      }
+                    },
+                    "slice": {
+                      "node_id": 41,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 26,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 19,
+                        "end_lineno": 8,
+                        "end_col_offset": 23
+                      },
+                      "focus": "char",
+                      "id": "char",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 41
+                      }
+                    },
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 26
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 27,
+                  "children_node_ids": [
+                    42,
+                    125,
+                    43
+                  ],
+                  "type": "BinOp",
+                  "parent_node_id": 16,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 27,
+                    "end_lineno": 8,
+                    "end_col_offset": 54
+                  },
+                  "focus": "char_count.get(char, 0) + 1",
+                  "left": {
+                    "node_id": 42,
+                    "children_node_ids": [
+                      55,
+                      56,
+                      57
+                    ],
+                    "type": "Call",
+                    "parent_node_id": 27,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 27,
+                      "end_lineno": 8,
+                      "end_col_offset": 50
+                    },
+                    "focus": "char_count.get(char, 0)",
+                    "func": {
+                      "node_id": 55,
+                      "children_node_ids": [
+                        66,
+                        25
+                      ],
+                      "type": "Attribute",
+                      "parent_node_id": 42,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 27,
+                        "end_lineno": 8,
+                        "end_col_offset": 41
+                      },
+                      "focus": "char_count.get",
+                      "value": {
+                        "node_id": 66,
+                        "children_node_ids": [
+                          25
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 55,
+                        "location": {
+                          "lineno": 8,
+                          "col_offset": 27,
+                          "end_lineno": 8,
+                          "end_col_offset": 37
+                        },
+                        "focus": "char_count",
+                        "id": "char_count",
+                        "ctx": {
+                          "node_id": 25,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 66
+                        }
+                      },
+                      "attr": "get",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 55
+                      }
+                    },
+                    "args": [
+                      {
+                        "node_id": 56,
+                        "children_node_ids": [
+                          25
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 42,
+                        "location": {
+                          "lineno": 8,
+                          "col_offset": 42,
+                          "end_lineno": 8,
+                          "end_col_offset": 46
+                        },
+                        "focus": "char",
+                        "id": "char",
+                        "ctx": {
+                          "node_id": 25,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 56
+                        }
+                      },
+                      {
+                        "node_id": 57,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 42,
+                        "location": {
+                          "lineno": 8,
+                          "col_offset": 48,
+                          "end_lineno": 8,
+                          "end_col_offset": 49
+                        },
+                        "focus": "0",
+                        "value": 0
+                      }
+                    ],
+                    "keywords": []
+                  },
+                  "op": {
+                    "node_id": 125,
+                    "children_node_ids": [],
+                    "type": "Add",
+                    "parent_node_id": 27
+                  },
+                  "right": {
+                    "node_id": 43,
+                    "children_node_ids": [],
+                    "type": "Constant",
+                    "parent_node_id": 27,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 53,
+                      "end_lineno": 8,
+                      "end_col_offset": 54
+                    },
+                    "focus": "1",
+                    "value": 1
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              17,
+              18,
+              19,
+              20,
+              21
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 10,
+              "col_offset": 4,
+              "end_lineno": 15,
+              "end_col_offset": 35
+            },
+            "focus": "for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None",
+            "target": {
+              "node_id": 17,
+              "children_node_ids": [
+                14
+              ],
+              "type": "Name",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 10,
+                "col_offset": 8,
+                "end_lineno": 10,
+                "end_col_offset": 12
+              },
+              "focus": "char",
+              "id": "char",
+              "ctx": {
+                "node_id": 14,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 17
+              }
+            },
+            "iter": {
+              "node_id": 18,
+              "children_node_ids": [
+                25
+              ],
+              "type": "Name",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 10,
+                "col_offset": 16,
+                "end_lineno": 10,
+                "end_col_offset": 17
+              },
+              "focus": "t",
+              "id": "t",
+              "ctx": {
+                "node_id": 25,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 18
+              }
+            },
+            "body": [
+              {
+                "node_id": 19,
+                "children_node_ids": [
+                  28,
+                  29
+                ],
+                "type": "If",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 11,
+                  "col_offset": 8,
+                  "end_lineno": 12,
+                  "end_col_offset": 24
+                },
+                "focus": "if char not in char_count:\n            return False",
+                "test": {
+                  "node_id": 28,
+                  "children_node_ids": [
+                    44,
+                    26,
+                    45
+                  ],
+                  "type": "Compare",
+                  "parent_node_id": 19,
+                  "location": {
+                    "lineno": 11,
+                    "col_offset": 11,
+                    "end_lineno": 11,
+                    "end_col_offset": 33
+                  },
+                  "focus": "char not in char_count",
+                  "left": {
+                    "node_id": 44,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 28,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 11,
+                      "end_lineno": 11,
+                      "end_col_offset": 15
+                    },
+                    "focus": "char",
+                    "id": "char",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 44
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 26,
+                      "children_node_ids": [],
+                      "type": "NotIn",
+                      "parent_node_id": 28
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 45,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 28,
+                      "location": {
+                        "lineno": 11,
+                        "col_offset": 23,
+                        "end_lineno": 11,
+                        "end_col_offset": 33
+                      },
+                      "focus": "char_count",
+                      "id": "char_count",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 45
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 29,
+                    "children_node_ids": [
+                      46
+                    ],
+                    "type": "Return",
+                    "parent_node_id": 19,
+                    "location": {
+                      "lineno": 12,
+                      "col_offset": 12,
+                      "end_lineno": 12,
+                      "end_col_offset": 24
+                    },
+                    "focus": "return False",
+                    "value": {
+                      "node_id": 46,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 29,
+                      "location": {
+                        "lineno": 12,
+                        "col_offset": 19,
+                        "end_lineno": 12,
+                        "end_col_offset": 24
+                      },
+                      "focus": "False",
+                      "value": false
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 20,
+                "children_node_ids": [
+                  30,
+                  27,
+                  31
+                ],
+                "type": "AugAssign",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 13,
+                  "col_offset": 8,
+                  "end_lineno": 13,
+                  "end_col_offset": 29
+                },
+                "focus": "char_count[char] -= 1",
+                "target": {
+                  "node_id": 30,
+                  "children_node_ids": [
+                    47,
+                    48,
+                    14
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 20,
+                  "location": {
+                    "lineno": 13,
+                    "col_offset": 8,
+                    "end_lineno": 13,
+                    "end_col_offset": 24
+                  },
+                  "focus": "char_count[char]",
+                  "value": {
+                    "node_id": 47,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 30,
+                    "location": {
+                      "lineno": 13,
+                      "col_offset": 8,
+                      "end_lineno": 13,
+                      "end_col_offset": 18
+                    },
+                    "focus": "char_count",
+                    "id": "char_count",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 47
+                    }
+                  },
+                  "slice": {
+                    "node_id": 48,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 30,
+                    "location": {
+                      "lineno": 13,
+                      "col_offset": 19,
+                      "end_lineno": 13,
+                      "end_col_offset": 23
+                    },
+                    "focus": "char",
+                    "id": "char",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 48
+                    }
+                  },
+                  "ctx": {
+                    "node_id": 14,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 30
+                  }
+                },
+                "op": {
+                  "node_id": 27,
+                  "children_node_ids": [],
+                  "type": "Sub",
+                  "parent_node_id": 20
+                },
+                "value": {
+                  "node_id": 31,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 20,
+                  "location": {
+                    "lineno": 13,
+                    "col_offset": 28,
+                    "end_lineno": 13,
+                    "end_col_offset": 29
+                  },
+                  "focus": "1",
+                  "value": 1
+                }
+              },
+              {
+                "node_id": 21,
+                "children_node_ids": [
+                  32,
+                  33
+                ],
+                "type": "If",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 14,
+                  "col_offset": 8,
+                  "end_lineno": 15,
+                  "end_col_offset": 35
+                },
+                "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+                "test": {
+                  "node_id": 32,
+                  "children_node_ids": [
+                    49,
+                    20,
+                    50
+                  ],
+                  "type": "Compare",
+                  "parent_node_id": 21,
+                  "location": {
+                    "lineno": 14,
+                    "col_offset": 11,
+                    "end_lineno": 14,
+                    "end_col_offset": 32
+                  },
+                  "focus": "char_count[char] == 0",
+                  "left": {
+                    "node_id": 49,
+                    "children_node_ids": [
+                      58,
+                      59,
+                      25
+                    ],
+                    "type": "Subscript",
+                    "parent_node_id": 32,
+                    "location": {
+                      "lineno": 14,
+                      "col_offset": 11,
+                      "end_lineno": 14,
+                      "end_col_offset": 27
+                    },
+                    "focus": "char_count[char]",
+                    "value": {
+                      "node_id": 58,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 49,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 11,
+                        "end_lineno": 14,
+                        "end_col_offset": 21
+                      },
+                      "focus": "char_count",
+                      "id": "char_count",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 58
+                      }
+                    },
+                    "slice": {
+                      "node_id": 59,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 49,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 22,
+                        "end_lineno": 14,
+                        "end_col_offset": 26
+                      },
+                      "focus": "char",
+                      "id": "char",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 59
+                      }
+                    },
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 49
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 20,
+                      "children_node_ids": [],
+                      "type": "Eq",
+                      "parent_node_id": 32
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 50,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 32,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 31,
+                        "end_lineno": 14,
+                        "end_col_offset": 32
+                      },
+                      "focus": "0",
+                      "value": 0
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 33,
+                    "children_node_ids": [
+                      51,
+                      52
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 21,
+                    "location": {
+                      "lineno": 15,
+                      "col_offset": 12,
+                      "end_lineno": 15,
+                      "end_col_offset": 35
+                    },
+                    "focus": "char_count[char] = None",
+                    "targets": [
+                      {
+                        "node_id": 51,
+                        "children_node_ids": [
+                          60,
+                          61,
+                          14
+                        ],
+                        "type": "Subscript",
+                        "parent_node_id": 33,
+                        "location": {
+                          "lineno": 15,
+                          "col_offset": 12,
+                          "end_lineno": 15,
+                          "end_col_offset": 28
+                        },
+                        "focus": "char_count[char]",
+                        "value": {
+                          "node_id": 60,
+                          "children_node_ids": [
+                            25
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 51,
+                          "location": {
+                            "lineno": 15,
+                            "col_offset": 12,
+                            "end_lineno": 15,
+                            "end_col_offset": 22
+                          },
+                          "focus": "char_count",
+                          "id": "char_count",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 60
+                          }
+                        },
+                        "slice": {
+                          "node_id": 61,
+                          "children_node_ids": [
+                            25
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 51,
+                          "location": {
+                            "lineno": 15,
+                            "col_offset": 23,
+                            "end_lineno": 15,
+                            "end_col_offset": 27
+                          },
+                          "focus": "char",
+                          "id": "char",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 61
+                          }
+                        },
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 51
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 52,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 33,
+                      "location": {
+                        "lineno": 15,
+                        "col_offset": 31,
+                        "end_lineno": 15,
+                        "end_col_offset": 35
+                      },
+                      "focus": "None"
+                    }
+                  }
+                ],
+                "orelse": []
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 7,
+            "children_node_ids": [
+              22
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 17,
+              "col_offset": 4,
+              "end_lineno": 17,
+              "end_col_offset": 64
+            },
+            "focus": "return all(v is None or v == 0 for v in char_count.values())",
+            "value": {
+              "node_id": 22,
+              "children_node_ids": [
+                34,
+                35
+              ],
+              "type": "Call",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 17,
+                "col_offset": 11,
+                "end_lineno": 17,
+                "end_col_offset": 64
+              },
+              "focus": "all(v is None or v == 0 for v in char_count.values())",
+              "func": {
+                "node_id": 34,
+                "children_node_ids": [
+                  25
+                ],
+                "type": "Name",
+                "parent_node_id": 22,
+                "location": {
+                  "lineno": 17,
+                  "col_offset": 11,
+                  "end_lineno": 17,
+                  "end_col_offset": 14
+                },
+                "focus": "all",
+                "id": "all",
+                "ctx": {
+                  "node_id": 25,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 34
+                }
+              },
+              "args": [
+                {
+                  "node_id": 35,
+                  "children_node_ids": [
+                    53,
+                    54
+                  ],
+                  "type": "GeneratorExp",
+                  "parent_node_id": 22,
+                  "location": {
+                    "lineno": 17,
+                    "col_offset": 14,
+                    "end_lineno": 17,
+                    "end_col_offset": 64
+                  },
+                  "focus": "(v is None or v == 0 for v in char_count.values())",
+                  "elt": {
+                    "node_id": 53,
+                    "children_node_ids": [
+                      81,
+                      62,
+                      63
+                    ],
+                    "type": "BoolOp",
+                    "parent_node_id": 35,
+                    "location": {
+                      "lineno": 17,
+                      "col_offset": 15,
+                      "end_lineno": 17,
+                      "end_col_offset": 34
+                    },
+                    "focus": "v is None or v == 0",
+                    "op": {
+                      "node_id": 81,
+                      "children_node_ids": [],
+                      "type": "Or",
+                      "parent_node_id": 53
+                    },
+                    "values": [
+                      {
+                        "node_id": 62,
+                        "children_node_ids": [
+                          67,
+                          91,
+                          68
+                        ],
+                        "type": "Compare",
+                        "parent_node_id": 53,
+                        "location": {
+                          "lineno": 17,
+                          "col_offset": 15,
+                          "end_lineno": 17,
+                          "end_col_offset": 24
+                        },
+                        "focus": "v is None",
+                        "left": {
+                          "node_id": 67,
+                          "children_node_ids": [
+                            25
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 62,
+                          "location": {
+                            "lineno": 17,
+                            "col_offset": 15,
+                            "end_lineno": 17,
+                            "end_col_offset": 16
+                          },
+                          "focus": "v",
+                          "id": "v",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 67
+                          }
+                        },
+                        "ops": [
+                          {
+                            "node_id": 91,
+                            "children_node_ids": [],
+                            "type": "Is",
+                            "parent_node_id": 62
+                          }
+                        ],
+                        "comparators": [
+                          {
+                            "node_id": 68,
+                            "children_node_ids": [],
+                            "type": "Constant",
+                            "parent_node_id": 62,
+                            "location": {
+                              "lineno": 17,
+                              "col_offset": 20,
+                              "end_lineno": 17,
+                              "end_col_offset": 24
+                            },
+                            "focus": "None"
+                          }
+                        ]
+                      },
+                      {
+                        "node_id": 63,
+                        "children_node_ids": [
+                          69,
+                          20,
+                          70
+                        ],
+                        "type": "Compare",
+                        "parent_node_id": 53,
+                        "location": {
+                          "lineno": 17,
+                          "col_offset": 28,
+                          "end_lineno": 17,
+                          "end_col_offset": 34
+                        },
+                        "focus": "v == 0",
+                        "left": {
+                          "node_id": 69,
+                          "children_node_ids": [
+                            25
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 63,
+                          "location": {
+                            "lineno": 17,
+                            "col_offset": 28,
+                            "end_lineno": 17,
+                            "end_col_offset": 29
+                          },
+                          "focus": "v",
+                          "id": "v",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 69
+                          }
+                        },
+                        "ops": [
+                          {
+                            "node_id": 20,
+                            "children_node_ids": [],
+                            "type": "Eq",
+                            "parent_node_id": 63
+                          }
+                        ],
+                        "comparators": [
+                          {
+                            "node_id": 70,
+                            "children_node_ids": [],
+                            "type": "Constant",
+                            "parent_node_id": 63,
+                            "location": {
+                              "lineno": 17,
+                              "col_offset": 33,
+                              "end_lineno": 17,
+                              "end_col_offset": 34
+                            },
+                            "focus": "0",
+                            "value": 0
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "generators": [
+                    {
+                      "node_id": 54,
+                      "children_node_ids": [
+                        64,
+                        65
+                      ],
+                      "type": "comprehension",
+                      "parent_node_id": 35,
+                      "target": {
+                        "node_id": 64,
+                        "children_node_ids": [
+                          14
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 54,
+                        "location": {
+                          "lineno": 17,
+                          "col_offset": 39,
+                          "end_lineno": 17,
+                          "end_col_offset": 40
+                        },
+                        "focus": "v",
+                        "id": "v",
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 64
+                        }
+                      },
+                      "iter": {
+                        "node_id": 65,
+                        "children_node_ids": [
+                          71
+                        ],
+                        "type": "Call",
+                        "parent_node_id": 54,
+                        "location": {
+                          "lineno": 17,
+                          "col_offset": 44,
+                          "end_lineno": 17,
+                          "end_col_offset": 63
+                        },
+                        "focus": "char_count.values()",
+                        "func": {
+                          "node_id": 71,
+                          "children_node_ids": [
+                            72,
+                            25
+                          ],
+                          "type": "Attribute",
+                          "parent_node_id": 65,
+                          "location": {
+                            "lineno": 17,
+                            "col_offset": 44,
+                            "end_lineno": 17,
+                            "end_col_offset": 61
+                          },
+                          "focus": "char_count.values",
+                          "value": {
+                            "node_id": 72,
+                            "children_node_ids": [
+                              25
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 71,
+                            "location": {
+                              "lineno": 17,
+                              "col_offset": 44,
+                              "end_lineno": 17,
+                              "end_col_offset": 54
+                            },
+                            "focus": "char_count",
+                            "id": "char_count",
+                            "ctx": {
+                              "node_id": 25,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 72
+                            }
+                          },
+                          "attr": "values",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 71
+                          }
+                        },
+                        "args": [],
+                        "keywords": []
+                      },
+                      "ifs": [],
+                      "is_async": 0
+                    }
+                  ]
+                }
+              ],
+              "keywords": []
+            }
+          }
+        ],
+        "decorator_list": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "s",
+      "cursor": "char",
+      "type": "value_index",
+      "node_id": 5
+    },
+    {
+      "container": "t",
+      "cursor": "char",
+      "type": "value_index",
+      "node_id": 6
+    },
+    {
+      "container": "char_count",
+      "cursor": "char",
+      "type": "key_assignment",
+      "node_id": 26
+    },
+    {
+      "container": "char_count",
+      "cursor": "char",
+      "type": "membership_test",
+      "node_id": 28
+    },
+    {
+      "container": "char_count",
+      "cursor": "char",
+      "type": "key_assignment",
+      "node_id": 30
+    },
+    {
+      "container": "char_count",
+      "cursor": "char",
+      "type": "key_access",
+      "node_id": 49
+    },
+    {
+      "container": "char_count",
+      "cursor": "char",
+      "type": "key_assignment",
+      "node_id": 51
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None\n    \n    return all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None\n    \n    return all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram"
+      },
+      "delta": {
+        "s": "anagram",
+        "t": "nagaram"
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if len(s) != len(t):\n        return False",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "len(s) != len(t)",
+          "node_id": 10
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "len(s)",
+          "node_id": 23
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "len",
+          "node_id": 36
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "len",
+          "node_id": 36,
+          "value": "<built-in function len>"
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 37
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 37,
+          "value": "anagram"
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "len(s)",
+          "node_id": 23,
+          "value": 7
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "len(t)",
+          "node_id": 24
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "len",
+          "node_id": 38
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "len",
+          "node_id": 38,
+          "value": "<built-in function len>"
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "t",
+          "node_id": 39
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "t",
+          "node_id": 39,
+          "value": "nagaram"
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "len(t)",
+          "node_id": 24,
+          "value": 7
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "len(s) != len(t)",
+          "node_id": 10,
+          "value": false
+        },
+        {
+          "step": 17,
+          "event": "after_statement",
+          "focus": "if len(s) != len(t):\n        return False",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 18,
+          "event": "before_statement",
+          "focus": "char_count = {}",
+          "node_id": 4
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "{}",
+          "node_id": 13
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "{}",
+          "node_id": 13,
+          "value": {}
+        },
+        {
+          "step": 21,
+          "event": "after_statement",
+          "focus": "char_count = {}",
+          "node_id": 4,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {}
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {}
+      },
+      "delta": {
+        "char_count": {}
+      },
+      "steps": [
+        {
+          "step": 22,
+          "event": "before_statement",
+          "focus": "for char in s:\n        char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 5
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 15
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 15,
+          "value": "anagram"
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {},
+        "char": "a"
+      },
+      "delta": {
+        "char": "a"
+      },
+      "steps": [
+        {
+          "step": 25,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 55
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 66
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "value": {}
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "value": "<built-in method get of dict object at 0x104e97a80>"
+        },
+        {
+          "step": 32,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 56
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 56,
+          "value": "a"
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 57
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 57,
+          "value": 0
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "value": 0
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 43
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 43,
+          "value": 1
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "value": 1
+        },
+        {
+          "step": 40,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 41,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          }
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          }
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          }
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          }
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          }
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          },
+          "value": {
+            "a": 1
+          }
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          },
+          "value": "<built-in method get of dict object at 0x104e97a80>"
+        },
+        {
+          "step": 48,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          }
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          },
+          "value": "n"
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          }
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          },
+          "value": 0
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          },
+          "value": 0
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          }
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          },
+          "value": 1
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "n"
+          },
+          "value": 1
+        },
+        {
+          "step": 56,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "n"
+          }
+        },
+        {
+          "step": 57,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 59,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 62,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          },
+          "value": {
+            "a": 1,
+            "n": 1
+          }
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          },
+          "value": "<built-in method get of dict object at 0x104e97a80>"
+        },
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          },
+          "value": "a"
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          },
+          "value": 0
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          },
+          "value": 1
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          },
+          "value": 1
+        },
+        {
+          "step": 71,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "a"
+          },
+          "value": 2
+        },
+        {
+          "step": 72,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 73,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          }
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          }
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          }
+        },
+        {
+          "step": 76,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          }
+        },
+        {
+          "step": 77,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          }
+        },
+        {
+          "step": 78,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          },
+          "value": {
+            "a": 2,
+            "n": 1
+          }
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          },
+          "value": "<built-in method get of dict object at 0x104e97a80>"
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          }
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          },
+          "value": "g"
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          }
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          },
+          "value": 0
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          },
+          "value": 0
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          }
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          },
+          "value": 1
+        },
+        {
+          "step": 87,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "g"
+          },
+          "value": 1
+        },
+        {
+          "step": 88,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "g"
+          }
+        },
+        {
+          "step": 89,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          }
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          }
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          }
+        },
+        {
+          "step": 92,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          }
+        },
+        {
+          "step": 93,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          }
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          },
+          "value": {
+            "a": 2,
+            "n": 1,
+            "g": 1
+          }
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          },
+          "value": "<built-in method get of dict object at 0x104e97a80>"
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          }
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          },
+          "value": "r"
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          }
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          },
+          "value": 0
+        },
+        {
+          "step": 100,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          },
+          "value": 0
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          }
+        },
+        {
+          "step": 102,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          },
+          "value": 1
+        },
+        {
+          "step": 103,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "r"
+          },
+          "value": 1
+        },
+        {
+          "step": 104,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "r"
+          }
+        },
+        {
+          "step": 105,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 106,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 107,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 108,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 109,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 110,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          },
+          "value": {
+            "a": 2,
+            "n": 1,
+            "g": 1,
+            "r": 1
+          }
+        },
+        {
+          "step": 111,
+          "event": "after_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          },
+          "value": "<built-in method get of dict object at 0x104e97a80>"
+        },
+        {
+          "step": 112,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 113,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          },
+          "value": "a"
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          },
+          "value": 0
+        },
+        {
+          "step": 116,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          },
+          "value": 2
+        },
+        {
+          "step": 117,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 118,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          },
+          "value": 1
+        },
+        {
+          "step": 119,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          },
+          "value": 3
+        },
+        {
+          "step": 120,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          }
+        },
+        {
+          "step": 121,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          }
+        },
+        {
+          "step": 122,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          }
+        },
+        {
+          "step": 123,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          }
+        },
+        {
+          "step": 124,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          }
+        },
+        {
+          "step": 125,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          }
+        },
+        {
+          "step": 126,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 66,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          },
+          "value": {
+            "a": 3,
+            "n": 1,
+            "g": 1,
+            "r": 1
+          }
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "char_count.get",
+          "node_id": 55,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          },
+          "value": "<built-in method get of dict object at 0x104e97a80>"
+        },
+        {
+          "step": 128,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          }
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 56,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          },
+          "value": "m"
+        },
+        {
+          "step": 130,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          }
+        },
+        {
+          "step": 131,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 57,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          },
+          "value": 0
+        },
+        {
+          "step": 132,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 42,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          },
+          "value": 0
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          }
+        },
+        {
+          "step": 134,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 43,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          },
+          "value": 1
+        },
+        {
+          "step": 135,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 27,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "m"
+          },
+          "value": 1
+        },
+        {
+          "step": 136,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1,
+              "m": 1
+            },
+            "char": "m"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "m"
+      },
+      "delta": {
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "m"
+      },
+      "steps": [
+        {
+          "step": 137,
+          "event": "after_statement",
+          "focus": "for char in s:\n        char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 138,
+          "event": "before_statement",
+          "focus": "for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 6
+        },
+        {
+          "step": 139,
+          "event": "before_expression",
+          "focus": "t",
+          "node_id": 18
+        },
+        {
+          "step": 140,
+          "event": "after_expression",
+          "focus": "t",
+          "node_id": 18,
+          "value": "nagaram"
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": {
+        "char": "n"
+      },
+      "steps": [
+        {
+          "step": 141,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 142,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 28
+        },
+        {
+          "step": 143,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 44
+        },
+        {
+          "step": 144,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 44,
+          "value": "n"
+        },
+        {
+          "step": 145,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 45
+        },
+        {
+          "step": 146,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 45,
+          "value": {
+            "a": 3,
+            "n": 1,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 147,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 28,
+          "value": false
+        },
+        {
+          "step": 148,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 149,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 150,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 31
+        },
+        {
+          "step": 151,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 152,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 0,
+              "g": 1,
+              "r": 1,
+              "m": 1
+            },
+            "char": "n"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 0,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": {
+        "char_count": {
+          "n": 0
+        }
+      },
+      "steps": [
+        {
+          "step": 153,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 154,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32
+        },
+        {
+          "step": 155,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 49
+        },
+        {
+          "step": 156,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 58
+        },
+        {
+          "step": 157,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 58,
+          "value": {
+            "a": 3,
+            "n": 0,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 158,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 59
+        },
+        {
+          "step": 159,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 59,
+          "value": "n"
+        },
+        {
+          "step": 160,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 49,
+          "value": 0
+        },
+        {
+          "step": 161,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 50
+        },
+        {
+          "step": 162,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 50,
+          "value": 0
+        },
+        {
+          "step": 163,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 0,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 164,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33
+        },
+        {
+          "step": 165,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 166,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 167,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": null,
+              "g": 1,
+              "r": 1,
+              "m": 1
+            },
+            "char": "n"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 168,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char": "a"
+      },
+      "steps": [
+        {
+          "step": 169,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 170,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 28
+        },
+        {
+          "step": 171,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 44
+        },
+        {
+          "step": 172,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 44,
+          "value": "a"
+        },
+        {
+          "step": 173,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 45
+        },
+        {
+          "step": 174,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 45,
+          "value": {
+            "a": 3,
+            "n": null,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 175,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 28,
+          "value": false
+        },
+        {
+          "step": 176,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 177,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 178,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 31
+        },
+        {
+          "step": 179,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 180,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": null,
+              "g": 1,
+              "r": 1,
+              "m": 1
+            },
+            "char": "a"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char_count": {
+          "a": 2
+        }
+      },
+      "steps": [
+        {
+          "step": 181,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 182,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32
+        },
+        {
+          "step": 183,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 49
+        },
+        {
+          "step": 184,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 58
+        },
+        {
+          "step": 185,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 58,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 186,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 59
+        },
+        {
+          "step": 187,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 59,
+          "value": "a"
+        },
+        {
+          "step": 188,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 49,
+          "value": 2
+        },
+        {
+          "step": 189,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 50
+        },
+        {
+          "step": 190,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 50,
+          "value": 0
+        },
+        {
+          "step": 191,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32,
+          "value": false
+        },
+        {
+          "step": 192,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": {
+        "char": "g"
+      },
+      "steps": [
+        {
+          "step": 193,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 194,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 28
+        },
+        {
+          "step": 195,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 44
+        },
+        {
+          "step": 196,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 44,
+          "value": "g"
+        },
+        {
+          "step": 197,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 45
+        },
+        {
+          "step": 198,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 45,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 199,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 28,
+          "value": false
+        },
+        {
+          "step": 200,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 201,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 202,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 31
+        },
+        {
+          "step": 203,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 204,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": null,
+              "g": 0,
+              "r": 1,
+              "m": 1
+            },
+            "char": "g"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 0,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": {
+        "char_count": {
+          "g": 0
+        }
+      },
+      "steps": [
+        {
+          "step": 205,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 206,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32
+        },
+        {
+          "step": 207,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 49
+        },
+        {
+          "step": 208,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 58
+        },
+        {
+          "step": 209,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 58,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": 0,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 210,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 59
+        },
+        {
+          "step": 211,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 59,
+          "value": "g"
+        },
+        {
+          "step": 212,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 49,
+          "value": 0
+        },
+        {
+          "step": 213,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 50
+        },
+        {
+          "step": 214,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 50,
+          "value": 0
+        },
+        {
+          "step": 215,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 0,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 216,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33
+        },
+        {
+          "step": 217,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 218,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 219,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": null,
+              "g": null,
+              "r": 1,
+              "m": 1
+            },
+            "char": "g"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 220,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char": "a"
+      },
+      "steps": [
+        {
+          "step": 221,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 222,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 28
+        },
+        {
+          "step": 223,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 44
+        },
+        {
+          "step": 224,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 44,
+          "value": "a"
+        },
+        {
+          "step": 225,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 45
+        },
+        {
+          "step": 226,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 45,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": null,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 227,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 28,
+          "value": false
+        },
+        {
+          "step": 228,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 229,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 230,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 31
+        },
+        {
+          "step": 231,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 232,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": null,
+              "g": null,
+              "r": 1,
+              "m": 1
+            },
+            "char": "a"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char_count": {
+          "a": 1
+        }
+      },
+      "steps": [
+        {
+          "step": 233,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 234,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32
+        },
+        {
+          "step": 235,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 49
+        },
+        {
+          "step": 236,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 58
+        },
+        {
+          "step": 237,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 58,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 238,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 59
+        },
+        {
+          "step": 239,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 59,
+          "value": "a"
+        },
+        {
+          "step": 240,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 49,
+          "value": 1
+        },
+        {
+          "step": 241,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 50
+        },
+        {
+          "step": 242,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 50,
+          "value": 0
+        },
+        {
+          "step": 243,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32,
+          "value": false
+        },
+        {
+          "step": 244,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": {
+        "char": "r"
+      },
+      "steps": [
+        {
+          "step": 245,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 246,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 28
+        },
+        {
+          "step": 247,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 44
+        },
+        {
+          "step": 248,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 44,
+          "value": "r"
+        },
+        {
+          "step": 249,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 45
+        },
+        {
+          "step": 250,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 45,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 251,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 28,
+          "value": false
+        },
+        {
+          "step": 252,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 253,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 254,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 31
+        },
+        {
+          "step": 255,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 256,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": null,
+              "g": null,
+              "r": 0,
+              "m": 1
+            },
+            "char": "r"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 0,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": {
+        "char_count": {
+          "r": 0
+        }
+      },
+      "steps": [
+        {
+          "step": 257,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 258,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32
+        },
+        {
+          "step": 259,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 49
+        },
+        {
+          "step": 260,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 58
+        },
+        {
+          "step": 261,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 58,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": 0,
+            "m": 1
+          }
+        },
+        {
+          "step": 262,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 59
+        },
+        {
+          "step": 263,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 59,
+          "value": "r"
+        },
+        {
+          "step": 264,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 49,
+          "value": 0
+        },
+        {
+          "step": 265,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 50
+        },
+        {
+          "step": 266,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 50,
+          "value": 0
+        },
+        {
+          "step": 267,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 0,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 268,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33
+        },
+        {
+          "step": 269,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 270,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 271,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": 1
+            },
+            "char": "r"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 272,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char": "a"
+      },
+      "steps": [
+        {
+          "step": 273,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 274,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 28
+        },
+        {
+          "step": 275,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 44
+        },
+        {
+          "step": 276,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 44,
+          "value": "a"
+        },
+        {
+          "step": 277,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 45
+        },
+        {
+          "step": 278,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 45,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 1
+          }
+        },
+        {
+          "step": 279,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 28,
+          "value": false
+        },
+        {
+          "step": 280,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 281,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 282,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 31
+        },
+        {
+          "step": 283,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 284,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 0,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": 1
+            },
+            "char": "a"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 0,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char_count": {
+          "a": 0
+        }
+      },
+      "steps": [
+        {
+          "step": 285,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 286,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32
+        },
+        {
+          "step": 287,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 49
+        },
+        {
+          "step": 288,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 58
+        },
+        {
+          "step": 289,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 58,
+          "value": {
+            "a": 0,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 1
+          }
+        },
+        {
+          "step": 290,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 59
+        },
+        {
+          "step": 291,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 59,
+          "value": "a"
+        },
+        {
+          "step": 292,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 49,
+          "value": 0
+        },
+        {
+          "step": 293,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 50
+        },
+        {
+          "step": 294,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 50,
+          "value": 0
+        },
+        {
+          "step": 295,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 0,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 296,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33
+        },
+        {
+          "step": 297,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 298,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 299,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": null,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": 1
+            },
+            "char": "a"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 300,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "m"
+      },
+      "delta": {
+        "char": "m"
+      },
+      "steps": [
+        {
+          "step": 301,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 302,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 28
+        },
+        {
+          "step": 303,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 44
+        },
+        {
+          "step": 304,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 44,
+          "value": "m"
+        },
+        {
+          "step": 305,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 45
+        },
+        {
+          "step": 306,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 45,
+          "value": {
+            "a": null,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 1
+          }
+        },
+        {
+          "step": 307,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 28,
+          "value": false
+        },
+        {
+          "step": 308,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 309,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 310,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 31
+        },
+        {
+          "step": 311,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 312,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": null,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": 0
+            },
+            "char": "m"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 0
+        },
+        "char": "m"
+      },
+      "delta": {
+        "char_count": {
+          "m": 0
+        }
+      },
+      "steps": [
+        {
+          "step": 313,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 314,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32
+        },
+        {
+          "step": 315,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 49
+        },
+        {
+          "step": 316,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 58
+        },
+        {
+          "step": 317,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 58,
+          "value": {
+            "a": null,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 0
+          }
+        },
+        {
+          "step": 318,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 59
+        },
+        {
+          "step": 319,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 59,
+          "value": "m"
+        },
+        {
+          "step": 320,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 49,
+          "value": 0
+        },
+        {
+          "step": 321,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 50
+        },
+        {
+          "step": 322,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 50,
+          "value": 0
+        },
+        {
+          "step": 323,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 32,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 0
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 324,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33
+        },
+        {
+          "step": 325,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 326,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 52
+        },
+        {
+          "step": 327,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 33,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": null,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": null
+            },
+            "char": "m"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": null
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 328,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": null
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 329,
+          "event": "after_statement",
+          "focus": "for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": null
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 330,
+          "event": "before_statement",
+          "focus": "return all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 7
+        },
+        {
+          "step": 331,
+          "event": "before_expression",
+          "focus": "all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 22
+        },
+        {
+          "step": 332,
+          "event": "before_expression",
+          "focus": "all",
+          "node_id": 34
+        },
+        {
+          "step": 333,
+          "event": "after_expression",
+          "focus": "all",
+          "node_id": 34,
+          "value": "<built-in function all>"
+        },
+        {
+          "step": 334,
+          "event": "before_expression",
+          "focus": "(v is None or v == 0 for v in char_count.values())",
+          "node_id": 35
+        },
+        {
+          "step": 335,
+          "event": "before_expression",
+          "focus": "char_count.values()",
+          "node_id": 65
+        },
+        {
+          "step": 336,
+          "event": "before_expression",
+          "focus": "char_count.values",
+          "node_id": 71
+        },
+        {
+          "step": 337,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 72
+        },
+        {
+          "step": 338,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 72,
+          "value": {
+            "a": null,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": null
+          }
+        },
+        {
+          "step": 339,
+          "event": "after_expression",
+          "focus": "char_count.values",
+          "node_id": 71,
+          "value": "<built-in method values of dict object at 0x104e97a80>"
+        },
+        {
+          "step": 340,
+          "event": "after_expression",
+          "focus": "char_count.values()",
+          "node_id": 65,
+          "value": "dict_values([None, None, None, None, None])"
+        },
+        {
+          "step": 341,
+          "event": "after_expression",
+          "focus": "(v is None or v == 0 for v in char_count.values())",
+          "node_id": 35,
+          "value": "<generator object isAnagram.<locals>.<genexpr> at 0x1048b0a50>"
+        },
+        {
+          "step": 342,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 343,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 344,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 345,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 346,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 347,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 348,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 349,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 350,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 351,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 352,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 353,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 354,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 355,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 356,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 357,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 358,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 359,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 360,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 361,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 362,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 363,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 364,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 365,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 366,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 367,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 368,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 369,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 370,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 371,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 372,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 373,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 374,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 375,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 376,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 377,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 67,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 378,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 379,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 68,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          }
+        },
+        {
+          "step": 380,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 62,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 381,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 53,
+          "locals": {
+            ".0": "<dict_valueiterator object at 0x10478a9f0>",
+            "v": null
+          },
+          "value": true
+        },
+        {
+          "step": 382,
+          "event": "after_expression",
+          "focus": "all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 22,
+          "value": true
+        }
+      ]
+    }
+  ],
+  "result": true
+}

@@ -244,30 +244,3 @@ export const useTraceStore = create<TraceStore>()(
 // Selectors
 export const selectCurrentLine = (state: TraceState): TraceLine | null =>
   state.traceData?.trace[state.lineIndex] ?? null;
-
-export const selectCurrentStep = (
-  state: TraceState
-): AugmentedTraceStep | null => {
-  // Join the steps of the current line with the ast lookup
-  const currentLine = state.traceData?.trace[state.lineIndex];
-  if (!currentLine?.steps) return null;
-
-  // Return the current step with the ast lookup
-  return {
-    ...currentLine.steps[state.stepIndex],
-    ast: state.nodeLookup.get(currentLine.steps[state.stepIndex].node_id)!,
-  };
-};
-
-export const selectCurrentSteps = (
-  state: TraceState
-): AugmentedTraceStep[] | null => {
-  // Join the steps of the current line with the ast lookup
-  const currentLine = state.traceData?.trace[state.lineIndex];
-  if (!currentLine?.steps) return null;
-
-  return currentLine.steps.map((step) => ({
-    ...step,
-    ast: state.nodeLookup.get(step.node_id)!,
-  }));
-};

@@ -1,0 +1,3072 @@
+{
+  "metadata": {
+    "code": "def getRow(rowIndex):\n    row = [1]\n    \n    for i in range(rowIndex):\n        row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]\n    \n    return row\n",
+    "function": "getRow",
+    "inputs": {
+      "kwargs": {
+        "rowIndex": "3"
+      }
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 7,
+          "end_col_offset": 14
+        },
+        "focus": "def getRow(rowIndex):\n    row = [1]\n    \n    for i in range(rowIndex):\n        row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]\n    \n    return row",
+        "name": "getRow",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            6
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 6,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 11,
+                "end_lineno": 1,
+                "end_col_offset": 19
+              },
+              "focus": "rowIndex",
+              "arg": "rowIndex"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              7,
+              8
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 13
+            },
+            "focus": "row = [1]",
+            "targets": [
+              {
+                "node_id": 7,
+                "children_node_ids": [
+                  14
+                ],
+                "type": "Name",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 7
+                },
+                "focus": "row",
+                "id": "row",
+                "ctx": {
+                  "node_id": 14,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 7
+                }
+              }
+            ],
+            "value": {
+              "node_id": 8,
+              "children_node_ids": [
+                13,
+                25
+              ],
+              "type": "List",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 10,
+                "end_lineno": 2,
+                "end_col_offset": 13
+              },
+              "focus": "[1]",
+              "elts": [
+                {
+                  "node_id": 13,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 8,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 11,
+                    "end_lineno": 2,
+                    "end_col_offset": 12
+                  },
+                  "focus": "1",
+                  "value": 1
+                }
+              ],
+              "ctx": {
+                "node_id": 25,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 8
+              }
+            }
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              9,
+              10,
+              11
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 4,
+              "col_offset": 4,
+              "end_lineno": 5,
+              "end_col_offset": 72
+            },
+            "focus": "for i in range(rowIndex):\n        row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+            "target": {
+              "node_id": 9,
+              "children_node_ids": [
+                14
+              ],
+              "type": "Name",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 4,
+                "col_offset": 8,
+                "end_lineno": 4,
+                "end_col_offset": 9
+              },
+              "focus": "i",
+              "id": "i",
+              "ctx": {
+                "node_id": 14,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 9
+              }
+            },
+            "iter": {
+              "node_id": 10,
+              "children_node_ids": [
+                14,
+                15
+              ],
+              "type": "Call",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 4,
+                "col_offset": 13,
+                "end_lineno": 4,
+                "end_col_offset": 28
+              },
+              "focus": "range(rowIndex)",
+              "func": {
+                "node_id": 14,
+                "children_node_ids": [
+                  25
+                ],
+                "type": "Name",
+                "parent_node_id": 10,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 13,
+                  "end_lineno": 4,
+                  "end_col_offset": 18
+                },
+                "focus": "range",
+                "id": "range",
+                "ctx": {
+                  "node_id": 25,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 14
+                }
+              },
+              "args": [
+                {
+                  "node_id": 15,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 19,
+                    "end_lineno": 4,
+                    "end_col_offset": 27
+                  },
+                  "focus": "rowIndex",
+                  "id": "rowIndex",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 15
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "node_id": 11,
+                "children_node_ids": [
+                  16,
+                  17
+                ],
+                "type": "Assign",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 8,
+                  "end_lineno": 5,
+                  "end_col_offset": 72
+                },
+                "focus": "row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+                "targets": [
+                  {
+                    "node_id": 16,
+                    "children_node_ids": [
+                      14
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 11,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 8,
+                      "end_lineno": 5,
+                      "end_col_offset": 11
+                    },
+                    "focus": "row",
+                    "id": "row",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 16
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 17,
+                  "children_node_ids": [
+                    18,
+                    125,
+                    19
+                  ],
+                  "type": "BinOp",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 14,
+                    "end_lineno": 5,
+                    "end_col_offset": 72
+                  },
+                  "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+                  "left": {
+                    "node_id": 18,
+                    "children_node_ids": [
+                      20,
+                      125,
+                      21
+                    ],
+                    "type": "BinOp",
+                    "parent_node_id": 17,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 14,
+                      "end_lineno": 5,
+                      "end_col_offset": 66
+                    },
+                    "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)]",
+                    "left": {
+                      "node_id": 20,
+                      "children_node_ids": [
+                        23,
+                        25
+                      ],
+                      "type": "List",
+                      "parent_node_id": 18,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 14,
+                        "end_lineno": 5,
+                        "end_col_offset": 17
+                      },
+                      "focus": "[1]",
+                      "elts": [
+                        {
+                          "node_id": 23,
+                          "children_node_ids": [],
+                          "type": "Constant",
+                          "parent_node_id": 20,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 15,
+                            "end_lineno": 5,
+                            "end_col_offset": 16
+                          },
+                          "focus": "1",
+                          "value": 1
+                        }
+                      ],
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 20
+                      }
+                    },
+                    "op": {
+                      "node_id": 125,
+                      "children_node_ids": [],
+                      "type": "Add",
+                      "parent_node_id": 18
+                    },
+                    "right": {
+                      "node_id": 21,
+                      "children_node_ids": [
+                        24,
+                        25
+                      ],
+                      "type": "ListComp",
+                      "parent_node_id": 18,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 20,
+                        "end_lineno": 5,
+                        "end_col_offset": 66
+                      },
+                      "focus": "[row[j] + row[j+1] for j in range(len(row)-1)]",
+                      "elt": {
+                        "node_id": 24,
+                        "children_node_ids": [
+                          26,
+                          125,
+                          27
+                        ],
+                        "type": "BinOp",
+                        "parent_node_id": 21,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 21,
+                          "end_lineno": 5,
+                          "end_col_offset": 38
+                        },
+                        "focus": "row[j] + row[j+1]",
+                        "left": {
+                          "node_id": 26,
+                          "children_node_ids": [
+                            30,
+                            31,
+                            25
+                          ],
+                          "type": "Subscript",
+                          "parent_node_id": 24,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 21,
+                            "end_lineno": 5,
+                            "end_col_offset": 27
+                          },
+                          "focus": "row[j]",
+                          "value": {
+                            "node_id": 30,
+                            "children_node_ids": [
+                              25
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 26,
+                            "location": {
+                              "lineno": 5,
+                              "col_offset": 21,
+                              "end_lineno": 5,
+                              "end_col_offset": 24
+                            },
+                            "focus": "row",
+                            "id": "row",
+                            "ctx": {
+                              "node_id": 25,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 30
+                            }
+                          },
+                          "slice": {
+                            "node_id": 31,
+                            "children_node_ids": [
+                              25
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 26,
+                            "location": {
+                              "lineno": 5,
+                              "col_offset": 25,
+                              "end_lineno": 5,
+                              "end_col_offset": 26
+                            },
+                            "focus": "j",
+                            "id": "j",
+                            "ctx": {
+                              "node_id": 25,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 31
+                            }
+                          },
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 26
+                          }
+                        },
+                        "op": {
+                          "node_id": 125,
+                          "children_node_ids": [],
+                          "type": "Add",
+                          "parent_node_id": 24
+                        },
+                        "right": {
+                          "node_id": 27,
+                          "children_node_ids": [
+                            32,
+                            33,
+                            25
+                          ],
+                          "type": "Subscript",
+                          "parent_node_id": 24,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 30,
+                            "end_lineno": 5,
+                            "end_col_offset": 38
+                          },
+                          "focus": "row[j+1]",
+                          "value": {
+                            "node_id": 32,
+                            "children_node_ids": [
+                              25
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 27,
+                            "location": {
+                              "lineno": 5,
+                              "col_offset": 30,
+                              "end_lineno": 5,
+                              "end_col_offset": 33
+                            },
+                            "focus": "row",
+                            "id": "row",
+                            "ctx": {
+                              "node_id": 25,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 32
+                            }
+                          },
+                          "slice": {
+                            "node_id": 33,
+                            "children_node_ids": [
+                              36,
+                              125,
+                              37
+                            ],
+                            "type": "BinOp",
+                            "parent_node_id": 27,
+                            "location": {
+                              "lineno": 5,
+                              "col_offset": 34,
+                              "end_lineno": 5,
+                              "end_col_offset": 37
+                            },
+                            "focus": "j+1",
+                            "left": {
+                              "node_id": 36,
+                              "children_node_ids": [
+                                25
+                              ],
+                              "type": "Name",
+                              "parent_node_id": 33,
+                              "location": {
+                                "lineno": 5,
+                                "col_offset": 34,
+                                "end_lineno": 5,
+                                "end_col_offset": 35
+                              },
+                              "focus": "j",
+                              "id": "j",
+                              "ctx": {
+                                "node_id": 25,
+                                "children_node_ids": [],
+                                "type": "Load",
+                                "parent_node_id": 36
+                              }
+                            },
+                            "op": {
+                              "node_id": 125,
+                              "children_node_ids": [],
+                              "type": "Add",
+                              "parent_node_id": 33
+                            },
+                            "right": {
+                              "node_id": 37,
+                              "children_node_ids": [],
+                              "type": "Constant",
+                              "parent_node_id": 33,
+                              "location": {
+                                "lineno": 5,
+                                "col_offset": 36,
+                                "end_lineno": 5,
+                                "end_col_offset": 37
+                              },
+                              "focus": "1",
+                              "value": 1
+                            }
+                          },
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 27
+                          }
+                        }
+                      },
+                      "generators": [
+                        {
+                          "node_id": 25,
+                          "children_node_ids": [
+                            28,
+                            29
+                          ],
+                          "type": "comprehension",
+                          "parent_node_id": 21,
+                          "target": {
+                            "node_id": 28,
+                            "children_node_ids": [
+                              14
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 25,
+                            "location": {
+                              "lineno": 5,
+                              "col_offset": 43,
+                              "end_lineno": 5,
+                              "end_col_offset": 44
+                            },
+                            "focus": "j",
+                            "id": "j",
+                            "ctx": {
+                              "node_id": 14,
+                              "children_node_ids": [],
+                              "type": "Store",
+                              "parent_node_id": 28
+                            }
+                          },
+                          "iter": {
+                            "node_id": 29,
+                            "children_node_ids": [
+                              34,
+                              35
+                            ],
+                            "type": "Call",
+                            "parent_node_id": 25,
+                            "location": {
+                              "lineno": 5,
+                              "col_offset": 48,
+                              "end_lineno": 5,
+                              "end_col_offset": 65
+                            },
+                            "focus": "range(len(row)-1)",
+                            "func": {
+                              "node_id": 34,
+                              "children_node_ids": [
+                                25
+                              ],
+                              "type": "Name",
+                              "parent_node_id": 29,
+                              "location": {
+                                "lineno": 5,
+                                "col_offset": 48,
+                                "end_lineno": 5,
+                                "end_col_offset": 53
+                              },
+                              "focus": "range",
+                              "id": "range",
+                              "ctx": {
+                                "node_id": 25,
+                                "children_node_ids": [],
+                                "type": "Load",
+                                "parent_node_id": 34
+                              }
+                            },
+                            "args": [
+                              {
+                                "node_id": 35,
+                                "children_node_ids": [
+                                  38,
+                                  27,
+                                  39
+                                ],
+                                "type": "BinOp",
+                                "parent_node_id": 29,
+                                "location": {
+                                  "lineno": 5,
+                                  "col_offset": 54,
+                                  "end_lineno": 5,
+                                  "end_col_offset": 64
+                                },
+                                "focus": "len(row)-1",
+                                "left": {
+                                  "node_id": 38,
+                                  "children_node_ids": [
+                                    40,
+                                    41
+                                  ],
+                                  "type": "Call",
+                                  "parent_node_id": 35,
+                                  "location": {
+                                    "lineno": 5,
+                                    "col_offset": 54,
+                                    "end_lineno": 5,
+                                    "end_col_offset": 62
+                                  },
+                                  "focus": "len(row)",
+                                  "func": {
+                                    "node_id": 40,
+                                    "children_node_ids": [
+                                      25
+                                    ],
+                                    "type": "Name",
+                                    "parent_node_id": 38,
+                                    "location": {
+                                      "lineno": 5,
+                                      "col_offset": 54,
+                                      "end_lineno": 5,
+                                      "end_col_offset": 57
+                                    },
+                                    "focus": "len",
+                                    "id": "len",
+                                    "ctx": {
+                                      "node_id": 25,
+                                      "children_node_ids": [],
+                                      "type": "Load",
+                                      "parent_node_id": 40
+                                    }
+                                  },
+                                  "args": [
+                                    {
+                                      "node_id": 41,
+                                      "children_node_ids": [
+                                        25
+                                      ],
+                                      "type": "Name",
+                                      "parent_node_id": 38,
+                                      "location": {
+                                        "lineno": 5,
+                                        "col_offset": 58,
+                                        "end_lineno": 5,
+                                        "end_col_offset": 61
+                                      },
+                                      "focus": "row",
+                                      "id": "row",
+                                      "ctx": {
+                                        "node_id": 25,
+                                        "children_node_ids": [],
+                                        "type": "Load",
+                                        "parent_node_id": 41
+                                      }
+                                    }
+                                  ],
+                                  "keywords": []
+                                },
+                                "op": {
+                                  "node_id": 27,
+                                  "children_node_ids": [],
+                                  "type": "Sub",
+                                  "parent_node_id": 35
+                                },
+                                "right": {
+                                  "node_id": 39,
+                                  "children_node_ids": [],
+                                  "type": "Constant",
+                                  "parent_node_id": 35,
+                                  "location": {
+                                    "lineno": 5,
+                                    "col_offset": 63,
+                                    "end_lineno": 5,
+                                    "end_col_offset": 64
+                                  },
+                                  "focus": "1",
+                                  "value": 1
+                                }
+                              }
+                            ],
+                            "keywords": []
+                          },
+                          "ifs": [],
+                          "is_async": 0
+                        }
+                      ]
+                    }
+                  },
+                  "op": {
+                    "node_id": 125,
+                    "children_node_ids": [],
+                    "type": "Add",
+                    "parent_node_id": 17
+                  },
+                  "right": {
+                    "node_id": 19,
+                    "children_node_ids": [
+                      22,
+                      25
+                    ],
+                    "type": "List",
+                    "parent_node_id": 17,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 69,
+                      "end_lineno": 5,
+                      "end_col_offset": 72
+                    },
+                    "focus": "[1]",
+                    "elts": [
+                      {
+                        "node_id": 22,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 19,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 70,
+                          "end_lineno": 5,
+                          "end_col_offset": 71
+                        },
+                        "focus": "1",
+                        "value": 1
+                      }
+                    ],
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 19
+                    }
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              12
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 7,
+              "col_offset": 4,
+              "end_lineno": 7,
+              "end_col_offset": 14
+            },
+            "focus": "return row",
+            "value": {
+              "node_id": 12,
+              "children_node_ids": [
+                25
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 7,
+                "col_offset": 11,
+                "end_lineno": 7,
+                "end_col_offset": 14
+              },
+              "focus": "row",
+              "id": "row",
+              "ctx": {
+                "node_id": 25,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 12
+              }
+            }
+          }
+        ],
+        "decorator_list": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "row",
+      "cursor": "j",
+      "type": "key_access",
+      "node_id": 26
+    },
+    {
+      "container": "row",
+      "cursor": "j",
+      "type": "key_access",
+      "node_id": 27
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def getRow(rowIndex):\n    row = [1]\n    \n    for i in range(rowIndex):\n        row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]\n    \n    return row",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def getRow(rowIndex):\n    row = [1]\n    \n    for i in range(rowIndex):\n        row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]\n    \n    return row",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "rowIndex": 3
+      },
+      "delta": {
+        "rowIndex": 3
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "row = [1]",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "[1]",
+          "node_id": 8
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 13
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 13,
+          "value": 1
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "[1]",
+          "node_id": 8,
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "row = [1]",
+          "node_id": 3,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "rowIndex": 3,
+        "row": [
+          1
+        ]
+      },
+      "delta": {
+        "row": {
+          "0": 1
+        }
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "for i in range(rowIndex):\n        row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "range(rowIndex)",
+          "node_id": 10
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "range",
+          "node_id": 14
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "range",
+          "node_id": 14,
+          "value": "<class 'range'>"
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "rowIndex",
+          "node_id": 15
+        },
+        {
+          "step": 13,
+          "event": "after_expression",
+          "focus": "rowIndex",
+          "node_id": 15,
+          "value": 3
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "range(rowIndex)",
+          "node_id": 10,
+          "value": "range(0, 3)"
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "rowIndex": 3,
+        "row": [
+          1
+        ],
+        "i": 0
+      },
+      "delta": {
+        "i": 0
+      },
+      "steps": [
+        {
+          "step": 15,
+          "event": "before_statement",
+          "focus": "row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 11
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 17
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 18
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "[1]",
+          "node_id": 20
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 23
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 23,
+          "value": 1
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "[1]",
+          "node_id": 20,
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "[row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 21
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "range(len(row)-1)",
+          "node_id": 29
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "range",
+          "node_id": 34
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "range",
+          "node_id": 34,
+          "value": "<class 'range'>"
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "len(row)-1",
+          "node_id": 35
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "len(row)",
+          "node_id": 38
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "len",
+          "node_id": 40
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "len",
+          "node_id": 40,
+          "value": "<built-in function len>"
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 41
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 41,
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "len(row)",
+          "node_id": 38,
+          "value": 1
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 39
+        },
+        {
+          "step": 34,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 39,
+          "value": 1
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "len(row)-1",
+          "node_id": 35,
+          "value": 0
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "range(len(row)-1)",
+          "node_id": 29,
+          "value": "range(0, 0)"
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "[row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 21,
+          "value": []
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 18,
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "[1]",
+          "node_id": 19
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 22
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 22,
+          "value": 1
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "[1]",
+          "node_id": 19,
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 17,
+          "value": [
+            1,
+            1
+          ]
+        },
+        {
+          "step": 44,
+          "event": "after_statement",
+          "focus": "row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 11,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 0
+          }
+        },
+        {
+          "step": 45,
+          "event": "before_statement",
+          "focus": "row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 11,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 17,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 18,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 48,
+          "event": "before_expression",
+          "focus": "[1]",
+          "node_id": 20,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 23,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 23,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": 1
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "[1]",
+          "node_id": 20,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "[row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 21,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "range(len(row)-1)",
+          "node_id": 29,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "range",
+          "node_id": 34,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "range",
+          "node_id": 34,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": "<class 'range'>"
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "len(row)-1",
+          "node_id": 35,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "len(row)",
+          "node_id": 38,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "len",
+          "node_id": 40,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "len",
+          "node_id": 40,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": "<built-in function len>"
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 41,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 41,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": [
+            1,
+            1
+          ]
+        },
+        {
+          "step": 62,
+          "event": "after_expression",
+          "focus": "len(row)",
+          "node_id": 38,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": 2
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 39,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 39,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": 1
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "len(row)-1",
+          "node_id": 35,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": 1
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "range(len(row)-1)",
+          "node_id": 29,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": "range(0, 1)"
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "row[j] + row[j+1]",
+          "node_id": 24,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "row[j]",
+          "node_id": 26,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 30,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 30,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          },
+          "value": [
+            1,
+            1
+          ]
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 31,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 31,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          },
+          "value": 0
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "row[j]",
+          "node_id": 26,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "row[j+1]",
+          "node_id": 27,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 32,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 32,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          },
+          "value": [
+            1,
+            1
+          ]
+        },
+        {
+          "step": 77,
+          "event": "before_expression",
+          "focus": "j+1",
+          "node_id": 33,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 36,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 36,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          },
+          "value": 0
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 37,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 37,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 82,
+          "event": "after_expression",
+          "focus": "j+1",
+          "node_id": 33,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "row[j+1]",
+          "node_id": 27,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "row[j] + row[j+1]",
+          "node_id": 24,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              1
+            ]
+          },
+          "value": 2
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "[row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 21,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": [
+            2
+          ]
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 18,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": [
+            1,
+            2
+          ]
+        },
+        {
+          "step": 87,
+          "event": "before_expression",
+          "focus": "[1]",
+          "node_id": 19,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 22,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 22,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": 1
+        },
+        {
+          "step": 90,
+          "event": "after_expression",
+          "focus": "[1]",
+          "node_id": 19,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 17,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              1
+            ],
+            "i": 1
+          },
+          "value": [
+            1,
+            2,
+            1
+          ]
+        },
+        {
+          "step": 92,
+          "event": "after_statement",
+          "focus": "row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 11,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 1
+          }
+        },
+        {
+          "step": 93,
+          "event": "before_statement",
+          "focus": "row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 11,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 17,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 18,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "[1]",
+          "node_id": 20,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 23,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 98,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 23,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": 1
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "[1]",
+          "node_id": 20,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 100,
+          "event": "before_expression",
+          "focus": "[row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 21,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "range(len(row)-1)",
+          "node_id": 29,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "range",
+          "node_id": 34,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 103,
+          "event": "after_expression",
+          "focus": "range",
+          "node_id": 34,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": "<class 'range'>"
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "len(row)-1",
+          "node_id": 35,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "len(row)",
+          "node_id": 38,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 106,
+          "event": "before_expression",
+          "focus": "len",
+          "node_id": 40,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 107,
+          "event": "after_expression",
+          "focus": "len",
+          "node_id": 40,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": "<built-in function len>"
+        },
+        {
+          "step": 108,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 41,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 109,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 41,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": [
+            1,
+            2,
+            1
+          ]
+        },
+        {
+          "step": 110,
+          "event": "after_expression",
+          "focus": "len(row)",
+          "node_id": 38,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": 3
+        },
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 39,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 39,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": 1
+        },
+        {
+          "step": 113,
+          "event": "after_expression",
+          "focus": "len(row)-1",
+          "node_id": 35,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": 2
+        },
+        {
+          "step": 114,
+          "event": "after_expression",
+          "focus": "range(len(row)-1)",
+          "node_id": 29,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": "range(0, 2)"
+        },
+        {
+          "step": 115,
+          "event": "before_expression",
+          "focus": "row[j] + row[j+1]",
+          "node_id": 24,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 116,
+          "event": "before_expression",
+          "focus": "row[j]",
+          "node_id": 26,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 117,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 30,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 118,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 30,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": [
+            1,
+            2,
+            1
+          ]
+        },
+        {
+          "step": 119,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 31,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 120,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 31,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 0
+        },
+        {
+          "step": 121,
+          "event": "after_expression",
+          "focus": "row[j]",
+          "node_id": 26,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 122,
+          "event": "before_expression",
+          "focus": "row[j+1]",
+          "node_id": 27,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 123,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 32,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 124,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 32,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": [
+            1,
+            2,
+            1
+          ]
+        },
+        {
+          "step": 125,
+          "event": "before_expression",
+          "focus": "j+1",
+          "node_id": 33,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 36,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 36,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 0
+        },
+        {
+          "step": 128,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 37,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 37,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 130,
+          "event": "after_expression",
+          "focus": "j+1",
+          "node_id": 33,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 131,
+          "event": "after_expression",
+          "focus": "row[j+1]",
+          "node_id": 27,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 2
+        },
+        {
+          "step": 132,
+          "event": "after_expression",
+          "focus": "row[j] + row[j+1]",
+          "node_id": 24,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 0,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 3
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "row[j] + row[j+1]",
+          "node_id": 24,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 134,
+          "event": "before_expression",
+          "focus": "row[j]",
+          "node_id": 26,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 30,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 136,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 30,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": [
+            1,
+            2,
+            1
+          ]
+        },
+        {
+          "step": 137,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 31,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 138,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 31,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 139,
+          "event": "after_expression",
+          "focus": "row[j]",
+          "node_id": 26,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 2
+        },
+        {
+          "step": 140,
+          "event": "before_expression",
+          "focus": "row[j+1]",
+          "node_id": 27,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 141,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 32,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 142,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 32,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": [
+            1,
+            2,
+            1
+          ]
+        },
+        {
+          "step": 143,
+          "event": "before_expression",
+          "focus": "j+1",
+          "node_id": 33,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 144,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 36,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 145,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 36,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 146,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 37,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "step": 147,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 37,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 148,
+          "event": "after_expression",
+          "focus": "j+1",
+          "node_id": 33,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 2
+        },
+        {
+          "step": 149,
+          "event": "after_expression",
+          "focus": "row[j+1]",
+          "node_id": 27,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 1
+        },
+        {
+          "step": 150,
+          "event": "after_expression",
+          "focus": "row[j] + row[j+1]",
+          "node_id": 24,
+          "locals": {
+            ".0": "<range_iterator object at 0x10483f180>",
+            "j": 1,
+            "row": [
+              1,
+              2,
+              1
+            ]
+          },
+          "value": 3
+        },
+        {
+          "step": 151,
+          "event": "after_expression",
+          "focus": "[row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 21,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": [
+            3,
+            3
+          ]
+        },
+        {
+          "step": 152,
+          "event": "after_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)]",
+          "node_id": 18,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": [
+            1,
+            3,
+            3
+          ]
+        },
+        {
+          "step": 153,
+          "event": "before_expression",
+          "focus": "[1]",
+          "node_id": 19,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 154,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 22,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          }
+        },
+        {
+          "step": 155,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 22,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": 1
+        },
+        {
+          "step": 156,
+          "event": "after_expression",
+          "focus": "[1]",
+          "node_id": 19,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": [
+            1
+          ]
+        },
+        {
+          "step": 157,
+          "event": "after_expression",
+          "focus": "[1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 17,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              2,
+              1
+            ],
+            "i": 2
+          },
+          "value": [
+            1,
+            3,
+            3,
+            1
+          ]
+        },
+        {
+          "step": 158,
+          "event": "after_statement",
+          "focus": "row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 11,
+          "locals": {
+            "rowIndex": 3,
+            "row": [
+              1,
+              3,
+              3,
+              1
+            ],
+            "i": 2
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "rowIndex": 3,
+        "row": [
+          1,
+          3,
+          3,
+          1
+        ],
+        "i": 2
+      },
+      "delta": {
+        "row": {
+          "1": 3,
+          "2": 3,
+          "3": 1
+        },
+        "i": 2
+      },
+      "steps": [
+        {
+          "step": 159,
+          "event": "after_statement",
+          "focus": "for i in range(rowIndex):\n        row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "rowIndex": 3,
+        "row": [
+          1,
+          3,
+          3,
+          1
+        ],
+        "i": 2
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 160,
+          "event": "before_statement",
+          "focus": "return row",
+          "node_id": 5
+        },
+        {
+          "step": 161,
+          "event": "before_expression",
+          "focus": "row",
+          "node_id": 12
+        },
+        {
+          "step": 162,
+          "event": "after_expression",
+          "focus": "row",
+          "node_id": 12,
+          "value": [
+            1,
+            3,
+            3,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "result": [
+    1,
+    3,
+    3,
+    1
+  ]
+}

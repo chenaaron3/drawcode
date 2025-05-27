@@ -1,0 +1,5916 @@
+{
+  "metadata": {
+    "code": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None\n\ndef deleteNode(head, node=None):\n    def list_to_linked(arr):\n        if not arr:\n            return None, None\n        head = ListNode(arr[0])\n        curr = head\n        target_node = None\n        for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr\n        if arr[0] == node:\n            target_node = head\n        return head, target_node\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head, node_to_delete = list_to_linked(head)\n        node = node_to_delete\n    \n    if node and node.next:\n        node.val = node.next.val\n        node.next = node.next.next\n    \n    return linked_to_list(head)\n",
+    "function": "deleteNode",
+    "inputs": {
+      "kwargs": {
+        "head": "[4, 5, 1, 9]",
+        "node": "5"
+      }
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1,
+      2
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          3
+        ],
+        "type": "ClassDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 4,
+          "end_col_offset": 24
+        },
+        "focus": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None",
+        "name": "ListNode",
+        "bases": [],
+        "keywords": [],
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              10,
+              11,
+              12
+            ],
+            "type": "FunctionDef",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 4,
+              "end_col_offset": 24
+            },
+            "focus": "def __init__(self, x):\n        self.val = x\n        self.next = None",
+            "name": "__init__",
+            "args": {
+              "node_id": 10,
+              "children_node_ids": [
+                35,
+                36
+              ],
+              "type": "arguments",
+              "parent_node_id": 3,
+              "posonlyargs": [],
+              "args": [
+                {
+                  "node_id": 35,
+                  "children_node_ids": [],
+                  "type": "arg",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 17,
+                    "end_lineno": 2,
+                    "end_col_offset": 21
+                  },
+                  "focus": "self",
+                  "arg": "self"
+                },
+                {
+                  "node_id": 36,
+                  "children_node_ids": [],
+                  "type": "arg",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 23,
+                    "end_lineno": 2,
+                    "end_col_offset": 24
+                  },
+                  "focus": "x",
+                  "arg": "x"
+                }
+              ],
+              "kwonlyargs": [],
+              "kw_defaults": [],
+              "defaults": []
+            },
+            "body": [
+              {
+                "node_id": 11,
+                "children_node_ids": [
+                  37,
+                  38
+                ],
+                "type": "Assign",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 8,
+                  "end_lineno": 3,
+                  "end_col_offset": 20
+                },
+                "focus": "self.val = x",
+                "targets": [
+                  {
+                    "node_id": 37,
+                    "children_node_ids": [
+                      80,
+                      14
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 11,
+                    "location": {
+                      "lineno": 3,
+                      "col_offset": 8,
+                      "end_lineno": 3,
+                      "end_col_offset": 16
+                    },
+                    "focus": "self.val",
+                    "value": {
+                      "node_id": 80,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 37,
+                      "location": {
+                        "lineno": 3,
+                        "col_offset": 8,
+                        "end_lineno": 3,
+                        "end_col_offset": 12
+                      },
+                      "focus": "self",
+                      "id": "self",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 80
+                      }
+                    },
+                    "attr": "val",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 37
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 38,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 3,
+                    "col_offset": 19,
+                    "end_lineno": 3,
+                    "end_col_offset": 20
+                  },
+                  "focus": "x",
+                  "id": "x",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 38
+                  }
+                }
+              },
+              {
+                "node_id": 12,
+                "children_node_ids": [
+                  39,
+                  40
+                ],
+                "type": "Assign",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 8,
+                  "end_lineno": 4,
+                  "end_col_offset": 24
+                },
+                "focus": "self.next = None",
+                "targets": [
+                  {
+                    "node_id": 39,
+                    "children_node_ids": [
+                      81,
+                      14
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 12,
+                    "location": {
+                      "lineno": 4,
+                      "col_offset": 8,
+                      "end_lineno": 4,
+                      "end_col_offset": 17
+                    },
+                    "focus": "self.next",
+                    "value": {
+                      "node_id": 81,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 39,
+                      "location": {
+                        "lineno": 4,
+                        "col_offset": 8,
+                        "end_lineno": 4,
+                        "end_col_offset": 12
+                      },
+                      "focus": "self",
+                      "id": "self",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 81
+                      }
+                    },
+                    "attr": "next",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 39
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 40,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 12,
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 20,
+                    "end_lineno": 4,
+                    "end_col_offset": 24
+                  },
+                  "focus": "None"
+                }
+              }
+            ],
+            "decorator_list": []
+          }
+        ],
+        "decorator_list": []
+      },
+      {
+        "node_id": 2,
+        "children_node_ids": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 6,
+          "col_offset": 0,
+          "end_lineno": 37,
+          "end_col_offset": 31
+        },
+        "focus": "def deleteNode(head, node=None):\n    def list_to_linked(arr):\n        if not arr:\n            return None, None\n        head = ListNode(arr[0])\n        curr = head\n        target_node = None\n        for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr\n        if arr[0] == node:\n            target_node = head\n        return head, target_node\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head, node_to_delete = list_to_linked(head)\n        node = node_to_delete\n    \n    if node and node.next:\n        node.val = node.next.val\n        node.next = node.next.next\n    \n    return linked_to_list(head)",
+        "name": "deleteNode",
+        "args": {
+          "node_id": 4,
+          "children_node_ids": [
+            13,
+            14,
+            15
+          ],
+          "type": "arguments",
+          "parent_node_id": 2,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 13,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 6,
+                "col_offset": 15,
+                "end_lineno": 6,
+                "end_col_offset": 19
+              },
+              "focus": "head",
+              "arg": "head"
+            },
+            {
+              "node_id": 14,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 6,
+                "col_offset": 21,
+                "end_lineno": 6,
+                "end_col_offset": 25
+              },
+              "focus": "node",
+              "arg": "node"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": [
+            {
+              "node_id": 15,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 6,
+                "col_offset": 26,
+                "end_lineno": 6,
+                "end_col_offset": 30
+              },
+              "focus": "None"
+            }
+          ]
+        },
+        "body": [
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23
+            ],
+            "type": "FunctionDef",
+            "parent_node_id": 2,
+            "location": {
+              "lineno": 7,
+              "col_offset": 4,
+              "end_lineno": 20,
+              "end_col_offset": 32
+            },
+            "focus": "def list_to_linked(arr):\n        if not arr:\n            return None, None\n        head = ListNode(arr[0])\n        curr = head\n        target_node = None\n        for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr\n        if arr[0] == node:\n            target_node = head\n        return head, target_node",
+            "name": "list_to_linked",
+            "args": {
+              "node_id": 16,
+              "children_node_ids": [
+                41
+              ],
+              "type": "arguments",
+              "parent_node_id": 5,
+              "posonlyargs": [],
+              "args": [
+                {
+                  "node_id": 41,
+                  "children_node_ids": [],
+                  "type": "arg",
+                  "parent_node_id": 16,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 23,
+                    "end_lineno": 7,
+                    "end_col_offset": 26
+                  },
+                  "focus": "arr",
+                  "arg": "arr"
+                }
+              ],
+              "kwonlyargs": [],
+              "kw_defaults": [],
+              "defaults": []
+            },
+            "body": [
+              {
+                "node_id": 17,
+                "children_node_ids": [
+                  42,
+                  43
+                ],
+                "type": "If",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 8,
+                  "end_lineno": 9,
+                  "end_col_offset": 29
+                },
+                "focus": "if not arr:\n            return None, None",
+                "test": {
+                  "node_id": 42,
+                  "children_node_ids": [
+                    107,
+                    82
+                  ],
+                  "type": "UnaryOp",
+                  "parent_node_id": 17,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 11,
+                    "end_lineno": 8,
+                    "end_col_offset": 18
+                  },
+                  "focus": "not arr",
+                  "op": {
+                    "node_id": 107,
+                    "children_node_ids": [],
+                    "type": "Not",
+                    "parent_node_id": 42
+                  },
+                  "operand": {
+                    "node_id": 82,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 42,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 15,
+                      "end_lineno": 8,
+                      "end_col_offset": 18
+                    },
+                    "focus": "arr",
+                    "id": "arr",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 82
+                    }
+                  }
+                },
+                "body": [
+                  {
+                    "node_id": 43,
+                    "children_node_ids": [
+                      83
+                    ],
+                    "type": "Return",
+                    "parent_node_id": 17,
+                    "location": {
+                      "lineno": 9,
+                      "col_offset": 12,
+                      "end_lineno": 9,
+                      "end_col_offset": 29
+                    },
+                    "focus": "return None, None",
+                    "value": {
+                      "node_id": 83,
+                      "children_node_ids": [
+                        115,
+                        116,
+                        25
+                      ],
+                      "type": "Tuple",
+                      "parent_node_id": 43,
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 19,
+                        "end_lineno": 9,
+                        "end_col_offset": 29
+                      },
+                      "focus": "None, None",
+                      "elts": [
+                        {
+                          "node_id": 115,
+                          "children_node_ids": [],
+                          "type": "Constant",
+                          "parent_node_id": 83,
+                          "location": {
+                            "lineno": 9,
+                            "col_offset": 19,
+                            "end_lineno": 9,
+                            "end_col_offset": 23
+                          },
+                          "focus": "None"
+                        },
+                        {
+                          "node_id": 116,
+                          "children_node_ids": [],
+                          "type": "Constant",
+                          "parent_node_id": 83,
+                          "location": {
+                            "lineno": 9,
+                            "col_offset": 25,
+                            "end_lineno": 9,
+                            "end_col_offset": 29
+                          },
+                          "focus": "None"
+                        }
+                      ],
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 83
+                      }
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 18,
+                "children_node_ids": [
+                  44,
+                  45
+                ],
+                "type": "Assign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 10,
+                  "col_offset": 8,
+                  "end_lineno": 10,
+                  "end_col_offset": 31
+                },
+                "focus": "head = ListNode(arr[0])",
+                "targets": [
+                  {
+                    "node_id": 44,
+                    "children_node_ids": [
+                      14
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 18,
+                    "location": {
+                      "lineno": 10,
+                      "col_offset": 8,
+                      "end_lineno": 10,
+                      "end_col_offset": 12
+                    },
+                    "focus": "head",
+                    "id": "head",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 44
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 45,
+                  "children_node_ids": [
+                    84,
+                    85
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 18,
+                  "location": {
+                    "lineno": 10,
+                    "col_offset": 15,
+                    "end_lineno": 10,
+                    "end_col_offset": 31
+                  },
+                  "focus": "ListNode(arr[0])",
+                  "func": {
+                    "node_id": 84,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 45,
+                    "location": {
+                      "lineno": 10,
+                      "col_offset": 15,
+                      "end_lineno": 10,
+                      "end_col_offset": 23
+                    },
+                    "focus": "ListNode",
+                    "id": "ListNode",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 84
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 85,
+                      "children_node_ids": [
+                        117,
+                        118,
+                        25
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 45,
+                      "location": {
+                        "lineno": 10,
+                        "col_offset": 24,
+                        "end_lineno": 10,
+                        "end_col_offset": 30
+                      },
+                      "focus": "arr[0]",
+                      "value": {
+                        "node_id": 117,
+                        "children_node_ids": [
+                          25
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 85,
+                        "location": {
+                          "lineno": 10,
+                          "col_offset": 24,
+                          "end_lineno": 10,
+                          "end_col_offset": 27
+                        },
+                        "focus": "arr",
+                        "id": "arr",
+                        "ctx": {
+                          "node_id": 25,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 117
+                        }
+                      },
+                      "slice": {
+                        "node_id": 118,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 85,
+                        "location": {
+                          "lineno": 10,
+                          "col_offset": 28,
+                          "end_lineno": 10,
+                          "end_col_offset": 29
+                        },
+                        "focus": "0",
+                        "value": 0
+                      },
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 85
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              },
+              {
+                "node_id": 19,
+                "children_node_ids": [
+                  46,
+                  47
+                ],
+                "type": "Assign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 11,
+                  "col_offset": 8,
+                  "end_lineno": 11,
+                  "end_col_offset": 19
+                },
+                "focus": "curr = head",
+                "targets": [
+                  {
+                    "node_id": 46,
+                    "children_node_ids": [
+                      14
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 19,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 8,
+                      "end_lineno": 11,
+                      "end_col_offset": 12
+                    },
+                    "focus": "curr",
+                    "id": "curr",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 46
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 47,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 19,
+                  "location": {
+                    "lineno": 11,
+                    "col_offset": 15,
+                    "end_lineno": 11,
+                    "end_col_offset": 19
+                  },
+                  "focus": "head",
+                  "id": "head",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 47
+                  }
+                }
+              },
+              {
+                "node_id": 20,
+                "children_node_ids": [
+                  48,
+                  49
+                ],
+                "type": "Assign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 12,
+                  "col_offset": 8,
+                  "end_lineno": 12,
+                  "end_col_offset": 26
+                },
+                "focus": "target_node = None",
+                "targets": [
+                  {
+                    "node_id": 48,
+                    "children_node_ids": [
+                      14
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 20,
+                    "location": {
+                      "lineno": 12,
+                      "col_offset": 8,
+                      "end_lineno": 12,
+                      "end_col_offset": 19
+                    },
+                    "focus": "target_node",
+                    "id": "target_node",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 48
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 49,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 20,
+                  "location": {
+                    "lineno": 12,
+                    "col_offset": 22,
+                    "end_lineno": 12,
+                    "end_col_offset": 26
+                  },
+                  "focus": "None"
+                }
+              },
+              {
+                "node_id": 21,
+                "children_node_ids": [
+                  50,
+                  51,
+                  52,
+                  53,
+                  54
+                ],
+                "type": "For",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 13,
+                  "col_offset": 8,
+                  "end_lineno": 17,
+                  "end_col_offset": 34
+                },
+                "focus": "for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr",
+                "target": {
+                  "node_id": 50,
+                  "children_node_ids": [
+                    86,
+                    87,
+                    14
+                  ],
+                  "type": "Tuple",
+                  "parent_node_id": 21,
+                  "location": {
+                    "lineno": 13,
+                    "col_offset": 12,
+                    "end_lineno": 13,
+                    "end_col_offset": 18
+                  },
+                  "focus": "i, val",
+                  "elts": [
+                    {
+                      "node_id": 86,
+                      "children_node_ids": [
+                        14
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 50,
+                      "location": {
+                        "lineno": 13,
+                        "col_offset": 12,
+                        "end_lineno": 13,
+                        "end_col_offset": 13
+                      },
+                      "focus": "i",
+                      "id": "i",
+                      "ctx": {
+                        "node_id": 14,
+                        "children_node_ids": [],
+                        "type": "Store",
+                        "parent_node_id": 86
+                      }
+                    },
+                    {
+                      "node_id": 87,
+                      "children_node_ids": [
+                        14
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 50,
+                      "location": {
+                        "lineno": 13,
+                        "col_offset": 15,
+                        "end_lineno": 13,
+                        "end_col_offset": 18
+                      },
+                      "focus": "val",
+                      "id": "val",
+                      "ctx": {
+                        "node_id": 14,
+                        "children_node_ids": [],
+                        "type": "Store",
+                        "parent_node_id": 87
+                      }
+                    }
+                  ],
+                  "ctx": {
+                    "node_id": 14,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 50
+                  }
+                },
+                "iter": {
+                  "node_id": 51,
+                  "children_node_ids": [
+                    88,
+                    89,
+                    90
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 21,
+                  "location": {
+                    "lineno": 13,
+                    "col_offset": 22,
+                    "end_lineno": 13,
+                    "end_col_offset": 43
+                  },
+                  "focus": "enumerate(arr[1:], 1)",
+                  "func": {
+                    "node_id": 88,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 51,
+                    "location": {
+                      "lineno": 13,
+                      "col_offset": 22,
+                      "end_lineno": 13,
+                      "end_col_offset": 31
+                    },
+                    "focus": "enumerate",
+                    "id": "enumerate",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 88
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 89,
+                      "children_node_ids": [
+                        119,
+                        120,
+                        25
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 51,
+                      "location": {
+                        "lineno": 13,
+                        "col_offset": 32,
+                        "end_lineno": 13,
+                        "end_col_offset": 39
+                      },
+                      "focus": "arr[1:]",
+                      "value": {
+                        "node_id": 119,
+                        "children_node_ids": [
+                          25
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 89,
+                        "location": {
+                          "lineno": 13,
+                          "col_offset": 32,
+                          "end_lineno": 13,
+                          "end_col_offset": 35
+                        },
+                        "focus": "arr",
+                        "id": "arr",
+                        "ctx": {
+                          "node_id": 25,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 119
+                        }
+                      },
+                      "slice": {
+                        "node_id": 120,
+                        "children_node_ids": [
+                          136
+                        ],
+                        "type": "Slice",
+                        "parent_node_id": 89,
+                        "location": {
+                          "lineno": 13,
+                          "col_offset": 36,
+                          "end_lineno": 13,
+                          "end_col_offset": 38
+                        },
+                        "focus": "1:",
+                        "lower": {
+                          "node_id": 136,
+                          "children_node_ids": [],
+                          "type": "Constant",
+                          "parent_node_id": 120,
+                          "location": {
+                            "lineno": 13,
+                            "col_offset": 36,
+                            "end_lineno": 13,
+                            "end_col_offset": 37
+                          },
+                          "focus": "1",
+                          "value": 1
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 89
+                      }
+                    },
+                    {
+                      "node_id": 90,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 51,
+                      "location": {
+                        "lineno": 13,
+                        "col_offset": 41,
+                        "end_lineno": 13,
+                        "end_col_offset": 42
+                      },
+                      "focus": "1",
+                      "value": 1
+                    }
+                  ],
+                  "keywords": []
+                },
+                "body": [
+                  {
+                    "node_id": 52,
+                    "children_node_ids": [
+                      91,
+                      92
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 21,
+                    "location": {
+                      "lineno": 14,
+                      "col_offset": 12,
+                      "end_lineno": 14,
+                      "end_col_offset": 37
+                    },
+                    "focus": "curr.next = ListNode(val)",
+                    "targets": [
+                      {
+                        "node_id": 91,
+                        "children_node_ids": [
+                          121,
+                          14
+                        ],
+                        "type": "Attribute",
+                        "parent_node_id": 52,
+                        "location": {
+                          "lineno": 14,
+                          "col_offset": 12,
+                          "end_lineno": 14,
+                          "end_col_offset": 21
+                        },
+                        "focus": "curr.next",
+                        "value": {
+                          "node_id": 121,
+                          "children_node_ids": [
+                            25
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 91,
+                          "location": {
+                            "lineno": 14,
+                            "col_offset": 12,
+                            "end_lineno": 14,
+                            "end_col_offset": 16
+                          },
+                          "focus": "curr",
+                          "id": "curr",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 121
+                          }
+                        },
+                        "attr": "next",
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 91
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 92,
+                      "children_node_ids": [
+                        122,
+                        123
+                      ],
+                      "type": "Call",
+                      "parent_node_id": 52,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 24,
+                        "end_lineno": 14,
+                        "end_col_offset": 37
+                      },
+                      "focus": "ListNode(val)",
+                      "func": {
+                        "node_id": 122,
+                        "children_node_ids": [
+                          25
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 92,
+                        "location": {
+                          "lineno": 14,
+                          "col_offset": 24,
+                          "end_lineno": 14,
+                          "end_col_offset": 32
+                        },
+                        "focus": "ListNode",
+                        "id": "ListNode",
+                        "ctx": {
+                          "node_id": 25,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 122
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 123,
+                          "children_node_ids": [
+                            25
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 92,
+                          "location": {
+                            "lineno": 14,
+                            "col_offset": 33,
+                            "end_lineno": 14,
+                            "end_col_offset": 36
+                          },
+                          "focus": "val",
+                          "id": "val",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 123
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  },
+                  {
+                    "node_id": 53,
+                    "children_node_ids": [
+                      93,
+                      94
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 21,
+                    "location": {
+                      "lineno": 15,
+                      "col_offset": 12,
+                      "end_lineno": 15,
+                      "end_col_offset": 28
+                    },
+                    "focus": "curr = curr.next",
+                    "targets": [
+                      {
+                        "node_id": 93,
+                        "children_node_ids": [
+                          14
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 53,
+                        "location": {
+                          "lineno": 15,
+                          "col_offset": 12,
+                          "end_lineno": 15,
+                          "end_col_offset": 16
+                        },
+                        "focus": "curr",
+                        "id": "curr",
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 93
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 94,
+                      "children_node_ids": [
+                        124,
+                        25
+                      ],
+                      "type": "Attribute",
+                      "parent_node_id": 53,
+                      "location": {
+                        "lineno": 15,
+                        "col_offset": 19,
+                        "end_lineno": 15,
+                        "end_col_offset": 28
+                      },
+                      "focus": "curr.next",
+                      "value": {
+                        "node_id": 124,
+                        "children_node_ids": [
+                          25
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 94,
+                        "location": {
+                          "lineno": 15,
+                          "col_offset": 19,
+                          "end_lineno": 15,
+                          "end_col_offset": 23
+                        },
+                        "focus": "curr",
+                        "id": "curr",
+                        "ctx": {
+                          "node_id": 25,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 124
+                        }
+                      },
+                      "attr": "next",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 94
+                      }
+                    }
+                  },
+                  {
+                    "node_id": 54,
+                    "children_node_ids": [
+                      95,
+                      96
+                    ],
+                    "type": "If",
+                    "parent_node_id": 21,
+                    "location": {
+                      "lineno": 16,
+                      "col_offset": 12,
+                      "end_lineno": 17,
+                      "end_col_offset": 34
+                    },
+                    "focus": "if val == node:\n                target_node = curr",
+                    "test": {
+                      "node_id": 95,
+                      "children_node_ids": [
+                        125,
+                        20,
+                        126
+                      ],
+                      "type": "Compare",
+                      "parent_node_id": 54,
+                      "location": {
+                        "lineno": 16,
+                        "col_offset": 15,
+                        "end_lineno": 16,
+                        "end_col_offset": 26
+                      },
+                      "focus": "val == node",
+                      "left": {
+                        "node_id": 125,
+                        "children_node_ids": [
+                          25
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 95,
+                        "location": {
+                          "lineno": 16,
+                          "col_offset": 15,
+                          "end_lineno": 16,
+                          "end_col_offset": 18
+                        },
+                        "focus": "val",
+                        "id": "val",
+                        "ctx": {
+                          "node_id": 25,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 125
+                        }
+                      },
+                      "ops": [
+                        {
+                          "node_id": 20,
+                          "children_node_ids": [],
+                          "type": "Eq",
+                          "parent_node_id": 95
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "node_id": 126,
+                          "children_node_ids": [
+                            25
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 95,
+                          "location": {
+                            "lineno": 16,
+                            "col_offset": 22,
+                            "end_lineno": 16,
+                            "end_col_offset": 26
+                          },
+                          "focus": "node",
+                          "id": "node",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 126
+                          }
+                        }
+                      ]
+                    },
+                    "body": [
+                      {
+                        "node_id": 96,
+                        "children_node_ids": [
+                          127,
+                          128
+                        ],
+                        "type": "Assign",
+                        "parent_node_id": 54,
+                        "location": {
+                          "lineno": 17,
+                          "col_offset": 16,
+                          "end_lineno": 17,
+                          "end_col_offset": 34
+                        },
+                        "focus": "target_node = curr",
+                        "targets": [
+                          {
+                            "node_id": 127,
+                            "children_node_ids": [
+                              14
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 96,
+                            "location": {
+                              "lineno": 17,
+                              "col_offset": 16,
+                              "end_lineno": 17,
+                              "end_col_offset": 27
+                            },
+                            "focus": "target_node",
+                            "id": "target_node",
+                            "ctx": {
+                              "node_id": 14,
+                              "children_node_ids": [],
+                              "type": "Store",
+                              "parent_node_id": 127
+                            }
+                          }
+                        ],
+                        "value": {
+                          "node_id": 128,
+                          "children_node_ids": [
+                            25
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 96,
+                          "location": {
+                            "lineno": 17,
+                            "col_offset": 30,
+                            "end_lineno": 17,
+                            "end_col_offset": 34
+                          },
+                          "focus": "curr",
+                          "id": "curr",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 128
+                          }
+                        }
+                      }
+                    ],
+                    "orelse": []
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 22,
+                "children_node_ids": [
+                  55,
+                  56
+                ],
+                "type": "If",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 18,
+                  "col_offset": 8,
+                  "end_lineno": 19,
+                  "end_col_offset": 30
+                },
+                "focus": "if arr[0] == node:\n            target_node = head",
+                "test": {
+                  "node_id": 55,
+                  "children_node_ids": [
+                    97,
+                    20,
+                    98
+                  ],
+                  "type": "Compare",
+                  "parent_node_id": 22,
+                  "location": {
+                    "lineno": 18,
+                    "col_offset": 11,
+                    "end_lineno": 18,
+                    "end_col_offset": 25
+                  },
+                  "focus": "arr[0] == node",
+                  "left": {
+                    "node_id": 97,
+                    "children_node_ids": [
+                      129,
+                      130,
+                      25
+                    ],
+                    "type": "Subscript",
+                    "parent_node_id": 55,
+                    "location": {
+                      "lineno": 18,
+                      "col_offset": 11,
+                      "end_lineno": 18,
+                      "end_col_offset": 17
+                    },
+                    "focus": "arr[0]",
+                    "value": {
+                      "node_id": 129,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 97,
+                      "location": {
+                        "lineno": 18,
+                        "col_offset": 11,
+                        "end_lineno": 18,
+                        "end_col_offset": 14
+                      },
+                      "focus": "arr",
+                      "id": "arr",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 129
+                      }
+                    },
+                    "slice": {
+                      "node_id": 130,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 97,
+                      "location": {
+                        "lineno": 18,
+                        "col_offset": 15,
+                        "end_lineno": 18,
+                        "end_col_offset": 16
+                      },
+                      "focus": "0",
+                      "value": 0
+                    },
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 97
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 20,
+                      "children_node_ids": [],
+                      "type": "Eq",
+                      "parent_node_id": 55
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 98,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 55,
+                      "location": {
+                        "lineno": 18,
+                        "col_offset": 21,
+                        "end_lineno": 18,
+                        "end_col_offset": 25
+                      },
+                      "focus": "node",
+                      "id": "node",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 98
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 56,
+                    "children_node_ids": [
+                      99,
+                      100
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 22,
+                    "location": {
+                      "lineno": 19,
+                      "col_offset": 12,
+                      "end_lineno": 19,
+                      "end_col_offset": 30
+                    },
+                    "focus": "target_node = head",
+                    "targets": [
+                      {
+                        "node_id": 99,
+                        "children_node_ids": [
+                          14
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 56,
+                        "location": {
+                          "lineno": 19,
+                          "col_offset": 12,
+                          "end_lineno": 19,
+                          "end_col_offset": 23
+                        },
+                        "focus": "target_node",
+                        "id": "target_node",
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 99
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 100,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 56,
+                      "location": {
+                        "lineno": 19,
+                        "col_offset": 26,
+                        "end_lineno": 19,
+                        "end_col_offset": 30
+                      },
+                      "focus": "head",
+                      "id": "head",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 100
+                      }
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 23,
+                "children_node_ids": [
+                  57
+                ],
+                "type": "Return",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 20,
+                  "col_offset": 8,
+                  "end_lineno": 20,
+                  "end_col_offset": 32
+                },
+                "focus": "return head, target_node",
+                "value": {
+                  "node_id": 57,
+                  "children_node_ids": [
+                    101,
+                    102,
+                    25
+                  ],
+                  "type": "Tuple",
+                  "parent_node_id": 23,
+                  "location": {
+                    "lineno": 20,
+                    "col_offset": 15,
+                    "end_lineno": 20,
+                    "end_col_offset": 32
+                  },
+                  "focus": "head, target_node",
+                  "elts": [
+                    {
+                      "node_id": 101,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 57,
+                      "location": {
+                        "lineno": 20,
+                        "col_offset": 15,
+                        "end_lineno": 20,
+                        "end_col_offset": 19
+                      },
+                      "focus": "head",
+                      "id": "head",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 101
+                      }
+                    },
+                    {
+                      "node_id": 102,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 57,
+                      "location": {
+                        "lineno": 20,
+                        "col_offset": 21,
+                        "end_lineno": 20,
+                        "end_col_offset": 32
+                      },
+                      "focus": "target_node",
+                      "id": "target_node",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 102
+                      }
+                    }
+                  ],
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 57
+                  }
+                }
+              }
+            ],
+            "decorator_list": []
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              24,
+              25,
+              26,
+              27
+            ],
+            "type": "FunctionDef",
+            "parent_node_id": 2,
+            "location": {
+              "lineno": 22,
+              "col_offset": 4,
+              "end_lineno": 27,
+              "end_col_offset": 21
+            },
+            "focus": "def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result",
+            "name": "linked_to_list",
+            "args": {
+              "node_id": 24,
+              "children_node_ids": [
+                58
+              ],
+              "type": "arguments",
+              "parent_node_id": 6,
+              "posonlyargs": [],
+              "args": [
+                {
+                  "node_id": 58,
+                  "children_node_ids": [],
+                  "type": "arg",
+                  "parent_node_id": 24,
+                  "location": {
+                    "lineno": 22,
+                    "col_offset": 23,
+                    "end_lineno": 22,
+                    "end_col_offset": 27
+                  },
+                  "focus": "head",
+                  "arg": "head"
+                }
+              ],
+              "kwonlyargs": [],
+              "kw_defaults": [],
+              "defaults": []
+            },
+            "body": [
+              {
+                "node_id": 25,
+                "children_node_ids": [
+                  59,
+                  60
+                ],
+                "type": "Assign",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 23,
+                  "col_offset": 8,
+                  "end_lineno": 23,
+                  "end_col_offset": 19
+                },
+                "focus": "result = []",
+                "targets": [
+                  {
+                    "node_id": 59,
+                    "children_node_ids": [
+                      14
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 25,
+                    "location": {
+                      "lineno": 23,
+                      "col_offset": 8,
+                      "end_lineno": 23,
+                      "end_col_offset": 14
+                    },
+                    "focus": "result",
+                    "id": "result",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 59
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 60,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "List",
+                  "parent_node_id": 25,
+                  "location": {
+                    "lineno": 23,
+                    "col_offset": 17,
+                    "end_lineno": 23,
+                    "end_col_offset": 19
+                  },
+                  "focus": "[]",
+                  "elts": [],
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 60
+                  }
+                }
+              },
+              {
+                "node_id": 26,
+                "children_node_ids": [
+                  61,
+                  62,
+                  63
+                ],
+                "type": "While",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 24,
+                  "col_offset": 8,
+                  "end_lineno": 26,
+                  "end_col_offset": 28
+                },
+                "focus": "while head:\n            result.append(head.val)\n            head = head.next",
+                "test": {
+                  "node_id": 61,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 26,
+                  "location": {
+                    "lineno": 24,
+                    "col_offset": 14,
+                    "end_lineno": 24,
+                    "end_col_offset": 18
+                  },
+                  "focus": "head",
+                  "id": "head",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 61
+                  }
+                },
+                "body": [
+                  {
+                    "node_id": 62,
+                    "children_node_ids": [
+                      103
+                    ],
+                    "type": "Expr",
+                    "parent_node_id": 26,
+                    "location": {
+                      "lineno": 25,
+                      "col_offset": 12,
+                      "end_lineno": 25,
+                      "end_col_offset": 35
+                    },
+                    "focus": "result.append(head.val)",
+                    "value": {
+                      "node_id": 103,
+                      "children_node_ids": [
+                        131,
+                        132
+                      ],
+                      "type": "Call",
+                      "parent_node_id": 62,
+                      "location": {
+                        "lineno": 25,
+                        "col_offset": 12,
+                        "end_lineno": 25,
+                        "end_col_offset": 35
+                      },
+                      "focus": "result.append(head.val)",
+                      "func": {
+                        "node_id": 131,
+                        "children_node_ids": [
+                          137,
+                          25
+                        ],
+                        "type": "Attribute",
+                        "parent_node_id": 103,
+                        "location": {
+                          "lineno": 25,
+                          "col_offset": 12,
+                          "end_lineno": 25,
+                          "end_col_offset": 25
+                        },
+                        "focus": "result.append",
+                        "value": {
+                          "node_id": 137,
+                          "children_node_ids": [
+                            25
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 131,
+                          "location": {
+                            "lineno": 25,
+                            "col_offset": 12,
+                            "end_lineno": 25,
+                            "end_col_offset": 18
+                          },
+                          "focus": "result",
+                          "id": "result",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 137
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "node_id": 25,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 131
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 132,
+                          "children_node_ids": [
+                            138,
+                            25
+                          ],
+                          "type": "Attribute",
+                          "parent_node_id": 103,
+                          "location": {
+                            "lineno": 25,
+                            "col_offset": 26,
+                            "end_lineno": 25,
+                            "end_col_offset": 34
+                          },
+                          "focus": "head.val",
+                          "value": {
+                            "node_id": 138,
+                            "children_node_ids": [
+                              25
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 132,
+                            "location": {
+                              "lineno": 25,
+                              "col_offset": 26,
+                              "end_lineno": 25,
+                              "end_col_offset": 30
+                            },
+                            "focus": "head",
+                            "id": "head",
+                            "ctx": {
+                              "node_id": 25,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 138
+                            }
+                          },
+                          "attr": "val",
+                          "ctx": {
+                            "node_id": 25,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 132
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  },
+                  {
+                    "node_id": 63,
+                    "children_node_ids": [
+                      104,
+                      105
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 26,
+                    "location": {
+                      "lineno": 26,
+                      "col_offset": 12,
+                      "end_lineno": 26,
+                      "end_col_offset": 28
+                    },
+                    "focus": "head = head.next",
+                    "targets": [
+                      {
+                        "node_id": 104,
+                        "children_node_ids": [
+                          14
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 63,
+                        "location": {
+                          "lineno": 26,
+                          "col_offset": 12,
+                          "end_lineno": 26,
+                          "end_col_offset": 16
+                        },
+                        "focus": "head",
+                        "id": "head",
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 104
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 105,
+                      "children_node_ids": [
+                        133,
+                        25
+                      ],
+                      "type": "Attribute",
+                      "parent_node_id": 63,
+                      "location": {
+                        "lineno": 26,
+                        "col_offset": 19,
+                        "end_lineno": 26,
+                        "end_col_offset": 28
+                      },
+                      "focus": "head.next",
+                      "value": {
+                        "node_id": 133,
+                        "children_node_ids": [
+                          25
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 105,
+                        "location": {
+                          "lineno": 26,
+                          "col_offset": 19,
+                          "end_lineno": 26,
+                          "end_col_offset": 23
+                        },
+                        "focus": "head",
+                        "id": "head",
+                        "ctx": {
+                          "node_id": 25,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 133
+                        }
+                      },
+                      "attr": "next",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 105
+                      }
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 27,
+                "children_node_ids": [
+                  64
+                ],
+                "type": "Return",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 27,
+                  "col_offset": 8,
+                  "end_lineno": 27,
+                  "end_col_offset": 21
+                },
+                "focus": "return result",
+                "value": {
+                  "node_id": 64,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 27,
+                  "location": {
+                    "lineno": 27,
+                    "col_offset": 15,
+                    "end_lineno": 27,
+                    "end_col_offset": 21
+                  },
+                  "focus": "result",
+                  "id": "result",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 64
+                  }
+                }
+              }
+            ],
+            "decorator_list": []
+          },
+          {
+            "node_id": 7,
+            "children_node_ids": [
+              28,
+              29,
+              30
+            ],
+            "type": "If",
+            "parent_node_id": 2,
+            "location": {
+              "lineno": 29,
+              "col_offset": 4,
+              "end_lineno": 31,
+              "end_col_offset": 29
+            },
+            "focus": "if isinstance(head, list):\n        head, node_to_delete = list_to_linked(head)\n        node = node_to_delete",
+            "test": {
+              "node_id": 28,
+              "children_node_ids": [
+                65,
+                66,
+                67
+              ],
+              "type": "Call",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 29,
+                "col_offset": 7,
+                "end_lineno": 29,
+                "end_col_offset": 29
+              },
+              "focus": "isinstance(head, list)",
+              "func": {
+                "node_id": 65,
+                "children_node_ids": [
+                  25
+                ],
+                "type": "Name",
+                "parent_node_id": 28,
+                "location": {
+                  "lineno": 29,
+                  "col_offset": 7,
+                  "end_lineno": 29,
+                  "end_col_offset": 17
+                },
+                "focus": "isinstance",
+                "id": "isinstance",
+                "ctx": {
+                  "node_id": 25,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 65
+                }
+              },
+              "args": [
+                {
+                  "node_id": 66,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 28,
+                  "location": {
+                    "lineno": 29,
+                    "col_offset": 18,
+                    "end_lineno": 29,
+                    "end_col_offset": 22
+                  },
+                  "focus": "head",
+                  "id": "head",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 66
+                  }
+                },
+                {
+                  "node_id": 67,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 28,
+                  "location": {
+                    "lineno": 29,
+                    "col_offset": 24,
+                    "end_lineno": 29,
+                    "end_col_offset": 28
+                  },
+                  "focus": "list",
+                  "id": "list",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 67
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "node_id": 29,
+                "children_node_ids": [
+                  68,
+                  69
+                ],
+                "type": "Assign",
+                "parent_node_id": 7,
+                "location": {
+                  "lineno": 30,
+                  "col_offset": 8,
+                  "end_lineno": 30,
+                  "end_col_offset": 51
+                },
+                "focus": "head, node_to_delete = list_to_linked(head)",
+                "targets": [
+                  {
+                    "node_id": 68,
+                    "children_node_ids": [
+                      106,
+                      107,
+                      14
+                    ],
+                    "type": "Tuple",
+                    "parent_node_id": 29,
+                    "location": {
+                      "lineno": 30,
+                      "col_offset": 8,
+                      "end_lineno": 30,
+                      "end_col_offset": 28
+                    },
+                    "focus": "head, node_to_delete",
+                    "elts": [
+                      {
+                        "node_id": 106,
+                        "children_node_ids": [
+                          14
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 68,
+                        "location": {
+                          "lineno": 30,
+                          "col_offset": 8,
+                          "end_lineno": 30,
+                          "end_col_offset": 12
+                        },
+                        "focus": "head",
+                        "id": "head",
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 106
+                        }
+                      },
+                      {
+                        "node_id": 107,
+                        "children_node_ids": [
+                          14
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 68,
+                        "location": {
+                          "lineno": 30,
+                          "col_offset": 14,
+                          "end_lineno": 30,
+                          "end_col_offset": 28
+                        },
+                        "focus": "node_to_delete",
+                        "id": "node_to_delete",
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 107
+                        }
+                      }
+                    ],
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 68
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 69,
+                  "children_node_ids": [
+                    108,
+                    109
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 29,
+                  "location": {
+                    "lineno": 30,
+                    "col_offset": 31,
+                    "end_lineno": 30,
+                    "end_col_offset": 51
+                  },
+                  "focus": "list_to_linked(head)",
+                  "func": {
+                    "node_id": 108,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 69,
+                    "location": {
+                      "lineno": 30,
+                      "col_offset": 31,
+                      "end_lineno": 30,
+                      "end_col_offset": 45
+                    },
+                    "focus": "list_to_linked",
+                    "id": "list_to_linked",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 108
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 109,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 69,
+                      "location": {
+                        "lineno": 30,
+                        "col_offset": 46,
+                        "end_lineno": 30,
+                        "end_col_offset": 50
+                      },
+                      "focus": "head",
+                      "id": "head",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 109
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              },
+              {
+                "node_id": 30,
+                "children_node_ids": [
+                  70,
+                  71
+                ],
+                "type": "Assign",
+                "parent_node_id": 7,
+                "location": {
+                  "lineno": 31,
+                  "col_offset": 8,
+                  "end_lineno": 31,
+                  "end_col_offset": 29
+                },
+                "focus": "node = node_to_delete",
+                "targets": [
+                  {
+                    "node_id": 70,
+                    "children_node_ids": [
+                      14
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 30,
+                    "location": {
+                      "lineno": 31,
+                      "col_offset": 8,
+                      "end_lineno": 31,
+                      "end_col_offset": 12
+                    },
+                    "focus": "node",
+                    "id": "node",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 70
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 71,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 30,
+                  "location": {
+                    "lineno": 31,
+                    "col_offset": 15,
+                    "end_lineno": 31,
+                    "end_col_offset": 29
+                  },
+                  "focus": "node_to_delete",
+                  "id": "node_to_delete",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 71
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 8,
+            "children_node_ids": [
+              31,
+              32,
+              33
+            ],
+            "type": "If",
+            "parent_node_id": 2,
+            "location": {
+              "lineno": 33,
+              "col_offset": 4,
+              "end_lineno": 35,
+              "end_col_offset": 34
+            },
+            "focus": "if node and node.next:\n        node.val = node.next.val\n        node.next = node.next.next",
+            "test": {
+              "node_id": 31,
+              "children_node_ids": [
+                42,
+                72,
+                73
+              ],
+              "type": "BoolOp",
+              "parent_node_id": 8,
+              "location": {
+                "lineno": 33,
+                "col_offset": 7,
+                "end_lineno": 33,
+                "end_col_offset": 25
+              },
+              "focus": "node and node.next",
+              "op": {
+                "node_id": 42,
+                "children_node_ids": [],
+                "type": "And",
+                "parent_node_id": 31
+              },
+              "values": [
+                {
+                  "node_id": 72,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 31,
+                  "location": {
+                    "lineno": 33,
+                    "col_offset": 7,
+                    "end_lineno": 33,
+                    "end_col_offset": 11
+                  },
+                  "focus": "node",
+                  "id": "node",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 72
+                  }
+                },
+                {
+                  "node_id": 73,
+                  "children_node_ids": [
+                    110,
+                    25
+                  ],
+                  "type": "Attribute",
+                  "parent_node_id": 31,
+                  "location": {
+                    "lineno": 33,
+                    "col_offset": 16,
+                    "end_lineno": 33,
+                    "end_col_offset": 25
+                  },
+                  "focus": "node.next",
+                  "value": {
+                    "node_id": 110,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 73,
+                    "location": {
+                      "lineno": 33,
+                      "col_offset": 16,
+                      "end_lineno": 33,
+                      "end_col_offset": 20
+                    },
+                    "focus": "node",
+                    "id": "node",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 110
+                    }
+                  },
+                  "attr": "next",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 73
+                  }
+                }
+              ]
+            },
+            "body": [
+              {
+                "node_id": 32,
+                "children_node_ids": [
+                  74,
+                  75
+                ],
+                "type": "Assign",
+                "parent_node_id": 8,
+                "location": {
+                  "lineno": 34,
+                  "col_offset": 8,
+                  "end_lineno": 34,
+                  "end_col_offset": 32
+                },
+                "focus": "node.val = node.next.val",
+                "targets": [
+                  {
+                    "node_id": 74,
+                    "children_node_ids": [
+                      111,
+                      14
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 32,
+                    "location": {
+                      "lineno": 34,
+                      "col_offset": 8,
+                      "end_lineno": 34,
+                      "end_col_offset": 16
+                    },
+                    "focus": "node.val",
+                    "value": {
+                      "node_id": 111,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 74,
+                      "location": {
+                        "lineno": 34,
+                        "col_offset": 8,
+                        "end_lineno": 34,
+                        "end_col_offset": 12
+                      },
+                      "focus": "node",
+                      "id": "node",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 111
+                      }
+                    },
+                    "attr": "val",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 74
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 75,
+                  "children_node_ids": [
+                    112,
+                    25
+                  ],
+                  "type": "Attribute",
+                  "parent_node_id": 32,
+                  "location": {
+                    "lineno": 34,
+                    "col_offset": 19,
+                    "end_lineno": 34,
+                    "end_col_offset": 32
+                  },
+                  "focus": "node.next.val",
+                  "value": {
+                    "node_id": 112,
+                    "children_node_ids": [
+                      134,
+                      25
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 75,
+                    "location": {
+                      "lineno": 34,
+                      "col_offset": 19,
+                      "end_lineno": 34,
+                      "end_col_offset": 28
+                    },
+                    "focus": "node.next",
+                    "value": {
+                      "node_id": 134,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 112,
+                      "location": {
+                        "lineno": 34,
+                        "col_offset": 19,
+                        "end_lineno": 34,
+                        "end_col_offset": 23
+                      },
+                      "focus": "node",
+                      "id": "node",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 134
+                      }
+                    },
+                    "attr": "next",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 112
+                    }
+                  },
+                  "attr": "val",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 75
+                  }
+                }
+              },
+              {
+                "node_id": 33,
+                "children_node_ids": [
+                  76,
+                  77
+                ],
+                "type": "Assign",
+                "parent_node_id": 8,
+                "location": {
+                  "lineno": 35,
+                  "col_offset": 8,
+                  "end_lineno": 35,
+                  "end_col_offset": 34
+                },
+                "focus": "node.next = node.next.next",
+                "targets": [
+                  {
+                    "node_id": 76,
+                    "children_node_ids": [
+                      113,
+                      14
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 33,
+                    "location": {
+                      "lineno": 35,
+                      "col_offset": 8,
+                      "end_lineno": 35,
+                      "end_col_offset": 17
+                    },
+                    "focus": "node.next",
+                    "value": {
+                      "node_id": 113,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 76,
+                      "location": {
+                        "lineno": 35,
+                        "col_offset": 8,
+                        "end_lineno": 35,
+                        "end_col_offset": 12
+                      },
+                      "focus": "node",
+                      "id": "node",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 113
+                      }
+                    },
+                    "attr": "next",
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 76
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 77,
+                  "children_node_ids": [
+                    114,
+                    25
+                  ],
+                  "type": "Attribute",
+                  "parent_node_id": 33,
+                  "location": {
+                    "lineno": 35,
+                    "col_offset": 20,
+                    "end_lineno": 35,
+                    "end_col_offset": 34
+                  },
+                  "focus": "node.next.next",
+                  "value": {
+                    "node_id": 114,
+                    "children_node_ids": [
+                      135,
+                      25
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 77,
+                    "location": {
+                      "lineno": 35,
+                      "col_offset": 20,
+                      "end_lineno": 35,
+                      "end_col_offset": 29
+                    },
+                    "focus": "node.next",
+                    "value": {
+                      "node_id": 135,
+                      "children_node_ids": [
+                        25
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 114,
+                      "location": {
+                        "lineno": 35,
+                        "col_offset": 20,
+                        "end_lineno": 35,
+                        "end_col_offset": 24
+                      },
+                      "focus": "node",
+                      "id": "node",
+                      "ctx": {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 135
+                      }
+                    },
+                    "attr": "next",
+                    "ctx": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 114
+                    }
+                  },
+                  "attr": "next",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 77
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 9,
+            "children_node_ids": [
+              34
+            ],
+            "type": "Return",
+            "parent_node_id": 2,
+            "location": {
+              "lineno": 37,
+              "col_offset": 4,
+              "end_lineno": 37,
+              "end_col_offset": 31
+            },
+            "focus": "return linked_to_list(head)",
+            "value": {
+              "node_id": 34,
+              "children_node_ids": [
+                78,
+                79
+              ],
+              "type": "Call",
+              "parent_node_id": 9,
+              "location": {
+                "lineno": 37,
+                "col_offset": 11,
+                "end_lineno": 37,
+                "end_col_offset": 31
+              },
+              "focus": "linked_to_list(head)",
+              "func": {
+                "node_id": 78,
+                "children_node_ids": [
+                  25
+                ],
+                "type": "Name",
+                "parent_node_id": 34,
+                "location": {
+                  "lineno": 37,
+                  "col_offset": 11,
+                  "end_lineno": 37,
+                  "end_col_offset": 25
+                },
+                "focus": "linked_to_list",
+                "id": "linked_to_list",
+                "ctx": {
+                  "node_id": 25,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 78
+                }
+              },
+              "args": [
+                {
+                  "node_id": 79,
+                  "children_node_ids": [
+                    25
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 34,
+                  "location": {
+                    "lineno": 37,
+                    "col_offset": 26,
+                    "end_lineno": 37,
+                    "end_col_offset": 30
+                  },
+                  "focus": "head",
+                  "id": "head",
+                  "ctx": {
+                    "node_id": 25,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 79
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          }
+        ],
+        "decorator_list": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {},
+      "delta": null,
+      "steps": [
+        {
+          "step": 1,
+          "event": "before_statement",
+          "focus": "def __init__(self, x):\n        self.val = x\n        self.next = None",
+          "node_id": 3
+        },
+        {
+          "step": 2,
+          "event": "after_statement",
+          "focus": "def __init__(self, x):\n        self.val = x\n        self.next = None",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "steps": [
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {},
+      "delta": null,
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "def deleteNode(head, node=None):\n    def list_to_linked(arr):\n        if not arr:\n            return None, None\n        head = ListNode(arr[0])\n        curr = head\n        target_node = None\n        for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr\n        if arr[0] == node:\n            target_node = head\n        return head, target_node\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head, node_to_delete = list_to_linked(head)\n        node = node_to_delete\n    \n    if node and node.next:\n        node.val = node.next.val\n        node.next = node.next.next\n    \n    return linked_to_list(head)",
+          "node_id": 2
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "def deleteNode(head, node=None):\n    def list_to_linked(arr):\n        if not arr:\n            return None, None\n        head = ListNode(arr[0])\n        curr = head\n        target_node = None\n        for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr\n        if arr[0] == node:\n            target_node = head\n        return head, target_node\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head, node_to_delete = list_to_linked(head)\n        node = node_to_delete\n    \n    if node and node.next:\n        node.val = node.next.val\n        node.next = node.next.next\n    \n    return linked_to_list(head)",
+          "node_id": 2
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "head": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5
+      },
+      "delta": {
+        "head": {
+          "0": 4,
+          "1": 5,
+          "2": 1,
+          "3": 9
+        },
+        "node": 5
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "def list_to_linked(arr):\n        if not arr:\n            return None, None\n        head = ListNode(arr[0])\n        curr = head\n        target_node = None\n        for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr\n        if arr[0] == node:\n            target_node = head\n        return head, target_node",
+          "node_id": 5
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "def list_to_linked(arr):\n        if not arr:\n            return None, None\n        head = ListNode(arr[0])\n        curr = head\n        target_node = None\n        for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr\n        if arr[0] == node:\n            target_node = head\n        return head, target_node",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 22,
+      "locals": {
+        "head": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result",
+          "node_id": 6
+        },
+        {
+          "step": 9,
+          "event": "after_statement",
+          "focus": "def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 29,
+      "locals": {
+        "head": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 10,
+          "event": "before_statement",
+          "focus": "if isinstance(head, list):\n        head, node_to_delete = list_to_linked(head)\n        node = node_to_delete",
+          "node_id": 7
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "isinstance(head, list)",
+          "node_id": 28
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "isinstance",
+          "node_id": 65
+        },
+        {
+          "step": 13,
+          "event": "after_expression",
+          "focus": "isinstance",
+          "node_id": 65,
+          "value": "<built-in function isinstance>"
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 66
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 66,
+          "value": [
+            4,
+            5,
+            1,
+            9
+          ]
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 67
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "list",
+          "node_id": 67,
+          "value": "<class 'list'>"
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "isinstance(head, list)",
+          "node_id": 28,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 30,
+      "locals": {
+        "head": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 19,
+          "event": "before_statement",
+          "focus": "head, node_to_delete = list_to_linked(head)",
+          "node_id": 29
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "list_to_linked(head)",
+          "node_id": 69
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "list_to_linked",
+          "node_id": 108
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "list_to_linked",
+          "node_id": 108,
+          "value": "<function deleteNode.<locals>.list_to_linked at 0x104e01a60>"
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 109
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 109,
+          "value": [
+            4,
+            5,
+            1,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5
+      },
+      "delta": {
+        "arr": {
+          "0": 4,
+          "1": 5,
+          "2": 1,
+          "3": 9
+        }
+      },
+      "steps": [
+        {
+          "step": 25,
+          "event": "before_statement",
+          "focus": "if not arr:\n            return None, None",
+          "node_id": 17
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "not arr",
+          "node_id": 42
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "arr",
+          "node_id": 82
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "arr",
+          "node_id": 82,
+          "value": [
+            4,
+            5,
+            1,
+            9
+          ]
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "not arr",
+          "node_id": 42,
+          "value": false
+        },
+        {
+          "step": 30,
+          "event": "after_statement",
+          "focus": "if not arr:\n            return None, None",
+          "node_id": 17
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 31,
+          "event": "before_statement",
+          "focus": "head = ListNode(arr[0])",
+          "node_id": 18
+        },
+        {
+          "step": 32,
+          "event": "before_expression",
+          "focus": "ListNode(arr[0])",
+          "node_id": 45
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": "ListNode",
+          "node_id": 84
+        },
+        {
+          "step": 34,
+          "event": "after_expression",
+          "focus": "ListNode",
+          "node_id": 84,
+          "value": "<class '__main__.ListNode'>"
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "arr[0]",
+          "node_id": 85
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "arr",
+          "node_id": 117
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "arr",
+          "node_id": 117,
+          "value": [
+            4,
+            5,
+            1,
+            9
+          ]
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 118
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 118,
+          "value": 0
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "arr[0]",
+          "node_id": 85,
+          "value": 4
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "self": "<__main__.ListNode object at 0x1049da3d0>",
+        "x": 4
+      },
+      "delta": {
+        "self": "<__main__.ListNode object at 0x1049da3d0>",
+        "x": 4
+      },
+      "steps": [
+        {
+          "step": 41,
+          "event": "before_statement",
+          "focus": "self.val = x",
+          "node_id": 11
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 38
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 38,
+          "value": 4
+        },
+        {
+          "step": 44,
+          "event": "after_statement",
+          "focus": "self.val = x",
+          "node_id": 11
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "self": "<__main__.ListNode object at 0x1049da3d0>",
+        "x": 4
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 45,
+          "event": "before_statement",
+          "focus": "self.next = None",
+          "node_id": 12
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 40
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 40
+        },
+        {
+          "step": 48,
+          "event": "after_statement",
+          "focus": "self.next = None",
+          "node_id": 12
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5
+      },
+      "delta": {
+        "arr": {
+          "0": 4,
+          "1": 5,
+          "2": 1,
+          "3": 9
+        },
+        "node": 5
+      },
+      "steps": [
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "ListNode(arr[0])",
+          "node_id": 45,
+          "value": "<__main__.ListNode object at 0x1049da3d0>"
+        },
+        {
+          "step": 50,
+          "event": "after_statement",
+          "focus": "head = ListNode(arr[0])",
+          "node_id": 18,
+          "locals": {
+            "arr": [
+              4,
+              5,
+              1,
+              9
+            ],
+            "node": 5,
+            "head": "<__main__.ListNode object at 0x1049da3d0>"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>"
+      },
+      "delta": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>"
+      },
+      "steps": [
+        {
+          "step": 51,
+          "event": "before_statement",
+          "focus": "curr = head",
+          "node_id": 19
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 47
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 47,
+          "value": "<__main__.ListNode object at 0x1049da3d0>"
+        },
+        {
+          "step": 54,
+          "event": "after_statement",
+          "focus": "curr = head",
+          "node_id": 19,
+          "locals": {
+            "arr": [
+              4,
+              5,
+              1,
+              9
+            ],
+            "node": 5,
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "curr": "<__main__.ListNode object at 0x1049da3d0>"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da3d0>"
+      },
+      "delta": {
+        "curr": "<__main__.ListNode object at 0x1049da3d0>"
+      },
+      "steps": [
+        {
+          "step": 55,
+          "event": "before_statement",
+          "focus": "target_node = None",
+          "node_id": 20
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 49
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 49
+        },
+        {
+          "step": 58,
+          "event": "after_statement",
+          "focus": "target_node = None",
+          "node_id": 20,
+          "locals": {
+            "arr": [
+              4,
+              5,
+              1,
+              9
+            ],
+            "node": 5,
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "curr": "<__main__.ListNode object at 0x1049da3d0>",
+            "target_node": null
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da3d0>",
+        "target_node": null
+      },
+      "delta": {
+        "target_node": null
+      },
+      "steps": [
+        {
+          "step": 59,
+          "event": "before_statement",
+          "focus": "for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr",
+          "node_id": 21
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "enumerate(arr[1:], 1)",
+          "node_id": 51
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "enumerate",
+          "node_id": 88
+        },
+        {
+          "step": 62,
+          "event": "after_expression",
+          "focus": "enumerate",
+          "node_id": 88,
+          "value": "<class 'enumerate'>"
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "arr[1:]",
+          "node_id": 89
+        },
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "arr",
+          "node_id": 119
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "arr",
+          "node_id": 119,
+          "value": [
+            4,
+            5,
+            1,
+            9
+          ]
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "1:",
+          "node_id": 120
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 136
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 136,
+          "value": 1
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "1:",
+          "node_id": 120,
+          "value": "slice(1, None, None)"
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "arr[1:]",
+          "node_id": 89,
+          "value": [
+            5,
+            1,
+            9
+          ]
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 90
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 90,
+          "value": 1
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "enumerate(arr[1:], 1)",
+          "node_id": 51,
+          "value": "<enumerate object at 0x1048b2d00>"
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da3d0>",
+        "target_node": null,
+        "i": 1,
+        "val": 5
+      },
+      "delta": {
+        "i": 1,
+        "val": 5
+      },
+      "steps": [
+        {
+          "step": 74,
+          "event": "before_statement",
+          "focus": "curr.next = ListNode(val)",
+          "node_id": 52
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "ListNode(val)",
+          "node_id": 92
+        },
+        {
+          "step": 76,
+          "event": "before_expression",
+          "focus": "ListNode",
+          "node_id": 122
+        },
+        {
+          "step": 77,
+          "event": "after_expression",
+          "focus": "ListNode",
+          "node_id": 122,
+          "value": "<class '__main__.ListNode'>"
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "val",
+          "node_id": 123
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "val",
+          "node_id": 123,
+          "value": 5
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "self": "<__main__.ListNode object at 0x1049da550>",
+        "x": 5
+      },
+      "delta": {
+        "self": "<__main__.ListNode object at 0x1049da550>",
+        "x": 5
+      },
+      "steps": [
+        {
+          "step": 80,
+          "event": "before_statement",
+          "focus": "self.val = x",
+          "node_id": 11
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 38
+        },
+        {
+          "step": 82,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 38,
+          "value": 5
+        },
+        {
+          "step": 83,
+          "event": "after_statement",
+          "focus": "self.val = x",
+          "node_id": 11
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "self": "<__main__.ListNode object at 0x1049da550>",
+        "x": 5
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 84,
+          "event": "before_statement",
+          "focus": "self.next = None",
+          "node_id": 12
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 40
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 40
+        },
+        {
+          "step": 87,
+          "event": "after_statement",
+          "focus": "self.next = None",
+          "node_id": 12
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da3d0>",
+        "target_node": null,
+        "i": 1,
+        "val": 5
+      },
+      "delta": {
+        "arr": {
+          "0": 4,
+          "1": 5,
+          "2": 1,
+          "3": 9
+        },
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da3d0>",
+        "target_node": null,
+        "i": 1,
+        "val": 5
+      },
+      "steps": [
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "ListNode(val)",
+          "node_id": 92,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 89,
+          "event": "after_statement",
+          "focus": "curr.next = ListNode(val)",
+          "node_id": 52
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da3d0>",
+        "target_node": null,
+        "i": 1,
+        "val": 5
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 90,
+          "event": "before_statement",
+          "focus": "curr = curr.next",
+          "node_id": 53
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "curr.next",
+          "node_id": 94
+        },
+        {
+          "step": 92,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 124
+        },
+        {
+          "step": 93,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 124,
+          "value": "<__main__.ListNode object at 0x1049da3d0>"
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "curr.next",
+          "node_id": 94,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 95,
+          "event": "after_statement",
+          "focus": "curr = curr.next",
+          "node_id": 53,
+          "locals": {
+            "arr": [
+              4,
+              5,
+              1,
+              9
+            ],
+            "node": 5,
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "curr": "<__main__.ListNode object at 0x1049da550>",
+            "target_node": null,
+            "i": 1,
+            "val": 5
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 16,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da550>",
+        "target_node": null,
+        "i": 1,
+        "val": 5
+      },
+      "delta": {
+        "curr": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "steps": [
+        {
+          "step": 96,
+          "event": "before_statement",
+          "focus": "if val == node:\n                target_node = curr",
+          "node_id": 54
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "val == node",
+          "node_id": 95
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "val",
+          "node_id": 125
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "val",
+          "node_id": 125,
+          "value": 5
+        },
+        {
+          "step": 100,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 126
+        },
+        {
+          "step": 101,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 126,
+          "value": 5
+        },
+        {
+          "step": 102,
+          "event": "after_expression",
+          "focus": "val == node",
+          "node_id": 95,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da550>",
+        "target_node": null,
+        "i": 1,
+        "val": 5
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 103,
+          "event": "before_statement",
+          "focus": "target_node = curr",
+          "node_id": 96
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 128
+        },
+        {
+          "step": 105,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 128,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 106,
+          "event": "after_statement",
+          "focus": "target_node = curr",
+          "node_id": 96,
+          "locals": {
+            "arr": [
+              4,
+              5,
+              1,
+              9
+            ],
+            "node": 5,
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "curr": "<__main__.ListNode object at 0x1049da550>",
+            "target_node": "<__main__.ListNode object at 0x1049da550>",
+            "i": 1,
+            "val": 5
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 16,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da550>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 1,
+        "val": 5
+      },
+      "delta": {
+        "target_node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "steps": [
+        {
+          "step": 107,
+          "event": "after_statement",
+          "focus": "if val == node:\n                target_node = curr",
+          "node_id": 54
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da550>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 2,
+        "val": 1
+      },
+      "delta": {
+        "i": 2,
+        "val": 1
+      },
+      "steps": [
+        {
+          "step": 108,
+          "event": "before_statement",
+          "focus": "curr.next = ListNode(val)",
+          "node_id": 52
+        },
+        {
+          "step": 109,
+          "event": "before_expression",
+          "focus": "ListNode(val)",
+          "node_id": 92
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "ListNode",
+          "node_id": 122
+        },
+        {
+          "step": 111,
+          "event": "after_expression",
+          "focus": "ListNode",
+          "node_id": 122,
+          "value": "<class '__main__.ListNode'>"
+        },
+        {
+          "step": 112,
+          "event": "before_expression",
+          "focus": "val",
+          "node_id": 123
+        },
+        {
+          "step": 113,
+          "event": "after_expression",
+          "focus": "val",
+          "node_id": 123,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "self": "<__main__.ListNode object at 0x1049da5b0>",
+        "x": 1
+      },
+      "delta": {
+        "self": "<__main__.ListNode object at 0x1049da5b0>",
+        "x": 1
+      },
+      "steps": [
+        {
+          "step": 114,
+          "event": "before_statement",
+          "focus": "self.val = x",
+          "node_id": 11
+        },
+        {
+          "step": 115,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 38
+        },
+        {
+          "step": 116,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 38,
+          "value": 1
+        },
+        {
+          "step": 117,
+          "event": "after_statement",
+          "focus": "self.val = x",
+          "node_id": 11
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "self": "<__main__.ListNode object at 0x1049da5b0>",
+        "x": 1
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 118,
+          "event": "before_statement",
+          "focus": "self.next = None",
+          "node_id": 12
+        },
+        {
+          "step": 119,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 40
+        },
+        {
+          "step": 120,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 40
+        },
+        {
+          "step": 121,
+          "event": "after_statement",
+          "focus": "self.next = None",
+          "node_id": 12
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da550>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 2,
+        "val": 1
+      },
+      "delta": {
+        "arr": {
+          "0": 4,
+          "1": 5,
+          "2": 1,
+          "3": 9
+        },
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da550>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 2,
+        "val": 1
+      },
+      "steps": [
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "ListNode(val)",
+          "node_id": 92,
+          "value": "<__main__.ListNode object at 0x1049da5b0>"
+        },
+        {
+          "step": 123,
+          "event": "after_statement",
+          "focus": "curr.next = ListNode(val)",
+          "node_id": 52
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da550>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 2,
+        "val": 1
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 124,
+          "event": "before_statement",
+          "focus": "curr = curr.next",
+          "node_id": 53
+        },
+        {
+          "step": 125,
+          "event": "before_expression",
+          "focus": "curr.next",
+          "node_id": 94
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 124
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 124,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 128,
+          "event": "after_expression",
+          "focus": "curr.next",
+          "node_id": 94,
+          "value": "<__main__.ListNode object at 0x1049da5b0>"
+        },
+        {
+          "step": 129,
+          "event": "after_statement",
+          "focus": "curr = curr.next",
+          "node_id": 53,
+          "locals": {
+            "arr": [
+              4,
+              5,
+              1,
+              9
+            ],
+            "node": 5,
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "curr": "<__main__.ListNode object at 0x1049da5b0>",
+            "target_node": "<__main__.ListNode object at 0x1049da550>",
+            "i": 2,
+            "val": 1
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 16,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da5b0>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 2,
+        "val": 1
+      },
+      "delta": {
+        "curr": "<__main__.ListNode object at 0x1049da5b0>"
+      },
+      "steps": [
+        {
+          "step": 130,
+          "event": "before_statement",
+          "focus": "if val == node:\n                target_node = curr",
+          "node_id": 54
+        },
+        {
+          "step": 131,
+          "event": "before_expression",
+          "focus": "val == node",
+          "node_id": 95
+        },
+        {
+          "step": 132,
+          "event": "before_expression",
+          "focus": "val",
+          "node_id": 125
+        },
+        {
+          "step": 133,
+          "event": "after_expression",
+          "focus": "val",
+          "node_id": 125,
+          "value": 1
+        },
+        {
+          "step": 134,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 126
+        },
+        {
+          "step": 135,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 126,
+          "value": 5
+        },
+        {
+          "step": 136,
+          "event": "after_expression",
+          "focus": "val == node",
+          "node_id": 95,
+          "value": false
+        },
+        {
+          "step": 137,
+          "event": "after_statement",
+          "focus": "if val == node:\n                target_node = curr",
+          "node_id": 54
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da5b0>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 3,
+        "val": 9
+      },
+      "delta": {
+        "i": 3,
+        "val": 9
+      },
+      "steps": [
+        {
+          "step": 138,
+          "event": "before_statement",
+          "focus": "curr.next = ListNode(val)",
+          "node_id": 52
+        },
+        {
+          "step": 139,
+          "event": "before_expression",
+          "focus": "ListNode(val)",
+          "node_id": 92
+        },
+        {
+          "step": 140,
+          "event": "before_expression",
+          "focus": "ListNode",
+          "node_id": 122
+        },
+        {
+          "step": 141,
+          "event": "after_expression",
+          "focus": "ListNode",
+          "node_id": 122,
+          "value": "<class '__main__.ListNode'>"
+        },
+        {
+          "step": 142,
+          "event": "before_expression",
+          "focus": "val",
+          "node_id": 123
+        },
+        {
+          "step": 143,
+          "event": "after_expression",
+          "focus": "val",
+          "node_id": 123,
+          "value": 9
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "self": "<__main__.ListNode object at 0x10489ca30>",
+        "x": 9
+      },
+      "delta": {
+        "self": "<__main__.ListNode object at 0x10489ca30>",
+        "x": 9
+      },
+      "steps": [
+        {
+          "step": 144,
+          "event": "before_statement",
+          "focus": "self.val = x",
+          "node_id": 11
+        },
+        {
+          "step": 145,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 38
+        },
+        {
+          "step": 146,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 38,
+          "value": 9
+        },
+        {
+          "step": 147,
+          "event": "after_statement",
+          "focus": "self.val = x",
+          "node_id": 11
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "self": "<__main__.ListNode object at 0x10489ca30>",
+        "x": 9
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 148,
+          "event": "before_statement",
+          "focus": "self.next = None",
+          "node_id": 12
+        },
+        {
+          "step": 149,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 40
+        },
+        {
+          "step": 150,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 40
+        },
+        {
+          "step": 151,
+          "event": "after_statement",
+          "focus": "self.next = None",
+          "node_id": 12
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da5b0>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 3,
+        "val": 9
+      },
+      "delta": {
+        "arr": {
+          "0": 4,
+          "1": 5,
+          "2": 1,
+          "3": 9
+        },
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da5b0>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 3,
+        "val": 9
+      },
+      "steps": [
+        {
+          "step": 152,
+          "event": "after_expression",
+          "focus": "ListNode(val)",
+          "node_id": 92,
+          "value": "<__main__.ListNode object at 0x10489ca30>"
+        },
+        {
+          "step": 153,
+          "event": "after_statement",
+          "focus": "curr.next = ListNode(val)",
+          "node_id": 52
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x1049da5b0>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 3,
+        "val": 9
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 154,
+          "event": "before_statement",
+          "focus": "curr = curr.next",
+          "node_id": 53
+        },
+        {
+          "step": 155,
+          "event": "before_expression",
+          "focus": "curr.next",
+          "node_id": 94
+        },
+        {
+          "step": 156,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 124
+        },
+        {
+          "step": 157,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 124,
+          "value": "<__main__.ListNode object at 0x1049da5b0>"
+        },
+        {
+          "step": 158,
+          "event": "after_expression",
+          "focus": "curr.next",
+          "node_id": 94,
+          "value": "<__main__.ListNode object at 0x10489ca30>"
+        },
+        {
+          "step": 159,
+          "event": "after_statement",
+          "focus": "curr = curr.next",
+          "node_id": 53,
+          "locals": {
+            "arr": [
+              4,
+              5,
+              1,
+              9
+            ],
+            "node": 5,
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "curr": "<__main__.ListNode object at 0x10489ca30>",
+            "target_node": "<__main__.ListNode object at 0x1049da550>",
+            "i": 3,
+            "val": 9
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 16,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x10489ca30>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 3,
+        "val": 9
+      },
+      "delta": {
+        "curr": "<__main__.ListNode object at 0x10489ca30>"
+      },
+      "steps": [
+        {
+          "step": 160,
+          "event": "before_statement",
+          "focus": "if val == node:\n                target_node = curr",
+          "node_id": 54
+        },
+        {
+          "step": 161,
+          "event": "before_expression",
+          "focus": "val == node",
+          "node_id": 95
+        },
+        {
+          "step": 162,
+          "event": "before_expression",
+          "focus": "val",
+          "node_id": 125
+        },
+        {
+          "step": 163,
+          "event": "after_expression",
+          "focus": "val",
+          "node_id": 125,
+          "value": 9
+        },
+        {
+          "step": 164,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 126
+        },
+        {
+          "step": 165,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 126,
+          "value": 5
+        },
+        {
+          "step": 166,
+          "event": "after_expression",
+          "focus": "val == node",
+          "node_id": 95,
+          "value": false
+        },
+        {
+          "step": 167,
+          "event": "after_statement",
+          "focus": "if val == node:\n                target_node = curr",
+          "node_id": 54
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x10489ca30>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 3,
+        "val": 9
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 168,
+          "event": "after_statement",
+          "focus": "for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 18,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x10489ca30>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 3,
+        "val": 9
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 169,
+          "event": "before_statement",
+          "focus": "if arr[0] == node:\n            target_node = head",
+          "node_id": 22
+        },
+        {
+          "step": 170,
+          "event": "before_expression",
+          "focus": "arr[0] == node",
+          "node_id": 55
+        },
+        {
+          "step": 171,
+          "event": "before_expression",
+          "focus": "arr[0]",
+          "node_id": 97
+        },
+        {
+          "step": 172,
+          "event": "before_expression",
+          "focus": "arr",
+          "node_id": 129
+        },
+        {
+          "step": 173,
+          "event": "after_expression",
+          "focus": "arr",
+          "node_id": 129,
+          "value": [
+            4,
+            5,
+            1,
+            9
+          ]
+        },
+        {
+          "step": 174,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 130
+        },
+        {
+          "step": 175,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 130,
+          "value": 0
+        },
+        {
+          "step": 176,
+          "event": "after_expression",
+          "focus": "arr[0]",
+          "node_id": 97,
+          "value": 4
+        },
+        {
+          "step": 177,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 98
+        },
+        {
+          "step": 178,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 98,
+          "value": 5
+        },
+        {
+          "step": 179,
+          "event": "after_expression",
+          "focus": "arr[0] == node",
+          "node_id": 55,
+          "value": false
+        },
+        {
+          "step": 180,
+          "event": "after_statement",
+          "focus": "if arr[0] == node:\n            target_node = head",
+          "node_id": 22
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "arr": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5,
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "curr": "<__main__.ListNode object at 0x10489ca30>",
+        "target_node": "<__main__.ListNode object at 0x1049da550>",
+        "i": 3,
+        "val": 9
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 181,
+          "event": "before_statement",
+          "focus": "return head, target_node",
+          "node_id": 23
+        },
+        {
+          "step": 182,
+          "event": "before_expression",
+          "focus": "head, target_node",
+          "node_id": 57
+        },
+        {
+          "step": 183,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 101
+        },
+        {
+          "step": 184,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 101,
+          "value": "<__main__.ListNode object at 0x1049da3d0>"
+        },
+        {
+          "step": 185,
+          "event": "before_expression",
+          "focus": "target_node",
+          "node_id": 102
+        },
+        {
+          "step": 186,
+          "event": "after_expression",
+          "focus": "target_node",
+          "node_id": 102,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 187,
+          "event": "after_expression",
+          "focus": "head, target_node",
+          "node_id": 57,
+          "value": [
+            "<__main__.ListNode object at 0x1049da3d0>",
+            "<__main__.ListNode object at 0x1049da550>"
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 30,
+      "locals": {
+        "head": [
+          4,
+          5,
+          1,
+          9
+        ],
+        "node": 5
+      },
+      "delta": {
+        "head": {
+          "0": 4,
+          "1": 5,
+          "2": 1,
+          "3": 9
+        }
+      },
+      "steps": [
+        {
+          "step": 188,
+          "event": "after_expression",
+          "focus": "list_to_linked(head)",
+          "node_id": 69,
+          "value": [
+            "<__main__.ListNode object at 0x1049da3d0>",
+            "<__main__.ListNode object at 0x1049da550>"
+          ]
+        },
+        {
+          "step": 189,
+          "event": "after_statement",
+          "focus": "head, node_to_delete = list_to_linked(head)",
+          "node_id": 29,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+            "node": 5
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 31,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+        "node": 5
+      },
+      "delta": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "steps": [
+        {
+          "step": 190,
+          "event": "before_statement",
+          "focus": "node = node_to_delete",
+          "node_id": 30
+        },
+        {
+          "step": 191,
+          "event": "before_expression",
+          "focus": "node_to_delete",
+          "node_id": 71
+        },
+        {
+          "step": 192,
+          "event": "after_expression",
+          "focus": "node_to_delete",
+          "node_id": 71,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 193,
+          "event": "after_statement",
+          "focus": "node = node_to_delete",
+          "node_id": 30,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+            "node": "<__main__.ListNode object at 0x1049da550>"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 29,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+        "node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "delta": {
+        "node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "steps": [
+        {
+          "step": 194,
+          "event": "after_statement",
+          "focus": "if isinstance(head, list):\n        head, node_to_delete = list_to_linked(head)\n        node = node_to_delete",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 33,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+        "node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 195,
+          "event": "before_statement",
+          "focus": "if node and node.next:\n        node.val = node.next.val\n        node.next = node.next.next",
+          "node_id": 8
+        },
+        {
+          "step": 196,
+          "event": "before_expression",
+          "focus": "node and node.next",
+          "node_id": 31
+        },
+        {
+          "step": 197,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 72
+        },
+        {
+          "step": 198,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 72,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 199,
+          "event": "before_expression",
+          "focus": "node.next",
+          "node_id": 73
+        },
+        {
+          "step": 200,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 110
+        },
+        {
+          "step": 201,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 110,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 202,
+          "event": "after_expression",
+          "focus": "node.next",
+          "node_id": 73,
+          "value": "<__main__.ListNode object at 0x1049da5b0>"
+        },
+        {
+          "step": 203,
+          "event": "after_expression",
+          "focus": "node and node.next",
+          "node_id": 31,
+          "value": "<__main__.ListNode object at 0x1049da5b0>"
+        }
+      ]
+    },
+    {
+      "line_number": 34,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+        "node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 204,
+          "event": "before_statement",
+          "focus": "node.val = node.next.val",
+          "node_id": 32
+        },
+        {
+          "step": 205,
+          "event": "before_expression",
+          "focus": "node.next.val",
+          "node_id": 75
+        },
+        {
+          "step": 206,
+          "event": "before_expression",
+          "focus": "node.next",
+          "node_id": 112
+        },
+        {
+          "step": 207,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 134
+        },
+        {
+          "step": 208,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 134,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 209,
+          "event": "after_expression",
+          "focus": "node.next",
+          "node_id": 112,
+          "value": "<__main__.ListNode object at 0x1049da5b0>"
+        },
+        {
+          "step": 210,
+          "event": "after_expression",
+          "focus": "node.next.val",
+          "node_id": 75,
+          "value": 1
+        },
+        {
+          "step": 211,
+          "event": "after_statement",
+          "focus": "node.val = node.next.val",
+          "node_id": 32
+        }
+      ]
+    },
+    {
+      "line_number": 35,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+        "node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 212,
+          "event": "before_statement",
+          "focus": "node.next = node.next.next",
+          "node_id": 33
+        },
+        {
+          "step": 213,
+          "event": "before_expression",
+          "focus": "node.next.next",
+          "node_id": 77
+        },
+        {
+          "step": 214,
+          "event": "before_expression",
+          "focus": "node.next",
+          "node_id": 114
+        },
+        {
+          "step": 215,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 135
+        },
+        {
+          "step": 216,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 135,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 217,
+          "event": "after_expression",
+          "focus": "node.next",
+          "node_id": 114,
+          "value": "<__main__.ListNode object at 0x1049da5b0>"
+        },
+        {
+          "step": 218,
+          "event": "after_expression",
+          "focus": "node.next.next",
+          "node_id": 77,
+          "value": "<__main__.ListNode object at 0x10489ca30>"
+        },
+        {
+          "step": 219,
+          "event": "after_statement",
+          "focus": "node.next = node.next.next",
+          "node_id": 33
+        }
+      ]
+    },
+    {
+      "line_number": 33,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+        "node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 220,
+          "event": "after_statement",
+          "focus": "if node and node.next:\n        node.val = node.next.val\n        node.next = node.next.next",
+          "node_id": 8
+        }
+      ]
+    },
+    {
+      "line_number": 37,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+        "node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 221,
+          "event": "before_statement",
+          "focus": "return linked_to_list(head)",
+          "node_id": 9
+        },
+        {
+          "step": 222,
+          "event": "before_expression",
+          "focus": "linked_to_list(head)",
+          "node_id": 34
+        },
+        {
+          "step": 223,
+          "event": "before_expression",
+          "focus": "linked_to_list",
+          "node_id": 78
+        },
+        {
+          "step": 224,
+          "event": "after_expression",
+          "focus": "linked_to_list",
+          "node_id": 78,
+          "value": "<function deleteNode.<locals>.linked_to_list at 0x104e01dc0>"
+        },
+        {
+          "step": 225,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 79
+        },
+        {
+          "step": 226,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 79,
+          "value": "<__main__.ListNode object at 0x1049da3d0>"
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 227,
+          "event": "before_statement",
+          "focus": "result = []",
+          "node_id": 25
+        },
+        {
+          "step": 228,
+          "event": "before_expression",
+          "focus": "[]",
+          "node_id": 60
+        },
+        {
+          "step": 229,
+          "event": "after_expression",
+          "focus": "[]",
+          "node_id": 60,
+          "value": []
+        },
+        {
+          "step": 230,
+          "event": "after_statement",
+          "focus": "result = []",
+          "node_id": 25,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "result": []
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "result": []
+      },
+      "delta": {
+        "result": []
+      },
+      "steps": [
+        {
+          "step": 231,
+          "event": "before_statement",
+          "focus": "while head:\n            result.append(head.val)\n            head = head.next",
+          "node_id": 26
+        },
+        {
+          "step": 232,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 61
+        },
+        {
+          "step": 233,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 61,
+          "value": "<__main__.ListNode object at 0x1049da3d0>"
+        }
+      ]
+    },
+    {
+      "line_number": 25,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "result": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 234,
+          "event": "before_statement",
+          "focus": "result.append(head.val)",
+          "node_id": 62
+        },
+        {
+          "step": 235,
+          "event": "before_expression",
+          "focus": "result.append(head.val)",
+          "node_id": 103
+        },
+        {
+          "step": 236,
+          "event": "before_expression",
+          "focus": "result.append",
+          "node_id": 131
+        },
+        {
+          "step": 237,
+          "event": "before_expression",
+          "focus": "result",
+          "node_id": 137
+        },
+        {
+          "step": 238,
+          "event": "after_expression",
+          "focus": "result",
+          "node_id": 137,
+          "value": []
+        },
+        {
+          "step": 239,
+          "event": "after_expression",
+          "focus": "result.append",
+          "node_id": 131,
+          "value": "<built-in method append of list object at 0x104c93ac0>"
+        },
+        {
+          "step": 240,
+          "event": "before_expression",
+          "focus": "head.val",
+          "node_id": 132
+        },
+        {
+          "step": 241,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 138
+        },
+        {
+          "step": 242,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 138,
+          "value": "<__main__.ListNode object at 0x1049da3d0>"
+        },
+        {
+          "step": 243,
+          "event": "after_expression",
+          "focus": "head.val",
+          "node_id": 132,
+          "value": 4
+        },
+        {
+          "step": 244,
+          "event": "after_expression",
+          "focus": "result.append(head.val)",
+          "node_id": 103,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "result": [
+              4
+            ]
+          }
+        },
+        {
+          "step": 245,
+          "event": "after_statement",
+          "focus": "result.append(head.val)",
+          "node_id": 62,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x1049da3d0>",
+            "result": [
+              4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "result": [
+          4
+        ]
+      },
+      "delta": {
+        "result": {
+          "0": 4
+        }
+      },
+      "steps": [
+        {
+          "step": 246,
+          "event": "before_statement",
+          "focus": "head = head.next",
+          "node_id": 63
+        },
+        {
+          "step": 247,
+          "event": "before_expression",
+          "focus": "head.next",
+          "node_id": 105
+        },
+        {
+          "step": 248,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 133
+        },
+        {
+          "step": 249,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 133,
+          "value": "<__main__.ListNode object at 0x1049da3d0>"
+        },
+        {
+          "step": 250,
+          "event": "after_expression",
+          "focus": "head.next",
+          "node_id": 105,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 251,
+          "event": "after_statement",
+          "focus": "head = head.next",
+          "node_id": 63,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x1049da550>",
+            "result": [
+              4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da550>",
+        "result": [
+          4
+        ]
+      },
+      "delta": {
+        "head": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "steps": [
+        {
+          "step": 252,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 61
+        },
+        {
+          "step": 253,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 61,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        }
+      ]
+    },
+    {
+      "line_number": 25,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da550>",
+        "result": [
+          4
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 254,
+          "event": "before_statement",
+          "focus": "result.append(head.val)",
+          "node_id": 62
+        },
+        {
+          "step": 255,
+          "event": "before_expression",
+          "focus": "result.append(head.val)",
+          "node_id": 103
+        },
+        {
+          "step": 256,
+          "event": "before_expression",
+          "focus": "result.append",
+          "node_id": 131
+        },
+        {
+          "step": 257,
+          "event": "before_expression",
+          "focus": "result",
+          "node_id": 137
+        },
+        {
+          "step": 258,
+          "event": "after_expression",
+          "focus": "result",
+          "node_id": 137,
+          "value": [
+            4
+          ]
+        },
+        {
+          "step": 259,
+          "event": "after_expression",
+          "focus": "result.append",
+          "node_id": 131,
+          "value": "<built-in method append of list object at 0x104c93ac0>"
+        },
+        {
+          "step": 260,
+          "event": "before_expression",
+          "focus": "head.val",
+          "node_id": 132
+        },
+        {
+          "step": 261,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 138
+        },
+        {
+          "step": 262,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 138,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 263,
+          "event": "after_expression",
+          "focus": "head.val",
+          "node_id": 132,
+          "value": 1
+        },
+        {
+          "step": 264,
+          "event": "after_expression",
+          "focus": "result.append(head.val)",
+          "node_id": 103,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x1049da550>",
+            "result": [
+              4,
+              1
+            ]
+          }
+        },
+        {
+          "step": 265,
+          "event": "after_statement",
+          "focus": "result.append(head.val)",
+          "node_id": 62,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x1049da550>",
+            "result": [
+              4,
+              1
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da550>",
+        "result": [
+          4,
+          1
+        ]
+      },
+      "delta": {
+        "result": {
+          "1": 1
+        }
+      },
+      "steps": [
+        {
+          "step": 266,
+          "event": "before_statement",
+          "focus": "head = head.next",
+          "node_id": 63
+        },
+        {
+          "step": 267,
+          "event": "before_expression",
+          "focus": "head.next",
+          "node_id": 105
+        },
+        {
+          "step": 268,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 133
+        },
+        {
+          "step": 269,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 133,
+          "value": "<__main__.ListNode object at 0x1049da550>"
+        },
+        {
+          "step": 270,
+          "event": "after_expression",
+          "focus": "head.next",
+          "node_id": 105,
+          "value": "<__main__.ListNode object at 0x10489ca30>"
+        },
+        {
+          "step": 271,
+          "event": "after_statement",
+          "focus": "head = head.next",
+          "node_id": 63,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x10489ca30>",
+            "result": [
+              4,
+              1
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x10489ca30>",
+        "result": [
+          4,
+          1
+        ]
+      },
+      "delta": {
+        "head": "<__main__.ListNode object at 0x10489ca30>"
+      },
+      "steps": [
+        {
+          "step": 272,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 61
+        },
+        {
+          "step": 273,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 61,
+          "value": "<__main__.ListNode object at 0x10489ca30>"
+        }
+      ]
+    },
+    {
+      "line_number": 25,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x10489ca30>",
+        "result": [
+          4,
+          1
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 274,
+          "event": "before_statement",
+          "focus": "result.append(head.val)",
+          "node_id": 62
+        },
+        {
+          "step": 275,
+          "event": "before_expression",
+          "focus": "result.append(head.val)",
+          "node_id": 103
+        },
+        {
+          "step": 276,
+          "event": "before_expression",
+          "focus": "result.append",
+          "node_id": 131
+        },
+        {
+          "step": 277,
+          "event": "before_expression",
+          "focus": "result",
+          "node_id": 137
+        },
+        {
+          "step": 278,
+          "event": "after_expression",
+          "focus": "result",
+          "node_id": 137,
+          "value": [
+            4,
+            1
+          ]
+        },
+        {
+          "step": 279,
+          "event": "after_expression",
+          "focus": "result.append",
+          "node_id": 131,
+          "value": "<built-in method append of list object at 0x104c93ac0>"
+        },
+        {
+          "step": 280,
+          "event": "before_expression",
+          "focus": "head.val",
+          "node_id": 132
+        },
+        {
+          "step": 281,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 138
+        },
+        {
+          "step": 282,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 138,
+          "value": "<__main__.ListNode object at 0x10489ca30>"
+        },
+        {
+          "step": 283,
+          "event": "after_expression",
+          "focus": "head.val",
+          "node_id": 132,
+          "value": 9
+        },
+        {
+          "step": 284,
+          "event": "after_expression",
+          "focus": "result.append(head.val)",
+          "node_id": 103,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x10489ca30>",
+            "result": [
+              4,
+              1,
+              9
+            ]
+          }
+        },
+        {
+          "step": 285,
+          "event": "after_statement",
+          "focus": "result.append(head.val)",
+          "node_id": 62,
+          "locals": {
+            "head": "<__main__.ListNode object at 0x10489ca30>",
+            "result": [
+              4,
+              1,
+              9
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x10489ca30>",
+        "result": [
+          4,
+          1,
+          9
+        ]
+      },
+      "delta": {
+        "result": {
+          "2": 9
+        }
+      },
+      "steps": [
+        {
+          "step": 286,
+          "event": "before_statement",
+          "focus": "head = head.next",
+          "node_id": 63
+        },
+        {
+          "step": 287,
+          "event": "before_expression",
+          "focus": "head.next",
+          "node_id": 105
+        },
+        {
+          "step": 288,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 133
+        },
+        {
+          "step": 289,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 133,
+          "value": "<__main__.ListNode object at 0x10489ca30>"
+        },
+        {
+          "step": 290,
+          "event": "after_expression",
+          "focus": "head.next",
+          "node_id": 105
+        },
+        {
+          "step": 291,
+          "event": "after_statement",
+          "focus": "head = head.next",
+          "node_id": 63,
+          "locals": {
+            "head": null,
+            "result": [
+              4,
+              1,
+              9
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "head": null,
+        "result": [
+          4,
+          1,
+          9
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 292,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 61
+        },
+        {
+          "step": 293,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 61
+        },
+        {
+          "step": 294,
+          "event": "after_statement",
+          "focus": "while head:\n            result.append(head.val)\n            head = head.next",
+          "node_id": 26
+        }
+      ]
+    },
+    {
+      "line_number": 27,
+      "locals": {
+        "head": null,
+        "result": [
+          4,
+          1,
+          9
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 295,
+          "event": "before_statement",
+          "focus": "return result",
+          "node_id": 27
+        },
+        {
+          "step": 296,
+          "event": "before_expression",
+          "focus": "result",
+          "node_id": 64
+        },
+        {
+          "step": 297,
+          "event": "after_expression",
+          "focus": "result",
+          "node_id": 64,
+          "value": [
+            4,
+            1,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 37,
+      "locals": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+        "node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "delta": {
+        "head": "<__main__.ListNode object at 0x1049da3d0>",
+        "node_to_delete": "<__main__.ListNode object at 0x1049da550>",
+        "node": "<__main__.ListNode object at 0x1049da550>"
+      },
+      "steps": [
+        {
+          "step": 298,
+          "event": "after_expression",
+          "focus": "linked_to_list(head)",
+          "node_id": 34,
+          "value": [
+            4,
+            1,
+            9
+          ]
+        }
+      ]
+    }
+  ],
+  "result": [
+    4,
+    1,
+    9
+  ]
+}

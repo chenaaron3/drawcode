@@ -50,7 +50,6 @@ The analyzer detects these **5 focused relationship types** between containers a
 2. **value_access** (5 occurrences) - Variable receives values from container iteration: `for cursor in container`
 3. **key_assignment** (4 occurrences) - Variable used as key when assigning to container: `container[cursor] = value`
 4. **membership_test** (3 occurrences) - Variable tested for membership in container: `cursor in container`
-5. **key_offset** (1 occurrence) - Variable used in offset indexing: `container[cursor+1]`
 
 ## Container and Cursor Requirements
 
@@ -168,3 +167,14 @@ Generated JSON files contain:
 ## Testing
 
 The focused analyzer has been tested with 8 different algorithmic problems, generating clean container-cursor relationships that are directly relevant for visualizing data access patterns in algorithms.
+
+## Personal Notes
+
+1. Compile the original python code to get an AST
+2. Assign each node with an ID before adding markers
+3. Install markers into the AST, before/after a statement/expression is evaluated
+4. Run the code with markers and take snapshots of each step
+5. Save the results by unwrapping the markers
+6.
+
+-

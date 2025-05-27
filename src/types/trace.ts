@@ -1,5 +1,21 @@
 import type { AST } from "./ast";
 
+// Relationship types for container-cursor analysis
+export type RelationshipType =
+  | "key_access" // Variable used as index to access container elements
+  | "value_access" // Variable receives values from container iteration
+  | "key_assignment" // Variable used as key when assigning to container
+  | "membership_test" // Variable tested for membership in container
+  | "key_index" // Variable represents index in for loop iteration
+  | "value_index"; // Variable represents value in for loop iteration
+
+export type Relationship = {
+  container: string; // Name of the container variable
+  cursor: string; // Name of the cursor/key variable
+  type: RelationshipType;
+  node_id: number; // ID of the AST node that introduced this relationship
+};
+
 // Augmented trace step joins the node_id with the lookup AST
 export type AugmentedTraceStep = TraceStep & {
   ast: AST;
@@ -36,6 +52,7 @@ export type TraceData = {
     };
   };
   ast: AST;
+  relationships: Relationship[];
   trace: TraceLine[];
   result: any;
 };

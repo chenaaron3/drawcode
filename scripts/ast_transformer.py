@@ -43,20 +43,24 @@ class ASTTransformer(ast.NodeTransformer):
                 if isinstance(value, list):
                     field_values = []
                     for item in value:
-                        children.append(item)
-                        field_values.append(self.ast_to_dict(item, source_lines))
+                        child_dict = self.ast_to_dict(item, source_lines)
+                        if child_dict is not None:
+                            children.append(item)
+                            field_values.append(child_dict)
                     fields[field] = field_values
                 else:
-                    children.append(value)
-                    fields[field] = self.ast_to_dict(value, source_lines)
+                    child_dict = self.ast_to_dict(value, source_lines)
+                    if child_dict is not None:
+                        children.append(value)
+                        fields[field] = child_dict
             
             node_info = {
                 "node_id": node_id,
-                "children_node_ids": [self.get_node_id(child) for child in children if isinstance(child, ast.AST)],
+                "children_node_ids": [self.get_node_id(child) for child in children if isinstance(child, ast.AST) and self.get_node_id(child) is not None],
                 "type": node.__class__.__name__,
             }
 
-            if parent:
+            if parent and self.get_node_id(parent) is not None:
                 node_info['parent_node_id'] = self.get_node_id(parent)
             
             # Add location info if available
@@ -219,7 +223,7 @@ class ASTTransformer(ast.NodeTransformer):
         """Transform source code by adding marker function calls"""
         root = ast.parse(source)
         
-        # First assign IDs to all nodes
+        # First assign IDs to all nodes. We need to do this before installing markers so they don't get IDs
         for node in ast.walk(root):
             if isinstance(node, ast.AST):
                 self.get_node_id(node)
@@ -231,7 +235,7 @@ class ASTTransformer(ast.NodeTransformer):
         # Transform the AST
         root = self.visit(root)
         
-        # Handle top-level statements in Module
+        # Handle top-level statements in Module to flatten the AST
         if isinstance(root, ast.Module):
             new_body = []
             for node in root.body:
@@ -243,3 +247,79 @@ class ASTTransformer(ast.NodeTransformer):
         
         ast.fix_missing_locations(root)
         return root 
+
+    def _is_marker_node(self, node):
+        """Check if a node is a marker function call that should not get a node ID"""
+        if isinstance(node, ast.Expr) and isinstance(node.value, ast.Call):
+            if isinstance(node.value.func, ast.Name):
+                func_name = node.value.func.id
+                return func_name in [BEFORE_STATEMENT_MARKER, AFTER_STATEMENT_MARKER]
+        elif isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
+            func_name = node.func.id
+            return func_name in [BEFORE_EXPRESSION_MARKER, AFTER_EXPRESSION_MARKER]
+        return False
+
+    def unwrap_transformed_ast(self, transformed_ast):
+        """Unwrap a transformed AST back to original structure while preserving node IDs"""
+        unwrapped = self._unwrap_ast_node(transformed_ast)
+        
+        # Set up parent relationships for the unwrapped AST
+        for node in ast.walk(unwrapped):
+            for child in ast.iter_child_nodes(node):
+                setattr(child, 'parent', node)
+                
+        return unwrapped
+    
+    def _unwrap_ast_node(self, node):
+        """Recursively unwrap AST nodes, removing markers but preserving structure and node IDs"""
+        if not isinstance(node, ast.AST):
+            return node
+            
+        # Handle marker nodes by unwrapping them
+        if self._is_marker_node(node):
+            if isinstance(node, ast.Expr) and isinstance(node.value, ast.Call):
+                # Statement marker: skip it entirely
+                return None
+            elif isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
+                func_name = node.func.id
+                if func_name == AFTER_EXPRESSION_MARKER:
+                    # Expression marker: unwrap to get the original expression
+                    if len(node.args) >= 2:
+                        # The second argument is the original expression
+                        return self._unwrap_ast_node(node.args[1])
+                elif func_name == BEFORE_EXPRESSION_MARKER:
+                    # Before expression marker: skip it
+                    return None
+            return None
+        
+        # For regular nodes, create a copy and recursively unwrap children
+        # Create a new node of the same type
+        new_node = type(node)()
+        
+        # Copy the node ID if it exists
+        if hasattr(node, '_tracer_id'):
+            setattr(new_node, '_tracer_id', node._tracer_id)
+            
+        # Copy location information
+        for attr in ['lineno', 'col_offset', 'end_lineno', 'end_col_offset']:
+            if hasattr(node, attr):
+                setattr(new_node, attr, getattr(node, attr))
+        
+        # Recursively unwrap all fields
+        for field, value in ast.iter_fields(node):
+            if isinstance(value, list):
+                new_list = []
+                for item in value:
+                    unwrapped = self._unwrap_ast_node(item)
+                    if unwrapped is not None:
+                        new_list.append(unwrapped)
+                setattr(new_node, field, new_list)
+            else:
+                unwrapped = self._unwrap_ast_node(value)
+                if unwrapped is not None:
+                    setattr(new_node, field, unwrapped)
+                elif not isinstance(value, ast.AST):
+                    # Keep non-AST values (strings, numbers, etc.)
+                    setattr(new_node, field, value)
+        
+        return new_node 

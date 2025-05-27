@@ -6,15 +6,19 @@ class RelationshipAnalyzer:
     def __init__(self):
         self.relationships = []
         self.variable_types = {}  # Track inferred variable types
+        self.transformer = None  # Will be set when analyzing
         
     def reset(self):
         """Reset the analyzer's state"""
         self.relationships = []
         self.variable_types = {}
+        self.transformer = None
         
-    def analyze_ast(self, root):
+    def analyze_ast(self, root, transformer=None):
         """Analyze the AST to find container-cursor relationships"""
         self.reset()
+        self.transformer = transformer
+        self._ast_root = root
         
         # First pass: infer variable types from their usage
         self._infer_variable_types(root)
@@ -78,10 +82,126 @@ class RelationshipAnalyzer:
         return var_type in ['list', 'dict', 'set', 'container', 'iterable']
         
     def _is_cursor_variable(self, var_name):
-        """Check if a variable is likely a cursor/key (used for indexing)"""
-        # For now, we'll be permissive and allow any variable as a cursor
-        # In practice, cursors are often integers (i, j, index) or keys
-        return True
+        """Check if a variable is likely a cursor/key based on AST usage patterns"""
+        # Skip variables that are clearly containers themselves
+        if self._is_container_variable(var_name):
+            return False
+            
+        # Use AST analysis to determine if this variable is used as a cursor
+        return self._is_used_as_cursor_in_ast(var_name)
+        
+    def _is_used_as_cursor_in_ast(self, var_name):
+        """Analyze AST to see if variable is used in cursor-like patterns"""
+        if not hasattr(self, '_ast_root'):
+            # If we don't have the AST, be permissive
+            return True
+            
+        cursor_usage_count = 0
+        non_cursor_usage_count = 0
+        
+        for node in ast.walk(self._ast_root):
+            if isinstance(node, ast.Name) and node.id == var_name:
+                if self._is_cursor_usage_context(node):
+                    cursor_usage_count += 1
+                elif self._is_non_cursor_usage_context(node):
+                    non_cursor_usage_count += 1
+                    
+        # If variable is used more as a cursor than not, consider it a cursor
+        # Also allow if it's only used as cursor (even if just once)
+        return cursor_usage_count > 0 and cursor_usage_count >= non_cursor_usage_count
+        
+    def _is_cursor_usage_context(self, name_node):
+        """Check if a Name node is used in a cursor-like context"""
+        parent = getattr(name_node, 'parent', None)
+        if not parent:
+            return False
+            
+        # Used as array/dict index: container[cursor]
+        if isinstance(parent, ast.Subscript) and parent.slice == name_node:
+            return True
+            
+        # Used in range() for iteration: for i in range(...)
+        if isinstance(parent, ast.Call) and isinstance(parent.func, ast.Name):
+            if parent.func.id == 'range' and name_node in parent.args:
+                return True
+                
+        # Used in len() call: range(len(container))
+        grandparent = getattr(parent, 'parent', None)
+        if (isinstance(parent, ast.Call) and isinstance(parent.func, ast.Name) and
+            parent.func.id == 'len' and isinstance(grandparent, ast.Call) and
+            isinstance(grandparent.func, ast.Name) and grandparent.func.id == 'range'):
+            return False  # This is the container, not the cursor
+            
+        # Used in binary operations within subscripts: arr[i+1], arr[i-1]
+        if isinstance(parent, ast.BinOp):
+            grandparent = getattr(parent, 'parent', None)
+            if isinstance(grandparent, ast.Subscript) and grandparent.slice == parent:
+                return True
+                
+        # Used as loop variable in enumerate: for i, item in enumerate(...)
+        if isinstance(parent, ast.Tuple):
+            grandparent = getattr(parent, 'parent', None)
+            if isinstance(grandparent, ast.For) and grandparent.target == parent:
+                great_grandparent = grandparent.iter
+                if (isinstance(great_grandparent, ast.Call) and 
+                    isinstance(great_grandparent.func, ast.Name) and
+                    great_grandparent.func.id == 'enumerate'):
+                    # First element of tuple in enumerate is typically the index (cursor)
+                    if isinstance(parent, ast.Tuple) and len(parent.elts) >= 1:
+                        return parent.elts[0] == name_node
+                        
+        # Used as simple loop variable: for i in range(...)
+        if isinstance(parent, ast.For) and parent.target == name_node:
+            if (isinstance(parent.iter, ast.Call) and 
+                isinstance(parent.iter.func, ast.Name) and
+                parent.iter.func.id == 'range'):
+                return True
+                
+        return False
+        
+    def _is_non_cursor_usage_context(self, name_node):
+        """Check if a Name node is used in a non-cursor context"""
+        parent = getattr(name_node, 'parent', None)
+        if not parent:
+            return False
+            
+        # Used as container in subscript: container[index]
+        if isinstance(parent, ast.Subscript) and parent.value == name_node:
+            return True
+            
+        # Used as container in membership test: key in container
+        if isinstance(parent, ast.Compare):
+            if len(parent.comparators) == 1 and parent.comparators[0] == name_node:
+                if len(parent.ops) == 1 and isinstance(parent.ops[0], (ast.In, ast.NotIn)):
+                    return True
+                    
+        # Used as container in iteration: for item in container
+        if isinstance(parent, ast.For) and parent.iter == name_node:
+            return True
+            
+        # Used as container in function calls: len(container), enumerate(container)
+        if isinstance(parent, ast.Call) and name_node in parent.args:
+            if isinstance(parent.func, ast.Name):
+                container_functions = {'len', 'enumerate', 'reversed', 'sorted', 'max', 'min', 'sum'}
+                if parent.func.id in container_functions:
+                    return True
+                    
+        # Used in arithmetic operations (likely a value, not a cursor)
+        if isinstance(parent, ast.BinOp):
+            # Unless it's inside a subscript (which we handle in cursor context)
+            grandparent = getattr(parent, 'parent', None)
+            if not (isinstance(grandparent, ast.Subscript) and grandparent.slice == parent):
+                # Also check if it's a simple increment/decrement pattern like i+1, i-1
+                # which is still cursor-like behavior
+                if isinstance(parent.op, (ast.Add, ast.Sub)):
+                    # If the other operand is a small constant, it's likely cursor arithmetic
+                    other_operand = parent.right if parent.left == name_node else parent.left
+                    if isinstance(other_operand, ast.Constant) and isinstance(other_operand.value, int):
+                        if abs(other_operand.value) <= 2:  # i+1, i-1, i+2, etc.
+                            return False  # Don't count as non-cursor
+                return True
+                
+        return False
         
     def _analyze_subscript(self, node):
         """Analyze subscript operations like container[key]"""
@@ -100,28 +220,28 @@ class RelationshipAnalyzer:
             if isinstance(node.slice, ast.Name):
                 cursor_name = node.slice.id
                 if self._is_cursor_variable(cursor_name):
-                    self._add_relationship(container_name, cursor_name, 'key_assignment')
+                    self._add_relationship(container_name, cursor_name, 'key_assignment', node)
             return
             
         # Analyze the slice/index for read operations
         if isinstance(node.slice, ast.Name):
             cursor_name = node.slice.id
             if self._is_cursor_variable(cursor_name):
-                self._add_relationship(container_name, cursor_name, 'key_access')
+                self._add_relationship(container_name, cursor_name, 'key_access', node)
         elif isinstance(node.slice, ast.BinOp):
             # Handle cases like arr[i+1], arr[i-1]
-            self._analyze_binary_operation_in_slice(container_name, node.slice)
+            self._analyze_binary_operation_in_slice(container_name, node.slice, node)
             
-    def _analyze_binary_operation_in_slice(self, container_name, binop_node):
+    def _analyze_binary_operation_in_slice(self, container_name, binop_node, parent_node):
         """Analyze binary operations used in slicing like arr[i+1]"""
         if isinstance(binop_node.left, ast.Name):
             cursor_name = binop_node.left.id
             if self._is_cursor_variable(cursor_name):
-                self._add_relationship(container_name, cursor_name, 'key_offset')
+                self._add_relationship(container_name, cursor_name, 'key_access', parent_node)
         if isinstance(binop_node.right, ast.Name):
             cursor_name = binop_node.right.id
             if self._is_cursor_variable(cursor_name):
-                self._add_relationship(container_name, cursor_name, 'key_offset')
+                self._add_relationship(container_name, cursor_name, 'key_access', parent_node)
             
     def _analyze_for_loop(self, node):
         """Analyze for loops to identify iteration patterns"""
@@ -135,21 +255,21 @@ class RelationshipAnalyzer:
             if self._is_container_variable(container_name):
                 if isinstance(target_node, ast.Name):
                     cursor_name = target_node.id
-                    self._add_relationship(container_name, cursor_name, 'value_access')
+                    self._add_relationship(container_name, cursor_name, 'value_index', node)
         elif isinstance(container_node, ast.Call):
             # Handle function calls like enumerate, range, zip, etc.
             if isinstance(container_node.func, ast.Name):
                 func_name = container_node.func.id
                 if func_name == 'enumerate':
-                    self._analyze_enumerate_in_for(container_node, target_node)
+                    self._analyze_enumerate_in_for(container_node, target_node, node)
                 elif func_name == 'range':
-                    self._analyze_range_in_for(container_node, target_node)
+                    self._analyze_range_in_for(container_node, target_node, node)
                 elif func_name == 'zip':
-                    self._analyze_zip_in_for(container_node, target_node)
+                    self._analyze_zip_in_for(container_node, target_node, node)
                 elif func_name == 'reversed':
-                    self._analyze_reversed_in_for(container_node, target_node)
+                    self._analyze_reversed_in_for(container_node, target_node, node)
                     
-    def _analyze_enumerate_in_for(self, enumerate_call, target_node):
+    def _analyze_enumerate_in_for(self, enumerate_call, target_node, for_node):
         """Analyze enumerate() calls in for loops"""
         if len(enumerate_call.args) > 0 and isinstance(enumerate_call.args[0], ast.Name):
             container_name = enumerate_call.args[0].id
@@ -164,10 +284,10 @@ class RelationshipAnalyzer:
                     index_name = target_node.elts[0].id
                     value_name = target_node.elts[1].id
                     
-                    self._add_relationship(container_name, index_name, 'key_access')
-                    self._add_relationship(container_name, value_name, 'value_access')
+                    self._add_relationship(container_name, index_name, 'key_index', for_node)
+                    self._add_relationship(container_name, value_name, 'value_index', for_node)
                     
-    def _analyze_range_in_for(self, range_call, target_node):
+    def _analyze_range_in_for(self, range_call, target_node, for_node):
         """Analyze range() calls in for loops"""
         if isinstance(target_node, ast.Name):
             cursor_name = target_node.id
@@ -179,9 +299,9 @@ class RelationshipAnalyzer:
                         if isinstance(arg.args[0], ast.Name):
                             container_name = arg.args[0].id
                             if self._is_container_variable(container_name):
-                                self._add_relationship(container_name, cursor_name, 'key_access')
+                                self._add_relationship(container_name, cursor_name, 'key_index', for_node)
                             
-    def _analyze_zip_in_for(self, zip_call, target_node):
+    def _analyze_zip_in_for(self, zip_call, target_node, for_node):
         """Analyze zip() calls in for loops"""
         if isinstance(target_node, ast.Tuple):
             # for a, b in zip(container1, container2)
@@ -191,16 +311,16 @@ class RelationshipAnalyzer:
                         container_name = arg.id
                         cursor_name = target_node.elts[i].id
                         if self._is_container_variable(container_name):
-                            self._add_relationship(container_name, cursor_name, 'value_access')
+                            self._add_relationship(container_name, cursor_name, 'value_index', for_node)
                         
-    def _analyze_reversed_in_for(self, reversed_call, target_node):
+    def _analyze_reversed_in_for(self, reversed_call, target_node, for_node):
         """Analyze reversed() calls in for loops"""
         if len(reversed_call.args) > 0 and isinstance(reversed_call.args[0], ast.Name):
             container_name = reversed_call.args[0].id
             if self._is_container_variable(container_name):
                 if isinstance(target_node, ast.Name):
                     cursor_name = target_node.id
-                    self._add_relationship(container_name, cursor_name, 'value_reversed')
+                    self._add_relationship(container_name, cursor_name, 'value_index', for_node)
                     
     def _analyze_membership_test(self, node):
         """Analyze membership tests like 'key in container'"""
@@ -215,14 +335,22 @@ class RelationshipAnalyzer:
                 
                 # Only create relationship if container is actually a container
                 if self._is_container_variable(container_name) and self._is_cursor_variable(cursor_name):
-                    self._add_relationship(container_name, cursor_name, 'membership_test')
+                    self._add_relationship(container_name, cursor_name, 'membership_test', node)
                 
-    def _add_relationship(self, container, cursor, rel_type):
-        """Add a relationship if it doesn't already exist"""
+    def _add_relationship(self, container, cursor, rel_type, node):
+        """Add a relationship if it doesn't already exist and has a valid node_id"""
+        # Get the node_id from the node's _tracer_id attribute
+        node_id = getattr(node, '_tracer_id', None)
+        
+        # Only add relationships with valid node IDs
+        if node_id is None:
+            return
+        
         relationship = {
             'container': container,
             'cursor': cursor,
-            'type': rel_type
+            'type': rel_type,
+            'node_id': node_id
         }
         
         # Avoid duplicates

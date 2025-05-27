@@ -190,9 +190,12 @@ class PythonTracer:
         """Save results to a JSON file with steps grouped by line number"""
         print(f"Total steps recorded: {len(self.steps)}")
         
-        # Analyze relationships from the original AST (before transformation)
-        original_ast = ast.parse(self.source_code)
-        relationships = self.relationship_analyzer.analyze_ast(original_ast)
+        # Unwrap the transformed AST back to original structure while preserving node IDs
+        unwrapped_ast = self.transformer.unwrap_transformed_ast(transformed_ast)
+        
+        # Analyze relationships from the unwrapped AST (clean structure with node IDs)
+        relationships = self.relationship_analyzer.analyze_ast(unwrapped_ast, self.transformer)
+        
         print(f"Found {len(relationships)} relationships")
         
         trace = []
@@ -239,8 +242,8 @@ class PythonTracer:
             
         print(f"Generated {len(trace)} trace entries")
 
-        # Use the transformed AST but filter out marker nodes
-        json_ast = self.transformer.ast_to_dict(transformed_ast, self.source_code)
+        # Use the unwrapped AST for JSON output (clean structure with node IDs)
+        json_ast = self.transformer.ast_to_dict(unwrapped_ast, self.source_code)
         
         with open(filename, 'w') as f:
             json.dump({

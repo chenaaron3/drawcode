@@ -429,8 +429,8 @@
                     []
                 ]
             },
-            "entrypoint": "MinStack",
-            "solution": "class MinStack:\n    def __init__(self):\n        self.stack = []\n        self.min_stack = []\n    \n    def push(self, val):\n        self.stack.append(val)\n        if not self.min_stack or val <= self.min_stack[-1]:\n            self.min_stack.append(val)\n    \n    def pop(self):\n        if self.stack:\n            val = self.stack.pop()\n            if self.min_stack and val == self.min_stack[-1]:\n                self.min_stack.pop()\n    \n    def top(self):\n        return self.stack[-1] if self.stack else None\n    \n    def getMin(self):\n        return self.min_stack[-1] if self.min_stack else None\n\ndef MinStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MinStack\":\n            obj = MinStack()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            obj.pop()\n            results.append(None)\n        elif op == \"top\":\n            results.append(obj.top())\n        elif op == \"getMin\":\n            results.append(obj.getMin())\n    \n    return results\n"
+            "entrypoint": "runMinStack",
+            "solution": "class MinStack:\n    def __init__(self):\n        self.stack = []\n        self.min_stack = []\n    \n    def push(self, val):\n        self.stack.append(val)\n        if not self.min_stack or val <= self.min_stack[-1]:\n            self.min_stack.append(val)\n    \n    def pop(self):\n        if self.stack:\n            val = self.stack.pop()\n            if self.min_stack and val == self.min_stack[-1]:\n                self.min_stack.pop()\n    \n    def top(self):\n        return self.stack[-1] if self.stack else None\n    \n    def getMin(self):\n        return self.min_stack[-1] if self.min_stack else None\n\ndef runMinStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MinStack\":\n            obj = MinStack()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            obj.pop()\n            results.append(None)\n        elif op == \"top\":\n            results.append(obj.top())\n        elif op == \"getMin\":\n            results.append(obj.getMin())\n    \n    return results\n"
         },
         {
             "id": "intersection-two-linked-lists",
@@ -716,8 +716,8 @@
                     []
                 ]
             },
-            "entrypoint": "MyQueue",
-            "solution": "class MyQueue:\n    def __init__(self):\n        self.stack1 = []\n        self.stack2 = []\n    \n    def push(self, x):\n        self.stack1.append(x)\n    \n    def pop(self):\n        self.peek()\n        return self.stack2.pop()\n    \n    def peek(self):\n        if not self.stack2:\n            while self.stack1:\n                self.stack2.append(self.stack1.pop())\n        return self.stack2[-1]\n    \n    def empty(self):\n        return not self.stack1 and not self.stack2\n\ndef MyQueue(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyQueue\":\n            obj = MyQueue()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"peek\":\n            results.append(obj.peek())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
+            "entrypoint": "runMyQueue",
+            "solution": "class MyQueue:\n    def __init__(self):\n        self.stack1 = []\n        self.stack2 = []\n    \n    def push(self, x):\n        self.stack1.append(x)\n    \n    def pop(self):\n        self.peek()\n        return self.stack2.pop()\n    \n    def peek(self):\n        if not self.stack2:\n            while self.stack1:\n                self.stack2.append(self.stack1.pop())\n        return self.stack2[-1]\n    \n    def empty(self):\n        return not self.stack1 and not self.stack2\n\ndef runMyQueue(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyQueue\":\n            obj = MyQueue()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"peek\":\n            results.append(obj.peek())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
         },
         {
             "id": "implement-stack-using-queues",
@@ -745,8 +745,8 @@
                     []
                 ]
             },
-            "entrypoint": "MyStack",
-            "solution": "from collections import deque\n\nclass MyStack:\n    def __init__(self):\n        self.queue = deque()\n    \n    def push(self, x):\n        self.queue.append(x)\n        for _ in range(len(self.queue) - 1):\n            self.queue.append(self.queue.popleft())\n    \n    def pop(self):\n        return self.queue.popleft()\n    \n    def top(self):\n        return self.queue[0]\n    \n    def empty(self):\n        return not self.queue\n\ndef MyStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyStack\":\n            obj = MyStack()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"top\":\n            results.append(obj.top())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
+            "entrypoint": "runMyStack",
+            "solution": "from collections import deque\n\nclass MyStack:\n    def __init__(self):\n        self.queue = deque()\n    \n    def push(self, x):\n        self.queue.append(x)\n        for _ in range(len(self.queue) - 1):\n            self.queue.append(self.queue.popleft())\n    \n    def pop(self):\n        return self.queue.popleft()\n    \n    def top(self):\n        return self.queue[0]\n    \n    def empty(self):\n        return len(self.queue) == 0\n\ndef runMyStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyStack\":\n            obj = MyStack()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"top\":\n            results.append(obj.top())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
         },
         {
             "id": "power-of-two",
@@ -783,7 +783,7 @@
                 "t": "nagaram"
             },
             "entrypoint": "isAnagram",
-            "solution": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            del char_count[char]\n    \n    return len(char_count) == 0\n"
+            "solution": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None\n    \n    return all(v is None or v == 0 for v in char_count.values())\n"
         },
         {
             "id": "missing-number",
