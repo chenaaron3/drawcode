@@ -10,10 +10,9 @@ import type { TraceData } from '../types/trace';
 
 interface VisualizerProps {
     traceData: TraceData;
-    onError?: (error: Error) => void;
 }
 
-export default function TraceVisualizer({ traceData, onError }: VisualizerProps) {
+export default function TraceVisualizer({ traceData }: VisualizerProps) {
     const { setTraceData, traceData: currentTraceData } = useTraceStore();
 
     // Initialize trace data

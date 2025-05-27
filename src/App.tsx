@@ -74,15 +74,9 @@ function ErrorDisplay({ error }: ErrorDisplayProps) {
 
 export default function App() {
   const [selectedTrace, setSelectedTrace] = useState<TraceFile>(AVAILABLE_TRACE_FILES[0]);
-  const [error, setError] = useState<string | null>(null);
 
   const handleTraceChange = (trace: string) => {
-    setError(null);
     setSelectedTrace(trace as TraceFile);
-  };
-
-  const handleError = (err: Error) => {
-    setError(err.message);
   };
 
   // Get the trace data for the selected trace
@@ -96,12 +90,9 @@ export default function App() {
       />
 
       <div className="px-24 w-full p-6 my-auto h-[90vh] overflow-visible">
-        {error ? (
-          <ErrorDisplay error={error} />
-        ) : traceData ? (
+        {traceData ? (
           <TraceVisualizer
             traceData={traceData}
-            onError={handleError}
           />
         ) : (
           <ErrorDisplay error={`Trace file "${selectedTrace}" not found`} />
