@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/select';
 
 import TraceVisualizer from './components/TraceVisualizer';
-import { AVAILABLE_TRACE_FILES } from './data/traces';
+import { AVAILABLE_TRACE_FILES, getTraceData } from './data/traces';
 
 type TraceFile = string;
 
@@ -85,6 +85,9 @@ export default function App() {
     setError(err.message);
   };
 
+  // Get the trace data for the selected trace
+  const traceData = getTraceData(selectedTrace);
+
   return (
     <div className="min-h-screen overflow-visible h-screen bg-background flex flex-col">
       <Header
@@ -95,11 +98,13 @@ export default function App() {
       <div className="px-24 w-full p-6 my-auto h-[90vh] overflow-visible">
         {error ? (
           <ErrorDisplay error={error} />
-        ) : (
+        ) : traceData ? (
           <TraceVisualizer
-            traceUrl={`/traces/${selectedTrace}`}
+            traceData={traceData}
             onError={handleError}
           />
+        ) : (
+          <ErrorDisplay error={`Trace file "${selectedTrace}" not found`} />
         )}
       </div>
     </div>
