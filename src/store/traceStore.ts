@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-import type { AugmentedTraceStep, TraceData, TraceLine } from "../types/trace";
+import type { TraceData, TraceLine } from "../types/trace";
 import type { AST } from "../types/ast";
 
 // Helper to build node ID lookup

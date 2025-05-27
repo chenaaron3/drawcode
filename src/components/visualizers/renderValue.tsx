@@ -2,19 +2,32 @@ import { ArrayVisualizer } from './ArrayVisualizer';
 import { DictionaryVisualizer } from './DictionaryVisualizer';
 import { PrimitiveBox } from './PrimitiveBox';
 
-export function renderValue(val: any, delta: any) {
-    if (Array.isArray(val)) {
+interface RenderContext {
+    variableName?: string;
+}
+
+function isArray(value: any): value is any[] {
+    return Array.isArray(value);
+}
+
+function isObject(value: any): value is Record<string, any> {
+    return value && typeof value === 'object' && !Array.isArray(value);
+}
+
+export function renderValue(value: any, delta: any, context?: RenderContext) {
+    if (isArray(value)) {
         return <ArrayVisualizer
-            values={val}
+            values={value}
             delta={delta}
+            variableName={context?.variableName}
         />;
     }
-    if (val && typeof val === 'object') {
+    if (isObject(value)) {
         return <DictionaryVisualizer
-            dict={val}
+            dict={value}
             delta={delta}
         />;
     }
     // primitive
-    return <PrimitiveBox value={val} delta={delta} />;
+    return <PrimitiveBox value={value} delta={delta} />;
 } 
