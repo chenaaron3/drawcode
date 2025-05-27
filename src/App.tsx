@@ -6,19 +6,9 @@ import {
 } from '@/components/ui/select';
 
 import TraceVisualizer from './components/TraceVisualizer';
+import { AVAILABLE_TRACE_FILES } from './data/traces';
 
-const AVAILABLE_TRACES = [
-  "two-sum.json",
-  "remove-duplicates.json",
-  "array-intersection-2.json",
-  "buy-sell-stocks-2.json",
-  "contains-duplicate.json",
-  "rotate-array.json",
-  "single-number.json",
-  "n-queens.json",
-] as const;
-
-type TraceFile = typeof AVAILABLE_TRACES[number];
+type TraceFile = string;
 
 function formatTraceName(trace: string): string {
   return trace
@@ -49,7 +39,7 @@ function Header({ selectedTrace, onTraceChange }: HeaderProps) {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {AVAILABLE_TRACES.map(trace => (
+                {AVAILABLE_TRACE_FILES.map(trace => (
                   <SelectItem key={trace} value={trace}>
                     {formatTraceName(trace)}
                   </SelectItem>
@@ -83,7 +73,7 @@ function ErrorDisplay({ error }: ErrorDisplayProps) {
 }
 
 export default function App() {
-  const [selectedTrace, setSelectedTrace] = useState<TraceFile>(AVAILABLE_TRACES[0]);
+  const [selectedTrace, setSelectedTrace] = useState<TraceFile>(AVAILABLE_TRACE_FILES[0]);
   const [error, setError] = useState<string | null>(null);
 
   const handleTraceChange = (trace: string) => {

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
 
+import { getTraceData } from '../data/traces';
 import { useTraceStore } from '../store/traceStore';
 import CodePanel from './CodePanel';
 import ComputationWorkspace from './ComputationWorkspace';
@@ -25,26 +26,36 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData, onEr
         if (initialData) {
             setTraceData(initialData);
         } else if (traceUrl) {
-            setIsLoading(true);
-            fetch(traceUrl)
-                .then(res => {
-                    if (!res.ok) {
-                        throw new Error(`Failed to load trace: ${res.statusText}`);
-                    }
-                    return res.json();
-                })
-                .then((data: TraceData) => {
-                    setTraceData(data);
-                    setIsLoading(false);
-                })
-                .catch(error => {
-                    setIsLoading(false);
-                    if (onError) {
-                        onError(error);
-                    } else {
-                        console.error('Failed to load trace:', error);
-                    }
-                });
+            // Extract filename from URL (e.g., "/traces/two-sum.json" -> "two-sum.json")
+            const filename = traceUrl.split('/').pop() || '';
+            const prebundledData = getTraceData(filename);
+
+            if (prebundledData) {
+                // Use prebundled data
+                setTraceData(prebundledData);
+            } else {
+                // Fallback to fetching if not prebundled
+                setIsLoading(true);
+                fetch(traceUrl)
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error(`Failed to load trace: ${res.statusText}`);
+                        }
+                        return res.json();
+                    })
+                    .then((data: TraceData) => {
+                        setTraceData(data);
+                        setIsLoading(false);
+                    })
+                    .catch(error => {
+                        setIsLoading(false);
+                        if (onError) {
+                            onError(error);
+                        } else {
+                            console.error('Failed to load trace:', error);
+                        }
+                    });
+            }
         }
     }, [traceUrl, initialData, setTraceData, onError]);
 
