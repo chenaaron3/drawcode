@@ -1,9 +1,11 @@
+import { LayoutGroup } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
 
 import { useTraceStore } from '../store/traceStore';
 import CodePanel from './CodePanel';
+import ComputationWorkspace from './ComputationWorkspace';
 import VariablePanel from './VariablePanel';
 
 import type { TraceData } from '../types/trace';
@@ -62,13 +64,20 @@ export default function TraceVisualizer({ traceUrl, traceData: initialData, onEr
     if (!traceData) return null;
 
     return (
-        <div className="flex h-full  gap-6">
-            <div className="flex-1">
-                <CodePanel />
+        <LayoutGroup>
+            <div className="flex h-full gap-6 overflow-visible">
+                <div className="flex-1 overflow-visible">
+                    <CodePanel />
+                </div>
+                <div className="flex-1 flex flex-col gap-4 overflow-visible">
+                    <div className="overflow-visible">
+                        <ComputationWorkspace />
+                    </div>
+                    <div className="flex-1 overflow-visible">
+                        <VariablePanel />
+                    </div>
+                </div>
             </div>
-            <div className="flex-[2]">
-                <VariablePanel />
-            </div>
-        </div>
+        </LayoutGroup>
     );
 }

@@ -11,37 +11,18 @@ import { fadeInScale, fadeInUp } from './visualizers/variants';
 
 import type { AugmentedTraceStep } from '../types/trace';
 
-const STAGGER_DELAY = 0.02;
-const ANIMATION_DURATION = 0.2;
 
-const variableAnimation = {
-    initial: { opacity: 0, y: -10 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -10 },
-};
 
-const valueChangeAnimation = {
-    initial: { opacity: 0, y: -10 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -10 },
-    transition: { duration: ANIMATION_DURATION },
-};
-
-const finalResultAnimation = {
-    initial: { opacity: 0, scale: 0.95 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { delay: ANIMATION_DURATION },
-};
 
 interface VariableItemProps {
     name: string;
     value: any;
     delta: any;
-    index: number;
     isComplex?: boolean;
+    isAnimating?: boolean;
 }
 
-function VariableItem({ name, value, delta, index, isComplex = false }: VariableItemProps) {
+function VariableItem({ name, value, delta, isComplex = false, isAnimating = false }: VariableItemProps) {
     const isChanged = delta !== undefined;
     const changeColors = getChangeColors(isChanged);
 
@@ -49,6 +30,9 @@ function VariableItem({ name, value, delta, index, isComplex = false }: Variable
       font-mono text-sm font-semibold 
       ${changeColors.text}
     `;
+
+    // Create a layout ID for the variable value
+    const valueLayoutId = `variable-${name}`;
 
     if (isComplex) {
         // Complex variables: keep original layout (label and value side by side)
@@ -87,6 +71,7 @@ function VariableItem({ name, value, delta, index, isComplex = false }: Variable
     const containerClasses = `
       flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-200 border
       ${getVariableColors(isChanged)}
+      ${isAnimating ? 'ring-2 ring-blue-300 ring-opacity-50' : ''}
     `;
 
     return (
@@ -99,15 +84,49 @@ function VariableItem({ name, value, delta, index, isComplex = false }: Variable
                 {isChanged && (
                     <div className={`w-1.5 h-1.5 ${changeColors.indicator} rounded-full`} />
                 )}
+                {isAnimating && (
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
+                )}
             </div>
 
             <div>
                 <AnimatePresence mode="popLayout">
                     <motion.div
                         key={`${name}-${JSON.stringify(value)}`}
-                        {...fadeInUp}
+                        layoutId={isAnimating ? undefined : valueLayoutId}
+                        initial={{ opacity: 1, scale: 1 }}
+                        animate={{
+                            scale: isAnimating ? 1.05 : 1,
+                            opacity: isAnimating ? 0.7 : 1,
+                        }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{
+                            scale: {
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30
+                            },
+                            opacity: {
+                                duration: 0.3
+                            }
+                        }}
+                        style={{
+                            transformOrigin: "center center",
+                        }}
                     >
-                        {renderValue(value, delta, { variableName: name })}
+                        <div
+                            data-variable={name}
+                            className={`
+                                ${isAnimating
+                                    ? 'ring-2 ring-blue-300 ring-opacity-50 shadow-lg'
+                                    : ''
+                                }
+                            `}
+                        >
+                            {renderValue(value, delta, {
+                                variableName: name
+                            })}
+                        </div>
                     </motion.div>
                 </AnimatePresence>
             </div>
@@ -146,6 +165,7 @@ export default function VariablePanel() {
     const { lineIndex: line, maxLine: maxStep, traceData } = useTraceStore();
     const current = useTraceStore(selectCurrentLine);
     const nodeLookup = useTraceStore(state => state.nodeLookup);
+    const animatingVariable = useTraceStore(state => state.animatingVariable);
     const [steps, setSteps] = useState<AugmentedTraceStep[] | null>(null);
 
     useEffect(() => {
@@ -179,13 +199,13 @@ export default function VariablePanel() {
 
     return (
         <div className="h-full flex flex-col">
-            <Card className="h-full flex flex-col overflow-hidden">
+            <Card className="h-full flex flex-col overflow-visible">
                 <CardHeader className="pb-3 flex-shrink-0">
                     <CardTitle className="text-lg">Variables</CardTitle>
                 </CardHeader>
 
-                <CardContent className="flex-1 min-h-0 overflow-hidden">
-                    <div className="h-full overflow-y-auto space-y-4">
+                <CardContent className="flex-1 min-h-0 overflow-visible">
+                    <div className="h-full overflow-y-auto overflow-x-visible space-y-4">
                         {!hasVariables ? (
                             <EmptyState />
                         ) : (
@@ -193,13 +213,13 @@ export default function VariablePanel() {
                                 {/* Simple Variables */}
                                 {simpleVars.length > 0 && (
                                     <div className="flex flex-wrap gap-4 items-start">
-                                        {simpleVars.map(([name, value], index) => (
+                                        {simpleVars.map(([name, value]) => (
                                             <VariableItem
                                                 key={name}
                                                 name={name}
                                                 value={value}
                                                 delta={current.delta?.[name]}
-                                                index={index}
+                                                isAnimating={animatingVariable === name}
                                             />
                                         ))}
                                     </div>
@@ -210,14 +230,14 @@ export default function VariablePanel() {
                                     <>
                                         {simpleVars.length > 0 && <Separator />}
                                         <div className="flex flex-wrap gap-4 items-start">
-                                            {complexVars.map(([name, value], index) => (
+                                            {complexVars.map(([name, value]) => (
                                                 <VariableItem
                                                     key={name}
                                                     name={name}
                                                     value={value}
                                                     delta={current.delta?.[name]}
-                                                    index={simpleVars.length + index}
                                                     isComplex
+                                                    isAnimating={animatingVariable === name}
                                                 />
                                             ))}
                                         </div>

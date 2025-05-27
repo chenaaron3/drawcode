@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
 import { MdMoreVert, MdRefresh, MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -27,7 +26,6 @@ export default function CodePanel() {
     const {
         traceData,
         lineIndex,
-        maxLine,
         isPlaying,
         playSpeed,
         mode,
@@ -43,17 +41,12 @@ export default function CodePanel() {
     const currentLine = useTraceStore(selectCurrentLine);
     const currentStep = useCurrentStep();
 
-    useEffect(() => {
-        console.log(currentStep);
-    }, [currentStep]);
-
     // Handle auto-play
     useEffect(() => {
         let intervalId: number | null = null;
 
         if (isPlaying && traceData) {
             intervalId = window.setInterval(() => {
-                console.log(lineIndex, traceData.trace.length);
                 next();
             }, playSpeed);
         }
@@ -85,7 +78,6 @@ export default function CodePanel() {
 
     return (
         <TooltipProvider>
-            {/* Code */}
             <Card className="h-full flex-1/3">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
                     <div className="flex items-center gap-2">

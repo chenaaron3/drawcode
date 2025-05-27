@@ -65,7 +65,7 @@ export const DictionaryVisualizer: React.FC<DictionaryVisualizerProps> = ({
     const isEmpty = entries.length === 0;
 
     const containerClasses = clsx(
-        "inline-block border rounded-md overflow-hidden transition-all duration-200 self-start",
+        "border rounded-md overflow-hidden transition-all duration-200 mx-auto",
         getDictionaryColors(isNew)
     );
 

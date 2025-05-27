@@ -96,13 +96,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen overflow-auto h-screen bg-background flex flex-col">
+    <div className="min-h-screen overflow-visible h-screen bg-background flex flex-col">
       <Header
         selectedTrace={selectedTrace}
         onTraceChange={handleTraceChange}
       />
 
-      <div className="px-24 w-full p-6 my-auto h-[90vh]">
+      <div className="px-24 w-full p-6 my-auto h-[90vh] overflow-visible">
         {error ? (
           <ErrorDisplay error={error} />
         ) : (

@@ -41,6 +41,9 @@ interface TraceState {
   playSpeed: number;
   nodeLookup: Map<number, AST>; // Lookup map for AST nodes by ID
   mode: "line" | "step"; // Navigation mode
+
+  // Animation state
+  animatingVariable: string | null;
 }
 
 interface TraceActions {
@@ -51,6 +54,7 @@ interface TraceActions {
   setIsPlaying: (isPlaying: boolean) => void;
   setPlaySpeed: (speed: number) => void;
   setMode: (mode: "line" | "step") => void;
+  setAnimatingVariable: (variableName: string | null) => void;
 
   // Actions
   next: () => void; // Unified next function based on mode
@@ -77,6 +81,7 @@ const initialState: TraceState = {
   maxLine: 0,
   nodeLookup: new Map(),
   mode: "line",
+  animatingVariable: null,
 };
 
 export const useTraceStore = create<TraceStore>()(
@@ -123,6 +128,11 @@ export const useTraceStore = create<TraceStore>()(
     setMode: (mode) =>
       set((state) => {
         state.mode = mode;
+      }),
+
+    setAnimatingVariable: (variableName) =>
+      set((state) => {
+        state.animatingVariable = variableName;
       }),
 
     next: () =>
