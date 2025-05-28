@@ -151,8 +151,30 @@ class ASTTransformer(ast.NodeTransformer):
             return True
             
         # Check for subscript in Store context (e.g., freq[num] = 1)
+        # BUT allow the slice to be evaluated since it needs to be computed
         if isinstance(node, ast.Subscript) and isinstance(node.ctx, ast.Store):
             return True
+            
+        # Check for attribute in Store context (e.g., obj.attr = value)
+        # BUT allow the object to be evaluated since it needs to be accessed
+        if isinstance(node, ast.Attribute) and isinstance(node.ctx, ast.Store):
+            return True
+            
+        # Special case: if we're the slice of a subscript in Store context,
+        # we should still be evaluated (e.g., the 'num' in 'num_to_index[num] = i')
+        parent = getattr(node, 'parent', None)
+        if parent and isinstance(parent, ast.Subscript) and isinstance(parent.ctx, ast.Store):
+            if parent.slice == node:
+                return False  # Allow evaluation of the slice
+            # Also allow evaluation of the container part (e.g., 'num_to_index' in 'num_to_index[num] = i')
+            if parent.value == node:
+                return False  # Allow evaluation of the container
+                
+        # Special case: if we're the object of an attribute in Store context,
+        # we should still be evaluated (e.g., the 'self' in 'self.left = value')
+        if parent and isinstance(parent, ast.Attribute) and isinstance(parent.ctx, ast.Store):
+            if parent.value == node:
+                return False  # Allow evaluation of the object
             
         # Check if we're inside a Store context (for complex targets like tuple unpacking)
         current = node

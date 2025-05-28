@@ -31,9 +31,6 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
       ${changeColors.text}
     `;
 
-    // Create a layout ID for the variable value
-    const valueLayoutId = `variable-${name}`;
-
     if (isComplex) {
         // Complex variables: keep original layout (label and value side by side)
         const containerClasses = `
@@ -93,7 +90,6 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
                 <AnimatePresence mode="popLayout">
                     <motion.div
                         key={`${name}-${JSON.stringify(value)}`}
-                        layoutId={isAnimating ? undefined : valueLayoutId}
                         initial={{ opacity: 1, scale: 1 }}
                         animate={{
                             scale: isAnimating ? 1.05 : 1,

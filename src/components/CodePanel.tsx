@@ -20,7 +20,6 @@ import { cn } from '@/lib/utils';
 
 import { useCurrentStep } from '../hooks/useCurrentStep';
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
-import { SimpleHighlightOverlay } from './SimpleHighlightOverlay';
 
 export default function CodePanel() {
     const {
@@ -241,11 +240,6 @@ export default function CodePanel() {
                         >
                             {traceData.metadata.code}
                         </SyntaxHighlighter>
-                        <SimpleHighlightOverlay
-                            currentLineNumber={currentLine.line_number}
-                            location={currentStep.ast.location}
-                            code={traceData.metadata.code}
-                        />
                     </div>
                 </CardContent>
             </Card>

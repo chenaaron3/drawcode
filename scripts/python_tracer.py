@@ -5,6 +5,7 @@ import builtins
 
 from ast_transformer import ASTTransformer, BEFORE_STATEMENT_MARKER, AFTER_STATEMENT_MARKER, BEFORE_EXPRESSION_MARKER, AFTER_EXPRESSION_MARKER
 from relationship_analyzer import RelationshipAnalyzer
+from utils import serialize_value, calculate_delta
 
 class PythonTracer:
     """Tracer that tracks execution of all statements and expressions"""
@@ -45,7 +46,7 @@ class PythonTracer:
         local_vars = {}
         if frame is not None:
             local_vars = {
-                name: self._serialize_value(val)
+                name: serialize_value(val)
                 for name, val in frame.f_locals.items()
                 if not name.startswith('_') and not callable(val)
             }
@@ -59,7 +60,7 @@ class PythonTracer:
         }
 
         if value is not None:
-            step["value"] = self._serialize_value(value)
+            step["value"] = serialize_value(value)
         
         self.step_id += 1
         self.steps.append(step)
@@ -99,68 +100,6 @@ class PythonTracer:
         frame = sys._getframe(1)
         self._record_step(frame, "after_expression", value=value, node=node)
         return value
-
-    def _serialize_value(self, val):
-        """Convert value to a JSON-serializable representation"""
-        if isinstance(val, (int, float, bool, str)):
-            return val
-        elif isinstance(val, (list, tuple, set)):
-            return [self._serialize_value(x) for x in val]
-        elif isinstance(val, dict):
-            return {str(k): self._serialize_value(v) for k, v in val.items()}
-        elif val is None:
-            return None
-        return str(val)  # fallback for other types
-
-    def _get_delta(self, prev, curr):
-        """Calculate delta between previous and current values"""
-        delta = None
-        if isinstance(curr, dict):
-            was_none = False
-            if prev is None:
-                was_none = True
-                prev = {}
-            # Compare dictionaries
-            changed_keys = {}
-            for k, v in curr.items():
-                # new variable, we still have to recurse to bottom
-                if k not in prev:
-                    changed_keys[k] = self._get_delta(None, curr[k])
-                # changed variable
-                else:
-                    maybe_delta = self._get_delta(prev[k], curr[k])
-                    if maybe_delta is not None:
-                        changed_keys[k] = maybe_delta
-            # if something changed, we can assign the delta
-            if changed_keys:
-                delta = changed_keys
-            # if there was nothing previously, assigning something still counts
-            elif was_none:
-                delta = {}
-        elif isinstance(curr, list):
-            was_none = False
-            if prev is None:
-                was_none = True
-                prev = []
-            changed_keys = {}
-            # detect changes in the same index
-            for i in range(min(len(curr), len(prev))):
-                maybe_delta = self._get_delta(prev[i], curr[i])
-                if maybe_delta is not None:
-                    changed_keys[i] = maybe_delta
-            # assign extra values
-            if len(curr) > len(prev):
-                for i in range(len(prev), len(curr)):
-                    changed_keys[i] = self._get_delta(None, curr[i])
-            if changed_keys:
-                delta = changed_keys
-            # if there was nothing previously, assigning something still counts
-            elif was_none:
-                delta = []
-        elif curr != prev:
-            # Changed primitive value
-            delta = curr
-        return delta
 
     def run_code(self, code: str, entrypoint: str = None, **kwargs):
         """Run code with expression tracking"""
@@ -206,7 +145,7 @@ class PythonTracer:
         
         def _create_trace_entry(line, locals, steps):
             # Calculate delta from previous locals
-            delta = self._get_delta(prev_locals, locals)
+            delta = calculate_delta(prev_locals, locals)
             
             return {
                 "line_number": line,
@@ -257,5 +196,5 @@ class PythonTracer:
                 'ast': json_ast,
                 'relationships': relationships,
                 'trace': trace,
-                'result': self._serialize_value(self.result)
+                'result': serialize_value(self.result)
             }, f, indent=2) 
