@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
 
@@ -23,12 +23,6 @@ interface EvaluationNode {
     children: (string | EvaluationNode)[];
     isHighlighted: boolean;
     offset: number; // Start position of this node in the original line
-}
-
-// Helper function to extract the first line of a multi-line statement
-function getFirstLine(text: string): string {
-    const lines = text.split('\n');
-    return lines[0].trim();
 }
 
 export default function ComputationWorkspace() {
