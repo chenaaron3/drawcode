@@ -80,7 +80,7 @@ const initialState: TraceState = {
   playSpeed: 1000,
   maxLine: 0,
   nodeLookup: new Map(),
-  mode: "line",
+  mode: "step",
   animatingVariable: null,
 };
 

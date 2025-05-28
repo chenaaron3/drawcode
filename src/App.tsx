@@ -103,7 +103,7 @@ function ErrorDisplay({ error }: ErrorDisplayProps) {
 }
 
 export default function App() {
-  const [selectedTrace, setSelectedTrace] = useState<TraceFile>(AVAILABLE_TRACE_FILES[0]);
+  const [selectedTrace, setSelectedTrace] = useState<TraceFile>('two-sum.json');
 
   const handleTraceChange = (trace: string) => {
     setSelectedTrace(trace as TraceFile);
