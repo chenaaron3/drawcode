@@ -23,6 +23,8 @@ class PythonTracer:
         self.entrypoint = None
         self.inputs = {}
         self.result = None
+        self.problem_number = None
+        self.problem_title = None
 
     def _install_marker_functions(self):
         """Make marker functions available in builtin scope"""
@@ -101,11 +103,13 @@ class PythonTracer:
         self._record_step(frame, "after_expression", value=value, node=node)
         return value
 
-    def run_code(self, code: str, entrypoint: str = None, **kwargs):
+    def run_code(self, code: str, entrypoint: str = None, problem_number: int = None, problem_title: str = None, **kwargs):
         """Run code with expression tracking"""
         self.source_code = code
         self.entrypoint = entrypoint
         self.inputs = kwargs
+        self.problem_number = problem_number
+        self.problem_title = problem_title
         
         # Transform the AST for execution
         tree = self.transformer.transform(code)
@@ -191,6 +195,10 @@ class PythonTracer:
                     'function': getattr(self, 'entrypoint', None),
                     'inputs': {
                         'kwargs': {k: repr(v) for k, v in getattr(self, 'inputs', {}).items()}
+                    },
+                    'problem': {
+                        'number': self.problem_number,
+                        'title': self.problem_title
                     }
                 },
                 'ast': json_ast,

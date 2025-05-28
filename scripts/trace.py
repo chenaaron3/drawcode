@@ -27,6 +27,12 @@ if __name__ == '__main__':
         #     continue
         print(f"Processing problem {problem['id']}...")
         tracer.reset()  # Reset tracer state for each problem
-        transformed_ast = tracer.run_code(problem['solution'], problem['entrypoint'], **problem['inputs'])
+        transformed_ast = tracer.run_code(
+            problem['solution'], 
+            problem['entrypoint'], 
+            problem_number=problem['number'],
+            problem_title=problem['title'],
+            **problem['inputs']
+        )
         tracer.save_results(os.path.join(OUTPUT_DIR, f"{problem['id']}.json"), transformed_ast)
     print("Done!") 

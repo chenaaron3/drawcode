@@ -11,10 +11,38 @@ import { AVAILABLE_TRACE_FILES, getTraceData } from './data/traces';
 type TraceFile = string;
 
 function formatTraceName(trace: string): string {
+  const traceData = getTraceData(trace);
+  if (traceData?.metadata?.problem) {
+    return `${traceData.metadata.problem.number}. ${traceData.metadata.problem.title}`;
+  }
+
+  // Fallback to original formatting if no problem metadata
   return trace
     .replace(/-/g, ' ')
     .replace('.json', '')
     .replace(/\b\w/g, letter => letter.toUpperCase());
+}
+
+function getSortedTraceFiles(): string[] {
+  return AVAILABLE_TRACE_FILES.sort((a, b) => {
+    const traceDataA = getTraceData(a);
+    const traceDataB = getTraceData(b);
+
+    const numberA = traceDataA?.metadata?.problem?.number;
+    const numberB = traceDataB?.metadata?.problem?.number;
+
+    // If both have problem numbers, sort by number
+    if (numberA !== undefined && numberB !== undefined) {
+      return numberA - numberB;
+    }
+
+    // If only one has a problem number, put it first
+    if (numberA !== undefined && numberB === undefined) return -1;
+    if (numberA === undefined && numberB !== undefined) return 1;
+
+    // If neither has a problem number, sort alphabetically
+    return a.localeCompare(b);
+  });
 }
 
 interface HeaderProps {
@@ -23,6 +51,8 @@ interface HeaderProps {
 }
 
 function Header({ selectedTrace, onTraceChange }: HeaderProps) {
+  const sortedTraceFiles = getSortedTraceFiles();
+
   return (
     <div className="border-b bg-card h-[10vh]">
       <div className="container mx-auto p-4">
@@ -39,7 +69,7 @@ function Header({ selectedTrace, onTraceChange }: HeaderProps) {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {AVAILABLE_TRACE_FILES.map(trace => (
+                {sortedTraceFiles.map(trace => (
                   <SelectItem key={trace} value={trace}>
                     {formatTraceName(trace)}
                   </SelectItem>

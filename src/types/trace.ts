@@ -50,6 +50,10 @@ export type TraceData = {
     inputs: {
       kwargs: Record<string, string>;
     };
+    problem?: {
+      number: number;
+      title: string;
+    };
   };
   ast: AST;
   relationships: Relationship[];
