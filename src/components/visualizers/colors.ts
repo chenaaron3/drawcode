@@ -9,7 +9,7 @@ export const VISUALIZER_COLORS = {
     },
     dictionary: {
       // Dictionaries = Key-Value pairs → Warm amber (knowledge, mapping)
-      new: "bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200/60",
+      new: "bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-300/70",
       default: "bg-card border-border",
     },
     variable: {
@@ -84,8 +84,8 @@ export const VISUALIZER_COLORS = {
   dictionary: {
     changed: "bg-gradient-to-r from-emerald-50/80 to-green-50/80",
     hover: "hover:bg-slate-50/80",
-    keyChanged: "text-emerald-700",
-    keyDefault: "text-slate-700",
+    keyChanged: "text-emerald-800",
+    keyDefault: "text-slate-800",
   },
 
   // Empty states - subtle and non-intrusive

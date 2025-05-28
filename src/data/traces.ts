@@ -132,4 +132,4 @@ export function getTraceData(filename: string): TraceData | null {
 }
 
 // Export available trace names
-export const AVAILABLE_TRACE_FILES = Object.keys(TRACES);
+export const AVAILABLE_TRACE_FILES = ["two-sum.json"]; // Object.keys(TRACES);

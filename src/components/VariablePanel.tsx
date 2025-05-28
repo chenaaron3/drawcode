@@ -81,9 +81,6 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
                 {isChanged && (
                     <div className={`w-1.5 h-1.5 ${changeColors.indicator} rounded-full`} />
                 )}
-                {isAnimating && (
-                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
-                )}
             </div>
 
             <div>
@@ -208,15 +205,16 @@ export default function VariablePanel() {
                             <>
                                 {/* Simple Variables */}
                                 {simpleVars.length > 0 && (
-                                    <div className="flex flex-wrap gap-4 items-start">
+                                    <div className="flex flex-wrap gap-6 items-start p-2">
                                         {simpleVars.map(([name, value]) => (
-                                            <VariableItem
-                                                key={name}
-                                                name={name}
-                                                value={value}
-                                                delta={current.delta?.[name]}
-                                                isAnimating={animatingVariable === name}
-                                            />
+                                            <div key={name} className="p-1">
+                                                <VariableItem
+                                                    name={name}
+                                                    value={value}
+                                                    delta={current.delta?.[name]}
+                                                    isAnimating={animatingVariable === name}
+                                                />
+                                            </div>
                                         ))}
                                     </div>
                                 )}
@@ -225,16 +223,17 @@ export default function VariablePanel() {
                                 {complexVars.length > 0 && (
                                     <>
                                         {simpleVars.length > 0 && <Separator />}
-                                        <div className="flex flex-wrap gap-4 items-start">
+                                        <div className="flex flex-wrap gap-6 items-start p-2">
                                             {complexVars.map(([name, value]) => (
-                                                <VariableItem
-                                                    key={name}
-                                                    name={name}
-                                                    value={value}
-                                                    delta={current.delta?.[name]}
-                                                    isComplex
-                                                    isAnimating={animatingVariable === name}
-                                                />
+                                                <div key={name} className="p-1">
+                                                    <VariableItem
+                                                        name={name}
+                                                        value={value}
+                                                        delta={current.delta?.[name]}
+                                                        isComplex
+                                                        isAnimating={animatingVariable === name}
+                                                    />
+                                                </div>
                                             ))}
                                         </div>
                                     </>

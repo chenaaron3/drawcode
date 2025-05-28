@@ -128,6 +128,10 @@ class ASTTransformer(ast.NodeTransformer):
         # Skip function/lambda parameters
         if self._is_function_parameter(node):
             return node
+            
+        # Skip function names (but evaluate their arguments)
+        if self._is_function_name(node):
+            return node
         
         # Wrap with markers inline - only expressions being evaluated
         node_id = self.get_node_id(node)
@@ -228,6 +232,29 @@ class ASTTransformer(ast.NodeTransformer):
             # Walk through all argument nodes in the lambda
             for arg_node in ast.walk(parent.args):
                 if arg_node is node:
+                    return True
+                    
+        return False
+        
+    def _is_function_name(self, node):
+        """Check if a node is a function name that shouldn't be evaluated"""
+        if not isinstance(node, ast.Name):
+            return False
+            
+        parent = getattr(node, "parent", None)
+        if not parent:
+            return False
+            
+        # Check if we're the function name in a function call
+        if isinstance(parent, ast.Call) and parent.func == node:
+            return True
+            
+        # Check if we're the function name in an attribute call (e.g., obj.method())
+        if isinstance(parent, ast.Attribute):
+            grandparent = getattr(parent, "parent", None)
+            if grandparent and isinstance(grandparent, ast.Call) and grandparent.func == parent:
+                # We're the attribute name in a method call, skip evaluation
+                if parent.attr == node.id:
                     return True
                     
         return False
