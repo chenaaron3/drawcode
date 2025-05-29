@@ -1,29 +1,16 @@
-import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
 
 import { Card, CardContent } from '@/components/ui/card';
 
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
+import { AnimatedCopies } from './workspace/AnimatedCopies';
+import { EvaluationTree } from './workspace/EvaluationTree';
+import { getNodeTextLength, highlightNodeInTree, replaceNodeValueInTree } from './workspace/utils';
 
 import type { AugmentedTraceStep } from '../types/trace';
-interface AnimatedCopy {
-    id: string;
-    variableName: string;
-    value: any;
-    startRect: DOMRect;
-    targetRect: DOMRect;
-    isActive: boolean;
-}
 
-interface EvaluationNode {
-    nodeId: number;
-    value?: any;
-    hasValue: boolean;
-    children: (string | EvaluationNode)[];
-    isHighlighted: boolean;
-    offset: number; // Start position of this node in the original line
-}
+import type { EvaluationNode } from './workspace/utils';
+import type { AnimatedCopy } from './workspace/AnimatedCopies';
 
 export default function ComputationWorkspace() {
     const current = useTraceStore(selectCurrentLine);
@@ -214,64 +201,6 @@ export default function ComputationWorkspace() {
         return wrapInNode(tree);
     };
 
-    // Helper to calculate text length of a node
-    const getNodeTextLength = (node: EvaluationNode): number => {
-        return node.children.reduce((length, child) => {
-            if (typeof child === 'string') {
-                return length + child.length;
-            } else {
-                return length + getNodeTextLength(child);
-            }
-        }, 0);
-    };
-
-    // Replace node value in tree (preserve original structure)
-    const replaceNodeValueInTree = (tree: EvaluationNode, targetNodeId: number, value: any): EvaluationNode => {
-        if (tree.nodeId === targetNodeId) {
-            return {
-                ...tree,
-                value,
-                hasValue: true
-                // Keep original children to preserve structure
-            };
-        }
-
-        return {
-            ...tree,
-            children: tree.children.map(child =>
-                typeof child === 'string' ? child : replaceNodeValueInTree(child, targetNodeId, value)
-            )
-        };
-    };
-
-    // Highlight node in tree (clear all other highlights first)
-    const highlightNodeInTree = (tree: EvaluationNode, targetNodeId: number, highlight: boolean): EvaluationNode => {
-        const clearAllHighlights = (node: EvaluationNode): EvaluationNode => ({
-            ...node,
-            isHighlighted: false,
-            children: node.children.map(child =>
-                typeof child === 'string' ? child : clearAllHighlights(child)
-            )
-        });
-
-        // First clear all highlights
-        let newTree = clearAllHighlights(tree);
-
-        // Then set the specific highlight if needed
-        if (highlight) {
-            const setHighlight = (node: EvaluationNode): EvaluationNode => ({
-                ...node,
-                isHighlighted: node.nodeId === targetNodeId,
-                children: node.children.map(child =>
-                    typeof child === 'string' ? child : setHighlight(child)
-                )
-            });
-            newTree = setHighlight(newTree);
-        }
-
-        return newTree;
-    };
-
     const createAnimatedCopy = (variableName: string, value: any) => {
         // Find the source element (variable in VariablePanel)
         const sourceElement = document.querySelector(`[data-variable="${variableName}"]`);
@@ -301,150 +230,6 @@ export default function ComputationWorkspace() {
         }
     };
 
-    // Render animated copies as portals
-    const renderAnimatedCopies = () => {
-        return createPortal(
-            <AnimatePresence>
-                {animatedCopies.map(copy => (
-                    <motion.div
-                        key={copy.id}
-                        className="fixed pointer-events-none z-[10000] inline-block px-1 py-0.5 rounded font-mono text-sm bg-blue-200 text-blue-800"
-                        initial={{
-                            left: copy.startRect.left,
-                            top: copy.startRect.top,
-                            width: copy.startRect.width,
-                            height: copy.startRect.height,
-                            opacity: 1,
-                            scale: 1,
-                        }}
-                        animate={{
-                            left: copy.targetRect.left,
-                            top: copy.targetRect.top,
-                            width: copy.targetRect.width,
-                            height: copy.targetRect.height,
-                            opacity: 1,
-                            scale: 1,
-                        }}
-                        exit={{
-                            opacity: 0,
-                            scale: 1,
-                        }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 30,
-                            duration: 0.6,
-                        }}
-                        style={{
-                            transformOrigin: "center center",
-                        }}
-                    >
-                        {typeof copy.value === 'string' ? `"${copy.value}"` : JSON.stringify(copy.value)}
-                    </motion.div>
-                ))}
-            </AnimatePresence>,
-            document.body
-        );
-    };
-
-    // Render evaluation tree
-    const renderEvaluationNode = (node: EvaluationNode): React.ReactNode => {
-        // Check if this node represents a variable by looking at its original text content
-        const getVariableName = (node: EvaluationNode): string | undefined => {
-            if (node.children.length === 1 && typeof node.children[0] === 'string') {
-                const text = node.children[0];
-                if (current?.locals && Object.prototype.hasOwnProperty.call(current.locals, text)) {
-                    return text;
-                }
-            }
-            return undefined;
-        };
-
-        const variableName = getVariableName(node);
-        const isAnimatingThis = animatingVariable === variableName;
-
-        // For leaf nodes (single string child) that have been evaluated, show the value
-        if (node.hasValue && node.children.length === 1 && typeof node.children[0] === 'string') {
-            return (
-                <motion.span
-                    key={`node-${node.nodeId}`}
-                    data-node-id={node.nodeId}
-                    data-target={variableName}
-                    className={`
-                        inline-block px-1 py-0.5 rounded font-mono text-sm
-                        ${isAnimatingThis
-                            ? 'bg-blue-200 text-blue-800'
-                            : node.isHighlighted
-                                ? 'bg-yellow-200 text-yellow-800'
-                                : 'bg-blue-200 text-blue-800'
-                        }
-                    `}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    {typeof node.value === 'string' ? `"${node.value}"` : JSON.stringify(node.value)}
-                </motion.span>
-            );
-        }
-
-        // For compound expressions that have been evaluated, show value with original structure preserved
-        if (node.hasValue && node.children.length > 1) {
-            return (
-                <motion.span
-                    key={`node-${node.nodeId}`}
-                    data-node-id={node.nodeId}
-                    className={`
-                        inline-block px-1 py-0.5 rounded font-mono text-sm
-                        ${node.isHighlighted
-                            ? 'bg-yellow-200 text-yellow-800'
-                            : 'bg-blue-200 text-blue-800'
-                        }
-                    `}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    {typeof node.value === 'string' ? `"${node.value}"` : JSON.stringify(node.value)}
-                </motion.span>
-            );
-        }
-
-        // Render children for nodes without values or compound expressions
-        const renderedChildren = node.children.map((child, index) => {
-            if (typeof child === 'string') {
-                return <span key={`text-${index}`}>{child}</span>;
-            } else {
-                return <span key={`child-${child.nodeId}`}>{renderEvaluationNode(child)}</span>;
-            }
-        });
-
-        return (
-            <span
-                key={`node-${node.nodeId}`}
-                data-node-id={node.nodeId}
-                className={`
-                    ${node.isHighlighted ? 'bg-yellow-100 text-yellow-800 rounded' : ''}
-                    ${isAnimatingThis ? 'bg-blue-100 text-blue-700 rounded' : ''}
-                `}
-            >
-                {renderedChildren}
-            </span>
-        );
-    };
-
-    const renderEvaluationTree = () => {
-        if (!evaluationTree) return null;
-
-        return (
-            <div className="font-mono text-lg bg-slate-50 p-4 rounded-lg border relative">
-                <div className="whitespace-pre-wrap">
-                    {renderEvaluationNode(evaluationTree)}
-                </div>
-            </div>
-        );
-    };
-
     if (!current || !steps) {
         return (
             <Card>
@@ -460,11 +245,15 @@ export default function ComputationWorkspace() {
     return (
         <Card>
             <CardContent>
-                {renderEvaluationTree()}
+                <EvaluationTree
+                    evaluationTree={evaluationTree}
+                    animatingVariable={animatingVariable}
+                    currentLocals={current?.locals || null}
+                />
             </CardContent>
 
             {/* Render animated copies */}
-            {animatedCopies.length > 0 && renderAnimatedCopies()}
+            {animatedCopies.length > 0 && <AnimatedCopies animatedCopies={animatedCopies} />}
         </Card>
     );
 }

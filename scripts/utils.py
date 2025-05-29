@@ -48,7 +48,7 @@ def format_object_nicely(val):
         try:
             # Convert enumerate to list of tuples
             enum_list = list(copy.deepcopy(val))
-            return f"enumerate({enum_list})"
+            return enum_list
         except:
             return "enumerate(...)"
     
