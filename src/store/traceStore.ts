@@ -44,6 +44,13 @@ interface TraceState {
 
   // Animation state
   animatingVariable: string | null;
+
+  // Input overrides for current problem only
+  currentProblemId: string | null;
+  inputOverrides: Record<string, any>; // input name -> value for current problem
+
+  // Problems data
+  problemsData: any[];
 }
 
 interface TraceActions {
@@ -66,6 +73,17 @@ interface TraceActions {
   reset: () => void;
   togglePlay: () => void;
 
+  // Input override management
+  setInputOverride: (inputName: string, value: any) => void;
+  clearInputOverrides: () => void;
+  getInputOverrides: () => Record<string, any>;
+
+  // Problems data management
+  setProblemsData: (problems: any[]) => void;
+  getCurrentProblemData: (problemId: string) => any;
+  setCurrentProblem: (problemId: string) => void;
+  getCurrentProblemId: () => string | null;
+
   // Helpers
   hasNext: () => boolean; // Check if there are more steps available
 }
@@ -82,6 +100,9 @@ const initialState: TraceState = {
   nodeLookup: new Map(),
   mode: "step",
   animatingVariable: null,
+  currentProblemId: null,
+  inputOverrides: {},
+  problemsData: [],
 };
 
 export const useTraceStore = create<TraceStore>()(
@@ -233,6 +254,42 @@ export const useTraceStore = create<TraceStore>()(
           state.isPlaying = !state.isPlaying;
         }
       }),
+
+    setCurrentProblem: (problemId) =>
+      set((state) => {
+        state.currentProblemId = problemId;
+        state.inputOverrides = {};
+      }),
+
+    getCurrentProblemId: () => {
+      const state = get();
+      return state.currentProblemId;
+    },
+
+    setInputOverride: (inputName, value) =>
+      set((state) => {
+        state.inputOverrides[inputName] = value;
+      }),
+
+    clearInputOverrides: () =>
+      set((state) => {
+        state.inputOverrides = {};
+      }),
+
+    getInputOverrides: () => {
+      const state = get();
+      return state.inputOverrides;
+    },
+
+    setProblemsData: (problems) =>
+      set((state) => {
+        state.problemsData = problems;
+      }),
+
+    getCurrentProblemData: (problemId) => {
+      const state = get();
+      return state.problemsData.find((problem) => problem.id === problemId);
+    },
 
     hasNext: () => {
       const state = get();

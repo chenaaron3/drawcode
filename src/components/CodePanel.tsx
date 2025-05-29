@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
 import { MdMoreVert, MdRefresh, MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -20,6 +20,7 @@ import { cn } from '@/lib/utils';
 
 import { useCurrentStep } from '../hooks/useCurrentStep';
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
+import InputPopover from './InputPopover';
 
 export default function CodePanel() {
     const {
@@ -35,10 +36,16 @@ export default function CodePanel() {
         prev,
         next,
         togglePlay,
-        hasNext
+        hasNext,
+        getCurrentProblemId,
+        getCurrentProblemData
     } = useTraceStore();
     const currentLine = useTraceStore(selectCurrentLine);
     const currentStep = useCurrentStep();
+    const [isInputPopoverOpen, setIsInputPopoverOpen] = useState(false);
+
+    const currentProblemId = getCurrentProblemId();
+    const problemData = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
 
     // Handle auto-play
     useEffect(() => {
@@ -76,173 +83,193 @@ export default function CodePanel() {
     };
 
     return (
-        <TooltipProvider>
-            <Card className="h-full flex-1/3">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-                    <div className="flex items-center gap-2">
-                        <CardTitle className="text-lg">
-                            {formatFunctionName(traceData.metadata.function)}
-                        </CardTitle>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Badge variant="outline" className="cursor-help">
-                                    inputs
-                                </Badge>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <div className="space-y-1">
-                                    <p className="font-medium text-xs">Function Inputs:</p>
-                                    <div className="space-y-0.5">
-                                        {Object.entries(traceData.metadata.inputs.kwargs).map(([key, value]) => (
-                                            <div key={key} className="flex items-center gap-1 font-mono text-xs">
-                                                <span className="font-semibold">{key}</span>
-                                                <span className="text-muted-foreground">=</span>
-                                                <span>{value}</span>
-                                            </div>
-                                        ))}
+        <>
+            <TooltipProvider>
+                <Card className="h-full flex-1/3">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+                        <div className="flex items-center gap-2">
+                            <CardTitle className="text-lg">
+                                {formatFunctionName(traceData.metadata.function)}
+                            </CardTitle>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Badge variant="outline" className="cursor-help">
+                                        inputs
+                                    </Badge>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <div className="space-y-1">
+                                        <p className="font-medium text-xs">Function Inputs:</p>
+                                        <div className="space-y-0.5">
+                                            {Object.entries(traceData.metadata.inputs.kwargs).map(([key, value]) => (
+                                                <div key={key} className="flex items-center gap-1 font-mono text-xs">
+                                                    <span className="font-semibold">{key}</span>
+                                                    <span className="text-muted-foreground">=</span>
+                                                    <span>{value}</span>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                            </TooltipContent>
-                        </Tooltip>
-                    </div>
+                                </TooltipContent>
+                            </Tooltip>
+                        </div>
 
-                    {/* Integrated Controls */}
-                    <div className="flex items-center gap-2">
-                        {/* Essential Navigation Controls */}
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={prev}
-                            disabled={lineIndex === 0 || isPlaying}
-                        >
-                            <MdSkipPrevious className="h-4 w-4" />
-                        </Button>
+                        {/* Integrated Controls */}
+                        <div className="flex items-center gap-2">
+                            {/* Essential Navigation Controls */}
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={prev}
+                                disabled={lineIndex === 0 || isPlaying}
+                            >
+                                <MdSkipPrevious className="h-4 w-4" />
+                            </Button>
 
-                        <Button
-                            variant={isPlaying ? "default" : "outline"}
-                            size="sm"
-                            onClick={togglePlay}
-                            disabled={!hasNext() && !isPlaying}
-                        >
-                            {isPlaying ? <BsFillPauseFill className="h-4 w-4" /> : <BsFillPlayFill className="h-4 w-4" />}
-                        </Button>
+                            <Button
+                                variant={isPlaying ? "default" : "outline"}
+                                size="sm"
+                                onClick={togglePlay}
+                                disabled={!hasNext() && !isPlaying}
+                            >
+                                {isPlaying ? <BsFillPauseFill className="h-4 w-4" /> : <BsFillPlayFill className="h-4 w-4" />}
+                            </Button>
 
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={next}
-                            disabled={!hasNext() || isPlaying}
-                        >
-                            <MdSkipNext className="h-4 w-4" />
-                        </Button>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={next}
+                                disabled={!hasNext() || isPlaying}
+                            >
+                                <MdSkipNext className="h-4 w-4" />
+                            </Button>
 
-                        <Separator orientation="vertical" className="h-6" />
+                            <Separator orientation="vertical" className="h-6" />
 
-                        {/* Dropdown Menu */}
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline" size="sm">
-                                    <MdMoreVert className="h-4 w-4" />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-56">
-                                <DropdownMenuLabel>Navigation Mode</DropdownMenuLabel>
-                                <DropdownMenuItem onClick={() => setMode("line")}>
-                                    <div className="flex items-center justify-between w-full">
-                                        <span>Line Mode</span>
-                                        {mode === "line" && <span className="text-xs text-primary">●</span>}
+                            {/* Dropdown Menu */}
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="outline" size="sm">
+                                        <MdMoreVert className="h-4 w-4" />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end" className="w-56">
+                                    <DropdownMenuLabel>Navigation Mode</DropdownMenuLabel>
+                                    <DropdownMenuItem onClick={() => setMode("line")}>
+                                        <div className="flex items-center justify-between w-full">
+                                            <span>Line Mode</span>
+                                            {mode === "line" && <span className="text-xs text-primary">●</span>}
+                                        </div>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => setMode("step")}>
+                                        <div className="flex items-center justify-between w-full">
+                                            <span>Step Mode</span>
+                                            {mode === "step" && <span className="text-xs text-primary">●</span>}
+                                        </div>
+                                    </DropdownMenuItem>
+
+                                    <DropdownMenuSeparator />
+
+                                    <DropdownMenuLabel>Playback Speed</DropdownMenuLabel>
+                                    <div className="px-2 py-1">
+                                        <Select
+                                            value={playSpeed.toString()}
+                                            onValueChange={(value) => setPlaySpeed(Number(value))}
+                                            disabled={isPlaying}
+                                        >
+                                            <SelectTrigger className="w-full">
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="2000">0.5× (Slow)</SelectItem>
+                                                <SelectItem value="1000">1× (Normal)</SelectItem>
+                                                <SelectItem value="500">2× (Fast)</SelectItem>
+                                                <SelectItem value="250">4× (Very Fast)</SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => setMode("step")}>
-                                    <div className="flex items-center justify-between w-full">
-                                        <span>Step Mode</span>
-                                        {mode === "step" && <span className="text-xs text-primary">●</span>}
-                                    </div>
-                                </DropdownMenuItem>
 
-                                <DropdownMenuSeparator />
+                                    <DropdownMenuSeparator />
 
-                                <DropdownMenuLabel>Playback Speed</DropdownMenuLabel>
-                                <div className="px-2 py-1">
-                                    <Select
-                                        value={playSpeed.toString()}
-                                        onValueChange={(value) => setPlaySpeed(Number(value))}
-                                        disabled={isPlaying}
+                                    <DropdownMenuItem
+                                        onClick={() => setIsInputPopoverOpen(true)}
+                                        disabled={!problemData}
                                     >
-                                        <SelectTrigger className="w-full">
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="2000">0.5× (Slow)</SelectItem>
-                                            <SelectItem value="1000">1× (Normal)</SelectItem>
-                                            <SelectItem value="500">2× (Fast)</SelectItem>
-                                            <SelectItem value="250">4× (Very Fast)</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
+                                        ✏️ Edit Inputs
+                                    </DropdownMenuItem>
 
-                                <DropdownMenuSeparator />
+                                    <DropdownMenuSeparator />
 
-                                <DropdownMenuItem
-                                    onClick={reset}
-                                    disabled={lineIndex === 0 || isPlaying}
-                                    className="text-destructive focus:text-destructive"
-                                >
-                                    <MdRefresh className="mr-2 h-4 w-4" />
-                                    Reset to Start
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </div>
-                </CardHeader>
-                <CardContent className="flex-1 overflow-hidden">
-                    <div className="rounded-md overflow-hidden bg-muted/30 h-full relative">
-                        <SyntaxHighlighter
-                            language="python"
-                            style={oneLight}
-                            customStyle={{
-                                margin: 0,
-                                padding: 0,
-                                background: 'transparent',
-                                fontSize: '0.75rem',
-                                fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
-                                height: 'calc(100vh - 280px)',
-                                overflow: 'auto',
-                                lineHeight: '1.3',
-                            }}
-                            showLineNumbers={true}
-                            lineNumberStyle={{
-                                minWidth: '2rem',
-                                paddingRight: '0.75rem',
-                                color: '#6b7280',
-                                fontSize: '0.7rem',
-                                textAlign: 'right',
-                                userSelect: 'none',
-                            }}
-                            wrapLines={true}
-                            lineProps={(lineNumber) => {
-                                const isCurrentLine = currentLine.line_number === lineNumber;
+                                    <DropdownMenuItem
+                                        onClick={reset}
+                                        disabled={lineIndex === 0 || isPlaying}
+                                        className="text-destructive focus:text-destructive"
+                                    >
+                                        <MdRefresh className="mr-2 h-4 w-4" />
+                                        Reset to Start
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="flex-1 overflow-hidden">
+                        <div className="rounded-md overflow-hidden bg-muted/30 h-full relative">
+                            <SyntaxHighlighter
+                                language="python"
+                                style={oneLight}
+                                customStyle={{
+                                    margin: 0,
+                                    padding: 0,
+                                    background: 'transparent',
+                                    fontSize: '0.75rem',
+                                    fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+                                    height: 'calc(100vh - 280px)',
+                                    overflow: 'auto',
+                                    lineHeight: '1.3',
+                                }}
+                                showLineNumbers={true}
+                                lineNumberStyle={{
+                                    minWidth: '2rem',
+                                    paddingRight: '0.75rem',
+                                    color: '#6b7280',
+                                    fontSize: '0.7rem',
+                                    textAlign: 'right',
+                                    userSelect: 'none',
+                                }}
+                                wrapLines={true}
+                                lineProps={(lineNumber) => {
+                                    const isCurrentLine = currentLine.line_number === lineNumber;
 
-                                return {
-                                    style: {
-                                        display: 'block',
-                                        backgroundColor: isCurrentLine ? 'rgb(219 234 254)' : 'transparent',
-                                        borderLeft: isCurrentLine ? '3px solid rgb(59 130 246)' : '3px solid transparent',
-                                        fontWeight: isCurrentLine ? '500' : 'normal',
-                                        padding: '0.25rem 0.75rem',
-                                        transition: 'all 0.2s ease',
-                                        lineHeight: '1.3',
-                                    },
-                                    'data-line-number': lineNumber,
-                                    'data-is-current': isCurrentLine
-                                };
-                            }}
-                        >
-                            {traceData.metadata.code}
-                        </SyntaxHighlighter>
-                    </div>
-                </CardContent>
-            </Card>
-        </TooltipProvider>
+                                    return {
+                                        style: {
+                                            display: 'block',
+                                            backgroundColor: isCurrentLine ? 'rgb(219 234 254)' : 'transparent',
+                                            borderLeft: isCurrentLine ? '3px solid rgb(59 130 246)' : '3px solid transparent',
+                                            fontWeight: isCurrentLine ? '500' : 'normal',
+                                            padding: '0.25rem 0.75rem',
+                                            transition: 'all 0.2s ease',
+                                            lineHeight: '1.3',
+                                        },
+                                        'data-line-number': lineNumber,
+                                        'data-is-current': isCurrentLine
+                                    };
+                                }}
+                            >
+                                {traceData.metadata.code}
+                            </SyntaxHighlighter>
+                        </div>
+                    </CardContent>
+                </Card>
+            </TooltipProvider>
+
+            {/* Input Popover */}
+            {problemData && (
+                <InputPopover
+                    problemData={problemData}
+                    isOpen={isInputPopoverOpen}
+                    onClose={() => setIsInputPopoverOpen(false)}
+                />
+            )}
+        </>
     );
 } 

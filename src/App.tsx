@@ -1,30 +1,29 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
     Select, SelectContent, SelectItem, SelectTrigger, SelectValue
 } from '@/components/ui/select';
 
+import problemsJson from '../public/problems.json';
 import TraceVisualizer from './components/TraceVisualizer';
-import { AVAILABLE_TRACE_FILES, getTraceData } from './data/traces';
+import { AVAILABLE_PROBLEM_IDS, getTraceData } from './data/traces';
+import { useTraceStore } from './store/traceStore';
 
-type TraceFile = string;
-
-function formatTraceName(trace: string): string {
-  const traceData = getTraceData(trace);
+function formatTraceName(problemId: string): string {
+  const traceData = getTraceData(problemId);
   if (traceData?.metadata?.problem) {
     return `${traceData.metadata.problem.number}. ${traceData.metadata.problem.title}`;
   }
 
   // Fallback to original formatting if no problem metadata
-  return trace
+  return problemId
     .replace(/-/g, ' ')
-    .replace('.json', '')
     .replace(/\b\w/g, letter => letter.toUpperCase());
 }
 
-function getSortedTraceFiles(): string[] {
-  return AVAILABLE_TRACE_FILES.sort((a, b) => {
+function getSortedProblemIds(): string[] {
+  return AVAILABLE_PROBLEM_IDS.sort((a, b) => {
     const traceDataA = getTraceData(a);
     const traceDataB = getTraceData(b);
 
@@ -46,12 +45,12 @@ function getSortedTraceFiles(): string[] {
 }
 
 interface HeaderProps {
-  selectedTrace: TraceFile;
-  onTraceChange: (trace: TraceFile) => void;
+  currentProblemId: string | null;
+  onProblemChange: (problemId: string) => void;
 }
 
-function Header({ selectedTrace, onTraceChange }: HeaderProps) {
-  const sortedTraceFiles = getSortedTraceFiles();
+function Header({ currentProblemId, onProblemChange }: HeaderProps) {
+  const sortedProblemIds = getSortedProblemIds();
 
   return (
     <div className="border-b bg-card h-[10vh]">
@@ -62,16 +61,16 @@ function Header({ selectedTrace, onTraceChange }: HeaderProps) {
           </h1>
           <div className="flex items-center gap-3">
             <span className="text-sm text-muted-foreground">
-              Select trace:
+              Select problem:
             </span>
-            <Select value={selectedTrace} onValueChange={onTraceChange}>
+            <Select value={currentProblemId || ''} onValueChange={onProblemChange}>
               <SelectTrigger className="w-[200px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {sortedTraceFiles.map(trace => (
-                  <SelectItem key={trace} value={trace}>
-                    {formatTraceName(trace)}
+                {sortedProblemIds.map(problemId => (
+                  <SelectItem key={problemId} value={problemId}>
+                    {formatTraceName(problemId)}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -103,29 +102,38 @@ function ErrorDisplay({ error }: ErrorDisplayProps) {
 }
 
 export default function App() {
-  const [selectedTrace, setSelectedTrace] = useState<TraceFile>('two-sum.json');
+  const {
+    setProblemsData,
+    getCurrentProblemId,
+    setCurrentProblem
+  } = useTraceStore();
 
-  const handleTraceChange = (trace: string) => {
-    setSelectedTrace(trace as TraceFile);
+  const currentProblemId = getCurrentProblemId();
+
+  // Load problems data and set initial problem on mount
+  useEffect(() => {
+    setProblemsData(problemsJson.problems);
+    if (!currentProblemId) {
+      setCurrentProblem('two-sum');
+    }
+  }, [setProblemsData, setCurrentProblem, currentProblemId]);
+
+  const handleProblemChange = (problemId: string) => {
+    setCurrentProblem(problemId);
   };
-
-  // Get the trace data for the selected trace
-  const traceData = getTraceData(selectedTrace);
 
   return (
     <div className="min-h-screen overflow-visible h-screen bg-background flex flex-col">
       <Header
-        selectedTrace={selectedTrace}
-        onTraceChange={handleTraceChange}
+        currentProblemId={currentProblemId}
+        onProblemChange={handleProblemChange}
       />
 
       <div className="px-24 w-full p-6 my-auto h-[90vh] overflow-visible">
-        {traceData ? (
-          <TraceVisualizer
-            traceData={traceData}
-          />
+        {currentProblemId ? (
+          <TraceVisualizer />
         ) : (
-          <ErrorDisplay error={`Trace file "${selectedTrace}" not found`} />
+          <ErrorDisplay error="No problem selected" />
         )}
       </div>
     </div>

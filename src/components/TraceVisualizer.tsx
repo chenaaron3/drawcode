@@ -1,23 +1,27 @@
 import { LayoutGroup } from 'framer-motion';
 import { useEffect } from 'react';
 
+import { getTraceData } from '../data/traces';
 import { useTraceStore } from '../store/traceStore';
 import CodePanel from './CodePanel';
 import ComputationWorkspace from './ComputationWorkspace';
 import VariablePanel from './VariablePanel';
 
-import type { TraceData } from '../types/trace';
+export default function TraceVisualizer() {
+    const {
+        setTraceData,
+        traceData: currentTraceData,
+        getCurrentProblemId
+    } = useTraceStore();
 
-interface VisualizerProps {
-    traceData: TraceData;
-}
+    const currentProblemId = getCurrentProblemId();
+    const traceData = currentProblemId ? getTraceData(currentProblemId) : null;
 
-export default function TraceVisualizer({ traceData }: VisualizerProps) {
-    const { setTraceData, traceData: currentTraceData } = useTraceStore();
-
-    // Initialize trace data
+    // Initialize trace data when problem changes
     useEffect(() => {
-        setTraceData(traceData);
+        if (traceData) {
+            setTraceData(traceData);
+        }
     }, [traceData, setTraceData]);
 
     if (!currentTraceData) return null;
