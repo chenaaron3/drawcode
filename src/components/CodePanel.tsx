@@ -92,13 +92,6 @@ export default function CodePanel() {
         );
     }
 
-    const formatFunctionName = (name: string) => {
-        return name
-            .split(/(?=[A-Z])|_/)
-            .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-            .join(' ');
-    };
-
     return (
         <>
             <TooltipProvider>
@@ -106,7 +99,7 @@ export default function CodePanel() {
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
                         <div className="flex items-center gap-2">
                             <CardTitle className="text-lg">
-                                {formatFunctionName(traceData.metadata.function)}
+                                {traceData.metadata.problem?.title}
                             </CardTitle>
                         </div>
 

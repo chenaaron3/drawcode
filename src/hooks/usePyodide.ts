@@ -218,11 +218,11 @@ result_json = None
 try:
     tracer = PythonTracer()
     problem_code = """${problemCode.replace(/"/g, '\\"')}"""
+    print(problem_code)
 
     # Extract function name from code
     import ast
     tree = ast.parse(problem_code)
-    print(problem_code)
     function_name = "${entrypoint}"
 
     # Get all defined functions
@@ -231,30 +231,29 @@ try:
         if isinstance(node, ast.FunctionDef):
             defined_functions.append(node.name)
     print(f"Defined functions: {defined_functions}")
-    # If the provided function name does not exist, use the first defined function
+    
+    # If the provided function name does not exist, maybe the code calls the function directly
     if function_name not in defined_functions:
-        function_name = defined_functions[0]
-    if function_name:
-        # Get the input values directly from globals
-        input_kwargs = {${Object.entries(inputs)
-          .map(([key, _]) => `"${key}": ${key}`)
-          .join(", ")}}
-        
-        print(f"Function: {function_name}")
-        print(f"Input kwargs: {input_kwargs}")
+        function_name = None
 
-        # Run the tracer with explicit kwargs
-        transformed_ast = tracer.run_code(
-            problem_code, 
-            function_name,
-            **input_kwargs
-        )
-        
-        # Get the trace data using the new method
-        trace_data = tracer.get_trace_data(transformed_ast)
-        result_json = json.dumps(trace_data)
-    else:
-        result_json = json.dumps({"error": "No function found in code"})
+    # Get the input values directly from globals
+    input_kwargs = {${Object.entries(inputs)
+      .map(([key, _]) => `"${key}": ${key}`)
+      .join(", ")}}
+    
+    print(f"Function: {function_name}")
+    print(f"Input kwargs: {input_kwargs}")
+
+    # Run the tracer with explicit kwargs
+    transformed_ast = tracer.run_code(
+        problem_code, 
+        function_name,
+        **input_kwargs
+    )
+    
+    # Get the trace data using the new method
+    trace_data = tracer.get_trace_data(transformed_ast)
+    result_json = json.dumps(trace_data)
         
 except Exception as e:
     result_json = json.dumps({"error": f"Python execution failed: {str(e)}"})
