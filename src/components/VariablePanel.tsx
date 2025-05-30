@@ -133,7 +133,6 @@ export default function VariablePanel() {
     const current = useTraceStore(selectCurrentLine);
     const nodeLookup = useTraceStore(state => state.nodeLookup);
     const animatingVariable = useTraceStore(state => state.animatingVariable);
-    const [steps, setSteps] = useState<AugmentedTraceStep[] | null>(null);
 
     useEffect(() => {
         if (current !== null && nodeLookup !== null) {
