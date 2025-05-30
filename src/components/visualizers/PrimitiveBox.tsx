@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import React from 'react';
 
+import { useTraceStore } from '../../store/traceStore';
 import { getValueTypeColors } from './colors';
 import { valueVariants } from './variants';
 
@@ -25,7 +26,8 @@ function formatValue(value: any): string {
 }
 
 export const PrimitiveBox: React.FC<PrimitiveBoxProps> = ({ value, delta }) => {
-    const isNew = delta !== undefined;
+    const stepIndex = useTraceStore(state => state.stepIndex);
+    const isNew = delta !== undefined && stepIndex === 0;
     const valueType = getValueType(value);
     const colors = getValueTypeColors(valueType, isNew);
 

@@ -24,46 +24,33 @@ export function EvaluationNodeRenderer({ node, animatingVariable, currentLocals 
     const variableName = getVariableName(node);
     const isAnimatingThis = animatingVariable === variableName;
 
-    // For leaf nodes (single string child) that have been evaluated, show the value
-    if (node.hasValue && node.children.length === 1 && typeof node.children[0] === 'string') {
+    // For nodes that have been evaluated (both leaf and compound), show the value
+    if (node.hasValue) {
+        const isLeafNode = node.children.length === 1 && typeof node.children[0] === 'string';
         return (
             <motion.span
                 key={`node-${node.nodeId}`}
                 data-node-id={node.nodeId}
-                data-target={variableName}
+                {...(isLeafNode && { 'data-target': variableName })}
                 className={`
-                    inline-block px-1 py-0.5 rounded font-mono text-sm
-                    ${isAnimatingThis
-                        ? 'bg-blue-200 text-blue-800'
+                    inline-block px-1 rounded font-mono text-sm
+                    ${isAnimatingThis && isLeafNode
+                        ? 'bg-blue-200 text-blue-800 ring-2 ring-blue-300 ring-opacity-50 shadow-lg'
                         : node.isHighlighted
-                            ? 'bg-yellow-200 text-yellow-800'
+                            ? 'bg-yellow-200 text-yellow-800 ring-2 ring-yellow-400 ring-opacity-70'
                             : 'bg-blue-200 text-blue-800'
                     }
                 `}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-            >
-                {typeof node.value === 'string' ? `"${node.value}"` : JSON.stringify(node.value)}
-            </motion.span>
-        );
-    }
-
-    // For compound expressions that have been evaluated, show value with original structure preserved
-    if (node.hasValue && node.children.length > 1) {
-        return (
-            <motion.span
-                key={`node-${node.nodeId}`}
-                data-node-id={node.nodeId}
-                className={`
-                    inline-block px-1 py-0.5 rounded font-mono text-sm
-                    ${node.isHighlighted
-                        ? 'bg-yellow-200 text-yellow-800'
-                        : 'bg-blue-200 text-blue-800'
+                exit={{
+                    opacity: 0,
+                    scale: 0.8,
+                    transition: {
+                        duration: 0.2,
+                        ease: "easeInOut"
                     }
-                `}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                }}
                 transition={{ duration: 0.3 }}
             >
                 {typeof node.value === 'string' ? `"${node.value}"` : JSON.stringify(node.value)}
@@ -93,7 +80,8 @@ export function EvaluationNodeRenderer({ node, animatingVariable, currentLocals 
             key={`node-${node.nodeId}`}
             data-node-id={node.nodeId}
             className={`
-                ${node.isHighlighted ? 'bg-yellow-100 text-yellow-800 rounded' : ''}
+                px-1 inline-block items-center justify-center
+                ${node.isHighlighted ? 'bg-yellow-100 text-yellow-800 rounded ring-2 ring-yellow-400 ring-opacity-70' : ''}
                 ${isAnimatingThis ? 'bg-blue-100 text-blue-700 rounded' : ''}
             `}
         >

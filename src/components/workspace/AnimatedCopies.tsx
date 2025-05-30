@@ -47,7 +47,7 @@ export function AnimatedCopies({ animatedCopies }: AnimatedCopiesProps) {
                         type: "spring",
                         stiffness: 300,
                         damping: 30,
-                        duration: 0.6,
+                        duration: 0.5,
                     }}
                     style={{
                         transformOrigin: "center center",

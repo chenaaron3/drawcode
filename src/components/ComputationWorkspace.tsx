@@ -17,6 +17,7 @@ export default function ComputationWorkspace() {
     const nodeLookup = useTraceStore(state => state.nodeLookup);
     const animatingVariable = useTraceStore(state => state.animatingVariable);
     const setAnimatingVariable = useTraceStore(state => state.setAnimatingVariable);
+    const setIsEvaluating = useTraceStore(state => state.setIsEvaluating);
     const stepIndex = useTraceStore(state => state.stepIndex);
     const [steps, setSteps] = useState<AugmentedTraceStep[] | null>(null);
     const [animatedCopies, setAnimatedCopies] = useState<AnimatedCopy[]>([]);
@@ -24,10 +25,11 @@ export default function ComputationWorkspace() {
 
     useEffect(() => {
         if (current !== null && nodeLookup !== null) {
-            setSteps(current.steps.map(step => ({
-                ...step,
-                ast: nodeLookup.get(step.node_id)!
-            })));
+            setSteps(current.steps
+                .map(step => ({
+                    ...step,
+                    ast: nodeLookup.get(step.node_id)!
+                })));
         }
     }, [current, nodeLookup]);
 
@@ -70,29 +72,37 @@ export default function ComputationWorkspace() {
             const currentStep = steps[stepIndex];
 
             // Only highlight for before_statement and before_expression events
-            if (currentStep.event === 'before_statement' || currentStep.event === 'before_expression') {
+            if (currentStep.event === 'before_statement' || currentStep.event === 'before_expression' || currentStep.event === 'after_statement') {
                 currentTree = highlightNodeInTree(currentTree, currentStep.node_id, true);
             }
 
-            // Handle variable animation for after_expression steps
-            if (currentStep.event === 'after_expression' &&
-                current?.locals &&
-                Object.prototype.hasOwnProperty.call(current.locals, currentStep.focus)) {
-
+            // Highlight the variable if it's being evaluated
+            if (currentStep.event === 'after_expression' || currentStep.event === 'before_expression') {
                 setAnimatingVariable(currentStep.focus);
-                setTimeout(() => {
-                    createAnimatedCopy(currentStep.focus, currentStep.value);
-                }, 200);
-                setTimeout(() => {
-                    setAnimatingVariable(null);
-                }, 800);
+
+                // Set isEvaluating based on the step event
+                if (currentStep.event === 'before_expression') {
+                    setIsEvaluating(true); // Stage 1: highlighting/evaluating
+                } else if (currentStep.event === 'after_expression') {
+                    setIsEvaluating(false); // Stage 2: copying/moving
+                }
+
+                // Handle variable animation for after_expression steps
+                if (currentStep.event === 'after_expression' && current?.locals &&
+                    Object.prototype.hasOwnProperty.call(current.locals, currentStep.focus)) {
+                    setTimeout(() => {
+                        createAnimatedCopy(currentStep.focus, currentStep.value);
+                    }, 100);
+                }
             } else {
                 setAnimatingVariable(null);
+                setIsEvaluating(false);
             }
         } else {
             // Clear highlights and animation if no current step
             currentTree = highlightNodeInTree(currentTree, -1, false);
             setAnimatingVariable(null);
+            setIsEvaluating(false);
         }
 
         setEvaluationTree(currentTree);
@@ -226,7 +236,7 @@ export default function ComputationWorkspace() {
             // Remove the copy after animation completes
             setTimeout(() => {
                 setAnimatedCopies(prev => prev.filter(copy => copy.id !== copyId));
-            }, 800); // Reduced from 1000ms to match animation duration
+            }, 400);
         }
     };
 

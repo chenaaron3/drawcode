@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import React from 'react';
 
+import { useTraceStore } from '../../store/traceStore';
 import { getDictionaryColors, VISUALIZER_COLORS } from './colors';
 import { renderValue } from './renderValue';
 import { valueVariants } from './variants';
@@ -18,26 +19,27 @@ interface DictionaryEntryProps {
 }
 
 function DictionaryEntry({ entryKey, value, delta }: DictionaryEntryProps) {
-    const hasChange = delta !== undefined;
+    const stepIndex = useTraceStore(state => state.stepIndex);
+    const isNew = delta !== undefined && stepIndex === 0;
 
     const containerClasses = clsx(
         "flex items-center gap-2 p-2 transition-all duration-200",
         {
-            [VISUALIZER_COLORS.dictionary.changed]: hasChange,
-            [VISUALIZER_COLORS.dictionary.hover]: !hasChange
+            [VISUALIZER_COLORS.dictionary.changed]: isNew,
+            [VISUALIZER_COLORS.dictionary.hover]: !isNew
         }
     );
 
     const keyClasses = clsx("font-mono text-xs font-semibold", {
-        [VISUALIZER_COLORS.dictionary.keyChanged]: hasChange,
-        [VISUALIZER_COLORS.dictionary.keyDefault]: !hasChange
+        [VISUALIZER_COLORS.dictionary.keyChanged]: isNew,
+        [VISUALIZER_COLORS.dictionary.keyDefault]: !isNew
     });
 
     return (
         <div className={containerClasses}>
             <div className="flex items-center gap-1 flex-shrink-0">
                 <span className={keyClasses}>{entryKey}</span>
-                {hasChange && (
+                {isNew && (
                     <div className={`w-1 h-1 ${VISUALIZER_COLORS.changes.indicator} rounded-full`} />
                 )}
             </div>
@@ -60,7 +62,8 @@ export const DictionaryVisualizer: React.FC<DictionaryVisualizerProps> = ({
     dict,
     delta
 }) => {
-    const isNew = delta !== undefined;
+    const stepIndex = useTraceStore(state => state.stepIndex);
+    const isNew = delta !== undefined && stepIndex === 0;
     const entries = Object.entries(dict);
     const isEmpty = entries.length === 0;
 

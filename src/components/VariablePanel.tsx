@@ -23,7 +23,9 @@ interface VariableItemProps {
 }
 
 function VariableItem({ name, value, delta, isComplex = false, isAnimating = false }: VariableItemProps) {
-    const isChanged = delta !== undefined;
+    const stepIndex = useTraceStore(state => state.stepIndex);
+    const isEvaluating = useTraceStore(state => state.isEvaluating);
+    const isChanged = delta !== undefined && stepIndex === 0;
     const changeColors = getChangeColors(isChanged);
 
     const labelClasses = `
@@ -31,44 +33,24 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
       ${changeColors.text}
     `;
 
-    if (isComplex) {
-        // Complex variables: keep original layout (label and value side by side)
-        const containerClasses = `
-          flex flex-col gap-3 p-4 rounded-lg transition-all duration-200 border
-          ${getVariableColors(isChanged)}
-        `;
+    // Choose ring color based on evaluation stage
+    const getRingColor = () => {
+        if (!isAnimating) return '';
+        if (isEvaluating) {
+            // Stage 1: evaluating (yellow like highlight)
+            return 'ring-2 ring-yellow-400 ring-opacity-70 shadow-lg rounded-lg';
+        } else {
+            // Stage 2: copying/moving (blue with shadow)
+            return 'ring-2 ring-blue-300 ring-opacity-50 shadow-lg rounded-lg';
+        }
+    };
 
-        return (
-            <motion.div
-                className={containerClasses}
-                {...fadeInUp}
-            >
-                <div className="flex items-center justify-center gap-2">
-                    <span className={labelClasses}>{name}</span>
-                    {isChanged && (
-                        <div className={`w-1.5 h-1.5 ${changeColors.indicator} rounded-full`} />
-                    )}
-                </div>
-
-                <div>
-                    <AnimatePresence mode="popLayout">
-                        <motion.div
-                            key={`${name}-${JSON.stringify(value)}`}
-                            {...fadeInUp}
-                        >
-                            {renderValue(value, delta, { variableName: name })}
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
-            </motion.div>
-        );
-    }
-
-    // Simple variables: label on top (centered), value on bottom
+    // Unified renderer with conditional styling based on complexity
     const containerClasses = `
-      flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-200 border
+      flex flex-col items-center transition-all duration-200 border rounded-lg
+      ${isComplex ? 'gap-3 p-4' : 'gap-2 p-3'}
       ${getVariableColors(isChanged)}
-      ${isAnimating ? 'ring-2 ring-blue-300 ring-opacity-50' : ''}
+      ${getRingColor()}
     `;
 
     return (
@@ -78,9 +60,6 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
         >
             <div className="flex items-center justify-center gap-2">
                 <span className={labelClasses}>{name}</span>
-                {isChanged && (
-                    <div className={`w-1.5 h-1.5 ${changeColors.indicator} rounded-full`} />
-                )}
             </div>
 
             <div>
@@ -109,12 +88,7 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
                     >
                         <div
                             data-variable={name}
-                            className={`
-                                ${isAnimating
-                                    ? 'ring-2 ring-blue-300 ring-opacity-50 shadow-lg'
-                                    : ''
-                                }
-                            `}
+                            className={getRingColor()}
                         >
                             {renderValue(value, delta, {
                                 variableName: name
@@ -169,10 +143,6 @@ export default function VariablePanel() {
             })));
         }
     }, [current, nodeLookup]);
-
-    useEffect(() => {
-        console.log(steps);
-    }, [steps]);
 
     if (!traceData || !current) return null;
 

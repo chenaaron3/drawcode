@@ -1,6 +1,12 @@
 import { loadPyodide } from 'pyodide';
 import { useEffect, useRef, useState } from 'react';
 
+import astTransformerCode from '../tracer/ast_transformer.py?raw';
+import pythonTracerCode from '../tracer/python_tracer.py?raw';
+import relationshipAnalyzerCode from '../tracer/relationship_analyzer.py?raw';
+// Import Python tracer files as raw text
+import utilsCode from '../tracer/utils.py?raw';
+
 import type { PyodideInterface } from "pyodide";
 
 interface UsePyodideResult {
@@ -13,6 +19,7 @@ interface UsePyodideResult {
     entrypoint: string,
     inputs: Record<string, any>
   ) => Promise<any>;
+  resetPyodide: () => Promise<void>;
 }
 
 export function usePyodide(): UsePyodideResult {
@@ -20,6 +27,14 @@ export function usePyodide(): UsePyodideResult {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const isInitializing = useRef(false);
+
+  // Shared tracer files configuration
+  const TRACER_FILES = [
+    { name: "utils", code: utilsCode },
+    { name: "ast_transformer", code: astTransformerCode },
+    { name: "relationship_analyzer", code: relationshipAnalyzerCode },
+    { name: "python_tracer", code: pythonTracerCode },
+  ];
 
   useEffect(() => {
     if (isInitializing.current) return;
@@ -51,20 +66,7 @@ export function usePyodide(): UsePyodideResult {
 
     try {
       // Load all Python tracer files and register them as modules
-      const files = [
-        { name: "utils", path: "/tracer/utils.py" },
-        { name: "ast_transformer", path: "/tracer/ast_transformer.py" },
-        {
-          name: "relationship_analyzer",
-          path: "/tracer/relationship_analyzer.py",
-        },
-        { name: "python_tracer", path: "/tracer/python_tracer.py" },
-      ];
-
-      // Load and register each file as a module
-      for (const file of files) {
-        const code = await fetch(file.path).then((r) => r.text());
-
+      for (const file of TRACER_FILES) {
         // Register the module in sys.modules so it can be imported
         pyodide.runPython(`
 import sys
@@ -75,13 +77,38 @@ module = types.ModuleType('${file.name}')
 sys.modules['${file.name}'] = module
 
 # Execute the code in the module's namespace
-exec("""${code.replace(/"/g, '\\"')}""", module.__dict__)
+exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
         `);
       }
-
       console.log("All tracer modules loaded successfully");
     } catch (error) {
       console.error("Failed to load tracer modules:", error);
+      throw error;
+    }
+  };
+
+  // Optional: Complete Pyodide reset (more expensive but thorough)
+  const resetPyodide = async () => {
+    console.log("Starting complete Pyodide reset...");
+    setIsLoading(true);
+
+    try {
+      const pyodideInstance = await loadPyodide({
+        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.27.6/full/",
+      });
+
+      await pyodideInstance.loadPackage(["micropip"]);
+      setPyodide(pyodideInstance);
+
+      setIsLoading(false);
+
+      // Use the existing loadTracer function to load modules
+      await loadTracer();
+
+      console.log("Pyodide reset complete with fresh tracer modules");
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Failed to reset Pyodide:", error);
       throw error;
     }
   };
@@ -94,9 +121,20 @@ exec("""${code.replace(/"/g, '\\"')}""", module.__dict__)
     if (!pyodide) throw new Error("Pyodide not ready");
 
     try {
+      // Option 3: Complete reset for maximum cleanliness
+      console.log("Performing complete Pyodide reset...");
+      await resetPyodide();
+
+      // Wait a moment for reset to complete and get fresh instance
+      await new Promise((resolve) => setTimeout(resolve, 200));
+
+      // Get the current pyodide instance after reset
+      const currentPyodide = pyodide;
+      if (!currentPyodide) throw new Error("Pyodide reset failed");
+
       // Set up the problem inputs with proper type conversion
       for (const [key, value] of Object.entries(inputs)) {
-        pyodide.globals.set(key, value);
+        currentPyodide.globals.set(key, value);
       }
 
       // Run the trace generation
@@ -121,12 +159,15 @@ try:
                 function_name = node.name
                 break
     if function_name:
-        # Get the input values from globals and ensure they're properly typed
-        input_kwargs = {}
-        for key in ${JSON.stringify(Object.keys(inputs))}:
-            input_kwargs[key] = globals()[key]
+        # Get the input values directly from our clean globals
+        input_kwargs = {${Object.entries(inputs)
+          .map(([key, _]) => `"${key}": ${key}`)
+          .join(", ")}}
+        
+        print(f"Function: {function_name}")
+        print(f"Input kwargs: {input_kwargs}")
 
-        # Run the tracer with proper kwargs
+        # Run the tracer with explicit kwargs
         transformed_ast = tracer.run_code(
             problem_code, 
             function_name,
@@ -145,7 +186,7 @@ except Exception as e:
 result_json
       `;
 
-      const result = pyodide.runPython(traceGenCode);
+      const result = currentPyodide.runPython(traceGenCode);
 
       if (!result || result === "undefined") {
         throw new Error("Python code returned undefined result");
@@ -163,6 +204,7 @@ result_json
     error,
     loadTracer,
     generateTrace,
+    resetPyodide,
   };
 }
 

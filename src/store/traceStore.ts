@@ -44,6 +44,7 @@ interface TraceState {
 
   // Animation state
   animatingVariable: string | null;
+  isEvaluating: boolean; // True during before_expression, false during after_expression
 
   // Input overrides for current problem only
   currentProblemId: string | null;
@@ -62,6 +63,7 @@ interface TraceActions {
   setPlaySpeed: (speed: number) => void;
   setMode: (mode: "line" | "step") => void;
   setAnimatingVariable: (variableName: string | null) => void;
+  setIsEvaluating: (isEvaluating: boolean) => void;
 
   // Actions
   next: () => void; // Unified next function based on mode
@@ -100,6 +102,7 @@ const initialState: TraceState = {
   nodeLookup: new Map(),
   mode: "step",
   animatingVariable: null,
+  isEvaluating: false,
   currentProblemId: null,
   inputOverrides: {},
   problemsData: [],
@@ -154,6 +157,11 @@ export const useTraceStore = create<TraceStore>()(
     setAnimatingVariable: (variableName) =>
       set((state) => {
         state.animatingVariable = variableName;
+      }),
+
+    setIsEvaluating: (isEvaluating) =>
+      set((state) => {
+        state.isEvaluating = isEvaluating;
       }),
 
     next: () =>

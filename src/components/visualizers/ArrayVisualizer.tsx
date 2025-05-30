@@ -131,7 +131,8 @@ export const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({
     delta,
     variableName
 }) => {
-    const isNew = delta !== undefined;
+    const stepIndex = useTraceStore(state => state.stepIndex);
+    const isNew = delta !== undefined && stepIndex === 0;
     const traceData = useTraceStore(state => state.traceData);
     const current = useTraceStore(selectCurrentLine);
 
