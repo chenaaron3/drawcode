@@ -1,5 +1,5 @@
 import { loadPyodide } from 'pyodide';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import astTransformerCode from '../tracer/ast_transformer.py?raw';
 import pythonTracerCode from '../tracer/python_tracer.py?raw';
@@ -17,7 +17,8 @@ interface UsePyodideResult {
   generateTrace: (
     problemCode: string,
     entrypoint: string,
-    inputs: Record<string, any>
+    inputs: Record<string, any>,
+    originalInputs: Record<string, any>
   ) => Promise<any>;
   resetPyodide: () => Promise<void>;
 }
@@ -113,32 +114,103 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
     }
   };
 
-  const generateTrace = async (
-    problemCode: string,
-    entrypoint: string,
-    inputs: Record<string, any>
-  ) => {
-    if (!pyodide) throw new Error("Pyodide not ready");
+  // Helper function to convert a value to match the type of the original value
+  const convertToOriginalType = (value: any, originalValue: any): any => {
+    // If the original value is null/undefined, return as-is
+    if (originalValue == null) {
+      return value;
+    }
 
-    try {
-      // Option 3: Complete reset for maximum cleanliness
-      console.log("Performing complete Pyodide reset...");
-      await resetPyodide();
+    const originalType = typeof originalValue;
 
-      // Wait a moment for reset to complete and get fresh instance
-      await new Promise((resolve) => setTimeout(resolve, 200));
+    // If value is already the correct type, return as-is
+    if (typeof value === originalType && !Array.isArray(originalValue)) {
+      return value;
+    }
 
-      // Get the current pyodide instance after reset
-      const currentPyodide = pyodide;
-      if (!currentPyodide) throw new Error("Pyodide reset failed");
-
-      // Set up the problem inputs with proper type conversion
-      for (const [key, value] of Object.entries(inputs)) {
-        currentPyodide.globals.set(key, value);
+    // Handle arrays specifically
+    if (Array.isArray(originalValue)) {
+      if (typeof value === "string") {
+        try {
+          const parsed = JSON.parse(value);
+          return Array.isArray(parsed) ? parsed : originalValue;
+        } catch {
+          return originalValue;
+        }
       }
+      return Array.isArray(value) ? value : originalValue;
+    }
 
-      // Run the trace generation
-      const traceGenCode = `
+    // Handle other types
+    switch (originalType) {
+      case "number":
+        if (typeof value === "string") {
+          const numValue = Number(value);
+          return isNaN(numValue) ? originalValue : numValue;
+        }
+        return typeof value === "number" ? value : originalValue;
+
+      case "boolean":
+        if (typeof value === "string") {
+          return value.toLowerCase() === "true";
+        }
+        return Boolean(value);
+
+      case "string":
+        // Remove quotes if it's a quoted string
+        if (typeof value === "string") {
+          if (
+            (value.startsWith("'") && value.endsWith("'")) ||
+            (value.startsWith('"') && value.endsWith('"'))
+          ) {
+            return value.slice(1, -1);
+          }
+        }
+        return String(value);
+
+      default:
+        return value;
+    }
+  };
+
+  const generateTrace = useCallback(
+    async (
+      problemCode: string,
+      entrypoint: string,
+      inputs: Record<string, any>,
+      originalInputs: Record<string, any>
+    ) => {
+      if (!pyodide) throw new Error("Pyodide not ready");
+
+      try {
+        // Option 3: Complete reset for maximum cleanliness
+        console.log("Performing complete Pyodide reset...");
+        await resetPyodide();
+
+        // Wait a moment for reset to complete and get fresh instance
+        await new Promise((resolve) => setTimeout(resolve, 200));
+
+        // Get the current pyodide instance after reset
+        const currentPyodide = pyodide;
+        if (!currentPyodide) throw new Error("Pyodide reset failed");
+
+        console.log("Inputs:", inputs);
+        console.log("Original inputs:", originalInputs);
+
+        // Parse inputs using original types for guidance
+        const parsedInputs: Record<string, any> = {};
+        for (const [key, value] of Object.entries(inputs)) {
+          const originalValue = originalInputs[key];
+          parsedInputs[key] = convertToOriginalType(value, originalValue);
+        }
+
+        console.log("Parsed inputs:", parsedInputs);
+
+        // Convert inputs to Python objects using toPy
+        const pythonGlobals = currentPyodide.toPy(parsedInputs);
+
+        // Run the trace generation with proper globals
+        const traceGenCode = `
 from python_tracer import PythonTracer
 import json
 
@@ -159,7 +231,7 @@ try:
                 function_name = node.name
                 break
     if function_name:
-        # Get the input values directly from our clean globals
+        # Get the input values directly from globals
         input_kwargs = {${Object.entries(inputs)
           .map(([key, _]) => `"${key}": ${key}`)
           .join(", ")}}
@@ -186,17 +258,21 @@ except Exception as e:
 result_json
       `;
 
-      const result = currentPyodide.runPython(traceGenCode);
+        const result = currentPyodide.runPython(traceGenCode, {
+          globals: pythonGlobals,
+        });
 
-      if (!result || result === "undefined") {
-        throw new Error("Python code returned undefined result");
+        if (!result || result === "undefined") {
+          throw new Error("Python code returned undefined result");
+        }
+
+        return JSON.parse(result);
+      } catch (err) {
+        throw new Error(`Trace generation failed: ${err}`);
       }
-
-      return JSON.parse(result);
-    } catch (err) {
-      throw new Error(`Trace generation failed: ${err}`);
-    }
-  };
+    },
+    [pyodide, convertToOriginalType]
+  );
 
   return {
     pyodide,

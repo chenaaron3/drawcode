@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
 import { MdMoreVert, MdRefresh, MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 
@@ -11,6 +12,7 @@ import {
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 
+import { usePyodide } from '../hooks/usePyodide';
 import { useTraceStore } from '../store/traceStore';
 
 export function TraceControls() {
@@ -25,9 +27,87 @@ export function TraceControls() {
         next,
         setMode,
         setPlaySpeed,
-        reset
+        reset,
+        hasChanges,
+        resetToOriginal,
+        setTraceData,
+        currentCode,
+        getCurrentProblemId,
+        getCurrentProblemData,
+        getInputOverrides,
+        traceData
     } = useTraceStore();
 
+    const { generateTrace } = usePyodide();
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const currentProblemId = getCurrentProblemId();
+    const problemData = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
+
+    // Handle reset to original
+    const handleReset = () => {
+        resetToOriginal();
+        setError(null);
+    };
+
+    // Handle update (generate new trace)
+    const handleUpdate = async () => {
+        if (!problemData || !currentCode) return;
+
+        setIsGenerating(true);
+        setError(null);
+
+        try {
+            const currentInputs = { ...traceData?.metadata.inputs.kwargs, ...getInputOverrides() };
+            const newTraceData = await generateTrace(currentCode, problemData.entrypoint, currentInputs, problemData.inputs);
+
+            if (newTraceData.error) {
+                setError(newTraceData.error);
+            } else {
+                setTraceData(newTraceData);
+            }
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to generate trace');
+        } finally {
+            setIsGenerating(false);
+        }
+    };
+
+    // If there are changes, show change detection controls
+    if (hasChanges) {
+        return (
+            <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded px-3 py-1.5">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <span className="text-sm text-yellow-800 font-medium">
+                        Unsaved changes
+                    </span>
+                </div>
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleReset}
+                    disabled={isGenerating}
+                >
+                    Reset
+                </Button>
+                <Button
+                    variant="default"
+                    size="sm"
+                    onClick={handleUpdate}
+                    disabled={isGenerating}
+                >
+                    {isGenerating ? 'Updating...' : 'Update'}
+                </Button>
+                {error && (
+                    <span className="text-sm text-red-600 ml-2">{error}</span>
+                )}
+            </div>
+        );
+    }
+
+    // Normal trace controls
     return (
         <div className="flex items-center gap-2">
             {/* Essential Navigation Controls */}

@@ -2,80 +2,36 @@ import { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import Editor from '@monaco-editor/react';
 
 import { useCurrentStep } from '../hooks/useCurrentStep';
-import { usePyodide } from '../hooks/usePyodide';
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
-import InputPopover from './InputPopover';
 import { InputsSection } from './InputsSection';
 import { TraceControls } from './TraceControls';
 
 export default function CodePanel() {
     const {
         traceData,
-        lineIndex,
         isPlaying,
         playSpeed,
         setIsPlaying,
         next,
-        getCurrentProblemId,
-        getCurrentProblemData,
         setInputOverride,
         getInputOverrides,
         currentCode,
         setCurrentCode,
         hasChanges,
-        resetToOriginal,
-        setTraceData
     } = useTraceStore();
     const currentLine = useTraceStore(selectCurrentLine);
     const currentStep = useCurrentStep();
-    const [isInputPopoverOpen, setIsInputPopoverOpen] = useState(false);
     const [isReadOnly, setIsReadOnly] = useState(true);
-    const [isGenerating, setIsGenerating] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-
-    const { generateTrace } = usePyodide();
-    const currentProblemId = getCurrentProblemId();
-    const problemData = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
 
     // Handle input changes
     const handleInputChange = (key: string, value: any) => {
         setInputOverride(key, value);
-    };
-
-    // Handle reset to original
-    const handleReset = () => {
-        resetToOriginal();
-        setError(null);
-    };
-
-    // Handle update (generate new trace)
-    const handleUpdate = async () => {
-        if (!problemData || !currentCode) return;
-
-        setIsGenerating(true);
-        setError(null);
-
-        try {
-            const currentInputs = { ...traceData?.metadata.inputs.kwargs, ...getInputOverrides() };
-            const newTraceData = await generateTrace(currentCode, problemData.entrypoint, currentInputs);
-
-            if (newTraceData.error) {
-                setError(newTraceData.error);
-            } else {
-                setTraceData(newTraceData);
-            }
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to generate trace');
-        } finally {
-            setIsGenerating(false);
-        }
     };
 
     // Get current input values (overrides or defaults)
@@ -84,6 +40,29 @@ export default function CodePanel() {
         const overrides = getInputOverrides();
         return { ...traceData.metadata.inputs.kwargs, ...overrides };
     };
+
+    // Handle clicking outside editor to exit edit mode
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const target = event.target as Element;
+            // Check if click is outside the Monaco editor
+            if (isReadOnly === false && !target.closest('.monaco-editor')) {
+                setIsReadOnly(true);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isReadOnly]);
+
+    // Exit edit mode when changes are reset or trace is updated
+    useEffect(() => {
+        if (!hasChanges) {
+            setIsReadOnly(true);
+        }
+    }, [hasChanges]);
 
     // Handle auto-play
     useEffect(() => {
@@ -98,7 +77,7 @@ export default function CodePanel() {
         return () => {
             if (intervalId) window.clearInterval(intervalId);
         };
-    }, [isPlaying, playSpeed, traceData, lineIndex, setIsPlaying, next]);
+    }, [isPlaying, playSpeed, traceData, next]);
 
     if (!traceData || !currentLine || !currentStep) {
         return (
@@ -143,43 +122,6 @@ export default function CodePanel() {
                             />
                         )}
 
-                        {/* Change Detection Buttons */}
-                        {hasChanges && (
-                            <div className="border-b bg-yellow-50 border-yellow-200 px-4 py-3 flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                                    <span className="text-sm text-yellow-800 font-medium">
-                                        You have unsaved changes
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={handleReset}
-                                        disabled={isGenerating}
-                                    >
-                                        Reset
-                                    </Button>
-                                    <Button
-                                        variant="default"
-                                        size="sm"
-                                        onClick={handleUpdate}
-                                        disabled={isGenerating}
-                                    >
-                                        {isGenerating ? 'Updating...' : 'Update'}
-                                    </Button>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Error Display */}
-                        {error && (
-                            <div className="border-b bg-red-50 border-red-200 px-4 py-3">
-                                <p className="text-sm text-red-700">{error}</p>
-                            </div>
-                        )}
-
                         <div className="rounded-md overflow-hidden bg-muted/30 h-full relative">
                             {isReadOnly ? (
                                 <SyntaxHighlighter
@@ -194,6 +136,7 @@ export default function CodePanel() {
                                         height: 'calc(100vh - 320px)',
                                         overflow: 'auto',
                                         lineHeight: '1.3',
+                                        cursor: 'text',
                                     }}
                                     showLineNumbers={true}
                                     lineNumberStyle={{
@@ -216,9 +159,14 @@ export default function CodePanel() {
                                                 padding: '0.25rem 0.75rem',
                                                 transition: 'all 0.2s ease',
                                                 lineHeight: '1.3',
+                                                cursor: 'text',
                                             },
                                             'data-line-number': lineNumber,
-                                            'data-is-current': isCurrentLine
+                                            'data-is-current': isCurrentLine,
+                                            onClick: () => {
+                                                setIsReadOnly(false);
+                                                setIsPlaying(false); // Pause debugger when entering edit mode
+                                            },
                                         };
                                     }}
                                 >
@@ -258,29 +206,10 @@ export default function CodePanel() {
                                     }}
                                 />
                             )}
-
-                            {/* Read-Only Toggle */}
-                            <Button
-                                variant="secondary"
-                                size="sm"
-                                className="absolute top-2 right-2 opacity-70 hover:opacity-100"
-                                onClick={() => setIsReadOnly(!isReadOnly)}
-                            >
-                                {isReadOnly ? 'Edit' : 'View'}
-                            </Button>
                         </div>
                     </CardContent>
                 </Card>
             </TooltipProvider>
-
-            {/* Input Popover */}
-            {problemData && (
-                <InputPopover
-                    problemData={problemData}
-                    isOpen={isInputPopoverOpen}
-                    onClose={() => setIsInputPopoverOpen(false)}
-                />
-            )}
         </>
     );
 } 
