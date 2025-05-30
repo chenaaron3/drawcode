@@ -8,8 +8,8 @@ import os
 from python_tracer import PythonTracer
 
 if __name__ == '__main__':
-    PROBLEM_DIR = os.path.abspath(os.path.join(__file__, "..", ".."))
-    OUTPUT_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "traces"))
+    PROBLEM_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "..", "public"))
+    OUTPUT_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "..", "public", "traces"))
     
     # Create output directory if it doesn't exist
     os.makedirs(OUTPUT_DIR, exist_ok=True)
