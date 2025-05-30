@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -8,11 +7,6 @@ import { selectCurrentLine, useTraceStore } from '../store/traceStore';
 import { getChangeColors, getVariableColors } from './visualizers/colors';
 import { renderValue } from './visualizers/renderValue';
 import { fadeInScale, fadeInUp } from './visualizers/variants';
-
-import type { AugmentedTraceStep } from '../types/trace';
-
-
-
 
 interface VariableItemProps {
     name: string;
@@ -131,17 +125,7 @@ function EmptyState() {
 export default function VariablePanel() {
     const { lineIndex: line, maxLine: maxStep, traceData } = useTraceStore();
     const current = useTraceStore(selectCurrentLine);
-    const nodeLookup = useTraceStore(state => state.nodeLookup);
     const animatingVariable = useTraceStore(state => state.animatingVariable);
-
-    useEffect(() => {
-        if (current !== null && nodeLookup !== null) {
-            setSteps(current.steps.map(step => ({
-                ...step,
-                ast: nodeLookup.get(step.node_id)!
-            })));
-        }
-    }, [current, nodeLookup]);
 
     if (!traceData || !current) return null;
 
