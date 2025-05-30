@@ -50,44 +50,59 @@ interface TraceState {
   currentProblemId: string | null;
   inputOverrides: Record<string, any>; // input name -> value for current problem
 
+  // Code editing state
+  originalCode: string | null; // Original code from trace data
+  currentCode: string | null; // Currently edited code
+  originalInputs: Record<string, any>; // Original inputs from trace data
+  hasChanges: boolean; // Whether there are unsaved changes
+
   // Problems data
   problemsData: any[];
 }
 
 interface TraceActions {
-  // Setters
-  setTraceData: (data: TraceData | null) => void;
+  // Navigation
+  setTraceData: (data: TraceData) => void;
   setLine: (lineIndex: number) => void;
   setStep: (stepIndex: number) => void;
+  next: () => void;
+  prev: () => void;
+  nextLine: () => void;
+  prevLine: () => void;
+  nextStep: () => void;
+  prevStep: () => void;
+  reset: () => void;
+  togglePlay: () => void;
+  hasNext: () => boolean;
+
+  // Playback
   setIsPlaying: (isPlaying: boolean) => void;
   setPlaySpeed: (speed: number) => void;
   setMode: (mode: "line" | "step") => void;
+
+  // Animation
   setAnimatingVariable: (variableName: string | null) => void;
   setIsEvaluating: (isEvaluating: boolean) => void;
 
-  // Actions
-  next: () => void; // Unified next function based on mode
-  prev: () => void; // Unified prev function based on mode
-  nextLine: () => void;
-  prevLine: () => void;
-  nextStep: () => void; // Step to next expression within line
-  prevStep: () => void; // Step to previous expression within line
-  reset: () => void;
-  togglePlay: () => void;
+  // Problems
+  setCurrentProblem: (problemId: string) => void;
+  getCurrentProblemId: () => string | null;
+  getCurrentProblemData: (problemId: string) => any;
 
-  // Input override management
+  // Input management
   setInputOverride: (inputName: string, value: any) => void;
   clearInputOverrides: () => void;
   getInputOverrides: () => Record<string, any>;
 
-  // Problems data management
-  setProblemsData: (problems: any[]) => void;
-  getCurrentProblemData: (problemId: string) => any;
-  setCurrentProblem: (problemId: string) => void;
-  getCurrentProblemId: () => string | null;
+  // Code editing and change detection
+  setCurrentCode: (code: string) => void;
+  resetToOriginal: () => void;
+  updateHasChanges: () => void;
+  getOriginalInputs: () => Record<string, any>;
+  getCurrentInputs: () => Record<string, any>;
 
-  // Helpers
-  hasNext: () => boolean; // Check if there are more steps available
+  // Problems data management
+  setProblemsData: (data: any[]) => void;
 }
 
 type TraceStore = TraceState & TraceActions;
@@ -105,6 +120,10 @@ const initialState: TraceState = {
   isEvaluating: false,
   currentProblemId: null,
   inputOverrides: {},
+  originalCode: null,
+  currentCode: null,
+  originalInputs: {},
+  hasChanges: false,
   problemsData: [],
 };
 
@@ -125,6 +144,12 @@ export const useTraceStore = create<TraceStore>()(
         } else {
           state.nodeLookup = new Map();
         }
+
+        // Initialize code editing state
+        state.originalCode = data?.metadata.code || null;
+        state.currentCode = data?.metadata.code || null;
+        state.originalInputs = data?.metadata.inputs.kwargs || {};
+        state.hasChanges = false;
       }),
 
     setLine: (lineIndex) =>
@@ -277,6 +302,11 @@ export const useTraceStore = create<TraceStore>()(
     setInputOverride: (inputName, value) =>
       set((state) => {
         state.inputOverrides[inputName] = value;
+        // Update hasChanges whenever inputs change
+        const codeChanged = state.currentCode !== state.originalCode;
+        const inputsChanged =
+          JSON.stringify(state.inputOverrides) !== JSON.stringify({});
+        state.hasChanges = codeChanged || inputsChanged;
       }),
 
     clearInputOverrides: () =>
@@ -312,6 +342,41 @@ export const useTraceStore = create<TraceStore>()(
         return state.lineIndex < state.maxLine;
       }
       return false;
+    },
+
+    setCurrentCode: (code) =>
+      set((state) => {
+        state.currentCode = code;
+        // Update hasChanges whenever code changes
+        const codeChanged = state.currentCode !== state.originalCode;
+        const inputsChanged =
+          JSON.stringify(state.inputOverrides) !== JSON.stringify({});
+        state.hasChanges = codeChanged || inputsChanged;
+      }),
+
+    resetToOriginal: () =>
+      set((state) => {
+        state.currentCode = state.originalCode;
+        state.inputOverrides = {};
+        state.hasChanges = false;
+      }),
+
+    updateHasChanges: () =>
+      set((state) => {
+        const codeChanged = state.currentCode !== state.originalCode;
+        const inputsChanged =
+          JSON.stringify(state.inputOverrides) !== JSON.stringify({});
+        state.hasChanges = codeChanged || inputsChanged;
+      }),
+
+    getOriginalInputs: () => {
+      const state = get();
+      return state.originalInputs;
+    },
+
+    getCurrentInputs: () => {
+      const state = get();
+      return state.inputOverrides;
     },
   }))
 );

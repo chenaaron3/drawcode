@@ -177,4 +177,32 @@ The focused analyzer has been tested with 8 different algorithmic problems, gene
 5. Save the results by unwrapping the markers
 6.
 
+## 🎯 Features
+
+- **Visual Code Execution**: Step through Python code line by line
+- **Variable Tracking**: See how variables change throughout execution
+- **Expression Evaluation**: Watch expressions get evaluated in real-time
+- **Interactive Navigation**: Control execution flow with play, pause, step controls
+- **Smart Animations**: Visual feedback for variable assignments and expression evaluation
+- **Seamless Code & Input Editing**: Edit code and inputs with live change detection and trace regeneration
+
+## ✨ Editing Workflow
+
+The trace debugger now supports seamless editing of both code and inputs:
+
+1. **Input Editing**: Modify function inputs directly in the inputs section
+2. **Code Editing**: Click the "Edit" button to switch to code editing mode
+3. **Change Detection**: The app automatically detects when you've made changes
+4. **Reset/Update**: When changes are detected, you'll see options to:
+   - **Reset**: Restore original code and inputs
+   - **Update**: Generate a new trace with your changes
+
+### How It Works
+
+- Edit inputs inline or click "Edit" to modify the Python code
+- A yellow banner appears when unsaved changes are detected
+- Click "Reset" to discard changes and return to the original state
+- Click "Update" to regenerate the trace with your modifications
+- The trace generation happens automatically using Pyodide in the browser
+
 -
