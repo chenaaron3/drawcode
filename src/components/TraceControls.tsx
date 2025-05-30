@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
-import { MdMoreVert, MdRefresh, MdSkipNext, MdSkipPrevious } from 'react-icons/md';
+import { MdMoreVert, MdRefresh, MdShare, MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -60,7 +60,12 @@ export function TraceControls() {
 
         try {
             const currentInputs = { ...traceData?.metadata.inputs.kwargs, ...getInputOverrides() };
-            const newTraceData = await generateTrace(currentCode, problemData.entrypoint, currentInputs, problemData.inputs);
+            const newTraceData = await generateTrace(
+                currentCode,
+                problemData.entrypoint,
+                currentInputs,
+                problemData.inputs // Pass original inputs for type inference
+            );
 
             if (newTraceData.error) {
                 setError(newTraceData.error);
@@ -71,6 +76,32 @@ export function TraceControls() {
             setError(err instanceof Error ? err.message : 'Failed to generate trace');
         } finally {
             setIsGenerating(false);
+        }
+    };
+
+    // Handle share link generation
+    const handleShareLink = () => {
+        if (!currentCode) return;
+
+        try {
+            const encodedCode = btoa(encodeURIComponent(currentCode));
+            const shareUrl = `https://chenaaron3.github.io/drawcode/?code=${encodedCode}`;
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                alert('Share link copied to clipboard!\n\nAnyone can use this link to view your code in the debugger.');
+                console.log('Share link copied to clipboard:', shareUrl);
+            }).catch(err => {
+                console.error('Failed to copy to clipboard:', err);
+                // Fallback: show the URL in a prompt
+                const result = prompt('Your shareable link (copy this):', shareUrl);
+                if (result === null) {
+                    console.log('User cancelled share dialog');
+                }
+            });
+        } catch (err) {
+            console.error('Failed to generate share link:', err);
+            alert('Failed to generate share link. Please try again.');
         }
     };
 
@@ -192,6 +223,14 @@ export function TraceControls() {
                     >
                         <MdRefresh className="mr-2 h-4 w-4" />
                         Reset to Start
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem
+                        onClick={handleShareLink}
+                        disabled={!currentCode}
+                    >
+                        <MdShare className="mr-2 h-4 w-4" />
+                        Share Link
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

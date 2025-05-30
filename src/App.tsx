@@ -8,6 +8,7 @@ import {
 import problemsJson from '../public/problems.json';
 import TraceVisualizer from './components/TraceVisualizer';
 import { AVAILABLE_PROBLEM_IDS, getTraceData } from './data/traces';
+import { usePyodide } from './hooks/usePyodide';
 import { useTraceStore } from './store/traceStore';
 
 function formatTraceName(problemId: string): string {
@@ -105,18 +106,78 @@ export default function App() {
   const {
     setProblemsData,
     getCurrentProblemId,
-    setCurrentProblem
+    setCurrentProblem,
+    setCurrentCode,
+    setTraceData
   } = useTraceStore();
 
+  const { generateTrace, isLoading: pyodideLoading } = usePyodide();
   const currentProblemId = getCurrentProblemId();
 
-  // Load problems data and set initial problem on mount
+  // Check for shared code in URL parameters
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const codeParam = urlParams.get('code');
     setProblemsData(problemsJson.problems);
-    if (!currentProblemId) {
-      setCurrentProblem('two-sum');
+
+    if (codeParam) {
+      try {
+        // Decode the base64 encoded code
+        const decodedCode = decodeURIComponent(atob(codeParam));
+        console.log('Shared code detected:', decodedCode);
+
+        // Set to first problem (index 0) when loading shared code
+        setCurrentProblem('sandbox');
+        setCurrentCode(decodedCode);
+        return; // Exit early to avoid normal initialization
+      } catch (err) {
+        console.error('Failed to decode shared code:', err);
+      }
+    } else {
+      if (!currentProblemId) {
+        setCurrentProblem('two-sum');
+      }
     }
-  }, [setProblemsData, setCurrentProblem, currentProblemId]);
+  }, [setProblemsData, setCurrentProblem, setCurrentCode, currentProblemId]);
+
+  // Auto-compile shared code when Pyodide is ready
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const codeParam = urlParams.get('code');
+
+    if (codeParam && !pyodideLoading) {
+      const compileSharedCode = async () => {
+        try {
+          const decodedCode = decodeURIComponent(atob(codeParam));
+          const problemData = problemsJson.problems.find(p => p.id === 'sandbox');
+
+          if (problemData) {
+            console.log('Pyodide ready, compiling shared code...');
+            const traceData = await generateTrace(
+              decodedCode,
+              problemData.entrypoint,
+              problemData.inputs,
+              problemData.inputs
+            );
+
+            if (!traceData.error) {
+              setTraceData(traceData);
+              console.log('Shared code compiled successfully');
+            } else {
+              console.error('Error compiling shared code:', traceData.error);
+            }
+          }
+        } catch (err) {
+          console.error('Failed to compile shared code:', err);
+        }
+      };
+
+      compileSharedCode();
+      // Clear the URL parameter to avoid reloading the shared code on refresh
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [pyodideLoading, generateTrace, setTraceData]);
 
   const handleProblemChange = (problemId: string) => {
     setCurrentProblem(problemId);

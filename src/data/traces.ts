@@ -46,6 +46,7 @@ import removeLinkedListElementsTrace from '../../public/traces/remove-linked-lis
 import reverseLinkedListTrace from '../../public/traces/reverse-linked-list.json';
 import rotateArrayTrace from '../../public/traces/rotate-array.json';
 import sameTreeTrace from '../../public/traces/same-tree.json';
+import sandboxTrace from '../../public/traces/sandbox.json';
 import searchInsertPositionTrace from '../../public/traces/search-insert-position.json';
 import singleNumberTrace from '../../public/traces/single-number.json';
 import symmetricTreeTrace from '../../public/traces/symmetric-tree.json';
@@ -109,6 +110,7 @@ export const TRACES: Record<string, TraceData> = {
   "remove-linked-list-elements": removeLinkedListElementsTrace as TraceData,
   "reverse-linked-list": reverseLinkedListTrace as TraceData,
   "rotate-array": rotateArrayTrace as TraceData,
+  sandbox: sandboxTrace as TraceData,
   "same-tree": sameTreeTrace as TraceData,
   "search-insert-position": searchInsertPositionTrace as TraceData,
   "single-number": singleNumberTrace as TraceData,
@@ -127,4 +129,4 @@ export function getTraceData(problemId: string): TraceData | null {
 }
 
 // Export available problem IDs
-export const AVAILABLE_PROBLEM_IDS = ["two-sum"]; // Object.keys(TRACES);
+export const AVAILABLE_PROBLEM_IDS = ["sandbox", "two-sum"]; // Object.keys(TRACES);

@@ -180,8 +180,6 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
       inputs: Record<string, any>,
       originalInputs: Record<string, any>
     ) => {
-      if (!pyodide) throw new Error("Pyodide not ready");
-
       try {
         // Option 3: Complete reset for maximum cleanliness
         console.log("Performing complete Pyodide reset...");
