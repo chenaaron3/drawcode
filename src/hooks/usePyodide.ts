@@ -222,14 +222,15 @@ try:
     # Extract function name from code
     import ast
     tree = ast.parse(problem_code)
+    print(problem_code)
     function_name = "${entrypoint}"
 
     # Get all defined functions
     defined_functions = []
-    if function_name == "":
-        for node in ast.walk(tree):
-            if isinstance(node, ast.FunctionDef):
-                defined_functions.append(node.name)
+    for node in ast.walk(tree):
+        if isinstance(node, ast.FunctionDef):
+            defined_functions.append(node.name)
+    print(f"Defined functions: {defined_functions}")
     # If the provided function name does not exist, use the first defined function
     if function_name not in defined_functions:
         function_name = defined_functions[0]
