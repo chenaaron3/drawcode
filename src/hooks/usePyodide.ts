@@ -223,11 +223,16 @@ try:
     import ast
     tree = ast.parse(problem_code)
     function_name = "${entrypoint}"
+
+    # Get all defined functions
+    defined_functions = []
     if function_name == "":
         for node in ast.walk(tree):
             if isinstance(node, ast.FunctionDef):
-                function_name = node.name
-                break
+                defined_functions.append(node.name)
+    # If the provided function name does not exist, use the first defined function
+    if function_name not in defined_functions:
+        function_name = defined_functions[0]
     if function_name:
         # Get the input values directly from globals
         input_kwargs = {${Object.entries(inputs)
