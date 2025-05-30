@@ -85,7 +85,19 @@ export function TraceControls() {
 
         try {
             const encodedCode = btoa(encodeURIComponent(currentCode));
-            const shareUrl = `https://chenaaron3.github.io/drawcode/?code=${encodedCode}`;
+
+            // Use environment variable or fallback to production URL
+            let baseUrl = import.meta.env.VITE_SHARE_BASE_URL;
+
+            // If no env var is set, determine URL based on current location
+            if (!baseUrl) {
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                baseUrl = isLocalhost
+                    ? `${window.location.protocol}//${window.location.host}/`
+                    : 'https://chenaaron3.github.io/drawcode/';
+            }
+
+            const shareUrl = `${baseUrl}?code=${encodedCode}`;
 
             // Copy to clipboard
             navigator.clipboard.writeText(shareUrl).then(() => {
