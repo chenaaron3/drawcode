@@ -99,7 +99,7 @@ export default function CodePanel() {
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
                         <div className="flex items-center gap-2">
                             <CardTitle className="text-lg">
-                                {traceData.metadata.problem?.title}
+                                {traceData.metadata.problem?.title ?? "Code"}
                             </CardTitle>
                         </div>
 
