@@ -74,11 +74,11 @@ function InteractiveCodeBlock({ children, exampleInputs, onUseExample }: Interac
     if (example) {
         return (
             <div
-                className="relative group mb-6 p-4 border border-border rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+                className="relative group mb-4 lg:mb-6 p-3 lg:p-4 border border-border rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                <div className="bg-transparent border-none p-0 m-0 overflow-x-auto font-mono text-sm whitespace-pre-wrap">
+                <div className="bg-transparent border-none p-0 m-0 overflow-x-auto font-mono text-xs lg:text-sm whitespace-pre-wrap">
                     <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
                         components={{
@@ -94,10 +94,10 @@ function InteractiveCodeBlock({ children, exampleInputs, onUseExample }: Interac
                     <Button
                         size="sm"
                         onClick={() => onUseExample(example.inputs)}
-                        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-primary-foreground px-3 py-1.5 text-sm shadow-lg"
+                        className="absolute top-2 lg:top-3 right-2 lg:right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-primary-foreground px-2 lg:px-3 py-1 lg:py-1.5 text-xs lg:text-sm shadow-lg"
                     >
-                        <Play className="h-3.5 w-3.5" />
-                        Use Input
+                        <Play className="h-3 lg:h-3.5 w-3 lg:w-3.5" />
+                        <span className="hidden lg:inline">Use Input</span>
                     </Button>
                 )}
             </div>
@@ -106,8 +106,8 @@ function InteractiveCodeBlock({ children, exampleInputs, onUseExample }: Interac
 
     // Regular code block
     return (
-        <pre className="bg-muted/50 p-4 rounded-lg border mb-4 overflow-x-auto">
-            <code>{cleanContent}</code>
+        <pre className="bg-muted/50 p-3 lg:p-4 rounded-lg border mb-3 lg:mb-4 overflow-x-auto">
+            <code className="text-xs lg:text-sm">{cleanContent}</code>
         </pre>
     );
 }
@@ -260,8 +260,8 @@ export function ProblemDescriptionModal({ problemId }: ProblemDescriptionModalPr
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-w-7xl h-[90vh] flex flex-col">
-                <DialogHeader className="flex-shrink-0 border-b pb-4">
-                    <DialogTitle className="flex items-center gap-3 text-xl">
+                <DialogHeader className="flex-shrink-0 border-b pb-3 lg:pb-4">
+                    <DialogTitle className="flex items-center gap-2 lg:gap-3 text-lg lg:text-xl">
                         <span>{problemData?.questionTitle || 'Problem'}</span>
                         {problemData?.difficulty && (
                             <Badge className={getDifficultyColor(problemData.difficulty)}>
@@ -276,14 +276,14 @@ export function ProblemDescriptionModal({ problemId }: ProblemDescriptionModalPr
                                 className="ml-auto"
                             >
                                 <ExternalLink className="h-4 w-4" />
-                                View on LeetCode
+                                <span className="hidden lg:inline">View on LeetCode</span>
                             </Button>
                         )}
                     </DialogTitle>
                 </DialogHeader>
 
                 <div className="flex-1 overflow-y-auto">
-                    <div className="prose prose-base max-w-none leading-relaxed">
+                    <div className="prose prose-sm lg:prose-base max-w-none leading-relaxed">
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
                             components={{
@@ -304,7 +304,7 @@ export function ProblemDescriptionModal({ problemId }: ProblemDescriptionModalPr
 
                                     // Inline code
                                     return (
-                                        <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono" {...props}>
+                                        <code className="bg-muted px-1 lg:px-1.5 py-0.5 rounded text-xs lg:text-sm font-mono" {...props}>
                                             {children}
                                         </code>
                                     );
@@ -313,16 +313,16 @@ export function ProblemDescriptionModal({ problemId }: ProblemDescriptionModalPr
                                     return <>{children}</>;
                                 },
                                 p({ children }) {
-                                    return <p className="text-base leading-7">{children}</p>;
+                                    return <p className="text-sm lg:text-base leading-6 lg:leading-7">{children}</p>;
                                 },
                                 h1({ children }) {
-                                    return <h1 className="text-2xl font-bold">{children}</h1>;
+                                    return <h1 className="text-xl lg:text-2xl font-bold">{children}</h1>;
                                 },
                                 h2({ children }) {
-                                    return <h2 className="text-xl font-bold">{children}</h2>;
+                                    return <h2 className="text-lg lg:text-xl font-bold">{children}</h2>;
                                 },
                                 h3({ children }) {
-                                    return <h3 className="text-lg font-semibold">{children}</h3>;
+                                    return <h3 className="text-base lg:text-lg font-semibold">{children}</h3>;
                                 },
                                 strong({ children }) {
                                     return <strong className="font-semibold">{children}</strong>;
@@ -331,16 +331,16 @@ export function ProblemDescriptionModal({ problemId }: ProblemDescriptionModalPr
                                     return <em className="italic">{children}</em>;
                                 },
                                 ul({ children }) {
-                                    return <ul className="list-disc pl-6">{children}</ul>;
+                                    return <ul className="list-disc pl-4 lg:pl-6">{children}</ul>;
                                 },
                                 ol({ children }) {
-                                    return <ol className="list-decimal pl-6">{children}</ol>;
+                                    return <ol className="list-decimal pl-4 lg:pl-6">{children}</ol>;
                                 },
                                 li({ children }) {
-                                    return <li className="text-base leading-6">{children}</li>;
+                                    return <li className="text-sm lg:text-base leading-5 lg:leading-6">{children}</li>;
                                 },
                                 blockquote({ children }) {
-                                    return <blockquote className="border-l-4 border-muted pl-4 italic text-muted-foreground">{children}</blockquote>;
+                                    return <blockquote className="border-l-4 border-muted pl-3 lg:pl-4 italic text-muted-foreground">{children}</blockquote>;
                                 },
                                 hr() {
                                     return <hr className="border-border" />;

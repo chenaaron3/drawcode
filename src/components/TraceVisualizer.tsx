@@ -28,11 +28,14 @@ export default function TraceVisualizer() {
 
     return (
         <LayoutGroup>
-            <div className="flex h-full gap-6 overflow-visible">
-                <div className="flex-1 overflow-visible">
+            <div className="flex flex-col lg:flex-row h-full gap-6 overflow-visible">
+                {/* Code Panel - order 3 on mobile, order 1 on desktop */}
+                <div className="order-1 lg:order-1 flex-1 overflow-visible">
                     <CodePanel />
                 </div>
-                <div className="flex-1 flex flex-col gap-4 overflow-visible">
+
+                {/* Computation + Variables - order 1-2 on mobile, order 2 on desktop */}
+                <div className="order-2 lg:order-2 flex flex-col gap-4 lg:flex-1 overflow-visible">
                     <div className="overflow-visible">
                         <ComputationWorkspace />
                     </div>

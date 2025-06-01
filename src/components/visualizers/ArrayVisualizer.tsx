@@ -74,7 +74,7 @@ function ArrayItem({ item, index, delta, arrows }: ArrayItemProps) {
     const valueArrows = itemArrows.filter(arrow => arrow.type === 'value');
 
     const indexClasses = clsx(
-        "text-xs font-mono text-slate-500 px-1 py-0.5 rounded text-center min-w-[20px] leading-none",
+        "text-xs font-mono text-slate-500 px-1 py-0.5 rounded text-center min-w-[18px] lg:min-w-[20px] leading-none",
         {
             [VISUALIZER_COLORS.relationships.keyIndex.highlight]: hasKeyArrow,
             "bg-slate-100": !hasKeyArrow
@@ -179,7 +179,7 @@ export const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({
     const isEmpty = values.length === 0;
 
     const containerClasses = clsx(
-        "inline-block border rounded-md p-2 transition-all duration-200 relative self-start",
+        "inline-block border rounded-md p-1.5 lg:p-2 transition-all duration-200 relative self-start",
         getArrayColors(isNew)
     );
 
@@ -193,7 +193,7 @@ export const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({
             {isEmpty ? (
                 <EmptyArray />
             ) : (
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-0.5 lg:gap-1">
                     {values.map((item, idx) => (
                         <ArrayItem
                             key={idx}

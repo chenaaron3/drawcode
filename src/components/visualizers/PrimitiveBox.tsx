@@ -32,12 +32,12 @@ export const PrimitiveBox: React.FC<PrimitiveBoxProps> = ({ value, delta }) => {
     const colors = getValueTypeColors(valueType, isNew);
 
     const containerClasses = clsx(
-        "border rounded-lg px-3 py-2 min-w-[60px] flex items-center justify-center transition-all duration-200 shadow-sm",
+        "border rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 min-w-[50px] lg:min-w-[60px] flex items-center justify-center transition-all duration-200 shadow-sm",
         colors.background
     );
 
     const textClasses = clsx(
-        "font-mono text-sm font-medium",
+        "font-mono text-xs lg:text-sm font-medium",
         colors.text
     );
 

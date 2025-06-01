@@ -33,7 +33,7 @@ export function EvaluationNodeRenderer({ node, animatingVariable, currentLocals 
                 data-node-id={node.nodeId}
                 {...(isLeafNode && { 'data-target': variableName })}
                 className={`
-                    inline-block px-1 rounded font-mono text-sm
+                    inline-block px-1 rounded font-mono text-xs lg:text-sm
                     ${isAnimatingThis && isLeafNode
                         ? 'bg-blue-200 text-blue-800 ring-2 ring-blue-300 ring-opacity-50 shadow-lg'
                         : node.isHighlighted

@@ -23,7 +23,7 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
     const changeColors = getChangeColors(isChanged);
 
     const labelClasses = `
-      font-mono text-sm font-semibold 
+      font-mono text-xs lg:text-sm font-semibold 
       ${changeColors.text}
     `;
 
@@ -42,7 +42,7 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
     // Unified renderer with conditional styling based on complexity
     const containerClasses = `
       flex flex-col items-center transition-all duration-200 border rounded-lg
-      ${isComplex ? 'gap-3 p-4' : 'gap-2 p-3'}
+      ${isComplex ? 'gap-2 lg:gap-3 p-3 lg:p-4' : 'gap-1 lg:gap-2 p-2 lg:p-3'}
       ${getVariableColors(isChanged)}
       ${getRingColor()}
     `;
@@ -98,14 +98,14 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
 function FinalResult({ result }: { result: any }) {
     return (
         <motion.div {...fadeInScale}>
-            <Separator className="my-6" />
+            <Separator className="my-4 lg:my-6" />
             <Card className="border-l-4 border-l-emerald-500 bg-gradient-to-r from-emerald-50 to-emerald-100/30 shadow-sm">
-                <CardContent className="pt-4">
-                    <div className="flex items-center gap-2 mb-3">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-                        <span className="font-semibold text-emerald-800">Final Result</span>
+                <CardContent className="pt-3 lg:pt-4">
+                    <div className="flex items-center gap-2 mb-2 lg:mb-3">
+                        <div className="w-1.5 lg:w-2 h-1.5 lg:h-2 bg-emerald-500 rounded-full" />
+                        <span className="font-semibold text-emerald-800 text-sm lg:text-base">Final Result</span>
                     </div>
-                    <div className="font-mono text-sm bg-white/60 p-3 rounded-md border border-emerald-200">
+                    <div className="font-mono text-xs lg:text-sm bg-white/60 p-2 lg:p-3 rounded-md border border-emerald-200">
                         {JSON.stringify(result)}
                     </div>
                 </CardContent>
@@ -147,7 +147,7 @@ export default function VariablePanel() {
         <div className="h-full flex flex-col">
             <Card className="h-full flex flex-col overflow-visible">
                 <CardHeader className="pb-3 flex-shrink-0">
-                    <CardTitle className="text-lg">Variables</CardTitle>
+                    <CardTitle className="text-base lg:text-lg">Variables</CardTitle>
                 </CardHeader>
 
                 <CardContent className="flex-1 min-h-0 overflow-visible">

@@ -12,7 +12,7 @@ export function EvaluationTree({ evaluationTree, animatingVariable, currentLocal
     if (!evaluationTree) return null;
 
     return (
-        <div className="font-mono text-lg bg-slate-50 p-4 rounded-lg border relative">
+        <div className="font-mono text-sm lg:text-lg bg-slate-50 p-3 lg:p-4 rounded-lg border relative">
             <div className="whitespace-pre-wrap">
                 <EvaluationNodeRenderer
                     node={evaluationTree}

@@ -34,7 +34,6 @@ export function useTraceGeneration() {
     clearError();
 
     try {
-      // Combine original inputs with overrides (same logic as TraceControls)
       const currentInputs = {
         ...traceData?.metadata.inputs.kwargs,
         ...getInputOverrides(),

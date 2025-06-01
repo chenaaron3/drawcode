@@ -14,7 +14,7 @@ import { selectCurrentLine, useTraceStore } from '../store/traceStore';
 import { ErrorPanel } from './ErrorPanel';
 import { InputsSection } from './InputsSection';
 import { ProblemDescriptionModal } from './ProblemDescriptionModal';
-import { TraceControls } from './TraceControls';
+import { Settings } from './Settings';
 
 export default function CodePanel() {
     const {
@@ -36,6 +36,8 @@ export default function CodePanel() {
     const currentLine = useTraceStore(selectCurrentLine);
     const currentStep = useCurrentStep();
     const [isReadOnly, setIsReadOnly] = useState(true);
+    const problemId = getCurrentProblemId();
+    const problemData = problemId ? getCurrentProblemData(problemId) : null;
 
     // Handle input changes
     const handleInputChange = (key: string, value: any) => {
@@ -109,18 +111,17 @@ export default function CodePanel() {
         <>
             <TooltipProvider>
                 <Card className="h-full flex-1/3">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+                    <CardHeader className="flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3">
                         <div className="flex items-center gap-2">
                             <CardTitle className="text-lg">
-                                {traceData.metadata.problem?.title ?? "Code"}
+                                {problemData?.title ?? "Code"}
                             </CardTitle>
-                            {getCurrentProblemId() && getCurrentProblemData(getCurrentProblemId()!)?.details && (
-                                <ProblemDescriptionModal problemId={getCurrentProblemId()!} />
+                            {problemId && problemData?.details && (
+                                <ProblemDescriptionModal problemId={problemId} />
                             )}
                         </div>
 
-                        {/* Integrated Controls */}
-                        <TraceControls />
+                        <Settings />
                     </CardHeader>
                     <CardContent className="flex-1 overflow-hidden">
                         {/* Error Panel */}
@@ -137,7 +138,7 @@ export default function CodePanel() {
 
                         <div className="rounded-md overflow-hidden bg-muted/30 h-full relative">
                             {isReadOnly ? (
-                                <>
+                                <div className="relative group">
                                     <SyntaxHighlighter
                                         language="python"
                                         style={oneLight}
@@ -147,7 +148,8 @@ export default function CodePanel() {
                                             background: 'transparent',
                                             fontSize: '0.75rem',
                                             fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
-                                            height: 'calc(100vh - 320px)',
+                                            height: 'auto',
+                                            maxHeight: 'calc(100vh - 320px)',
                                             overflow: 'auto',
                                             lineHeight: '1.3',
                                             cursor: 'text',
@@ -187,19 +189,24 @@ export default function CodePanel() {
                                         {currentCode || ''}
                                     </SyntaxHighlighter>
 
-                                    {/* Edit Button Overlay */}
-                                    <Button
-                                        variant="secondary"
-                                        size="icon"
-                                        onClick={() => {
-                                            setIsReadOnly(false);
-                                            setIsPlaying(false);
-                                        }}
-                                        className="absolute top-3 right-3 z-10 shadow-sm"
-                                    >
-                                        <Pencil className="h-4 w-4" />
-                                    </Button>
-                                </>
+                                    {/* Edit Button Overlay - only visible on hover */}
+                                    {!hasChanges && (
+                                        <div className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                            <Button
+                                                variant="secondary"
+                                                size="sm"
+                                                onClick={() => {
+                                                    setIsReadOnly(false);
+                                                    setIsPlaying(false);
+                                                }}
+                                                className="shadow-sm"
+                                            >
+                                                <Pencil className="h-4 w-4 mr-1" />
+                                                Edit
+                                            </Button>
+                                        </div>
+                                    )}
+                                </div>
                             ) : (
                                 <Editor
                                     height="calc(100vh - 320px)"
