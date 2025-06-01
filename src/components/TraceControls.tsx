@@ -14,6 +14,7 @@ import {
 import { Separator } from '@/components/ui/separator';
 
 import { usePyodide } from '../hooks/usePyodide';
+import { useTraceGeneration } from '../hooks/useTraceGeneration';
 import { useTraceStore } from '../store/traceStore';
 
 export function TraceControls() {
@@ -31,19 +32,13 @@ export function TraceControls() {
         reset,
         hasChanges,
         resetToOriginal,
-        setTraceData,
         currentCode,
         getCurrentProblemId,
         getCurrentProblemData,
-        getInputOverrides,
-        traceData,
-        setValidationError,
-        setGeneralError,
         clearError
     } = useTraceStore();
 
-    const { generateTrace } = usePyodide();
-    const [isGenerating, setIsGenerating] = useState(false);
+    const { generateTraceFromState, isGenerating } = useTraceGeneration();
 
     const currentProblemId = getCurrentProblemId();
     const problemData = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
@@ -58,38 +53,7 @@ export function TraceControls() {
     const handleUpdate = async () => {
         if (!problemData || !currentCode) return;
 
-        setIsGenerating(true);
-        clearError();
-
-        try {
-            const currentInputs = { ...traceData?.metadata.inputs.kwargs, ...getInputOverrides() };
-            const newTraceData = await generateTrace(
-                currentCode,
-                problemData.entrypoint,
-                currentInputs,
-                problemData.inputs // Pass original inputs for type inference
-            );
-
-            if (newTraceData.error) {
-                if (newTraceData.validationError && newTraceData.invalidField) {
-                    // Handle validation errors
-                    setValidationError({
-                        message: newTraceData.error,
-                        invalidField: newTraceData.invalidField
-                    });
-                } else {
-                    // Handle other errors
-                    setGeneralError(newTraceData.error);
-                }
-            } else {
-                setTraceData(newTraceData);
-                toast.success('Trace generated successfully!');
-            }
-        } catch (err) {
-            setGeneralError(err instanceof Error ? err.message : 'Failed to generate trace');
-        } finally {
-            setIsGenerating(false);
-        }
+        await generateTraceFromState();
     };
 
     // Handle share link generation

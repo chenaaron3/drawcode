@@ -22,6 +22,10 @@ export const AVAILABLE_PROBLEM_IDS = [
   "sandbox",
   "two-sum",
   "remove-duplicates-from-sorted-array",
+  "best-time-to-buy-and-sell-stock-ii",
+  "rotate-array",
+  "contains-duplicate",
+  "single-number",
 ];
 
 // Helper function to get trace data for a specific problem

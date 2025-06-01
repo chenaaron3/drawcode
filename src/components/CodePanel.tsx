@@ -1,3 +1,4 @@
+import { Pencil } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -12,6 +13,7 @@ import { useCurrentStep } from '../hooks/useCurrentStep';
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
 import { ErrorPanel } from './ErrorPanel';
 import { InputsSection } from './InputsSection';
+import { ProblemDescriptionModal } from './ProblemDescriptionModal';
 import { TraceControls } from './TraceControls';
 
 export default function CodePanel() {
@@ -28,6 +30,7 @@ export default function CodePanel() {
         hasChanges,
         currentError,
         clearError,
+        getCurrentProblemId,
     } = useTraceStore();
     const currentLine = useTraceStore(selectCurrentLine);
     const currentStep = useCurrentStep();
@@ -110,6 +113,9 @@ export default function CodePanel() {
                             <CardTitle className="text-lg">
                                 {traceData.metadata.problem?.title ?? "Code"}
                             </CardTitle>
+                            {getCurrentProblemId() && (
+                                <ProblemDescriptionModal problemId={getCurrentProblemId()!} />
+                            )}
                         </div>
 
                         {/* Integrated Controls */}
@@ -183,14 +189,14 @@ export default function CodePanel() {
                                     {/* Edit Button Overlay */}
                                     <Button
                                         variant="secondary"
-                                        size="sm"
+                                        size="icon"
                                         onClick={() => {
                                             setIsReadOnly(false);
                                             setIsPlaying(false);
                                         }}
-                                        className="absolute top-1 right-1 z-10 shadow-sm"
+                                        className="absolute top-3 right-3 z-10 shadow-sm"
                                     >
-                                        Edit
+                                        <Pencil className="h-4 w-4" />
                                     </Button>
                                 </>
                             ) : (
