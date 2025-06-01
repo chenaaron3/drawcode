@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
     Select, SelectContent, SelectItem, SelectTrigger, SelectValue
 } from '@/components/ui/select';
+import { Toaster } from '@/components/ui/sonner';
 
 import problemsJson from '../public/problems.json';
 import TraceVisualizer from './components/TraceVisualizer';
@@ -197,6 +198,8 @@ export default function App() {
           <ErrorDisplay error="No problem selected" />
         )}
       </div>
+
+      <Toaster />
     </div>
   );
 }

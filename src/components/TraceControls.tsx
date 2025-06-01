@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
 import { MdMoreVert, MdRefresh, MdShare, MdSkipNext, MdSkipPrevious } from 'react-icons/md';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -82,6 +83,7 @@ export function TraceControls() {
                 }
             } else {
                 setTraceData(newTraceData);
+                toast.success('Trace generated successfully!');
             }
         } catch (err) {
             setGeneralError(err instanceof Error ? err.message : 'Failed to generate trace');
@@ -112,19 +114,17 @@ export function TraceControls() {
 
             // Copy to clipboard
             navigator.clipboard.writeText(shareUrl).then(() => {
-                alert('Share link copied to clipboard!\n\nAnyone can use this link to view your code in the debugger.');
-                console.log('Share link copied to clipboard:', shareUrl);
-            }).catch(err => {
-                console.error('Failed to copy to clipboard:', err);
-                // Fallback: show the URL in a prompt
-                const result = prompt('Your shareable link (copy this):', shareUrl);
-                if (result === null) {
-                    console.log('User cancelled share dialog');
-                }
+                toast.success('Share link copied to clipboard!');
+            }).catch(() => {
+                // Fallback: show the URL in a toast
+                toast.error('Failed to copy to clipboard', {
+                    description: shareUrl,
+                    duration: 10000, // Show for 10 seconds so user can manually copy
+                });
             });
         } catch (err) {
             console.error('Failed to generate share link:', err);
-            alert('Failed to generate share link. Please try again.');
+            toast.error('Failed to generate share link. Please try again.');
         }
     };
 
