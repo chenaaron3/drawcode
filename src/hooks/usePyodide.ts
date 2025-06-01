@@ -115,7 +115,11 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
   };
 
   // Helper function to convert a value to match the type of the original value
-  const convertToOriginalType = (value: any, originalValue: any): any => {
+  const convertToOriginalType = (
+    value: any,
+    originalValue: any,
+    fieldName: string
+  ): any => {
     // If the original value is null/undefined, return as-is
     if (originalValue == null) {
       return value;
@@ -133,12 +137,24 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
       if (typeof value === "string") {
         try {
           const parsed = JSON.parse(value);
-          return Array.isArray(parsed) ? parsed : originalValue;
+          if (!Array.isArray(parsed)) {
+            throw new Error(
+              `Field '${fieldName}' conversion failed: expected array format`
+            );
+          }
+          return parsed;
         } catch {
-          return originalValue;
+          throw new Error(
+            `Field '${fieldName}' conversion failed: cannot parse as array`
+          );
         }
       }
-      return Array.isArray(value) ? value : originalValue;
+      if (!Array.isArray(value)) {
+        throw new Error(
+          `Field '${fieldName}' conversion failed: expected array format`
+        );
+      }
+      return value;
     }
 
     // Handle other types
@@ -146,9 +162,19 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
       case "number":
         if (typeof value === "string") {
           const numValue = Number(value);
-          return isNaN(numValue) ? originalValue : numValue;
+          if (isNaN(numValue)) {
+            throw new Error(
+              `Field '${fieldName}' conversion failed: invalid number format`
+            );
+          }
+          return numValue;
         }
-        return typeof value === "number" ? value : originalValue;
+        if (typeof value !== "number") {
+          throw new Error(
+            `Field '${fieldName}' conversion failed: expected number`
+          );
+        }
+        return value;
 
       case "boolean":
         if (typeof value === "string") {
@@ -199,7 +225,23 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
         const parsedInputs: Record<string, any> = {};
         for (const [key, value] of Object.entries(inputs)) {
           const originalValue = originalInputs[key];
-          parsedInputs[key] = convertToOriginalType(value, originalValue);
+          try {
+            parsedInputs[key] = convertToOriginalType(
+              value,
+              originalValue,
+              key
+            );
+          } catch (error) {
+            // Return validation error that includes field information
+            return {
+              error:
+                error instanceof Error
+                  ? error.message
+                  : `Field '${key}' validation failed`,
+              validationError: true,
+              invalidField: key,
+            };
+          }
         }
 
         console.log("Parsed inputs:", parsedInputs);
@@ -218,7 +260,6 @@ result_json = None
 try:
     tracer = PythonTracer()
     problem_code = """${problemCode.replace(/"/g, '\\"')}"""
-    print(problem_code)
 
     # Extract function name from code
     import ast
@@ -230,7 +271,6 @@ try:
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef):
             defined_functions.append(node.name)
-    print(f"Defined functions: {defined_functions}")
     
     # If the provided function name does not exist, maybe the code calls the function directly
     if function_name not in defined_functions:

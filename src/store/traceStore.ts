@@ -56,6 +56,13 @@ interface TraceState {
   originalInputs: Record<string, any>; // Original inputs from trace data
   hasChanges: boolean; // Whether there are unsaved changes
 
+  // Error state
+  currentError: {
+    message: string;
+    type: "validation" | "general";
+    invalidField?: string;
+  } | null;
+
   // Problems data
   problemsData: any[];
 }
@@ -94,6 +101,13 @@ interface TraceActions {
   clearInputOverrides: () => void;
   getInputOverrides: () => Record<string, any>;
 
+  // Error management
+  setValidationError: (
+    error: { message: string; invalidField: string } | null
+  ) => void;
+  setGeneralError: (message: string) => void;
+  clearError: () => void;
+
   // Code editing and change detection
   setCurrentCode: (code: string) => void;
   resetToOriginal: () => void;
@@ -124,6 +138,7 @@ const initialState: TraceState = {
   currentCode: null,
   originalInputs: {},
   hasChanges: false,
+  currentError: null,
   problemsData: [],
 };
 
@@ -318,6 +333,32 @@ export const useTraceStore = create<TraceStore>()(
       const state = get();
       return state.inputOverrides;
     },
+
+    setValidationError: (error) =>
+      set((state) => {
+        if (error) {
+          state.currentError = {
+            message: error.message,
+            type: "validation",
+            invalidField: error.invalidField,
+          };
+        } else {
+          state.currentError = null;
+        }
+      }),
+
+    setGeneralError: (message) =>
+      set((state) => {
+        state.currentError = {
+          message,
+          type: "general",
+        };
+      }),
+
+    clearError: () =>
+      set((state) => {
+        state.currentError = null;
+      }),
 
     setProblemsData: (problems) =>
       set((state) => {

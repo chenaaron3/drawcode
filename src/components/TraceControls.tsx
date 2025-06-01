@@ -35,12 +35,14 @@ export function TraceControls() {
         getCurrentProblemId,
         getCurrentProblemData,
         getInputOverrides,
-        traceData
+        traceData,
+        setValidationError,
+        setGeneralError,
+        clearError
     } = useTraceStore();
 
     const { generateTrace } = usePyodide();
     const [isGenerating, setIsGenerating] = useState(false);
-    const [error, setError] = useState<string | null>(null);
 
     const currentProblemId = getCurrentProblemId();
     const problemData = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
@@ -48,7 +50,7 @@ export function TraceControls() {
     // Handle reset to original
     const handleReset = () => {
         resetToOriginal();
-        setError(null);
+        clearError();
     };
 
     // Handle update (generate new trace)
@@ -56,7 +58,7 @@ export function TraceControls() {
         if (!problemData || !currentCode) return;
 
         setIsGenerating(true);
-        setError(null);
+        clearError();
 
         try {
             const currentInputs = { ...traceData?.metadata.inputs.kwargs, ...getInputOverrides() };
@@ -68,12 +70,21 @@ export function TraceControls() {
             );
 
             if (newTraceData.error) {
-                setError(newTraceData.error);
+                if (newTraceData.validationError && newTraceData.invalidField) {
+                    // Handle validation errors
+                    setValidationError({
+                        message: newTraceData.error,
+                        invalidField: newTraceData.invalidField
+                    });
+                } else {
+                    // Handle other errors
+                    setGeneralError(newTraceData.error);
+                }
             } else {
                 setTraceData(newTraceData);
             }
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to generate trace');
+            setGeneralError(err instanceof Error ? err.message : 'Failed to generate trace');
         } finally {
             setIsGenerating(false);
         }
@@ -143,9 +154,6 @@ export function TraceControls() {
                 >
                     {isGenerating ? 'Updating...' : 'Update'}
                 </Button>
-                {error && (
-                    <span className="text-sm text-red-600 ml-2">{error}</span>
-                )}
             </div>
         );
     }

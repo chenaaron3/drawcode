@@ -9,6 +9,7 @@ import Editor from '@monaco-editor/react';
 
 import { useCurrentStep } from '../hooks/useCurrentStep';
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
+import { ErrorPanel } from './ErrorPanel';
 import { InputsSection } from './InputsSection';
 import { TraceControls } from './TraceControls';
 
@@ -24,6 +25,8 @@ export default function CodePanel() {
         currentCode,
         setCurrentCode,
         hasChanges,
+        currentError,
+        clearError,
     } = useTraceStore();
     const currentLine = useTraceStore(selectCurrentLine);
     const currentStep = useCurrentStep();
@@ -31,7 +34,12 @@ export default function CodePanel() {
 
     // Handle input changes
     const handleInputChange = (key: string, value: any) => {
+        console.log('handleInputChange', key, value);
         setInputOverride(key, value);
+        // Clear validation error when user changes the input
+        if (currentError?.type === 'validation' && currentError?.invalidField === key) {
+            clearError();
+        }
     };
 
     // Get current input values (overrides or defaults)
@@ -107,11 +115,15 @@ export default function CodePanel() {
                         <TraceControls />
                     </CardHeader>
                     <CardContent className="flex-1 overflow-hidden">
+                        {/* Error Panel */}
+                        <ErrorPanel error={currentError} />
+
                         {/* Inputs Section */}
                         {traceData && (
                             <InputsSection
                                 inputs={getCurrentInputs()}
                                 onInputChange={handleInputChange}
+                                validationError={currentError}
                             />
                         )}
 
