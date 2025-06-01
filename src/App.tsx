@@ -6,11 +6,14 @@ import {
 } from '@/components/ui/select';
 import { Toaster } from '@/components/ui/sonner';
 
+import problemDescriptionsData from '../public/problem-descriptions.json';
 import problemsJson from '../public/problems.json';
 import TraceVisualizer from './components/TraceVisualizer';
 import { AVAILABLE_PROBLEM_IDS, getTraceData } from './data/traces';
 import { usePyodide } from './hooks/usePyodide';
 import { useTraceStore } from './store/traceStore';
+
+import type { ProblemDescription } from './types/problem';
 
 function formatTraceName(problemId: string): string {
   const traceData = getTraceData(problemId);
@@ -119,7 +122,30 @@ export default function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const codeParam = urlParams.get('code');
-    setProblemsData(problemsJson.problems);
+
+    // Load and join problems with their descriptions
+    const loadProblemsWithDescriptions = async () => {
+      try {
+        const problemDescriptions = problemDescriptionsData as Record<string, ProblemDescription>;
+        // Join problems with descriptions
+        const problemsWithDetails = problemsJson.problems.map(problem => ({
+          ...problem,
+          details: problemDescriptions[problem.id] || null
+        }));
+
+        setProblemsData(problemsWithDetails);
+      } catch (error) {
+        console.error('Error loading problem descriptions:', error);
+        // Fallback to just the problems data without descriptions
+        const problemsWithoutDetails = problemsJson.problems.map(problem => ({
+          ...problem,
+          details: null
+        }));
+        setProblemsData(problemsWithoutDetails);
+      }
+    };
+
+    loadProblemsWithDescriptions();
 
     if (codeParam) {
       try {

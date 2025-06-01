@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
@@ -129,54 +130,69 @@ export default function CodePanel() {
 
                         <div className="rounded-md overflow-hidden bg-muted/30 h-full relative">
                             {isReadOnly ? (
-                                <SyntaxHighlighter
-                                    language="python"
-                                    style={oneLight}
-                                    customStyle={{
-                                        margin: 0,
-                                        padding: 0,
-                                        background: 'transparent',
-                                        fontSize: '0.75rem',
-                                        fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
-                                        height: 'calc(100vh - 320px)',
-                                        overflow: 'auto',
-                                        lineHeight: '1.3',
-                                        cursor: 'text',
-                                    }}
-                                    showLineNumbers={true}
-                                    lineNumberStyle={{
-                                        minWidth: '2rem',
-                                        paddingRight: '0.75rem',
-                                        color: '#6b7280',
-                                        fontSize: '0.7rem',
-                                        textAlign: 'right',
-                                        userSelect: 'none',
-                                    }}
-                                    wrapLines={true}
-                                    lineProps={(lineNumber) => {
-                                        const isCurrentLine = currentLine?.line_number === lineNumber;
-                                        return {
-                                            style: {
-                                                display: 'block',
-                                                backgroundColor: isCurrentLine ? 'rgb(219 234 254)' : 'transparent',
-                                                borderLeft: isCurrentLine ? '3px solid rgb(59 130 246)' : '3px solid transparent',
-                                                fontWeight: isCurrentLine ? '500' : 'normal',
-                                                padding: '0.25rem 0.75rem',
-                                                transition: 'all 0.2s ease',
-                                                lineHeight: '1.3',
-                                                cursor: 'text',
-                                            },
-                                            'data-line-number': lineNumber,
-                                            'data-is-current': isCurrentLine,
-                                            onClick: () => {
-                                                setIsReadOnly(false);
-                                                setIsPlaying(false); // Pause debugger when entering edit mode
-                                            },
-                                        };
-                                    }}
-                                >
-                                    {currentCode || ''}
-                                </SyntaxHighlighter>
+                                <>
+                                    <SyntaxHighlighter
+                                        language="python"
+                                        style={oneLight}
+                                        customStyle={{
+                                            margin: 0,
+                                            padding: 0,
+                                            background: 'transparent',
+                                            fontSize: '0.75rem',
+                                            fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+                                            height: 'calc(100vh - 320px)',
+                                            overflow: 'auto',
+                                            lineHeight: '1.3',
+                                            cursor: 'text',
+                                        }}
+                                        showLineNumbers={true}
+                                        lineNumberStyle={{
+                                            minWidth: '2rem',
+                                            paddingRight: '0.75rem',
+                                            color: '#6b7280',
+                                            fontSize: '0.7rem',
+                                            textAlign: 'right',
+                                            userSelect: 'none',
+                                        }}
+                                        wrapLines={true}
+                                        lineProps={(lineNumber) => {
+                                            const isCurrentLine = currentLine?.line_number === lineNumber;
+                                            return {
+                                                style: {
+                                                    display: 'block',
+                                                    backgroundColor: isCurrentLine ? 'rgb(219 234 254)' : 'transparent',
+                                                    borderLeft: isCurrentLine ? '3px solid rgb(59 130 246)' : '3px solid transparent',
+                                                    fontWeight: isCurrentLine ? '500' : 'normal',
+                                                    padding: '0.25rem 0.75rem',
+                                                    transition: 'all 0.2s ease',
+                                                    lineHeight: '1.3',
+                                                    cursor: 'text',
+                                                },
+                                                'data-line-number': lineNumber,
+                                                'data-is-current': isCurrentLine,
+                                                onClick: () => {
+                                                    setIsReadOnly(false);
+                                                    setIsPlaying(false); // Pause debugger when entering edit mode
+                                                },
+                                            };
+                                        }}
+                                    >
+                                        {currentCode || ''}
+                                    </SyntaxHighlighter>
+
+                                    {/* Edit Button Overlay */}
+                                    <Button
+                                        variant="secondary"
+                                        size="sm"
+                                        onClick={() => {
+                                            setIsReadOnly(false);
+                                            setIsPlaying(false);
+                                        }}
+                                        className="absolute top-1 right-1 z-10 shadow-sm"
+                                    >
+                                        Edit
+                                    </Button>
+                                </>
                             ) : (
                                 <Editor
                                     height="calc(100vh - 320px)"

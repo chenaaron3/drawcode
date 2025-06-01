@@ -3,6 +3,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import type { TraceData, TraceLine } from "../types/trace";
 import type { AST } from "../types/ast";
+import type { Problem } from "../types/problem";
 
 // Helper to build node ID lookup
 function buildNodeLookup(ast: AST): Map<number, AST> {
@@ -64,7 +65,7 @@ interface TraceState {
   } | null;
 
   // Problems data
-  problemsData: any[];
+  problemsData: Problem[];
 }
 
 interface TraceActions {
@@ -94,7 +95,7 @@ interface TraceActions {
   // Problems
   setCurrentProblem: (problemId: string) => void;
   getCurrentProblemId: () => string | null;
-  getCurrentProblemData: (problemId: string) => any;
+  getCurrentProblemData: (problemId: string) => Problem | undefined;
 
   // Input management
   setInputOverride: (inputName: string, value: any) => void;
@@ -116,7 +117,7 @@ interface TraceActions {
   getCurrentInputs: () => Record<string, any>;
 
   // Problems data management
-  setProblemsData: (data: any[]) => void;
+  setProblemsData: (data: Problem[]) => void;
 }
 
 type TraceStore = TraceState & TraceActions;

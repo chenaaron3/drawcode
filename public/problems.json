@@ -146,7 +146,7 @@
             "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef mergeTwoLists(list1, list2):\n    def list_to_linked(arr):\n        if not arr: return None\n        head = ListNode(arr[0])\n        curr = head\n        for val in arr[1:]:\n            curr.next = ListNode(val)\n            curr = curr.next\n        return head\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    l1 = list_to_linked(list1)\n    l2 = list_to_linked(list2)\n    \n    dummy = ListNode(0)\n    curr = dummy\n    \n    while l1 and l2:\n        if l1.val <= l2.val:\n            curr.next = l1\n            l1 = l1.next\n        else:\n            curr.next = l2\n            l2 = l2.next\n        curr = curr.next\n    \n    curr.next = l1 or l2\n    return linked_to_list(dummy.next)\n"
         },
         {
-            "id": "remove-duplicates",
+            "id": "remove-duplicates-from-sorted-array",
             "number": 26,
             "title": "Remove Duplicates from Sorted Array",
             "inputs": {

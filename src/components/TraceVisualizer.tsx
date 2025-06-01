@@ -5,6 +5,7 @@ import { getTraceData } from '../data/traces';
 import { useTraceStore } from '../store/traceStore';
 import CodePanel from './CodePanel';
 import ComputationWorkspace from './ComputationWorkspace';
+import { ProblemDescription } from './ProblemDescription';
 import VariablePanel from './VariablePanel';
 
 export default function TraceVisualizer() {
@@ -29,8 +30,16 @@ export default function TraceVisualizer() {
     return (
         <LayoutGroup>
             <div className="flex h-full gap-6 overflow-visible">
-                <div className="flex-1 overflow-visible">
-                    <CodePanel />
+                <div className="flex-1 flex flex-col gap-4 overflow-visible">
+                    {/* Problem Description */}
+                    {currentProblemId && (
+                        <ProblemDescription problemId={currentProblemId} />
+                    )}
+
+                    {/* Code Panel */}
+                    <div className="flex-1 overflow-visible">
+                        <CodePanel />
+                    </div>
                 </div>
                 <div className="flex-1 flex flex-col gap-4 overflow-visible">
                     <div className="overflow-visible">

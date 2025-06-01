@@ -12,8 +12,6 @@ import type { PyodideInterface } from "pyodide";
 interface UsePyodideResult {
   pyodide: PyodideInterface | null;
   isLoading: boolean;
-  error: string | null;
-  loadTracer: () => Promise<void>;
   generateTrace: (
     problemCode: string,
     entrypoint: string,
@@ -26,7 +24,6 @@ interface UsePyodideResult {
 export function usePyodide(): UsePyodideResult {
   const [pyodide, setPyodide] = useState<PyodideInterface | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const isInitializing = useRef(false);
 
   // Shared tracer files configuration
@@ -42,27 +39,13 @@ export function usePyodide(): UsePyodideResult {
     isInitializing.current = true;
 
     async function initializePyodide() {
-      try {
-        // Load Pyodide from npm package
-        const pyodideInstance = await loadPyodide({
-          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.27.6/full/",
-        });
-
-        // Install required packages
-        await pyodideInstance.loadPackage(["micropip"]);
-
-        setPyodide(pyodideInstance);
-        setIsLoading(false);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load Pyodide");
-        setIsLoading(false);
-      }
+      await resetPyodide();
     }
 
     initializePyodide();
   }, []);
 
-  const loadTracer = async () => {
+  const loadTracer = async (pyodide: PyodideInterface) => {
     if (!pyodide) throw new Error("Pyodide not ready");
 
     try {
@@ -104,7 +87,7 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
       setIsLoading(false);
 
       // Use the existing loadTracer function to load modules
-      await loadTracer();
+      await loadTracer(pyodideInstance);
 
       console.log("Pyodide reset complete with fresh tracer modules");
     } catch (error) {
@@ -320,8 +303,6 @@ result_json
   return {
     pyodide,
     isLoading,
-    error,
-    loadTracer,
     generateTrace,
     resetPyodide,
   };
