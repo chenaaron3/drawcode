@@ -243,7 +243,7 @@ export default function ComputationWorkspace() {
     if (!current || !steps) {
         return (
             <Card className="lg:h-auto">
-                <CardContent className="p-2 lg:p-6">
+                <CardContent>
                     <div className="flex items-center justify-center h-16 text-muted-foreground">
                         No expressions to evaluate
                     </div>
@@ -254,7 +254,7 @@ export default function ComputationWorkspace() {
 
     return (
         <Card className="lg:h-auto">
-            <CardContent className="p-2 lg:p-6">
+            <CardContent>
                 <EvaluationTree
                     evaluationTree={evaluationTree}
                     animatingVariable={animatingVariable}
