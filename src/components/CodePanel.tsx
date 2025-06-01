@@ -31,6 +31,7 @@ export default function CodePanel() {
         currentError,
         clearError,
         getCurrentProblemId,
+        getCurrentProblemData,
     } = useTraceStore();
     const currentLine = useTraceStore(selectCurrentLine);
     const currentStep = useCurrentStep();
@@ -113,7 +114,7 @@ export default function CodePanel() {
                             <CardTitle className="text-lg">
                                 {traceData.metadata.problem?.title ?? "Code"}
                             </CardTitle>
-                            {getCurrentProblemId() && (
+                            {getCurrentProblemId() && getCurrentProblemData(getCurrentProblemId()!)?.details && (
                                 <ProblemDescriptionModal problemId={getCurrentProblemId()!} />
                             )}
                         </div>

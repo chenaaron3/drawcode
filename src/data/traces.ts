@@ -1,4 +1,5 @@
 import type { TraceData } from "../types/trace";
+import problemIds from './problem-ids.json';
 
 // Dynamically import all trace files from the public/traces directory
 const traceModules = import.meta.glob("../../public/traces/*.json", {
@@ -17,16 +18,8 @@ for (const path in traceModules) {
   }
 }
 
-// Export available problem IDs for convenience
-export const AVAILABLE_PROBLEM_IDS = [
-  "sandbox",
-  "two-sum",
-  "remove-duplicates-from-sorted-array",
-  "best-time-to-buy-and-sell-stock-ii",
-  "rotate-array",
-  "contains-duplicate",
-  "single-number",
-];
+// Export available problem IDs from JSON file
+export const AVAILABLE_PROBLEM_IDS: string[] = problemIds;
 
 // Helper function to get trace data for a specific problem
 export function getTraceData(problemId: string): TraceData | undefined {

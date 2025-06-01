@@ -1,14 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { AVAILABLE_PROBLEM_IDS } from '../src/data/traces.js';
 
-// Get the directory name for ES modules
+// Get the directory of this script file
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Get problem IDs from the traces data (exclude sandbox)
-const PROBLEM_IDS = AVAILABLE_PROBLEM_IDS.filter(id => id !== 'sandbox');
+// Import problem IDs from JSON file
+const problemIdsPath = path.resolve(__dirname, '../src/data/problem-ids.json');
+const problemIds = JSON.parse(fs.readFileSync(problemIdsPath, 'utf8'));
+
+// Get problem IDs from the JSON data (exclude sandbox)
+const PROBLEM_IDS = problemIds.filter(id => id !== 'sandbox');
 
 const API_BASE_URL = 'https://alfa-leetcode-api.onrender.com/select?titleSlug=';
 const CACHE_FILE = path.join(__dirname, '../public/problem-descriptions.json');

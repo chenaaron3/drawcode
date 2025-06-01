@@ -140,7 +140,10 @@ export function ProblemDescriptionModal({ problemId }: ProblemDescriptionModalPr
 
     // Convert HTML to Markdown
     const markdownContent = useMemo(() => {
-        console.log('problemData.question', problemData.question);
+        if (!problemData?.question) {
+            return '';
+        }
+
         const turndownService = new TurndownService({
             headingStyle: 'atx',
             codeBlockStyle: 'fenced'
@@ -165,12 +168,15 @@ export function ProblemDescriptionModal({ problemId }: ProblemDescriptionModalPr
         });
 
         const markdown = turndownService.turndown(problemData.question);
-        console.log('Converted markdown:', markdown);
         return markdown;
-    }, [problemData.question]);
+    }, [problemData?.question]);
 
     // Parse example inputs from the original HTML (more reliable than markdown)
     const exampleInputs = useMemo(() => {
+        if (!problemData?.question) {
+            return [];
+        }
+
         const examples: ExampleInput[] = [];
 
         // Match HTML format: <strong>Input:</strong> nums = [2,7,11,15], target = 9
@@ -235,7 +241,7 @@ export function ProblemDescriptionModal({ problemId }: ProblemDescriptionModalPr
         }
 
         return examples;
-    }, [problemData.question]);
+    }, [problemData?.question]);
 
     const handleUseExample = async (inputs: Record<string, any>) => {
         // Set the input overrides in global state
@@ -256,11 +262,13 @@ export function ProblemDescriptionModal({ problemId }: ProblemDescriptionModalPr
             <DialogContent className="max-w-7xl h-[90vh] flex flex-col">
                 <DialogHeader className="flex-shrink-0 border-b pb-4">
                     <DialogTitle className="flex items-center gap-3 text-xl">
-                        <span>{problemData.questionTitle}</span>
-                        <Badge className={getDifficultyColor(problemData.difficulty)}>
-                            {problemData.difficulty}
-                        </Badge>
-                        {problemData.link && (
+                        <span>{problemData?.questionTitle || 'Problem'}</span>
+                        {problemData?.difficulty && (
+                            <Badge className={getDifficultyColor(problemData.difficulty)}>
+                                {problemData.difficulty}
+                            </Badge>
+                        )}
+                        {problemData?.link && (
                             <Button
                                 variant="ghost"
                                 size="sm"
