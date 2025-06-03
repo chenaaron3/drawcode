@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { immer } from 'zustand/middleware/immer';
+import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
 
 import type { TraceData, TraceLine } from "../types/trace";
 import type { AST } from "../types/ast";

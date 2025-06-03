@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { toast } from "sonner";
 
-import { useTraceStore } from '@/store/traceStore';
+import { useTraceStore } from "@/store/traceStore";
 
-import { usePyodide } from './usePyodide';
+import { usePyodide } from "./usePyodide";
 
 export function useTraceGeneration() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -17,6 +17,7 @@ export function useTraceGeneration() {
     setGeneralError,
     clearError,
     traceData,
+    currentCode,
   } = useTraceStore();
 
   const generateTraceFromState = async () => {
@@ -26,9 +27,10 @@ export function useTraceGeneration() {
     const problemData = getCurrentProblemData(currentProblemId);
     if (!problemData) return false;
 
-    // Get current code from trace data (could be edited)
-    const currentCode = traceData?.metadata.code || problemData.solution;
-    if (!currentCode) return false;
+    // Get current code from store (could be edited) - use currentCode from store instead of traceData.metadata.code
+    const codeToExecute =
+      currentCode || traceData?.metadata.code || problemData.solution;
+    if (!codeToExecute) return false;
 
     setIsGenerating(true);
     clearError();
@@ -40,7 +42,7 @@ export function useTraceGeneration() {
       };
 
       const newTraceData = await generateTrace(
-        currentCode,
+        codeToExecute,
         problemData.entrypoint,
         currentInputs,
         problemData.inputs // Pass original inputs for type inference

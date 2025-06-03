@@ -13,6 +13,7 @@ import { useCurrentStep } from '../hooks/useCurrentStep';
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
 import { ErrorPanel } from './ErrorPanel';
 import { InputsSection } from './InputsSection';
+import { NavigationControls } from './NavigationControls';
 import { ProblemDescriptionModal } from './ProblemDescriptionModal';
 import { Settings } from './Settings';
 
@@ -111,7 +112,7 @@ export default function CodePanel() {
         <>
             <TooltipProvider>
                 <Card className="h-full flex-1/3">
-                    <CardHeader className="flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3">
+                    <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3">
                         <div className="flex items-center gap-2">
                             <CardTitle className="text-lg">
                                 {problemData?.title ?? "Code"}
@@ -120,7 +121,7 @@ export default function CodePanel() {
                                 <ProblemDescriptionModal problemId={problemId} />
                             )}
                         </div>
-
+                        <NavigationControls />
                         <Settings />
                     </CardHeader>
                     <CardContent className="flex-1 overflow-hidden">

@@ -2,13 +2,12 @@ import { useEffect } from 'react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
-    Select, SelectContent, SelectItem, SelectTrigger, SelectValue
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue
 } from '@/components/ui/select';
 import { Toaster } from '@/components/ui/sonner';
 
 import problemDescriptionsData from '../public/problem-descriptions.json';
 import problemsJson from '../public/problems.json';
-import { NavigationControls } from './components/NavigationControls';
 import TraceVisualizer from './components/TraceVisualizer';
 import { AVAILABLE_PROBLEM_IDS, getTraceData } from './data/traces';
 import { usePyodide } from './hooks/usePyodide';
@@ -59,46 +58,19 @@ function Header({ currentProblemId, onProblemChange }: HeaderProps) {
   const sortedProblemIds = getSortedProblemIds();
 
   return (
-    <>
-      {/* Main Header */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto p-2 lg:p-4">
-          <div className="flex flex-col gap-2 lg:flex-row lg:gap-0 lg:relative lg:items-center lg:justify-between">
-            {/* Title and Mobile Problem Selector */}
-            <div className="flex items-center justify-between lg:justify-start">
-              <h1 className="text-lg lg:text-xl lg:text-2xl font-bold text-foreground">
-                Leetcode Debugger
-              </h1>
+    <div className="border-b bg-card">
+      <div className="container mx-auto p-2 lg:p-4">
+        <div className="flex flex-col gap-2 lg:flex-row lg:gap-0 lg:items-center lg:justify-between">
+          {/* Title and Mobile Problem Selector */}
+          <div className="flex items-center justify-between lg:justify-start">
+            <h1 className="text-lg lg:text-xl lg:text-2xl font-bold text-foreground">
+              Leetcode Debugger
+            </h1>
 
-              {/* Mobile: Problem selector on the right */}
-              <div className="lg:hidden flex items-center">
-                <Select value={currentProblemId || ''} onValueChange={onProblemChange}>
-                  <SelectTrigger className="w-[160px]">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {sortedProblemIds.map(problemId => (
-                      <SelectItem key={problemId} value={problemId}>
-                        {formatTraceName(problemId)}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* Desktop: Navigation Controls (centered) */}
-            <div className="hidden lg:flex lg:absolute lg:left-1/2 lg:top-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
-              <NavigationControls />
-            </div>
-
-            {/* Desktop: Problem selector with label */}
-            <div className="hidden lg:flex items-center gap-3">
-              <span className="text-sm text-muted-foreground">
-                Select problem:
-              </span>
+            {/* Mobile: Problem selector on the right */}
+            <div className="lg:hidden flex items-center">
               <Select value={currentProblemId || ''} onValueChange={onProblemChange}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-[160px]">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -111,18 +83,28 @@ function Header({ currentProblemId, onProblemChange }: HeaderProps) {
               </Select>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Mobile: Sticky Navigation Controls */}
-      <div className="sticky top-0 z-50 lg:hidden bg-card border-b border-border/50 shadow-sm">
-        <div className="container mx-auto p-2">
-          <div className="flex justify-center">
-            <NavigationControls />
+          {/* Desktop: Problem selector with label */}
+          <div className="hidden lg:flex items-center gap-3">
+            <span className="text-sm text-muted-foreground">
+              Select problem:
+            </span>
+            <Select value={currentProblemId || ''} onValueChange={onProblemChange}>
+              <SelectTrigger className="w-[200px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {sortedProblemIds.map(problemId => (
+                  <SelectItem key={problemId} value={problemId}>
+                    {formatTraceName(problemId)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
