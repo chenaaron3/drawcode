@@ -36,6 +36,7 @@ export default function ComputationWorkspace() {
     // Initialize evaluation tree when steps change
     useEffect(() => {
         if (steps && steps.length > 0) {
+            console.log('steps', steps);
             const initialTree = buildInitialTree();
             setEvaluationTree(initialTree);
         }

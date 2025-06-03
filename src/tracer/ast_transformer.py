@@ -19,6 +19,15 @@ class ASTTransformer(ast.NodeTransformer):
     def get_node_id(self, node):
         """Get a unique ID for an AST node"""
         node_id = getattr(node, '_tracer_id', None)
+        
+        # If node has an ID, check if it's properly registered in our _nodes dict
+        if node_id is not None:
+            existing_node = self._nodes.get(node_id)
+            # If we don't know about this ID, or it points to a different node,
+            # then this is an orphaned/conflicting ID that needs to be reassigned
+            if existing_node is None or existing_node is not node:
+                node_id = None
+        
         if node_id is None:
             node_id = self.node_id_counter
             self.node_id_counter += 1
@@ -249,13 +258,20 @@ class ASTTransformer(ast.NodeTransformer):
         if isinstance(parent, ast.Call) and parent.func == node:
             return True
             
-        # Check if we're the function name in an attribute call (e.g., obj.method())
+        # Check if we're part of a method call
+        # Examples:
+        # 1. obj.method() - 'method' is the attribute name
+        # 2. my_list.append(x) - 'append' is the attribute name
+        # 3. "hello".upper() - 'upper' is the attribute name
+        # 4. self.process() - 'self' is the object being called on
+        # 5. my_dict.update({}) - both 'my_dict' and 'update' are checked
         if isinstance(parent, ast.Attribute):
             grandparent = getattr(parent, "parent", None)
             if grandparent and isinstance(grandparent, ast.Call) and grandparent.func == parent:
-                # We're the attribute name in a method call, skip evaluation
-                if parent.attr == node.id:
-                    return True
+                # Return True if we're either:
+                # 1. The attribute name (method) in a method call
+                # 2. The object the method is being called on
+                return parent.attr == node.id or parent.value == node
                     
         return False
         

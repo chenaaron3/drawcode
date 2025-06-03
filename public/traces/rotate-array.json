@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "code": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]\n    return nums\n",
+    "code": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums = nums[-k:] + nums[:-k]\n    return nums\n",
     "function": "rotate",
     "inputs": {
       "kwargs": {
-        "nums": "[5, 6, 7, 1, 2, 3, 4]",
+        "nums": "[1, 2, 3, 4, 5, 6, 7]",
         "k": "3"
       }
     },
@@ -14,46 +14,46 @@
     }
   },
   "ast": {
-    "node_id": 0,
+    "node_id": 33,
     "children_node_ids": [
-      1
+      34
     ],
     "type": "Module",
     "body": [
       {
-        "node_id": 1,
+        "node_id": 34,
         "children_node_ids": [
-          2,
-          3,
-          4,
-          5,
-          6
+          35,
+          38,
+          46,
+          52,
+          75
         ],
         "type": "FunctionDef",
-        "parent_node_id": 0,
+        "parent_node_id": 33,
         "location": {
           "lineno": 1,
           "col_offset": 0,
           "end_lineno": 5,
           "end_col_offset": 15
         },
-        "focus": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]\n    return nums",
+        "focus": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums = nums[-k:] + nums[:-k]\n    return nums",
         "name": "rotate",
         "args": {
-          "node_id": 2,
+          "node_id": 35,
           "children_node_ids": [
-            7,
-            8
+            36,
+            37
           ],
           "type": "arguments",
-          "parent_node_id": 1,
+          "parent_node_id": 34,
           "posonlyargs": [],
           "args": [
             {
-              "node_id": 7,
+              "node_id": 36,
               "children_node_ids": [],
               "type": "arg",
-              "parent_node_id": 2,
+              "parent_node_id": 35,
               "location": {
                 "lineno": 1,
                 "col_offset": 11,
@@ -64,10 +64,10 @@
               "arg": "nums"
             },
             {
-              "node_id": 8,
+              "node_id": 37,
               "children_node_ids": [],
               "type": "arg",
-              "parent_node_id": 2,
+              "parent_node_id": 35,
               "location": {
                 "lineno": 1,
                 "col_offset": 17,
@@ -84,13 +84,13 @@
         },
         "body": [
           {
-            "node_id": 3,
+            "node_id": 38,
             "children_node_ids": [
-              9,
-              10
+              39,
+              41
             ],
             "type": "Assign",
-            "parent_node_id": 1,
+            "parent_node_id": 34,
             "location": {
               "lineno": 2,
               "col_offset": 4,
@@ -100,12 +100,12 @@
             "focus": "n = len(nums)",
             "targets": [
               {
-                "node_id": 9,
+                "node_id": 39,
                 "children_node_ids": [
-                  14
+                  40
                 ],
                 "type": "Name",
-                "parent_node_id": 3,
+                "parent_node_id": 38,
                 "location": {
                   "lineno": 2,
                   "col_offset": 4,
@@ -115,21 +115,21 @@
                 "focus": "n",
                 "id": "n",
                 "ctx": {
-                  "node_id": 14,
+                  "node_id": 40,
                   "children_node_ids": [],
                   "type": "Store",
-                  "parent_node_id": 9
+                  "parent_node_id": 39
                 }
               }
             ],
             "value": {
-              "node_id": 10,
+              "node_id": 41,
               "children_node_ids": [
-                16,
-                17
+                42,
+                44
               ],
               "type": "Call",
-              "parent_node_id": 3,
+              "parent_node_id": 38,
               "location": {
                 "lineno": 2,
                 "col_offset": 8,
@@ -138,12 +138,12 @@
               },
               "focus": "len(nums)",
               "func": {
-                "node_id": 16,
+                "node_id": 42,
                 "children_node_ids": [
-                  7
+                  43
                 ],
                 "type": "Name",
-                "parent_node_id": 10,
+                "parent_node_id": 41,
                 "location": {
                   "lineno": 2,
                   "col_offset": 8,
@@ -153,20 +153,20 @@
                 "focus": "len",
                 "id": "len",
                 "ctx": {
-                  "node_id": 7,
+                  "node_id": 43,
                   "children_node_ids": [],
                   "type": "Load",
-                  "parent_node_id": 16
+                  "parent_node_id": 42
                 }
               },
               "args": [
                 {
-                  "node_id": 17,
+                  "node_id": 44,
                   "children_node_ids": [
-                    7
+                    45
                   ],
                   "type": "Name",
-                  "parent_node_id": 10,
+                  "parent_node_id": 41,
                   "location": {
                     "lineno": 2,
                     "col_offset": 12,
@@ -176,10 +176,10 @@
                   "focus": "nums",
                   "id": "nums",
                   "ctx": {
-                    "node_id": 7,
+                    "node_id": 45,
                     "children_node_ids": [],
                     "type": "Load",
-                    "parent_node_id": 17
+                    "parent_node_id": 44
                   }
                 }
               ],
@@ -187,14 +187,14 @@
             }
           },
           {
-            "node_id": 4,
+            "node_id": 46,
             "children_node_ids": [
-              11,
-              153,
-              12
+              47,
+              49,
+              50
             ],
             "type": "AugAssign",
-            "parent_node_id": 1,
+            "parent_node_id": 34,
             "location": {
               "lineno": 3,
               "col_offset": 4,
@@ -203,12 +203,12 @@
             },
             "focus": "k %= n",
             "target": {
-              "node_id": 11,
+              "node_id": 47,
               "children_node_ids": [
-                14
+                48
               ],
               "type": "Name",
-              "parent_node_id": 4,
+              "parent_node_id": 46,
               "location": {
                 "lineno": 3,
                 "col_offset": 4,
@@ -218,25 +218,25 @@
               "focus": "k",
               "id": "k",
               "ctx": {
-                "node_id": 14,
+                "node_id": 48,
                 "children_node_ids": [],
                 "type": "Store",
-                "parent_node_id": 11
+                "parent_node_id": 47
               }
             },
             "op": {
-              "node_id": 153,
+              "node_id": 49,
               "children_node_ids": [],
               "type": "Mod",
-              "parent_node_id": 4
+              "parent_node_id": 46
             },
             "value": {
-              "node_id": 12,
+              "node_id": 50,
               "children_node_ids": [
-                7
+                51
               ],
               "type": "Name",
-              "parent_node_id": 4,
+              "parent_node_id": 46,
               "location": {
                 "lineno": 3,
                 "col_offset": 9,
@@ -246,327 +246,291 @@
               "focus": "n",
               "id": "n",
               "ctx": {
-                "node_id": 7,
+                "node_id": 51,
                 "children_node_ids": [],
                 "type": "Load",
-                "parent_node_id": 12
+                "parent_node_id": 50
               }
             }
           },
           {
-            "node_id": 5,
+            "node_id": 52,
             "children_node_ids": [
-              13,
-              14
+              53,
+              55
             ],
             "type": "Assign",
-            "parent_node_id": 1,
+            "parent_node_id": 34,
             "location": {
               "lineno": 4,
               "col_offset": 4,
               "end_lineno": 4,
-              "end_col_offset": 35
+              "end_col_offset": 32
             },
-            "focus": "nums[:] = nums[-k:] + nums[:-k]",
+            "focus": "nums = nums[-k:] + nums[:-k]",
             "targets": [
               {
-                "node_id": 13,
+                "node_id": 53,
                 "children_node_ids": [
-                  18,
-                  19,
-                  14
+                  54
                 ],
-                "type": "Subscript",
-                "parent_node_id": 5,
+                "type": "Name",
+                "parent_node_id": 52,
                 "location": {
                   "lineno": 4,
                   "col_offset": 4,
                   "end_lineno": 4,
-                  "end_col_offset": 11
+                  "end_col_offset": 8
                 },
-                "focus": "nums[:]",
-                "value": {
-                  "node_id": 18,
-                  "children_node_ids": [
-                    7
-                  ],
-                  "type": "Name",
-                  "parent_node_id": 13,
-                  "location": {
-                    "lineno": 4,
-                    "col_offset": 4,
-                    "end_lineno": 4,
-                    "end_col_offset": 8
-                  },
-                  "focus": "nums",
-                  "id": "nums",
-                  "ctx": {
-                    "node_id": 7,
-                    "children_node_ids": [],
-                    "type": "Load",
-                    "parent_node_id": 18
-                  }
-                },
-                "slice": {
-                  "node_id": 19,
-                  "children_node_ids": [],
-                  "type": "Slice",
-                  "parent_node_id": 13,
-                  "location": {
-                    "lineno": 4,
-                    "col_offset": 9,
-                    "end_lineno": 4,
-                    "end_col_offset": 10
-                  },
-                  "focus": ":"
-                },
+                "focus": "nums",
+                "id": "nums",
                 "ctx": {
-                  "node_id": 14,
+                  "node_id": 54,
                   "children_node_ids": [],
                   "type": "Store",
-                  "parent_node_id": 13
+                  "parent_node_id": 53
                 }
               }
             ],
             "value": {
-              "node_id": 14,
+              "node_id": 55,
               "children_node_ids": [
-                20,
-                125,
-                21
+                56,
+                65,
+                66
               ],
               "type": "BinOp",
-              "parent_node_id": 5,
+              "parent_node_id": 52,
               "location": {
                 "lineno": 4,
-                "col_offset": 14,
+                "col_offset": 11,
                 "end_lineno": 4,
-                "end_col_offset": 35
+                "end_col_offset": 32
               },
               "focus": "nums[-k:] + nums[:-k]",
               "left": {
-                "node_id": 20,
+                "node_id": 56,
                 "children_node_ids": [
-                  22,
-                  23,
-                  7
+                  57,
+                  59,
+                  64
                 ],
                 "type": "Subscript",
-                "parent_node_id": 14,
+                "parent_node_id": 55,
                 "location": {
                   "lineno": 4,
-                  "col_offset": 14,
+                  "col_offset": 11,
                   "end_lineno": 4,
-                  "end_col_offset": 23
+                  "end_col_offset": 20
                 },
                 "focus": "nums[-k:]",
                 "value": {
-                  "node_id": 22,
+                  "node_id": 57,
                   "children_node_ids": [
-                    7
+                    58
                   ],
                   "type": "Name",
-                  "parent_node_id": 20,
+                  "parent_node_id": 56,
                   "location": {
                     "lineno": 4,
-                    "col_offset": 14,
+                    "col_offset": 11,
                     "end_lineno": 4,
-                    "end_col_offset": 18
+                    "end_col_offset": 15
                   },
                   "focus": "nums",
                   "id": "nums",
                   "ctx": {
-                    "node_id": 7,
+                    "node_id": 58,
                     "children_node_ids": [],
                     "type": "Load",
-                    "parent_node_id": 22
+                    "parent_node_id": 57
                   }
                 },
                 "slice": {
-                  "node_id": 23,
+                  "node_id": 59,
                   "children_node_ids": [
-                    26
+                    60
                   ],
                   "type": "Slice",
-                  "parent_node_id": 20,
+                  "parent_node_id": 56,
                   "location": {
                     "lineno": 4,
-                    "col_offset": 19,
+                    "col_offset": 16,
                     "end_lineno": 4,
-                    "end_col_offset": 22
+                    "end_col_offset": 19
                   },
                   "focus": "-k:",
                   "lower": {
-                    "node_id": 26,
+                    "node_id": 60,
                     "children_node_ids": [
-                      25,
-                      28
+                      61,
+                      62
                     ],
                     "type": "UnaryOp",
-                    "parent_node_id": 23,
+                    "parent_node_id": 59,
                     "location": {
                       "lineno": 4,
-                      "col_offset": 19,
+                      "col_offset": 16,
                       "end_lineno": 4,
-                      "end_col_offset": 21
+                      "end_col_offset": 18
                     },
                     "focus": "-k",
                     "op": {
-                      "node_id": 25,
+                      "node_id": 61,
                       "children_node_ids": [],
                       "type": "USub",
-                      "parent_node_id": 26
+                      "parent_node_id": 60
                     },
                     "operand": {
-                      "node_id": 28,
+                      "node_id": 62,
                       "children_node_ids": [
-                        7
+                        63
                       ],
                       "type": "Name",
-                      "parent_node_id": 26,
+                      "parent_node_id": 60,
                       "location": {
                         "lineno": 4,
-                        "col_offset": 20,
+                        "col_offset": 17,
                         "end_lineno": 4,
-                        "end_col_offset": 21
+                        "end_col_offset": 18
                       },
                       "focus": "k",
                       "id": "k",
                       "ctx": {
-                        "node_id": 7,
+                        "node_id": 63,
                         "children_node_ids": [],
                         "type": "Load",
-                        "parent_node_id": 28
+                        "parent_node_id": 62
                       }
                     }
                   }
                 },
                 "ctx": {
-                  "node_id": 7,
+                  "node_id": 64,
                   "children_node_ids": [],
                   "type": "Load",
-                  "parent_node_id": 20
+                  "parent_node_id": 56
                 }
               },
               "op": {
-                "node_id": 125,
+                "node_id": 65,
                 "children_node_ids": [],
                 "type": "Add",
-                "parent_node_id": 14
+                "parent_node_id": 55
               },
               "right": {
-                "node_id": 21,
+                "node_id": 66,
                 "children_node_ids": [
-                  24,
-                  25,
-                  7
+                  67,
+                  69,
+                  74
                 ],
                 "type": "Subscript",
-                "parent_node_id": 14,
+                "parent_node_id": 55,
                 "location": {
                   "lineno": 4,
-                  "col_offset": 26,
+                  "col_offset": 23,
                   "end_lineno": 4,
-                  "end_col_offset": 35
+                  "end_col_offset": 32
                 },
                 "focus": "nums[:-k]",
                 "value": {
-                  "node_id": 24,
+                  "node_id": 67,
                   "children_node_ids": [
-                    7
+                    68
                   ],
                   "type": "Name",
-                  "parent_node_id": 21,
+                  "parent_node_id": 66,
                   "location": {
                     "lineno": 4,
-                    "col_offset": 26,
+                    "col_offset": 23,
                     "end_lineno": 4,
-                    "end_col_offset": 30
+                    "end_col_offset": 27
                   },
                   "focus": "nums",
                   "id": "nums",
                   "ctx": {
-                    "node_id": 7,
+                    "node_id": 68,
                     "children_node_ids": [],
                     "type": "Load",
-                    "parent_node_id": 24
+                    "parent_node_id": 67
                   }
                 },
                 "slice": {
-                  "node_id": 25,
+                  "node_id": 69,
                   "children_node_ids": [
-                    27
+                    70
                   ],
                   "type": "Slice",
-                  "parent_node_id": 21,
+                  "parent_node_id": 66,
                   "location": {
                     "lineno": 4,
-                    "col_offset": 31,
+                    "col_offset": 28,
                     "end_lineno": 4,
-                    "end_col_offset": 34
+                    "end_col_offset": 31
                   },
                   "focus": ":-k",
                   "upper": {
-                    "node_id": 27,
+                    "node_id": 70,
                     "children_node_ids": [
-                      25,
-                      29
+                      71,
+                      72
                     ],
                     "type": "UnaryOp",
-                    "parent_node_id": 25,
+                    "parent_node_id": 69,
                     "location": {
                       "lineno": 4,
-                      "col_offset": 32,
+                      "col_offset": 29,
                       "end_lineno": 4,
-                      "end_col_offset": 34
+                      "end_col_offset": 31
                     },
                     "focus": "-k",
                     "op": {
-                      "node_id": 25,
+                      "node_id": 71,
                       "children_node_ids": [],
                       "type": "USub",
-                      "parent_node_id": 27
+                      "parent_node_id": 70
                     },
                     "operand": {
-                      "node_id": 29,
+                      "node_id": 72,
                       "children_node_ids": [
-                        7
+                        73
                       ],
                       "type": "Name",
-                      "parent_node_id": 27,
+                      "parent_node_id": 70,
                       "location": {
                         "lineno": 4,
-                        "col_offset": 33,
+                        "col_offset": 30,
                         "end_lineno": 4,
-                        "end_col_offset": 34
+                        "end_col_offset": 31
                       },
                       "focus": "k",
                       "id": "k",
                       "ctx": {
-                        "node_id": 7,
+                        "node_id": 73,
                         "children_node_ids": [],
                         "type": "Load",
-                        "parent_node_id": 29
+                        "parent_node_id": 72
                       }
                     }
                   }
                 },
                 "ctx": {
-                  "node_id": 7,
+                  "node_id": 74,
                   "children_node_ids": [],
                   "type": "Load",
-                  "parent_node_id": 21
+                  "parent_node_id": 66
                 }
               }
             }
           },
           {
-            "node_id": 6,
+            "node_id": 75,
             "children_node_ids": [
-              15
+              76
             ],
             "type": "Return",
-            "parent_node_id": 1,
+            "parent_node_id": 34,
             "location": {
               "lineno": 5,
               "col_offset": 4,
@@ -575,12 +539,12 @@
             },
             "focus": "return nums",
             "value": {
-              "node_id": 15,
+              "node_id": 76,
               "children_node_ids": [
-                7
+                77
               ],
               "type": "Name",
-              "parent_node_id": 6,
+              "parent_node_id": 75,
               "location": {
                 "lineno": 5,
                 "col_offset": 11,
@@ -590,15 +554,16 @@
               "focus": "nums",
               "id": "nums",
               "ctx": {
-                "node_id": 7,
+                "node_id": 77,
                 "children_node_ids": [],
                 "type": "Load",
-                "parent_node_id": 15
+                "parent_node_id": 76
               }
             }
           }
         ],
-        "decorator_list": []
+        "decorator_list": [],
+        "type_params": []
       }
     ],
     "type_ignores": []
@@ -613,13 +578,13 @@
         {
           "step": 0,
           "event": "before_statement",
-          "focus": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]\n    return nums",
+          "focus": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums = nums[-k:] + nums[:-k]\n    return nums",
           "node_id": 1
         },
         {
           "step": 1,
           "event": "after_statement",
-          "focus": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]\n    return nums",
+          "focus": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums = nums[-k:] + nums[:-k]\n    return nums",
           "node_id": 1
         }
       ]
@@ -667,13 +632,13 @@
           "step": 4,
           "event": "before_expression",
           "focus": "nums",
-          "node_id": 17
+          "node_id": 19
         },
         {
           "step": 5,
           "event": "after_expression",
           "focus": "nums",
-          "node_id": 17,
+          "node_id": 19,
           "value": [
             1,
             2,
@@ -741,13 +706,13 @@
           "step": 9,
           "event": "before_expression",
           "focus": "n",
-          "node_id": 12
+          "node_id": 13
         },
         {
           "step": 10,
           "event": "after_expression",
           "focus": "n",
-          "node_id": 12,
+          "node_id": 13,
           "value": 7
         },
         {
@@ -778,106 +743,29 @@
         {
           "step": 12,
           "event": "before_statement",
-          "focus": "nums[:] = nums[-k:] + nums[:-k]",
+          "focus": "nums = nums[-k:] + nums[:-k]",
           "node_id": 5
         },
         {
           "step": 13,
           "event": "before_expression",
           "focus": "nums[-k:] + nums[:-k]",
-          "node_id": 14
+          "node_id": 15
         },
         {
           "step": 14,
           "event": "before_expression",
           "focus": "nums[-k:]",
-          "node_id": 20
+          "node_id": 21
         },
         {
           "step": 15,
           "event": "before_expression",
           "focus": "nums",
-          "node_id": 22
-        },
-        {
-          "step": 16,
-          "event": "after_expression",
-          "focus": "nums",
-          "node_id": 22,
-          "value": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ]
-        },
-        {
-          "step": 17,
-          "event": "before_expression",
-          "focus": "-k:",
-          "node_id": 23
-        },
-        {
-          "step": 18,
-          "event": "before_expression",
-          "focus": "-k",
-          "node_id": 26
-        },
-        {
-          "step": 19,
-          "event": "before_expression",
-          "focus": "k",
-          "node_id": 28
-        },
-        {
-          "step": 20,
-          "event": "after_expression",
-          "focus": "k",
-          "node_id": 28,
-          "value": 3
-        },
-        {
-          "step": 21,
-          "event": "after_expression",
-          "focus": "-k",
-          "node_id": 26,
-          "value": -3
-        },
-        {
-          "step": 22,
-          "event": "after_expression",
-          "focus": "-k:",
-          "node_id": 23,
-          "value": "slice(-3, None, None)"
-        },
-        {
-          "step": 23,
-          "event": "after_expression",
-          "focus": "nums[-k:]",
-          "node_id": 20,
-          "value": [
-            5,
-            6,
-            7
-          ]
-        },
-        {
-          "step": 24,
-          "event": "before_expression",
-          "focus": "nums[:-k]",
-          "node_id": 21
-        },
-        {
-          "step": 25,
-          "event": "before_expression",
-          "focus": "nums",
           "node_id": 24
         },
         {
-          "step": 26,
+          "step": 16,
           "event": "after_expression",
           "focus": "nums",
           "node_id": 24,
@@ -892,49 +780,126 @@
           ]
         },
         {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "-k:",
+          "node_id": 25
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "-k",
+          "node_id": 28
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "k",
+          "node_id": 31
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "k",
+          "node_id": 31,
+          "value": 3
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "-k",
+          "node_id": 28,
+          "value": -3
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "-k:",
+          "node_id": 25,
+          "value": "slice(-3, None, None)"
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "nums[-k:]",
+          "node_id": 21,
+          "value": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "nums[:-k]",
+          "node_id": 23
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 26
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 26,
+          "value": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
           "step": 27,
           "event": "before_expression",
           "focus": ":-k",
-          "node_id": 25
+          "node_id": 27
         },
         {
           "step": 28,
           "event": "before_expression",
           "focus": "-k",
-          "node_id": 27
+          "node_id": 29
         },
         {
           "step": 29,
           "event": "before_expression",
           "focus": "k",
-          "node_id": 29
+          "node_id": 32
         },
         {
           "step": 30,
           "event": "after_expression",
           "focus": "k",
-          "node_id": 29,
+          "node_id": 32,
           "value": 3
         },
         {
           "step": 31,
           "event": "after_expression",
           "focus": "-k",
-          "node_id": 27,
+          "node_id": 29,
           "value": -3
         },
         {
           "step": 32,
           "event": "after_expression",
           "focus": ":-k",
-          "node_id": 25,
+          "node_id": 27,
           "value": "slice(None, -3, None)"
         },
         {
           "step": 33,
           "event": "after_expression",
           "focus": "nums[:-k]",
-          "node_id": 21,
+          "node_id": 23,
           "value": [
             1,
             2,
@@ -946,7 +911,7 @@
           "step": 34,
           "event": "after_expression",
           "focus": "nums[-k:] + nums[:-k]",
-          "node_id": 14,
+          "node_id": 15,
           "value": [
             5,
             6,
@@ -959,42 +924,8 @@
         },
         {
           "step": 35,
-          "event": "before_expression",
-          "focus": "nums",
-          "node_id": 18
-        },
-        {
-          "step": 36,
-          "event": "after_expression",
-          "focus": "nums",
-          "node_id": 18,
-          "value": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ]
-        },
-        {
-          "step": 37,
-          "event": "before_expression",
-          "focus": ":",
-          "node_id": 19
-        },
-        {
-          "step": 38,
-          "event": "after_expression",
-          "focus": ":",
-          "node_id": 19,
-          "value": "slice(None, None, None)"
-        },
-        {
-          "step": 39,
           "event": "after_statement",
-          "focus": "nums[:] = nums[-k:] + nums[:-k]",
+          "focus": "nums = nums[-k:] + nums[:-k]",
           "node_id": 5,
           "locals": {
             "nums": [
@@ -1040,22 +971,22 @@
       },
       "steps": [
         {
-          "step": 40,
+          "step": 36,
           "event": "before_statement",
           "focus": "return nums",
           "node_id": 6
         },
         {
-          "step": 41,
+          "step": 37,
           "event": "before_expression",
           "focus": "nums",
-          "node_id": 15
+          "node_id": 16
         },
         {
-          "step": 42,
+          "step": 38,
           "event": "after_expression",
           "focus": "nums",
-          "node_id": 15,
+          "node_id": 16,
           "value": [
             5,
             6,

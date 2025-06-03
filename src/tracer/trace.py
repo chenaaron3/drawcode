@@ -6,6 +6,7 @@ import os
 
 # Import the refactored classes
 from python_tracer import PythonTracer
+from validate_trace import validate_directory
 
 if __name__ == '__main__':
     PROBLEM_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "..", "public"))
@@ -36,4 +37,19 @@ if __name__ == '__main__':
             **problem['inputs']
         )
         tracer.save_results(os.path.join(OUTPUT_DIR, f"{problem['id']}.json"), transformed_ast)
-    print("Done!") 
+    
+    print("Done generating traces!")
+    
+    # Validate all generated trace files
+    print(f"\n{'='*60}")
+    print("🔍 VALIDATING GENERATED TRACES")
+    print('='*60)
+    
+    success = validate_directory(OUTPUT_DIR)
+    
+    print(f"\n{'='*60}")
+    if success:
+        print("🎉 ALL TRACES GENERATED SUCCESSFULLY AND PASSED VALIDATION!")
+    else:
+        print("❌ SOME TRACES FAILED VALIDATION - CHECK OUTPUT ABOVE")
+    print('='*60) 
