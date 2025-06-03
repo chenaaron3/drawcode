@@ -121,8 +121,10 @@ export default function CodePanel() {
                                 <ProblemDescriptionModal problemId={problemId} />
                             )}
                         </div>
-                        <NavigationControls />
-                        <Settings />
+                        <div className="flex items-center gap-2">
+                            <NavigationControls />
+                            <Settings />
+                        </div>
                     </CardHeader>
                     <CardContent className="flex-1 overflow-hidden">
                         {/* Error Panel */}

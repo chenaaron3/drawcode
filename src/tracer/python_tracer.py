@@ -2,6 +2,7 @@ import sys
 import json
 import ast
 import builtins
+import copy
 
 from ast_transformer import ASTTransformer, BEFORE_STATEMENT_MARKER, AFTER_STATEMENT_MARKER, BEFORE_EXPRESSION_MARKER, AFTER_EXPRESSION_MARKER
 from relationship_analyzer import RelationshipAnalyzer
@@ -107,7 +108,7 @@ class PythonTracer:
         """Run code with expression tracking"""
         self.source_code = code
         self.entrypoint = entrypoint
-        self.inputs = kwargs
+        self.inputs = copy.deepcopy(kwargs)  # Deep copy kwargs dict
         self.problem_number = problem_number
         self.problem_title = problem_title
         
@@ -188,7 +189,15 @@ class PythonTracer:
                 
             line = node.lineno
             
-            if current_line != line:
+            # Start a new line entry if:
+            # 1. Line number changed, or  
+            # 2. We're starting a new statement execution (before_statement event)
+            should_start_new_line = (
+                current_line != line or 
+                step["event"] == "before_statement"
+            )
+            
+            if should_start_new_line:
                 if current_steps:
                     trace.append(_create_trace_entry(current_line, line_locals, current_steps))
                 current_line = line

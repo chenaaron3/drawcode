@@ -10,6 +10,9 @@ from python_tracer import PythonTracer
 if __name__ == '__main__':
     PROBLEM_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "..", "public"))
     OUTPUT_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "..", "public", "traces"))
+    if os.path.exists(OUTPUT_DIR):
+        for file in os.listdir(OUTPUT_DIR):
+            os.remove(os.path.join(OUTPUT_DIR, file))
     
     # Create output directory if it doesn't exist
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -23,8 +26,6 @@ if __name__ == '__main__':
     
     tracer = PythonTracer()
     for problem in problems:
-        # if problem['id'] != "two-sum":
-        #     continue
         print(f"Processing problem {problem['id']}...")
         tracer.reset()  # Reset tracer state for each problem
         transformed_ast = tracer.run_code(

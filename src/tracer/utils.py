@@ -8,7 +8,7 @@ These are pure functions that can be used across different modules.
 def format_object_nicely(val):
     """Format Python objects in a user-friendly way"""
     val_str = str(val)
-    
+
     # Handle built-in classes (e.g., "<class 'enumerate'>" -> "enumerate")
     if val_str.startswith("<class '") and val_str.endswith("'>"):
         class_name = val_str[8:-2]  # Extract class name
@@ -53,19 +53,11 @@ def format_object_nicely(val):
             return "enumerate(...)"
     
     # Handle range objects - show the range parameters
-    if val_str.startswith("<range object"):
+    if val_str.startswith("range("):
         try:
-            # Get range parameters
-            if hasattr(val, 'start') and hasattr(val, 'stop') and hasattr(val, 'step'):
-                if val.step == 1:
-                    if val.start == 0:
-                        return f"range({val.stop})"
-                    else:
-                        return f"range({val.start}, {val.stop})"
-                else:
-                    return f"range({val.start}, {val.stop}, {val.step})"
-            else:
-                return f"range({list(val)})"
+            # Convert range to list
+            range_list = list(copy.deepcopy(val))
+            return range_list
         except:
             return "range(...)"
     
