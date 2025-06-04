@@ -143,6 +143,7 @@ export default function CodePanel() {
                             {isReadOnly ? (
                                 <div className="relative group">
                                     <SyntaxHighlighter
+                                        data-testid="code-editor-read"
                                         language="python"
                                         style={oneLight}
                                         customStyle={{
@@ -212,6 +213,7 @@ export default function CodePanel() {
                                 </div>
                             ) : (
                                 <Editor
+                                    data-testid="code-editor-write"
                                     height="calc(100vh - 320px)"
                                     language="python"
                                     value={currentCode || ''}

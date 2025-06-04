@@ -35,7 +35,7 @@ function Header({ currentProblemId, onProblemChange, allProblems }: HeaderProps)
                 Select problem:
               </span>
               <Select value={currentProblemId || ''} onValueChange={onProblemChange}>
-                <SelectTrigger>
+                <SelectTrigger data-testid="problem-selector">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

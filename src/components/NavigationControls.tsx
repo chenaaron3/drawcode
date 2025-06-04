@@ -7,9 +7,9 @@ import { useTraceStore } from '../store/traceStore';
 
 export function NavigationControls() {
     const {
-        lineIndex,
         isPlaying,
         hasNext,
+        hasPrev,
         prev,
         togglePlay,
         next,
@@ -28,7 +28,8 @@ export function NavigationControls() {
                 variant="outline"
                 size="sm"
                 onClick={prev}
-                disabled={lineIndex === 0 || isPlaying}
+                disabled={!hasPrev() || isPlaying}
+                data-testid="prev-button"
             >
                 <MdSkipPrevious className="h-4 w-4" />
             </Button>
@@ -38,6 +39,7 @@ export function NavigationControls() {
                 size="sm"
                 onClick={togglePlay}
                 disabled={!hasNext() && !isPlaying}
+                data-testid="play-button"
             >
                 {isPlaying ? <BsFillPauseFill className="h-4 w-4" /> : <BsFillPlayFill className="h-4 w-4" />}
             </Button>
@@ -47,6 +49,7 @@ export function NavigationControls() {
                 size="sm"
                 onClick={next}
                 disabled={!hasNext() || isPlaying}
+                data-testid="next-button"
             >
                 <MdSkipNext className="h-4 w-4" />
             </Button>

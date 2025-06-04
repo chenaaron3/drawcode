@@ -96,6 +96,7 @@ export function Settings() {
                     size="sm"
                     onClick={handleUpdate}
                     disabled={isGenerating}
+                    data-testid="compile-button"
                 >
                     {isGenerating ? "Updating..." : 'Update'}
                 </Button>

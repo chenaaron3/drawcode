@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
-import { AVAILABLE_PROBLEM_IDS } from "@/data/traces";
+import { AVAILABLE_PROBLEM_IDS } from '@/data/traces';
 
 import type { TraceData, TraceLine } from "../types/trace";
 import type { AST } from "../types/ast";
@@ -83,6 +83,7 @@ interface TraceActions {
   reset: () => void;
   togglePlay: () => void;
   hasNext: () => boolean;
+  hasPrev: () => boolean;
 
   // Playback
   setIsPlaying: (isPlaying: boolean) => void;
@@ -152,7 +153,8 @@ export const useTraceStore = create<TraceStore>()(
         state.traceData = data;
         state.maxLine = data?.trace.length ? data.trace.length - 1 : 0;
         state.lineIndex = 0;
-        state.stepIndex = 0;
+        // Set to 1 due to function definition at beginning
+        state.stepIndex = 1;
         state.isPlaying = false;
         // Build node lookup when setting new trace data
         if (data?.ast) {
@@ -390,6 +392,21 @@ export const useTraceStore = create<TraceStore>()(
         }
         // Check if we can move to next line
         return state.lineIndex < state.maxLine;
+      }
+      return false;
+    },
+
+    hasPrev: () => {
+      const state = get();
+      if (state.mode === "line") {
+        return state.lineIndex > 0;
+      } else if (state.mode === "step") {
+        // Check if we can move to previous step within current line
+        if (state.stepIndex > 0) {
+          return true;
+        }
+        // Check if we can move to previous line
+        return state.lineIndex > 0;
       }
       return false;
     },

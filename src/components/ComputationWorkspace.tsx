@@ -254,7 +254,7 @@ export default function ComputationWorkspace() {
     }
 
     return (
-        <Card className="lg:h-auto">
+        <Card className="h-full" data-testid="computation-workspace">
             <CardContent>
                 <EvaluationTree
                     evaluationTree={evaluationTree}

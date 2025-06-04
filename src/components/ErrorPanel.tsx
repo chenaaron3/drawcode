@@ -16,7 +16,7 @@ export function ErrorPanel({ error }: ErrorPanelProps) {
     const isValidationError = error.type === 'validation';
 
     return (
-        <Alert variant="destructive">
+        <Alert variant="destructive" data-testid="error-panel">
             <MdError className="h-4 w-4" />
             <AlertTitle>
                 {isValidationError ? 'Input Validation Error' : 'Error'}
