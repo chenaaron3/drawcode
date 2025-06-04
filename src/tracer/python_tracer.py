@@ -7,6 +7,7 @@ import copy
 from ast_transformer import ASTTransformer, BEFORE_STATEMENT_MARKER, AFTER_STATEMENT_MARKER, BEFORE_EXPRESSION_MARKER, AFTER_EXPRESSION_MARKER
 from relationship_analyzer import RelationshipAnalyzer
 from utils import serialize_value, calculate_delta
+from validate_trace import validate_tree
 
 class PythonTracer:
     """Tracer that tracks execution of all statements and expressions"""
@@ -113,7 +114,7 @@ class PythonTracer:
         self.problem_title = problem_title
         
         # Transform the AST for execution
-        tree = self.transformer.transform(code)
+        tree = self.transformer.transform(code, problem_number)
         
         namespace = {
             '__name__': '__main__',
@@ -139,24 +140,16 @@ class PythonTracer:
         with open(filename, 'w') as f:
             json.dump(trace_data, f, indent=2)
 
-    def get_trace_data(self, transformed_ast=None):
+    def get_trace_data(self, transformed_ast):
         """Get trace data as a dictionary without saving to file"""
         print(f"Total steps recorded: {len(self.steps)}")
-        
-        # If no transformed_ast provided, we need to generate it
-        if transformed_ast is None:
-            # This should have been set by run_code, but let's be safe
-            if self.source_code:
-                transformed_ast = self.transformer.transform(self.source_code)
-            else:
-                raise ValueError("No source code available for trace generation")
-        
+
         # Unwrap the transformed AST back to original structure while preserving node IDs
         unwrapped_ast = self.transformer.unwrap_transformed_ast(transformed_ast)
-        
+
         # Analyze relationships from the unwrapped AST (clean structure with node IDs)
         relationships = self.relationship_analyzer.analyze_ast(unwrapped_ast, self.transformer)
-        
+
         print(f"Found {len(relationships)} relationships")
         
         trace = []

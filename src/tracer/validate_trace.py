@@ -15,7 +15,7 @@ import sys
 import os
 import glob
 from pathlib import Path
-
+import ast
 
 def collect_ast_node_info(obj, node_info=None):
     """
@@ -31,34 +31,37 @@ def collect_ast_node_info(obj, node_info=None):
     if node_info is None:
         node_info = {}
     
+    # Validate JSON
     if isinstance(obj, dict):
         # Check if this is an AST node with node_id and type
         if 'node_id' in obj and 'type' in obj:
             node_id = obj['node_id']
             node_type = obj['type']
             
-            # Create context info for debugging
-            context = {}
-            if 'id' in obj:  # Variable name
-                context['name'] = obj['id']
-            if 'value' in obj:  # Constant value
-                context['value'] = obj['value']
-            if 'location' in obj and obj['location']:
-                context['line'] = obj['location']['lineno']
-            
             if node_id not in node_info:
                 node_info[node_id] = []
-            node_info[node_id].append((node_type, context))
+            node_info[node_id].append(node_type)
         
         # Recursively process all values
         for value in obj.values():
             collect_ast_node_info(value, node_info)
-            
     elif isinstance(obj, list):
         # Recursively process all items
         for item in obj:
             collect_ast_node_info(item, node_info)
-    
+    # Validate AST
+    elif isinstance(obj, ast.AST):
+        node_id = getattr(obj, "_tracer_id", None)
+        # get the name of the node
+        node_type = type(obj).__name__
+        # node_id is None for marker nodes
+        if node_id is not None:
+            if node_id not in node_info:
+                node_info[node_id] = []
+            node_info[node_id].append(node_type)
+        # iterate through children to collect info
+        for child in ast.iter_child_nodes(obj):
+            collect_ast_node_info(child, node_info)
     return node_info
 
 
@@ -77,15 +80,14 @@ def validate_tree(ast_root):
     
     # Check for conflicts
     conflicts = []
-    for node_id, type_context_list in node_info.items():
+    for node_id, type_list in node_info.items():
         # Extract unique types for this node ID
-        types = set(tc[0] for tc in type_context_list)
+        types = set(type_list)
         
         if len(types) > 1:
             conflicts.append({
                 'node_id': node_id,
                 'types': list(types),
-                'occurrences': type_context_list
             })
     
     return len(conflicts) == 0, conflicts, len(node_info)
@@ -128,34 +130,12 @@ def format_conflict_report(conflicts, filepath=None):
     for conflict in conflicts:
         node_id = conflict['node_id']
         types = conflict['types']
-        occurrences = conflict['occurrences']
         
         print(f"\n  Node ID {node_id} has {len(types)} different AST types:")
-        
-        # Group occurrences by type
-        by_type = {}
-        for node_type, context in occurrences:
-            if node_type not in by_type:
-                by_type[node_type] = []
-            by_type[node_type].append(context)
-        
-        for node_type, contexts in by_type.items():
-            print(f"    • {node_type} ({len(contexts)} occurrence{'s' if len(contexts) > 1 else ''})")
-            
-            # Show context for first few occurrences
-            for i, context in enumerate(contexts[:3]):
-                context_str = ""
-                if 'name' in context:
-                    context_str += f"name='{context['name']}"
-                if 'value' in context:
-                    context_str += f"value={context['value']}"
-                if 'line' in context:
-                    context_str += f" [line {context['line']}]"
-                if context_str:
-                    print(f"      - {context_str}")
-                    
-            if len(contexts) > 3:
-                print(f"      ... and {len(contexts) - 3} more")
+        for node_type in types:
+            print(f"    • {node_type}")
+            if len(types) > 3:
+                print(f"      ... and {len(types) - 3} more")
 
 
 def validate_single_file(filepath):

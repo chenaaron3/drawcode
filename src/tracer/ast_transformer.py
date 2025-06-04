@@ -16,22 +16,19 @@ class ASTTransformer(ast.NodeTransformer):
         self.node_id_counter = 0
         self._nodes = {}  # node_id -> node mapping
         
-    def get_node_id(self, node):
+    def get_node_id(self, node, problem_number=None):
         """Get a unique ID for an AST node"""
         node_id = getattr(node, '_tracer_id', None)
-        
-        # If node has an ID, check if it's properly registered in our _nodes dict
-        if node_id is not None:
-            existing_node = self._nodes.get(node_id)
-            # If we don't know about this ID, or it points to a different node,
-            # then this is an orphaned/conflicting ID that needs to be reassigned
-            if existing_node is None or existing_node is not node:
-                node_id = None
-        
+        pn = getattr(node, '_problem_number', None)
+        # reset for new problem 
+        if pn is not None and problem_number is not None and pn != problem_number:
+            node_id = None
+
         if node_id is None:
             node_id = self.node_id_counter
             self.node_id_counter += 1
             setattr(node, '_tracer_id', node_id)
+            setattr(node, '_problem_number', problem_number)
             self._nodes[node_id] = node
         return node_id
         
@@ -284,20 +281,20 @@ class ASTTransformer(ast.NodeTransformer):
         else:
             return self.generic_visit(node)
             
-    def transform(self, source):
+    def transform(self, source, problem_number):
         """Transform source code by adding marker function calls"""
         root = ast.parse(source)
         
         # First assign IDs to all nodes. We need to do this before installing markers so they don't get IDs
         for node in ast.walk(root):
             if isinstance(node, ast.AST):
-                self.get_node_id(node)
+                self.get_node_id(node, problem_number)
                 
             # Set parent for all AST nodes for context detection
             for child in ast.iter_child_nodes(node):
                 setattr(child, "parent", node)
         
-        # Transform the AST
+        # Transform the AST with markers
         root = self.visit(root)
         
         # Handle top-level statements in Module to flatten the AST
