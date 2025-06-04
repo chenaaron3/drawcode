@@ -9,98 +9,44 @@ import { Toaster } from '@/components/ui/sonner';
 import problemDescriptionsData from '../public/problem-descriptions.json';
 import problemsJson from '../public/problems.json';
 import TraceVisualizer from './components/TraceVisualizer';
-import { AVAILABLE_PROBLEM_IDS, getTraceData } from './data/traces';
 import { usePyodide } from './hooks/usePyodide';
 import { useTraceStore } from './store/traceStore';
 
-import type { ProblemDescription } from './types/problem';
-
-function formatTraceName(problemId: string): string {
-  const problemData = problemsJson.problems.find(p => p.id === problemId);
-  if (problemData?.title) {
-    return problemData.number + ". " + problemData.title;
-  }
-
-  // Fallback to original formatting if no problem data
-  return problemId
-    .replace(/-/g, ' ')
-    .replace(/\b\w/g, letter => letter.toUpperCase());
-}
-
-function getSortedProblemIds(): string[] {
-  return AVAILABLE_PROBLEM_IDS.sort((a, b) => {
-    const traceDataA = getTraceData(a);
-    const traceDataB = getTraceData(b);
-
-    const numberA = traceDataA?.metadata?.problem?.number;
-    const numberB = traceDataB?.metadata?.problem?.number;
-
-    // If both have problem numbers, sort by number
-    if (numberA !== undefined && numberB !== undefined) {
-      return numberA - numberB;
-    }
-
-    // If only one has a problem number, put it first
-    if (numberA !== undefined && numberB === undefined) return -1;
-    if (numberA === undefined && numberB !== undefined) return 1;
-
-    // If neither has a problem number, sort alphabetically
-    return a.localeCompare(b);
-  });
-}
+import type { Problem, ProblemDescription } from './types/problem';
 
 interface HeaderProps {
   currentProblemId: string | null;
   onProblemChange: (problemId: string) => void;
+  allProblems: Problem[];
 }
 
-function Header({ currentProblemId, onProblemChange }: HeaderProps) {
-  const sortedProblemIds = getSortedProblemIds();
-
+function Header({ currentProblemId, onProblemChange, allProblems }: HeaderProps) {
   return (
     <div className="border-b bg-card">
       <div className="container mx-auto p-2 lg:p-4">
         <div className="flex flex-col gap-2 lg:flex-row lg:gap-0 lg:items-center lg:justify-between">
           {/* Title and Mobile Problem Selector */}
-          <div className="flex items-center justify-between lg:justify-start">
-            <h1 className="text-lg lg:text-xl lg:text-2xl font-bold text-foreground">
+          <div className="flex items-center justify-between w-full">
+            <h1 className="text-lg lg:text-xl font-bold text-foreground">
               Leetcode Debugger
             </h1>
-
-            {/* Mobile: Problem selector on the right */}
-            <div className="lg:hidden flex items-center">
+            <div className="flex items-center gap-3">
+              <span className="hidden lg:block text-sm text-muted-foreground">
+                Select problem:
+              </span>
               <Select value={currentProblemId || ''} onValueChange={onProblemChange}>
-                <SelectTrigger className="w-[160px]">
+                <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {sortedProblemIds.map(problemId => (
-                    <SelectItem key={problemId} value={problemId}>
-                      {formatTraceName(problemId)}
+                  {allProblems.map(problem => (
+                    <SelectItem key={problem.id} value={problem.id}>
+                      {problem.number + ". " + problem.title}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
-          </div>
-
-          {/* Desktop: Problem selector with label */}
-          <div className="hidden lg:flex items-center gap-3">
-            <span className="text-sm text-muted-foreground">
-              Select problem:
-            </span>
-            <Select value={currentProblemId || ''} onValueChange={onProblemChange}>
-              <SelectTrigger className="w-[200px]">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {sortedProblemIds.map(problemId => (
-                  <SelectItem key={problemId} value={problemId}>
-                    {formatTraceName(problemId)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
           </div>
         </div>
       </div>
@@ -133,11 +79,13 @@ export default function App() {
     getCurrentProblemId,
     setCurrentProblem,
     setCurrentCode,
-    setTraceData
+    setTraceData,
+    getAllProblems,
   } = useTraceStore();
 
   const { generateTrace, isLoading: pyodideLoading } = usePyodide();
   const currentProblemId = getCurrentProblemId();
+  const allProblems = getAllProblems();
 
   // Check for shared code in URL parameters
   useEffect(() => {
@@ -236,6 +184,7 @@ export default function App() {
       <Header
         currentProblemId={currentProblemId}
         onProblemChange={handleProblemChange}
+        allProblems={allProblems}
       />
 
       <div className="px-4 lg:px-24 w-full p-6 my-auto min-h-[calc(100vh-120px)] lg:h-[90vh] overflow-visible">

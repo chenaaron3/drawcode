@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
+import { AVAILABLE_PROBLEM_IDS } from "@/data/traces";
+
 import type { TraceData, TraceLine } from "../types/trace";
 import type { AST } from "../types/ast";
 import type { Problem } from "../types/problem";
-
 // Helper to build node ID lookup
 function buildNodeLookup(ast: AST): Map<number, AST> {
   const lookup = new Map<number, AST>();
@@ -96,6 +97,8 @@ interface TraceActions {
   setCurrentProblem: (problemId: string) => void;
   getCurrentProblemId: () => string | null;
   getCurrentProblemData: (problemId: string) => Problem | undefined;
+  setProblemsData: (data: Problem[]) => void;
+  getAllProblems: () => Problem[];
 
   // Input management
   setInputOverride: (inputName: string, value: any) => void;
@@ -115,9 +118,6 @@ interface TraceActions {
   updateHasChanges: () => void;
   getOriginalInputs: () => Record<string, any>;
   getCurrentInputs: () => Record<string, any>;
-
-  // Problems data management
-  setProblemsData: (data: Problem[]) => void;
 }
 
 type TraceStore = TraceState & TraceActions;
@@ -365,6 +365,14 @@ export const useTraceStore = create<TraceStore>()(
       set((state) => {
         state.problemsData = problems;
       }),
+
+    getAllProblems: () => {
+      const state = get();
+      // Fitler based on AVAILABLE_PROBLEM_IDS, sort based by problem number
+      return state.problemsData
+        .filter((problem) => AVAILABLE_PROBLEM_IDS.includes(problem.id))
+        .sort((a, b) => a.number - b.number);
+    },
 
     getCurrentProblemData: (problemId) => {
       const state = get();

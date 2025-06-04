@@ -16,19 +16,19 @@ class ASTTransformer(ast.NodeTransformer):
         self.node_id_counter = 0
         self._nodes = {}  # node_id -> node mapping
         
-    def get_node_id(self, node, problem_number=None):
+    def get_node_id(self, node, problem_key=None):
         """Get a unique ID for an AST node"""
         node_id = getattr(node, '_tracer_id', None)
-        pn = getattr(node, '_problem_number', None)
-        # reset for new problem 
-        if pn is not None and problem_number is not None and pn != problem_number:
+        pk = getattr(node, '_problem_key', None)
+        # reset for new problem, since the node_id carries over to the next problem
+        if pk is not None and problem_key is not None and pk != problem_key:
             node_id = None
 
         if node_id is None:
             node_id = self.node_id_counter
             self.node_id_counter += 1
             setattr(node, '_tracer_id', node_id)
-            setattr(node, '_problem_number', problem_number)
+            setattr(node, '_problem_key', problem_key)
             self._nodes[node_id] = node
         return node_id
         
@@ -281,14 +281,14 @@ class ASTTransformer(ast.NodeTransformer):
         else:
             return self.generic_visit(node)
             
-    def transform(self, source, problem_number):
+    def transform(self, source, problem_key):
         """Transform source code by adding marker function calls"""
         root = ast.parse(source)
         
         # First assign IDs to all nodes. We need to do this before installing markers so they don't get IDs
         for node in ast.walk(root):
             if isinstance(node, ast.AST):
-                self.get_node_id(node, problem_number)
+                self.get_node_id(node, problem_key)
                 
             # Set parent for all AST nodes for context detection
             for child in ast.iter_child_nodes(node):

@@ -1,11 +1,11 @@
-import { loadPyodide } from 'pyodide';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { loadPyodide } from "pyodide";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-import astTransformerCode from '../tracer/ast_transformer.py?raw';
-import pythonTracerCode from '../tracer/python_tracer.py?raw';
-import relationshipAnalyzerCode from '../tracer/relationship_analyzer.py?raw';
+import astTransformerCode from "../tracer/ast_transformer.py?raw";
+import pythonTracerCode from "../tracer/python_tracer.py?raw";
+import relationshipAnalyzerCode from "../tracer/relationship_analyzer.py?raw";
 // Import Python tracer files as raw text
-import utilsCode from '../tracer/utils.py?raw';
+import utilsCode from "../tracer/utils.py?raw";
 
 import type { PyodideInterface } from "pyodide";
 
@@ -271,6 +271,7 @@ try:
     transformed_ast = tracer.run_code(
         problem_code, 
         function_name,
+        hash(problem_code), # hash of the source code
         **input_kwargs
     )
     
