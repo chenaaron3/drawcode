@@ -9,8 +9,8 @@ from python_tracer import PythonTracer
 from validate_trace import validate_directory
 
 if __name__ == '__main__':
-    PROBLEM_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "..", "public"))
-    OUTPUT_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "..", "public", "traces"))
+    PROBLEM_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "data"))
+    OUTPUT_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "data", "traces"))
     if os.path.exists(OUTPUT_DIR):
         for file in os.listdir(OUTPUT_DIR):
             os.remove(os.path.join(OUTPUT_DIR, file))

@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
-  Select, SelectContent, SelectItem, SelectTrigger, SelectValue
+    Select, SelectContent, SelectItem, SelectTrigger, SelectValue
 } from '@/components/ui/select';
 import { Toaster } from '@/components/ui/sonner';
 
-import problemDescriptionsData from '../public/problem-descriptions.json';
-import problemsJson from '../public/problems.json';
 import TraceVisualizer from './components/TraceVisualizer';
+import problemDescriptionsData from './data/problem-descriptions.json';
+import problemsJson from './data/problems.json';
 import { usePyodide } from './hooks/usePyodide';
 import { useTraceStore } from './store/traceStore';
 

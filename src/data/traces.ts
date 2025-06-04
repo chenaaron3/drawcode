@@ -2,7 +2,7 @@ import type { TraceData } from "../types/trace";
 import problemIds from './problem-ids.json';
 
 // Dynamically import all trace files from the public/traces directory
-const traceModules = import.meta.glob("../../public/traces/*.json", {
+const traceModules = import.meta.glob("./traces/*.json", {
   eager: true,
   import: "default",
 });

@@ -14,7 +14,7 @@ const problemIds = JSON.parse(fs.readFileSync(problemIdsPath, 'utf8'));
 const PROBLEM_IDS = problemIds.filter(id => id !== 'sandbox');
 
 const API_BASE_URL = 'https://alfa-leetcode-api.onrender.com/select?titleSlug=';
-const CACHE_FILE = path.join(__dirname, '../public/problem-descriptions.json');
+const CACHE_FILE = path.join(__dirname, '../src/data/problem-descriptions.json');
 
 async function fetchProblemDescription(problemId, retries = 3) {
   for (let attempt = 1; attempt <= retries; attempt++) {
