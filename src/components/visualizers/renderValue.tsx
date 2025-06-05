@@ -26,8 +26,13 @@ export function renderValue(value: any, delta: any, context?: RenderContext) {
         return <DictionaryVisualizer
             dict={value}
             delta={delta}
+            variableName={context?.variableName}
         />;
     }
     // primitive
-    return <PrimitiveBox value={value} delta={delta} />;
+    return <PrimitiveBox
+        value={value}
+        delta={delta}
+        variableName={context?.variableName}
+    />;
 } 

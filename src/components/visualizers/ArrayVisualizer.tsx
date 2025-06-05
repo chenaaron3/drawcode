@@ -3,13 +3,50 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
-import { getArrayColors, VISUALIZER_COLORS } from './colors';
+import { getVisualizerStyles } from './colors';
 import { renderValue } from './renderValue';
 import { valueVariants } from './variants';
 
+// Helper function for popover state-based styling
+interface PopoverState {
+    isEvaluating?: boolean;
+    isAnimating?: boolean;
+    hasChanged?: boolean;
+}
+
+function getPopoverStyles(state: PopoverState, type: 'key' | 'value') {
+    const { isEvaluating, isAnimating, hasChanged } = state;
+
+    if (isEvaluating) {
+        return {
+            container: 'bg-orange-500 text-white shadow-lg shadow-orange-300/50 ring-2 ring-orange-300',
+            arrowTop: 'border-t-orange-500',
+            arrowBottom: 'border-b-orange-500'
+        };
+    } else if (isAnimating) {
+        return {
+            container: 'bg-blue-500 text-white shadow-lg shadow-blue-300/50 ring-2 ring-blue-300',
+            arrowTop: 'border-t-blue-500',
+            arrowBottom: 'border-b-blue-500'
+        };
+    } else if (hasChanged) {
+        return {
+            container: 'bg-green-500 text-white shadow-lg shadow-green-300/50 ring-2 ring-green-300',
+            arrowTop: 'border-t-green-500',
+            arrowBottom: 'border-b-green-500'
+        };
+    } else {
+        return {
+            container: type === 'key' ? 'bg-blue-600 text-white' : 'bg-green-600 text-white',
+            arrowTop: type === 'key' ? 'border-t-blue-600' : '',
+            arrowBottom: type === 'value' ? 'border-b-green-600' : ''
+        };
+    }
+}
+
 interface ArrayVisualizerProps {
     values: any[];
-    delta: any[];
+    delta?: any[];
     variableName?: string; // Name of this array variable
 }
 
@@ -26,33 +63,85 @@ interface PopoverProps {
 }
 
 function KeyIndexPopover({ arrow }: PopoverProps) {
+    const { animatingVariable, isEvaluating, stepIndex } = useTraceStore();
+    const current = useTraceStore(selectCurrentLine);
+    const isAnimating = animatingVariable === arrow.cursorName;
+    const isEvaluatingThis = isEvaluating && animatingVariable === arrow.cursorName;
+    const hasChanged = current?.delta?.[arrow.cursorName] !== undefined && stepIndex === 0;
+
+    const styles = getPopoverStyles({ isEvaluating: isEvaluatingThis, isAnimating, hasChanged }, 'key');
+
     return (
         <motion.div
             className="absolute -top-8 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none"
             initial={{ opacity: 0, scale: 0.8, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            animate={{
+                opacity: 1,
+                scale: isEvaluatingThis ? [1, 1.1, 1] : 1, // Animate scale only when evaluating
+                y: 0
+            }}
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
-            transition={{ duration: 0.2 }}
+            transition={{
+                duration: 0.2,
+                scale: isEvaluatingThis ? {
+                    duration: 0.8,
+                    repeat: Infinity,
+                    repeatType: 'reverse'
+                } : {}
+            }}
+            data-variable={arrow.cursorName}
         >
-            <div className={`${VISUALIZER_COLORS.relationships.keyIndex.popover} px-2 py-1 rounded-md text-xs font-mono font-medium shadow-md`}>
+            <div className={clsx(
+                "px-2 py-1 rounded-md text-xs font-mono font-medium shadow-md transition-all duration-200",
+                styles.container
+            )}>
                 {arrow.cursorName}
             </div>
-            <div className={`absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${VISUALIZER_COLORS.relationships.keyIndex.arrow}`} />
+            <div className={clsx(
+                "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent",
+                styles.arrowTop
+            )} />
         </motion.div>
     );
 }
 
 function ValueIndexPopover({ arrow }: PopoverProps) {
+    const { animatingVariable, isEvaluating, stepIndex } = useTraceStore();
+    const current = useTraceStore(selectCurrentLine);
+    const isAnimating = animatingVariable === arrow.cursorName;
+    const isEvaluatingThis = isEvaluating && animatingVariable === arrow.cursorName;
+    const hasChanged = current?.delta?.[arrow.cursorName] !== undefined && stepIndex === 0;
+
+    const styles = getPopoverStyles({ isEvaluating: isEvaluatingThis, isAnimating, hasChanged }, 'value');
+
     return (
         <motion.div
             className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none"
             initial={{ opacity: 0, scale: 0.8, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            animate={{
+                opacity: 1,
+                scale: isEvaluatingThis ? [1, 1.1, 1] : 1, // Animate scale only when evaluating
+                y: 0
+            }}
             exit={{ opacity: 0, scale: 0.8, y: -10 }}
-            transition={{ duration: 0.2 }}
+            transition={{
+                duration: 0.2,
+                scale: isEvaluatingThis ? {
+                    duration: 0.8,
+                    repeat: Infinity,
+                    repeatType: 'reverse'
+                } : {}
+            }}
+            data-variable={arrow.cursorName}
         >
-            <div className={`absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent ${VISUALIZER_COLORS.relationships.valueIndex.arrow}`} />
-            <div className={`${VISUALIZER_COLORS.relationships.valueIndex.popover} px-2 py-1 rounded-md text-xs font-mono font-medium shadow-md`}>
+            <div className={clsx(
+                "absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent",
+                styles.arrowBottom
+            )} />
+            <div className={clsx(
+                "px-2 py-1 rounded-md text-xs font-mono font-medium shadow-md transition-all duration-200",
+                styles.container
+            )}>
                 {arrow.cursorName}
             </div>
         </motion.div>
@@ -62,28 +151,22 @@ function ValueIndexPopover({ arrow }: PopoverProps) {
 interface ArrayItemProps {
     item: any;
     index: number;
-    delta: any;
+    delta?: any;
     arrows: ArrowInfo[];
 }
 
 function ArrayItem({ item, index, delta, arrows }: ArrayItemProps) {
     const itemArrows = arrows.filter(arrow => arrow.index === index);
     const hasKeyArrow = itemArrows.some(arrow => arrow.type === 'key');
-    const hasValueArrow = itemArrows.some(arrow => arrow.type === 'value');
     const keyArrows = itemArrows.filter(arrow => arrow.type === 'key');
     const valueArrows = itemArrows.filter(arrow => arrow.type === 'value');
 
     const indexClasses = clsx(
-        "text-xs font-mono text-slate-500 px-1 py-0.5 rounded text-center min-w-[18px] lg:min-w-[20px] leading-none",
-        {
-            [VISUALIZER_COLORS.relationships.keyIndex.highlight]: hasKeyArrow,
-            "bg-slate-100": !hasKeyArrow
-        }
+        "text-xs font-mono px-1 py-0.5 rounded text-center min-w-[18px] lg:min-w-[20px] leading-none transition-all duration-200",
+        hasKeyArrow
+            ? "bg-blue-100 text-blue-800 font-semibold" // Highlighted when arrow points to it
+            : "bg-slate-100 text-slate-500" // Default state
     );
-
-    const valueWrapperClasses = clsx("rounded-lg", {
-        [`ring-2 ${VISUALIZER_COLORS.relationships.valueIndex.ring} ring-offset-1`]: hasValueArrow,
-    });
 
     return (
         <div className="flex flex-col items-center gap-0.5 relative">
@@ -101,7 +184,7 @@ function ArrayItem({ item, index, delta, arrows }: ArrayItemProps) {
 
             {/* Value with popovers */}
             <div className="transition-all duration-200 relative">
-                <div className={valueWrapperClasses}>
+                <div >
                     {renderValue(item, delta)}
                 </div>
 
@@ -120,7 +203,7 @@ function ArrayItem({ item, index, delta, arrows }: ArrayItemProps) {
 
 function EmptyArray() {
     return (
-        <div className={`text-slate-500 text-xs italic text-center py-1 px-2 ${VISUALIZER_COLORS.empty.background} rounded ${VISUALIZER_COLORS.empty.border}`}>
+        <div className="text-slate-500 text-xs italic text-center py-1 px-2 bg-slate-50/80 border-slate-200/60 rounded">
             Empty
         </div>
     );
@@ -131,8 +214,11 @@ export const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({
     delta,
     variableName
 }) => {
-    const stepIndex = useTraceStore(state => state.stepIndex);
-    const isNew = delta !== undefined && stepIndex === 0;
+    const { stepIndex, isEvaluating, animatingVariable } = useTraceStore();
+    const isChanged = delta !== undefined && stepIndex === 0;
+    const isAnimating = animatingVariable === variableName;
+    const isEvaluatingThis = isEvaluating && animatingVariable === variableName;
+
     const traceData = useTraceStore(state => state.traceData);
     const current = useTraceStore(selectCurrentLine);
 
@@ -180,15 +266,16 @@ export const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({
 
     const containerClasses = clsx(
         "inline-block border rounded-md p-1.5 lg:p-2 transition-all duration-200 relative self-start",
-        getArrayColors(isNew)
+        getVisualizerStyles({ isEvaluating: isEvaluatingThis, isAnimating, hasChanged: isChanged })
     );
 
     return (
         <motion.div
             className={containerClasses}
-            initial={isNew ? "initial" : false}
+            initial={isChanged ? "initial" : false}
             animate="animate"
             variants={valueVariants}
+            data-variable={variableName}
         >
             {isEmpty ? (
                 <EmptyArray />

@@ -5,7 +5,7 @@ import { getTraceData } from '../data/traces';
 import { useTraceStore } from '../store/traceStore';
 import CodePanel from './CodePanel';
 import ComputationWorkspace from './ComputationWorkspace';
-import VariablePanel from './VariablePanel';
+import PythonTutorVariablePanel from './PythonTutorVariablePanel';
 
 export default function TraceVisualizer() {
     const {
@@ -39,8 +39,9 @@ export default function TraceVisualizer() {
                     <div className="overflow-visible">
                         <ComputationWorkspace />
                     </div>
-                    <div className="flex-1 overflow-visible">
-                        <VariablePanel />
+                    <div className="flex-1 overflow-visible relative">
+                        {/* Variable Panel Content */}
+                        <PythonTutorVariablePanel />
                     </div>
                 </div>
             </div>

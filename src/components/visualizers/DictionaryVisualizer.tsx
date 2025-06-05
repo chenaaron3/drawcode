@@ -3,45 +3,42 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 import { useTraceStore } from '../../store/traceStore';
-import { getDictionaryColors, VISUALIZER_COLORS } from './colors';
+import { getVisualizerStyles } from './colors';
 import { renderValue } from './renderValue';
 import { valueVariants } from './variants';
 
 interface DictionaryVisualizerProps {
     dict: Record<string, any>;
-    delta: Record<string, any>;
+    delta?: Record<string, any>;
+    variableName?: string;
 }
 
 interface DictionaryEntryProps {
     entryKey: string;
     value: any;
-    delta: any;
+    delta?: any;
 }
 
 function DictionaryEntry({ entryKey, value, delta }: DictionaryEntryProps) {
     const stepIndex = useTraceStore(state => state.stepIndex);
-    const isNew = delta !== undefined && stepIndex === 0;
+    const isChanged = delta !== undefined && stepIndex === 0;
 
     const containerClasses = clsx(
         "flex items-center gap-2 p-2 transition-all duration-200",
-        {
-            [VISUALIZER_COLORS.dictionary.changed]: isNew,
-            [VISUALIZER_COLORS.dictionary.hover]: !isNew
-        }
+        isChanged
+            ? "bg-gradient-to-r from-emerald-50/80 to-green-50/80" // Changed state
+            : "hover:bg-slate-50/80" // Default hover state
     );
 
-    const keyClasses = clsx("font-mono text-xs font-semibold", {
-        [VISUALIZER_COLORS.dictionary.keyChanged]: isNew,
-        [VISUALIZER_COLORS.dictionary.keyDefault]: !isNew
-    });
+    const keyClasses = clsx(
+        "font-mono text-xs font-semibold",
+        isChanged ? "text-emerald-800" : "text-slate-800"
+    );
 
     return (
         <div className={containerClasses}>
             <div className="flex items-center gap-1 flex-shrink-0">
                 <span className={keyClasses}>{entryKey}</span>
-                {isNew && (
-                    <div className={`w-1 h-1 ${VISUALIZER_COLORS.changes.indicator} rounded-full`} />
-                )}
             </div>
             <div className="flex-1">
                 {renderValue(value, delta)}
@@ -52,7 +49,7 @@ function DictionaryEntry({ entryKey, value, delta }: DictionaryEntryProps) {
 
 function EmptyDictionary() {
     return (
-        <div className={`${VISUALIZER_COLORS.empty.text} text-xs italic text-center p-2 ${VISUALIZER_COLORS.empty.background}`}>
+        <div className="text-slate-500 text-xs italic text-center p-2 bg-slate-50/80">
             Empty
         </div>
     );
@@ -60,24 +57,29 @@ function EmptyDictionary() {
 
 export const DictionaryVisualizer: React.FC<DictionaryVisualizerProps> = ({
     dict,
-    delta
+    delta,
+    variableName
 }) => {
-    const stepIndex = useTraceStore(state => state.stepIndex);
-    const isNew = delta !== undefined && stepIndex === 0;
+    const { stepIndex, isEvaluating, animatingVariable } = useTraceStore();
+    const isChanged = delta !== undefined && stepIndex === 0;
+    const isAnimating = animatingVariable === variableName;
+    const isEvaluatingThis = isEvaluating && animatingVariable === variableName;
+
     const entries = Object.entries(dict);
     const isEmpty = entries.length === 0;
 
     const containerClasses = clsx(
         "border rounded-md overflow-hidden transition-all duration-200 mx-auto",
-        getDictionaryColors(isNew)
+        getVisualizerStyles({ isEvaluating: isEvaluatingThis, isAnimating, hasChanged: isChanged })
     );
 
     return (
         <motion.div
             className={containerClasses}
-            initial={isNew ? "initial" : false}
+            initial={isChanged ? "initial" : false}
             animate="animate"
             variants={valueVariants}
+            data-variable={variableName}
         >
             {isEmpty ? (
                 <EmptyDictionary />
@@ -88,7 +90,7 @@ export const DictionaryVisualizer: React.FC<DictionaryVisualizerProps> = ({
                             key={key}
                             entryKey={key}
                             value={value}
-                            delta={delta && delta[key]}
+                            delta={delta?.[key]}
                         />
                     ))}
                 </div>

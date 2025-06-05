@@ -1,0 +1,266 @@
+<context>
+# Overview 
+This project is a LeetCode visualizer designed to help beginners learn coding by animating 
+the step-by-step execution of code.
+It's valuable because a traditional debugger is not very visual. The goal is to take the strengths
+of pythontutor and thonny and to wrap it into an easy to use UI/UX.
+
+# Core Features  
+1. Step forward and backwards through the code execution
+    - Why: give users control to see how the code works
+    - How: src/tracer/trace.py runs python code and generates a json trace file. 
+           We install markers to track code execution and local variables.
+2. Custom code and inputs
+    - Why: Users may want to debug their own solution and try different test cases
+    - How: We use pyodide on the client to execute the same python trace script to generate a json trace file.
+3. Prepopulated leetcode problems
+    - Why: Provide a starting point for users to learn
+    - How: We manually provide solutions that is simple and optimal in problems.json
+
+# User Experience  
+
+## Primary User Journey: Browse → Select → Understand → Learn
+
+### 1. Problem Discovery & Selection
+- **Entry Point**: Users land on the main interface with a clean, minimal design
+- **Problem Browser**: Dropdown selector showing 27+ curated LeetCode problems (Two Sum, Valid Parentheses, etc.)
+- **Problem Context**: Each problem displays number, title, and when selected, shows a "View Problem" button for full LeetCode description
+- **Difficulty Progression**: Problems range from Easy fundamentals to more complex algorithmic challenges
+
+### 2. Code Exploration (Primary Learning Mode)
+- **Pre-written Solutions**: Users start with optimized, beginner-friendly solutions already loaded
+- **Code Editor**: Monaco editor with Python syntax highlighting, showing the complete solution
+- **Input Visualization**: Clear display of test inputs (arrays, strings, numbers) with ability to modify values
+- **Read-Only by Default**: Code is initially read-only to encourage understanding before modification
+
+### 3. Step-by-Step Execution Analysis  
+- **Dual Navigation Modes**: 
+  - **Line Mode**: Navigate through each line of code execution
+  - **Step Mode**: Granular expression-level stepping (before/after each sub-expression)
+- **Visual Code Highlighting**: Current execution line highlighted with blue left border and light blue background
+- **Smart Playback Controls**: Play/pause with adjustable speed (1000ms default), forward/backward navigation
+- **Expression Evaluation Tree**: Real-time visualization of how complex expressions are broken down and evaluated
+
+### 4. Variable State Visualization
+- **Dynamic Variable Panel**: 
+  - **Simple Variables**: Numbers, strings, booleans displayed in compact cards with variable name and current value
+  - **Complex Variables**: Lists, dictionaries, objects shown with expanded visualization
+  - **Change Tracking**: Visual indicators (colored borders, rings) when variables are modified
+  - **Animation System**: Variables highlight and animate when being assigned or evaluated
+- **Memory State History**: Users can see how variable values change throughout execution
+- **Delta Visualization**: Clear indication of what changed between steps
+
+### 5. Interactive Learning Features
+- **Edit-on-Click**: Click any line to enter edit mode with Monaco editor
+- **Custom Input Testing**: Modify test inputs to see how the algorithm behaves with different data
+- **Live Code Execution**: Edit code and re-run with Pyodide (Python in browser) - no server required
+- **Error Handling**: User-friendly error messages for both syntax and runtime errors
+- **Code Sharing**: URL-based sharing system for custom code snippets
+
+### 6. Contextual Learning Aids
+- **Problem Description Modal**: Full LeetCode problem statement with examples, constraints, and hints
+- **Solution Explanation**: Code is structured to be readable with clear variable names and logical flow
+- **Performance Insights**: Visual understanding of algorithm efficiency through step-by-step execution
+- **Pattern Recognition**: Similar algorithmic patterns across different problems
+
+## Target Learning Outcomes
+
+### For Complete Beginners:
+- **Algorithmic Thinking**: Understanding how code executes line-by-line
+- **Variable Concepts**: See how data flows through functions and gets transformed
+- **Data Structure Manipulation**: Visual understanding of how lists, dicts, and strings are modified
+- **Problem-Solving Patterns**: Recognition of common programming patterns (loops, conditionals, data transformations)
+
+### For LeetCode Beginners:
+- **Solution Comprehension**: Understanding why certain approaches work for specific problem types
+- **Debugging Skills**: Ability to trace through code and identify logical errors
+- **Interview Preparation**: Visual reinforcement of optimal solution patterns
+- **Confidence Building**: Step-by-step breakdown reduces intimidation factor of complex algorithms
+
+## Unique Value Proposition
+- **Visual Debugging**: Unlike traditional debuggers, provides intuitive visual representation of code execution
+- **No Setup Required**: Fully browser-based, no installation or environment configuration needed
+- **Beginner-Focused**: Specifically designed for learners who find traditional debugging tools overwhelming
+- **Algorithm-Specific**: Curated problems specifically chosen for learning fundamental patterns
+- **Interactive Exploration**: Users learn by doing and experimenting, not just watching
+</context>
+
+<PRD>
+# Technical Architecture  
+## System Components
+- **Frontend**: React 18+ with TypeScript, Vite build system
+- **UI Framework**: Tailwind CSS with shadcn/ui components, Framer Motion for animations
+- **Code Execution**: Pyodide (Python in WebAssembly) for client-side Python execution
+- **Code Editor**: Monaco Editor for syntax highlighting and code editing
+- **State Management**: Zustand for application state
+- **Testing**: Playwright for E2E testing, Jest for unit tests
+
+## Data Models
+- **TraceData**: Complete execution trace with metadata, AST, relationships, and step-by-step execution
+- **TraceStep**: Individual execution steps with events (before/after statement/expression), focus, values, and locals
+- **Problem**: LeetCode problem structure with inputs, solution code, and metadata
+- **AST**: Abstract Syntax Tree representation for code visualization
+- **Relationship**: Container-cursor relationships for advanced visualizations
+
+## APIs and Integrations
+- **Pyodide Runtime**: Client-side Python execution environment
+- **Monaco Editor**: Code editing and syntax highlighting
+- **Static Data**: Pre-baked problem sets and solutions in JSON format
+- **No external APIs**: Fully offline-capable application
+
+## Infrastructure Requirements
+- **Hosting**: GitHub Pages (static hosting)
+- **Build**: Vite for bundling and optimization
+- **Dependencies**: Node.js ecosystem, Python 3.11+ for trace generation
+- **Browser Support**: Modern browsers with WebAssembly support
+
+# Development Roadmap  
+## Phase 1: Current MVP (Already Achieved)
+- **Core Tracing Engine**: Python tracer with AST transformation and step-by-step execution tracking
+- **Basic UI Components**: Problem selector, code panel, variable panel, navigation controls
+- **Problem Integration**: Static problem set with pre-defined solutions and test cases
+- **User Code Support**: Ability to input and trace custom Python code via Pyodide
+- **Basic Visualizations**: Variable state tracking, step-by-step execution, basic animations
+- **Responsive Design**: Mobile-friendly interface with proper layout handling
+
+## Phase 2: Enhanced Visualizations (Next Priority)
+- **Recursive Frame Support**: Stack frame visualization similar to Python Tutor
+- **Mutable Object Visualization**: Visual representation of lists, dictionaries with connecting arrows
+- **Advanced Animations**: Smooth transitions between states, value flow animations
+- **Memory Model Display**: Visual heap representation for complex data structures
+- **Enhanced Code Highlighting**: Better focus indicators, execution path visualization
+- **Interactive Elements**: Clickable variables, expandable data structures
+
+## Phase 3: User Experience Improvements
+- **Performance Optimization**: Faster trace generation, smoother animations
+- **Accessibility Features**: Screen reader support, keyboard navigation, high contrast mode
+- **Extended Problem Set**: More LeetCode problems across different difficulty levels
+- **Better Error Handling**: User-friendly error messages, trace validation
+- **Code Sharing**: URL-based code sharing (partially implemented)
+- **Settings Panel**: Customizable animation speed, theme preferences
+
+## Phase 4: Account System & Persistence (Future)
+- **User Authentication**: Simple account creation and login
+- **Progress Tracking**: Save viewed problems, custom code snippets
+- **Backend Infrastructure**: Minimal server for user data storage
+- **Payment Integration**: Premium features, extended problem sets
+
+# Logical Dependency Chain
+
+## Foundation Layer (Complete)
+1. **Python Tracer Core**: AST transformation and execution tracking (trace.py, python_tracer.py, ast_transformer.py)
+2. **Data Type Definitions**: TypeScript interfaces for trace data, problems, and AST (types/)
+3. **Basic React App Structure**: Main app component, routing, state management setup
+4. **Pyodide Integration**: Client-side Python execution environment setup
+
+## UI Foundation (Complete)
+5. **Core Components**: Problem selector, code editor, basic layout structure
+6. **State Management**: Zustand store for trace data, problem selection, and UI state
+7. **Basic Visualization**: Variable display, step navigation, code highlighting
+
+## Enhancement Layer (Current Focus)
+8. **Advanced Visualizations**: Build upon existing variable panel for recursive frames and mutable objects
+9. **Animation System**: Enhance existing Framer Motion integration for smoother transitions
+10. **Memory Model Visualization**: Extend current data display to show heap relationships
+11. **Interactive Features**: Make existing visualizations clickable and explorable
+
+## Optimization Layer (Future)
+12. **Performance Improvements**: Optimize existing trace generation and rendering
+13. **Accessibility Layer**: Add to existing UI components without breaking current functionality
+14. **Extended Content**: Add more problems to existing problem management system
+
+## Scaling Layer (Later)
+15. **User System**: Independent layer that doesn't affect core functionality
+16. **Backend Services**: Optional enhancement that maintains client-side capability
+17. **Premium Features**: Additive features that enhance rather than replace existing functionality
+
+## Atomic Development Approach
+- **Each visualization component** can be developed independently and plugged into existing variable panel
+- **Animation improvements** can be applied incrementally to existing transitions
+- **New problem additions** follow existing JSON structure and require no code changes
+- **Performance optimizations** can target specific bottlenecks without architectural changes
+- **UI enhancements** build upon existing shadcn/ui component system
+
+# Risks and Mitigations  
+
+## Technical Challenges
+
+### Risk: Pyodide Performance Limitations
+- **Issue**: Client-side Python execution may be slower than native Python, affecting user experience
+- **Mitigation**: Optimize trace generation algorithms, implement caching for repeated computations, limit problem complexity for client-side execution
+
+### Risk: Complex Visualization Rendering
+- **Issue**: Recursive frames and mutable object visualization may cause performance bottlenecks
+- **Mitigation**: Implement virtualization for large data structures, use efficient React rendering patterns, provide simplified view options
+
+### Risk: Browser Compatibility Issues
+- **Issue**: WebAssembly and modern JavaScript features may not work on older browsers
+- **Mitigation**: Set clear browser requirements, implement graceful degradation, provide fallback error messages
+
+## Product Development Risks
+
+### Risk: Scope Creep in Visualization Features
+- **Issue**: Advanced animations and visualizations could become overly complex
+- **Mitigation**: Start with simple implementations, gather user feedback, iterate incrementally, maintain clear success criteria for each feature
+
+### Risk: User Adoption Challenges
+- **Issue**: Target audience (beginners) may find the tool overwhelming or not sufficiently intuitive
+- **Mitigation**: Conduct user testing with actual beginners, provide guided tutorials, implement progressive disclosure of features
+
+## Resource Constraints
+
+### Risk: Single Developer Bandwidth
+- **Issue**: Limited development capacity for implementing complex visualizations
+- **Mitigation**: Prioritize high-impact features, use existing libraries where possible, implement modular architecture for easier maintenance
+
+### Risk: Content Creation Bottleneck
+- **Issue**: Manually creating problem solutions and test cases is time-intensive
+- **Mitigation**: Focus on quality over quantity, start with most common/important problems, potentially automate solution import from existing sources
+
+## Technical Debt Management
+
+### Risk: Rapid Prototyping Leading to Maintenance Issues
+- **Issue**: Quick MVP development may create technical debt that slows future development
+- **Mitigation**: Refactor incrementally, maintain good test coverage, document complex algorithms, use TypeScript for better maintainability
+
+# Appendix  
+
+## Research Findings
+
+### Competitive Analysis
+- **Python Tutor**: Excellent recursive frame visualization but limited to educational examples
+- **Thonny**: Great local debugging experience but not web-based or focused on algorithms
+- **LeetCode Playground**: Good for testing but lacks step-by-step visualization
+- **Opportunity**: Combine Python Tutor's visualization strength with LeetCode's problem focus in a web-based tool
+
+### User Research Insights
+- **Target Pain Points**: Beginners struggle with understanding how algorithms manipulate data structures
+- **Learning Preferences**: Visual learners benefit from seeing variable state changes over time
+- **Engagement Patterns**: Users prefer interactive exploration over passive video watching
+
+## Technical Specifications
+
+### Performance Requirements
+- **Trace Generation**: < 2 seconds for typical LeetCode easy problems
+- **Animation Rendering**: 60fps for smooth transitions
+- **Memory Usage**: < 100MB for complex trace data structures
+- **Bundle Size**: < 5MB for initial load (excluding Pyodide runtime)
+
+### Browser Requirements
+- **WebAssembly Support**: Required for Pyodide execution
+- **ES2020+ Features**: Modern JavaScript features used throughout
+- **Local Storage**: For ephemeral user preferences and code sharing
+- **Minimum Versions**: Chrome 88+, Firefox 84+, Safari 14+
+
+### Code Quality Standards
+- **TypeScript**: Strict mode enabled, comprehensive type coverage
+- **Testing**: >80% code coverage for core functionality
+- **Accessibility**: WCAG 2.1 AA compliance for UI components
+- **Performance**: Core Web Vitals targets met
+
+### Data Specifications
+- **Trace Format**: JSON structure with step-by-step execution data
+- **Problem Format**: Standardized schema for inputs, solutions, and metadata
+- **AST Format**: Python AST nodes with enhanced metadata for visualization
+- **Relationship Format**: Container-cursor relationships for advanced visualizations
+</PRD>

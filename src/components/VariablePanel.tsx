@@ -80,10 +80,7 @@ function VariableItem({ name, value, delta, isComplex = false, isAnimating = fal
                             transformOrigin: "center center",
                         }}
                     >
-                        <div
-                            data-variable={name}
-                            className={getRingColor()}
-                        >
+                        <div className={getRingColor()}>
                             {renderValue(value, delta, {
                                 variableName: name
                             })}
