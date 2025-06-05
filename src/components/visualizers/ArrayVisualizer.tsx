@@ -73,6 +73,7 @@ function KeyIndexPopover({ arrow }: PopoverProps) {
 
     return (
         <motion.div
+            layoutId={`key-popover-${arrow.cursorName}`}
             className="absolute -top-8 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none"
             initial={{ opacity: 0, scale: 0.8, y: 10 }}
             animate={{
@@ -116,6 +117,7 @@ function ValueIndexPopover({ arrow }: PopoverProps) {
 
     return (
         <motion.div
+            layoutId={`value-popover-${arrow.cursorName}`}
             className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none"
             initial={{ opacity: 0, scale: 0.8, y: -10 }}
             animate={{

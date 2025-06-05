@@ -3,8 +3,7 @@ import 'reactflow/dist/style.css';
 import { motion } from 'framer-motion';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import ReactFlow, {
-    Background, BackgroundVariant, Controls, Panel, ReactFlowProvider, useEdgesState, useNodesState,
-    useReactFlow
+    Background, BackgroundVariant, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow
 } from 'reactflow';
 
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
@@ -127,13 +126,17 @@ function PythonTutorVariablePanelInner() {
                 edgeTypes={edgeTypes}
                 fitView
                 style={flowStyles}
+                // Read-only interaction settings
+                panOnDrag={false}
                 nodesDraggable={false}
                 nodesConnectable={false}
-                elementsSelectable={true}
-                panOnScroll={true}
-                panOnScrollSpeed={0.5}
-                zoomOnScroll={true}
-                zoomOnPinch={true}
+                elementsSelectable={false}
+                edgesUpdatable={false}
+                panOnScroll={false}
+                zoomOnScroll={false}
+                zoomOnPinch={false}
+                zoomOnDoubleClick={false}
+                // Keep these settings
                 preventScrolling={false}
                 minZoom={0.2}
                 maxZoom={2}
@@ -149,62 +152,6 @@ function PythonTutorVariablePanelInner() {
                     size={1}
                     color="#e2e8f0"
                 />
-
-                {/* Enhanced Controls for zoom/pan */}
-                <Controls
-                    position="top-left"
-                    showZoom={true}
-                    showFitView={true}
-                    showInteractive={false}
-                    style={{
-                        backgroundColor: 'white',
-                        border: '2px solid #e2e8f0',
-                        borderRadius: '12px',
-                        boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-                        padding: '4px',
-                    }}
-                />
-
-
-                {/* Enhanced Panel for step info */}
-                <Panel position="bottom-center">
-                    <motion.div
-                        className="bg-white px-4 py-2 rounded-lg shadow-lg border border-slate-300 backdrop-blur-sm"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        whileHover={{ scale: 1.05 }}
-                        role="status"
-                        aria-live="polite"
-                        aria-label={`Step ${stepIndex + 1} with ${Object.keys(variables).length} variables${animatingVariable ? `, currently animating ${animatingVariable}` : ''}`}
-                    >
-                        <div className="flex items-center gap-3">
-                            <div className="flex items-center gap-1">
-                                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" aria-hidden="true"></div>
-                                <span className="text-sm font-semibold text-slate-700">
-                                    Step {stepIndex + 1}
-                                </span>
-                            </div>
-                            <div className="w-px h-4 bg-slate-300" aria-hidden="true"></div>
-                            <span className="text-sm text-slate-600">
-                                {Object.keys(variables).length} variables
-                            </span>
-                            {animatingVariable && (
-                                <>
-                                    <div className="w-px h-4 bg-slate-300" aria-hidden="true"></div>
-                                    <div className="flex items-center gap-1">
-                                        <div className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-bounce" aria-hidden="true"></div>
-                                        <span className="text-xs font-mono text-orange-600">
-                                            {animatingVariable}
-                                        </span>
-                                    </div>
-                                </>
-                            )}
-                        </div>
-                    </motion.div>
-                </Panel>
-
-
             </ReactFlow>
         </div>
     );
