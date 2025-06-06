@@ -8,7 +8,7 @@ import problemDescriptionsData from '../data/problem-descriptions.json';
 import problemsData from '../data/problems.json';
 import { useProgress } from '../hooks/useProgress';
 
-import type { Problem as ProblemType, ProblemDescription } from '../types/problem';
+import type { ProblemDescription } from '../types/problem';
 
 interface Pattern {
     id: string;

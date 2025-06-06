@@ -1,5 +1,4 @@
 import type { TraceData } from "../types/trace";
-import problemIds from './problem-ids.json';
 
 // Dynamically import all trace files from the public/traces directory
 const traceModules = import.meta.glob("./traces/*.json", {
@@ -19,8 +18,7 @@ for (const path in traceModules) {
 }
 
 // Export available problem IDs from JSON file
-export const AVAILABLE_PROBLEM_IDS: string[] = Object.keys(TRACES); // allow all problems // problemIds;
-
+export const AVAILABLE_PROBLEM_IDS: string[] = Object.keys(TRACES);
 // Helper function to get trace data for a specific problem
 export function getTraceData(problemId: string): TraceData | undefined {
   return TRACES[problemId];
