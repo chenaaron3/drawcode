@@ -9,21 +9,9 @@ export class TraceDebuggerPage {
   }
 
   async waitForAppToLoad() {
-    await this.page.waitForSelector('[data-testid="problem-selector"]', {
+    await this.page.waitForSelector('[data-testid="code-editor-read"]', {
       timeout: 15000,
     });
-  }
-
-  async selectProblem(problemIndex: number = 0) {
-    const problemSelector = this.page.locator(
-      '[data-testid="problem-selector"]'
-    );
-    await problemSelector.click();
-
-    const problemOption = this.page
-      .locator('[role="option"]')
-      .nth(problemIndex);
-    await problemOption.click();
   }
 
   async waitForTraceToLoad() {
@@ -123,13 +111,6 @@ export class TraceDebuggerPage {
     return false;
   }
 
-  async getCurrentProblemName(): Promise<string | null> {
-    const problemSelector = this.page.locator(
-      '[data-testid="problem-selector"]'
-    );
-    return await problemSelector.textContent();
-  }
-
   async isWorkspaceVisible(): Promise<boolean> {
     const workspace = this.page.locator(
       '[data-testid="computation-workspace"]'
@@ -167,28 +148,5 @@ export class TraceDebuggerPage {
       return (await errorPanel.textContent()) || "";
     }
     return "";
-  }
-
-  async getAllProblems(): Promise<string[]> {
-    const problemSelector = this.page.locator(
-      '[data-testid="problem-selector"]'
-    );
-    await problemSelector.click();
-
-    const options = this.page.locator('[role="option"]');
-    await options.first().waitFor({ state: "visible" });
-
-    const count = await options.count();
-    const problems: string[] = [];
-
-    for (let i = 0; i < count; i++) {
-      const text = await options.nth(i).textContent();
-      if (text) problems.push(text);
-    }
-
-    // Close dropdown by pressing Escape instead of clicking body
-    await this.page.keyboard.press("Escape");
-
-    return problems;
   }
 }

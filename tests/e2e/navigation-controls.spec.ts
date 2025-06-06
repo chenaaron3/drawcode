@@ -10,7 +10,6 @@ test.describe("Navigation Controls", () => {
     await debuggerPage.goto();
 
     // Select first problem and wait for it to load
-    await debuggerPage.selectProblem(0);
     await debuggerPage.waitForTraceToLoad();
   });
 

@@ -12,7 +12,6 @@ test.describe("Code Compilation and Trace Updates", () => {
     await debuggerPage.goto();
 
     // Select first problem and wait for it to load
-    await debuggerPage.selectProblem(1);
     await debuggerPage.waitForTraceToLoad();
   });
 
