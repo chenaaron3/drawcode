@@ -1,0 +1,196 @@
+I want to create a roadmap similar to neetcode.io.
+
+Here is a list of patterns, and specific leetcode problems under each pattern:
+[
+  {
+    "pattern": "Arrays & Hashing",
+    "problems": [
+      "Two Sum",
+      "Best Time to Buy and Sell Stock",
+      "Contains Duplicate",
+      "Product of Array Except Self",
+      "Maximum Subarray",
+      "Maximum Product Subarray",
+      "Group Anagrams",
+      "Valid Anagram",
+      "Longest Consecutive Sequence"
+    ],
+    "dependencies": []
+  },
+  {
+    "pattern": "Intervals",
+    "problems": [
+      "Insert Interval",
+      "Merge Intervals",
+      "Non-overlapping Intervals",
+      "Meeting Rooms"
+    ],
+    "dependencies": ["Heap / Priority Queue"]
+  },
+  {
+    "pattern": "Two Pointers",
+    "problems": [
+      "3Sum",
+      "Container With Most Water",
+      "Trapping Rain Water",
+      "Valid Palindrome",
+      "Two Sum II - Input Array Is Sorted"
+    ],
+    "dependencies": ["Arrays & Hashing"]
+  },
+  {
+    "pattern": "Sliding Window",
+    "problems": [
+      "Longest Substring Without Repeating Characters",
+      "Minimum Window Substring",
+      "Longest Repeating Character Replacement",
+      "Permutation in String",
+      "Sliding Window Maximum"
+    ],
+    "dependencies": ["Two Pointers"]
+  },
+  {
+    "pattern": "Binary Search",
+    "problems": [
+      "Search in Rotated Sorted Array",
+      "Find Minimum in Rotated Sorted Array",
+      "Median of Two Sorted Arrays"
+    ],
+    "dependencies": ["Two Pointers"]
+  },
+  {
+    "pattern": "Stack",
+    "problems": [
+      "Valid Parentheses",
+      "Daily Temperatures",
+      "Car Fleet",
+      "Largest Rectangle in Histogram"
+    ],
+    "dependencies": ["Arrays & Hashing"]
+  },
+  {
+    "pattern": "Linked List",
+    "problems": [
+      "Reverse Linked List",
+      "Detect Cycle in a Linked List",
+      "Merge Two Sorted Lists",
+      "Remove Nth Node From End of List",
+      "Reorder List"
+    ],
+    "dependencies": ["Stack"]
+  },
+  {
+    "pattern": "Trees",
+    "problems": [
+      "Invert Binary Tree",
+      "Validate Binary Search Tree",
+      "Binary Tree Level Order Traversal",
+      "Maximum Depth of Binary Tree",
+      "Same Tree",
+      "Subtree of Another Tree",
+      "Construct Binary Tree from Preorder and Inorder Traversal",
+      "Binary Tree Right Side View",
+      "Lowest Common Ancestor of a Binary Tree",
+      "Serialize and Deserialize Binary Tree",
+      "Kth Smallest Element in a BST",
+      "Binary Tree Zigzag Level Order Traversal"
+    ],
+    "dependencies": ["Binary Search", "Sliding Window", "Linked List"]
+  },
+  {
+    "pattern": "Tree DFS & BFS",
+    "problems": [
+      "Number of Islands",
+      "Alien Dictionary",
+      "Pacific Atlantic Water Flow"
+    ],
+    "dependencies": ["Trees"]
+  },
+  {
+    "pattern": "Tries",
+    "problems": [
+      "Implement Trie (Prefix Tree)",
+      "Add and Search Word",
+      "Word Search II"
+    ],
+    "dependencies": ["Trees"]
+  },
+  {
+    "pattern": "Heap / Priority Queue",
+    "problems": [
+      "Merge K Sorted Lists",
+      "Top K Frequent Elements",
+      "Find Median from Data Stream",
+      "Meeting Rooms II"
+    ],
+    "dependencies": ["Trees"]
+  },
+  {
+    "pattern": "Backtracking",
+    "problems": [
+      "Combination Sum",
+      "Subsets",
+      "Word Search",
+      "Palindrome Partitioning",
+      "Letter Combinations of a Phone Number"
+    ],
+    "dependencies": ["Trees"]
+  },
+  {
+    "pattern": "Graphs",
+    "problems": [
+      "Clone Graph",
+      "Course Schedule",
+      "Graph Valid Tree",
+      "Number of Connected Components in an Undirected Graph"
+    ],
+    "dependencies": ["Backtracking"]
+  },
+  {
+    "pattern": "Dynamic Programming - 1D",
+    "problems": [
+      "Climbing Stairs",
+      "Coin Change",
+      "House Robber",
+      "House Robber II",
+      "Longest Increasing Subsequence",
+      "Jump Game",
+      "Maximum Product Subarray"
+    ],
+    "dependencies": ["Graphs"]
+  },
+  {
+    "pattern": "Dynamic Programming - 2D",
+    "problems": [
+      "Longest Common Subsequence",
+      "Word Break",
+      "Palindrome Partitioning",
+      "Decode Ways",
+      "Unique Paths"
+    ],
+    "dependencies": ["Graphs", "Dynamic Programming - 1D"]
+  },
+  {
+    "pattern": "Bit Manipulation",
+    "problems": [
+      "Sum of Two Integers",
+      "Number of 1 Bits",
+      "Counting Bits",
+      "Missing Number",
+      "Reverse Bits"
+    ],
+    "dependencies": ["Dynamic Programming - 2D"]
+  }
+]
+
+I want you to create a new json similar to src/data/problems.json for the above problems.
+Feel free to access the internet to look up the leetcode problem.
+Make sure that the id for the problem is the id used in leetcode.
+For example two sum in leetcode is https://leetcode.com/problems/two-sum/description/ , so the id should be two-sum.
+
+After that, I want you to create a react component that renders the DAG.
+It can be created with react flow.
+Clicking on a pattern node should exand to show each sub problems.
+Clicking on a problem should take you into the existing experience with that problem selected.
+
+The goal of this is to give users a clear roadmap on how to prepare.

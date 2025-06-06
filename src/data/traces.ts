@@ -19,7 +19,7 @@ for (const path in traceModules) {
 }
 
 // Export available problem IDs from JSON file
-export const AVAILABLE_PROBLEM_IDS: string[] = problemIds;
+export const AVAILABLE_PROBLEM_IDS: string[] = Object.keys(TRACES); // allow all problems // problemIds;
 
 // Helper function to get trace data for a specific problem
 export function getTraceData(problemId: string): TraceData | undefined {

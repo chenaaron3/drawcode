@@ -707,9 +707,11 @@
                     "MyQueue",
                     "push",
                     "push",
-                    "peek",
+                    "push",
+                    "getMin",
                     "pop",
-                    "empty"
+                    "top",
+                    "getMin"
                 ],
                 "values": [
                     [],
@@ -721,11 +723,12 @@
                     ],
                     [],
                     [],
+                    [],
                     []
                 ]
             },
-            "entrypoint": "runMyQueue",
-            "solution": "class MyQueue:\n    def __init__(self):\n        self.stack1 = []\n        self.stack2 = []\n    \n    def push(self, x):\n        self.stack1.append(x)\n    \n    def pop(self):\n        self.peek()\n        return self.stack2.pop()\n    \n    def peek(self):\n        if not self.stack2:\n            while self.stack1:\n                self.stack2.append(self.stack1.pop())\n        return self.stack2[-1]\n    \n    def empty(self):\n        return not self.stack1 and not self.stack2\n\ndef runMyQueue(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyQueue\":\n            obj = MyQueue()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"peek\":\n            results.append(obj.peek())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
+            "entrypoint": "runMinStack",
+            "solution": "class MyQueue:\n    def __init__(self):\n        self.stack1 = []\n        self.stack2 = []\n    \n    def push(self, x):\n        self.stack1.append(x)\n    \n    def pop(self):\n        self.peek()\n        return self.stack2.pop()\n    \n    def peek(self):\n        if not self.stack2:\n            while self.stack1:\n                self.stack2.append(self.stack1.pop())\n        return self.stack2[-1]\n    \n    def empty(self):\n        return not self.stack1 and not self.stack2\n\ndef runMinStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyQueue\":\n            obj = MyQueue()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"peek\":\n            results.append(obj.peek())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
         },
         {
             "id": "implement-stack-using-queues",
@@ -875,7 +878,304 @@
                 "rowIndex": 3
             },
             "entrypoint": "getRow",
-            "solution": "def getRow(rowIndex):\n    row = [1]\n    \n    for i in range(rowIndex):\n        row = [1] + [row[j] + row[j+1] for j in range(len(row)-1)] + [1]\n    \n    return row\n"
+            "solution": "def getRow(rowIndex):\n    row = [1]\n    for i in range(rowIndex):\n        row = [1] + [row[j] + row[j + 1] for j in range(len(row) - 1)] + [1]\n    return row\n"
+        },
+        {
+            "id": "product-of-array-except-self",
+            "number": 238,
+            "title": "Product of Array Except Self",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            },
+            "entrypoint": "productExceptSelf",
+            "solution": "def productExceptSelf(nums):\n    n = len(nums)\n    answer = [1] * n\n    \n    # Left pass\n    for i in range(1, n):\n        answer[i] = answer[i-1] * nums[i-1]\n    \n    # Right pass\n    right = 1\n    for i in range(n-1, -1, -1):\n        answer[i] *= right\n        right *= nums[i]\n    \n    return answer\n"
+        },
+        {
+            "id": "group-anagrams",
+            "number": 49,
+            "title": "Group Anagrams",
+            "inputs": {
+                "strs": [
+                    "eat",
+                    "tea",
+                    "tan",
+                    "ate",
+                    "nat",
+                    "bat"
+                ]
+            },
+            "entrypoint": "groupAnagrams",
+            "solution": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())\n"
+        },
+        {
+            "id": "maximum-product-subarray",
+            "number": 152,
+            "title": "Maximum Product Subarray",
+            "inputs": {
+                "nums": [
+                    2,
+                    3,
+                    -2,
+                    4
+                ]
+            },
+            "entrypoint": "maxProduct",
+            "solution": "def maxProduct(nums):\n    max_so_far = nums[0]\n    min_so_far = nums[0]\n    result = nums[0]\n    \n    for i in range(1, len(nums)):\n        if nums[i] < 0:\n            max_so_far, min_so_far = min_so_far, max_so_far\n        \n        max_so_far = max(nums[i], max_so_far * nums[i])\n        min_so_far = min(nums[i], min_so_far * nums[i])\n        \n        result = max(result, max_so_far)\n    \n    return result\n"
+        },
+        {
+            "id": "longest-consecutive-sequence",
+            "number": 128,
+            "title": "Longest Consecutive Sequence",
+            "inputs": {
+                "nums": [
+                    100,
+                    4,
+                    200,
+                    1,
+                    3,
+                    2
+                ]
+            },
+            "entrypoint": "longestConsecutive",
+            "solution": "def longestConsecutive(nums):\n    num_set = set(nums)\n    longest = 0\n    \n    for num in num_set:\n        # Only start counting if this is the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n            \n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n            \n            longest = max(longest, current_length)\n    \n    return longest\n"
+        },
+        {
+            "id": "insert-interval",
+            "number": 57,
+            "title": "Insert Interval",
+            "inputs": {
+                "intervals": [
+                    [
+                        1,
+                        3
+                    ],
+                    [
+                        6,
+                        9
+                    ]
+                ],
+                "newInterval": [
+                    2,
+                    5
+                ]
+            },
+            "entrypoint": "insert",
+            "solution": "def insert(intervals, newInterval):\n    result = []\n    i = 0\n    n = len(intervals)\n    \n    # Add all intervals that end before newInterval starts\n    while i < n and intervals[i][1] < newInterval[0]:\n        result.append(intervals[i])\n        i += 1\n    \n    # Merge overlapping intervals\n    while i < n and intervals[i][0] <= newInterval[1]:\n        newInterval[0] = min(newInterval[0], intervals[i][0])\n        newInterval[1] = max(newInterval[1], intervals[i][1])\n        i += 1\n    \n    result.append(newInterval)\n    \n    # Add remaining intervals\n    while i < n:\n        result.append(intervals[i])\n        i += 1\n    \n    return result\n"
+        },
+        {
+            "id": "merge-intervals",
+            "number": 56,
+            "title": "Merge Intervals",
+            "inputs": {
+                "intervals": [
+                    [
+                        1,
+                        3
+                    ],
+                    [
+                        2,
+                        6
+                    ],
+                    [
+                        8,
+                        10
+                    ],
+                    [
+                        15,
+                        18
+                    ]
+                ]
+            },
+            "entrypoint": "merge",
+            "solution": "def merge(intervals):\n    if not intervals:\n        return []\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    merged = [intervals[0]]\n    \n    for current in intervals[1:]:\n        last = merged[-1]\n        \n        # If current interval overlaps with the last one, merge them\n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)\n    \n    return merged\n"
+        },
+        {
+            "id": "meeting-rooms",
+            "number": 252,
+            "title": "Meeting Rooms",
+            "inputs": {
+                "intervals": [
+                    [
+                        0,
+                        30
+                    ],
+                    [
+                        5,
+                        10
+                    ],
+                    [
+                        15,
+                        20
+                    ]
+                ]
+            },
+            "entrypoint": "canAttendMeetings",
+            "solution": "def canAttendMeetings(intervals):\n    if not intervals:\n        return True\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    # Check for overlaps\n    for i in range(1, len(intervals)):\n        if intervals[i][0] < intervals[i-1][1]:\n            return False\n    \n    return True\n"
+        },
+        {
+            "id": "non-overlapping-intervals",
+            "number": 435,
+            "title": "Non-overlapping Intervals",
+            "inputs": {
+                "intervals": [
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        2,
+                        3
+                    ],
+                    [
+                        3,
+                        4
+                    ],
+                    [
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "entrypoint": "eraseOverlapIntervals",
+            "solution": "def eraseOverlapIntervals(intervals):\n    if not intervals:\n        return 0\n    \n    # Sort by end time\n    intervals.sort(key=lambda x: x[1])\n    \n    count = 0\n    end = intervals[0][1]\n    \n    for i in range(1, len(intervals)):\n        # If current interval overlaps with previous\n        if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]  # Update end time\n    \n    return count\n"
+        },
+        {
+            "id": "trapping-rain-water",
+            "number": 42,
+            "title": "Trapping Rain Water",
+            "inputs": {
+                "height": [
+                    0,
+                    1,
+                    0,
+                    2,
+                    1,
+                    0,
+                    1,
+                    3,
+                    2,
+                    1,
+                    2,
+                    1
+                ]
+            },
+            "entrypoint": "trap",
+            "solution": "def trap(height):\n    if not height:\n        return 0\n    \n    left, right = 0, len(height) - 1\n    left_max, right_max = 0, 0\n    water = 0\n    \n    while left < right:\n        if height[left] < height[right]:\n            if height[left] >= left_max:\n                left_max = height[left]\n            else:\n                water += left_max - height[left]\n            left += 1\n        else:\n            if height[right] >= right_max:\n                right_max = height[right]\n            else:\n                water += right_max - height[right]\n            right -= 1\n    \n    return water\n"
+        },
+        {
+            "id": "two-sum-ii-input-array-sorted",
+            "number": 167,
+            "title": "Two Sum II - Input Array Is Sorted",
+            "inputs": {
+                "numbers": [
+                    2,
+                    7,
+                    11,
+                    15
+                ],
+                "target": 9
+            },
+            "entrypoint": "twoSum",
+            "solution": "def twoSum(numbers, target):\n    left, right = 0, len(numbers) - 1\n    \n    while left < right:\n        current_sum = numbers[left] + numbers[right]\n        \n        if current_sum == target:\n            return [left + 1, right + 1]  # 1-indexed\n        elif current_sum < target:\n            left += 1\n        else:\n            right -= 1\n    \n    return []  # No solution found\n"
+        },
+        {
+            "id": "minimum-window-substring",
+            "number": 76,
+            "title": "Minimum Window Substring",
+            "inputs": {
+                "s": "ADOBECODEBANC",
+                "t": "ABC"
+            },
+            "entrypoint": "minWindow",
+            "solution": "def minWindow(s, t):\n    from collections import Counter, defaultdict\n    \n    if not s or not t:\n        return ''\n    \n    # Dictionary to keep count of characters in t\n    dict_t = Counter(t)\n    required = len(dict_t)\n    \n    # Left and right pointers\n    left = right = 0\n    \n    # Formed is used to keep track of how many unique characters in the current window\n    # have the desired frequency in t\n    formed = 0\n    \n    # Dictionary to keep count of characters in current window\n    window_counts = defaultdict(int)\n    \n    # ans tuple of the form (window length, left, right)\n    ans = float('inf'), None, None\n    \n    while right < len(s):\n        # Add one character from the right to the window\n        character = s[right]\n        window_counts[character] += 1\n        \n        # If this character's frequency matches the desired count in t, increment formed\n        if character in dict_t and window_counts[character] == dict_t[character]:\n            formed += 1\n        \n        # Try to contract the window\n        while left <= right and formed == required:\n            character = s[left]\n            \n            # Save the smallest window\n            if right - left + 1 < ans[0]:\n                ans = (right - left + 1, left, right)\n            \n            # Remove from the left of the window\n            window_counts[character] -= 1\n            if character in dict_t and window_counts[character] < dict_t[character]:\n                formed -= 1\n            \n            left += 1\n        \n        right += 1\n    \n    return '' if ans[0] == float('inf') else s[ans[1]:ans[2] + 1]\n"
+        },
+        {
+            "id": "longest-repeating-character-replacement",
+            "number": 424,
+            "title": "Longest Repeating Character Replacement",
+            "inputs": {
+                "s": "ABAB",
+                "k": 2
+            },
+            "entrypoint": "characterReplacement",
+            "solution": "def characterReplacement(s, k):\n    from collections import defaultdict\n    \n    left = 0\n    max_count = 0\n    max_length = 0\n    count = defaultdict(int)\n    \n    for right in range(len(s)):\n        count[s[right]] += 1\n        max_count = max(max_count, count[s[right]])\n        \n        # If window size - max_count > k, shrink window\n        if right - left + 1 - max_count > k:\n            count[s[left]] -= 1\n            left += 1\n        \n        max_length = max(max_length, right - left + 1)\n    \n    return max_length\n"
+        },
+        {
+            "id": "permutation-in-string",
+            "number": 567,
+            "title": "Permutation in String",
+            "inputs": {
+                "s1": "ab",
+                "s2": "eidbaooo"
+            },
+            "entrypoint": "checkInclusion",
+            "solution": "def checkInclusion(s1, s2):\n    from collections import Counter\n    \n    if len(s1) > len(s2):\n        return False\n    \n    s1_count = Counter(s1)\n    window_size = len(s1)\n    \n    # Initialize sliding window\n    window_count = Counter(s2[:window_size])\n    \n    if window_count == s1_count:\n        return True\n    \n    # Slide the window\n    for i in range(window_size, len(s2)):\n        # Add new character\n        window_count[s2[i]] += 1\n        \n        # Remove old character\n        left_char = s2[i - window_size]\n        window_count[left_char] -= 1\n        if window_count[left_char] == 0:\n            del window_count[left_char]\n        \n        if window_count == s1_count:\n            return True\n    \n    return False\n"
+        },
+        {
+            "id": "sliding-window-maximum",
+            "number": 239,
+            "title": "Sliding Window Maximum",
+            "inputs": {
+                "nums": [
+                    1,
+                    3,
+                    -1,
+                    -3,
+                    5,
+                    3,
+                    6,
+                    7
+                ],
+                "k": 3
+            },
+            "entrypoint": "maxSlidingWindow",
+            "solution": "def maxSlidingWindow(nums, k):\n    from collections import deque\n    \n    if not nums:\n        return []\n    \n    dq = deque()  # stores indices\n    result = []\n    \n    for i in range(len(nums)):\n        # Remove indices that are out of current window\n        while dq and dq[0] < i - k + 1:\n            dq.popleft()\n        \n        # Remove indices whose corresponding values are smaller than current element\n        while dq and nums[dq[-1]] < nums[i]:\n            dq.pop()\n        \n        dq.append(i)\n        \n        # The front of deque contains the index of maximum element in current window\n        if i >= k - 1:\n            result.append(nums[dq[0]])\n    \n    return result\n"
+        },
+        {
+            "id": "car-fleet",
+            "number": 853,
+            "title": "Car Fleet",
+            "inputs": {
+                "target": 12,
+                "position": [
+                    10,
+                    8,
+                    0,
+                    5,
+                    3
+                ],
+                "speed": [
+                    2,
+                    4,
+                    1,
+                    1,
+                    3
+                ]
+            },
+            "entrypoint": "carFleet",
+            "solution": "def carFleet(target, position, speed):\n    # Pair positions with speeds and sort by position (closest to target first)\n    cars = sorted(zip(position, speed), reverse=True)\n    \n    stack = []\n    \n    for pos, spd in cars:\n        # Calculate time to reach target\n        time = (target - pos) / spd\n        \n        # If this car takes longer or equal time than the previous car,\n        # they will form a fleet (or this car will join the previous fleet)\n        if not stack or time > stack[-1]:\n            stack.append(time)\n    \n    return len(stack)\n"
+        },
+        {
+            "id": "largest-rectangle-in-histogram",
+            "number": 84,
+            "title": "Largest Rectangle in Histogram",
+            "inputs": {
+                "heights": [
+                    2,
+                    1,
+                    5,
+                    6,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "largestRectangleArea",
+            "solution": "def largestRectangleArea(heights):\n    stack = []\n    max_area = 0\n    index = 0\n    \n    while index < len(heights):\n        # Push index to stack if it's empty or current height >= stack top height\n        if not stack or heights[index] >= heights[stack[-1]]:\n            stack.append(index)\n            index += 1\n        else:\n            # Pop the top and calculate area\n            top = stack.pop()\n            area = heights[top] * (index if not stack else index - stack[-1] - 1)\n            max_area = max(max_area, area)\n    \n    # Calculate remaining areas for indices left in stack\n    while stack:\n        top = stack.pop()\n        area = heights[top] * (index if not stack else index - stack[-1] - 1)\n        max_area = max(max_area, area)\n    \n    return max_area\n"
         }
     ]
 }
