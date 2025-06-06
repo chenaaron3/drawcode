@@ -15,7 +15,7 @@ type ViewType = 'roadmap' | 'debugger';
 
 export default function App() {
   const { setProblemsData } = useTraceStore();
-  const [currentView, setCurrentView] = useState<ViewType>('roadmap');
+  const [currentView, setCurrentView] = useState<ViewType>('debugger');
 
   // Load problems data on app initialization
   useEffect(() => {
