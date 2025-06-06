@@ -1,23 +1,14 @@
 import { Code, Map } from 'lucide-react';
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Button } from './ui/button';
 
-const Header: React.FC = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
+interface HeaderProps {
+    currentView: 'roadmap' | 'debugger';
+    onViewChange: (view: 'roadmap' | 'debugger') => void;
+}
 
-    // Determine current view based on route
-    const currentView = location.pathname === '/roadmap' ? 'roadmap' : 'debugger';
-
-    const handleViewChange = (view: 'roadmap' | 'debugger') => {
-        if (view === 'roadmap') {
-            navigate('/roadmap');
-        } else {
-            navigate('/debugger');
-        }
-    };
+const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
 
     return (
         <div className="border-b bg-card">
@@ -33,7 +24,7 @@ const Header: React.FC = () => {
                         <Button
                             variant={currentView === 'roadmap' ? 'default' : 'ghost'}
                             size="sm"
-                            onClick={() => handleViewChange('roadmap')}
+                            onClick={() => onViewChange('roadmap')}
                             className="h-8 px-3"
                         >
                             <Map className="h-4 w-4 mr-1" />
@@ -42,7 +33,7 @@ const Header: React.FC = () => {
                         <Button
                             variant={currentView === 'debugger' ? 'default' : 'ghost'}
                             size="sm"
-                            onClick={() => handleViewChange('debugger')}
+                            onClick={() => onViewChange('debugger')}
                             className="h-8 px-3"
                         >
                             <Code className="h-4 w-4 mr-1" />

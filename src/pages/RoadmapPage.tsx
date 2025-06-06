@@ -1,12 +1,12 @@
 import { Loader2 } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import RoadmapGraph from '../components/RoadmapGraph';
 import patternsData from '../data/patterns.json';
 import problemDescriptionsData from '../data/problem-descriptions.json';
 import problemsData from '../data/problems.json';
 import { useProgress } from '../hooks/useProgress';
+import { useTraceStore } from '../store/traceStore';
 
 import type { ProblemDescription } from '../types/problem';
 
@@ -27,14 +27,19 @@ interface Problem {
     number?: number;
 }
 
-const RoadmapPage: React.FC = () => {
-    const navigate = useNavigate();
+interface RoadmapPageProps {
+    onNavigateToDebugger: () => void;
+}
+
+const RoadmapPage: React.FC<RoadmapPageProps> = ({ onNavigateToDebugger }) => {
     const [loading, setLoading] = useState(true);
     const { toggleProblemCompletion } = useProgress();
+    const { setCurrentProblem } = useTraceStore();
 
     const handleProblemClick = useCallback((problemId: string) => {
-        navigate(`/problem/${problemId}`);
-    }, [navigate]);
+        setCurrentProblem(problemId);
+        onNavigateToDebugger();
+    }, [setCurrentProblem, onNavigateToDebugger]);
 
     // Process patterns and problems data
     const { patterns, problems } = useMemo(() => {
