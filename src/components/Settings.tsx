@@ -11,6 +11,7 @@ import {
 import {
     Select, SelectContent, SelectItem, SelectTrigger, SelectValue
 } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
 
 import { useTraceGeneration } from '../hooks/useTraceGeneration';
 import { useTraceStore } from '../store/traceStore';
@@ -29,7 +30,9 @@ export function Settings() {
         resetToOriginal,
         getCurrentProblemId,
         getCurrentProblemData,
-        clearError
+        clearError,
+        isOverlayMode,
+        toggleOverlayMode
     } = useTraceStore();
 
     const { generateTraceFromState, isGenerating } = useTraceGeneration();
@@ -149,6 +152,15 @@ export function Settings() {
 
                 <DropdownMenuSeparator />
 
+                <div className="px-2 py-2">
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm">Overlay Code</span>
+                        <Switch
+                            checked={isOverlayMode}
+                            onCheckedChange={toggleOverlayMode}
+                        />
+                    </div>
+                </div>
                 <DropdownMenuItem
                     onClick={reset}
                     disabled={lineIndex === 0 || isPlaying}

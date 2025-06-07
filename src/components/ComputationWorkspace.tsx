@@ -12,7 +12,11 @@ import type { AugmentedTraceStep } from '../types/trace';
 
 import type { EvaluationNode } from './workspace/utils';
 import type { AnimatedCopy } from './workspace/AnimatedCopies';
-export default function ComputationWorkspace() {
+interface ComputationWorkspaceProps {
+    overlayMode?: boolean;
+}
+
+export default function ComputationWorkspace({ overlayMode = false }: ComputationWorkspaceProps) {
     const current = useTraceStore(selectCurrentLine);
     const nodeLookup = useTraceStore(state => state.nodeLookup);
     const animatingVariable = useTraceStore(state => state.animatingVariable);
@@ -311,6 +315,13 @@ export default function ComputationWorkspace() {
     };
 
     if (!current || !steps) {
+        if (overlayMode) {
+            return (
+                <div className="flex items-center justify-center h-full text-xs text-slate-500 font-mono">
+                    No expressions
+                </div>
+            );
+        }
         return (
             <Card className="lg:h-auto">
                 <CardContent>
@@ -322,6 +333,23 @@ export default function ComputationWorkspace() {
         );
     }
 
+    if (overlayMode) {
+        return (
+            <div className="h-full bg-blue-100/80 backdrop-blur-sm rounded border border-blue-300 flex items-center px-2 overflow-hidden" data-testid="computation-workspace">
+                <div className="text-xs font-mono text-blue-900 truncate">
+                    <EvaluationTree
+                        evaluationTree={evaluationTree}
+                        animatingVariable={animatingVariable}
+                        currentLocals={current?.locals || null}
+                        overlayMode={true}
+                    />
+                </div>
+                {/* Render animated copies */}
+                {animatedCopies.length > 0 && <AnimatedCopies animatedCopies={animatedCopies} />}
+            </div>
+        );
+    }
+
     return (
         <Card className="h-full" data-testid="computation-workspace">
             <CardContent>
@@ -329,6 +357,7 @@ export default function ComputationWorkspace() {
                     evaluationTree={evaluationTree}
                     animatingVariable={animatingVariable}
                     currentLocals={current?.locals || null}
+                    overlayMode={false}
                 />
             </CardContent>
             {/* Render animated copies */}

@@ -48,6 +48,9 @@ interface TraceState {
   animatingVariable: string | null;
   isEvaluating: boolean; // True during before_expression, false during after_expression
 
+  // UI state
+  isOverlayMode: boolean; // Whether computation workspace is overlaid on code
+
   // Input overrides for current problem only
   currentProblemId: string | null;
   inputOverrides: Record<string, any>; // input name -> value for current problem
@@ -94,6 +97,10 @@ interface TraceActions {
   setAnimatingVariable: (variableName: string | null) => void;
   setIsEvaluating: (isEvaluating: boolean) => void;
 
+  // UI state
+  setOverlayMode: (isOverlayMode: boolean) => void;
+  toggleOverlayMode: () => void;
+
   // Problems
   setCurrentProblem: (problemId: string) => void;
   getCurrentProblemId: () => string | null;
@@ -134,6 +141,7 @@ const initialState: TraceState = {
   mode: "step",
   animatingVariable: null,
   isEvaluating: false,
+  isOverlayMode: true,
   currentProblemId: null,
   inputOverrides: {},
   originalCode: null,
@@ -205,6 +213,16 @@ export const useTraceStore = create<TraceStore>()(
     setIsEvaluating: (isEvaluating) =>
       set((state) => {
         state.isEvaluating = isEvaluating;
+      }),
+
+    setOverlayMode: (isOverlayMode) =>
+      set((state) => {
+        state.isOverlayMode = isOverlayMode;
+      }),
+
+    toggleOverlayMode: () =>
+      set((state) => {
+        state.isOverlayMode = !state.isOverlayMode;
       }),
 
     next: () =>

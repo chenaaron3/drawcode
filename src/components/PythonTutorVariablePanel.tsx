@@ -20,7 +20,7 @@ const flowStyles = {
 };
 
 // Inner component that has access to React Flow context
-function PythonTutorVariablePanelInner() {
+function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger?: number }) {
     const { fitView } = useReactFlow();
 
     // Get current trace data and animation states
@@ -83,6 +83,16 @@ function PythonTutorVariablePanelInner() {
             }, 100); // Small delay to ensure nodes are rendered
         }
     }, [nodes, fitView]);
+
+    // Fit view when panel is resized
+    useEffect(() => {
+        if (resizeTrigger && nodes.length > 0) {
+            const fitViewOptions = calculateFitViewOptions(nodes);
+            setTimeout(() => {
+                fitView(fitViewOptions);
+            }, 150); // Slightly longer delay for resize
+        }
+    }, [resizeTrigger, nodes, fitView]);
 
     // Handle node click for potential future interactions
     const onNodeClick = useCallback((_event: React.MouseEvent, node: any) => {
@@ -158,7 +168,7 @@ function PythonTutorVariablePanelInner() {
 }
 
 // Main component wrapper with React Flow Provider
-export function PythonTutorVariablePanel() {
+export function PythonTutorVariablePanel({ resizeTrigger }: { resizeTrigger?: number } = {}) {
     return (
         <motion.div
             className="w-full h-full bg-slate-50 rounded-lg border border-slate-200 overflow-hidden"
@@ -167,7 +177,7 @@ export function PythonTutorVariablePanel() {
             transition={{ duration: 0.4, ease: "easeOut" }}
         >
             <ReactFlowProvider>
-                <PythonTutorVariablePanelInner />
+                <PythonTutorVariablePanelInner resizeTrigger={resizeTrigger} />
             </ReactFlowProvider>
         </motion.div>
     );
