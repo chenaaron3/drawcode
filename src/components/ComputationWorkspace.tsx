@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
+import { useNextFrameEffect } from '@/hooks/useNextFrame';
 
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
 import { AnimatedCopies } from './workspace/AnimatedCopies';
@@ -11,7 +12,6 @@ import type { AugmentedTraceStep } from '../types/trace';
 
 import type { EvaluationNode } from './workspace/utils';
 import type { AnimatedCopy } from './workspace/AnimatedCopies';
-
 export default function ComputationWorkspace() {
     const current = useTraceStore(selectCurrentLine);
     const nodeLookup = useTraceStore(state => state.nodeLookup);
@@ -22,6 +22,8 @@ export default function ComputationWorkspace() {
     const [steps, setSteps] = useState<AugmentedTraceStep[] | null>(null);
     const [animatedCopies, setAnimatedCopies] = useState<AnimatedCopy[]>([]);
     const [evaluationTree, setEvaluationTree] = useState<EvaluationNode | null>(null);
+    const [isAssign, setIsAssign] = useState(false);
+    const [pendingAssignmentCopies, setPendingAssignmentCopies] = useState<AnimatedCopy[]>([]);
 
     useEffect(() => {
         if (current !== null && nodeLookup !== null) {
@@ -105,9 +107,76 @@ export default function ComputationWorkspace() {
             setAnimatingVariable(null);
             setIsEvaluating(false);
         }
-
         setEvaluationTree(currentTree);
     }, [stepIndex, steps, current]);
+
+    useNextFrameEffect(() => {
+        if (!steps) return;
+
+        // Check if we stepped to a new line and need to animate pending assignment copies
+        const checkForAssignmentAnimation = () => {
+            if (isAssign && stepIndex === 0) {
+                // Update the copy to animate to the target
+                setAnimatedCopies(pendingAssignmentCopies);
+                // Remove after animation
+                setTimeout(() => {
+                    setAnimatedCopies([]);
+                }, 600);
+
+                // Clear pending copies and flag
+                setPendingAssignmentCopies([]);
+                setIsAssign(false);
+            }
+        };
+
+        // Check if current step is an assignment completion
+        const checkForAssignmentCompletion = () => {
+            if (stepIndex >= 0 && steps[stepIndex]) {
+                const currentStep = steps[stepIndex];
+
+                // Check if this is the last step of a line with Assign AST and non-null locals
+                // We'll determine this by checking if the next step is from a different line
+                const isLastStepOfLine = stepIndex === steps.length - 1;
+                const isAssignAST = currentStep.ast.type === 'Assign';
+                const hasLocals = 'locals' in currentStep && currentStep.locals;
+
+                if (currentStep.event === 'after_statement' && isLastStepOfLine && isAssignAST && hasLocals) {
+                    console.log('🔄 Assignment completion detected:', {
+                        step: currentStep.step,
+                        isLastStepOfLine,
+                        isAssignAST,
+                        hasLocals: !!hasLocals
+                    });
+
+                    setIsAssign(true);
+                    // Get the last node_id
+                    const lastNodeId = steps[stepIndex - 1].node_id;
+                    const lastNodeValue = steps[stepIndex - 1].value;
+                    let sourceElement = document.querySelector(`[data-node-id="${lastNodeId}"]`);
+                    const variableName = currentStep['focus'].split("=")[0].trim();
+                    let targetLambda = () => {
+                        const targetElement = document.querySelector(`[data-variable="${variableName}"]`);
+                        return targetElement?.getBoundingClientRect();
+                    }
+                    if (sourceElement) {
+                        const startRect = sourceElement.getBoundingClientRect();
+                        const copyId = `assignment-${variableName}-${Date.now()}`;
+                        const pendingCopy: AnimatedCopy = {
+                            id: copyId,
+                            variableName,
+                            value: lastNodeValue,
+                            startRect,
+                            targetLambda: targetLambda,
+                            isActive: true
+                        };
+                        setPendingAssignmentCopies([pendingCopy]);
+                    }
+                }
+            }
+        };
+        checkForAssignmentAnimation();
+        checkForAssignmentCompletion();
+    }, [stepIndex, steps]);
 
     // Build initial evaluation tree from the first statement
     const buildInitialTree = (): EvaluationNode | null => {
