@@ -8,6 +8,7 @@ import problemsJson from './data/problems.json';
 import DebuggerPage from './pages/DebuggerPage';
 import RoadmapPage from './pages/RoadmapPage';
 import { useTraceStore } from './store/traceStore';
+import { initGA, trackPageView, trackViewChange } from './utils/analytics';
 
 import type { ProblemDescription } from './types/problem';
 
@@ -17,8 +18,14 @@ export default function App() {
   const { setProblemsData } = useTraceStore();
   const [currentView, setCurrentView] = useState<ViewType>('debugger');
 
-  // Load problems data on app initialization
+  // Initialize Google Analytics and load problems data
   useEffect(() => {
+    // Initialize Google Analytics
+    initGA();
+
+    // Track initial page view
+    trackPageView('/debugger', 'Debugger - Leetcode Guide');
+
     const loadProblemsWithDescriptions = async () => {
       try {
         const problemDescriptions = problemDescriptionsData as Record<string, ProblemDescription>;
@@ -44,7 +51,12 @@ export default function App() {
   }, [setProblemsData]);
 
   const handleViewChange = (view: ViewType) => {
+    const previousView = currentView;
     setCurrentView(view);
+
+    // Track view change
+    trackViewChange(previousView, view);
+    trackPageView(`/${view}`, `${view.charAt(0).toUpperCase() + view.slice(1)} - Leetcode Guide`);
   };
 
   const renderCurrentView = () => {

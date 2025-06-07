@@ -205,4 +205,40 @@ The trace debugger now supports seamless editing of both code and inputs:
 - Click "Update" to regenerate the trace with your modifications
 - The trace generation happens automatically using Pyodide in the browser
 
+## 📊 Google Analytics Setup
+
+The application includes Google Analytics 4 integration to track user interactions and usage patterns.
+
+### Environment Setup
+
+Create a `.env` file in the project root with your Google Analytics Measurement ID:
+
+```env
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+### Tracked Events
+
+The application automatically tracks:
+
+- **Page Views**: Navigation between roadmap and debugger views
+- **Problem Selection**: When users select problems from the roadmap
+- **Navigation Steps**: Next/previous button clicks in the debugger
+- **Playback Controls**: Play, pause, and reset actions
+- **Problem Completion**: When users mark problems as complete/incomplete
+- **Code Compilation**: Success/failure of code compilation attempts
+
+### Analytics Categories
+
+- **Navigation**: View changes and problem selections
+- **Debugger**: Step navigation and playback controls
+- **Progress**: Problem completion tracking
+- **Interaction**: Code compilation and user actions
+
+### Privacy
+
+- No personal information is collected
+- Only interaction patterns and feature usage are tracked
+- All tracking respects user privacy and follows best practices
+
 -

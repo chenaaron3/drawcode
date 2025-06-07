@@ -4,6 +4,7 @@ import { MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 import { Button } from '@/components/ui/button';
 
 import { useTraceStore } from '../store/traceStore';
+import { trackNavigationStep, trackPlaybackControl } from '../utils/analytics';
 
 export function NavigationControls() {
     const {
@@ -13,8 +14,24 @@ export function NavigationControls() {
         prev,
         togglePlay,
         next,
-        hasChanges
+        hasChanges,
+        mode
     } = useTraceStore();
+
+    const handlePrev = () => {
+        trackNavigationStep('prev', mode);
+        prev();
+    };
+
+    const handleNext = () => {
+        trackNavigationStep('next', mode);
+        next();
+    };
+
+    const handleTogglePlay = () => {
+        trackPlaybackControl(isPlaying ? 'pause' : 'play');
+        togglePlay();
+    };
 
     // Hide navigation controls when there are unsaved changes
     if (hasChanges) {
@@ -27,7 +44,7 @@ export function NavigationControls() {
             <Button
                 variant="outline"
                 size="sm"
-                onClick={prev}
+                onClick={handlePrev}
                 disabled={!hasPrev() || isPlaying}
                 data-testid="prev-button"
             >
@@ -37,7 +54,7 @@ export function NavigationControls() {
             <Button
                 variant={isPlaying ? "default" : "outline"}
                 size="sm"
-                onClick={togglePlay}
+                onClick={handleTogglePlay}
                 disabled={!hasNext() && !isPlaying}
                 data-testid="play-button"
             >
@@ -47,7 +64,7 @@ export function NavigationControls() {
             <Button
                 variant="outline"
                 size="sm"
-                onClick={next}
+                onClick={handleNext}
                 disabled={!hasNext() || isPlaying}
                 data-testid="next-button"
             >

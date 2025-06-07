@@ -7,9 +7,9 @@ import problemDescriptionsData from '../data/problem-descriptions.json';
 import problemsData from '../data/problems.json';
 import { useProgress } from '../hooks/useProgress';
 import { useTraceStore } from '../store/traceStore';
+import { trackProblemCompletion, trackProblemSelection } from '../utils/analytics';
 
 import type { ProblemDescription } from '../types/problem';
-
 interface Pattern {
     id: string;
     name: string;
@@ -33,13 +33,20 @@ interface RoadmapPageProps {
 
 const RoadmapPage: React.FC<RoadmapPageProps> = ({ onNavigateToDebugger }) => {
     const [loading, setLoading] = useState(true);
-    const { toggleProblemCompletion } = useProgress();
+    const { toggleProblemCompletion, progress } = useProgress();
     const { setCurrentProblem } = useTraceStore();
 
     const handleProblemClick = useCallback((problemId: string) => {
         setCurrentProblem(problemId);
+        trackProblemSelection(problemId, 'roadmap');
         onNavigateToDebugger();
     }, [setCurrentProblem, onNavigateToDebugger]);
+
+    const handleProblemToggleCompletion = useCallback((problemId: string) => {
+        const wasCompleted = progress.completedProblems.includes(problemId);
+        toggleProblemCompletion(problemId);
+        trackProblemCompletion(problemId, !wasCompleted);
+    }, [toggleProblemCompletion, progress.completedProblems]);
 
     // Process patterns and problems data
     const { patterns, problems } = useMemo(() => {
@@ -87,7 +94,7 @@ const RoadmapPage: React.FC<RoadmapPageProps> = ({ onNavigateToDebugger }) => {
                 patterns={patterns}
                 problems={problems}
                 onProblemClick={handleProblemClick}
-                onProblemToggleCompletion={toggleProblemCompletion}
+                onProblemToggleCompletion={handleProblemToggleCompletion}
             />
         </div>
     );
