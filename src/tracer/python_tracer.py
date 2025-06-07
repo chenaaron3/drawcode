@@ -6,7 +6,8 @@ import copy
 
 from ast_transformer import ASTTransformer, BEFORE_STATEMENT_MARKER, AFTER_STATEMENT_MARKER, BEFORE_EXPRESSION_MARKER, AFTER_EXPRESSION_MARKER
 from relationship_analyzer import RelationshipAnalyzer
-from utils import serialize_value, calculate_delta
+from utils import serialize_value, calculate_delta, TreeNode, Node, ListNode, adjlist_to_graph, list_to_binary_tree, list_to_linked_list
+
 
 class PythonTracer:
     """Tracer that tracks execution of all statements and expressions"""
@@ -101,8 +102,28 @@ class PythonTracer:
         frame = sys._getframe(1)
         self._record_step(frame, "after_expression", value=value, node=node)
         return value
+    
+    def transform_inputs(self, kwargs, special_inputs):
+        """Transform inputs - convert special input formats to appropriate objects"""
+        if special_inputs is None:
+            return kwargs
+        transformed_kwargs = copy.deepcopy(kwargs)
+        for special_input in special_inputs:
+            key = special_input["key"]
+            input_type = special_input["type"]
+            output_key = special_input["output_key"]
+            if key in transformed_kwargs:
+                if input_type == "tree":
+                    transformed_kwargs[output_key] = list_to_binary_tree(transformed_kwargs[key])
+                elif input_type == "graph":
+                    transformed_kwargs[output_key] = adjlist_to_graph(transformed_kwargs[key])
+                elif input_type == "linkedList":
+                    transformed_kwargs[output_key] = list_to_linked_list(transformed_kwargs[key])
+                if key != output_key:
+                    del transformed_kwargs[key]
+        return transformed_kwargs
 
-    def run_code(self, code: str, entrypoint: str, problem_key: int, **kwargs):
+    def run_code(self, code: str, entrypoint: str, special_inputs: list | None, problem_key: int, **kwargs):
         """Run code with expression tracking"""
         self.source_code = code
         self.entrypoint = entrypoint
@@ -110,19 +131,25 @@ class PythonTracer:
         
         # Transform the AST for execution
         tree = self.transformer.transform(code, problem_key)
+
+        # Transform inputs - convert special input formats to appropriate objects
+        transformed_kwargs = self.transform_inputs(kwargs, special_inputs)
         
         namespace = {
             '__name__': '__main__',
             '__file__': '<string>',
             '__builtins__': __builtins__,
+            'TreeNode': TreeNode,  # Make TreeNode available in execution namespace
+            'Node': Node,  # Make Node available in execution namespace
+            'ListNode': ListNode,  # Make ListNode available in execution namespace
         }
         
         compiled = compile(tree, '<string>', 'exec')
         exec(compiled, namespace)
         
-        # If entrypoint is specified, call the function with kwargs
+        # If entrypoint is specified, call the function with transformed kwargs
         if entrypoint and entrypoint in namespace:
-            self.result = namespace[entrypoint](**kwargs)
+            self.result = namespace[entrypoint](**transformed_kwargs)
         
         return tree
 

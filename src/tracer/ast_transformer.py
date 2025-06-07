@@ -160,31 +160,41 @@ class ASTTransformer(ast.NodeTransformer):
         if isinstance(node, ast.Name) and isinstance(node.ctx, (ast.Store, ast.Del)):
             return True
             
-        # Check for subscript in Store context (e.g., freq[num] = 1)
-        # BUT allow the slice to be evaluated since it needs to be computed
-        if isinstance(node, ast.Subscript) and isinstance(node.ctx, ast.Store):
+        # Check for subscript in Store/Del context (e.g., freq[num] = 1 or del dict[key])
+        # BUT allow the slice to be evaluated since it needs to be computed (except in Del context)
+        if isinstance(node, ast.Subscript) and isinstance(node.ctx, (ast.Store, ast.Del)):
             return True
             
-        # Check for attribute in Store context (e.g., obj.attr = value)
-        # BUT allow the object to be evaluated since it needs to be accessed
-        if isinstance(node, ast.Attribute) and isinstance(node.ctx, ast.Store):
+        # Check for attribute in Store/Del context (e.g., obj.attr = value or del obj.attr)
+        # BUT allow the object to be evaluated since it needs to be accessed (except in Del context)
+        if isinstance(node, ast.Attribute) and isinstance(node.ctx, (ast.Store, ast.Del)):
             return True
             
         # Special case: if we're the slice of a subscript in Store context,
         # we should still be evaluated (e.g., the 'num' in 'num_to_index[num] = i')
+        # BUT for Del context, we must NOT evaluate anything to keep it a valid target
         parent = getattr(node, 'parent', None)
-        if parent and isinstance(parent, ast.Subscript) and isinstance(parent.ctx, ast.Store):
-            if parent.slice == node:
-                return False  # Allow evaluation of the slice
-            # Also allow evaluation of the container part (e.g., 'num_to_index' in 'num_to_index[num] = i')
-            if parent.value == node:
-                return False  # Allow evaluation of the container
+        if parent and isinstance(parent, ast.Subscript):
+            if isinstance(parent.ctx, ast.Store):
+                if parent.slice == node:
+                    return False  # Allow evaluation of the slice
+                # Also allow evaluation of the container part (e.g., 'num_to_index' in 'num_to_index[num] = i')
+                if parent.value == node:
+                    return False  # Allow evaluation of the container
+            elif isinstance(parent.ctx, ast.Del):
+                # For Del context, we must not wrap any part to keep it a valid del target
+                return True
                 
         # Special case: if we're the object of an attribute in Store context,
         # we should still be evaluated (e.g., the 'self' in 'self.left = value')
-        if parent and isinstance(parent, ast.Attribute) and isinstance(parent.ctx, ast.Store):
-            if parent.value == node:
-                return False  # Allow evaluation of the object
+        # BUT for Del context, we must NOT evaluate anything to keep it a valid target
+        if parent and isinstance(parent, ast.Attribute):
+            if isinstance(parent.ctx, ast.Store):
+                if parent.value == node:
+                    return False  # Allow evaluation of the object
+            elif isinstance(parent.ctx, ast.Del):
+                # For Del context, we must not wrap any part to keep it a valid del target
+                return True
             
         # Check if we're inside a Store context (for complex targets like tuple unpacking)
         current = node

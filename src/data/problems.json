@@ -241,8 +241,15 @@
                     3
                 ]
             },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
             "entrypoint": "inorderTraversal",
-            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef inorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def inorder(node):\n        if node:\n            inorder(node.left)\n            result.append(node.val)\n            inorder(node.right)\n    \n    inorder(root)\n    return result\n"
+            "solution": "def inorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def inorder(node):\n        if node:\n            inorder(node.left)\n            result.append(node.val)\n            inorder(node.right)\n    \n    inorder(root)\n    return result\n"
         },
         {
             "id": "same-tree",
@@ -260,8 +267,20 @@
                     3
                 ]
             },
+            "special_inputs": [
+                {
+                    "key": "p",
+                    "type": "tree",
+                    "output_key": "p"
+                },
+                {
+                    "key": "q",
+                    "type": "tree",
+                    "output_key": "q"
+                }
+            ],
             "entrypoint": "isSameTree",
-            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef isSameTree(p, q):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(p, list):\n        p = build_tree(p)\n    if isinstance(q, list):\n        q = build_tree(q)\n    \n    if not p and not q:\n        return True\n    if not p or not q:\n        return False\n    \n    return p.val == q.val and isSameTree(p.left, q.left) and isSameTree(p.right, q.right)\n"
+            "solution": "def isSameTree(p, q):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(p, list):\n        p = build_tree(p)\n    if isinstance(q, list):\n        q = build_tree(q)\n    \n    if not p and not q:\n        return True\n    if not p or not q:\n        return False\n    \n    return p.val == q.val and isSameTree(p.left, q.left) and isSameTree(p.right, q.right)\n"
         },
         {
             "id": "symmetric-tree",
@@ -278,8 +297,15 @@
                     3
                 ]
             },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
             "entrypoint": "isSymmetric",
-            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef isSymmetric(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    def is_mirror(left, right):\n        if not left and not right:\n            return True\n        if not left or not right:\n            return False\n        return left.val == right.val and is_mirror(left.left, right.right) and is_mirror(left.right, right.left)\n    \n    return not root or is_mirror(root.left, root.right)\n"
+            "solution": "def isSymmetric(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    def is_mirror(left, right):\n        if not left and not right:\n            return True\n        if not left or not right:\n            return False\n        return left.val == right.val and is_mirror(left.left, right.right) and is_mirror(left.right, right.left)\n    \n    return not root or is_mirror(root.left, root.right)\n"
         },
         {
             "id": "maximum-depth-binary-tree",
@@ -296,8 +322,15 @@
                     7
                 ]
             },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
             "entrypoint": "maxDepth",
-            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef maxDepth(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return 0\n    \n    return 1 + max(maxDepth(root.left), maxDepth(root.right))\n"
+            "solution": "def maxDepth(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return 0\n    \n    return 1 + max(maxDepth(root.left), maxDepth(root.right))\n"
         },
         {
             "id": "best-time-buy-sell-stock",
@@ -387,8 +420,15 @@
                     3
                 ]
             },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
             "entrypoint": "preorderTraversal",
-            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef preorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def preorder(node):\n        if node:\n            result.append(node.val)\n            preorder(node.left)\n            preorder(node.right)\n    \n    preorder(root)\n    return result\n"
+            "solution": "def preorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def preorder(node):\n        if node:\n            result.append(node.val)\n            preorder(node.left)\n            preorder(node.right)\n    \n    preorder(root)\n    return result\n"
         },
         {
             "id": "binary-tree-postorder-traversal",
@@ -402,8 +442,15 @@
                     3
                 ]
             },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
             "entrypoint": "postorderTraversal",
-            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef postorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def postorder(node):\n        if node:\n            postorder(node.left)\n            postorder(node.right)\n            result.append(node.val)\n    \n    postorder(root)\n    return result\n"
+            "solution": "def postorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def postorder(node):\n        if node:\n            postorder(node.left)\n            postorder(node.right)\n            result.append(node.val)\n    \n    postorder(root)\n    return result\n"
         },
         {
             "id": "min-stack",
@@ -526,8 +573,15 @@
                     9
                 ]
             },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
             "entrypoint": "invertTree",
-            "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef invertTree(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    def tree_to_list(root):\n        if not root:\n            return []\n        result = []\n        queue = [root]\n        while queue:\n            node = queue.pop(0)\n            if node:\n                result.append(node.val)\n                queue.append(node.left)\n                queue.append(node.right)\n            else:\n                result.append(None)\n        while result and result[-1] is None:\n            result.pop()\n        return result\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return []\n    \n    root.left, root.right = root.right, root.left\n    invertTree(root.left)\n    invertTree(root.right)\n    \n    return tree_to_list(root)\n"
+            "solution": "def invertTree(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    def tree_to_list(root):\n        if not root:\n            return []\n        result = []\n        queue = [root]\n        while queue:\n            node = queue.pop(0)\n            if node:\n                result.append(node.val)\n                queue.append(node.left)\n                queue.append(node.right)\n            else:\n                result.append(None)\n        while result and result[-1] is None:\n            result.pop()\n        return result\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return []\n    \n    root.left, root.right = root.right, root.left\n    invertTree(root.left)\n    invertTree(root.right)\n    \n    return tree_to_list(root)\n"
         },
         {
             "id": "palindromic-substrings",
@@ -699,38 +753,6 @@
             "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef removeElements(head, val):\n    def list_to_linked(arr):\n        if not arr:\n            return None\n        head = ListNode(arr[0])\n        curr = head\n        for v in arr[1:]:\n            curr.next = ListNode(v)\n            curr = curr.next\n        return head\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head = list_to_linked(head)\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    curr = dummy\n    \n    while curr.next:\n        if curr.next.val == val:\n            curr.next = curr.next.next\n        else:\n            curr = curr.next\n    \n    return linked_to_list(dummy.next)\n"
         },
         {
-            "id": "implement-queue-using-stacks",
-            "number": 232,
-            "title": "Implement Queue using Stacks",
-            "inputs": {
-                "operations": [
-                    "MyQueue",
-                    "push",
-                    "push",
-                    "push",
-                    "getMin",
-                    "pop",
-                    "top",
-                    "getMin"
-                ],
-                "values": [
-                    [],
-                    [
-                        1
-                    ],
-                    [
-                        2
-                    ],
-                    [],
-                    [],
-                    [],
-                    []
-                ]
-            },
-            "entrypoint": "runMinStack",
-            "solution": "class MyQueue:\n    def __init__(self):\n        self.stack1 = []\n        self.stack2 = []\n    \n    def push(self, x):\n        self.stack1.append(x)\n    \n    def pop(self):\n        self.peek()\n        return self.stack2.pop()\n    \n    def peek(self):\n        if not self.stack2:\n            while self.stack1:\n                self.stack2.append(self.stack1.pop())\n        return self.stack2[-1]\n    \n    def empty(self):\n        return not self.stack1 and not self.stack2\n\ndef runMinStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyQueue\":\n            obj = MyQueue()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"peek\":\n            results.append(obj.peek())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
-        },
-        {
             "id": "implement-stack-using-queues",
             "number": 225,
             "title": "Implement Stack using Queues",
@@ -768,22 +790,6 @@
             },
             "entrypoint": "isPowerOfTwo",
             "solution": "def isPowerOfTwo(n):\n    return n > 0 and (n & (n - 1)) == 0\n"
-        },
-        {
-            "id": "delete-node-linked-list",
-            "number": 237,
-            "title": "Delete Node in a Linked List",
-            "inputs": {
-                "head": [
-                    4,
-                    5,
-                    1,
-                    9
-                ],
-                "node": 5
-            },
-            "entrypoint": "deleteNode",
-            "solution": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None\n\ndef deleteNode(head, node=None):\n    def list_to_linked(arr):\n        if not arr:\n            return None, None\n        head = ListNode(arr[0])\n        curr = head\n        target_node = None\n        for i, val in enumerate(arr[1:], 1):\n            curr.next = ListNode(val)\n            curr = curr.next\n            if val == node:\n                target_node = curr\n        if arr[0] == node:\n            target_node = head\n        return head, target_node\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head, node_to_delete = list_to_linked(head)\n        node = node_to_delete\n    \n    if node and node.next:\n        node.val = node.next.val\n        node.next = node.next.next\n    \n    return linked_to_list(head)\n"
         },
         {
             "id": "valid-anagram",
@@ -1176,6 +1182,829 @@
             },
             "entrypoint": "largestRectangleArea",
             "solution": "def largestRectangleArea(heights):\n    stack = []\n    max_area = 0\n    index = 0\n    \n    while index < len(heights):\n        # Push index to stack if it's empty or current height >= stack top height\n        if not stack or heights[index] >= heights[stack[-1]]:\n            stack.append(index)\n            index += 1\n        else:\n            # Pop the top and calculate area\n            top = stack.pop()\n            area = heights[top] * (index if not stack else index - stack[-1] - 1)\n            max_area = max(max_area, area)\n    \n    # Calculate remaining areas for indices left in stack\n    while stack:\n        top = stack.pop()\n        area = heights[top] * (index if not stack else index - stack[-1] - 1)\n        max_area = max(max_area, area)\n    \n    return max_area\n"
+        },
+        {
+            "id": "alien-dictionary",
+            "number": 269,
+            "title": "Alien Dictionary",
+            "inputs": {
+                "words": [
+                    "wrt",
+                    "wrf",
+                    "er",
+                    "ett",
+                    "rftt"
+                ]
+            },
+            "entrypoint": "alienOrder",
+            "solution": "from collections import defaultdict, deque\n\ndef alienOrder(words):\n    adj = defaultdict(set)\n    in_degree = {c: 0 for word in words for c in word}\n\n    for i in range(len(words) - 1):\n        w1, w2 = words[i], words[i + 1]\n        min_len = min(len(w1), len(w2))\n        if len(w1) > len(w2) and w1[:min_len] == w2[:min_len]:\n            return \"\"\n        for c1, c2 in zip(w1, w2):\n            if c1 != c2:\n                if c2 not in adj[c1]:\n                    adj[c1].add(c2)\n                    in_degree[c2] += 1\n                break\n\n    queue = deque([c for c in in_degree if in_degree[c] == 0])\n    res = []\n    while queue:\n        c = queue.popleft()\n        res.append(c)\n        for nei in adj[c]:\n            in_degree[nei] -= 1\n            if in_degree[nei] == 0:\n                queue.append(nei)\n\n    return \"\".join(res) if len(res) == len(in_degree) else \"\""
+        },
+        {
+            "id": "binary-tree-level-order-traversal",
+            "number": 102,
+            "title": "Binary Tree Level Order Traversal",
+            "inputs": {
+                "root": [
+                    3,
+                    9,
+                    20,
+                    null,
+                    null,
+                    15,
+                    7
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "levelOrder",
+            "solution": "from collections import deque\n\ndef levelOrder(root):\n    if not root:\n        return []\n    res = []\n    queue = deque([root])\n    while queue:\n        level = []\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left:\n                queue.append(node.left)\n            if node.right:\n                queue.append(node.right)\n        res.append(level)\n    return res"
+        },
+        {
+            "id": "binary-tree-right-side-view",
+            "number": 199,
+            "title": "Binary Tree Right Side View",
+            "inputs": {
+                "root": [
+                    1,
+                    2,
+                    3,
+                    null,
+                    5,
+                    null,
+                    4
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "rightSideView",
+            "solution": "from collections import deque\n\ndef rightSideView(root):\n    if not root:\n        return []\n    res = []\n    queue = deque([root])\n    while queue:\n        level_length = len(queue)\n        for i in range(level_length):\n            node = queue.popleft()\n            if i == level_length - 1:\n                res.append(node.val)\n            if node.left:\n                queue.append(node.left)\n            if node.right:\n                queue.append(node.right)\n    return res"
+        },
+        {
+            "id": "binary-tree-zigzag-level-order-traversal",
+            "number": 103,
+            "title": "Binary Tree Zigzag Level Order Traversal",
+            "inputs": {
+                "root": [
+                    3,
+                    9,
+                    20,
+                    null,
+                    null,
+                    15,
+                    7
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "zigzagLevelOrder",
+            "solution": "from collections import deque\n\ndef zigzagLevelOrder(root):\n    if not root:\n        return []\n    res = []\n    queue = deque([root])\n    left_to_right = True\n    while queue:\n        level = deque()\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            if left_to_right:\n                level.append(node.val)\n            else:\n                level.appendleft(node.val)\n            if node.left:\n                queue.append(node.left)\n            if node.right:\n                queue.append(node.right)\n        res.append(list(level))\n        left_to_right = not left_to_right\n    return res"
+        },
+        {
+            "id": "clone-graph",
+            "number": 133,
+            "title": "Clone Graph",
+            "inputs": {
+                "adjList": [
+                    [
+                        2,
+                        4
+                    ],
+                    [
+                        1,
+                        3
+                    ],
+                    [
+                        2,
+                        4
+                    ],
+                    [
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "adjList",
+                    "type": "graph",
+                    "output_key": "node"
+                }
+            ],
+            "entrypoint": "cloneGraph",
+            "solution": "def cloneGraph(node):\n    if not node:\n        return None\n    old_to_new = {}\n    def dfs(n):\n        if n in old_to_new:\n            return old_to_new[n]\n        copy = Node(n.val)\n        old_to_new[n] = copy\n        for neighbor in n.neighbors:\n            copy.neighbors.append(dfs(neighbor))\n        return copy\n    return dfs(node)"
+        },
+        {
+            "id": "coin-change",
+            "number": 322,
+            "title": "Coin Change",
+            "inputs": {
+                "coins": [
+                    1,
+                    2,
+                    5
+                ],
+                "amount": 11
+            },
+            "entrypoint": "coinChange",
+            "solution": "def coinChange(coins, amount):\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n    for coin in coins:\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    return dp[amount] if dp[amount] != float('inf') else -1"
+        },
+        {
+            "id": "combination-sum",
+            "number": 39,
+            "title": "Combination Sum",
+            "inputs": {
+                "candidates": [
+                    2,
+                    3,
+                    6,
+                    7
+                ],
+                "target": 7
+            },
+            "entrypoint": "combinationSum",
+            "solution": "def combinationSum(candidates, target):\n    res = []\n    def backtrack(start, path, total):\n        if total == target:\n            res.append(list(path))\n            return\n        if total > target:\n            return\n        for i in range(start, len(candidates)):\n            path.append(candidates[i])\n            backtrack(i, path, total + candidates[i])\n            path.pop()\n    backtrack(0, [], 0)\n    return res"
+        },
+        {
+            "id": "construct-binary-tree-from-preorder-and-inorder-traversal",
+            "number": 105,
+            "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+            "inputs": {
+                "preorder": [
+                    3,
+                    9,
+                    20,
+                    15,
+                    7
+                ],
+                "inorder": [
+                    9,
+                    3,
+                    15,
+                    20,
+                    7
+                ]
+            },
+            "entrypoint": "buildTree",
+            "solution": "def buildTree(preorder, inorder):\n    if not preorder or not inorder:\n        return None\n    root = TreeNode(preorder[0])\n    mid = inorder.index(preorder[0])\n    root.left = buildTree(preorder[1:mid+1], inorder[:mid])\n    root.right = buildTree(preorder[mid+1:], inorder[mid+1:])\n    return root"
+        },
+        {
+            "id": "counting-bits",
+            "number": 338,
+            "title": "Counting Bits",
+            "inputs": {
+                "n": 5
+            },
+            "entrypoint": "countBits",
+            "solution": "def countBits(n):\n    dp = [0] * (n + 1)\n    for i in range(1, n + 1):\n        dp[i] = dp[i >> 1] + (i & 1)\n    return dp"
+        },
+        {
+            "id": "course-schedule",
+            "number": 207,
+            "title": "Course Schedule",
+            "inputs": {
+                "numCourses": 2,
+                "prerequisites": [
+                    [
+                        1,
+                        0
+                    ]
+                ]
+            },
+            "entrypoint": "canFinish",
+            "solution": "def canFinish(numCourses, prerequisites):\n    from collections import defaultdict, deque\n    graph = defaultdict(list)\n    indegree = [0] * numCourses\n    for dest, src in prerequisites:\n        graph[src].append(dest)\n        indegree[dest] += 1\n    queue = deque([i for i in range(numCourses) if indegree[i] == 0])\n    count = 0\n    while queue:\n        node = queue.popleft()\n        count += 1\n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    return count == numCourses"
+        },
+        {
+            "id": "daily-temperatures",
+            "number": 739,
+            "title": "Daily Temperatures",
+            "inputs": {
+                "temperatures": [
+                    73,
+                    74,
+                    75,
+                    71,
+                    69,
+                    72,
+                    76,
+                    73
+                ]
+            },
+            "entrypoint": "dailyTemperatures",
+            "solution": "def dailyTemperatures(temperatures):\n    res = [0] * len(temperatures)\n    stack = []\n    for i, temp in enumerate(temperatures):\n        while stack and temperatures[stack[-1]] < temp:\n            idx = stack.pop()\n            res[idx] = i - idx\n        stack.append(i)\n    return res"
+        },
+        {
+            "id": "decode-ways",
+            "number": 91,
+            "title": "Decode Ways",
+            "inputs": {
+                "s": "226"
+            },
+            "entrypoint": "numDecodings",
+            "solution": "def numDecodings(s):\n    if not s:\n        return 0\n    dp = [0] * (len(s) + 1)\n    dp[0] = 1\n    dp[1] = 0 if s[0] == '0' else 1\n    for i in range(2, len(s) + 1):\n        if s[i-1] != '0':\n            dp[i] += dp[i-1]\n        if 10 <= int(s[i-2:i]) <= 26:\n            dp[i] += dp[i-2]\n    return dp[-1]"
+        },
+        {
+            "id": "find-minimum-in-rotated-sorted-array",
+            "number": 153,
+            "title": "Find Minimum in Rotated Sorted Array",
+            "inputs": {
+                "nums": [
+                    3,
+                    4,
+                    5,
+                    1,
+                    2
+                ]
+            },
+            "entrypoint": "findMin",
+            "solution": "def findMin(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid\n    return nums[left]"
+        },
+        {
+            "id": "graph-valid-tree",
+            "number": 261,
+            "title": "Graph Valid Tree",
+            "inputs": {
+                "n": 5,
+                "edges": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0,
+                        2
+                    ],
+                    [
+                        0,
+                        3
+                    ],
+                    [
+                        1,
+                        4
+                    ]
+                ]
+            },
+            "entrypoint": "validTree",
+            "solution": "def validTree(n, edges):\n    if len(edges) != n - 1:\n        return False\n    parent = [i for i in range(n)]\n    \n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    \n    for a, b in edges:\n        rootA = find(a)\n        rootB = find(b)\n        if rootA == rootB:\n            return False\n        parent[rootA] = rootB\n    return True"
+        },
+        {
+            "id": "house-robber-ii",
+            "number": 213,
+            "title": "House Robber II",
+            "inputs": {
+                "nums": [
+                    2,
+                    3,
+                    2
+                ]
+            },
+            "entrypoint": "rob",
+            "solution": "def rob(nums):\n    if len(nums) == 1:\n        return nums[0]\n    def rob_line(houses):\n        prev = curr = 0\n        for num in houses:\n            prev, curr = curr, max(curr, prev + num)\n        return curr\n    return max(rob_line(nums[:-1]), rob_line(nums[1:]))"
+        },
+        {
+            "id": "jump-game",
+            "number": 55,
+            "title": "Jump Game",
+            "inputs": {
+                "nums": [
+                    2,
+                    3,
+                    1,
+                    1,
+                    4
+                ]
+            },
+            "entrypoint": "canJump",
+            "solution": "def canJump(nums):\n    max_reach = 0\n    for i, num in enumerate(nums):\n        if i > max_reach:\n            return False\n        max_reach = max(max_reach, i + num)\n    return True"
+        },
+        {
+            "id": "kth-smallest-element-in-a-bst",
+            "number": 230,
+            "title": "Kth Smallest Element in a BST",
+            "inputs": {
+                "root": [
+                    3,
+                    1,
+                    4,
+                    null,
+                    2
+                ],
+                "k": 1
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "kthSmallest",
+            "solution": "def kthSmallest(root, k):\n    stack = []\n    while True:\n        while root:\n            stack.append(root)\n            root = root.left\n        root = stack.pop()\n        k -= 1\n        if k == 0:\n            return root.val\n        root = root.right"
+        },
+        {
+            "id": "letter-combinations-of-a-phone-number",
+            "number": 17,
+            "title": "Letter Combinations of a Phone Number",
+            "inputs": {
+                "digits": "23"
+            },
+            "entrypoint": "letterCombinations",
+            "solution": "def letterCombinations(digits):\n    if not digits:\n        return []\n    phone = {\n        '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',\n        '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'\n    }\n    res = ['']\n    for digit in digits:\n        res = [prefix + char for prefix in res for char in phone[digit]]\n    return res"
+        },
+        {
+            "id": "longest-common-subsequence",
+            "number": 1143,
+            "title": "Longest Common Subsequence",
+            "inputs": {
+                "text1": "abcde",
+                "text2": "ace"
+            },
+            "entrypoint": "longestCommonSubsequence",
+            "solution": "def longestCommonSubsequence(text1, text2):\n    m, n = len(text1), len(text2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    for i in range(m):\n        for j in range(n):\n            if text1[i] == text2[j]:\n                dp[i+1][j+1] = dp[i][j] + 1\n            else:\n                dp[i+1][j+1] = max(dp[i][j+1], dp[i+1][j])\n    return dp[m][n]"
+        },
+        {
+            "id": "longest-increasing-subsequence",
+            "number": 300,
+            "title": "Longest Increasing Subsequence",
+            "inputs": {
+                "nums": [
+                    10,
+                    9,
+                    2,
+                    5,
+                    3,
+                    7,
+                    101,
+                    18
+                ]
+            },
+            "entrypoint": "lengthOfLIS",
+            "solution": "def lengthOfLIS(nums):\n    dp = []\n    for num in nums:\n        left, right = 0, len(dp)\n        while left < right:\n            mid = (left + right) // 2\n            if dp[mid] < num:\n                left = mid + 1\n            else:\n                right = mid\n        if left == len(dp):\n            dp.append(num)\n        else:\n            dp[left] = num\n    return len(dp)"
+        },
+        {
+            "id": "lowest-common-ancestor-of-a-binary-tree",
+            "number": 236,
+            "title": "Lowest Common Ancestor of a Binary Tree",
+            "inputs": {
+                "root": [
+                    3,
+                    5,
+                    1,
+                    6,
+                    2,
+                    0,
+                    8,
+                    null,
+                    null,
+                    7,
+                    4
+                ],
+                "p": 5,
+                "q": 1
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "lowestCommonAncestor",
+            "solution": "def lowestCommonAncestor(root, p, q):\n    if not root or root == p or root == q:\n        return root\n    left = lowestCommonAncestor(root.left, p, q)\n    right = lowestCommonAncestor(root.right, p, q)\n    if left and right:\n        return root\n    return left if left else right"
+        },
+        {
+            "id": "meeting-rooms-ii",
+            "number": 253,
+            "title": "Meeting Rooms II",
+            "inputs": {
+                "intervals": [
+                    [
+                        0,
+                        30
+                    ],
+                    [
+                        5,
+                        10
+                    ],
+                    [
+                        15,
+                        20
+                    ]
+                ]
+            },
+            "entrypoint": "minMeetingRooms",
+            "solution": "def minMeetingRooms(intervals):\n    if not intervals:\n        return 0\n    starts = sorted(i[0] for i in intervals)\n    ends = sorted(i[1] for i in intervals)\n    s = e = rooms = 0\n    while s < len(intervals):\n        if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1\n    return rooms"
+        },
+        {
+            "id": "number-of-1-bits",
+            "number": 191,
+            "title": "Number of 1 Bits",
+            "inputs": {
+                "n": 11
+            },
+            "entrypoint": "hammingWeight",
+            "solution": "def hammingWeight(n):\n    count = 0\n    while n:\n        n &= n - 1\n        count += 1\n    return count"
+        },
+        {
+            "id": "number-of-connected-components-in-an-undirected-graph",
+            "number": 323,
+            "title": "Number of Connected Components in an Undirected Graph",
+            "inputs": {
+                "n": 5,
+                "edges": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        3,
+                        4
+                    ]
+                ]
+            },
+            "entrypoint": "countComponents",
+            "solution": "def countComponents(n, edges):\n    parent = [i for i in range(n)]\n\n    def find(x):\n        if parent[x] != x:\n            parent[x] = find(parent[x])\n        return parent[x]\n\n    def union(x, y):\n        rootX = find(x)\n        rootY = find(y)\n        if rootX != rootY:\n            parent[rootX] = rootY\n\n    for u, v in edges:\n        union(u, v)\n\n    return len(set(find(i) for i in range(n)))"
+        },
+        {
+            "id": "number-of-islands",
+            "number": 200,
+            "title": "Number of Islands",
+            "inputs": {
+                "grid": [
+                    [
+                        "1",
+                        "1",
+                        "1",
+                        "1",
+                        "0"
+                    ],
+                    [
+                        "1",
+                        "1",
+                        "0",
+                        "1",
+                        "0"
+                    ],
+                    [
+                        "1",
+                        "1",
+                        "0",
+                        "0",
+                        "0"
+                    ],
+                    [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                    ]
+                ]
+            },
+            "entrypoint": "numIslands",
+            "solution": "def numIslands(grid):\n    if not grid:\n        return 0\n    count = 0\n    rows, cols = len(grid), len(grid[0])\n\n    def dfs(r, c):\n        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] == '0':\n            return\n        grid[r][c] = '0'\n        dfs(r+1, c)\n        dfs(r-1, c)\n        dfs(r, c+1)\n        dfs(r, c-1)\n\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1':\n                dfs(r, c)\n                count += 1\n\n    return count"
+        },
+        {
+            "id": "pacific-atlantic-water-flow",
+            "number": 417,
+            "title": "Pacific Atlantic Water Flow",
+            "inputs": {
+                "heights": [
+                    [
+                        1,
+                        2,
+                        2,
+                        3,
+                        5
+                    ],
+                    [
+                        3,
+                        2,
+                        3,
+                        4,
+                        4
+                    ],
+                    [
+                        2,
+                        4,
+                        5,
+                        3,
+                        1
+                    ],
+                    [
+                        6,
+                        7,
+                        1,
+                        4,
+                        5
+                    ],
+                    [
+                        5,
+                        1,
+                        1,
+                        2,
+                        4
+                    ]
+                ]
+            },
+            "entrypoint": "pacificAtlantic",
+            "solution": "def pacificAtlantic(heights):\n    if not heights:\n        return []\n    m, n = len(heights), len(heights[0])\n    pacific = [[False] * n for _ in range(m)]\n    atlantic = [[False] * n for _ in range(m)]\n\n    def dfs(r, c, visited, prev):\n        if (r < 0 or r >= m or c < 0 or c >= n or visited[r][c] or heights[r][c] < prev):\n            return\n        visited[r][c] = True\n        for dr, dc in [(-1,0), (1,0), (0,-1), (0,1)]:\n            dfs(r+dr, c+dc, visited, heights[r][c])\n\n    for i in range(m):\n        dfs(i, 0, pacific, heights[i][0])\n        dfs(i, n-1, atlantic, heights[i][n-1])\n    for j in range(n):\n        dfs(0, j, pacific, heights[0][j])\n        dfs(m-1, j, atlantic, heights[m-1][j])\n\n    result = []\n    for i in range(m):\n        for j in range(n):\n            if pacific[i][j] and atlantic[i][j]:\n                result.append([i, j])\n    return result"
+        },
+        {
+            "id": "palindrome-partitioning",
+            "number": 131,
+            "title": "Palindrome Partitioning",
+            "inputs": {
+                "s": "aab"
+            },
+            "entrypoint": "partition",
+            "solution": "def partition(s):\n    res = []\n    def is_palindrome(sub):\n        return sub == sub[::-1]\n\n    def backtrack(start, path):\n        if start == len(s):\n            res.append(path[:])\n            return\n        for end in range(start + 1, len(s) + 1):\n            if is_palindrome(s[start:end]):\n                backtrack(end, path + [s[start:end]])\n\n    backtrack(0, [])\n    return res"
+        },
+        {
+            "id": "remove-nth-node-from-end-of-list",
+            "number": 19,
+            "title": "Remove Nth Node From End of List",
+            "inputs": {
+                "head": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "n": 2
+            },
+            "special_inputs": [
+                {
+                    "key": "head",
+                    "type": "linkedList",
+                    "output_key": "head"
+                }
+            ],
+            "entrypoint": "removeNthFromEnd",
+            "solution": "def removeNthFromEnd(head, n):\n    dummy = ListNode(0)\n    dummy.next = head\n    fast = slow = dummy\n    for _ in range(n):\n        fast = fast.next\n    while fast.next:\n        fast = fast.next\n        slow = slow.next\n    slow.next = slow.next.next\n    return dummy.next"
+        },
+        {
+            "id": "reorder-list",
+            "number": 143,
+            "title": "Reorder List",
+            "inputs": {
+                "head": [
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "head",
+                    "type": "linkedList",
+                    "output_key": "head"
+                }
+            ],
+            "entrypoint": "reorderList",
+            "solution": "def reorderList(head):\n    if not head:\n        return\n    slow, fast = head, head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n\n    prev, curr = None, slow.next\n    slow.next = None\n    while curr:\n        tmp = curr.next\n        curr.next = prev\n        prev = curr\n        curr = tmp\n\n    first, second = head, prev\n    while second:\n        tmp1, tmp2 = first.next, second.next\n        first.next = second\n        second.next = tmp1\n        first, second = tmp1, tmp2"
+        },
+        {
+            "id": "reverse-bits",
+            "number": 190,
+            "title": "Reverse Bits",
+            "inputs": {
+                "n": 43261596
+            },
+            "entrypoint": "reverseBits",
+            "solution": "def reverseBits(n):\n    res = 0\n    for _ in range(32):\n        res = (res << 1) | (n & 1)\n        n >>= 1\n    return res"
+        },
+        {
+            "id": "search-in-rotated-sorted-array",
+            "number": 33,
+            "title": "Search in Rotated Sorted Array",
+            "inputs": {
+                "nums": [
+                    4,
+                    5,
+                    6,
+                    7,
+                    0,
+                    1,
+                    2
+                ],
+                "target": 0
+            },
+            "entrypoint": "search",
+            "solution": "def search(nums, target):\n    left, right = 0, len(nums) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        if nums[left] <= nums[mid]:\n            if nums[left] <= target < nums[mid]:\n                right = mid - 1\n            else:\n                left = mid + 1\n        else:\n            if nums[mid] < target <= nums[right]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    return -1"
+        },
+        {
+            "id": "subsets",
+            "number": 78,
+            "title": "Subsets",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "subsets",
+            "solution": "def subsets(nums):\n    res = []\n    def backtrack(start, path):\n        res.append(path[:])\n        for i in range(start, len(nums)):\n            backtrack(i+1, path + [nums[i]])\n    backtrack(0, [])\n    return res"
+        },
+        {
+            "id": "subtree-of-another-tree",
+            "number": 572,
+            "title": "Subtree of Another Tree",
+            "inputs": {
+                "root": [
+                    3,
+                    4,
+                    5,
+                    1,
+                    2
+                ],
+                "subRoot": [
+                    4,
+                    1,
+                    2
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                },
+                {
+                    "key": "subRoot",
+                    "type": "tree",
+                    "output_key": "subRoot"
+                }
+            ],
+            "entrypoint": "isSubtree",
+            "solution": "def isSubtree(root, subRoot):\n    if not root:\n        return False\n    if isSameTree(root, subRoot):\n        return True\n    return isSubtree(root.left, subRoot) or isSubtree(root.right, subRoot)\n\ndef isSameTree(s, t):\n    if not s and not t:\n        return True\n    if not s or not t or s.val != t.val:\n        return False\n    return isSameTree(s.left, t.left) and isSameTree(s.right, t.right)"
+        },
+        {
+            "id": "sum-of-two-integers",
+            "number": 371,
+            "title": "Sum of Two Integers",
+            "inputs": {
+                "a": 1,
+                "b": 2
+            },
+            "entrypoint": "getSum",
+            "solution": "def getSum(a, b):\n    MAX = 0x7FFFFFFF\n    mask = 0xFFFFFFFF\n    while b:\n        a, b = (a ^ b) & mask, ((a & b) << 1) & mask\n    return a if a <= MAX else ~(a ^ mask)"
+        },
+        {
+            "id": "top-k-frequent-elements",
+            "number": 347,
+            "title": "Top K Frequent Elements",
+            "inputs": {
+                "nums": [
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3
+                ],
+                "k": 2
+            },
+            "entrypoint": "topKFrequent",
+            "solution": "import heapq\nfrom collections import Counter\n\ndef topKFrequent(nums, k):\n    count = Counter(nums)\n    return [item for item, _ in count.most_common(k)]"
+        },
+        {
+            "id": "unique-paths",
+            "number": 62,
+            "title": "Unique Paths",
+            "inputs": {
+                "m": 3,
+                "n": 7
+            },
+            "entrypoint": "uniquePaths",
+            "solution": "def uniquePaths(m, n):\n    dp = [[1]*n for _ in range(m)]\n    for i in range(1, m):\n        for j in range(1, n):\n            dp[i][j] = dp[i-1][j] + dp[i][j-1]\n    return dp[-1][-1]"
+        },
+        {
+            "id": "validate-binary-search-tree",
+            "number": 98,
+            "title": "Validate Binary Search Tree",
+            "inputs": {
+                "root": [
+                    2,
+                    1,
+                    3
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "isValidBST",
+            "solution": "def isValidBST(root):\n    def validate(node, low, high):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        return validate(node.left, low, node.val) and validate(node.right, node.val, high)\n    return validate(root, float('-inf'), float('inf'))"
+        },
+        {
+            "id": "word-break",
+            "number": 139,
+            "title": "Word Break",
+            "inputs": {
+                "s": "leetcode",
+                "wordDict": [
+                    "leet",
+                    "code"
+                ]
+            },
+            "entrypoint": "wordBreak",
+            "solution": "def wordBreak(s, wordDict):\n    dp = [False] * (len(s) + 1)\n    dp[0] = True\n    word_set = set(wordDict)\n    for i in range(1, len(s)+1):\n        for j in range(i):\n            if dp[j] and s[j:i] in word_set:\n                dp[i] = True\n                break\n    return dp[-1]"
+        },
+        {
+            "id": "word-search",
+            "number": 79,
+            "title": "Word Search",
+            "inputs": {
+                "board": [
+                    [
+                        "A",
+                        "B",
+                        "C",
+                        "E"
+                    ],
+                    [
+                        "S",
+                        "F",
+                        "C",
+                        "S"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "E",
+                        "E"
+                    ]
+                ],
+                "word": "ABCCED"
+            },
+            "entrypoint": "exist",
+            "solution": "def exist(board, word):\n    rows, cols = len(board), len(board[0])\n    def backtrack(r, c, i):\n        if i == len(word): return True\n        if r < 0 or c < 0 or r >= rows or c >= cols or board[r][c] != word[i]: return False\n        tmp, board[r][c] = board[r][c], '#'\n        for dr, dc in [(0,1), (1,0), (0,-1), (-1,0)]:\n            if backtrack(r+dr, c+dc, i+1): return True\n        board[r][c] = tmp\n        return False\n    for r in range(rows):\n        for c in range(cols):\n            if backtrack(r, c, 0): return True\n    return False"
+        },
+        {
+            "id": "word-search-ii",
+            "number": 212,
+            "title": "Word Search II",
+            "inputs": {
+                "board": [
+                    [
+                        "o",
+                        "a",
+                        "a",
+                        "n"
+                    ],
+                    [
+                        "e",
+                        "t",
+                        "a",
+                        "e"
+                    ],
+                    [
+                        "i",
+                        "h",
+                        "k",
+                        "r"
+                    ],
+                    [
+                        "i",
+                        "f",
+                        "l",
+                        "v"
+                    ]
+                ],
+                "words": [
+                    "oath",
+                    "pea",
+                    "eat",
+                    "rain"
+                ]
+            },
+            "entrypoint": "findWords",
+            "solution": "def findWords(board, words):\n    from collections import defaultdict\n    trie = lambda: defaultdict(trie)\n    root = trie()\n    for word in words:\n        node = root\n        for ch in word:\n            node = node[ch]\n        node['$'] = word\n\n    rows, cols = len(board), len(board[0])\n    res = []\n\n    def backtrack(r, c, parent):\n        letter = board[r][c]\n        curr = parent[letter]\n        if '$' in curr:\n            res.append(curr['$'])\n            del curr['$']\n\n        board[r][c] = '#'\n        for dr, dc in [(0,1), (1,0), (0,-1), (-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0 <= nr < rows and 0 <= nc < cols and board[nr][nc] in curr:\n                backtrack(nr, nc, curr)\n        board[r][c] = letter\n        if not curr:\n            parent.pop(letter)\n\n    for r in range(rows):\n        for c in range(cols):\n            if board[r][c] in root:\n                backtrack(r, c, root)\n\n    return res"
         }
     ]
 }

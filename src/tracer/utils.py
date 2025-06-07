@@ -158,3 +158,133 @@ def calculate_delta(prev, curr):
         # Changed primitive value
         delta = curr
     return delta 
+
+class TreeNode:
+    """Definition for a binary tree node."""
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+    
+    def __repr__(self):
+        return f"TreeNode({self.val})"
+
+
+class Node:
+    """Definition for a Node (graph node)."""
+    def __init__(self, val=0, neighbors=None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+    
+    def __repr__(self):
+        neighbor_vals = [n.val for n in self.neighbors] if self.neighbors else []
+        return f"Node({self.val}, neighbors={neighbor_vals})"
+
+
+class ListNode:
+    """Definition for singly-linked list."""
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+    
+    def __repr__(self):
+        return f"ListNode({self.val})"
+
+
+def list_to_binary_tree(arr):
+    """Convert a list in level-order format to a binary tree.
+    
+    Args:
+        arr: List representation of binary tree in level-order traversal.
+             None or null values represent missing nodes.
+    
+    Returns:
+        TreeNode: Root of the constructed binary tree, or None if empty.
+    """
+    if not arr or arr[0] is None:
+        return None
+    
+    # Create root node
+    root = TreeNode(arr[0])
+    queue = [root]
+    i = 1
+    
+    while queue and i < len(arr):
+        node = queue.pop(0)
+        
+        # Add left child
+        if i < len(arr) and arr[i] is not None:
+            node.left = TreeNode(arr[i])
+            queue.append(node.left)
+        i += 1
+        
+        # Add right child
+        if i < len(arr) and arr[i] is not None:
+            node.right = TreeNode(arr[i])
+            queue.append(node.right)
+        i += 1
+    
+    return root
+
+
+def adjlist_to_graph(adjList):
+    """Convert an adjacency list to a graph of Node objects.
+    
+    Args:
+        adjList: List of lists representing adjacency relationships.
+                Each index i contains a list of neighbors for node i+1.
+                Example: [[2,4],[1,3],[2,4],[1,3]] means:
+                - Node 1 neighbors: [2, 4]
+                - Node 2 neighbors: [1, 3]
+                - Node 3 neighbors: [2, 4]
+                - Node 4 neighbors: [1, 3]
+    
+    Returns:
+        Node: The first node of the constructed graph, or None if empty.
+    """
+    if not adjList:
+        return None
+    
+    # Create all nodes first (1-indexed)
+    nodes = {}
+    for i in range(len(adjList)):
+        node_val = i + 1  # Nodes are 1-indexed
+        nodes[node_val] = Node(node_val)
+    
+    # Set up neighbor relationships
+    for i, neighbors in enumerate(adjList):
+        node_val = i + 1
+        current_node = nodes[node_val]
+        
+        # Add neighbor references
+        for neighbor_val in neighbors:
+            if neighbor_val in nodes:
+                current_node.neighbors.append(nodes[neighbor_val])
+    
+    # Return the first node (node 1)
+    return nodes.get(1, None)
+
+
+def list_to_linked_list(arr):
+    """Convert a list to a linked list.
+    
+    Args:
+        arr: List of values to convert to linked list nodes.
+             Example: [1, 2, 3, 4] becomes ListNode(1) -> ListNode(2) -> ListNode(3) -> ListNode(4)
+    
+    Returns:
+        ListNode: Head of the constructed linked list, or None if empty.
+    """
+    if not arr:
+        return None
+    
+    # Create head node
+    head = ListNode(arr[0])
+    current = head
+    
+    # Create remaining nodes
+    for i in range(1, len(arr)):
+        current.next = ListNode(arr[i])
+        current = current.next
+    
+    return head

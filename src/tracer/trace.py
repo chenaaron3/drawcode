@@ -32,6 +32,7 @@ if __name__ == '__main__':
         transformed_ast = tracer.run_code(
             problem['solution'], 
             problem['entrypoint'], 
+            problem.get('special_inputs', None),
             problem_key,
             **problem['inputs']
         )
