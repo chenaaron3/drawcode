@@ -18,7 +18,7 @@ interface UsePyodideResult {
     entrypoint: string,
     inputs: Record<string, any>,
     originalInputs: Record<string, any>,
-    specialInputs: SpecialInput[] | null
+    specialInputs?: SpecialInput[]
   ) => Promise<any>;
   resetPyodide: () => Promise<void>;
 }
@@ -190,7 +190,7 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
       entrypoint: string,
       inputs: Record<string, any>,
       originalInputs: Record<string, any>,
-      specialInputs: SpecialInput[] | null
+      specialInputs?: SpecialInput[]
     ) => {
       try {
         // Option 3: Complete reset for maximum cleanliness

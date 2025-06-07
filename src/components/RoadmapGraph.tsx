@@ -1,8 +1,7 @@
 import 'reactflow/dist/style.css';
 
 import dagre from 'dagre';
-import { AnimatePresence } from 'framer-motion';
-import { CheckCircle, Search, X } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactFlow, {
     addEdge, Background, Controls, Handle, MarkerType, Panel, Position, ReactFlowProvider,

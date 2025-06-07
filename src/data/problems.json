@@ -44,7 +44,7 @@
             "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef addTwoNumbers(l1, l2):\n    def list_to_linked(arr):\n        if not arr: return None\n        head = ListNode(arr[0])\n        curr = head\n        for val in arr[1:]:\n            curr.next = ListNode(val)\n            curr = curr.next\n        return head\n    \n    l1 = list_to_linked(l1)\n    l2 = list_to_linked(l2)\n    \n    dummy = ListNode(0)\n    curr = dummy\n    carry = 0\n    \n    while l1 or l2 or carry:\n        val1 = l1.val if l1 else 0\n        val2 = l2.val if l2 else 0\n        total = val1 + val2 + carry\n        \n        carry = total // 10\n        curr.next = ListNode(total % 10)\n        curr = curr.next\n        \n        if l1: l1 = l1.next\n        if l2: l2 = l2.next\n    \n    result = []\n    curr = dummy.next\n    while curr:\n        result.append(curr.val)\n        curr = curr.next\n    return result\n"
         },
         {
-            "id": "longest-substring-without-repeating",
+            "id": "longest-substring-without-repeating-characters",
             "number": 3,
             "title": "Longest Substring Without Repeating Characters",
             "inputs": {
@@ -54,7 +54,7 @@
             "solution": "def lengthOfLongestSubstring(s):\n    char_set = set()\n    left = 0\n    max_len = 0\n    \n    for right in range(len(s)):\n        while s[right] in char_set:\n            char_set.remove(s[left])\n            left += 1\n        char_set.add(s[right])\n        max_len = max(max_len, right - left + 1)\n    \n    return max_len\n"
         },
         {
-            "id": "median-two-sorted-arrays",
+            "id": "median-of-two-sorted-arrays",
             "number": 4,
             "title": "Median of Two Sorted Arrays",
             "inputs": {
@@ -333,7 +333,7 @@
             "solution": "def maxDepth(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return 0\n    \n    return 1 + max(maxDepth(root.left), maxDepth(root.right))\n"
         },
         {
-            "id": "best-time-buy-sell-stock",
+            "id": "best-time-to-buy-and-sell-stock",
             "number": 121,
             "title": "Best Time to Buy and Sell Stock",
             "inputs": {
@@ -1074,7 +1074,7 @@
             "solution": "def trap(height):\n    if not height:\n        return 0\n    \n    left, right = 0, len(height) - 1\n    left_max, right_max = 0, 0\n    water = 0\n    \n    while left < right:\n        if height[left] < height[right]:\n            if height[left] >= left_max:\n                left_max = height[left]\n            else:\n                water += left_max - height[left]\n            left += 1\n        else:\n            if height[right] >= right_max:\n                right_max = height[right]\n            else:\n                water += right_max - height[right]\n            right -= 1\n    \n    return water\n"
         },
         {
-            "id": "two-sum-ii-input-array-sorted",
+            "id": "two-sum-ii-input-array-is-sorted",
             "number": 167,
             "title": "Two Sum II - Input Array Is Sorted",
             "inputs": {

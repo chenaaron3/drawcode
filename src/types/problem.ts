@@ -37,5 +37,6 @@ export interface Problem {
   entrypoint: string;
   solution: string;
   details: ProblemDescription | null;
-  special_inputs: SpecialInput[] | null;
+  // Make optional for now
+  special_inputs?: SpecialInput[];
 }
