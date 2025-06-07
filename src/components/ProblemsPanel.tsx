@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
-import { CheckCircle, X } from 'lucide-react';
-import React from 'react';
+import { CheckCircle, Search, X } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
 
 import { useProgress } from '../hooks/useProgress';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Input } from './ui/input';
 
 interface Problem {
     id: string;
@@ -26,25 +27,83 @@ interface Pattern {
 interface ProblemsPanelProps {
     selectedPattern: Pattern | null;
     problems: Problem[];
-    onClose: () => void;
+    onClearFilter: () => void;
     onProblemClick: (problemId: string) => void;
     onProblemToggleCompletion: (problemId: string) => void;
 }
 
+// Simple fuzzy search implementation
+const fuzzySearch = (query: string, text: string): boolean => {
+    if (!query) return true;
+
+    const queryLower = query.toLowerCase();
+    const textLower = text.toLowerCase();
+
+    // Direct substring match gets highest priority
+    if (textLower.includes(queryLower)) return true;
+
+    // Fuzzy match - characters in order but not necessarily consecutive
+    let queryIndex = 0;
+    for (let i = 0; i < textLower.length && queryIndex < queryLower.length; i++) {
+        if (textLower[i] === queryLower[queryIndex]) {
+            queryIndex++;
+        }
+    }
+    return queryIndex === queryLower.length;
+};
+
 const ProblemsPanel: React.FC<ProblemsPanelProps> = ({
     selectedPattern,
     problems,
-    onClose,
+    onClearFilter,
     onProblemClick,
     onProblemToggleCompletion,
 }) => {
+    const [searchQuery, setSearchQuery] = useState('');
     const { isProblemCompleted } = useProgress();
 
-    if (!selectedPattern) return null;
+    // Get the base problem set (all problems or pattern-filtered problems)
+    const baseProblems = useMemo(() => {
+        if (selectedPattern) {
+            // Filter to pattern problems
+            return selectedPattern.problemIds
+                .map(id => problems.find(p => p.id === id))
+                .filter(Boolean) as Problem[];
+        } else {
+            // Show all problems
+            return problems;
+        }
+    }, [selectedPattern, problems]);
 
-    const patternProblems = selectedPattern.problemIds
-        .map(id => problems.find(p => p.id === id))
-        .filter(Boolean) as Problem[];
+    // Clear search when a pattern is selected
+    React.useEffect(() => {
+        if (selectedPattern) {
+            setSearchQuery('');
+        }
+    }, [selectedPattern]);
+
+    // Apply search filter and sort
+    const filteredProblems = useMemo(() => {
+        let filtered = baseProblems;
+
+        // Apply search filter (only when no pattern is selected)
+        if (!selectedPattern && searchQuery.trim()) {
+            filtered = baseProblems.filter(problem => {
+                const searchIn = `${problem.title} ${problem.number || ''}`.trim();
+                return fuzzySearch(searchQuery, searchIn);
+            });
+        }
+
+        // Sort by number
+        return filtered
+            .sort((a, b) => {
+                // Sort by number, putting problems without numbers at the end
+                if (a.number == null && b.number == null) return 0;
+                if (a.number == null) return 1;
+                if (b.number == null) return -1;
+                return a.number - b.number;
+            })
+    }, [baseProblems, searchQuery, selectedPattern]);
 
     return (
         <motion.div
@@ -53,32 +112,64 @@ const ProblemsPanel: React.FC<ProblemsPanelProps> = ({
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
         >
-            <Card className="w-80 shadow-lg max-h-96 flex flex-col">
+            <Card className="w-80 shadow-lg flex flex-col" style={{ maxHeight: 'calc(100vh - 120px)' }}>
                 <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <CardTitle className="text-sm">{selectedPattern.name}</CardTitle>
-                            <span className={`px-2 py-1 rounded text-xs font-medium ${selectedPattern.difficulty === 'beginner' ? 'bg-green-100 text-green-800' :
-                                selectedPattern.difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-800' :
-                                    'bg-red-100 text-red-800'
-                                }`}>
-                                {selectedPattern.difficulty.charAt(0).toUpperCase() + selectedPattern.difficulty.slice(1)}
-                            </span>
+                            <CardTitle className="text-sm">
+                                {selectedPattern ? selectedPattern.name : 'All Problems'}
+                            </CardTitle>
+                            {selectedPattern && (
+                                <span className={`px-2 py-1 rounded text-xs font-medium ${selectedPattern.difficulty === 'beginner' ? 'bg-green-100 text-green-800' :
+                                    selectedPattern.difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-800' :
+                                        'bg-red-100 text-red-800'
+                                    }`}>
+                                    {selectedPattern.difficulty.charAt(0).toUpperCase() + selectedPattern.difficulty.slice(1)}
+                                </span>
+                            )}
                         </div>
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={onClose}
-                            className="h-6 w-6 p-0"
-                        >
-                            <X className="h-4 w-4" />
-                        </Button>
+                        {selectedPattern && (
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={onClearFilter}
+                                className="h-6 w-6 p-0"
+                                title="Clear filter"
+                            >
+                                <X className="h-4 w-4" />
+                            </Button>
+                        )}
                     </div>
-                    <p className="text-xs text-muted-foreground">{selectedPattern.description}</p>
+                    {selectedPattern && (
+                        <p className="text-xs text-muted-foreground">{selectedPattern.description}</p>
+                    )}
+
+                    {/* Search Input - Only show when viewing all problems */}
+                    {!selectedPattern && (
+                        <div className="relative mt-2">
+                            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Input
+                                placeholder="Search all problems..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="pl-8 text-sm"
+                            />
+                        </div>
+                    )}
+
+                    {/* Results Count */}
+                    <div className="flex justify-between items-center mt-2 text-xs text-muted-foreground">
+                        <span>
+                            {selectedPattern ?
+                                `${baseProblems.length} problems` :
+                                `${filteredProblems.length} of ${baseProblems.length} problems`
+                            }
+                        </span>
+                    </div>
                 </CardHeader>
                 <CardContent className="pt-0 flex-1 overflow-y-auto">
                     <div className="space-y-2">
-                        {patternProblems.map((problem) => {
+                        {filteredProblems.map((problem) => {
                             const isCompleted = isProblemCompleted(problem.id);
                             const difficultyColor =
                                 problem.difficulty === 'Easy' ? 'text-green-600' :
@@ -122,6 +213,13 @@ const ProblemsPanel: React.FC<ProblemsPanelProps> = ({
                                 </div>
                             );
                         })}
+                        {filteredProblems.length === 0 && searchQuery && (
+                            <div className="text-center py-8 text-muted-foreground">
+                                <Search className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                                <p className="text-sm">No problems found</p>
+                                <p className="text-xs">Try a different search term</p>
+                            </div>
+                        )}
                     </div>
                 </CardContent>
             </Card>

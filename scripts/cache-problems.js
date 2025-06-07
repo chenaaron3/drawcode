@@ -7,11 +7,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Import problem IDs from JSON file
-const problemIdsPath = path.resolve(__dirname, '../src/data/problem-ids.json');
-const problemIds = JSON.parse(fs.readFileSync(problemIdsPath, 'utf8'));
+const patternsPath = path.resolve(__dirname, '../src/data/patterns.json');
+const patternsData = JSON.parse(fs.readFileSync(patternsPath, 'utf8'));
+const problems = Array.from(
+  new Set(
+    patternsData.patterns.reduce((acc, pattern) => {
+      if (Array.isArray(pattern.problemIds)) {
+        acc.push(...pattern.problemIds);
+      }
+      return acc;
+    }, [])
+  )
+);
 
 // Get problem IDs from the JSON data (exclude sandbox)
-const PROBLEM_IDS = problemIds.filter(id => id !== 'sandbox');
+const PROBLEM_IDS = problems.filter(problem => problem.id !== 'sandbox');
 
 const API_BASE_URL = 'https://alfa-leetcode-api.onrender.com/select?titleSlug=';
 const CACHE_FILE = path.join(__dirname, '../src/data/problem-descriptions.json');

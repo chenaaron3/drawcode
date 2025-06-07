@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { toast } from "sonner";
+import { useState } from 'react';
+import { toast } from 'sonner';
 
-import { useTraceStore } from "@/store/traceStore";
+import { useTraceStore } from '@/store/traceStore';
 
-import { usePyodide } from "./usePyodide";
+import { usePyodide } from './usePyodide';
 
 export function useTraceGeneration() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -45,7 +45,8 @@ export function useTraceGeneration() {
         codeToExecute,
         problemData.entrypoint,
         currentInputs,
-        problemData.inputs // Pass original inputs for type inference
+        problemData.inputs, // Pass original inputs for type inference
+        problemData.special_inputs // Pass the full problem data including special_inputs
       );
 
       if (newTraceData.error) {

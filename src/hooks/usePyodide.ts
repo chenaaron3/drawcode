@@ -1,13 +1,14 @@
-import { loadPyodide } from "pyodide";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { loadPyodide } from 'pyodide';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import astTransformerCode from "../tracer/ast_transformer.py?raw";
-import pythonTracerCode from "../tracer/python_tracer.py?raw";
-import relationshipAnalyzerCode from "../tracer/relationship_analyzer.py?raw";
+import astTransformerCode from '../tracer/ast_transformer.py?raw';
+import pythonTracerCode from '../tracer/python_tracer.py?raw';
+import relationshipAnalyzerCode from '../tracer/relationship_analyzer.py?raw';
 // Import Python tracer files as raw text
-import utilsCode from "../tracer/utils.py?raw";
+import utilsCode from '../tracer/utils.py?raw';
 
 import type { PyodideInterface } from "pyodide";
+import type { SpecialInput } from "@/types/problem";
 
 interface UsePyodideResult {
   pyodide: PyodideInterface | null;
@@ -16,7 +17,8 @@ interface UsePyodideResult {
     problemCode: string,
     entrypoint: string,
     inputs: Record<string, any>,
-    originalInputs: Record<string, any>
+    originalInputs: Record<string, any>,
+    specialInputs: SpecialInput[] | null
   ) => Promise<any>;
   resetPyodide: () => Promise<void>;
 }
@@ -187,7 +189,8 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
       problemCode: string,
       entrypoint: string,
       inputs: Record<string, any>,
-      originalInputs: Record<string, any>
+      originalInputs: Record<string, any>,
+      specialInputs: SpecialInput[] | null
     ) => {
       try {
         // Option 3: Complete reset for maximum cleanliness
@@ -267,10 +270,14 @@ try:
     print(f"Function: {function_name}")
     print(f"Input kwargs: {input_kwargs}")
 
+    # Get special_inputs from problem if available
+    special_inputs = ${specialInputs ? JSON.stringify(specialInputs) : "None"}
+    
     # Run the tracer with explicit kwargs
     transformed_ast = tracer.run_code(
         problem_code, 
         function_name,
+        special_inputs,
         hash(problem_code), # hash of the source code
         **input_kwargs
     )

@@ -2,7 +2,7 @@ import 'reactflow/dist/style.css';
 
 import dagre from 'dagre';
 import { AnimatePresence } from 'framer-motion';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Search, X } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactFlow, {
     addEdge, Background, Controls, Handle, MarkerType, Panel, Position, ReactFlowProvider,
@@ -12,7 +12,6 @@ import ReactFlow, {
 import { useProgress } from '../hooks/useProgress';
 import { useTraceStore } from '../store/traceStore';
 import ProblemsPanel from './ProblemsPanel';
-import ProgressPanel from './ProgressPanel';
 
 import type { Connection, Edge, Node, NodeTypes } from 'reactflow';
 
@@ -247,27 +246,16 @@ const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [
                     showInteractive={false}
                 />
 
-                {/* Progress Panel */}
+                {/* Unified Problems Panel - Always visible */}
                 <Panel position="top-right" className="m-4">
-                    <ProgressPanel allProblems={problems} />
+                    <ProblemsPanel
+                        selectedPattern={selectedPattern}
+                        problems={problems}
+                        onClearFilter={() => setSelectedPattern(null)}
+                        onProblemClick={handleProblemClick}
+                        onProblemToggleCompletion={handleProblemToggleCompletion}
+                    />
                 </Panel>
-
-
-
-                {/* Problems Panel */}
-                <AnimatePresence mode="wait">
-                    {selectedPattern && (
-                        <Panel position="top-right" className="m-4 mt-32" key="problems-panel">
-                            <ProblemsPanel
-                                selectedPattern={selectedPattern}
-                                problems={problems}
-                                onClose={() => setSelectedPattern(null)}
-                                onProblemClick={handleProblemClick}
-                                onProblemToggleCompletion={handleProblemToggleCompletion}
-                            />
-                        </Panel>
-                    )}
-                </AnimatePresence>
             </ReactFlow>
         </div>
     );

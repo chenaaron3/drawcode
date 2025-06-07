@@ -23,6 +23,12 @@ export interface ProblemDescription {
   similarQuestions: string;
 }
 
+export interface SpecialInput {
+  key: string;
+  type: string;
+  output_key: string;
+}
+
 export interface Problem {
   id: string;
   number: number;
@@ -31,4 +37,5 @@ export interface Problem {
   entrypoint: string;
   solution: string;
   details: ProblemDescription | null;
+  special_inputs: SpecialInput[] | null;
 }
