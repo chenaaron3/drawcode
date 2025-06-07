@@ -11,7 +11,7 @@ import PythonTutorVariablePanel from './PythonTutorVariablePanel';
 export default function DraggableVariablePanel() {
     const { toggleOverlayMode } = useTraceStore();
     const [isMinimized, setIsMinimized] = useState(false);
-    const [size, setSize] = useState({ width: 448, height: 384 }); // 28rem x 24rem
+    const [size, setSize] = useState({ width: 650, height: 420 }); // 28rem x 24rem
     const [isResizing, setIsResizing] = useState(false);
     const [resizeTrigger, setResizeTrigger] = useState(0);
     const panelRef = useRef<HTMLDivElement>(null);

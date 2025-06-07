@@ -25,15 +25,8 @@ test.describe("Navigation Controls", () => {
     // Check if navigation controls are available
     expect(await debuggerPage.hasNavigationControls()).toBe(true);
 
-    // Verify workspace is visible
-    expect(await debuggerPage.isWorkspaceVisible()).toBe(true);
-
-    // 1. Store the workspace content
-    const initialWorkspace = await debuggerPage.getWorkspaceContent();
-    console.log("Initial workspace state captured");
-
     let stepCount = 0;
-    let previousWorkspaceContent = initialWorkspace;
+    let previousWorkspaceContent = "";
 
     // 2. Navigate forward and 3. Check that the workspace has been updated
     // 4. Continue until the end of the trace

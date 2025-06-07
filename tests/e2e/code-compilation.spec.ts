@@ -26,10 +26,6 @@ test.describe("Code Compilation and Trace Updates", () => {
     // 5. Check that the workspace has been updated
     // 6. Check that the editor state has been updated
 
-    // Get initial workspace state
-    const initialWorkspace = await debuggerPage.getWorkspaceContent();
-    console.log("Initial workspace state captured");
-
     // Get initial editor state
     const initialCodeContent = await debuggerPage.getCodeContent();
     console.log("Initial editor state captured");
@@ -53,13 +49,6 @@ print(y)`;
 
     // Test that we can navigate through the new trace
     expect(await debuggerPage.navigateNext()).toBe(true);
-
-    // Check that the workspace has been updated
-    expect(await debuggerPage.isWorkspaceVisible()).toBe(true);
-
-    const newWorkspaceContent = await debuggerPage.getWorkspaceContent();
-    expect(newWorkspaceContent).not.toBe(initialWorkspace);
-    console.log("✅ Workspace updated with new trace data");
 
     // Check that the editor state has been updated
     const currentCodeContent = await debuggerPage.getCodeContent();

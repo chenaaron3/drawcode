@@ -16,7 +16,7 @@ export default function ComputationWorkspaceOverlay() {
     const currentLine = useTraceStore(selectCurrentLine);
     const isOverlayMode = useTraceStore(state => state.isOverlayMode);
     const [position, setPosition] = useState<OverlayPosition | null>(null);
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const observerRef = useRef<MutationObserver | null>(null);
 
     // Function to calculate overlay position
