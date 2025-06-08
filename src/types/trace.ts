@@ -18,6 +18,13 @@ export type Relationship = {
   node_id: number; // ID of the AST node that introduced this relationship
 };
 
+export type ManualRelationship = {
+  container: string; // Name of the container variable
+  cursor: string; // Name of the cursor/key variable
+  type: RelationshipType;
+  description?: string; // Optional explanation of the relationship
+};
+
 // Augmented trace step joins the node_id with the lookup AST
 export type AugmentedTraceStep = TraceStep & {
   ast: AST;

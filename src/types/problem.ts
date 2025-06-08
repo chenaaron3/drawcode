@@ -39,4 +39,10 @@ export interface Problem {
   details: ProblemDescription | null;
   // Make optional for now
   special_inputs?: SpecialInput[];
+  manualRelationships?: Array<{
+    container: string;
+    cursor: string;
+    type: string;
+    description?: string;
+  }>;
 }

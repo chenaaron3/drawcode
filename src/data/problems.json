@@ -176,6 +176,44 @@
             "solution": "def searchInsert(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return left\n"
         },
         {
+            "id": "binary-search",
+            "number": 704,
+            "title": "Binary Search",
+            "inputs": {
+                "nums": [
+                    -1,
+                    0,
+                    3,
+                    5,
+                    9,
+                    12
+                ],
+                "target": 9
+            },
+            "entrypoint": "search",
+            "solution": "def search(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return -1\n",
+            "manualRelationships": [
+                {
+                    "container": "nums",
+                    "cursor": "left",
+                    "type": "key_index",
+                    "description": "Left pointer used as index for binary search bounds"
+                },
+                {
+                    "container": "nums",
+                    "cursor": "right",
+                    "type": "key_index",
+                    "description": "Right pointer used as index for binary search bounds"
+                },
+                {
+                    "container": "nums",
+                    "cursor": "mid",
+                    "type": "key_index",
+                    "description": "Middle index calculated from left and right pointers"
+                }
+            ]
+        },
+        {
             "id": "maximum-subarray",
             "number": 53,
             "title": "Maximum Subarray",
@@ -1087,7 +1125,21 @@
                 "target": 9
             },
             "entrypoint": "twoSum",
-            "solution": "def twoSum(numbers, target):\n    left, right = 0, len(numbers) - 1\n    \n    while left < right:\n        current_sum = numbers[left] + numbers[right]\n        \n        if current_sum == target:\n            return [left + 1, right + 1]  # 1-indexed\n        elif current_sum < target:\n            left += 1\n        else:\n            right -= 1\n    \n    return []  # No solution found\n"
+            "solution": "def twoSum(numbers, target):\n    left, right = 0, len(numbers) - 1\n    \n    while left < right:\n        current_sum = numbers[left] + numbers[right]\n        \n        if current_sum == target:\n            return [left + 1, right + 1]  # 1-indexed\n        elif current_sum < target:\n            left += 1\n        else:\n            right -= 1\n    \n    return []  # No solution found\n",
+            "manualRelationships": [
+                {
+                    "container": "numbers",
+                    "cursor": "left",
+                    "type": "key_index",
+                    "description": "Left pointer for two-pointer technique"
+                },
+                {
+                    "container": "numbers",
+                    "cursor": "right",
+                    "type": "key_index",
+                    "description": "Right pointer for two-pointer technique"
+                }
+            ]
         },
         {
             "id": "minimum-window-substring",

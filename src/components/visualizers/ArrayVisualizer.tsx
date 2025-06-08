@@ -230,7 +230,7 @@ export const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({
     const getArrowInfo = (): ArrowInfo[] => {
         const arrayRelationships = relationships.filter(rel =>
             rel.container === variableName &&
-            (rel.type === 'key_index' || rel.type === 'value_index')
+            (rel.type === 'key_index' || rel.type === 'key_access' || rel.type === 'value_index')
         );
 
         const arrows: ArrowInfo[] = [];
@@ -238,7 +238,7 @@ export const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({
         arrayRelationships.forEach(rel => {
             const cursorValue = currentLocals[rel.cursor];
 
-            if (rel.type === 'key_index') {
+            if (rel.type === 'key_index' || rel.type === 'key_access') {
                 if (typeof cursorValue === 'number' && cursorValue >= 0 && cursorValue < values.length) {
                     arrows.push({
                         index: cursorValue,

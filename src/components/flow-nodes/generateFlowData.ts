@@ -48,7 +48,8 @@ function shouldHideCursorVariable(
       (rel.type === "key_index" ||
         rel.type === "value_index" ||
         rel.type === "dict_key" ||
-        rel.type === "dict_value")
+        rel.type === "dict_value" ||
+        rel.type === "key_access")
   );
 
   return isCursorInRelationship; // Hide if it's used as a cursor in relationships
