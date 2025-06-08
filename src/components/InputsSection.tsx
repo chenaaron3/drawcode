@@ -12,8 +12,11 @@ interface InputsSectionProps {
 }
 
 export function InputsSection({ inputs, onInputChange, validationError }: InputsSectionProps) {
+    if (Object.keys(inputs).length === 0) {
+        return null;
+    }
     return (
-        <div className="mb-4 p-3 bg-muted/30 rounded-md" data-testid="inputs-section">
+        <div className="p-3 bg-muted/30 rounded-md" data-testid="inputs-section">
             <div className="flex flex-wrap gap-3">
                 {Object.entries(inputs).map(([key, value]) => {
                     const isInvalid = validationError?.type === 'validation' && validationError?.invalidField === key;

@@ -38,10 +38,6 @@ const LessonMode: React.FC = () => {
                 {selectedLesson ? (
                     <LessonPage
                         lesson={selectedLesson}
-                        onComplete={() => {
-                            // Simple completion handling - could be enhanced later
-                            console.log(`Lesson ${selectedLesson.id} completed!`);
-                        }}
                     />
                 ) : (
                     <div className="flex items-center justify-center h-full">

@@ -14,7 +14,7 @@ export interface Lesson {
   id: string;
   title: string;
   description: string;
-  code: string; // The lesson code to execute
+  solution: string; // The lesson code to execute
   entrypoint: string;
   inputs: Record<string, any>;
   tags: string[];
