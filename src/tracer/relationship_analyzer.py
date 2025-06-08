@@ -268,6 +268,9 @@ class RelationshipAnalyzer:
                     self._analyze_zip_in_for(container_node, target_node, node)
                 elif func_name == 'reversed':
                     self._analyze_reversed_in_for(container_node, target_node, node)
+            elif isinstance(container_node.func, ast.Attribute):
+                # Handle method calls like dict.items(), dict.keys(), dict.values()
+                self._analyze_dict_method_in_for(container_node, target_node, node)
                     
     def _analyze_enumerate_in_for(self, enumerate_call, target_node, for_node):
         """Analyze enumerate() calls in for loops"""
@@ -321,6 +324,38 @@ class RelationshipAnalyzer:
                 if isinstance(target_node, ast.Name):
                     cursor_name = target_node.id
                     self._add_relationship(container_name, cursor_name, 'value_index', for_node)
+
+    def _analyze_dict_method_in_for(self, method_call, target_node, for_node):
+        """Analyze dictionary method calls in for loops like dict.items(), dict.keys(), dict.values()"""
+        if not isinstance(method_call.func.value, ast.Name):
+            return
+            
+        container_name = method_call.func.value.id
+        method_name = method_call.func.attr
+        
+        # Only proceed if it's actually a container (likely a dict)
+        if not self._is_container_variable(container_name):
+            return
+            
+        if method_name == 'items':
+            # for key, value in dict.items()
+            if isinstance(target_node, ast.Tuple) and len(target_node.elts) == 2:
+                if isinstance(target_node.elts[0], ast.Name) and isinstance(target_node.elts[1], ast.Name):
+                    key_name = target_node.elts[0].id
+                    value_name = target_node.elts[1].id
+                    
+                    self._add_relationship(container_name, key_name, 'dict_key', for_node)
+                    self._add_relationship(container_name, value_name, 'dict_value', for_node)
+        elif method_name == 'keys':
+            # for key in dict.keys()
+            if isinstance(target_node, ast.Name):
+                key_name = target_node.id
+                self._add_relationship(container_name, key_name, 'dict_key', for_node)
+        elif method_name == 'values':
+            # for value in dict.values()
+            if isinstance(target_node, ast.Name):
+                value_name = target_node.id
+                self._add_relationship(container_name, value_name, 'dict_value', for_node)
                     
     def _analyze_membership_test(self, node):
         """Analyze membership tests like 'key in container'"""

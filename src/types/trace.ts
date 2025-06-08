@@ -7,7 +7,9 @@ export type RelationshipType =
   | "key_assignment" // Variable used as key when assigning to container
   | "membership_test" // Variable tested for membership in container
   | "key_index" // Variable represents index in for loop iteration
-  | "value_index"; // Variable represents value in for loop iteration
+  | "value_index" // Variable represents value in for loop iteration
+  | "dict_key" // Variable represents key in dictionary iteration (dict.keys(), dict.items())
+  | "dict_value"; // Variable represents value in dictionary iteration (dict.values(), dict.items())
 
 export type Relationship = {
   container: string; // Name of the container variable
