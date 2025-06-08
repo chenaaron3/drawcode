@@ -16,13 +16,19 @@ export function useCodeInitialization() {
   const [hasInitialized, setHasInitialized] = useState(false);
   const currentProblem = getCurrentProblemId();
 
-  // When the page loads, check if there is code in the URL
+  // When the page loads, check if there is code or problemId in the URL
   useEffect(() => {
     if (hasInitialized) {
       return;
     }
+
     const urlParams = new URLSearchParams(window.location.search);
     const encodedCode = urlParams.get("code");
+    const problemId = urlParams.get("problemId");
+
+    console.log("URL search params:", window.location.search);
+    console.log("Detected problemId:", problemId);
+    console.log("Detected code:", encodedCode ? "present" : "none");
 
     if (encodedCode) {
       if (isPyodideLoading) {
@@ -55,14 +61,51 @@ export function useCodeInitialization() {
         setCurrentProblem("two-sum");
         setHasInitialized(true);
       }
+    } else if (problemId) {
+      // Handle problem ID from URL parameters
+      console.log(`Attempting to load problem from URL: ${problemId}`);
+      try {
+        // Validate that the problem exists by checking if we have trace data for it
+        const problemTraceData = getTraceData(problemId);
+        console.log(`Trace data found for ${problemId}:`, !!problemTraceData);
+        if (problemTraceData) {
+          setCurrentProblem(problemId);
+          console.log(`Successfully loaded problem from URL: ${problemId}`);
+          // Clear the URL parameter after loading with a small delay
+          setTimeout(() => {
+            const newUrl = window.location.pathname;
+            window.history.replaceState({}, "", newUrl);
+          }, 100);
+        } else {
+          console.warn(
+            `Problem ID "${problemId}" not found, falling back to default`
+          );
+          console.log(
+            "Available problem IDs:",
+            Object.keys(require("@/data/traces").TRACES)
+          );
+          setCurrentProblem("two-sum");
+        }
+      } catch (error) {
+        console.error("Failed to load problem from URL:", error);
+        setCurrentProblem("two-sum");
+      }
+      setHasInitialized(true);
     } else {
-      // Default to two-sum if no code param
+      // Default to two-sum if no code or problemId param
       if (currentProblem === null) {
         setCurrentProblem("two-sum");
       }
       setHasInitialized(true);
     }
-  }, [isPyodideLoading, hasInitialized, setCurrentCode, setCurrentProblem]);
+  }, [
+    isPyodideLoading,
+    hasInitialized,
+    setCurrentCode,
+    setCurrentProblem,
+    generateTrace,
+    setTraceData,
+  ]);
 
   // Initialize trace data when problem changes
   useEffect(() => {

@@ -55,19 +55,36 @@ export function Settings() {
         await generateTraceFromState();
     };
 
-    // Handle sharing code as a link
+    // Handle sharing link - either problem ID or code depending on mode
     const handleShareLink = async () => {
-        if (!currentCode) return;
-
         setShareLoading(true);
         try {
-            // Encode the current code as base64
-            const encodedCode = btoa(encodeURIComponent(currentCode));
-            const shareUrl = `${window.location.origin}${window.location.pathname}?code=${encodedCode}`;
+            let shareUrl: string;
+            let toastMessage: string;
+
+            if (currentProblemId === 'sandbox') {
+                // Sandbox mode: share the code
+                if (!currentCode) {
+                    toast.error('No code to share');
+                    return;
+                }
+                const encodedCode = btoa(encodeURIComponent(currentCode));
+                shareUrl = `${window.location.origin}${window.location.pathname}?code=${encodedCode}`;
+                toastMessage = 'Code link copied to clipboard!';
+            } else {
+                // Regular problem: share the problem ID
+                if (!currentProblemId) {
+                    toast.error('No problem to share');
+                    return;
+                }
+                shareUrl = `${window.location.origin}${window.location.pathname}?problemId=${currentProblemId}`;
+                const problemTitle = problemData?.title || currentProblemId;
+                toastMessage = `Problem link copied! Share "${problemTitle}"`;
+            }
 
             // Copy to clipboard
             await navigator.clipboard.writeText(shareUrl);
-            toast.success('Share link copied to clipboard!');
+            toast.success(toastMessage);
         } catch (err) {
             console.error('Failed to copy share link:', err);
             toast.error('Failed to copy share link');
@@ -172,11 +189,11 @@ export function Settings() {
 
                 <DropdownMenuItem
                     onClick={handleShareLink}
-                    disabled={!currentCode || shareLoading}
+                    disabled={shareLoading || (currentProblemId === 'sandbox' && !currentCode) || (!currentProblemId)}
                     data-testid="share-menu-item"
                 >
                     <MdShare className="mr-2 h-4 w-4" />
-                    {shareLoading ? 'Sharing...' : 'Share Link'}
+                    {shareLoading ? 'Sharing...' : currentProblemId === 'sandbox' ? 'Share Code' : 'Share Problem'}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
