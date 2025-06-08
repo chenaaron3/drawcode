@@ -1,22 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Toaster } from '@/components/ui/sonner';
 
-import Header from './components/Header';
+import MainLayout from './components/MainLayout';
+import lessonProblemsJson from './data/lesson-problems.json';
 import problemDescriptionsData from './data/problem-descriptions.json';
 import problemsJson from './data/problems.json';
-import DebuggerPage from './pages/DebuggerPage';
-import RoadmapPage from './pages/RoadmapPage';
 import { useTraceStore } from './store/traceStore';
-import { initGA, trackPageView, trackViewChange } from './utils/analytics';
+import { initGA, trackPageView } from './utils/analytics';
 
-import type { ProblemDescription } from './types/problem';
-
-type ViewType = 'roadmap' | 'debugger';
+import type { Problem, ProblemDescription } from './types/problem';
 
 export default function App() {
   const { setProblemsData } = useTraceStore();
-  const [currentView, setCurrentView] = useState<ViewType>('debugger');
 
   // Initialize Google Analytics and load problems data
   useEffect(() => {
@@ -24,25 +20,30 @@ export default function App() {
     initGA();
 
     // Track initial page view
-    trackPageView('/debugger', 'Debugger - Leetcode Guide');
+    trackPageView('/app', 'Python Visualizer - Interactive Learning Platform');
 
     const loadProblemsWithDescriptions = async () => {
       try {
         const problemDescriptions = problemDescriptionsData as Record<string, ProblemDescription>;
-        // Join problems with descriptions
-        const problemsWithDetails = problemsJson.problems.map(problem => ({
+
+        // Combine regular problems and lesson problems
+        const allProblems = [...problemsJson.problems, ...lessonProblemsJson];
+
+        // Join problems with descriptions (check both problem and lesson descriptions)
+        const problemsWithDetails = allProblems.map(problem => ({
           ...problem,
           details: problemDescriptions[problem.id] || null
-        }));
+        })) as Problem[];
 
         setProblemsData(problemsWithDetails);
       } catch (error) {
         console.error('Error loading problem descriptions:', error);
         // Fallback to just the problems data without descriptions
-        const problemsWithoutDetails = problemsJson.problems.map(problem => ({
+        const allProblems = [...problemsJson.problems, ...lessonProblemsJson];
+        const problemsWithoutDetails = allProblems.map(problem => ({
           ...problem,
           details: null
-        }));
+        })) as any[];
         setProblemsData(problemsWithoutDetails);
       }
     };
@@ -50,31 +51,10 @@ export default function App() {
     loadProblemsWithDescriptions();
   }, [setProblemsData]);
 
-  const handleViewChange = (view: ViewType) => {
-    const previousView = currentView;
-    setCurrentView(view);
-
-    // Track view change
-    trackViewChange(previousView, view);
-    trackPageView(`/${view}`, `${view.charAt(0).toUpperCase() + view.slice(1)} - Leetcode Guide`);
-  };
-
-  const renderCurrentView = () => {
-    switch (currentView) {
-      case 'roadmap':
-        return <RoadmapPage onNavigateToDebugger={() => setCurrentView('debugger')} />;
-      case 'debugger':
-        return <DebuggerPage />;
-      default:
-        return <RoadmapPage onNavigateToDebugger={() => setCurrentView('debugger')} />;
-    }
-  };
-
   return (
-    <div className="min-h-screen overflow-visible h-screen bg-background flex flex-col">
-      <Header currentView={currentView} onViewChange={handleViewChange} />
-      {renderCurrentView()}
+    <>
+      <MainLayout />
       <Toaster />
-    </div>
+    </>
   );
 }

@@ -1,4 +1,106 @@
-# Python Code Tracer
+# Python Trace Debugger with Interactive Lessons
+
+A visual Python debugger that helps you understand code execution step-by-step, now with integrated beginner-friendly lessons.
+
+## 🎯 Features
+
+### 🔍 Visual Debugging
+
+- **Step-by-step execution**: Watch your code run line by line
+- **Variable tracking**: See how variables change in real-time
+- **Expression evaluation**: Understand how complex expressions are computed
+- **Interactive visualization**: Arrays, dictionaries, and objects displayed graphically
+
+### 📚 Interactive Lessons
+
+- **Beginner-friendly curriculum**: Learn Python fundamentals through guided lessons
+- **Lesson + Debugger integration**: Each lesson includes explanation text above the familiar debugger interface
+- **Progressive learning**: Modules covering variables, conditionals, loops, and more
+- **Real code execution**: Step through actual Python code to see concepts in action
+
+## 🚀 Getting Started
+
+### Development
+
+```bash
+npm install
+npm run dev
+```
+
+### Lesson Mode
+
+1. Click "Lessons" in the top navigation
+2. Select a module from the sidebar (e.g., "Programming Fundamentals")
+3. Choose a lesson to begin learning
+4. Read the lesson content, then step through the code below
+
+### Problem Mode (Original Debugger)
+
+1. Click "Problems" in the top navigation
+2. Select a problem from the roadmap or problem list
+3. Step through the solution to understand the algorithm
+
+## 📖 Lesson Structure
+
+Each lesson follows a simple format:
+
+- **Lesson Plan**: Markdown content explaining the concept
+- **Interactive Code**: The same powerful debugger interface you know
+- **Step-through Learning**: Watch Python execute the example code
+
+### Available Modules:
+
+1. **Programming Fundamentals** - Variables, basic operations
+2. **Conditionals and Logic** - If statements, boolean logic
+3. **Loops and Iteration** - For loops, while loops, iteration patterns
+
+## 🛠 Technical Details
+
+### Lesson Data Format
+
+Lessons use the same structure as problems:
+
+- `lesson-modules.json` - Module definitions (like patterns.json)
+- `lesson-problems.json` - Lesson content (like problems.json)
+- Trace files in `src/data/traces/` for code execution
+
+### Integration
+
+- Lessons are loaded into the same trace system as problems
+- Uses existing debugger components and visualization
+- Simple sidebar navigation for lesson selection
+- Markdown rendering for lesson content
+
+## 🎓 Learning Path
+
+**Recommended order:**
+
+1. Start with "Hello World" to understand basic execution
+2. Learn about variables and data storage
+3. Explore conditionals and decision-making
+4. Master loops and iteration
+5. Move to the Problems section for algorithm practice
+
+## 🔧 Development
+
+The lesson system is designed to be:
+
+- **Simple**: Reuses existing debugger infrastructure
+- **Extensible**: Easy to add new modules and lessons
+- **Consistent**: Same trace format as problems
+- **Educational**: Focus on learning through doing
+
+To add new lessons:
+
+1. Add lesson content to `lesson-problems.json`
+2. Create trace files using the Python tracer
+3. Update module definitions in `lesson-modules.json`
+
+---
+
+**Perfect for**: Beginners learning Python, visual learners, anyone who wants to understand code execution step-by-step.
+
+## Python Code Tracer
 
 This directory contains a modular Python code tracer that analyzes and traces the execution of algorithmic code, capturing **focused container-cursor relationships** and execution steps.
 

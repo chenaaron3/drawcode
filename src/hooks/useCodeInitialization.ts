@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getTraceData } from '@/data/traces';
+import { useAppStore } from '@/store/appStore';
 import { useTraceStore } from '@/store/traceStore';
 
 import { usePyodide } from './usePyodide';
@@ -12,6 +13,7 @@ export function useCodeInitialization() {
     setTraceData,
     getCurrentProblemId,
   } = useTraceStore();
+  const { isLessonMode } = useAppStore();
   const { isLoading: isPyodideLoading, generateTrace } = usePyodide();
   const [hasInitialized, setHasInitialized] = useState(false);
   const currentProblem = getCurrentProblemId();
@@ -29,6 +31,8 @@ export function useCodeInitialization() {
     console.log("URL search params:", window.location.search);
     console.log("Detected problemId:", problemId);
     console.log("Detected code:", encodedCode ? "present" : "none");
+    console.log("Is lesson mode:", isLessonMode);
+    console.log("Current problem before initialization:", currentProblem);
 
     if (encodedCode) {
       if (isPyodideLoading) {
@@ -92,8 +96,9 @@ export function useCodeInitialization() {
       }
       setHasInitialized(true);
     } else {
-      // Default to two-sum if no code or problemId param
-      if (currentProblem === null) {
+      // Default initialization for non-lesson mode
+      if (!isLessonMode && currentProblem === null) {
+        // Not in lesson mode and no problem selected - default to two-sum
         setCurrentProblem("two-sum");
       }
       setHasInitialized(true);
@@ -105,6 +110,8 @@ export function useCodeInitialization() {
     setCurrentProblem,
     generateTrace,
     setTraceData,
+    isLessonMode,
+    currentProblem,
   ]);
 
   // Initialize trace data when problem changes
@@ -114,7 +121,7 @@ export function useCodeInitialization() {
     if (traceData) {
       setTraceData(traceData);
     }
-  }, [currentProblem]);
+  }, [currentProblem, setTraceData]);
 
   return {
     isInitializing: !hasInitialized,

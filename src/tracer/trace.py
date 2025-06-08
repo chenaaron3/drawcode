@@ -18,16 +18,32 @@ if __name__ == '__main__':
     # Create output directory if it doesn't exist
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
-    problems = []
+    # Load problems from both files
+    all_problems = []
+    
+    # Load main problems
     try:
         with open(os.path.join(PROBLEM_DIR, "problems.json"), "r") as f:
             problems = json.load(f)['problems']
+            all_problems.extend(problems)
+            print(f"Loaded {len(problems)} problems from problems.json")
     except FileNotFoundError:
         print("problems.json not found")
     
+    # Load lesson problems
+    try:
+        with open(os.path.join(PROBLEM_DIR, "lesson-problems.json"), "r") as f:
+            lesson_problems = json.load(f)
+            all_problems.extend(lesson_problems)
+            print(f"Loaded {len(lesson_problems)} lessons from lesson-problems.json")
+    except FileNotFoundError:
+        print("lesson-problems.json not found")
+    
+    print(f"Total items to process: {len(all_problems)}")
+    
     tracer = PythonTracer()
-    for problem_key, problem in enumerate(problems):
-        print(f"Processing problem {problem['id']}...")
+    for problem_key, problem in enumerate(all_problems):
+        print(f"Processing {problem['id']}...")
         tracer.reset()  # Reset tracer state for each problem
         transformed_ast = tracer.run_code(
             problem['solution'], 

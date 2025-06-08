@@ -3,6 +3,7 @@ import type {
   Relationship,
   ManualRelationship,
 } from "../types/trace";
+import lessonProblemsDataImport from './lesson-problems.json';
 import problemsDataImport from './problems.json';
 
 // Dynamically import all trace files from the public/traces directory
@@ -30,10 +31,17 @@ export function getTraceData(problemId: string): TraceData | undefined {
   if (!baseTraceData) return undefined;
 
   // Find the problem data to get manual relationships
-  const problemData = problemsDataImport.problems.find(
+  // Check both problems.json and lesson-problems.json
+  let problemData: any = problemsDataImport.problems.find(
     (p) => p.id === problemId
   );
-  const manualRelationships = (problemData as any)?.manualRelationships as
+
+  // If not found in problems, check lessons
+  if (!problemData) {
+    problemData = lessonProblemsDataImport.find((l) => l.id === problemId);
+  }
+
+  const manualRelationships = problemData?.manualRelationships as
     | ManualRelationship[]
     | undefined;
 
