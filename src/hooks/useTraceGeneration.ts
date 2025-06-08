@@ -28,8 +28,7 @@ export function useTraceGeneration() {
     if (!problemData) return false;
 
     // Get current code from store (could be edited) - use currentCode from store instead of traceData.metadata.code
-    const codeToExecute =
-      currentCode || traceData?.metadata.code || problemData.solution;
+    const codeToExecute = currentCode || traceData?.metadata.code;
     if (!codeToExecute) return false;
 
     setIsGenerating(true);

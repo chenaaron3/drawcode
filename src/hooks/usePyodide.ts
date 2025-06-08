@@ -198,7 +198,7 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
         await resetPyodide();
 
         // Wait a moment for reset to complete and get fresh instance
-        await new Promise((resolve) => setTimeout(resolve, 200));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         // Get the current pyodide instance after reset
         const currentPyodide = pyodide;

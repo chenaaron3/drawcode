@@ -13,6 +13,8 @@ interface ErrorPanelProps {
 export function ErrorPanel({ error }: ErrorPanelProps) {
     if (!error) return null;
 
+    console.log('ErrorPanel', error);
+
     const isValidationError = error.type === 'validation';
 
     return (

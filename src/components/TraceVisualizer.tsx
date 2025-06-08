@@ -1,32 +1,19 @@
 import { LayoutGroup } from 'framer-motion';
 import { useEffect } from 'react';
 
-import { getTraceData } from '../data/traces';
+import { useCodeInitialization } from '@/hooks/useCodeInitialization';
+
 import { useTraceStore } from '../store/traceStore';
 import CodePanel from './CodePanel';
 import ComputationWorkspace from './ComputationWorkspace';
-import ComputationWorkspaceOverlay from './ComputationWorkspaceOverlay';
-import DraggableVariablePanel from './DraggableVariablePanel';
 import PythonTutorVariablePanel from './PythonTutorVariablePanel';
 
 export default function TraceVisualizer() {
     const {
-        setTraceData,
         traceData: currentTraceData,
-        getCurrentProblemId,
         isOverlayMode,
         toggleOverlayMode
     } = useTraceStore();
-
-    const currentProblemId = getCurrentProblemId();
-    const traceData = currentProblemId ? getTraceData(currentProblemId) : null;
-
-    // Initialize trace data when problem changes
-    useEffect(() => {
-        if (traceData) {
-            setTraceData(traceData);
-        }
-    }, [traceData, setTraceData]);
 
     // Keyboard shortcut to toggle overlay mode
     useEffect(() => {
@@ -41,18 +28,32 @@ export default function TraceVisualizer() {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [toggleOverlayMode]);
 
-    if (!currentTraceData) return null;
+    const { isInitializing } = useCodeInitialization();
 
-    console.log('TraceVisualizer rendering, isOverlayMode:', isOverlayMode);
+    if (isInitializing) {
+        return (
+            <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p className="text-muted-foreground">Initializing...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!currentTraceData) return null;
 
     return (
         <LayoutGroup>
             {isOverlayMode ? (
-                // Overlay mode - full-width code with draggable variable panel
-                <div className="h-full overflow-visible relative">
-                    <CodePanel />
-                    <ComputationWorkspaceOverlay />
-                    <DraggableVariablePanel />
+                // Overlay mode - full-width code with workspace overlay and variable panel
+                <div className="h-full overflow-visible relative flex gap-4">
+                    <div className="flex-1">
+                        <CodePanel />
+                    </div>
+                    <div className="w-3/5">
+                        <PythonTutorVariablePanel />
+                    </div>
                 </div>
             ) : (
                 // Normal mode - side-by-side layout

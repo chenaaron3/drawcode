@@ -110,7 +110,7 @@ export function Settings() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" data-testid="settings-button">
                     <SettingsIcon className="h-4 w-4" />
                 </Button>
             </DropdownMenuTrigger>
@@ -173,6 +173,7 @@ export function Settings() {
                 <DropdownMenuItem
                     onClick={handleShareLink}
                     disabled={!currentCode || shareLoading}
+                    data-testid="share-menu-item"
                 >
                     <MdShare className="mr-2 h-4 w-4" />
                     {shareLoading ? 'Sharing...' : 'Share Link'}

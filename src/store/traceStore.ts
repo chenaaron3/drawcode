@@ -161,9 +161,10 @@ export const useTraceStore = create<TraceStore>()(
         state.traceData = data;
         state.maxLine = data?.trace.length ? data.trace.length - 1 : 0;
         state.lineIndex = 0;
-        // Set to 1 due to function definition at beginning
-        state.stepIndex = 1;
+        // Start at step 0 (first step of first line)
+        state.stepIndex = 0;
         state.isPlaying = false;
+
         // Build node lookup when setting new trace data
         if (data?.ast) {
           state.nodeLookup = buildNodeLookup(data.ast);
@@ -467,5 +468,6 @@ export const useTraceStore = create<TraceStore>()(
 );
 
 // Selectors
-export const selectCurrentLine = (state: TraceState): TraceLine | null =>
-  state.traceData?.trace[state.lineIndex] ?? null;
+export const selectCurrentLine = (state: TraceState): TraceLine | null => {
+  return state.traceData?.trace[state.lineIndex] ?? null;
+};

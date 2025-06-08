@@ -18,10 +18,11 @@ export function useCurrentStep(): AugmentedTraceStep | null {
       nodeLookup !== null &&
       currentLine.steps[stepIndex]
     ) {
-      setCurrentStep({
+      const newStep = {
         ...currentLine.steps[stepIndex],
         ast: nodeLookup.get(currentLine.steps[stepIndex].node_id)!,
-      });
+      };
+      setCurrentStep(newStep);
     } else {
       setCurrentStep(null);
     }

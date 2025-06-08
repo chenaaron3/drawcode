@@ -11,6 +11,7 @@ import Editor from '@monaco-editor/react';
 
 import { useCurrentStep } from '../hooks/useCurrentStep';
 import { selectCurrentLine, useTraceStore } from '../store/traceStore';
+import ComputationWorkspaceOverlay from './ComputationWorkspaceOverlay';
 import { ErrorPanel } from './ErrorPanel';
 import { InputsSection } from './InputsSection';
 import { NavigationControls } from './NavigationControls';
@@ -192,6 +193,9 @@ export default function CodePanel() {
                                     >
                                         {currentCode || ''}
                                     </SyntaxHighlighter>
+
+                                    {/* Computation Workspace Overlay */}
+                                    <ComputationWorkspaceOverlay />
 
                                     {/* Edit Button Overlay - only visible on hover */}
                                     {!hasChanges && (
