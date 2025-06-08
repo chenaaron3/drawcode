@@ -14,7 +14,7 @@ class RelationshipAnalyzer:
         self.variable_types = {}
         self.transformer = None
         
-    def analyze_ast(self, root, transformer=None):
+    def analyze_ast(self, root, transformer=None, manual_relationships=None):
         """Analyze the AST to find container-cursor relationships"""
         self.reset()
         self.transformer = transformer
@@ -31,6 +31,10 @@ class RelationshipAnalyzer:
                 self._analyze_for_loop(node)
             elif isinstance(node, ast.Compare):
                 self._analyze_membership_test(node)
+        
+        # Add manual relationships if provided
+        if manual_relationships:
+            self._add_manual_relationships(manual_relationships)
                     
         return self.relationships
         
@@ -390,4 +394,31 @@ class RelationshipAnalyzer:
         
         # Avoid duplicates
         if relationship not in self.relationships:
-            self.relationships.append(relationship) 
+            self.relationships.append(relationship)
+    
+    def _add_manual_relationships(self, manual_relationships):
+        """Add manually specified relationships"""
+        for manual_rel in manual_relationships:
+            # Create a fake node_id for manual relationships (use negative numbers to avoid conflicts)
+            fake_node_id = -(len(self.relationships) + 1)
+            
+            relationship = {
+                'container': manual_rel['container'],
+                'cursor': manual_rel['cursor'],
+                'type': manual_rel['type'],
+                'node_id': fake_node_id
+            }
+            
+            # Add metadata if provided
+            if 'description' in manual_rel:
+                relationship['description'] = manual_rel['description']
+            
+            # Avoid duplicates (check by container, cursor, type)
+            existing = [r for r in self.relationships 
+                       if r['container'] == relationship['container'] 
+                       and r['cursor'] == relationship['cursor']
+                       and r['type'] == relationship['type']]
+            
+            if not existing:
+                self.relationships.append(relationship)
+                print(f"Added manual relationship: {manual_rel['container']} -> {manual_rel['cursor']} ({manual_rel['type']})") 

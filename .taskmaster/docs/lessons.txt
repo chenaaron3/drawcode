@@ -1,0 +1,138 @@
+# 🧠 PRD: Python Lessons System for Visual Debugger Platform
+
+## ✨ Overview
+
+Build a structured **lesson framework** on top of the existing Python visual debugger. The goal is to turn the debugger from a sandbox tool into a guided, educational experience that helps complete beginners **understand programming concepts** through interactive, step-based learning.
+
+---
+
+## 🧩 Why This?
+
+While the debugger provides powerful execution visualizations, many beginners still don’t know *what code to write* or *why things happen*. By layering lessons on top, we guide them with narrative, interactivity, and reinforcement — transforming the tool into a **complete learning platform**.
+
+This approach is especially helpful for:
+- **Visual learners** who understand best through graphical representations and step-by-step feedback
+- **Self-learners** who need structure but dislike passive video tutorials
+- **Beginners stuck in tutorial hell** who crave active learning and interactivity
+
+---
+
+## 🎯 Goals
+
+- Package core CS concepts into digestible, scaffolded lessons
+- Teach through **doing** and **seeing**, not just reading
+- Use the debugger’s existing strengths (highlighting, deltas, expression tree) as educational moments
+- Allow learners to tweak and explore code safely
+- Support replay, branching, and step-aware quizzes
+
+---
+
+## 🧑‍🏫 Target Users
+
+- **Absolute beginners** (13–25) learning Python as a first language
+- **Self-taught learners** in India, learning via mobile
+- High school/college intro CS students
+- Bootcamp students
+- **Visual learners** looking for dynamic ways to understand code
+- **Interactive learners** who prefer exercises over long lectures
+
+---
+
+## 🧱 Core Components
+
+### 1. 📚 Lesson Modules
+- Each module covers one major programming topic (e.g., variables, loops, conditionals)
+- 5–7 modules total, each containing 3–5 lessons
+
+### 2. 🧠 Lesson Structure
+Each lesson consists of:
+- ✅ **Concept Intro**: Short, beginner-friendly explanation (e.g., "What is a variable?")
+- 🧪 **Guided Debugging**: Preloaded code + debugger walkthrough with step-aware tooltips
+- 🧑‍🎓 **Try-It Mode**: Editable version of code to experiment and replay
+- ❓ **Checkpoint Quiz**: Predict-the-output or multiple-choice based on debugger state
+- 🏁 **Recap & Challenge**: Summary + one small challenge task
+
+### 3. ⚙️ Debugger Integration Points
+
+| Debugger Feature                 | Lesson Integration Example                            |
+|----------------------------------|--------------------------------------------------------|
+| 🔵 Code Line Highlighting        | Step narration synced with highlighted line           |
+| 🌳 Expression Evaluation Tree    | Explain how `x + y * z` is computed                   |
+| 🧠 Variable Delta Highlighting   | Show when/why variable values change                  |
+| ⏮ Step Playback                 | Walk through algorithm logic (e.g., loop iterations)  |
+| 💥 Error Messaging               | Encourage exploration in Try-It mode                  |
+
+---
+
+## 🖼️ Lesson Example: Loops 101
+
+| Section         | Content                                                                 |
+|-----------------|-------------------------------------------------------------------------|
+| Intro           | "A loop lets you repeat code. Let’s look at a `for` loop in action."    |
+| Guided Debugger | Code auto-runs in line mode with narrator tooltips on each step         |
+| Code            | `for i in range(3): print("Hello", i)`                                  |
+| Tooltip Example | “i = 0 → First loop iteration” → “Prints Hello 0” → “Loop continues”    |
+| Quiz            | “What will print on the *next* step?”                                   |
+| Try-It          | Learner edits `range(3)` to `range(5)` and replays                      |
+
+---
+
+## 🧠 Feature Details
+
+### 📘 Lesson Engine
+- Markdown or JSON-based lesson schema
+- Each step contains:
+  - Line to highlight
+  - Optional tooltip
+  - Optional quiz (MCQ or prediction)
+- Steps map to debugger frames using execution index
+
+### 🧪 Exercise Engine
+- Inline prediction questions
+- Editable Try-It panels with "Reset" button
+- Validation: Output match, variable match, or custom rule
+
+### 🧩 UI Components
+- **Lesson Sidebar** (with mini-progress indicator)
+- **Step Tooltips** (anchored to highlighted code line)
+- **Quiz Overlay** (pauses debugger to ask a question)
+- **Completion Modal** ("You finished Lesson 3! Here's a challenge")
+
+---
+
+## 🔗 Developer Integration Plan
+
+### Phase 1 – Scaffolding
+- Create lesson schema format (Markdown or JSON)
+- Build lesson player (sidebar, step manager, overlay system)
+- Hook debugger state (line/step index, variable deltas) to lesson triggers
+
+### Phase 2 – Content Authoring
+- Write Module 1: Getting Started
+- Author 3–5 lessons with structured steps
+- Create a “LessonLoader” component to preload code, steps, and quizzes
+
+### Phase 3 – User Flow Polish
+- Add resume-in-progress support
+- Mobile optimization for lesson player
+- Progress tracking + completion state
+
+---
+
+## 📊 Success Metrics
+
+| Metric                           | Target                          |
+|----------------------------------|----------------------------------|
+| Lesson completion rate           | ≥ 70% per session                |
+| Avg. session time                | ≥ 6 minutes                      |
+| Quiz correctness rate (avg)      | ≥ 75%                            |
+| Code replay / edit rate          | ≥ 60% of learners modify code    |
+| User feedback (helpfulness)      | ≥ 4.5/5                          |
+
+---
+
+## ✅ Summary
+
+This PRD outlines how to evolve your Python debugger into a **full interactive learning platform**, using guided lessons that fully embrace the debugger's strengths — from code highlighting to variable diffs. The lessons bridge the gap between powerful tooling and structured pedagogy.
+
+It is tailored especially for **visual learners**, **self-learners**, and **beginners tired of passive tutorials**, offering interactive exercises and real-time feedback to **break out of tutorial hell** and build real understanding.

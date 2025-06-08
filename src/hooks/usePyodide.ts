@@ -9,6 +9,7 @@ import utilsCode from '../tracer/utils.py?raw';
 
 import type { PyodideInterface } from "pyodide";
 import type { SpecialInput } from "@/types/problem";
+import type { ManualRelationship } from "@/types/trace";
 
 interface UsePyodideResult {
   pyodide: PyodideInterface | null;
@@ -18,7 +19,8 @@ interface UsePyodideResult {
     entrypoint: string,
     inputs: Record<string, any>,
     originalInputs: Record<string, any>,
-    specialInputs?: SpecialInput[]
+    specialInputs?: SpecialInput[],
+    manualRelationships?: Array<ManualRelationship>
   ) => Promise<any>;
   resetPyodide: () => Promise<void>;
 }
@@ -190,7 +192,13 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
       entrypoint: string,
       inputs: Record<string, any>,
       originalInputs: Record<string, any>,
-      specialInputs?: SpecialInput[]
+      specialInputs?: SpecialInput[],
+      manualRelationships?: Array<{
+        container: string;
+        cursor: string;
+        type: string;
+        description?: string;
+      }>
     ) => {
       try {
         // Option 3: Complete reset for maximum cleanliness
@@ -273,12 +281,18 @@ try:
     # Get special_inputs from problem if available
     special_inputs = ${specialInputs ? JSON.stringify(specialInputs) : "None"}
     
+    # Get manual_relationships from problem if available
+    manual_relationships = ${
+      manualRelationships ? JSON.stringify(manualRelationships) : "None"
+    }
+    
     # Run the tracer with explicit kwargs
     transformed_ast = tracer.run_code(
         problem_code, 
         function_name,
         special_inputs,
         hash(problem_code), # hash of the source code
+        manual_relationships,
         **input_kwargs
     )
     

@@ -1,3 +1,5 @@
+import type { ManualRelationship } from "./trace";
+
 export interface ProblemDescription {
   questionTitle: string;
   difficulty: "Easy" | "Medium" | "Hard";
@@ -39,10 +41,5 @@ export interface Problem {
   details: ProblemDescription | null;
   // Make optional for now
   special_inputs?: SpecialInput[];
-  manualRelationships?: Array<{
-    container: string;
-    cursor: string;
-    type: string;
-    description?: string;
-  }>;
+  manualRelationships?: Array<ManualRelationship>;
 }

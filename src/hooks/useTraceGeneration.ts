@@ -5,6 +5,8 @@ import { useTraceStore } from '@/store/traceStore';
 
 import { usePyodide } from './usePyodide';
 
+import type { ManualRelationship } from "@/types/trace";
+
 export function useTraceGeneration() {
   const [isGenerating, setIsGenerating] = useState(false);
   const { generateTrace } = usePyodide();
@@ -45,7 +47,8 @@ export function useTraceGeneration() {
         problemData.entrypoint,
         currentInputs,
         problemData.inputs, // Pass original inputs for type inference
-        problemData.special_inputs // Pass the full problem data including special_inputs
+        problemData.special_inputs, // Pass the full problem data including special_inputs
+        problemData.manualRelationships as ManualRelationship[] // Pass manual relationships if they exist
       );
 
       if (newTraceData.error) {

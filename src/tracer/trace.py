@@ -34,6 +34,7 @@ if __name__ == '__main__':
             problem['entrypoint'], 
             problem.get('special_inputs', None),
             problem_key,
+            problem.get('manualRelationships', None),
             **problem['inputs']
         )
         tracer.save_results(os.path.join(OUTPUT_DIR, f"{problem['id']}.json"), transformed_ast)

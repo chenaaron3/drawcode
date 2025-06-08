@@ -123,11 +123,12 @@ class PythonTracer:
                     del transformed_kwargs[key]
         return transformed_kwargs
 
-    def run_code(self, code: str, entrypoint: str, special_inputs: list | None, problem_key: int, **kwargs):
+    def run_code(self, code: str, entrypoint: str, special_inputs: list | None, problem_key: int, manual_relationships: list | None = None, **kwargs):
         """Run code with expression tracking"""
         self.source_code = code
         self.entrypoint = entrypoint
         self.inputs = copy.deepcopy(kwargs)  # Deep copy kwargs dict
+        self.manual_relationships = manual_relationships or []
         
         # Transform the AST for execution
         tree = self.transformer.transform(code, problem_key)
@@ -170,7 +171,7 @@ class PythonTracer:
         unwrapped_ast = self.transformer.unwrap_transformed_ast(transformed_ast)
 
         # Analyze relationships from the unwrapped AST (clean structure with node IDs)
-        relationships = self.relationship_analyzer.analyze_ast(unwrapped_ast, self.transformer)
+        relationships = self.relationship_analyzer.analyze_ast(unwrapped_ast, self.transformer, self.manual_relationships)
 
         print(f"Found {len(relationships)} relationships")
         
