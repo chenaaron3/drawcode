@@ -36,12 +36,17 @@ export function useCodeInitialization() {
         setCurrentCode(decodedCode);
 
         const generateTraceAsync = async () => {
-          const newTraceData = await generateTrace(decodedCode, "", {}, {});
-          setTraceData(newTraceData);
-          setHasInitialized(true);
-          // Clear the URL parameter after loading
-          const newUrl = window.location.pathname;
-          window.history.replaceState({}, "", newUrl);
+          // Wrap just in case we get an invalid code
+          try {
+            const newTraceData = await generateTrace(decodedCode, "", {}, {});
+            setTraceData(newTraceData);
+          } finally {
+            setCurrentProblem("two-sum");
+            setHasInitialized(true);
+            // Clear the URL parameter after loading
+            const newUrl = window.location.pathname;
+            window.history.replaceState({}, "", newUrl);
+          }
         };
         generateTraceAsync();
       } catch (error) {
@@ -52,13 +57,16 @@ export function useCodeInitialization() {
       }
     } else {
       // Default to two-sum if no code param
-      setCurrentProblem("two-sum");
+      if (currentProblem === null) {
+        setCurrentProblem("two-sum");
+      }
       setHasInitialized(true);
     }
   }, [isPyodideLoading, hasInitialized, setCurrentCode, setCurrentProblem]);
 
   // Initialize trace data when problem changes
   useEffect(() => {
+    console.log("currentProblem", currentProblem);
     const traceData = currentProblem ? getTraceData(currentProblem) : null;
     if (traceData) {
       setTraceData(traceData);

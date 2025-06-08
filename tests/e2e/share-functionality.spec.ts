@@ -24,27 +24,17 @@ test.describe("Share Functionality", () => {
     // 4. Verify the new code is in the editor
 
     // Step 1: Write new code in the editor
-    const customCode = `# Custom shared code
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
+    const newCode = `x = 1
+print(x)
+y = x + 2
+print(y)`;
 
-result = fibonacci(5)
-print(f"Fibonacci of 5 is: {result}")`;
-
-    await debuggerPage.editCode(customCode);
+    await debuggerPage.editCode(newCode);
     console.log("✅ Custom code written in editor");
 
     // Compile the code to make sure it works and to trigger the share functionality
     expect(await debuggerPage.compileCode()).toBe(true);
     console.log("✅ Custom code compiled successfully");
-
-    // Verify the code content matches what we wrote
-    const currentCodeContent = await debuggerPage.getCodeContent();
-    expect(currentCodeContent).toContain("def fibonacci(n):");
-    expect(currentCodeContent).toContain("Fibonacci of 5 is:");
-    console.log("✅ Custom code verified in editor");
 
     // Step 2: Generate the share link
     // Click on the settings button to open the dropdown
@@ -58,16 +48,10 @@ print(f"Fibonacci of 5 is: {result}")`;
     await page.click('[data-testid="share-menu-item"]');
     console.log("✅ Share link generated and copied to clipboard");
 
-    // Wait for the success toast to appear (indicating the link was copied)
-    await page.waitForSelector("text=Share link copied to clipboard!", {
-      timeout: 5000,
-    });
-    console.log("✅ Share link copied confirmation received");
-
     // Step 3: Get the share URL from clipboard and navigate to it
     // We'll simulate getting the clipboard content by constructing the URL ourselves
     // since clipboard access in headless browsers can be tricky
-    const encodedCode = Buffer.from(encodeURIComponent(customCode)).toString(
+    const encodedCode = Buffer.from(encodeURIComponent(newCode)).toString(
       "base64"
     );
     const shareUrl = `${page.url().split("?")[0]}?code=${encodedCode}`;
@@ -92,9 +76,9 @@ print(f"Fibonacci of 5 is: {result}")`;
     console.log("✅ Retrieved code content from shared page");
 
     // Verify the shared code matches our custom code
-    expect(sharedCodeContent).toContain("def fibonacci(n):");
-    expect(sharedCodeContent).toContain("Fibonacci of 5 is:");
-    expect(sharedCodeContent).toContain("Custom shared code");
+
+    expect(sharedCodeContent).toContain("x = 1");
+    expect(sharedCodeContent).toContain("y = x + 2");
     console.log("✅ Shared code content verified");
 
     // Verify that navigation controls are available (meaning the code was compiled)

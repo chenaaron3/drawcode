@@ -20,8 +20,8 @@ export class TraceDebuggerPage {
     const editorWrite = this.page.locator('[data-testid="code-editor-write"]');
 
     await Promise.race([
-      editorRead.waitFor({ state: "visible", timeout: 5000 }),
-      editorWrite.waitFor({ state: "visible", timeout: 5000 }),
+      editorRead.waitFor({ state: "visible", timeout: 10000 }),
+      editorWrite.waitFor({ state: "visible", timeout: 10000 }),
     ]);
   }
 

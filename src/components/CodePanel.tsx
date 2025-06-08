@@ -199,7 +199,7 @@ export default function CodePanel() {
 
                                     {/* Edit Button Overlay - only visible on hover */}
                                     {!hasChanges && (
-                                        <div className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                        <div className="absolute top-3 right-3 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                             <Button
                                                 variant="secondary"
                                                 size="sm"
