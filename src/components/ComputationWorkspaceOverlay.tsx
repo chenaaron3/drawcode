@@ -30,26 +30,84 @@ export default function ComputationWorkspaceOverlay() {
         const containerRect = lineElement.closest('[data-testid="code-editor-read"]')?.getBoundingClientRect();
         if (!containerRect) return null;
 
-        // Find the first code content span (skip line numbers)
-        const childSpans = Array.from(lineElement.children) as HTMLElement[];
-        const firstCodeSpan = childSpans.find(span =>
-            !span.classList.contains('linenumber') &&
-            !span.classList.contains('react-syntax-highlighter-line-number') &&
-            span.textContent?.trim()
-        );
+        console.log('Line rect:', lineRect);
+        console.log('Container rect:', containerRect);
 
-        let leftOffset = 0;
-        if (firstCodeSpan) {
-            const firstCodeRect = firstCodeSpan.getBoundingClientRect();
-            leftOffset = firstCodeRect.left - lineRect.left;
+        // Find the second element (after line number) and offset by its leading whitespace
+        const childSpans = Array.from(lineElement.children) as HTMLElement[];
+        console.log('Child spans:', childSpans.length, childSpans);
+
+        let codeStartX = lineRect.left;
+
+        if (childSpans.length >= 2) {
+            const secondSpan = childSpans[1]; // Skip line number, use second element
+            const secondSpanRect = secondSpan.getBoundingClientRect();
+            const spanText = secondSpan.textContent || '';
+
+            console.log('Second span:', secondSpan);
+            console.log('Second span text:', `"${spanText}"`);
+            console.log('Second span rect:', secondSpanRect);
+
+            // Calculate the width of leading whitespace
+            const leadingWhitespace = spanText.match(/^(\s*)/)?.[1] || '';
+            console.log('Leading whitespace:', `"${leadingWhitespace}"`, 'length:', leadingWhitespace.length);
+
+            if (leadingWhitespace.length > 0) {
+                // Create a temporary element to measure the whitespace width
+                const tempSpan = document.createElement('span');
+                tempSpan.style.visibility = 'hidden';
+                tempSpan.style.position = 'absolute';
+                tempSpan.style.whiteSpace = 'pre'; // Preserve whitespace
+
+                // Copy the font styles from the original span
+                const computedStyle = window.getComputedStyle(secondSpan);
+                tempSpan.style.fontFamily = computedStyle.fontFamily;
+                tempSpan.style.fontSize = computedStyle.fontSize;
+                tempSpan.style.fontWeight = computedStyle.fontWeight;
+                tempSpan.style.letterSpacing = computedStyle.letterSpacing;
+
+                tempSpan.textContent = leadingWhitespace;
+                document.body.appendChild(tempSpan);
+
+                const whitespaceWidth = tempSpan.getBoundingClientRect().width;
+                document.body.removeChild(tempSpan);
+
+                console.log('Measured whitespace width:', whitespaceWidth);
+
+                // Position at the second span + whitespace offset
+                codeStartX = secondSpanRect.left + whitespaceWidth;
+            } else {
+                // No leading whitespace, use the span start
+                codeStartX = secondSpanRect.left;
+            }
         }
 
-        // Calculate position relative to the SyntaxHighlighter container
-        const contentWidth = Math.max(300, lineRect.width - leftOffset);
+        // Calculate position relative to container
+        const relativeLeft = codeStartX - containerRect.left;
+
+        // Calculate width based on the last span's right edge
+        let contentWidth = 300; // default minimum width
+        if (childSpans.length > 0) {
+            const lastSpan = childSpans[childSpans.length - 1];
+            const lastSpanRect = lastSpan.getBoundingClientRect();
+            const lineContentWidth = lastSpanRect.right - codeStartX;
+            contentWidth = lineContentWidth
+
+            console.log('Last span:', lastSpan);
+            console.log('Last span rect:', lastSpanRect);
+            console.log('Line content width:', lineContentWidth);
+        }
+
+        console.log('Final calculation:', {
+            codeStartX,
+            containerLeft: containerRect.left,
+            relativeLeft,
+            contentWidth
+        });
 
         return {
             top: lineRect.top - containerRect.top,
-            left: lineRect.left - containerRect.left + leftOffset,
+            left: relativeLeft,
             width: contentWidth,
             height: lineRect.height
         };
@@ -121,7 +179,7 @@ export default function ComputationWorkspaceOverlay() {
                 style={{
                     top: position.top,
                     left: position.left,
-                    width: position.width,
+                    minWidth: position.width,
                     height: position.height,
                 }}
             >

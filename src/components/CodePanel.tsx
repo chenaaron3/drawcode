@@ -195,25 +195,23 @@ export default function CodePanel() {
                                     </SyntaxHighlighter>
 
                                     {/* Computation Workspace Overlay */}
-                                    <ComputationWorkspaceOverlay />
+                                    {!hasChanges && <ComputationWorkspaceOverlay />}
 
                                     {/* Edit Button Overlay - only visible on hover */}
-                                    {!hasChanges && (
-                                        <div className="absolute top-3 right-3 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                            <Button
-                                                variant="secondary"
-                                                size="sm"
-                                                onClick={() => {
-                                                    setIsReadOnly(false);
-                                                    setIsPlaying(false);
-                                                }}
-                                                className="shadow-sm"
-                                            >
-                                                <Pencil className="h-4 w-4 mr-1" />
-                                                Edit
-                                            </Button>
-                                        </div>
-                                    )}
+                                    <div className="absolute top-3 right-3 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                        <Button
+                                            variant="secondary"
+                                            size="sm"
+                                            onClick={() => {
+                                                setIsReadOnly(false);
+                                                setIsPlaying(false);
+                                            }}
+                                            className="shadow-sm"
+                                        >
+                                            <Pencil className="h-4 w-4 mr-1" />
+                                            Edit
+                                        </Button>
+                                    </div>
                                 </div>
                             ) : (
                                 <Editor

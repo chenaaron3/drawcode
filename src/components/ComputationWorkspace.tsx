@@ -335,7 +335,7 @@ export default function ComputationWorkspace({ overlayMode = false }: Computatio
 
     if (overlayMode) {
         return (
-            <div className="h-full bg-blue-100/80 backdrop-blur-sm rounded border border-blue-300 flex items-center px-2 overflow-hidden" data-testid="computation-workspace">
+            <div className="h-full bg-blue-100/80 backdrop-blur-sm rounded border border-blue-300 flex items-center overflow-hidden" data-testid="computation-workspace">
                 <div className="text-xs font-mono text-blue-900 truncate">
                     <EvaluationTree
                         evaluationTree={evaluationTree}
