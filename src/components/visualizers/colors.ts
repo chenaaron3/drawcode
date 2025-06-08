@@ -149,7 +149,7 @@ export function getVisualizerStyles(state: VisualizerState) {
   if (isEvaluating) {
     return "border-orange-400 shadow-orange-200 ring-2 ring-orange-300 bg-gradient-to-br from-orange-50 to-orange-25";
   } else if (isAnimating) {
-    return "border-blue-400 shadow-blue-200 ring-2 ring-blue-300 bg-gradient-to-br from-blue-50 to-blue-25";
+    return "border-purple-400 shadow-purple-200 ring-2 ring-purple-300 bg-gradient-to-br from-purple-50 to-purple-25";
   } else if (hasChanged) {
     return "border-green-400 shadow-green-200 ring-2 ring-green-300 bg-gradient-to-br from-green-50 to-green-25";
   } else {

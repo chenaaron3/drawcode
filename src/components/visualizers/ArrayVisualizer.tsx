@@ -25,9 +25,9 @@ function getPopoverStyles(state: PopoverState, type: 'key' | 'value') {
         };
     } else if (isAnimating) {
         return {
-            container: 'bg-blue-500 text-white shadow-lg shadow-blue-300/50 ring-2 ring-blue-300',
-            arrowTop: 'border-t-blue-500',
-            arrowBottom: 'border-b-blue-500'
+            container: 'bg-purple-500 text-white shadow-lg shadow-purple-300/50 ring-2 ring-purple-300',
+            arrowTop: 'border-t-purple-500',
+            arrowBottom: 'border-b-purple-500'
         };
     } else if (hasChanged) {
         return {

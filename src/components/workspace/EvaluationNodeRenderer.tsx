@@ -35,10 +35,10 @@ export function EvaluationNodeRenderer({ node, animatingVariable, currentLocals 
                 className={`
                     inline-block px-1 rounded font-mono text-xs lg:text-sm
                     ${isAnimatingThis && isLeafNode
-                        ? 'bg-blue-200 text-blue-800 ring-2 ring-blue-300 ring-opacity-50 shadow-lg'
+                        ? 'bg-purple-200 text-purple-800 ring-2 ring-purple-300 ring-opacity-50 shadow-lg'
                         : node.isHighlighted
                             ? 'bg-yellow-200 text-yellow-800 ring-2 ring-yellow-400 ring-opacity-70'
-                            : 'bg-blue-200 text-blue-800'
+                            : 'bg-purple-200 text-purple-800'
                     }
                 `}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -82,7 +82,7 @@ export function EvaluationNodeRenderer({ node, animatingVariable, currentLocals 
             className={`
                 px-1 inline-block items-center justify-center
                 ${node.isHighlighted ? 'bg-yellow-100 text-yellow-800 rounded ring-2 ring-yellow-400 ring-opacity-70' : ''}
-                ${isAnimatingThis ? 'bg-blue-100 text-blue-700 rounded' : ''}
+                ${isAnimatingThis ? 'bg-purple-100 text-purple-700 rounded' : ''}
             `}
         >
             {renderedChildren}

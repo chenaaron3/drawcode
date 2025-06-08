@@ -35,7 +35,7 @@ export function AnimatedCopies({ animatedCopies }: AnimatedCopiesProps) {
                 return <motion.div
                     key={copy.id}
                     // center the text
-                    className="fixed pointer-events-none z-[10000] inline-flex px-1 py-0.5 rounded font-mono text-sm bg-blue-200 text-blue-800 items-center justify-center"
+                    className="fixed pointer-events-none z-[10000] inline-flex px-1 py-0.5 rounded font-mono text-sm bg-purple-200 text-purple-800 items-center justify-center"
                     initial={{
                         left: copy.startRect.left,
                         top: copy.startRect.top,

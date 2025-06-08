@@ -36,9 +36,9 @@ function getNodeStyles(state: NodeState, baseClasses: string = '', withGradient:
     } else if (isAnimating) {
         currentState = 'animating';
         containerClasses = withGradient
-            ? 'border border-blue-300 shadow-blue-100 from-blue-100 to-blue-50 ring-2 ring-blue-300'
-            : 'border-blue-400 shadow-blue-200 ring-2 ring-blue-300';
-        handleColor = '!bg-blue-500';
+            ? 'border border-purple-300 shadow-purple-100 from-purple-100 to-purple-50 ring-2 ring-purple-300'
+            : 'border-purple-400 shadow-purple-200 ring-2 ring-purple-300';
+        handleColor = '!bg-purple-500';
     } else if (hasChanged) {
         currentState = 'changed';
         containerClasses = withGradient

@@ -160,7 +160,7 @@ export function generateFlowData({
         stroke: isEvaluatingThisVar
           ? "#f59e0b"
           : isAnimating
-          ? "#3b82f6"
+          ? "#8b5cf6"
           : hasChanged
           ? "#10b981"
           : "#64748b",
@@ -171,7 +171,7 @@ export function generateFlowData({
         color: isEvaluatingThisVar
           ? "#f59e0b"
           : isAnimating
-          ? "#3b82f6"
+          ? "#8b5cf6"
           : hasChanged
           ? "#10b981"
           : "#64748b",
