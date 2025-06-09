@@ -1,3 +1,7 @@
+// Import images
+import lessonsImage from '/lessons.png';
+import programImage from '/program.png';
+import variablesImage from '/variables.png';
 import {
     ArrowRight, BookOpen, CheckCircle, Eye, Github, Heart, Play, Users, X, Zap
 } from 'lucide-react';
@@ -18,21 +22,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             id: 1,
             title: "Choose Your Topic",
             description: "Pick from guided story adventures, coding exercises, or free exploration mode. Start with fundamentals and progress at your own pace.",
-            image: "/lessons.png",
+            image: lessonsImage,
             alt: "Learning interface showing lesson selection"
         },
         {
             id: 2,
             title: "Watch Code Execute",
             description: "Step through execution line-by-line or expression-by-expression. See variables change, data structures evolve, and logic unfold.",
-            image: "/program.png",
+            image: programImage,
             alt: "Code editor showing step-by-step execution"
         },
         {
             id: 3,
             title: "See Data Move in Real Time",
             description: "Watch variables update instantly as your code runs. Visual feedback makes complex concepts easy to understand.",
-            image: "/variables.png",
+            image: variablesImage,
             alt: "Variable panel showing real-time data changes"
         }
     ];
