@@ -196,7 +196,7 @@ export default function CodePanel() {
                                     {!hasChanges && <ComputationWorkspaceOverlay />}
 
                                     {/* Edit Button Overlay - only visible on hover */}
-                                    <div className="absolute top-3 right-3 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div data-testid="edit-button" className="absolute top-3 right-3 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                         <Button
                                             variant="secondary"
                                             size="sm"

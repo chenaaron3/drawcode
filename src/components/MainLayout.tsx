@@ -1,15 +1,47 @@
-import { BookOpen, Code, Settings } from 'lucide-react';
+import { BookOpen, ChevronRight, Code, Play } from 'lucide-react';
 import React from 'react';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { useAppStore } from '@/store/appStore';
+import { useTraceStore } from '@/store/traceStore';
 
 import LessonMode from './LessonMode';
 import ProblemMode from './ProblemMode';
 
+// Navigation configuration for scalability
+const navigationModes = [
+    {
+        id: 'learn' as const,
+        label: 'Learn',
+        icon: BookOpen,
+        problemId: null,
+    },
+    {
+        id: 'practice' as const,
+        label: 'Practice',
+        icon: Code,
+        problemId: null,
+    },
+    {
+        id: 'playground' as const,
+        label: 'Playground',
+        icon: Play,
+        problemId: 'sandbox',
+    },
+] as const;
+
 const MainLayout: React.FC = () => {
-    const { isLessonMode, toggleLessonMode } = useAppStore();
+    const { currentTab, setCurrentTab, getCurrentProblemId, getCurrentProblemData, setCurrentProblem } = useTraceStore();
+    const currentProblemId = getCurrentProblemId();
+    const currentProblem = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
+
+    const handleModeChange = (mode: typeof navigationModes[number]) => {
+        setCurrentTab(mode.id);
+        setCurrentProblem(mode.problemId);
+    };
+
+    const handleBackToProblems = () => {
+        setCurrentProblem(null);
+    };
 
     return (
         <div className="h-screen bg-gray-50 flex flex-col">
@@ -31,41 +63,52 @@ const MainLayout: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Mode Toggle */}
+                    {/* Breadcrumb Navigation - only show in practice mode with selected problem (not sandbox) */}
+                    {currentTab === 'practice' && currentProblem && currentProblemId !== 'sandbox' && (
+                        <div className="flex items-center gap-2 text-sm">
+                            <button
+                                onClick={handleBackToProblems}
+                                className="text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                            >
+                                Problems
+                            </button>
+                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                            <span className="text-gray-900 font-medium truncate max-w-[200px]">
+                                {currentProblem.title}
+                            </span>
+                        </div>
+                    )}
+
+                    {/* Scalable Navigation */}
                     <div className="flex items-center gap-4">
                         <div className="flex bg-gray-100 rounded-lg p-1">
-                            <Button
-                                variant={isLessonMode ? "default" : "ghost"}
-                                size="sm"
-                                onClick={() => toggleLessonMode(true)}
-                                className={`flex items-center gap-2 ${isLessonMode
-                                    ? 'bg-blue-600 text-white shadow-sm'
-                                    : 'text-gray-600 hover:text-gray-900'
-                                    }`}
-                            >
-                                <BookOpen className="h-4 w-4" />
-                                Lessons
-                            </Button>
+                            {navigationModes.map((mode) => {
+                                const Icon = mode.icon;
+                                const isActive = currentTab === mode.id;
 
-                            <Button
-                                variant={!isLessonMode ? "default" : "ghost"}
-                                size="sm"
-                                onClick={() => toggleLessonMode(false)}
-                                className={`flex items-center gap-2 ${!isLessonMode
-                                    ? 'bg-blue-600 text-white shadow-sm'
-                                    : 'text-gray-600 hover:text-gray-900'
-                                    }`}
-                            >
-                                <Code className="h-4 w-4" />
-                                Practice
-                            </Button>
+                                return (
+                                    <Button
+                                        key={mode.id}
+                                        variant={isActive ? "default" : "ghost"}
+                                        size="sm"
+                                        onClick={() => handleModeChange(mode)}
+                                        className={`flex items-center gap-2 ${isActive
+                                            ? 'bg-blue-600 text-white shadow-sm'
+                                            : 'text-gray-600 hover:text-gray-900'
+                                            }`}
+                                    >
+                                        <Icon className="h-4 w-4" />
+                                        {mode.label}
+                                    </Button>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
             </header>
             {/* Main Content */}
             <main className="flex-1 flex overflow-hidden h-0">
-                {isLessonMode ? <LessonMode /> : <ProblemMode />}
+                {currentTab === 'learn' ? <LessonMode /> : <ProblemMode />}
             </main>
         </div>
     );

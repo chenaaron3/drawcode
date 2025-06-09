@@ -9,7 +9,7 @@ test.describe("Code Compilation and Trace Updates", () => {
 
   test.beforeEach(async ({ page }) => {
     debuggerPage = new TraceDebuggerPage(page);
-    await debuggerPage.goto();
+    await debuggerPage.gotoProblem("two-sum");
 
     // Select first problem and wait for it to load
     await debuggerPage.waitForTraceToLoad();

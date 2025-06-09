@@ -13,7 +13,7 @@ interface LessonPageProps {
     lesson: Lesson;
 }
 
-export const LessonPage: React.FC<LessonPageProps> = ({ lesson }) => {
+export const LessonPage: React.FC<LessonPageProps> = () => {
     const { currentProblemId } = useTraceStore();
 
     // Get current lesson data based on the current problem

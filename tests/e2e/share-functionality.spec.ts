@@ -7,7 +7,7 @@ test.describe("Share Functionality", () => {
 
   test.beforeEach(async ({ page }) => {
     debuggerPage = new TraceDebuggerPage(page);
-    await debuggerPage.goto();
+    await debuggerPage.gotoProblem("two-sum");
 
     // Wait for the trace to load
     await debuggerPage.waitForTraceToLoad();

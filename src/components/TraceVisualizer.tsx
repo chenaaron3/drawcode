@@ -1,8 +1,6 @@
 import { LayoutGroup } from 'framer-motion';
 import { useEffect } from 'react';
-import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
-
-import { useCodeInitialization } from '@/hooks/useCodeInitialization';
+import { Panel, PanelGroup } from 'react-resizable-panels';
 
 import { useTraceStore } from '../store/traceStore';
 import CodePanel from './CodePanel';
@@ -37,18 +35,18 @@ export default function TraceVisualizer({
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [toggleOverlayMode]);
 
-    const { isInitializing } = useCodeInitialization();
+    // const { isInitializing } = useCodeInitialization();
 
-    if (isInitializing) {
-        return (
-            <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
-                <div className="text-center">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                    <p className="text-muted-foreground">Initializing...</p>
-                </div>
-            </div>
-        );
-    }
+    // if (isInitializing) {
+    //     return (
+    //         <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
+    //             <div className="text-center">
+    //                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+    //                 <p className="text-muted-foreground">Initializing...</p>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     if (!currentTraceData) return null;
 

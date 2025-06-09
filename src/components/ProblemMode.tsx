@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useTraceStore } from '@/store/traceStore';
 
 import DebuggerPage from '../pages/DebuggerPage';
 import RoadmapPage from '../pages/RoadmapPage';
 
 const ProblemMode: React.FC = () => {
-    const [showDebugger, setShowDebugger] = useState(false);
+    const { getCurrentProblemId } = useTraceStore();
+    const currentProblemId = getCurrentProblemId();
 
-    if (showDebugger) {
+    if (currentProblemId) {
         return <DebuggerPage />;
     }
 
-    return <RoadmapPage onNavigateToDebugger={() => setShowDebugger(true)} />;
+    return <RoadmapPage />;
 };
 
 export default ProblemMode; 

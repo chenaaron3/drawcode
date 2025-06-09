@@ -1,10 +1,26 @@
 import { useEffect, useState } from 'react';
 
+import lessonProblemsData from '@/data/lesson-problems.json';
 import { getTraceData } from '@/data/traces';
-import { useAppStore } from '@/store/appStore';
 import { useTraceStore } from '@/store/traceStore';
 
 import { usePyodide } from './usePyodide';
+
+// Helper function to check if a problemId is a lesson
+function isLessonId(problemId: string): boolean {
+  return lessonProblemsData.some((lesson) => lesson.id === problemId);
+}
+
+// Helper function to determine the correct tab for a problem
+function getProblemTab(problemId: string): "learn" | "practice" | "playground" {
+  // Sandbox always goes to playground
+  if (problemId === "sandbox") {
+    return "playground";
+  }
+
+  // Check if it's a lesson
+  return isLessonId(problemId) ? "learn" : "practice";
+}
 
 export function useCodeInitialization() {
   const {
@@ -12,8 +28,9 @@ export function useCodeInitialization() {
     setCurrentProblem,
     setTraceData,
     getCurrentProblemId,
+    currentTab,
+    setCurrentTab,
   } = useTraceStore();
-  const { isLessonMode } = useAppStore();
   const { isLoading: isPyodideLoading, generateTrace } = usePyodide();
   const [hasInitialized, setHasInitialized] = useState(false);
   const currentProblem = getCurrentProblemId();
@@ -38,6 +55,9 @@ export function useCodeInitialization() {
         // Set the problem to sandbox so we can run whatever
         setCurrentProblem("sandbox");
         setCurrentCode(decodedCode);
+
+        // Sandbox always goes to playground mode
+        setCurrentTab("playground");
 
         const generateTraceAsync = async () => {
           // Wrap just in case we get an invalid code
@@ -64,7 +84,12 @@ export function useCodeInitialization() {
       try {
         // Validate that the problem exists by checking if we have trace data for it
         const problemTraceData = getTraceData(problemId);
+        console.log("problemTraceData", problemTraceData);
         if (problemTraceData) {
+          // Set the correct tab based on whether it's a lesson, practice, or playground
+          const correctTab = getProblemTab(problemId);
+          setCurrentTab(correctTab);
+
           setCurrentProblem(problemId);
           // Clear the URL parameter after loading with a small delay
           setTimeout(() => {
@@ -80,16 +105,20 @@ export function useCodeInitialization() {
             Object.keys(require("@/data/traces").TRACES)
           );
           setCurrentProblem("two-sum");
+          // Default to practice mode for fallback
+          setCurrentTab("practice");
         }
       } catch (error) {
         console.error("Failed to load problem from URL:", error);
         setCurrentProblem("two-sum");
+        // Default to practice mode for error case
+        setCurrentTab("practice");
       }
       setHasInitialized(true);
     } else {
-      // Default initialization for non-lesson mode
-      if (!isLessonMode && currentProblem === null) {
-        // Not in lesson mode and no problem selected - default to two-sum
+      // Default initialization for non-learn mode
+      if (currentTab !== "learn" && currentProblem === null) {
+        // Not in learn mode and no problem selected - default to two-sum
         setCurrentProblem("two-sum");
       }
       setHasInitialized(true);
@@ -101,7 +130,8 @@ export function useCodeInitialization() {
     setCurrentProblem,
     generateTrace,
     setTraceData,
-    isLessonMode,
+    currentTab,
+    setCurrentTab,
     currentProblem,
   ]);
 

@@ -8,6 +8,11 @@ export class TraceDebuggerPage {
     await this.waitForAppToLoad();
   }
 
+  async gotoProblem(problemId: string) {
+    await this.page.goto(`/?problemId=${problemId}`);
+    await this.waitForAppToLoad();
+  }
+
   async waitForAppToLoad() {
     await this.page.waitForSelector('[data-testid="code-editor-read"]', {
       timeout: 15000,
@@ -46,7 +51,13 @@ export class TraceDebuggerPage {
     // Click in the editor to focus it
     let codeEditor = this.page.locator('[data-testid="code-editor-read"]');
     await expect(codeEditor).toBeVisible();
-    await codeEditor.click();
+    await this.page.waitForTimeout(500);
+    await codeEditor.hover();
+
+    // Click on the edit button
+    const editButton = this.page.locator('[data-testid="edit-button"]');
+    await expect(editButton).toBeVisible();
+    await editButton.click();
 
     // Click into it again to enter edit mode
     codeEditor = this.page.locator(".monaco-editor");

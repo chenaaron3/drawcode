@@ -27,11 +27,7 @@ interface Problem {
     number?: number;
 }
 
-interface RoadmapPageProps {
-    onNavigateToDebugger: () => void;
-}
-
-const RoadmapPage: React.FC<RoadmapPageProps> = ({ onNavigateToDebugger }) => {
+const RoadmapPage: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const { toggleProblemCompletion, progress } = useProgress();
     const { setCurrentProblem } = useTraceStore();
@@ -39,8 +35,8 @@ const RoadmapPage: React.FC<RoadmapPageProps> = ({ onNavigateToDebugger }) => {
     const handleProblemClick = useCallback((problemId: string) => {
         setCurrentProblem(problemId);
         trackProblemSelection(problemId, 'roadmap');
-        onNavigateToDebugger();
-    }, [setCurrentProblem, onNavigateToDebugger]);
+        // Navigation happens automatically via ProblemMode checking the store
+    }, [setCurrentProblem]);
 
     const handleProblemToggleCompletion = useCallback((problemId: string) => {
         const wasCompleted = progress.completedProblems.includes(problemId);

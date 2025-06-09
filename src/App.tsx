@@ -6,13 +6,14 @@ import MainLayout from './components/MainLayout';
 import lessonProblemsJson from './data/lesson-problems.json';
 import problemDescriptionsData from './data/problem-descriptions.json';
 import problemsJson from './data/problems.json';
+import { useCodeInitialization } from './hooks/useCodeInitialization';
 import { useTraceStore } from './store/traceStore';
 import { initGA, trackPageView } from './utils/analytics';
 
 import type { Problem, ProblemDescription } from './types/problem';
-
 export default function App() {
   const { setProblemsData } = useTraceStore();
+  const { isInitializing } = useCodeInitialization();
 
   // Initialize Google Analytics and load problems data
   useEffect(() => {
@@ -50,6 +51,18 @@ export default function App() {
 
     loadProblemsWithDescriptions();
   }, [setProblemsData]);
+
+
+  if (isInitializing) {
+    return (
+      <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Initializing...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

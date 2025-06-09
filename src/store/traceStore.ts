@@ -50,6 +50,7 @@ interface TraceState {
 
   // UI state
   isOverlayMode: boolean; // Whether computation workspace is overlaid on code
+  currentTab: "learn" | "practice" | "playground"; // Current navigation tab
 
   // Input overrides for current problem only
   currentProblemId: string | null;
@@ -100,9 +101,10 @@ interface TraceActions {
   // UI state
   setOverlayMode: (isOverlayMode: boolean) => void;
   toggleOverlayMode: () => void;
+  setCurrentTab: (tab: "learn" | "practice" | "playground") => void;
 
   // Problems
-  setCurrentProblem: (problemId: string) => void;
+  setCurrentProblem: (problemId: string | null) => void;
   getCurrentProblemId: () => string | null;
   getCurrentProblemData: (problemId: string) => Problem | undefined;
   setProblemsData: (data: Problem[]) => void;
@@ -142,6 +144,7 @@ const initialState: TraceState = {
   animatingVariable: null,
   isEvaluating: false,
   isOverlayMode: true,
+  currentTab: "practice",
   currentProblemId: null,
   inputOverrides: {},
   originalCode: null,
@@ -224,6 +227,11 @@ export const useTraceStore = create<TraceStore>()(
     toggleOverlayMode: () =>
       set((state) => {
         state.isOverlayMode = !state.isOverlayMode;
+      }),
+
+    setCurrentTab: (tab) =>
+      set((state) => {
+        state.currentTab = tab;
       }),
 
     next: () =>
