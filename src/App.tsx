@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
+import MainLayout from '@/components/layout/MainLayout';
 import { Toaster } from '@/components/ui/sonner';
 
-import MainLayout from './components/MainLayout';
 import lessonProblemsJson from './data/lesson-problems.json';
 import problemDescriptionsData from './data/problem-descriptions.json';
 import problemsJson from './data/problems.json';

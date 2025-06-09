@@ -9,14 +9,13 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import Editor from '@monaco-editor/react';
 
-import { useCurrentStep } from '../hooks/useCurrentStep';
-import { selectCurrentLine, useTraceStore } from '../store/traceStore';
-import ComputationWorkspaceOverlay from './ComputationWorkspaceOverlay';
+import { useCurrentStep } from '../../hooks/useCurrentStep';
+import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
+import { InputsSection } from '../common';
+import { NavigationControls, Settings } from '../controls';
+import { ProblemDescriptionModal } from '../modals';
+import { ComputationWorkspaceOverlay } from '../overlays';
 import { ErrorPanel } from './ErrorPanel';
-import { InputsSection } from './InputsSection';
-import { NavigationControls } from './NavigationControls';
-import { ProblemDescriptionModal } from './ProblemDescriptionModal';
-import { Settings } from './Settings';
 
 export default function CodePanel() {
     const {

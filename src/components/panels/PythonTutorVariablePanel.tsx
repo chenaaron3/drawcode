@@ -6,11 +6,11 @@ import ReactFlow, {
     Background, BackgroundVariant, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow
 } from 'reactflow';
 
-import { selectCurrentLine, useTraceStore } from '../store/traceStore';
-import { edgeTypes } from './flow-nodes/CustomEdges';
-import { generateFlowData } from './flow-nodes/generateFlowData';
-import { calculateFitViewOptions, getSmartLayout } from './flow-nodes/layoutEngine';
-import { nodeTypes } from './flow-nodes/VariablePanelNodes';
+import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
+import { edgeTypes } from '../flow-nodes/CustomEdges';
+import { generateFlowData } from '../flow-nodes/generateFlowData';
+import { calculateFitViewOptions, getSmartLayout } from '../flow-nodes/layoutEngine';
+import { nodeTypes } from '../flow-nodes/VariablePanelNodes';
 
 // Custom styles for the React Flow
 const flowStyles = {

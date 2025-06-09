@@ -1,13 +1,13 @@
 import React from 'react';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 
-import lessonProblemsData from '../data/lesson-problems.json';
-import { useTraceStore } from '../store/traceStore';
+import lessonProblemsData from '../../data/lesson-problems.json';
+import { useTraceStore } from '../../store/traceStore';
+import { ResizeHandle } from '../common';
+import { TraceVisualizer } from '../layout';
 import LessonContent from './LessonContent';
-import ResizeHandle from './ResizeHandle';
-import TraceVisualizer from './TraceVisualizer';
 
-import type { Lesson } from '../types/lesson';
+import type { Lesson } from '../../types/lesson';
 
 interface LessonPageProps {
     lesson: Lesson;

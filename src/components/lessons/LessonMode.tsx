@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 // Import the lesson data
-import lessonModulesData from '../data/lesson-modules.json';
-import lessonProblemsData from '../data/lesson-problems.json';
-import { useTraceStore } from '../store/traceStore';
+import lessonModulesData from '@/data/lesson-modules.json';
+import lessonProblemsData from '@/data/lesson-problems.json';
+import { useTraceStore } from '@/store/traceStore';
+
 import { LessonPage } from './LessonPage';
 import { LessonSidebar } from './LessonSidebar';
 
-import type { LessonModule, Lesson } from '../types/lesson';
+import type { LessonModule, Lesson } from '@/types/lesson';
 
 const LessonMode: React.FC = () => {
     const { getCurrentProblemId, setCurrentProblem } = useTraceStore();

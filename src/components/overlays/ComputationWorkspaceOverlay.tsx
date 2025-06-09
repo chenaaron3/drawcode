@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-import { selectCurrentLine, useTraceStore } from '../store/traceStore';
-import ComputationWorkspace from './ComputationWorkspace';
+import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
+import { ComputationWorkspace } from '../common';
 
 interface OverlayPosition {
     top: number;

@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
-import { selectCurrentLine, useTraceStore } from '../store/traceStore';
-import { getChangeColors, getVariableColors } from './visualizers/colors';
-import { renderValue } from './visualizers/renderValue';
-import { fadeInScale, fadeInUp } from './visualizers/variants';
+import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
+import { getChangeColors, getVariableColors } from '../visualizers/colors';
+import { renderValue } from '../visualizers/renderValue';
+import { fadeInScale, fadeInUp } from '../visualizers/variants';
 
 interface VariableItemProps {
     name: string;

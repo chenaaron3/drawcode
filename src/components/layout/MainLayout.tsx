@@ -4,8 +4,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useTraceStore } from '@/store/traceStore';
 
-import LessonMode from './LessonMode';
-import ProblemMode from './ProblemMode';
+import { LessonMode } from '../lessons';
+import { ProblemMode } from '../problems';
 
 // Navigation configuration for scalability
 const navigationModes = [

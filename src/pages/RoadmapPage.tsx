@@ -1,7 +1,8 @@
 import { Loader2 } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import RoadmapGraph from '../components/RoadmapGraph';
+import RoadmapGraph from '@/components/problems/RoadmapGraph';
+
 import patternsData from '../data/patterns.json';
 import problemDescriptionsData from '../data/problem-descriptions.json';
 import problemsData from '../data/problems.json';

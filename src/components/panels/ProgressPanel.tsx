@@ -1,9 +1,9 @@
 import { RotateCcw, Trophy } from 'lucide-react';
 import React, { useMemo } from 'react';
 
-import { useProgress } from '../hooks/useProgress';
-import { Button } from './ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { useProgress } from '../../hooks/useProgress';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 interface ProgressPanelProps {
     allProblems: Array<{ id: string }>;

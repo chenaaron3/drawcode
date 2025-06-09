@@ -1,9 +1,8 @@
 import React from 'react';
 
+import DebuggerPage from '@/pages/DebuggerPage';
+import RoadmapPage from '@/pages/RoadmapPage';
 import { useTraceStore } from '@/store/traceStore';
-
-import DebuggerPage from '../pages/DebuggerPage';
-import RoadmapPage from '../pages/RoadmapPage';
 
 const ProblemMode: React.FC = () => {
     const { getCurrentProblemId } = useTraceStore();

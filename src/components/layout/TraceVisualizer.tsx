@@ -2,11 +2,9 @@ import { LayoutGroup } from 'framer-motion';
 import { useEffect } from 'react';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 
-import { useTraceStore } from '../store/traceStore';
-import CodePanel from './CodePanel';
-import ComputationWorkspace from './ComputationWorkspace';
-import ExecutionPanel from './ExecutionPanel';
-import ResizeHandle from './ResizeHandle';
+import { useTraceStore } from '../../store/traceStore';
+import { ComputationWorkspace, ResizeHandle } from '../common';
+import { CodePanel, ExecutionPanel } from '../panels';
 
 interface TraceVisualizerProps {
     // Layout control

@@ -1,7 +1,7 @@
 import { Code, Map } from 'lucide-react';
 import React from 'react';
 
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 
 interface HeaderProps {
     currentView: 'roadmap' | 'debugger';

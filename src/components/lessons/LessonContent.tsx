@@ -4,11 +4,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-import lessonProblemsData from '../data/lesson-problems.json';
-import { getLessonContent } from '../data/lessons';
-import { useLessonNavigation } from '../hooks/useLessonNavigation';
-import { useTraceStore } from '../store/traceStore';
+import lessonProblemsData from '@/data/lesson-problems.json';
+import { getLessonContent } from '@/data/lessons';
+import { useLessonNavigation } from '@/hooks/useLessonNavigation';
+import { useTraceStore } from '@/store/traceStore';
 
 interface LessonContentProps {
     lessonId: string;

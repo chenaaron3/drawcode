@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Search, X } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 
-import { useProgress } from '../hooks/useProgress';
-import { Button } from './ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Input } from './ui/input';
+import { useProgress } from '../../hooks/useProgress';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Input } from '../ui/input';
 
 interface Problem {
     id: string;

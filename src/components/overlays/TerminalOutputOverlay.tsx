@@ -3,8 +3,7 @@ import { Terminal } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-import { useTraceStore } from '../store/traceStore';
+import { useTraceStore } from '@/store/traceStore';
 
 interface TerminalOutput {
     line: number;

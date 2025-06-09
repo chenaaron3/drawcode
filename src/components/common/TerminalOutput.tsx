@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-import { useTerminalOutput } from '../hooks/useTerminalOutput';
+import { useTerminalOutput } from '../../hooks/useTerminalOutput';
 
 const TerminalOutput: React.FC = () => {
     const { terminalOutput } = useTerminalOutput();

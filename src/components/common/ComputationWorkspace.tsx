@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useNextFrameEffect } from '@/hooks/useNextFrame';
 
-import { selectCurrentLine, useTraceStore } from '../store/traceStore';
-import { AnimatedCopies } from './workspace/AnimatedCopies';
-import { EvaluationTree } from './workspace/EvaluationTree';
-import { getNodeTextLength, highlightNodeInTree, replaceNodeValueInTree } from './workspace/utils';
+import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
+import { AnimatedCopies } from '../workspace/AnimatedCopies';
+import { EvaluationTree } from '../workspace/EvaluationTree';
+import { getNodeTextLength, highlightNodeInTree, replaceNodeValueInTree } from '../workspace/utils';
 
-import type { AugmentedTraceStep } from '../types/trace';
+import type { AugmentedTraceStep } from '../../types/trace';
 
-import type { EvaluationNode } from './workspace/utils';
-import type { AnimatedCopy } from './workspace/AnimatedCopies';
+import type { EvaluationNode } from '../workspace/utils';
+import type { AnimatedCopy } from '../workspace/AnimatedCopies';
 interface ComputationWorkspaceProps {
     overlayMode?: boolean;
 }

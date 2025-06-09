@@ -8,9 +8,9 @@ import ReactFlow, {
     useEdgesState, useNodesState
 } from 'reactflow';
 
-import { useProgress } from '../hooks/useProgress';
-import { useTraceStore } from '../store/traceStore';
-import ProblemsPanel from './ProblemsPanel';
+import { useProgress } from '../../hooks/useProgress';
+import { useTraceStore } from '../../store/traceStore';
+import { ProblemsPanel } from '../panels';
 
 import type { Connection, Edge, Node, NodeTypes } from 'reactflow';
 

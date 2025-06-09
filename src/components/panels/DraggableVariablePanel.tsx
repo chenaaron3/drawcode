@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { useTraceStore } from '@/store/traceStore';
 
-import { useTraceStore } from '../store/traceStore';
 import PythonTutorVariablePanel from './PythonTutorVariablePanel';
 
 export default function DraggableVariablePanel() {

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 
-import { useTerminalOutput } from '../hooks/useTerminalOutput';
+import { useTerminalOutput } from '../../hooks/useTerminalOutput';
+import { ResizeHandle, TerminalOutput } from '../common';
 import PythonTutorVariablePanel from './PythonTutorVariablePanel';
-import ResizeHandle from './ResizeHandle';
-import TerminalOutput from './TerminalOutput';
 
 interface ExecutionPanelProps {
     resizeTrigger?: number;

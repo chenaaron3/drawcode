@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TraceVisualizer from '../components/TraceVisualizer';
+import TraceVisualizer from '@/components/layout/TraceVisualizer';
 
 const DebuggerPage: React.FC = () => {
     return (

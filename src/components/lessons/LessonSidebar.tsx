@@ -1,7 +1,7 @@
 import { ChevronDown, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
 
-import type { LessonModule, Lesson } from '../types/lesson';
+import type { LessonModule, Lesson } from '@/types/lesson';
 
 interface LessonSidebarProps {
     modules: LessonModule[];

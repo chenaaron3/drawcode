@@ -12,9 +12,8 @@ import {
     Select, SelectContent, SelectItem, SelectTrigger, SelectValue
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-
-import { useTraceGeneration } from '../hooks/useTraceGeneration';
-import { useTraceStore } from '../store/traceStore';
+import { useTraceGeneration } from '@/hooks/useTraceGeneration';
+import { useTraceStore } from '@/store/traceStore';
 
 export function Settings() {
     const {

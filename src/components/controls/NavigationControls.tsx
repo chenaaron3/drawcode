@@ -2,9 +2,8 @@ import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
 import { MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 
 import { Button } from '@/components/ui/button';
-
-import { useTraceStore } from '../store/traceStore';
-import { trackNavigationStep, trackPlaybackControl } from '../utils/analytics';
+import { useTraceStore } from '@/store/traceStore';
+import { trackNavigationStep, trackPlaybackControl } from '@/utils/analytics';
 
 export function NavigationControls() {
     const {
