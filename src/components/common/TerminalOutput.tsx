@@ -6,7 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { useTerminalOutput } from '../../hooks/useTerminalOutput';
 
-const TerminalOutput: React.FC = () => {
+interface TerminalOutputProps {
+    isStacked?: boolean;
+}
+
+const TerminalOutput: React.FC<TerminalOutputProps> = ({ isStacked = false }) => {
     const { terminalOutput } = useTerminalOutput();
     const [isScrolled, setIsScrolled] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -24,8 +28,6 @@ const TerminalOutput: React.FC = () => {
             setIsScrolled(scrollContainerRef.current.scrollTop > 0);
         }
     };
-
-
 
     // Don't show if there's no output
     if (terminalOutput.length === 0) {
@@ -50,7 +52,10 @@ const TerminalOutput: React.FC = () => {
                     <div
                         ref={scrollContainerRef}
                         onScroll={handleScroll}
-                        className="bg-slate-900 dark:bg-slate-800 text-green-400 p-3 rounded-md font-mono text-xs max-h-25 overflow-y-auto hover:scrollbar-thumb-green-500 scrollbar-thin scrollbar-thumb-green-700 scrollbar-track-transparent"
+                        className={`bg-slate-900 dark:bg-slate-800 text-green-400 p-3 rounded-md font-mono text-xs overflow-y-auto hover:scrollbar-thumb-green-500 scrollbar-thin scrollbar-thumb-green-700 scrollbar-track-transparent`}
+                        style={{
+                            maxHeight: isStacked ? '' : '15vh',
+                        }}
                     >
                         <AnimatePresence>
                             {terminalOutput.map((output, index) => (
