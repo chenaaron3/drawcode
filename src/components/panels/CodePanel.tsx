@@ -33,6 +33,7 @@ export default function CodePanel() {
         clearError,
         getCurrentProblemId,
         getCurrentProblemData,
+        currentTab,
     } = useTraceStore();
     const currentLine = useTraceStore(selectCurrentLine);
     const currentStep = useCurrentStep();
@@ -110,11 +111,11 @@ export default function CodePanel() {
     return (
         <>
             <TooltipProvider>
-                <Card className="h-full flex flex-col">
+                <Card className="h-full flex flex-col" data-tutorial="code-panel">
                     <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0">
                         <div className="flex items-center gap-2">
                             <CardTitle className="text-lg">
-                                {problemData?.title ?? "Code"}
+                                {currentTab === "learn" ? "Program" : (problemData?.title ?? "Code")}
                             </CardTitle>
                             {problemId && problemData?.details && (
                                 <ProblemDescriptionModal problemId={problemId} />

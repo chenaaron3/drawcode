@@ -39,7 +39,7 @@ export function NavigationControls() {
 
     // Essential Navigation Controls only
     return (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1" data-tutorial="step-controls">
             <Button
                 variant="outline"
                 size="sm"

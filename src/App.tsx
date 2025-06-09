@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import MainLayout from '@/components/layout/MainLayout';
+import { LandingPage } from '@/components/pages';
+import { TutorialOverlay } from '@/components/tutorial';
 import { Toaster } from '@/components/ui/sonner';
 
 import lessonProblemsJson from './data/lesson-problems.json';
@@ -11,9 +13,17 @@ import { useTraceStore } from './store/traceStore';
 import { initGA, trackPageView } from './utils/analytics';
 
 import type { Problem, ProblemDescription } from './types/problem';
+
+// Check if we're coming from a share entrypoint
+const isShareEntrypoint = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.has('code') || urlParams.has('problemId');
+};
+
 export default function App() {
   const { setProblemsData } = useTraceStore();
   const { isInitializing } = useCodeInitialization();
+  const [showLanding, setShowLanding] = useState(!isShareEntrypoint());
 
   // Initialize Google Analytics and load problems data
   useEffect(() => {
@@ -64,9 +74,20 @@ export default function App() {
     );
   }
 
+  // Show landing page if user hasn't started yet
+  if (showLanding) {
+    return (
+      <>
+        <LandingPage onGetStarted={() => setShowLanding(false)} />
+        <Toaster />
+      </>
+    );
+  }
+
   return (
     <>
       <MainLayout />
+      <TutorialOverlay />
       <Toaster />
     </>
   );

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import lessonProblemsData from '@/data/lesson-problems.json';
-import { getTraceData } from '@/data/traces';
-import { useTraceStore } from '@/store/traceStore';
+import lessonProblemsData from "@/data/lesson-problems.json";
+import { getTraceData } from "@/data/traces";
+import { useTraceStore } from "@/store/traceStore";
 
-import { usePyodide } from './usePyodide';
+import { usePyodide } from "./usePyodide";
 
 // Helper function to check if a problemId is a lesson
 function isLessonId(problemId: string): boolean {
@@ -64,8 +64,10 @@ export function useCodeInitialization() {
           try {
             const newTraceData = await generateTrace(decodedCode, "", {}, {});
             setTraceData(newTraceData);
-          } finally {
+          } catch (error) {
+            // Fallback to two-sum if compilation fails
             setCurrentProblem("two-sum");
+          } finally {
             setHasInitialized(true);
             // Clear the URL parameter after loading
             const newUrl = window.location.pathname;

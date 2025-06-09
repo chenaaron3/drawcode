@@ -26,6 +26,7 @@ print('Weapon:', hero_weapon)
 ## Predict Before You Run
 
 Before running the code, look at your visual debugger and predict:
+
 - What will appear in the `name`, `hero_class`, and `hero_weapon` variable boxes?
 - What text will be printed to the console?
 - Watch how the values flow from the strings into the variables!

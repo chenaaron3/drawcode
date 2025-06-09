@@ -29,6 +29,7 @@ for location in locations:
 ## Predict Before You Run
 
 Before running, predict:
+
 - How many different adventures will be generated?
 - What will each adventure sentence look like?
 - Watch how `location` changes in the visual debugger!
@@ -36,6 +37,7 @@ Before running, predict:
 ## List Looping
 
 When you loop through a list:
+
 - `location` takes on each value in `locations`
 - First: `'haunted castle'`
 - Then: `'deep cave'`
@@ -45,6 +47,7 @@ When you loop through a list:
 ## Procedural Generation
 
 This technique creates:
+
 - **Variety**: Multiple adventure options
 - **Replayability**: Different experiences each time
 - **Efficiency**: One template, many results
@@ -53,6 +56,7 @@ This technique creates:
 ## Expanding the System
 
 You could add more variety with:
+
 - Different heroes: `['warrior', 'mage', 'rogue']`
 - Different actions: `['explores', 'conquers', 'flees from']`
 - Different objectives: `['seeking treasure', 'rescuing prisoners', 'solving mysteries']`
@@ -60,6 +64,7 @@ You could add more variety with:
 ## Advanced Generation
 
 Real adventure generators might combine:
+
 - Multiple story templates
 - Random selection from lists
 - Procedural difficulty scaling
@@ -68,8 +73,9 @@ Real adventure generators might combine:
 ## Game Design Applications
 
 This technique is used for:
+
 - **Quest generation**: Infinite side quests
-- **World building**: Diverse locations and scenarios  
+- **World building**: Diverse locations and scenarios
 - **Character creation**: Varied backgrounds and abilities
 - **Loot systems**: Random treasure generation
 

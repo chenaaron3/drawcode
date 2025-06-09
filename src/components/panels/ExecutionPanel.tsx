@@ -26,7 +26,9 @@ const ExecutionPanel: React.FC<ExecutionPanelProps> = ({ resizeTrigger, isStacke
                     <ResizeHandle direction="horizontal" />
 
                     <Panel defaultSize={60} minSize={25}>
-                        <PythonTutorVariablePanel resizeTrigger={resizeTrigger} />
+                        <div data-tutorial="variables-panel">
+                            <PythonTutorVariablePanel resizeTrigger={resizeTrigger} />
+                        </div>
                     </Panel>
                 </PanelGroup>
             </div>
@@ -36,19 +38,37 @@ const ExecutionPanel: React.FC<ExecutionPanelProps> = ({ resizeTrigger, isStacke
     if (isStacked && !hasTerminalOutput) {
         // Stacked mode but no terminal output: Just show variables
         return (
-            <div className="h-full">
+            <div className="h-full" data-tutorial="variables-panel">
                 <PythonTutorVariablePanel resizeTrigger={resizeTrigger} />
             </div>
         );
     }
 
-    // Normal mode: Terminal on top (if exists), Variables below
-    return (
-        <div className="h-full flex flex-col gap-4">
-            {hasTerminalOutput && <TerminalOutput />}
-            <div className="flex-1">
-                <PythonTutorVariablePanel resizeTrigger={resizeTrigger} />
+    // Normal mode: Terminal on top (if exists), Variables below with resizable panels
+    if (hasTerminalOutput) {
+        return (
+            <div className="group/execution h-full">
+                <PanelGroup direction="vertical" className="h-full">
+                    <Panel defaultSize={30} minSize={20}>
+                        <TerminalOutput />
+                    </Panel>
+
+                    <ResizeHandle direction="vertical" />
+
+                    <Panel defaultSize={70} minSize={30}>
+                        <div data-tutorial="variables-panel">
+                            <PythonTutorVariablePanel resizeTrigger={resizeTrigger} />
+                        </div>
+                    </Panel>
+                </PanelGroup>
             </div>
+        );
+    }
+
+    // Normal mode but no terminal output: Just show variables
+    return (
+        <div className="h-full" data-tutorial="variables-panel">
+            <PythonTutorVariablePanel resizeTrigger={resizeTrigger} />
         </div>
     );
 };

@@ -144,7 +144,7 @@ const initialState: TraceState = {
   animatingVariable: null,
   isEvaluating: false,
   isOverlayMode: true,
-  currentTab: "practice",
+  currentTab: "learn",
   currentProblemId: null,
   inputOverrides: {},
   originalCode: null,

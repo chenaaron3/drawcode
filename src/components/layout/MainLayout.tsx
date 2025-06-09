@@ -1,11 +1,12 @@
-import { BookOpen, ChevronRight, Code, Play } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { BookOpen, ChevronRight, Code, Play, Zap } from 'lucide-react';
 import React from 'react';
 
-import { Button } from '@/components/ui/button';
 import { useTraceStore } from '@/store/traceStore';
 
 import { LessonMode } from '../lessons';
 import { ProblemMode } from '../problems';
+import { TutorialTrigger } from '../tutorial';
 
 // Navigation configuration for scalability
 const navigationModes = [
@@ -23,7 +24,7 @@ const navigationModes = [
     },
     {
         id: 'playground' as const,
-        label: 'Playground',
+        label: 'Play',
         icon: Play,
         problemId: 'sandbox',
     },
@@ -49,16 +50,16 @@ const MainLayout: React.FC = () => {
             <header className="h-16 bg-white border-b border-gray-200 px-6 flex-shrink-0">
                 <div className="flex items-center justify-between h-full">
                     {/* Logo and Title */}
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                            <Code className="h-5 w-5 text-white" />
+                    <div className="flex items-center gap-3" data-tutorial="logo">
+                        <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
+                            <Zap className="h-5 w-5 text-white" />
                         </div>
                         <div>
                             <h1 className="text-xl font-bold text-gray-900">
-                                Python Adventure
+                                Python Quest
                             </h1>
                             <p className="text-sm text-gray-500">
-                                Interactive & Visual Approach
+                                Learn Python Through Adventure
                             </p>
                         </div>
                     </div>
@@ -81,25 +82,36 @@ const MainLayout: React.FC = () => {
 
                     {/* Scalable Navigation */}
                     <div className="flex items-center gap-4">
-                        <div className="flex bg-gray-100 rounded-lg p-1">
+                        <TutorialTrigger />
+                        <div className="flex bg-gray-100 rounded-lg p-1 relative" data-tutorial="navigation-tabs">
                             {navigationModes.map((mode) => {
                                 const Icon = mode.icon;
                                 const isActive = currentTab === mode.id;
 
                                 return (
-                                    <Button
-                                        key={mode.id}
-                                        variant={isActive ? "default" : "ghost"}
-                                        size="sm"
-                                        onClick={() => handleModeChange(mode)}
-                                        className={`flex items-center gap-2 ${isActive
-                                            ? 'bg-blue-600 text-white shadow-sm'
-                                            : 'text-gray-600 hover:text-gray-900'
-                                            }`}
-                                    >
-                                        <Icon className="h-4 w-4" />
-                                        {mode.label}
-                                    </Button>
+                                    <div key={mode.id} className="relative z-0">
+                                        {isActive && (
+                                            <motion.div
+                                                layoutId="activeTab"
+                                                className="absolute inset-0 bg-blue-600 rounded-md shadow-sm z-0"
+                                                transition={{
+                                                    type: "spring",
+                                                    stiffness: 500,
+                                                    damping: 30
+                                                }}
+                                            />
+                                        )}
+                                        <button
+                                            onClick={() => handleModeChange(mode)}
+                                            className={`relative z-20 flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${isActive
+                                                ? 'text-white'
+                                                : 'text-gray-600 hover:text-gray-900'
+                                                }`}
+                                        >
+                                            <Icon className="h-4 w-4" />
+                                            {mode.label}
+                                        </button>
+                                    </div>
                                 );
                             })}
                         </div>

@@ -1,9 +1,9 @@
-import { BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
+import { BookOpen, ChevronRight } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import lessonProblemsData from '@/data/lesson-problems.json';
 import { getLessonContent } from '@/data/lessons';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
@@ -76,12 +76,7 @@ const LessonContent: React.FC<LessonContentProps> = ({
 
     return (
         <Card className="h-full flex flex-col">
-            <CardHeader className="flex-shrink-0">
-                <CardTitle className="flex items-center gap-2">
-                    <BookOpen className="h-5 w-5 text-blue-600" />
-                    {lessonTitle}
-                </CardTitle>
-            </CardHeader>
+
 
             <CardContent className="flex-1 overflow-y-auto">
                 <div>
@@ -97,7 +92,8 @@ const LessonContent: React.FC<LessonContentProps> = ({
                             components={{
                                 // Custom components for better styling
                                 h1: ({ children }) => (
-                                    <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 pb-2 border-b border-slate-200 dark:border-slate-700">
+                                    <h1 className="flex items-center gap-2  text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 pb-2 border-b border-slate-200 dark:border-slate-700">
+                                        <BookOpen className="h-6 w-6 text-blue-600" />
                                         {children}
                                     </h1>
                                 ),
