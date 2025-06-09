@@ -171,7 +171,7 @@ function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger?: numb
 export function PythonTutorVariablePanel({ resizeTrigger }: { resizeTrigger?: number } = {}) {
     return (
         <motion.div
-            className="w-full h-full bg-slate-50 rounded-lg border border-slate-200 overflow-hidden"
+            className="w-full h-full bg-card text-card-foreground rounded-xl border shadow-sm overflow-hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}

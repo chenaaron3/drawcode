@@ -1,5 +1,6 @@
 import { LayoutGroup } from 'framer-motion';
 import { useEffect } from 'react';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
 import { useCodeInitialization } from '@/hooks/useCodeInitialization';
 
@@ -7,6 +8,7 @@ import { useTraceStore } from '../store/traceStore';
 import CodePanel from './CodePanel';
 import ComputationWorkspace from './ComputationWorkspace';
 import ExecutionPanel from './ExecutionPanel';
+import ResizeHandle from './ResizeHandle';
 
 interface TraceVisualizerProps {
     // Layout control
@@ -54,17 +56,25 @@ export default function TraceVisualizer({
         <LayoutGroup>
             <div className="h-full overflow-visible">
                 {isStacked ? (
-                    // Stacked Layout: Code (top) + Variables (bottom)
-                    <div className="h-full flex flex-col gap-4 overflow-visible">
-                        {/* Top: Code Panel */}
-                        <div className="h-1/2 overflow-auto">
-                            <CodePanel />
-                        </div>
+                    // Stacked Layout: Code (top) + Variables (bottom) with resizer
+                    <div className="group/stacked h-full">
+                        <PanelGroup direction="vertical" className="h-full">
+                            {/* Top: Code Panel */}
+                            <Panel defaultSize={50} minSize={30}>
+                                <div className="h-full overflow-auto">
+                                    <CodePanel />
+                                </div>
+                            </Panel>
 
-                        {/* Bottom: Execution Panel (Terminal + Variables) */}
-                        <div className="h-1/2 overflow-auto">
-                            <ExecutionPanel />
-                        </div>
+                            <ResizeHandle direction="vertical" />
+
+                            {/* Bottom: Execution Panel (Terminal + Variables) */}
+                            <Panel defaultSize={50} minSize={30}>
+                                <div className="h-full overflow-auto">
+                                    <ExecutionPanel isStacked={true} />
+                                </div>
+                            </Panel>
+                        </PanelGroup>
                     </div>
                 ) : (
                     // Normal Problem Layout (existing layout for non-lessons)
@@ -72,31 +82,48 @@ export default function TraceVisualizer({
                         <div className="flex-1 overflow-visible">
                             {isOverlayMode ? (
                                 // Overlay mode - full-width code with workspace overlay and variable panel
-                                <div className="h-full overflow-visible relative flex gap-4">
-                                    <div className="flex-1">
-                                        <CodePanel />
-                                    </div>
-                                    <div className="w-3/5">
-                                        <ExecutionPanel />
-                                    </div>
+                                <div className="group/overlay h-full">
+                                    <PanelGroup direction="horizontal" className="h-full">
+                                        <Panel defaultSize={40} minSize={25}>
+                                            <div className="h-full overflow-visible">
+                                                <CodePanel />
+                                            </div>
+                                        </Panel>
+
+                                        <ResizeHandle direction="horizontal" />
+
+                                        <Panel defaultSize={60} minSize={25}>
+                                            <div className="h-full overflow-visible">
+                                                <ExecutionPanel isStacked={false} />
+                                            </div>
+                                        </Panel>
+                                    </PanelGroup>
                                 </div>
                             ) : (
-                                // Normal mode - side-by-side layout
-                                <div className="flex flex-col lg:flex-row h-full gap-6 overflow-visible">
-                                    {/* Code Panel */}
-                                    <div className="order-1 lg:order-1 overflow-visible flex-1">
-                                        <CodePanel />
-                                    </div>
+                                // Normal mode - side-by-side layout with resizable panels
+                                <div className="group/normal h-full">
+                                    <PanelGroup direction="horizontal" className="h-full">
+                                        {/* Code Panel */}
+                                        <Panel defaultSize={50} minSize={30}>
+                                            <div className="h-full overflow-visible">
+                                                <CodePanel />
+                                            </div>
+                                        </Panel>
 
-                                    {/* Computation + Variables */}
-                                    <div className="order-2 lg:order-2 flex flex-col gap-4 lg:flex-1 overflow-visible">
-                                        <div className="overflow-visible">
-                                            <ComputationWorkspace />
-                                        </div>
-                                        <div className="flex-1 overflow-visible relative">
-                                            <ExecutionPanel />
-                                        </div>
-                                    </div>
+                                        <ResizeHandle direction="horizontal" />
+
+                                        {/* Computation + Variables */}
+                                        <Panel defaultSize={50} minSize={30}>
+                                            <div className="h-full flex flex-col gap-4 overflow-visible">
+                                                <div className="overflow-visible">
+                                                    <ComputationWorkspace />
+                                                </div>
+                                                <div className="flex-1 overflow-visible relative">
+                                                    <ExecutionPanel isStacked={false} />
+                                                </div>
+                                            </div>
+                                        </Panel>
+                                    </PanelGroup>
                                 </div>
                             )}
                         </div>

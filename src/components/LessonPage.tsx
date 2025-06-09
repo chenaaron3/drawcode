@@ -1,8 +1,10 @@
 import React from 'react';
+import { Panel, PanelGroup } from 'react-resizable-panels';
 
 import lessonProblemsData from '../data/lesson-problems.json';
 import { useTraceStore } from '../store/traceStore';
 import LessonContent from './LessonContent';
+import ResizeHandle from './ResizeHandle';
 import TraceVisualizer from './TraceVisualizer';
 
 import type { Lesson } from '../types/lesson';
@@ -20,22 +22,32 @@ export const LessonPage: React.FC<LessonPageProps> = ({ lesson }) => {
         : null;
 
     return (
-        <div className="h-full flex gap-6 p-6">
-            {/* Left Half: Lesson Content */}
-            <div className="w-1/2 h-full">
-                {currentLessonData && (
-                    <LessonContent
-                        key={currentLessonData.id}
-                        lessonId={currentLessonData.id}
-                        lessonTitle={currentLessonData.title}
-                        lessonDescription={currentLessonData.description}
-                    />
-                )}
-            </div>
+        <div className="h-full p-6">
+            <div className="group/lesson h-full">
+                <PanelGroup direction="horizontal" className="h-full">
+                    {/* Left: Lesson Content */}
+                    <Panel defaultSize={40} minSize={25}>
+                        <div className="h-full pr-3">
+                            {currentLessonData && (
+                                <LessonContent
+                                    key={currentLessonData.id}
+                                    lessonId={currentLessonData.id}
+                                    lessonTitle={currentLessonData.title}
+                                    lessonDescription={currentLessonData.description}
+                                />
+                            )}
+                        </div>
+                    </Panel>
 
-            {/* Right Half: Trace Visualizer (stacked layout) */}
-            <div className="w-1/2 h-full overflow-visible">
-                <TraceVisualizer isStacked={true} />
+                    <ResizeHandle direction="horizontal" />
+
+                    {/* Right: Trace Visualizer (stacked layout) */}
+                    <Panel defaultSize={60} minSize={25}>
+                        <div className="h-full pl-3 overflow-visible">
+                            <TraceVisualizer isStacked={true} />
+                        </div>
+                    </Panel>
+                </PanelGroup>
             </div>
         </div>
     );
