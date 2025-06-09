@@ -55,7 +55,7 @@ const MainLayout: React.FC = () => {
                         </div>
                         <div>
                             <h1 className="text-xl font-bold text-gray-900">
-                                Learn Python
+                                Python Adventure
                             </h1>
                             <p className="text-sm text-gray-500">
                                 Interactive & Visual Approach

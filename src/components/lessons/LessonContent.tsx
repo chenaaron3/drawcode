@@ -162,20 +162,6 @@ const LessonContent: React.FC<LessonContentProps> = ({
                 <div className="w-full mt-5">
                     <div className="flex justify-between items-center">
                         <button
-                            onClick={() => navigationInfo.previousLesson && setCurrentProblem(navigationInfo.previousLesson.id)}
-                            disabled={!navigationInfo.previousLesson}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${navigationInfo.previousLesson
-                                ? 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100'
-                                : 'bg-slate-50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-600 cursor-not-allowed'
-                                }`}
-                        >
-                            <ChevronLeft className="w-4 h-4" />
-                            <span className="text-sm">
-                                {navigationInfo.previousLesson ? 'Previous' : 'No previous lesson'}
-                            </span>
-                        </button>
-
-                        <button
                             onClick={() => navigationInfo.nextLesson && setCurrentProblem(navigationInfo.nextLesson.id)}
                             disabled={!navigationInfo.nextLesson}
                             className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${navigationInfo.nextLesson
@@ -184,7 +170,7 @@ const LessonContent: React.FC<LessonContentProps> = ({
                                 }`}
                         >
                             <span className="text-sm">
-                                {navigationInfo.nextLesson ? 'Next Lesson' : 'Course complete!'}
+                                {navigationInfo.nextLesson ? 'Next: ' + navigationInfo.nextLesson.title : 'Course complete!'}
                             </span>
                             <ChevronRight className="w-4 h-4" />
                         </button>
