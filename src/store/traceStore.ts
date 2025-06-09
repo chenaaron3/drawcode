@@ -233,8 +233,15 @@ export const useTraceStore = create<TraceStore>()(
             state.lineIndex += 1;
             state.stepIndex = 0;
           } else {
-            // At the end of trace, stop playing
-            state.isPlaying = false;
+            // On the last line, step through remaining steps if any
+            const currentSteps = state.traceData?.trace[state.lineIndex]?.steps;
+            if (currentSteps && state.stepIndex < currentSteps.length - 1) {
+              // Step to the end of the line
+              state.stepIndex = currentSteps.length - 1;
+            } else {
+              // At the end of trace, stop playing
+              state.isPlaying = false;
+            }
           }
         } else if (state.mode === "step") {
           const currentSteps = state.traceData?.trace[state.lineIndex]?.steps;
@@ -403,7 +410,13 @@ export const useTraceStore = create<TraceStore>()(
     hasNext: () => {
       const state = get();
       if (state.mode === "line") {
-        return state.lineIndex < state.maxLine;
+        // If not on the last line, we can always go to next line
+        if (state.lineIndex < state.maxLine) {
+          return true;
+        }
+        // If on the last line, check if there are more steps on this line
+        const currentSteps = state.traceData?.trace[state.lineIndex]?.steps;
+        return !!(currentSteps && state.stepIndex < currentSteps.length - 1);
       } else if (state.mode === "step") {
         const currentSteps = state.traceData?.trace[state.lineIndex]?.steps;
         if (currentSteps && state.stepIndex < currentSteps.length - 1) {

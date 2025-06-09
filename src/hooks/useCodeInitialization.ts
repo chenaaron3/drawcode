@@ -28,12 +28,6 @@ export function useCodeInitialization() {
     const encodedCode = urlParams.get("code");
     const problemId = urlParams.get("problemId");
 
-    console.log("URL search params:", window.location.search);
-    console.log("Detected problemId:", problemId);
-    console.log("Detected code:", encodedCode ? "present" : "none");
-    console.log("Is lesson mode:", isLessonMode);
-    console.log("Current problem before initialization:", currentProblem);
-
     if (encodedCode) {
       if (isPyodideLoading) {
         return;
@@ -67,14 +61,11 @@ export function useCodeInitialization() {
       }
     } else if (problemId) {
       // Handle problem ID from URL parameters
-      console.log(`Attempting to load problem from URL: ${problemId}`);
       try {
         // Validate that the problem exists by checking if we have trace data for it
         const problemTraceData = getTraceData(problemId);
-        console.log(`Trace data found for ${problemId}:`, !!problemTraceData);
         if (problemTraceData) {
           setCurrentProblem(problemId);
-          console.log(`Successfully loaded problem from URL: ${problemId}`);
           // Clear the URL parameter after loading with a small delay
           setTimeout(() => {
             const newUrl = window.location.pathname;

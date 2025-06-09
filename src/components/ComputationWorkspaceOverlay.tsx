@@ -23,19 +23,14 @@ export default function ComputationWorkspaceOverlay() {
 
         // Find the current line element in the editor
         const lineElement = document.querySelector(`[data-line-number="${currentLine.line_number}"][data-is-current="true"]`);
-        console.log('Line element:', lineElement);
         if (!lineElement) return null;
 
         const lineRect = lineElement.getBoundingClientRect();
         const containerRect = lineElement.closest('[data-testid="code-editor-read"]')?.getBoundingClientRect();
         if (!containerRect) return null;
 
-        console.log('Line rect:', lineRect);
-        console.log('Container rect:', containerRect);
-
         // Find the second element (after line number) and offset by its leading whitespace
         const childSpans = Array.from(lineElement.children) as HTMLElement[];
-        console.log('Child spans:', childSpans.length, childSpans);
 
         let codeStartX = lineRect.left;
 
@@ -43,14 +38,8 @@ export default function ComputationWorkspaceOverlay() {
             const secondSpan = childSpans[1]; // Skip line number, use second element
             const secondSpanRect = secondSpan.getBoundingClientRect();
             const spanText = secondSpan.textContent || '';
-
-            console.log('Second span:', secondSpan);
-            console.log('Second span text:', `"${spanText}"`);
-            console.log('Second span rect:', secondSpanRect);
-
             // Calculate the width of leading whitespace
             const leadingWhitespace = spanText.match(/^(\s*)/)?.[1] || '';
-            console.log('Leading whitespace:', `"${leadingWhitespace}"`, 'length:', leadingWhitespace.length);
 
             if (leadingWhitespace.length > 0) {
                 // Create a temporary element to measure the whitespace width
@@ -72,8 +61,6 @@ export default function ComputationWorkspaceOverlay() {
                 const whitespaceWidth = tempSpan.getBoundingClientRect().width;
                 document.body.removeChild(tempSpan);
 
-                console.log('Measured whitespace width:', whitespaceWidth);
-
                 // Position at the second span + whitespace offset
                 codeStartX = secondSpanRect.left + whitespaceWidth;
             } else {
@@ -92,18 +79,7 @@ export default function ComputationWorkspaceOverlay() {
             const lastSpanRect = lastSpan.getBoundingClientRect();
             const lineContentWidth = lastSpanRect.right - codeStartX;
             contentWidth = lineContentWidth
-
-            console.log('Last span:', lastSpan);
-            console.log('Last span rect:', lastSpanRect);
-            console.log('Line content width:', lineContentWidth);
         }
-
-        console.log('Final calculation:', {
-            codeStartX,
-            containerLeft: containerRect.left,
-            relativeLeft,
-            contentWidth
-        });
 
         return {
             top: lineRect.top - containerRect.top,

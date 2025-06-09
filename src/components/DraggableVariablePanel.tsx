@@ -73,8 +73,6 @@ export default function DraggableVariablePanel() {
         };
     }, []);
 
-    console.log('DraggableVariablePanel rendering');
-
     return (
         <motion.div
             ref={panelRef}

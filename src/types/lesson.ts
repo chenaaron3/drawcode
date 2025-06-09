@@ -17,7 +17,7 @@ export interface Lesson {
   solution: string; // The lesson code to execute
   entrypoint: string;
   inputs: Record<string, any>;
-  tags: string[];
+  contentPath: string; // Path to the markdown content file
 }
 
 export interface LessonProgress {

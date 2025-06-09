@@ -12,10 +12,10 @@ const MainLayout: React.FC = () => {
     const { isLessonMode, toggleLessonMode } = useAppStore();
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
+        <div className="h-screen bg-gray-50 flex flex-col">
             {/* Header */}
-            <header className="bg-white border-b border-gray-200 px-6 py-4">
-                <div className="flex items-center justify-between">
+            <header className="h-16 bg-white border-b border-gray-200 px-6 flex-shrink-0">
+                <div className="flex items-center justify-between h-full">
                     {/* Logo and Title */}
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -64,7 +64,7 @@ const MainLayout: React.FC = () => {
                 </div>
             </header>
             {/* Main Content */}
-            <main className="flex-1 flex overflow-hidden">
+            <main className="flex-1 flex overflow-hidden h-0">
                 {isLessonMode ? <LessonMode /> : <ProblemMode />}
             </main>
         </div>

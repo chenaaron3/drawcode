@@ -42,7 +42,7 @@ export default function ComputationWorkspace({ overlayMode = false }: Computatio
     // Initialize evaluation tree when steps change
     useEffect(() => {
         if (steps && steps.length > 0) {
-            console.log('steps', steps);
+            console.log(steps);
             const initialTree = buildInitialTree();
             setEvaluationTree(initialTree);
         }
@@ -145,13 +145,6 @@ export default function ComputationWorkspace({ overlayMode = false }: Computatio
                 const hasLocals = 'locals' in currentStep && currentStep.locals;
 
                 if (currentStep.event === 'after_statement' && isLastStepOfLine && isAssignAST && hasLocals) {
-                    console.log('🔄 Assignment completion detected:', {
-                        step: currentStep.step,
-                        isLastStepOfLine,
-                        isAssignAST,
-                        hasLocals: !!hasLocals
-                    });
-
                     setIsAssign(true);
                     // Get the last node_id
                     const lastNodeId = steps[stepIndex - 1].node_id;

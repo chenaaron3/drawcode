@@ -13,6 +13,7 @@ const LessonMode: React.FC = () => {
     const { getCurrentProblemId, setCurrentProblem } = useTraceStore();
     const [modules] = useState<LessonModule[]>(lessonModulesData.modules as LessonModule[]);
     const [lessons] = useState<Lesson[]>(lessonProblemsData as Lesson[]);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     const selectedLessonId = getCurrentProblemId();
 
@@ -32,6 +33,8 @@ const LessonMode: React.FC = () => {
                 lessons={lessons}
                 selectedLessonId={selectedLessonId || undefined}
                 onLessonSelect={setCurrentProblem}
+                isCollapsed={!isSidebarOpen}
+                onToggleCollapse={() => setIsSidebarOpen(!isSidebarOpen)}
             />
 
             <div className="flex-1">

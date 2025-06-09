@@ -43,7 +43,6 @@ export default function CodePanel() {
 
     // Handle input changes
     const handleInputChange = (key: string, value: any) => {
-        console.log('handleInputChange', key, value);
         setInputOverride(key, value);
         // Clear validation error when user changes the input
         if (currentError?.type === 'validation' && currentError?.invalidField === key) {
@@ -112,8 +111,8 @@ export default function CodePanel() {
     return (
         <>
             <TooltipProvider>
-                <Card className="h-full flex-1/3">
-                    <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3">
+                <Card className="h-full flex flex-col">
+                    <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0">
                         <div className="flex items-center gap-2">
                             <CardTitle className="text-lg">
                                 {problemData?.title ?? "Code"}
@@ -127,7 +126,7 @@ export default function CodePanel() {
                             <Settings />
                         </div>
                     </CardHeader>
-                    <CardContent className="flex-1 overflow-hidden">
+                    <CardContent className="flex-1 overflow-hidden flex flex-col">
                         {/* Error Panel */}
                         <ErrorPanel error={currentError} />
 
@@ -140,9 +139,9 @@ export default function CodePanel() {
                             />
                         )}
 
-                        <div className="rounded-md overflow-hidden bg-muted/30 h-full relative">
+                        <div className="rounded-md overflow-hidden bg-muted/30 flex-1 relative">
                             {isReadOnly ? (
-                                <div className="relative group">
+                                <div className="relative group h-full">
                                     <SyntaxHighlighter
                                         data-testid="code-editor-read"
                                         language="python"
@@ -153,8 +152,7 @@ export default function CodePanel() {
                                             background: 'transparent',
                                             fontSize: '0.75rem',
                                             fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
-                                            height: 'auto',
-                                            maxHeight: 'calc(100vh - 320px)',
+                                            height: '100%',
                                             overflow: 'auto',
                                             lineHeight: '1.3',
                                             cursor: 'text',
@@ -216,7 +214,7 @@ export default function CodePanel() {
                             ) : (
                                 <Editor
                                     data-testid="code-editor-write"
-                                    height="calc(100vh - 320px)"
+                                    height="100%"
                                     language="python"
                                     value={currentCode || ''}
                                     onChange={(value) => setCurrentCode(value || '')}
