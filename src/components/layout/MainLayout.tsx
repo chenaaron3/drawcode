@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { BookOpen, ChevronRight, Code, Play, Zap } from 'lucide-react';
-import React from 'react';
+import { BookOpen, ChevronRight, Code, Menu, Play, Zap } from 'lucide-react';
+import React, { useState } from 'react';
 
 import { useTraceStore } from '@/store/traceStore';
 
@@ -32,12 +32,15 @@ const navigationModes = [
 
 const MainLayout: React.FC = () => {
     const { currentTab, setCurrentTab, getCurrentProblemId, getCurrentProblemData, setCurrentProblem } = useTraceStore();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const currentProblemId = getCurrentProblemId();
     const currentProblem = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
 
     const handleModeChange = (mode: typeof navigationModes[number]) => {
         setCurrentTab(mode.id);
         setCurrentProblem(mode.problemId);
+        // Close sidebar when switching tabs
+        setIsSidebarOpen(false);
     };
 
     const handleBackToProblems = () => {
@@ -50,18 +53,26 @@ const MainLayout: React.FC = () => {
             <header className="h-16 bg-white border-b border-gray-200 px-6 flex-shrink-0">
                 <div className="flex items-center justify-between h-full">
                     {/* Logo and Title */}
-                    <div className="flex items-center gap-3" data-tutorial="logo">
-                        <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
-                            <Zap className="h-5 w-5 text-white" />
-                        </div>
-                        <div>
+                    <div className="flex items-center gap-6" data-tutorial="logo">
+                        <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
+                                <Zap className="h-5 w-5 text-white" />
+                            </div>
                             <h1 className="text-xl font-bold text-gray-900">
                                 Python Quest
                             </h1>
-                            <p className="text-sm text-gray-500">
-                                Learn Python Through Adventure
-                            </p>
                         </div>
+
+                        {/* Lessons button - only show in learn mode */}
+                        {currentTab === 'learn' && (
+                            <button
+                                onClick={() => setIsSidebarOpen(true)}
+                                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
+                            >
+                                <Menu className="h-4 w-4" />
+                                Lessons
+                            </button>
+                        )}
                     </div>
 
                     {/* Breadcrumb Navigation - only show in practice mode with selected problem (not sandbox) */}
@@ -120,7 +131,14 @@ const MainLayout: React.FC = () => {
             </header>
             {/* Main Content */}
             <main className="flex-1 flex overflow-hidden h-0">
-                {currentTab === 'learn' ? <LessonMode /> : <ProblemMode />}
+                {currentTab === 'learn' ? (
+                    <LessonMode
+                        isSidebarOpen={isSidebarOpen}
+                        setIsSidebarOpen={setIsSidebarOpen}
+                    />
+                ) : (
+                    <ProblemMode />
+                )}
             </main>
         </div>
     );

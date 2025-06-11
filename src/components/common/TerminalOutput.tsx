@@ -6,11 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { useTerminalOutput } from '../../hooks/useTerminalOutput';
 
-interface TerminalOutputProps {
-    isStacked?: boolean;
-}
-
-const TerminalOutput: React.FC<TerminalOutputProps> = ({ isStacked = false }) => {
+const TerminalOutput: React.FC = () => {
     const { terminalOutput } = useTerminalOutput();
     const [isScrolled, setIsScrolled] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -29,52 +25,50 @@ const TerminalOutput: React.FC<TerminalOutputProps> = ({ isStacked = false }) =>
         }
     };
 
-    // Don't show if there's no output
-    if (terminalOutput.length === 0) {
-        return null;
-    }
-
     return (
-        <Card className="w-full mb-4 h-full">
-            <CardHeader className="pb-3">
+        <Card className="w-full h-full flex flex-col">
+            <CardHeader className="pb-3 flex-shrink-0">
                 <CardTitle className="text-sm flex items-center gap-2">
                     <Terminal className="w-4 h-4" />
                     Console Output
                     {terminalOutput.length > 6 && (
-                        <span className="text-xs text-slate-500 ml-auto">
+                        <span className="text-xs text-muted-foreground ml-auto">
                             {terminalOutput.length} lines
                         </span>
                     )}
                 </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0">
-                <div className="relative">
+            <CardContent className="pt-0 flex-1 flex flex-col">
+                <div className="relative flex-1">
                     <div
                         ref={scrollContainerRef}
                         onScroll={handleScroll}
-                        className={`bg-slate-900 dark:bg-slate-800 text-green-400 p-3 rounded-md font-mono text-xs overflow-y-auto hover:scrollbar-thumb-green-500 scrollbar-thin scrollbar-thumb-green-700 scrollbar-track-transparent`}
-                        style={{
-                            maxHeight: isStacked ? '' : '15vh',
-                        }}
+                        className="h-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 p-3 rounded-md font-mono text-xs overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-600 scrollbar-track-transparent"
                     >
-                        <AnimatePresence>
-                            {terminalOutput.map((output, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="mb-1 last:mb-0"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    <span className="text-gray-500">Line {output.line}:</span> {output.output}
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
+                        {terminalOutput.length === 0 ? (
+                            <div className="text-muted-foreground text-center py-2">
+                                No console output yet...
+                            </div>
+                        ) : (
+                            <AnimatePresence>
+                                {terminalOutput.map((output, index) => (
+                                    <motion.div
+                                        key={index}
+                                        className="mb-1 last:mb-0"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <span className="text-muted-foreground">Line {output.line}:</span> {output.output}
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        )}
                     </div>
 
                     {/* Fade indicator when scrolled */}
                     {isScrolled && (
-                        <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-slate-900 dark:from-slate-800 to-transparent pointer-events-none rounded-t-md" />
+                        <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-slate-50 dark:from-slate-900 to-transparent pointer-events-none rounded-t-md" />
                     )}
                 </div>
             </CardContent>

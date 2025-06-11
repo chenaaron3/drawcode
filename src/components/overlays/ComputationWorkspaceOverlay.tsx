@@ -13,7 +13,6 @@ interface OverlayPosition {
 
 export default function ComputationWorkspaceOverlay() {
     const currentLine = useTraceStore(selectCurrentLine);
-    const isOverlayMode = useTraceStore(state => state.isOverlayMode);
     const [position, setPosition] = useState<OverlayPosition | null>(null);
     const observerRef = useRef<MutationObserver | null>(null);
 
@@ -139,8 +138,8 @@ export default function ComputationWorkspaceOverlay() {
         };
     }, [currentLine?.line_number]);
 
-    // Don't render if overlay mode is disabled or no position
-    if (!isOverlayMode || !position) {
+    // Don't render if no position
+    if (!position) {
         return null;
     }
 

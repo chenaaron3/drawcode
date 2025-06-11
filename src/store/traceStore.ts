@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { immer } from 'zustand/middleware/immer';
+import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
 
-import { AVAILABLE_PROBLEM_IDS } from '@/data/traces';
+import { AVAILABLE_PROBLEM_IDS } from "@/data/traces";
 
 import type { TraceData, TraceLine } from "../types/trace";
 import type { AST } from "../types/ast";
@@ -49,7 +49,6 @@ interface TraceState {
   isEvaluating: boolean; // True during before_expression, false during after_expression
 
   // UI state
-  isOverlayMode: boolean; // Whether computation workspace is overlaid on code
   currentTab: "learn" | "practice" | "playground"; // Current navigation tab
 
   // Input overrides for current problem only
@@ -99,8 +98,6 @@ interface TraceActions {
   setIsEvaluating: (isEvaluating: boolean) => void;
 
   // UI state
-  setOverlayMode: (isOverlayMode: boolean) => void;
-  toggleOverlayMode: () => void;
   setCurrentTab: (tab: "learn" | "practice" | "playground") => void;
 
   // Problems
@@ -143,7 +140,6 @@ const initialState: TraceState = {
   mode: "step",
   animatingVariable: null,
   isEvaluating: false,
-  isOverlayMode: true,
   currentTab: "learn",
   currentProblemId: null,
   inputOverrides: {},
@@ -217,16 +213,6 @@ export const useTraceStore = create<TraceStore>()(
     setIsEvaluating: (isEvaluating) =>
       set((state) => {
         state.isEvaluating = isEvaluating;
-      }),
-
-    setOverlayMode: (isOverlayMode) =>
-      set((state) => {
-        state.isOverlayMode = isOverlayMode;
-      }),
-
-    toggleOverlayMode: () =>
-      set((state) => {
-        state.isOverlayMode = !state.isOverlayMode;
       }),
 
     setCurrentTab: (tab) =>

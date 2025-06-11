@@ -1,5 +1,5 @@
-import { ChevronDown, ChevronLeft, ChevronRight, Play } from 'lucide-react';
-import React, { useEffect, useMemo, useState } from 'react';
+import { ChevronRight, Play } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
 
 import type { LessonModule, Lesson } from '@/types/lesson';
 
@@ -8,8 +8,6 @@ interface LessonSidebarProps {
     lessons: Lesson[];
     selectedLessonId?: string;
     onLessonSelect: (lessonId: string) => void;
-    isCollapsed?: boolean;
-    onToggleCollapse?: () => void;
 }
 
 export const LessonSidebar: React.FC<LessonSidebarProps> = ({
@@ -17,8 +15,6 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
     lessons,
     selectedLessonId,
     onLessonSelect,
-    isCollapsed = false,
-    onToggleCollapse,
 }) => {
     // Find which module contains the currently selected lesson
     const currentModule = useMemo(() => {
@@ -27,123 +23,103 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
     }, [selectedLessonId, modules]);
 
     // State to track which module is expanded (only one at a time)
+    // Initialize with the current module if it exists
     const [expandedModuleId, setExpandedModuleId] = useState<string | null>(
         currentModule?.id || null
     );
 
-    // Update expanded module when selected lesson changes
-    useEffect(() => {
-        if (currentModule) {
-            setExpandedModuleId(currentModule.id);
-        }
-    }, [currentModule]);
-
-    const toggleModule = (moduleId: string) => {
-        // Accordion behavior: if clicking the same module, collapse it; otherwise, expand the clicked one
-        setExpandedModuleId(prev => prev === moduleId ? null : moduleId);
+    const handleToggleModule = (moduleId: string) => {
+        setExpandedModuleId(currentExpanded => {
+            // If clicking on the currently expanded module, collapse it
+            if (currentExpanded === moduleId) {
+                return null;
+            }
+            // Otherwise, expand the clicked module
+            return moduleId;
+        });
     };
+
+    const handleLessonSelect = (lessonId: string) => {
+        // Find which module this lesson belongs to
+        const lessonModule = modules.find(module => module.lessonIds.includes(lessonId));
+
+        // If selecting a lesson from a different module, auto-expand that module
+        if (lessonModule && expandedModuleId !== lessonModule.id) {
+            setExpandedModuleId(lessonModule.id);
+        }
+
+        // Call the original lesson select handler
+        onLessonSelect(lessonId);
+    };
+
     return (
-        <div className="relative flex h-full">
-            {/* Main Sidebar Content */}
-            <div className={`bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 flex flex-col h-full transition-all duration-300 ${isCollapsed ? 'w-0 opacity-0' : 'w-80 opacity-100'
-                } overflow-hidden`}>
-                <div className="p-4 border-b border-slate-200 dark:border-slate-700">
-                    <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
-                        Python Fundamentals
-                    </h2>
-                </div>
+        <div className="space-y-3">
+            {modules.map((module) => {
+                const isExpanded = expandedModuleId === module.id;
+                const moduleLessons = module.lessonIds
+                    .map(id => lessons.find(l => l.id === id))
+                    .filter((lesson): lesson is Lesson => lesson !== undefined);
 
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 animate-in slide-in-from-left duration-500 min-h-0">
-                    {modules.map((module) => {
-                        const isExpanded = expandedModuleId === module.id;
-
-                        return (
-                            <div key={module.id} className="space-y-2">
-                                {/* Module Header */}
-                                <button
-                                    onClick={() => toggleModule(module.id)}
-                                    className="w-full flex items-center gap-2 text-left p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-200 hover:scale-[1.02] hover:shadow-sm"
-                                >
-                                    <div className={`transition-transform duration-300 ${isExpanded ? 'rotate-0' : '-rotate-90'}`}>
-                                        <ChevronDown className="w-4 h-4 text-slate-400 transition-colors duration-200" />
-                                    </div>
-                                    <div className="transition-all duration-200">
-                                        <h3 className="font-medium text-slate-900 dark:text-slate-100">
-                                            {module.title}
-                                        </h3>
-                                        <p className="text-xs text-slate-500 dark:text-slate-400">
-                                            {module.description}
-                                        </p>
-                                    </div>
-                                </button>
-
-                                {/* Module Lessons */}
-                                <div className={`ml-6 overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'h-full opacity-100' : 'max-h-0 opacity-0'
-                                    }`}>
-                                    <div className={`space-y-1 transition-transform duration-300 ${isExpanded ? 'translate-y-0' : '-translate-y-2'
-                                        }`}>
-                                        {module.lessonIds.map((lessonId, index) => {
-                                            const lesson = lessons.find(l => l.id === lessonId);
-                                            if (!lesson) return null;
-
-                                            const isSelected = selectedLessonId === lesson.id;
-
-                                            return (
-                                                <button
-                                                    key={lesson.id}
-                                                    onClick={() => onLessonSelect(lesson.id)}
-                                                    className={`w-full text-left p-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] hover:shadow-sm group ${isSelected
-                                                        ? 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 shadow-md'
-                                                        : 'hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent'
-                                                        }`}
-                                                    style={{
-                                                        transitionDelay: isExpanded ? `${index * 50}ms` : '0ms'
-                                                    }}
-                                                >
-                                                    <div className="flex items-center gap-3">
-                                                        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${isSelected
-                                                            ? 'bg-blue-100 dark:bg-blue-800 scale-110'
-                                                            : 'bg-slate-100 dark:bg-slate-700 group-hover:scale-105'
-                                                            }`}>
-                                                            <Play className={`w-4 h-4 transition-all duration-200 ${isSelected
-                                                                ? 'text-blue-600 dark:text-blue-300 scale-110'
-                                                                : 'text-slate-600 dark:text-slate-300'
-                                                                }`} />
-                                                        </div>
-                                                        <div className="flex-1 min-w-0">
-                                                            <div className={`font-medium text-sm transition-all duration-200 ${isSelected
-                                                                ? 'text-blue-900 dark:text-blue-100'
-                                                                : 'text-slate-900 dark:text-slate-100'
-                                                                }`}>
-                                                                {lesson.title}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
+                return (
+                    <div key={module.id} className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                        {/* Module Header */}
+                        <button
+                            type="button"
+                            onClick={() => handleToggleModule(module.id)}
+                            className="w-full flex items-center gap-3 text-left p-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                        >
+                            <ChevronRight
+                                className={`w-4 h-4 text-slate-500 transition-transform duration-200 ${isExpanded ? 'rotate-90' : 'rotate-0'
+                                    }`}
+                            />
+                            <div className="flex-1 min-w-0">
+                                <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm truncate">
+                                    {module.title}
+                                </h3>
+                                <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 truncate">
+                                    {module.description}
+                                </p>
                             </div>
-                        );
-                    })}
-                </div>
-            </div>
+                        </button>
 
-            {/* Toggle Button - Always visible tab on the right edge */}
-            <button
-                onClick={onToggleCollapse}
-                className="w-6 h-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 border-l-0 rounded-r-md flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105 active:scale-95"
-                style={{ marginTop: '2rem' }}
-            >
-                <div className="transition-transform duration-300 ease-in-out">
-                    {isCollapsed ? (
-                        <ChevronRight className="w-3 h-3 text-slate-600 dark:text-slate-400 transition-colors duration-200" />
-                    ) : (
-                        <ChevronLeft className="w-3 h-3 text-slate-600 dark:text-slate-400 transition-colors duration-200" />
-                    )}
-                </div>
-            </button>
+                        {/* Module Lessons - Only render when expanded */}
+                        {isExpanded && moduleLessons.length > 0 && (
+                            <div className="border-t border-slate-200 dark:border-slate-700">
+                                {moduleLessons.map((lesson) => {
+                                    const isSelected = selectedLessonId === lesson.id;
+
+                                    return (
+                                        <button
+                                            key={lesson.id}
+                                            type="button"
+                                            onClick={() => handleLessonSelect(lesson.id)}
+                                            className={`w-full flex items-center gap-3 text-left p-3 border-b border-slate-100 dark:border-slate-600 last:border-b-0 transition-colors ${isSelected
+                                                ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-900 dark:text-blue-100'
+                                                : 'bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100'
+                                                }`}
+                                        >
+                                            <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${isSelected
+                                                ? 'bg-blue-100 dark:bg-blue-800'
+                                                : 'bg-slate-100 dark:bg-slate-600'
+                                                }`}>
+                                                <Play className={`w-3 h-3 ${isSelected
+                                                    ? 'text-blue-600 dark:text-blue-300'
+                                                    : 'text-slate-600 dark:text-slate-300'
+                                                    }`} />
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <div className="text-sm font-medium truncate">
+                                                    {lesson.title}
+                                                </div>
+                                            </div>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                );
+            })}
         </div>
     );
 }; 

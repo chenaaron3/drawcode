@@ -76,8 +76,6 @@ const LessonContent: React.FC<LessonContentProps> = ({
 
     return (
         <Card className="h-full flex flex-col">
-
-
             <CardContent className="flex-1 overflow-y-auto">
                 <div>
                     {error && (

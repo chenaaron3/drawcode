@@ -168,8 +168,8 @@ function DictionaryEntry({ entryKey, value, delta, arrows }: DictionaryEntryProp
     const containerClasses = clsx(
         "flex items-center gap-2 p-2 transition-all duration-200 relative overflow-visible",
         isChanged
-            ? "bg-gradient-to-r from-emerald-50/80 to-green-50/80" // Changed state
-            : "hover:bg-slate-50/80" // Default hover state
+            ? "gap-2 bg-gradient-to-r from-emerald-50/80 to-green-50/80" // Changed state
+            : "gap-2 hover:bg-slate-50/80" // Default hover state
     );
 
     const keyClasses = clsx(

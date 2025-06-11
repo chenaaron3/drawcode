@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 // Import the lesson data
 import lessonModulesData from '@/data/lesson-modules.json';
 import lessonProblemsData from '@/data/lesson-problems.json';
@@ -10,11 +11,15 @@ import { LessonSidebar } from './LessonSidebar';
 
 import type { LessonModule, Lesson } from '@/types/lesson';
 
-const LessonMode: React.FC = () => {
+interface LessonModeProps {
+    isSidebarOpen: boolean;
+    setIsSidebarOpen: (open: boolean) => void;
+}
+
+const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
     const { getCurrentProblemId, setCurrentProblem } = useTraceStore();
     const [modules] = useState<LessonModule[]>(lessonModulesData.modules as LessonModule[]);
     const [lessons] = useState<Lesson[]>(lessonProblemsData as Lesson[]);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     const selectedLessonId = getCurrentProblemId();
 
@@ -27,18 +32,32 @@ const LessonMode: React.FC = () => {
 
     const selectedLesson = lessons.find(l => l.id === selectedLessonId);
 
-    return (
-        <div className="h-full flex w-full">
-            <LessonSidebar
-                modules={modules}
-                lessons={lessons}
-                selectedLessonId={selectedLessonId || undefined}
-                onLessonSelect={setCurrentProblem}
-                isCollapsed={!isSidebarOpen}
-                onToggleCollapse={() => setIsSidebarOpen(!isSidebarOpen)}
-            />
+    const handleLessonSelect = (lessonId: string) => {
+        setCurrentProblem(lessonId);
+        setIsSidebarOpen(false); // Close drawer after selection
+    };
 
-            <div className="flex-1">
+    return (
+        <div className="h-full w-full relative">
+            {/* Sheet Drawer */}
+            <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
+                <SheetContent side="left" className="w-80 sm:max-w-80 p-0 flex flex-col">
+                    <SheetHeader className="mx-6 py-4 border-b border-slate-200 dark:border-slate-700 flex-shrink-0">
+                        <SheetTitle className="text-lg font-semibold">Python Fundamentals</SheetTitle>
+                    </SheetHeader>
+                    <div className="flex-1 px-6 py-4 overflow-y-auto">
+                        <LessonSidebar
+                            modules={modules}
+                            lessons={lessons}
+                            selectedLessonId={selectedLessonId || undefined}
+                            onLessonSelect={handleLessonSelect}
+                        />
+                    </div>
+                </SheetContent>
+            </Sheet>
+
+            {/* Main Content - Full Width */}
+            <div className="h-full w-full">
                 {selectedLesson ? (
                     <LessonPage
                         lesson={selectedLesson}

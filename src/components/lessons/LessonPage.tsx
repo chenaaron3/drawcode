@@ -25,9 +25,9 @@ export const LessonPage: React.FC<LessonPageProps> = () => {
         <div className="h-full p-6">
             <div className="group/lesson h-full">
                 <PanelGroup direction="horizontal" className="h-full">
-                    {/* Left: Lesson Content */}
-                    <Panel defaultSize={40} minSize={25}>
-                        <div className="h-full pr-3">
+                    {/* Left: Lesson Content (1/3) */}
+                    <Panel defaultSize={33.33} minSize={25}>
+                        <div className="h-full">
                             {currentLessonData && (
                                 <LessonContent
                                     key={currentLessonData.id}
@@ -41,10 +41,10 @@ export const LessonPage: React.FC<LessonPageProps> = () => {
 
                     <ResizeHandle direction="horizontal" />
 
-                    {/* Right: Trace Visualizer (stacked layout) */}
-                    <Panel defaultSize={60} minSize={25}>
-                        <div className="h-full pl-3 overflow-visible">
-                            <TraceVisualizer isStacked={true} />
+                    {/* Right: TraceVisualizer (2/3, split 50/50 internally) */}
+                    <Panel defaultSize={66.67} minSize={50}>
+                        <div className="h-full overflow-visible">
+                            <TraceVisualizer />
                         </div>
                     </Panel>
                 </PanelGroup>
