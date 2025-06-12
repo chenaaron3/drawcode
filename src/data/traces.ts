@@ -1,10 +1,4 @@
-import type {
-  TraceData,
-  Relationship,
-  ManualRelationship,
-} from "../types/trace";
-import lessonProblemsDataImport from './lesson-problems.json';
-import problemsDataImport from './problems.json';
+import type { TraceData } from "../types/trace";
 
 // Dynamically import all trace files from the public/traces directory
 const traceModules = import.meta.glob("./traces/*.json", {
@@ -28,43 +22,5 @@ export const AVAILABLE_PROBLEM_IDS: string[] = Object.keys(TRACES);
 // Helper function to get trace data for a specific problem
 export function getTraceData(problemId: string): TraceData | undefined {
   const baseTraceData = TRACES[problemId];
-  if (!baseTraceData) return undefined;
-
-  // Find the problem data to get manual relationships
-  // Check both problems.json and lesson-problems.json
-  let problemData: any = problemsDataImport.problems.find(
-    (p) => p.id === problemId
-  );
-
-  // If not found in problems, check lessons
-  if (!problemData) {
-    problemData = lessonProblemsDataImport.find((l) => l.id === problemId);
-  }
-
-  const manualRelationships = problemData?.manualRelationships as
-    | ManualRelationship[]
-    | undefined;
-
-  if (!manualRelationships || manualRelationships.length === 0) {
-    return baseTraceData;
-  }
-
-  // Convert manual relationships to proper Relationship format
-  const convertedManualRelationships: Relationship[] = manualRelationships.map(
-    (manual, index) => ({
-      container: manual.container,
-      cursor: manual.cursor,
-      type: manual.type,
-      node_id: -1 - index, // Use negative IDs to distinguish from AST-generated relationships
-    })
-  );
-
-  // Merge manual relationships with existing ones
-  return {
-    ...baseTraceData,
-    relationships: [
-      ...baseTraceData.relationships,
-      ...convertedManualRelationships,
-    ],
-  };
+  return baseTraceData;
 }
