@@ -6,8 +6,7 @@ import { useTutorialStore } from "@/store/tutorialStore";
 
 import meetYourHero from "./meet-your-hero.md?raw";
 
-import type { LessonHookResult } from "@/types/lesson";
-export function useMeetYourHero(lessonId: string): LessonHookResult {
+export function useMeetYourHero(lessonId: string) {
   const { setContent, startLesson, addTask, completeTask, currentTask } =
     useLessonStore();
   const { hasNext, traceData } = useTraceStore();
@@ -57,9 +56,4 @@ export function useMeetYourHero(lessonId: string): LessonHookResult {
       }
     }
   }, [currentTask, completeTask, finishedtrace]);
-
-  return {
-    isReady: !useLessonStore((state) => state.isLoading),
-    error: useLessonStore((state) => state.error),
-  };
 }

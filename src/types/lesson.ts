@@ -44,10 +44,4 @@ export interface LessonTask {
   completedAt?: Date;
 }
 
-// Hook-based lesson system
-export interface LessonHookResult {
-  isReady: boolean;
-  error: string | null;
-}
-
-export type LessonHook = (lessonId: string) => LessonHookResult;
+export type LessonHook = (lessonId: string) => void;
