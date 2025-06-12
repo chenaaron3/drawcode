@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { toast } from "sonner";
 
-import { useTraceStore } from '@/store/traceStore';
+import { useTraceStore } from "@/store/traceStore";
 
-import { usePyodide } from './usePyodide';
+import { usePyodide } from "./usePyodide";
 
 import type { ManualRelationship } from "@/types/trace";
 
@@ -65,7 +65,7 @@ export function useTraceGeneration() {
         return false;
       } else {
         setTraceData(newTraceData);
-        toast.success("Trace generated successfully!");
+        toast.success("Ready to go! 🚀");
         return true;
       }
     } catch (err) {

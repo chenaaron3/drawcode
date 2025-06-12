@@ -14,7 +14,6 @@ import { nodeTypes } from '../flow-nodes/VariablePanelNodes';
 
 // Custom styles for the React Flow
 const flowStyles = {
-    background: '#fafafa',
     width: '100%',
     height: '100%',
 };

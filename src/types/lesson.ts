@@ -18,6 +18,15 @@ export interface Lesson {
   entrypoint: string;
   inputs: Record<string, any>;
   contentPath: string; // Path to the markdown content file
+  mode?: "line" | "step"; // Optional mode override for this lesson
+  time: number; // Estimated time in minutes
+}
+
+// New interface for TypeScript-based lessons
+export interface LessonContent {
+  id: string;
+  content: string; // Markdown content as a string
+  // Future expansion - we can add conditions, exercises, etc. here later
 }
 
 export interface LessonProgress {
@@ -26,15 +35,19 @@ export interface LessonProgress {
   completedAt?: Date;
 }
 
-export interface UserLessonProgress {
-  moduleProgress: Record<
-    string,
-    {
-      moduleId: string;
-      completed: boolean;
-      lessonsCompleted: number;
-      totalLessons: number;
-    }
-  >;
-  lessonProgress: Record<string, LessonProgress>;
+export interface LessonTask {
+  id: string;
+  title: string;
+  description: string;
+  callback?: () => void;
+  completed: boolean;
+  completedAt?: Date;
 }
+
+// Hook-based lesson system
+export interface LessonHookResult {
+  isReady: boolean;
+  error: string | null;
+}
+
+export type LessonHook = (lessonId: string) => LessonHookResult;

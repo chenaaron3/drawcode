@@ -3,9 +3,12 @@ import { immer } from "zustand/middleware/immer";
 
 import { AVAILABLE_PROBLEM_IDS } from "@/data/traces";
 
+import lessonProblemsData from "../data/lesson-problems.json";
+
 import type { TraceData, TraceLine } from "../types/trace";
 import type { AST } from "../types/ast";
 import type { Problem } from "../types/problem";
+import type { Lesson } from "../types/lesson";
 // Helper to build node ID lookup
 function buildNodeLookup(ast: AST): Map<number, AST> {
   const lookup = new Map<number, AST>();
@@ -43,6 +46,7 @@ interface TraceState {
   playSpeed: number;
   nodeLookup: Map<number, AST>; // Lookup map for AST nodes by ID
   mode: "line" | "step"; // Navigation mode
+  modeLocked: boolean; // Whether mode is locked by current problem
 
   // Animation state
   animatingVariable: string | null;
@@ -92,6 +96,7 @@ interface TraceActions {
   setIsPlaying: (isPlaying: boolean) => void;
   setPlaySpeed: (speed: number) => void;
   setMode: (mode: "line" | "step") => void;
+  setModeLocked: (locked: boolean) => void;
 
   // Animation
   setAnimatingVariable: (variableName: string | null) => void;
@@ -138,6 +143,7 @@ const initialState: TraceState = {
   maxLine: 0,
   nodeLookup: new Map(),
   mode: "step",
+  modeLocked: false,
   animatingVariable: null,
   isEvaluating: false,
   currentTab: "learn",
@@ -203,6 +209,11 @@ export const useTraceStore = create<TraceStore>()(
     setMode: (mode) =>
       set((state) => {
         state.mode = mode;
+      }),
+
+    setModeLocked: (locked) =>
+      set((state) => {
+        state.modeLocked = locked;
       }),
 
     setAnimatingVariable: (variableName) =>
@@ -330,6 +341,24 @@ export const useTraceStore = create<TraceStore>()(
       set((state) => {
         state.currentProblemId = problemId;
         state.inputOverrides = {};
+
+        // Check if this is a lesson with a mode setting
+        if (problemId) {
+          const lessonData = (lessonProblemsData as Lesson[]).find(
+            (lesson) => lesson.id === problemId
+          );
+          if (lessonData && lessonData.mode) {
+            // Set the mode and lock it
+            state.mode = lessonData.mode;
+            state.modeLocked = true;
+          } else {
+            // Unlock mode for non-lesson problems or lessons without mode
+            state.modeLocked = false;
+          }
+        } else {
+          // Unlock mode when no problem is selected
+          state.modeLocked = false;
+        }
       }),
 
     getCurrentProblemId: () => {

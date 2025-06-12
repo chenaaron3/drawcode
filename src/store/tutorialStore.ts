@@ -1,31 +1,20 @@
 import { create } from "zustand";
 
-export interface TutorialStep {
-  id: string;
-  title: string;
-  content: string;
-  targetSelector: string;
-  position: "top" | "bottom" | "left" | "right";
-  action?: string; // Optional action description
-  highlight?: {
-    padding?: number;
-    borderRadius?: number;
-  };
-}
+import type { TutorialStep } from "@/types/tutorial";
 
 interface TutorialState {
   isActive: boolean;
   currentStepIndex: number;
   steps: TutorialStep[];
   hasSeenTutorial: boolean;
-  startTutorial: () => void;
+  startTutorial: (tutorialSteps: TutorialStep[]) => void;
   nextStep: () => void;
   previousStep: () => void;
   skipTutorial: () => void;
   completeTutorial: () => void;
 }
 
-const tutorialSteps: TutorialStep[] = [
+const introTutorial: TutorialStep[] = [
   {
     id: "welcome",
     title: "Welcome to Python Quest! 🎉",
@@ -63,13 +52,14 @@ const tutorialSteps: TutorialStep[] = [
 export const useTutorialStore = create<TutorialState>((set, get) => ({
   isActive: false,
   currentStepIndex: 0,
-  steps: tutorialSteps,
+  steps: introTutorial,
   hasSeenTutorial: localStorage.getItem("pythonquest-tutorial-seen") === "true",
 
-  startTutorial: () => {
+  startTutorial: (tutorialSteps: TutorialStep[] = introTutorial) => {
     set({
       isActive: true,
       currentStepIndex: 0,
+      steps: tutorialSteps,
     });
   },
 

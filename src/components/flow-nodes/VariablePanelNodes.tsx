@@ -129,7 +129,7 @@ export function VariablesFrameNode({ data }: { data: VariablesFrameNodeData }) {
                 {variables.map((variable) => {
                     const variableStyles = getNodeStyles(
                         { isEvaluating: variable.isEvaluating, isAnimating: variable.isAnimating, hasChanged: variable.hasChanged },
-                        "flex items-center justify-between p-3 rounded-lg transition-all duration-300 cursor-pointer shadow-sm bg-gradient-to-r from-white to-slate-50",
+                        "flex items-center gap-3 justify-between p-3 rounded-lg transition-all duration-300 cursor-pointer shadow-sm bg-gradient-to-r from-white to-slate-50",
                         true // Enable gradient support
                     );
 

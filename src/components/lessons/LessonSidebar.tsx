@@ -108,9 +108,19 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                                                     }`} />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <div className="text-sm font-medium truncate">
-                                                    {lesson.title}
+                                                <div className="flex items-center justify-between gap-2 mb-1">
+                                                    <div className="text-sm font-medium truncate">
+                                                        {lesson.title}
+                                                    </div>
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400 flex-shrink-0">
+                                                        {lesson.time} min
+                                                    </div>
                                                 </div>
+                                                {lesson.description && (
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400 overflow-hidden text-ellipsis whitespace-nowrap">
+                                                        {lesson.description}
+                                                    </div>
+                                                )}
                                             </div>
                                         </button>
                                     );

@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+import TaskList from '@/components/lessons/TaskList';
 import { Card, CardContent } from '@/components/ui/card';
 import lessonProblemsData from '@/data/lesson-problems.json';
-import { getLessonContent } from '@/data/lessons';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
+import { getLessonHook, hasLessonHook } from '@/lessons';
+import { useLessonStore } from '@/store/lessonStore';
 import { useTraceStore } from '@/store/traceStore';
 
 interface LessonContentProps {
@@ -20,48 +22,36 @@ const LessonContent: React.FC<LessonContentProps> = ({
     lessonTitle,
     lessonDescription
 }) => {
-    const [content, setContent] = useState<string>('');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [lessonData, setLessonData] = useState<any>(null);
 
     // Navigation logic
     const { setCurrentProblem } = useTraceStore();
     const navigationInfo = useLessonNavigation();
 
+    // Get lesson state from store
+    const {
+        content,
+        isLoading,
+        error,
+        setLoading,
+        setError
+    } = useLessonStore();
+
+    // Try to get lesson hook
+    const lessonHook = hasLessonHook(lessonId) ? getLessonHook(lessonId) : null;
+    lessonHook ? lessonHook(lessonId) : null;
+
     useEffect(() => {
-        const loadLessonContent = () => {
-            setLoading(true);
-            setError(null);
+        // Find the lesson data for metadata
+        const foundLessonData = lessonProblemsData.find(lesson => lesson.id === lessonId);
+        setLessonData(foundLessonData);
+        if (!lessonHook) {
+            setError('No content available for this lesson');
+            setLoading(false);
+        }
+    }, [lessonId, lessonHook, setLoading, setError]);
 
-            try {
-                // Find the lesson data to get the content path
-                const lessonData = lessonProblemsData.find(lesson => lesson.id === lessonId);
-
-                if (!lessonData || !lessonData.contentPath) {
-                    setError('No content available for this lesson');
-                    setLoading(false);
-                    return;
-                }
-
-                // Get the lesson content using the dynamic import
-                const markdown = getLessonContent(lessonData.contentPath);
-
-                if (!markdown) {
-                    throw new Error('Lesson content not found in dynamic imports');
-                }
-
-                setContent(markdown);
-            } catch (err) {
-                setError('Failed to load lesson content');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadLessonContent();
-    }, [lessonId, lessonTitle, lessonDescription]);
-
-    if (loading) {
+    if (isLoading) {
         return (
             <Card className="h-full flex flex-col">
                 <CardContent className="flex-1 flex items-center justify-center">
@@ -90,9 +80,14 @@ const LessonContent: React.FC<LessonContentProps> = ({
                             components={{
                                 // Custom components for better styling
                                 h1: ({ children }) => (
-                                    <h1 className="flex items-center gap-2  text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 pb-2 border-b border-slate-200 dark:border-slate-700">
+                                    <h1 className="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 pb-2 border-b border-slate-200 dark:border-slate-700">
                                         <BookOpen className="h-6 w-6 text-blue-600" />
                                         {children}
+                                        {lessonData?.time && (
+                                            <span className="ml-auto text-sm font-normal text-slate-500 dark:text-slate-400">
+                                                {lessonData.time} min
+                                            </span>
+                                        )}
                                     </h1>
                                 ),
                                 h2: ({ children }) => (
@@ -146,6 +141,11 @@ const LessonContent: React.FC<LessonContentProps> = ({
                                     <td className="px-4 py-2 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
                                         {children}
                                     </td>
+                                ),
+                                p: ({ children }) => (
+                                    <p className="text-slate-700 mb-4 dark:text-slate-300">
+                                        {children}
+                                    </p>
                                 )
                             }}
                         >
@@ -153,7 +153,10 @@ const LessonContent: React.FC<LessonContentProps> = ({
                         </ReactMarkdown>
                     </div>
                 </div>
-                <div className="w-full mt-5">
+
+                <TaskList />
+
+                <div className="w-full mt-6">
                     <div className="flex justify-between items-center">
                         <button
                             onClick={() => navigationInfo.nextLesson && setCurrentProblem(navigationInfo.nextLesson.id)}
