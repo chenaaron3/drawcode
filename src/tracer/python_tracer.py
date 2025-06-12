@@ -3,6 +3,7 @@ import json
 import ast
 import builtins
 import copy
+import io
 
 from ast_transformer import ASTTransformer, BEFORE_STATEMENT_MARKER, AFTER_STATEMENT_MARKER, BEFORE_EXPRESSION_MARKER, AFTER_EXPRESSION_MARKER
 from relationship_analyzer import RelationshipAnalyzer
@@ -25,6 +26,9 @@ class PythonTracer:
         self.entrypoint = None
         self.inputs = {}
         self.result = None
+        self.captured_output = ""
+        self.stdout_buffer = None
+        self.previous_stdout_length = 0
 
     def _install_marker_functions(self):
         """Make marker functions available in builtin scope"""
@@ -52,6 +56,15 @@ class PythonTracer:
                 for name, val in frame.f_locals.items()
                 if not name.startswith('_') and not callable(val)
             }
+            
+        # Capture stdout delta if we have a buffer
+        stdout_delta = ""
+        if self.stdout_buffer is not None:
+            current_stdout = self.stdout_buffer.getvalue()
+            current_length = len(current_stdout)
+            if current_length > self.previous_stdout_length:
+                stdout_delta = current_stdout[self.previous_stdout_length:]
+                self.previous_stdout_length = current_length
                 
         step = {
             "step": self.step_id,
@@ -63,6 +76,9 @@ class PythonTracer:
 
         if value is not None:
             step["value"] = serialize_value(value)
+            
+        if stdout_delta:
+            step["stdout"] = stdout_delta
         
         self.step_id += 1
         self.steps.append(step)
@@ -124,7 +140,7 @@ class PythonTracer:
         return transformed_kwargs
 
     def run_code(self, code: str, entrypoint: str, special_inputs: list | None, problem_key: int, manual_relationships: list | None = None, **kwargs):
-        """Run code with expression tracking"""
+        """Run code with expression tracking and stdout capture"""
         self.source_code = code
         self.entrypoint = entrypoint
         self.inputs = copy.deepcopy(kwargs)  # Deep copy kwargs dict
@@ -145,12 +161,32 @@ class PythonTracer:
             'ListNode': ListNode,  # Make ListNode available in execution namespace
         }
         
-        compiled = compile(tree, '<string>', 'exec')
-        exec(compiled, namespace)
+        # Capture stdout during execution
+        original_stdout = sys.stdout
+        captured_output = io.StringIO()
         
-        # If entrypoint is specified, call the function with transformed kwargs
-        if entrypoint and entrypoint in namespace:
-            self.result = namespace[entrypoint](**transformed_kwargs)
+        # Set up stdout tracking for step deltas
+        self.stdout_buffer = captured_output
+        self.previous_stdout_length = 0
+        
+        try:
+            # Redirect stdout
+            sys.stdout = captured_output
+            
+            compiled = compile(tree, '<string>', 'exec')
+            exec(compiled, namespace)
+            
+            # If entrypoint is specified, call the function with transformed kwargs
+            if entrypoint and entrypoint in namespace:
+                self.result = namespace[entrypoint](**transformed_kwargs)
+                
+        finally:
+            # Always restore original stdout
+            sys.stdout = original_stdout
+            # Store the captured output
+            self.captured_output = captured_output.getvalue()
+            # Clean up stdout tracking
+            self.stdout_buffer = None
         
         return tree
 
@@ -241,5 +277,6 @@ class PythonTracer:
             'ast': json_ast,
             'relationships': relationships,
             'trace': trace,
-            'result': serialize_value(self.result)
+            'result': serialize_value(self.result),
+            'stdout': self.captured_output
         } 

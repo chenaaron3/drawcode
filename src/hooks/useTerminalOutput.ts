@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
-import { useTraceStore } from '../store/traceStore';
+import { useTraceStore } from "../store/traceStore";
 
 export interface TerminalOutputItem {
   line: number;
@@ -11,40 +11,6 @@ export interface UseTerminalOutputResult {
   terminalOutput: TerminalOutputItem[];
   hasTerminalOutput: boolean;
 }
-
-// Helper function to extract print output from trace steps
-const extractPrintOutputFromSteps = (
-  steps: any[],
-  printStatementIndex: number
-): string => {
-  try {
-    const values: string[] = [];
-
-    // Look backwards from the print statement to find the argument values
-    for (let i = printStatementIndex - 1; i >= 0; i--) {
-      const step = steps[i];
-
-      // Stop when we hit the print's before_expression (start of this print call)
-      if (
-        step.focus &&
-        step.focus.includes("print(") &&
-        step.event === "before_expression"
-      ) {
-        break;
-      }
-
-      // Collect after_expression values (these are the print arguments)
-      if (step.event === "after_expression" && step.value !== undefined) {
-        // Add to the beginning since we're going backwards
-        values.unshift(String(step.value));
-      }
-    }
-
-    return values.join(" ");
-  } catch (error) {
-    return "";
-  }
-};
 
 export const useTerminalOutput = (): UseTerminalOutputResult => {
   const { traceData, lineIndex, stepIndex } = useTraceStore();
@@ -57,7 +23,7 @@ export const useTerminalOutput = (): UseTerminalOutputResult => {
       };
     }
 
-    // Extract print statements and their outputs from the trace
+    // Extract stdout output directly from trace steps
     const outputs: TerminalOutputItem[] = [];
 
     // Go through each trace line up to the current position
@@ -76,19 +42,12 @@ export const useTerminalOutput = (): UseTerminalOutputResult => {
       ) {
         const step = traceLine.steps[stepIdx];
 
-        // Only add to terminal when we reach the after_statement of a print
-        if (
-          step.focus &&
-          step.focus.startsWith("print(") &&
-          step.event === "after_statement"
-        ) {
-          const output = extractPrintOutputFromSteps(traceLine.steps, stepIdx);
-          if (output) {
-            outputs.push({
-              line: traceLine.line_number,
-              output: output,
-            });
-          }
+        // If this step has stdout output, add it to our outputs
+        if (step.stdout && step.stdout.trim()) {
+          outputs.push({
+            line: traceLine.line_number,
+            output: step.stdout.trim(),
+          });
         }
       }
     }

@@ -134,7 +134,7 @@ const initialState: TraceState = {
   lineIndex: 0,
   stepIndex: 0,
   isPlaying: false,
-  playSpeed: 1000,
+  playSpeed: 750,
   maxLine: 0,
   nodeLookup: new Map(),
   mode: "step",

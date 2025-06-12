@@ -42,6 +42,7 @@ export type TraceStep = {
   node_id: number;
   value?: any;
   locals?: Record<string, any>;
+  stdout?: string;
 };
 
 // Trace types
