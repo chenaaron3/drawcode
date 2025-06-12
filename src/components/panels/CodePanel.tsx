@@ -193,7 +193,19 @@ export default function CodePanel() {
                                     </SyntaxHighlighter>
 
                                     {/* Computation Workspace Overlay */}
-                                    {!hasChanges && <ComputationWorkspaceOverlay />}
+                                    {!hasChanges && (
+                                        <div
+                                            style={{ position: "absolute", inset: 0, zIndex: 50, cursor: 'text' }}
+                                            onClick={() => {
+                                                setIsReadOnly(false);
+                                                setIsPlaying(false);
+                                            }}
+                                            tabIndex={0}
+                                            aria-label="Edit code"
+                                        >
+                                            <ComputationWorkspaceOverlay />
+                                        </div>
+                                    )}
 
                                     {/* Edit Button Overlay - only visible on hover */}
                                     <div data-testid="edit-button" className="absolute top-3 right-3 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">

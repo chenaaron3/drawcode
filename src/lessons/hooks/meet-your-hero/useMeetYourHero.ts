@@ -10,8 +10,10 @@ import type { LessonHookResult } from "@/types/lesson";
 export function useMeetYourHero(lessonId: string): LessonHookResult {
   const { setContent, startLesson, addTask, completeTask, currentTask } =
     useLessonStore();
-  const { hasNext } = useTraceStore();
+  const { hasNext, traceData } = useTraceStore();
   const { startTutorial } = useTutorialStore();
+
+  const finishedtrace = !hasNext();
 
   useEffect(() => {
     if (lessonId !== "meet-your-hero") return;
@@ -29,6 +31,13 @@ export function useMeetYourHero(lessonId: string): LessonHookResult {
         description: "Click the Forward Button ⏩️ to step through the code",
         callback: () => {},
       });
+      addTask({
+        id: "change-hero-name",
+        title: "Change The Hero's Name",
+        description:
+          "Update `hero_name` to your name. Run the code again and see what happens!",
+        callback: () => {},
+      });
     };
     initializeLesson();
   }, [lessonId, setContent, startLesson, addTask, startTutorial]);
@@ -36,12 +45,18 @@ export function useMeetYourHero(lessonId: string): LessonHookResult {
   // Check if the user stepped
   useEffect(() => {
     if (currentTask?.id === "run-initial-code") {
-      console.log("hasNext", hasNext());
-      if (!hasNext()) {
+      if (finishedtrace) {
+        completeTask();
+      }
+    } else if (currentTask?.id === "change-hero-name") {
+      if (
+        finishedtrace &&
+        traceData?.metadata.finalLocals["hero_name"] !== "Xaden"
+      ) {
         completeTask();
       }
     }
-  }, [currentTask, completeTask, hasNext()]);
+  }, [currentTask, completeTask, finishedtrace]);
 
   return {
     isReady: !useLessonStore((state) => state.isLoading),

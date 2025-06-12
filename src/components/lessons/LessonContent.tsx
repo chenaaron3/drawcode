@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+import { markdownComponents } from '@/components/common/markdownComponents';
 import TaskList from '@/components/lessons/TaskList';
 import { Card, CardContent } from '@/components/ui/card';
 import lessonProblemsData from '@/data/lesson-problems.json';
@@ -75,77 +76,7 @@ const LessonContent: React.FC<LessonContentProps> = ({
                     <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-slate-100 prose-p:text-slate-700 dark:prose-p:text-slate-300 prose-strong:text-slate-900 dark:prose-strong:text-slate-100 prose-code:text-blue-600 dark:prose-code:text-blue-400 prose-pre:bg-slate-100 dark:prose-pre:bg-slate-800 prose-pre:border prose-pre:border-slate-200 dark:prose-pre:border-slate-700">
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
-                            components={{
-                                // Custom components for better styling
-                                h1: ({ children }) => (
-                                    <h1 className="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 pb-2 border-b border-slate-200 dark:border-slate-700">
-                                        <BookOpen className="h-6 w-6 text-blue-600" />
-                                        {children}
-                                        {lessonData?.time && (
-                                            <span className="ml-auto text-sm font-normal text-slate-500 dark:text-slate-400">
-                                                {lessonData.time} min
-                                            </span>
-                                        )}
-                                    </h1>
-                                ),
-                                h2: ({ children }) => (
-                                    <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3 mt-6">
-                                        {children}
-                                    </h2>
-                                ),
-                                h3: ({ children }) => (
-                                    <h3 className="text-lg font-medium text-slate-900 dark:text-slate-100 mb-2 mt-4">
-                                        {children}
-                                    </h3>
-                                ),
-                                code: ({ children, className }) => {
-                                    const isInline = !className;
-                                    if (isInline) {
-                                        return (
-                                            <code className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded text-sm font-mono">
-                                                {children}
-                                            </code>
-                                        );
-                                    }
-                                    return (
-                                        <code className={className}>
-                                            {children}
-                                        </code>
-                                    );
-                                },
-                                pre: ({ children }) => (
-                                    <pre className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 overflow-x-auto text-sm">
-                                        {children}
-                                    </pre>
-                                ),
-                                blockquote: ({ children }) => (
-                                    <blockquote className="border-l-4 border-blue-500 pl-4 py-2 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg">
-                                        {children}
-                                    </blockquote>
-                                ),
-                                table: ({ children }) => (
-                                    <div className="overflow-x-auto">
-                                        <table className="min-w-full border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
-                                            {children}
-                                        </table>
-                                    </div>
-                                ),
-                                th: ({ children }) => (
-                                    <th className="bg-slate-100 dark:bg-slate-800 px-4 py-2 text-left font-medium text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-700">
-                                        {children}
-                                    </th>
-                                ),
-                                td: ({ children }) => (
-                                    <td className="px-4 py-2 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
-                                        {children}
-                                    </td>
-                                ),
-                                p: ({ children }) => (
-                                    <p className="text-slate-700 mb-4 dark:text-slate-300">
-                                        {children}
-                                    </p>
-                                )
-                            }}
+                            components={markdownComponents(lessonData)}
                         >
                             {content}
                         </ReactMarkdown>

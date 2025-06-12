@@ -60,6 +60,8 @@ export type TraceData = {
     inputs: {
       kwargs: Record<string, string>;
     };
+    stdout: string;
+    finalLocals: Record<string, any>;
   };
   ast: AST;
   relationships: Relationship[];

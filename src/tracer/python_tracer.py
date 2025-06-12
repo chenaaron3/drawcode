@@ -273,10 +273,11 @@ class PythonTracer:
                 'inputs': {
                     'kwargs': {k: repr(v) for k, v in getattr(self, 'inputs', {}).items()}
                 },
+                'stdout': self.captured_output,
+                'finalLocals': line_locals.copy() if line_locals else {},
             },
             'ast': json_ast,
             'relationships': relationships,
             'trace': trace,
             'result': serialize_value(self.result),
-            'stdout': self.captured_output
         } 

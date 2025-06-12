@@ -51,7 +51,7 @@ export function NavigationControls() {
             </Button>
 
             <Button
-                variant={isPlaying ? "default" : "outline"}
+                variant={"default"}
                 size="sm"
                 onClick={handleTogglePlay}
                 disabled={!hasNext() && !isPlaying}

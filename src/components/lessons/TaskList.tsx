@@ -6,6 +6,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+import { markdownComponents } from '@/components/common/markdownComponents';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
@@ -17,8 +18,8 @@ const TaskList: React.FC = () => {
         completedTaskCount,
     } = useLessonStore();
 
-    // State to track which tasks are open
-    const [openTasks, setOpenTasks] = useState<Set<string>>(new Set());
+    // State to track which task is open (only one at a time)
+    const [openTaskId, setOpenTaskId] = useState<string | null>(null);
 
     // State for completion modal
     const [showCompletionModal, setShowCompletionModal] = useState(false);
@@ -26,11 +27,11 @@ const TaskList: React.FC = () => {
 
     const isLessonComplete = completedTaskCount === allTasks.length && allTasks.length > 0;
 
-    // Update open tasks when current task changes
+    // Update open task when current task changes
     useEffect(() => {
         if (allTasks.length > 0 && completedTaskCount < allTasks.length) {
             const currentTask = allTasks[completedTaskCount];
-            setOpenTasks(new Set([currentTask.id]));
+            setOpenTaskId(currentTask.id);
         }
     }, [allTasks, completedTaskCount]);
 
@@ -54,15 +55,7 @@ const TaskList: React.FC = () => {
     }, [showCompletionModal]);
 
     const handleTaskToggle = (taskId: string, isOpen: boolean) => {
-        setOpenTasks(prev => {
-            const newSet = new Set(prev);
-            if (isOpen) {
-                newSet.add(taskId);
-            } else {
-                newSet.delete(taskId);
-            }
-            return newSet;
-        });
+        setOpenTaskId(isOpen ? taskId : null);
     };
 
     if (allTasks.length === 0) {
@@ -84,10 +77,10 @@ const TaskList: React.FC = () => {
 
             {/* Task List */}
             <div className="space-y-2">
-                {allTasks.map((task, index) => {
+                {allTasks.slice(0, completedTaskCount + 1).map((task, index) => {
                     const isCompleted = index < completedTaskCount;
                     const isCurrent = !isCompleted && index === completedTaskCount;
-                    const isOpen = openTasks.has(task.id);
+                    const isOpen = openTaskId === task.id;
 
                     return (
                         <Collapsible
@@ -136,7 +129,7 @@ const TaskList: React.FC = () => {
                                         : 'bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-600'
                                     }`}>
                                     <div className="prose prose-sm prose-slate dark:prose-invert max-w-none">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents()}>
                                             {task.description}
                                         </ReactMarkdown>
                                     </div>
