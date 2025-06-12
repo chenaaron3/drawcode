@@ -7,7 +7,7 @@ interface TutorialState {
   currentStepIndex: number;
   steps: TutorialStep[];
   hasSeenTutorial: boolean;
-  startTutorial: (tutorialSteps: TutorialStep[]) => void;
+  startTutorial: (tutorialSteps?: TutorialStep[]) => void;
   nextStep: () => void;
   previousStep: () => void;
   skipTutorial: () => void;

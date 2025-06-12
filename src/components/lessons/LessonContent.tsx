@@ -19,8 +19,6 @@ interface LessonContentProps {
 
 const LessonContent: React.FC<LessonContentProps> = ({
     lessonId,
-    lessonTitle,
-    lessonDescription
 }) => {
     const [lessonData, setLessonData] = useState<any>(null);
 

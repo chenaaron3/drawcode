@@ -34,7 +34,7 @@ export const TutorialTrigger: React.FC = () => {
         variant="ghost"
         size="icon"
         className="text-gray-600 hover:text-gray-900"
-        onClick={startTutorial}
+        onClick={() => startTutorial()}
     >
         <HelpCircle className="h-4 w-4" />
     </Button>

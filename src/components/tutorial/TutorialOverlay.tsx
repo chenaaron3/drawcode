@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, ChevronLeft, ChevronRight, HelpCircle, SkipForward, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, HelpCircle, SkipForward, X } from 'lucide-react';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
