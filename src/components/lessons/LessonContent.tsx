@@ -40,7 +40,7 @@ const LessonContent: React.FC<LessonContentProps> = ({
     const lessonHook = hasLessonHook(lessonId) ? getLessonHook(lessonId) : null;
     lessonHook ? lessonHook(lessonId) : null;
 
-    console.log(lessonHook, lessonId);
+    console.log(lessonHook, lessonData, lessonId);
 
     useEffect(() => {
         // Find the lesson data for metadata

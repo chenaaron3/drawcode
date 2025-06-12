@@ -12,7 +12,7 @@ export function useQuestNotes(lessonId: string) {
   const { traceData, setCurrentProblem } = useTraceStore();
 
   useEffect(() => {
-    if (lessonId !== "meet-your-hero") return;
+    if (lessonId !== "quest-notes") return;
 
     const initializeLesson = async () => {
       // Start the lesson
