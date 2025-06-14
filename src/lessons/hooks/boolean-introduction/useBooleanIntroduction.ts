@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 
 import { useLessonStore } from "@/store/lessonStore";
-import { useTraceFinished } from "@/utils/taskChecks";
+import { useVariablesDefined } from "@/utils/taskChecks";
 
 import content from "./boolean-introduction.md?raw";
 
 export function useBooleanIntroduction(lessonId: string) {
   const { startLesson, completeTask, currentTask } = useLessonStore();
-  const traceFinished = useTraceFinished();
+  const variablesDefined = useVariablesDefined({ is_warrior: true });
 
   useEffect(() => {
     if (lessonId !== "boolean-introduction") return;
@@ -15,16 +15,17 @@ export function useBooleanIntroduction(lessonId: string) {
       {
         id: "assign-boolean",
         title: "Assign Boolean values",
-        description: "Assign boolean values to the variables",
+        description:
+          "Create a boolean variable called `is_warrior` and assign it the value `True`",
       },
     ]);
   }, [lessonId, startLesson]);
 
   useEffect(() => {
     if (currentTask?.id === "assign-boolean") {
-      if (traceFinished) {
+      if (variablesDefined) {
         completeTask();
       }
     }
-  }, [currentTask, completeTask, traceFinished]);
+  }, [currentTask, completeTask, variablesDefined]);
 }
