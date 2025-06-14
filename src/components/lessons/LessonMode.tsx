@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 // Import the lesson data
@@ -6,12 +6,12 @@ import lessonCoursesData from '@/data/lesson-courses.json';
 import lessonModulesData from '@/data/lesson-modules.json';
 import lessonProblemsData from '@/data/lesson-problems.json';
 import { useTraceStore } from '@/store/traceStore';
+import { ProgressStorage } from '@/utils/progressStorage';
 
 import { LessonPage } from './LessonPage';
 import { LessonSidebar } from './LessonSidebar';
 
 import type { LessonModule, Lesson } from '@/types/lesson';
-
 interface LessonModeProps {
     isSidebarOpen: boolean;
     setIsSidebarOpen: (open: boolean) => void;
@@ -41,6 +41,31 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
         setIsSidebarOpen(false); // Close drawer after selection
     };
 
+    useEffect(() => {
+        // If there is no selected lesson, set the first lesson of the first module of the first course
+        if (!selectedLessonId) {
+            const lastPosition = ProgressStorage.getLastPosition();
+            if (lastPosition) {
+                setCurrentProblem(lastPosition.lessonId);
+                return;
+            }
+            // Default to first lesson of first module of first course
+            const courses = lessonCoursesData.courses;
+            const firstCourse = courses[0];
+            const firstModuleId = firstCourse.moduleIds[0];
+            const modules = lessonModulesData.modules;
+            const firstModule = modules.find((m: any) => m.id === firstModuleId);
+            if (
+                firstModule &&
+                firstModule.lessonIds &&
+                firstModule.lessonIds.length > 0
+            ) {
+                const firstLessonId = firstModule.lessonIds[0];
+                setCurrentProblem(firstLessonId);
+            }
+        }
+    }, [selectedLessonId]);
+
     if (!selectedLessonId || !currentModuleId || !currentCourseId) {
         return (
             <div className="flex items-center justify-center h-full">
@@ -52,6 +77,8 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
             </div>
         );
     }
+
+
 
     return (
         <div className="h-full w-full relative">

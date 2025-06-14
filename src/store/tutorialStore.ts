@@ -47,6 +47,13 @@ const introTutorial: TutorialStep[] = [
     targetSelector: '[data-tutorial="variables-panel"]',
     position: "top",
   },
+  {
+    id: "console-panel",
+    title: "Console Output",
+    content: "This shows what the program is printing to the console.",
+    targetSelector: '[data-tutorial="terminal-panel"]',
+    position: "bottom",
+  },
 ];
 
 export const useTutorialStore = create<TutorialState>((set, get) => ({

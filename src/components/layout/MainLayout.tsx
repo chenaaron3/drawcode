@@ -16,12 +16,12 @@ const navigationModes = [
         icon: BookOpen,
         problemId: null,
     },
-    {
-        id: 'practice' as const,
-        label: 'Practice',
-        icon: Code,
-        problemId: null,
-    },
+    // {
+    //     id: 'practice' as const,
+    //     label: 'Practice',
+    //     icon: Code,
+    //     problemId: null,
+    // },
     {
         id: 'playground' as const,
         label: 'Play',

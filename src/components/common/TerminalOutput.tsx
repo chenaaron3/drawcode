@@ -26,7 +26,7 @@ const TerminalOutput: React.FC = () => {
     };
 
     return (
-        <Card className="w-full h-full flex flex-col">
+        <Card className="w-full h-full flex flex-col" data-tutorial="terminal-panel">
             <CardHeader className="pb-3 flex-shrink-0">
                 <CardTitle className="text-sm flex items-center gap-2">
                     <Terminal className="w-4 h-4" />
@@ -38,7 +38,7 @@ const TerminalOutput: React.FC = () => {
                     )}
                 </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0 flex-1 flex flex-col" data-tutorial="terminal-panel">
+            <CardContent className="pt-0 flex-1 flex flex-col">
                 <div className="relative flex-1">
                     <div
                         ref={scrollContainerRef}

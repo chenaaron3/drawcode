@@ -14,7 +14,6 @@ interface LessonPageProps {
 }
 
 const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourseId, currentModuleId }) => {
-
     return (
         <div className="h-full p-6">
             <div className="group/lesson h-full">
