@@ -50,7 +50,7 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
             <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
                 <SheetContent side="left" className="min-w-[20rem] max-w-[24rem] p-0 flex flex-col">
                     <SheetHeader className="mx-6 py-4 border-b border-slate-200 dark:border-slate-700 flex-shrink-0">
-                        <SheetTitle className="text-lg font-semibold">Python Fundamentals</SheetTitle>
+                        <SheetTitle className="text-lg font-semibold">{currentCourse.title}</SheetTitle>
                     </SheetHeader>
                     <div className="flex-1 px-6 py-4 overflow-y-auto">
                         <LessonSidebar
