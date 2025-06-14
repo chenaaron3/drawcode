@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
-import lessonModulesData from '../data/lesson-modules.json';
-import lessonProblemsData from '../data/lesson-problems.json';
-import { useTraceStore } from '../store/traceStore';
+import lessonModulesData from "../data/lesson-modules.json";
+import lessonProblemsData from "../data/lesson-problems.json";
+import { ProgressStorage } from "../utils/progressStorage";
 
 import type { Lesson, LessonModule } from "../types/lesson";
 
@@ -13,28 +13,30 @@ export interface LessonNavigationInfo {
   totalLessons: number;
 }
 
-export function useLessonNavigation(): LessonNavigationInfo {
-  const { currentProblemId } = useTraceStore();
-
-  // Get all lessons in order (following the module structure)
+export function useLessonNavigation(
+  currentCourseId: string,
+  currentModuleId: string | undefined,
+  currentLessonId: string | null
+): LessonNavigationInfo & {
+  isLessonCompleted: boolean;
+  markLessonCompleted: () => void;
+} {
+  // Get all lessons in order for the current module
   const orderedLessons = useMemo(() => {
+    if (!currentModuleId) return [];
     const modules = lessonModulesData.modules as LessonModule[];
-    const orderedIds: string[] = [];
-
-    modules.forEach((module) => {
-      orderedIds.push(...module.lessonIds);
-    });
-
-    return orderedIds
+    const module = modules.find((m) => m.id === currentModuleId);
+    if (!module) return [];
+    return module.lessonIds
       .map((id) =>
         (lessonProblemsData as Lesson[]).find((lesson) => lesson.id === id)
       )
       .filter(Boolean) as Lesson[];
-  }, []);
+  }, [currentModuleId]);
 
   // Get navigation info
   const navigationInfo = useMemo(() => {
-    if (!currentProblemId) {
+    if (!currentLessonId) {
       return {
         previousLesson: null,
         nextLesson: null,
@@ -44,7 +46,7 @@ export function useLessonNavigation(): LessonNavigationInfo {
     }
 
     const currentIndex = orderedLessons.findIndex(
-      (l) => l.id === currentProblemId
+      (l) => l.id === currentLessonId
     );
 
     return {
@@ -57,7 +59,28 @@ export function useLessonNavigation(): LessonNavigationInfo {
       currentIndex,
       totalLessons: orderedLessons.length,
     };
-  }, [currentProblemId, orderedLessons]);
+  }, [currentLessonId, orderedLessons]);
 
-  return navigationInfo;
+  let isLessonCompleted = false;
+  let markLessonCompleted = () => {};
+  if (currentCourseId && currentModuleId && currentLessonId) {
+    isLessonCompleted = ProgressStorage.isLessonCompleted(
+      currentCourseId,
+      currentModuleId,
+      currentLessonId
+    );
+    markLessonCompleted = () => {
+      ProgressStorage.markLessonCompleted(
+        currentCourseId,
+        currentModuleId,
+        currentLessonId
+      );
+    };
+  }
+
+  return {
+    ...navigationInfo,
+    isLessonCompleted,
+    markLessonCompleted,
+  };
 }

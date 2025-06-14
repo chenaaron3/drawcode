@@ -12,13 +12,22 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useLessonStore } from '@/store/lessonStore';
 import { useTraceStore } from '@/store/traceStore';
+import { ProgressStorage } from '@/utils/progressStorage';
 
-const TaskList: React.FC = () => {
+import type { Lesson } from '@/types/lesson';
+
+interface TaskListProps {
+    lesson: Lesson;
+    currentCourseId: string;
+    currentModuleId: string;
+}
+
+const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentModuleId }) => {
     const {
         allTasks,
         completedTaskCount,
+        completeLesson,
         isComplete,
-        currentLessonId,
     } = useLessonStore();
     const {
         currentProblemId,
@@ -29,7 +38,6 @@ const TaskList: React.FC = () => {
 
     // State for completion modal
     const [showCompletionModal, setShowCompletionModal] = useState(false);
-    const [hasShownModal, setHasShownModal] = useState(false);
 
     // Update open task when current task changes
     useEffect(() => {
@@ -41,11 +49,16 @@ const TaskList: React.FC = () => {
 
     // Show completion modal when lesson is completed
     useEffect(() => {
-        if (isComplete && !hasShownModal && currentLessonId === currentProblemId) {
+        if (completedTaskCount === allTasks.length && allTasks.length > 0 && !isComplete) {
+            // This is the canonical place to complete a lesson
+            completeLesson();
             setShowCompletionModal(true);
-            setHasShownModal(true);
+            // Mark lesson as completed in ProgressStorage
+            if (currentCourseId && currentModuleId) {
+                ProgressStorage.markLessonCompleted(currentCourseId, currentModuleId, lesson.id);
+            }
         }
-    }, [isComplete, currentLessonId, currentProblemId, hasShownModal]);
+    }, [allTasks, isComplete, completedTaskCount, lesson.id, currentProblemId, currentCourseId, currentModuleId]);
 
     // Auto-close modal after 3 seconds
     useEffect(() => {

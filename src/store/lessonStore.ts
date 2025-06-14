@@ -133,10 +133,6 @@ export const useLessonStore = create<LessonState & LessonActions>(
         if (state.currentTask?.callback) {
           state.currentTask.callback();
         }
-        // If all tasks are completed, complete the lesson
-        if (nextTask == null) {
-          get().completeLesson();
-        }
 
         return {
           completedTasks: [...state.completedTasks, completedTask],

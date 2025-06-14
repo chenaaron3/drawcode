@@ -1,13 +1,16 @@
 import { ChevronRight, Play } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 
-import type { LessonModule, Lesson } from '@/types/lesson';
+import { ProgressStorage } from '../../utils/progressStorage';
 
+import type { LessonModule, Lesson } from '@/types/lesson';
 interface LessonSidebarProps {
     modules: LessonModule[];
     lessons: Lesson[];
     selectedLessonId?: string;
     onLessonSelect: (lessonId: string) => void;
+    currentCourseId: string;
+    currentModuleId: string;
 }
 
 export const LessonSidebar: React.FC<LessonSidebarProps> = ({
@@ -15,11 +18,13 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
     lessons,
     selectedLessonId,
     onLessonSelect,
+    currentCourseId,
+    currentModuleId,
 }) => {
     // Find which module contains the currently selected lesson
     const currentModule = useMemo(() => {
         if (!selectedLessonId) return null;
-        return modules.find(module => module.lessonIds.includes(selectedLessonId));
+        return modules.find(module => module.id === currentModuleId);
     }, [selectedLessonId, modules]);
 
     // State to track which module is expanded (only one at a time)
@@ -87,6 +92,7 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                             <div className="border-t border-slate-200 dark:border-slate-700">
                                 {moduleLessons.map((lesson) => {
                                     const isSelected = selectedLessonId === lesson.id;
+                                    const isCompleted = ProgressStorage.isLessonCompleted(currentCourseId, module.id, lesson.id);
 
                                     return (
                                         <button
@@ -96,7 +102,7 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                                             className={`w-full flex items-center gap-3 text-left p-3 border-b border-slate-100 dark:border-slate-600 last:border-b-0 transition-colors ${isSelected
                                                 ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-900 dark:text-blue-100'
                                                 : 'bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100'
-                                                }`}
+                                                } ${isCompleted ? 'text-green-600 dark:text-green-400' : ''}`}
                                         >
                                             <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${isSelected
                                                 ? 'bg-blue-100 dark:bg-blue-800'
@@ -122,6 +128,7 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                                                     </div>
                                                 )}
                                             </div>
+                                            {isCompleted && <span title="Completed">✓</span>}
                                         </button>
                                     );
                                 })}

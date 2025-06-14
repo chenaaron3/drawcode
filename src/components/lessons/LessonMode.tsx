@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 // Import the lesson data
+import lessonCoursesData from '@/data/lesson-courses.json';
 import lessonModulesData from '@/data/lesson-modules.json';
 import lessonProblemsData from '@/data/lesson-problems.json';
 import { useTraceStore } from '@/store/traceStore';
@@ -18,8 +19,17 @@ interface LessonModeProps {
 
 const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
     const { getCurrentProblemId, setCurrentProblem } = useTraceStore();
-    const [modules] = useState<LessonModule[]>(lessonModulesData.modules as LessonModule[]);
-    const [lessons] = useState<Lesson[]>(lessonProblemsData as Lesson[]);
+    const [courses] = useState(lessonCoursesData.courses);
+    // Default to the first course (intro-to-python)
+    const currentCourse = courses[0];
+    // Filter modules and lessons for the current course
+    const allModules = lessonModulesData.modules as LessonModule[];
+    const modules = allModules.filter(m => currentCourse.moduleIds.includes(m.id));
+    const allLessons = lessonProblemsData as Lesson[];
+    // Only include lessons that are in the modules of the current course
+    const lessons = allLessons.filter(lesson =>
+        modules.some(module => module.lessonIds.includes(lesson.id))
+    );
 
     const selectedLessonId = getCurrentProblemId();
 
@@ -31,11 +41,26 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
     }, [lessons, selectedLessonId, setCurrentProblem]);
 
     const selectedLesson = lessons.find(l => l.id === selectedLessonId);
+    const currentModule = modules.find(module => module.lessonIds.includes(selectedLessonId ?? ""));
+    const currentModuleId = currentModule ? currentModule.id : undefined;
+    const currentCourseId = currentCourse.id;
 
     const handleLessonSelect = (lessonId: string) => {
         setCurrentProblem(lessonId);
         setIsSidebarOpen(false); // Close drawer after selection
     };
+
+    if (!selectedLessonId || !currentModuleId || !currentCourseId) {
+        return (
+            <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                    <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+                        Select a lesson to get started
+                    </h2>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="h-full w-full relative">
@@ -49,7 +74,9 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
                         <LessonSidebar
                             modules={modules}
                             lessons={lessons}
-                            selectedLessonId={selectedLessonId || undefined}
+                            currentCourseId={currentCourseId}
+                            currentModuleId={currentModuleId}
+                            selectedLessonId={selectedLessonId}
                             onLessonSelect={handleLessonSelect}
                         />
                     </div>
@@ -61,6 +88,8 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
                 {selectedLesson ? (
                     <LessonPage
                         lesson={selectedLesson}
+                        currentCourseId={currentCourseId}
+                        currentModuleId={currentModuleId ?? ""}
                     />
                 ) : (
                     <div className="flex items-center justify-center h-full">
