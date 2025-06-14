@@ -65,7 +65,7 @@ def load_prompt_template():
     with open(PROMPT_TEMPLATE_PATH, 'r', encoding='utf-8') as f:
         return f.read()
 
-def build_llm_prompt(source_text, module_id, lesson_id):
+def build_llm_prompt(source_text, module_id):
     prompt_template = load_prompt_template()
     example_json, example_md, example_hook = load_few_shot_examples()
     examples = (
@@ -76,41 +76,62 @@ def build_llm_prompt(source_text, module_id, lesson_id):
     prompt = prompt_template.replace('{EXAMPLES}', examples)
     prompt = prompt.replace('{INPUT}', source_text)
     prompt = prompt.replace('{MODULE_ID}', module_id)
-    prompt = prompt.replace('{LESSON_ID}', lesson_id)
     return prompt
 
-def generate_lesson_content(client, source_text, module_id, lesson_id):
-    prompt = build_llm_prompt(source_text, module_id, lesson_id)
+def generate_lesson_content(client, source_text, module_id):
+    prompt = build_llm_prompt(source_text, module_id)
+    # Define the function schema for OpenAI function calling
+    functions = [
+        {
+            "name": "generate_lesson",
+            "description": "Generate a lesson in three parts: lesson_json, lesson_markdown, lesson_typescript.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "lesson_json": {"type": "string"},
+                    "lesson_markdown": {"type": "string"},
+                    "lesson_typescript": {"type": "string"}
+                },
+                "required": ["lesson_json", "lesson_markdown", "lesson_typescript"]
+            }
+        }
+    ]
     try:
+        # Use a cheaper model for testing (e.g., gpt-3.5-turbo-1106)
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo-1106",
             messages=[{"role": "user", "content": prompt}],
+            functions=functions,
+            function_call={"name": "generate_lesson"},
             temperature=0.7,
             max_tokens=4000
         )
-        return response.choices[0].message.content
+        # Parse the function_call.arguments JSON for the result
+        arguments = response.choices[0].message.function_call.arguments
+        return arguments
     except Exception as e:
         print(f"Error during OpenAI API call: {e}", file=sys.stderr)
         sys.exit(1)
 
 def parse_generated_content(content):
     """
-    Extracts the JSON, markdown, and TypeScript code blocks from the GPT-4 response.
-    Returns a dict with keys: 'json', 'markdown', 'typescript'.
-    Raises ValueError if any section is missing.
+    Accepts a dict (already parsed JSON) with fields:
+    'lesson_json', 'lesson_markdown', 'lesson_typescript'.
+    Raises ValueError if any field is missing.
     """
-    json_match = re.search(r'```json\s*([\s\S]+?)\s*```', content)
-    md_match = re.search(r'```markdown\s*([\s\S]+?)\s*```', content)
-    ts_match = re.search(r'```typescript\s*([\s\S]+?)\s*```', content)
-
-    if not (json_match and md_match and ts_match):
-        raise ValueError("Failed to parse generated content. Missing one or more required artifacts (json, markdown, typescript).")
-
-    return {
-        "json": json_match.group(1).strip(),
-        "markdown": md_match.group(1).strip(),
-        "typescript": ts_match.group(1).strip()
-    }
+    try:
+        data = content
+        required_fields = ["lesson_json", "lesson_markdown", "lesson_typescript"]
+        if not all(field in data for field in required_fields):
+            missing = [f for f in required_fields if f not in data]
+            raise ValueError(f"Missing fields in LLM output: {', '.join(missing)}")
+        return {
+            "json": data["lesson_json"].strip(),
+            "markdown": data["lesson_markdown"].strip(),
+            "typescript": data["lesson_typescript"].strip()
+        }
+    except Exception as e:
+        raise ValueError(f"Failed to parse structured LLM output: {e}")
 
 def ensure_unique_lesson_id(lesson_id, lessons_file_path):
     if not os.path.exists(lessons_file_path):
@@ -170,11 +191,14 @@ def main():
             with open("generated_content.json", "r", encoding="utf-8") as f:
                 generated_content = json.load(f)
         else:
-            print("Generating lesson content with GPT-4...")
-            generated_content = generate_lesson_content(client, source_text, args.module_id, lesson_id)
+            print("Generating lesson content with GPT-3.5-turbo-1106 (function calling)...")
+            generated_content = generate_lesson_content(client, source_text, args.module_id)
             json.dump(generated_content, open("generated_content.json", "w"), indent=2)
 
         # Step 4: Parse LLM output
+        # If using function calling, generated_content is a JSON string, so parse it first
+        if isinstance(generated_content, str):
+            generated_content = json.loads(generated_content)
         parsed_content = parse_generated_content(generated_content)
         print("Successfully parsed LLM output.")
 

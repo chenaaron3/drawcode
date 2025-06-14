@@ -17,6 +17,7 @@ You should mostly be changing the code samples. Don't clutter the technical expl
 - The solution is code that passes all the tasks within the lesson. Users can see the solution if they are stumped.
 - Make sure there is no mention of the original curriculum platform or PythonQuest in the content or code
 - Make sure the format aligns with the schema below:
+
 ## Lesson Data Schema
 {
 	"id": "hello-world", // Come up with an appropriate kebab-case id based on title
@@ -59,32 +60,30 @@ The following React hooks are available in `@/utils/taskChecks.ts` and should be
 - `useVariablesPrinted(variables: string[]): boolean` — Returns true if the specified variables' values are printed in the terminal output.
 
 # Overall instructions
-- You should output 3 artifacts: The lesson data schema (JSON), the lesson content in markdown, and the lesson hook file in TypeScript
+- You should output a single JSON object with the following fields:
+  - `lesson_json`: The lesson data schema as a JSON string.
+  - `lesson_markdown`: The lesson content in markdown.
+  - `lesson_typescript`: The lesson hook file in TypeScript.
+- Do NOT wrap the output in markdown or code blocks. Only output the raw JSON object.
 
 # Few-Shot Examples
 {EXAMPLES}
 
 # Output
-Return the three artifacts clearly separated with markdown code blocks and labeled as follows:
+Return a single JSON object with the following fields:
+- `lesson_json`: The lesson data schema as a JSON string.
+- `lesson_markdown`: The lesson content in markdown.
+- `lesson_typescript`: The lesson hook file in TypeScript.
 
-## lesson-problems.json
-```json
-...json...
-```
-
-## lesson.md
-```markdown
-...markdown...
-```
-
-## lesson-hook.ts
-```typescript
-...typescript...
-```
+Example output:
+{
+  "lesson_json": "{\n  \"id\": \"hello-world\",\n  \"title\": \"Hello World\",\n  \"description\": \"Run your first program\",\n  \"template\": \"\",\n  \"solution\": \"print('Hello World')\\n\",\n  \"entrypoint\": \"\",\n  \"inputs\": {},\n  \"time\": 1,\n  \"mode\": \"line\"\n}",
+  "lesson_markdown": "# Hello World\\n\\nWelcome to your first adventure! ...",
+  "lesson_typescript": "import ..."
+}
 
 # Input
 Here is the original lesson data:
 {INPUT}
 
 # Module ID: {MODULE_ID}
-# Lesson ID: {LESSON_ID} 
