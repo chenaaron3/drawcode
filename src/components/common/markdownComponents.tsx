@@ -45,7 +45,7 @@ export function markdownComponents(lessonData?: any) {
             );
         },
         pre: ({ children }: ChildrenOnly) => (
-            <pre className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 overflow-x-auto text-sm">
+            <pre className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 overflow-x-auto text-sm my-2">
                 {children}
             </pre>
         ),

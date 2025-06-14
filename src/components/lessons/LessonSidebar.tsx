@@ -1,4 +1,4 @@
-import { ChevronRight, Play } from 'lucide-react';
+import { Check, ChevronRight, Play } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 
 import { ProgressStorage } from '../../utils/progressStorage';
@@ -58,7 +58,7 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
     };
 
     return (
-        <div className="space-y-3">
+        <div className="space-y-3 w-full">
             {modules.map((module) => {
                 const isExpanded = expandedModuleId === module.id;
                 const moduleLessons = module.lessonIds
@@ -102,16 +102,22 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                                             className={`w-full flex items-center gap-3 text-left p-3 border-b border-slate-100 dark:border-slate-600 last:border-b-0 transition-colors ${isSelected
                                                 ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-900 dark:text-blue-100'
                                                 : 'bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100'
-                                                } ${isCompleted ? 'text-green-600 dark:text-green-400' : ''}`}
+                                                }`}
                                         >
-                                            <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${isSelected
-                                                ? 'bg-blue-100 dark:bg-blue-800'
-                                                : 'bg-slate-100 dark:bg-slate-600'
+                                            <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${isCompleted
+                                                ? 'bg-green-100 dark:bg-green-800'
+                                                : isSelected
+                                                    ? 'bg-blue-100 dark:bg-blue-800'
+                                                    : 'bg-slate-100 dark:bg-slate-600'
                                                 }`}>
-                                                <Play className={`w-3 h-3 ${isSelected
-                                                    ? 'text-blue-600 dark:text-blue-300'
-                                                    : 'text-slate-600 dark:text-slate-300'
-                                                    }`} />
+                                                {isCompleted ? (
+                                                    <Check className="w-3 h-3 text-green-600 dark:text-green-300" />
+                                                ) : (
+                                                    <Play className={`w-3 h-3 ${isSelected
+                                                        ? 'text-blue-600 dark:text-blue-300'
+                                                        : 'text-slate-600 dark:text-slate-300'
+                                                        }`} />
+                                                )}
                                             </div>
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center justify-between gap-2 mb-1">
@@ -128,7 +134,6 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                                                     </div>
                                                 )}
                                             </div>
-                                            {isCompleted && <span title="Completed">✓</span>}
                                         </button>
                                     );
                                 })}

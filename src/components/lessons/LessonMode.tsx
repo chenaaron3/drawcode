@@ -30,16 +30,7 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
     const lessons = allLessons.filter(lesson =>
         modules.some(module => module.lessonIds.includes(lesson.id))
     );
-
     const selectedLessonId = getCurrentProblemId();
-
-    // Default to first lesson if no problem is selected
-    useEffect(() => {
-        if (!selectedLessonId && lessons.length > 0) {
-            setCurrentProblem(lessons[0].id);
-        }
-    }, [lessons, selectedLessonId, setCurrentProblem]);
-
     const selectedLesson = lessons.find(l => l.id === selectedLessonId);
     const currentModule = modules.find(module => module.lessonIds.includes(selectedLessonId ?? ""));
     const currentModuleId = currentModule ? currentModule.id : undefined;
@@ -66,7 +57,7 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
         <div className="h-full w-full relative">
             {/* Sheet Drawer */}
             <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-                <SheetContent side="left" className="w-80 sm:max-w-80 p-0 flex flex-col">
+                <SheetContent side="left" className="min-w-[20rem] max-w-[24rem] p-0 flex flex-col">
                     <SheetHeader className="mx-6 py-4 border-b border-slate-200 dark:border-slate-700 flex-shrink-0">
                         <SheetTitle className="text-lg font-semibold">Python Fundamentals</SheetTitle>
                     </SheetHeader>

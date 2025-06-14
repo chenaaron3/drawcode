@@ -13,7 +13,7 @@ Comments can:
 treasure_count = 0
 ```
 
-- Help other adventurers understand your code quickly:
+- Help others understand your code quickly:
 
 ```python
 # This spell calculates the chance of finding a rare gem
