@@ -1,4 +1,4 @@
-import { expect, Page } from '@playwright/test';
+import { expect, Page } from "@playwright/test";
 
 export class TraceDebuggerPage {
   constructor(private page: Page) {}
@@ -52,7 +52,6 @@ export class TraceDebuggerPage {
     let codeEditor = this.page.locator('[data-testid="code-editor-read"]');
     await expect(codeEditor).toBeVisible();
     await this.page.waitForTimeout(500);
-    await codeEditor.hover();
 
     // Click on the edit button
     const editButton = this.page.locator('[data-testid="edit-button"]');
