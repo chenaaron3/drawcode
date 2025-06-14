@@ -266,9 +266,10 @@ export const useTraceStore = create<TraceStore>()(
     prev: () =>
       set((state) => {
         if (state.mode === "line") {
-          if (state.lineIndex > 0) {
-            state.lineIndex -= 1;
+          if (state.stepIndex > 0) {
             state.stepIndex = 0;
+          } else if (state.lineIndex > 0) {
+            state.lineIndex -= 1;
           }
         } else if (state.mode === "step") {
           if (state.stepIndex > 0) {
@@ -454,7 +455,7 @@ export const useTraceStore = create<TraceStore>()(
     hasPrev: () => {
       const state = get();
       if (state.mode === "line") {
-        return state.lineIndex > 0;
+        return state.lineIndex > 0 || state.stepIndex > 0;
       } else if (state.mode === "step") {
         // Check if we can move to previous step within current line
         if (state.stepIndex > 0) {

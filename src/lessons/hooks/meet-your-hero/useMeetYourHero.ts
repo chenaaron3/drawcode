@@ -2,14 +2,12 @@ import { useEffect } from "react";
 
 import { useLessonStore } from "@/store/lessonStore";
 import { useTraceStore } from "@/store/traceStore";
-import { useTutorialStore } from "@/store/tutorialStore";
 
 import meetYourHero from "./meet-your-hero.md?raw";
 
 export function useMeetYourHero(lessonId: string) {
   const { startLesson, addTask, completeTask, currentTask } = useLessonStore();
   const { hasNext, traceData } = useTraceStore();
-  const { startTutorial } = useTutorialStore();
 
   const finishedtrace = !hasNext();
 
@@ -36,7 +34,7 @@ export function useMeetYourHero(lessonId: string) {
       ]);
     };
     initializeLesson();
-  }, [lessonId, startLesson, addTask, startTutorial]);
+  }, [lessonId, startLesson, addTask]);
 
   // Check if the user stepped
   useEffect(() => {

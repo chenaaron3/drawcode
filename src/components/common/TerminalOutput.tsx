@@ -38,7 +38,7 @@ const TerminalOutput: React.FC = () => {
                     )}
                 </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0 flex-1 flex flex-col">
+            <CardContent className="pt-0 flex-1 flex flex-col" data-tutorial="terminal-panel">
                 <div className="relative flex-1">
                     <div
                         ref={scrollContainerRef}

@@ -65,17 +65,43 @@ def main():
             f.write(
 f"""import {{ useLessonStore }} from '@/store/lessonStore';
 import {{ useTraceStore }} from '@/store/traceStore';
+import content from "./{lesson_id}.md?raw";
+import {{ useEffect }} from "react";
 
 export function {hook_name}(lessonId: string) {{
   // Add lesson-specific logic here
-  const lessonStore = useLessonStore();
-  const traceStore = useTraceStore();
-  // ...
+  const {{ startLesson, completeTask, currentTask }} = useLessonStore();
+  const {{ traceData }} = useTraceStore();
+
+useEffect(() => {{
+    if (lessonId !== "{lesson_id}") return;
+    // Start the lesson
+    startLesson(lessonId, content, [
+    ]);
+  }}, [lessonId, startLesson]);
 }}
 """)
         print(f"Created {hook_path}")
     else:
         print(f"{hook_path} already exists")
+
+    # 5. Optionally run trace.py with the new lesson_id
+    trace_py_path = os.path.join(project_root, 'src', 'tracer', 'trace.py')
+    if os.path.exists(trace_py_path):
+        import subprocess
+        print(f"Running trace.py")
+        try:
+            result = subprocess.run([
+                sys.executable, trace_py_path
+            ], capture_output=True, text=True, check=True)
+            print(result.stdout)
+            if result.stderr:
+                print(result.stderr)
+        except subprocess.CalledProcessError as e:
+            print(f"trace.py failed: {e}")
+            print(e.output)
+    else:
+        print(f"trace.py not found at {trace_py_path}, skipping trace generation.")
 
 if __name__ == '__main__':
     main() 

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, HelpCircle, SkipForward, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, HelpCircle, X } from 'lucide-react';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -329,8 +329,7 @@ export const TutorialOverlay: React.FC = () => {
                                     >
                                         {currentStepIndex === steps.length - 1 ? (
                                             <>
-                                                Finish
-                                                <SkipForward className="h-4 w-4 ml-1" />
+                                                Got It!
                                             </>
                                         ) : (
                                             <>

@@ -3,11 +3,12 @@ import type { LessonHook } from "@/types/lesson";
 // Manual imports - more reliable for deployment
 import { useMeetYourHero } from "./hooks/meet-your-hero/useMeetYourHero";
 import { useQuestNotes } from "./hooks/quest-notes/useQuestNotes";
+import { useVoiceOfTheHero } from "./hooks/voice-of-the-hero/useVoiceOfTheHero";
 
-// Manual registry of lesson hooks - more reliable for GitHub Pages deployment
 export const lessonHooks: Record<string, LessonHook> = {
   "meet-your-hero": useMeetYourHero,
   "quest-notes": useQuestNotes,
+  "voice-of-the-hero": useVoiceOfTheHero,
 };
 
 // Check if a lesson has a hook implementation

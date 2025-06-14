@@ -29,7 +29,7 @@ const introTutorial: TutorialStep[] = [
     content:
       "This is where the magic happens! Here you can see the Python code that tells the computer what to do. Don't worry if it looks confusing at first.",
     targetSelector: '[data-tutorial="code-panel"]',
-    position: "bottom",
+    position: "left",
   },
   {
     id: "step-controls",

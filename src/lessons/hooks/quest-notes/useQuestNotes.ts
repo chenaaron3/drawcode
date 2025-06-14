@@ -7,27 +7,22 @@ import questNotes from "./quest-notes.md?raw";
 
 export function useQuestNotes(lessonId: string) {
   // Add lesson-specific logic here
-  const { setContent, startLesson, addTask, completeTask, currentTask } =
-    useLessonStore();
-  const { traceData, setCurrentProblem } = useTraceStore();
+  const { startLesson, completeTask, currentTask } = useLessonStore();
+  const { traceData } = useTraceStore();
 
   useEffect(() => {
     if (lessonId !== "quest-notes") return;
-
-    const initializeLesson = async () => {
-      // Start the lesson
-      startLesson(lessonId, questNotes, [
-        {
-          id: "make-first-comment",
-          title: "Write a comment",
-          description:
-            "Write a comment describing the first quest you want to embark on in your programming adventure!",
-          callback: () => {},
-        },
-      ]);
-    };
-    initializeLesson();
-  }, [lessonId, setContent, startLesson, addTask, setCurrentProblem]);
+    // Start the lesson
+    startLesson(lessonId, questNotes, [
+      {
+        id: "make-first-comment",
+        title: "Write a comment",
+        description:
+          "Write a comment on line 2 describing why you want to learn Python! Save the code to complete the task.",
+        callback: () => {},
+      },
+    ]);
+  }, [lessonId, startLesson]);
 
   useEffect(() => {
     if (currentTask?.id === "make-first-comment") {
