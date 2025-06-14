@@ -1,0 +1,3046 @@
+{
+  "metadata": {
+    "code": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())\n",
+    "function": "groupAnagrams",
+    "inputs": {
+      "kwargs": {
+        "strs": "['eat', 'tea', 'tan', 'ate', 'nat', 'bat']"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "strs": [
+        "eat",
+        "tea",
+        "tan",
+        "ate",
+        "nat",
+        "bat"
+      ],
+      "anagram_map": {
+        "aet": [
+          "eat",
+          "tea",
+          "ate"
+        ],
+        "ant": [
+          "tan",
+          "nat"
+        ],
+        "abt": [
+          "bat"
+        ]
+      },
+      "s": "bat",
+      "key": "abt"
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 11,
+          "end_col_offset": 37
+        },
+        "focus": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())",
+        "name": "groupAnagrams",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            7
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 7,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 18,
+                "end_lineno": 1,
+                "end_col_offset": 22
+              },
+              "focus": "strs",
+              "arg": "strs"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              8
+            ],
+            "type": "ImportFrom",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 39
+            },
+            "focus": "from collections import defaultdict",
+            "module": "collections",
+            "names": [
+              {
+                "node_id": 8,
+                "children_node_ids": [],
+                "type": "alias",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 28,
+                  "end_lineno": 2,
+                  "end_col_offset": 39
+                },
+                "focus": "defaultdict",
+                "name": "defaultdict"
+              }
+            ],
+            "level": 0
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              9,
+              10
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 4,
+              "col_offset": 4,
+              "end_lineno": 4,
+              "end_col_offset": 35
+            },
+            "focus": "anagram_map = defaultdict(list)",
+            "targets": [
+              {
+                "node_id": 9,
+                "children_node_ids": [
+                  16
+                ],
+                "type": "Name",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 4,
+                  "end_lineno": 4,
+                  "end_col_offset": 15
+                },
+                "focus": "anagram_map",
+                "id": "anagram_map",
+                "ctx": {
+                  "node_id": 16,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 9
+                }
+              }
+            ],
+            "value": {
+              "node_id": 10,
+              "children_node_ids": [
+                17,
+                18
+              ],
+              "type": "Call",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 4,
+                "col_offset": 18,
+                "end_lineno": 4,
+                "end_col_offset": 35
+              },
+              "focus": "defaultdict(list)",
+              "func": {
+                "node_id": 17,
+                "children_node_ids": [
+                  19
+                ],
+                "type": "Name",
+                "parent_node_id": 10,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 18,
+                  "end_lineno": 4,
+                  "end_col_offset": 29
+                },
+                "focus": "defaultdict",
+                "id": "defaultdict",
+                "ctx": {
+                  "node_id": 19,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 17
+                }
+              },
+              "args": [
+                {
+                  "node_id": 18,
+                  "children_node_ids": [
+                    19
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 30,
+                    "end_lineno": 4,
+                    "end_col_offset": 34
+                  },
+                  "focus": "list",
+                  "id": "list",
+                  "ctx": {
+                    "node_id": 19,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 18
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              11,
+              12,
+              13,
+              14
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 6,
+              "col_offset": 4,
+              "end_lineno": 9,
+              "end_col_offset": 34
+            },
+            "focus": "for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)",
+            "target": {
+              "node_id": 11,
+              "children_node_ids": [
+                16
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 6,
+                "col_offset": 8,
+                "end_lineno": 6,
+                "end_col_offset": 9
+              },
+              "focus": "s",
+              "id": "s",
+              "ctx": {
+                "node_id": 16,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 11
+              }
+            },
+            "iter": {
+              "node_id": 12,
+              "children_node_ids": [
+                19
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 6,
+                "col_offset": 13,
+                "end_lineno": 6,
+                "end_col_offset": 17
+              },
+              "focus": "strs",
+              "id": "strs",
+              "ctx": {
+                "node_id": 19,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 12
+              }
+            },
+            "body": [
+              {
+                "node_id": 13,
+                "children_node_ids": [
+                  20,
+                  21
+                ],
+                "type": "Assign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 8,
+                  "end_lineno": 8,
+                  "end_col_offset": 32
+                },
+                "focus": "key = ''.join(sorted(s))",
+                "targets": [
+                  {
+                    "node_id": 20,
+                    "children_node_ids": [
+                      16
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 13,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 8,
+                      "end_lineno": 8,
+                      "end_col_offset": 11
+                    },
+                    "focus": "key",
+                    "id": "key",
+                    "ctx": {
+                      "node_id": 16,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 20
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 21,
+                  "children_node_ids": [
+                    25,
+                    26
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 14,
+                    "end_lineno": 8,
+                    "end_col_offset": 32
+                  },
+                  "focus": "''.join(sorted(s))",
+                  "func": {
+                    "node_id": 25,
+                    "children_node_ids": [
+                      30,
+                      19
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 21,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 14,
+                      "end_lineno": 8,
+                      "end_col_offset": 21
+                    },
+                    "focus": "''.join",
+                    "value": {
+                      "node_id": 30,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 25,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 14,
+                        "end_lineno": 8,
+                        "end_col_offset": 16
+                      },
+                      "focus": "''",
+                      "value": ""
+                    },
+                    "attr": "join",
+                    "ctx": {
+                      "node_id": 19,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 25
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 26,
+                      "children_node_ids": [
+                        31,
+                        32
+                      ],
+                      "type": "Call",
+                      "parent_node_id": 21,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 22,
+                        "end_lineno": 8,
+                        "end_col_offset": 31
+                      },
+                      "focus": "sorted(s)",
+                      "func": {
+                        "node_id": 31,
+                        "children_node_ids": [
+                          19
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 26,
+                        "location": {
+                          "lineno": 8,
+                          "col_offset": 22,
+                          "end_lineno": 8,
+                          "end_col_offset": 28
+                        },
+                        "focus": "sorted",
+                        "id": "sorted",
+                        "ctx": {
+                          "node_id": 19,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 31
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 32,
+                          "children_node_ids": [
+                            19
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 26,
+                          "location": {
+                            "lineno": 8,
+                            "col_offset": 29,
+                            "end_lineno": 8,
+                            "end_col_offset": 30
+                          },
+                          "focus": "s",
+                          "id": "s",
+                          "ctx": {
+                            "node_id": 19,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 32
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  ],
+                  "keywords": []
+                }
+              },
+              {
+                "node_id": 14,
+                "children_node_ids": [
+                  22
+                ],
+                "type": "Expr",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 9,
+                  "col_offset": 8,
+                  "end_lineno": 9,
+                  "end_col_offset": 34
+                },
+                "focus": "anagram_map[key].append(s)",
+                "value": {
+                  "node_id": 22,
+                  "children_node_ids": [
+                    27,
+                    28
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 14,
+                  "location": {
+                    "lineno": 9,
+                    "col_offset": 8,
+                    "end_lineno": 9,
+                    "end_col_offset": 34
+                  },
+                  "focus": "anagram_map[key].append(s)",
+                  "func": {
+                    "node_id": 27,
+                    "children_node_ids": [
+                      33,
+                      19
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 22,
+                    "location": {
+                      "lineno": 9,
+                      "col_offset": 8,
+                      "end_lineno": 9,
+                      "end_col_offset": 31
+                    },
+                    "focus": "anagram_map[key].append",
+                    "value": {
+                      "node_id": 33,
+                      "children_node_ids": [
+                        35,
+                        36,
+                        19
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 27,
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 8,
+                        "end_lineno": 9,
+                        "end_col_offset": 24
+                      },
+                      "focus": "anagram_map[key]",
+                      "value": {
+                        "node_id": 35,
+                        "children_node_ids": [
+                          19
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 33,
+                        "location": {
+                          "lineno": 9,
+                          "col_offset": 8,
+                          "end_lineno": 9,
+                          "end_col_offset": 19
+                        },
+                        "focus": "anagram_map",
+                        "id": "anagram_map",
+                        "ctx": {
+                          "node_id": 19,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 35
+                        }
+                      },
+                      "slice": {
+                        "node_id": 36,
+                        "children_node_ids": [
+                          19
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 33,
+                        "location": {
+                          "lineno": 9,
+                          "col_offset": 20,
+                          "end_lineno": 9,
+                          "end_col_offset": 23
+                        },
+                        "focus": "key",
+                        "id": "key",
+                        "ctx": {
+                          "node_id": 19,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 36
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 19,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 33
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "node_id": 19,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 27
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 28,
+                      "children_node_ids": [
+                        19
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 22,
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 32,
+                        "end_lineno": 9,
+                        "end_col_offset": 33
+                      },
+                      "focus": "s",
+                      "id": "s",
+                      "ctx": {
+                        "node_id": 19,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 28
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              15
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 11,
+              "col_offset": 4,
+              "end_lineno": 11,
+              "end_col_offset": 37
+            },
+            "focus": "return list(anagram_map.values())",
+            "value": {
+              "node_id": 15,
+              "children_node_ids": [
+                23,
+                24
+              ],
+              "type": "Call",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 11,
+                "col_offset": 11,
+                "end_lineno": 11,
+                "end_col_offset": 37
+              },
+              "focus": "list(anagram_map.values())",
+              "func": {
+                "node_id": 23,
+                "children_node_ids": [
+                  19
+                ],
+                "type": "Name",
+                "parent_node_id": 15,
+                "location": {
+                  "lineno": 11,
+                  "col_offset": 11,
+                  "end_lineno": 11,
+                  "end_col_offset": 15
+                },
+                "focus": "list",
+                "id": "list",
+                "ctx": {
+                  "node_id": 19,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 23
+                }
+              },
+              "args": [
+                {
+                  "node_id": 24,
+                  "children_node_ids": [
+                    29
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 15,
+                  "location": {
+                    "lineno": 11,
+                    "col_offset": 16,
+                    "end_lineno": 11,
+                    "end_col_offset": 36
+                  },
+                  "focus": "anagram_map.values()",
+                  "func": {
+                    "node_id": 29,
+                    "children_node_ids": [
+                      34,
+                      19
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 24,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 16,
+                      "end_lineno": 11,
+                      "end_col_offset": 34
+                    },
+                    "focus": "anagram_map.values",
+                    "value": {
+                      "node_id": 34,
+                      "children_node_ids": [
+                        19
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 29,
+                      "location": {
+                        "lineno": 11,
+                        "col_offset": 16,
+                        "end_lineno": 11,
+                        "end_col_offset": 27
+                      },
+                      "focus": "anagram_map",
+                      "id": "anagram_map",
+                      "ctx": {
+                        "node_id": 19,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 34
+                      }
+                    },
+                    "attr": "values",
+                    "ctx": {
+                      "node_id": 19,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 29
+                    }
+                  },
+                  "args": [],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "strs",
+      "cursor": "s",
+      "type": "value_index",
+      "node_id": 5
+    },
+    {
+      "container": "anagram_map",
+      "cursor": "key",
+      "type": "key_access",
+      "node_id": 33
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ]
+      },
+      "delta": {
+        "strs": {
+          "0": "eat",
+          "1": "tea",
+          "2": "tan",
+          "3": "ate",
+          "4": "nat",
+          "5": "bat"
+        }
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "from collections import defaultdict",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "from collections import defaultdict",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "anagram_map = defaultdict(list)",
+          "node_id": 4
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "defaultdict(list)",
+          "node_id": 10
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 18
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "list",
+          "node_id": 18,
+          "value": "list"
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "defaultdict(list)",
+          "node_id": 10,
+          "value": {}
+        },
+        {
+          "step": 9,
+          "event": "after_statement",
+          "focus": "anagram_map = defaultdict(list)",
+          "node_id": 4,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {}
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {}
+      },
+      "delta": {
+        "anagram_map": {}
+      },
+      "steps": [
+        {
+          "step": 10,
+          "event": "before_statement",
+          "focus": "for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)",
+          "node_id": 5
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "strs",
+          "node_id": 12
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "strs",
+          "node_id": 12,
+          "value": [
+            "eat",
+            "tea",
+            "tan",
+            "ate",
+            "nat",
+            "bat"
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {},
+        "s": "eat"
+      },
+      "delta": {
+        "s": "eat"
+      },
+      "steps": [
+        {
+          "step": 13,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "''",
+          "node_id": 30
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "''",
+          "node_id": 30,
+          "value": ""
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "''.join",
+          "node_id": 25,
+          "value": "str.join()"
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "eat"
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "e",
+            "t"
+          ]
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "aet"
+        },
+        {
+          "step": 24,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {},
+            "s": "eat",
+            "key": "aet"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {},
+        "s": "eat",
+        "key": "aet"
+      },
+      "delta": {
+        "key": "aet"
+      },
+      "steps": [
+        {
+          "step": 25,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {}
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "aet"
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": []
+            },
+            "s": "eat",
+            "key": "aet"
+          },
+          "value": []
+        },
+        {
+          "step": 34,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": []
+            },
+            "s": "eat",
+            "key": "aet"
+          },
+          "value": "list.append()"
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": []
+            },
+            "s": "eat",
+            "key": "aet"
+          }
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": []
+            },
+            "s": "eat",
+            "key": "aet"
+          },
+          "value": "eat"
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat"
+              ]
+            },
+            "s": "eat",
+            "key": "aet"
+          }
+        },
+        {
+          "step": 38,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat"
+              ]
+            },
+            "s": "eat",
+            "key": "aet"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat"
+          ]
+        },
+        "s": "tea",
+        "key": "aet"
+      },
+      "delta": {
+        "anagram_map": {
+          "aet": {
+            "0": "eat"
+          }
+        },
+        "s": "tea"
+      },
+      "steps": [
+        {
+          "step": 39,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "''",
+          "node_id": 30
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "''",
+          "node_id": 30,
+          "value": ""
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "''.join",
+          "node_id": 25,
+          "value": "str.join()"
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "tea"
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "e",
+            "t"
+          ]
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "aet"
+        },
+        {
+          "step": 50,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat"
+          ]
+        },
+        "s": "tea",
+        "key": "aet"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 51,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat"
+            ]
+          }
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "aet"
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "value": [
+            "eat"
+          ]
+        },
+        {
+          "step": 60,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27,
+          "value": "list.append()"
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28
+        },
+        {
+          "step": 62,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "value": "tea"
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ]
+            },
+            "s": "tea",
+            "key": "aet"
+          }
+        },
+        {
+          "step": 64,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ]
+            },
+            "s": "tea",
+            "key": "aet"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea"
+          ]
+        },
+        "s": "tan",
+        "key": "aet"
+      },
+      "delta": {
+        "anagram_map": {
+          "aet": {
+            "1": "tea"
+          }
+        },
+        "s": "tan"
+      },
+      "steps": [
+        {
+          "step": 65,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "''",
+          "node_id": 30
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "''",
+          "node_id": 30,
+          "value": ""
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "''.join",
+          "node_id": 25,
+          "value": "str.join()"
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 72,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "tan"
+        },
+        {
+          "step": 74,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "n",
+            "t"
+          ]
+        },
+        {
+          "step": 75,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "ant"
+        },
+        {
+          "step": 76,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ]
+            },
+            "s": "tan",
+            "key": "ant"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea"
+          ]
+        },
+        "s": "tan",
+        "key": "ant"
+      },
+      "delta": {
+        "key": "ant"
+      },
+      "steps": [
+        {
+          "step": 77,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 82,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat",
+              "tea"
+            ]
+          }
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "ant"
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": []
+            },
+            "s": "tan",
+            "key": "ant"
+          },
+          "value": []
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": []
+            },
+            "s": "tan",
+            "key": "ant"
+          },
+          "value": "list.append()"
+        },
+        {
+          "step": 87,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": []
+            },
+            "s": "tan",
+            "key": "ant"
+          }
+        },
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": []
+            },
+            "s": "tan",
+            "key": "ant"
+          },
+          "value": "tan"
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "tan",
+            "key": "ant"
+          }
+        },
+        {
+          "step": 90,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "tan",
+            "key": "ant"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea"
+          ],
+          "ant": [
+            "tan"
+          ]
+        },
+        "s": "ate",
+        "key": "ant"
+      },
+      "delta": {
+        "anagram_map": {
+          "ant": {
+            "0": "tan"
+          }
+        },
+        "s": "ate"
+      },
+      "steps": [
+        {
+          "step": 91,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 92,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 93,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "''",
+          "node_id": 30
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "''",
+          "node_id": 30,
+          "value": ""
+        },
+        {
+          "step": 96,
+          "event": "after_expression",
+          "focus": "''.join",
+          "node_id": 25,
+          "value": "str.join()"
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "ate"
+        },
+        {
+          "step": 100,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "e",
+            "t"
+          ]
+        },
+        {
+          "step": 101,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "aet"
+        },
+        {
+          "step": 102,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "ate",
+            "key": "aet"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea"
+          ],
+          "ant": [
+            "tan"
+          ]
+        },
+        "s": "ate",
+        "key": "aet"
+      },
+      "delta": {
+        "key": "aet"
+      },
+      "steps": [
+        {
+          "step": 103,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 106,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 107,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 108,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat",
+              "tea"
+            ],
+            "ant": [
+              "tan"
+            ]
+          }
+        },
+        {
+          "step": 109,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 110,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "aet"
+        },
+        {
+          "step": 111,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "value": [
+            "eat",
+            "tea"
+          ]
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27,
+          "value": "list.append()"
+        },
+        {
+          "step": 113,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28
+        },
+        {
+          "step": 114,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "value": "ate"
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "ate",
+            "key": "aet"
+          }
+        },
+        {
+          "step": 116,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "ate",
+            "key": "aet"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan"
+          ]
+        },
+        "s": "nat",
+        "key": "aet"
+      },
+      "delta": {
+        "anagram_map": {
+          "aet": {
+            "2": "ate"
+          }
+        },
+        "s": "nat"
+      },
+      "steps": [
+        {
+          "step": 117,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 118,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 119,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 120,
+          "event": "before_expression",
+          "focus": "''",
+          "node_id": 30
+        },
+        {
+          "step": 121,
+          "event": "after_expression",
+          "focus": "''",
+          "node_id": 30,
+          "value": ""
+        },
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "''.join",
+          "node_id": 25,
+          "value": "str.join()"
+        },
+        {
+          "step": 123,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 124,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 125,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "nat"
+        },
+        {
+          "step": 126,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "n",
+            "t"
+          ]
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "ant"
+        },
+        {
+          "step": 128,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "nat",
+            "key": "ant"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan"
+          ]
+        },
+        "s": "nat",
+        "key": "ant"
+      },
+      "delta": {
+        "key": "ant"
+      },
+      "steps": [
+        {
+          "step": 129,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 130,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 131,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 132,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 134,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat",
+              "tea",
+              "ate"
+            ],
+            "ant": [
+              "tan"
+            ]
+          }
+        },
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 136,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "ant"
+        },
+        {
+          "step": 137,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "value": [
+            "tan"
+          ]
+        },
+        {
+          "step": 138,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27,
+          "value": "list.append()"
+        },
+        {
+          "step": 139,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28
+        },
+        {
+          "step": 140,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "value": "nat"
+        },
+        {
+          "step": 141,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ]
+            },
+            "s": "nat",
+            "key": "ant"
+          }
+        },
+        {
+          "step": 142,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ]
+            },
+            "s": "nat",
+            "key": "ant"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan",
+            "nat"
+          ]
+        },
+        "s": "bat",
+        "key": "ant"
+      },
+      "delta": {
+        "anagram_map": {
+          "ant": {
+            "1": "nat"
+          }
+        },
+        "s": "bat"
+      },
+      "steps": [
+        {
+          "step": 143,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 144,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 145,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 146,
+          "event": "before_expression",
+          "focus": "''",
+          "node_id": 30
+        },
+        {
+          "step": 147,
+          "event": "after_expression",
+          "focus": "''",
+          "node_id": 30,
+          "value": ""
+        },
+        {
+          "step": 148,
+          "event": "after_expression",
+          "focus": "''.join",
+          "node_id": 25,
+          "value": "str.join()"
+        },
+        {
+          "step": 149,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 150,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 151,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "bat"
+        },
+        {
+          "step": 152,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "b",
+            "t"
+          ]
+        },
+        {
+          "step": 153,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "abt"
+        },
+        {
+          "step": 154,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ]
+            },
+            "s": "bat",
+            "key": "abt"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan",
+            "nat"
+          ]
+        },
+        "s": "bat",
+        "key": "abt"
+      },
+      "delta": {
+        "key": "abt"
+      },
+      "steps": [
+        {
+          "step": 155,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 156,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 157,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 158,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 159,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 160,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat",
+              "tea",
+              "ate"
+            ],
+            "ant": [
+              "tan",
+              "nat"
+            ]
+          }
+        },
+        {
+          "step": 161,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 162,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "abt"
+        },
+        {
+          "step": 163,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": []
+            },
+            "s": "bat",
+            "key": "abt"
+          },
+          "value": []
+        },
+        {
+          "step": 164,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": []
+            },
+            "s": "bat",
+            "key": "abt"
+          },
+          "value": "list.append()"
+        },
+        {
+          "step": 165,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": []
+            },
+            "s": "bat",
+            "key": "abt"
+          }
+        },
+        {
+          "step": 166,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": []
+            },
+            "s": "bat",
+            "key": "abt"
+          },
+          "value": "bat"
+        },
+        {
+          "step": 167,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": [
+                "bat"
+              ]
+            },
+            "s": "bat",
+            "key": "abt"
+          }
+        },
+        {
+          "step": 168,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": [
+                "bat"
+              ]
+            },
+            "s": "bat",
+            "key": "abt"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan",
+            "nat"
+          ],
+          "abt": [
+            "bat"
+          ]
+        },
+        "s": "bat",
+        "key": "abt"
+      },
+      "delta": {
+        "anagram_map": {
+          "abt": {
+            "0": "bat"
+          }
+        }
+      },
+      "steps": [
+        {
+          "step": 169,
+          "event": "after_statement",
+          "focus": "for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan",
+            "nat"
+          ],
+          "abt": [
+            "bat"
+          ]
+        },
+        "s": "bat",
+        "key": "abt"
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 170,
+          "event": "before_statement",
+          "focus": "return list(anagram_map.values())",
+          "node_id": 6
+        },
+        {
+          "step": 171,
+          "event": "before_expression",
+          "focus": "list(anagram_map.values())",
+          "node_id": 15
+        },
+        {
+          "step": 172,
+          "event": "before_expression",
+          "focus": "anagram_map.values()",
+          "node_id": 24
+        },
+        {
+          "step": 173,
+          "event": "before_expression",
+          "focus": "anagram_map.values",
+          "node_id": 29
+        },
+        {
+          "step": 174,
+          "event": "after_expression",
+          "focus": "anagram_map.values",
+          "node_id": 29,
+          "value": "collections.defaultdict.values()"
+        },
+        {
+          "step": 175,
+          "event": "after_expression",
+          "focus": "anagram_map.values()",
+          "node_id": 24,
+          "value": "dict_values([['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']])"
+        },
+        {
+          "step": 176,
+          "event": "after_expression",
+          "focus": "list(anagram_map.values())",
+          "node_id": 15,
+          "value": [
+            [
+              "eat",
+              "tea",
+              "ate"
+            ],
+            [
+              "tan",
+              "nat"
+            ],
+            [
+              "bat"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "result": [
+    [
+      "eat",
+      "tea",
+      "ate"
+    ],
+    [
+      "tan",
+      "nat"
+    ],
+    [
+      "bat"
+    ]
+  ]
+}

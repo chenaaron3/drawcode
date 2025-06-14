@@ -1,0 +1,5999 @@
+{
+  "metadata": {
+    "code": "def buildTree(preorder, inorder):\n    if not preorder or not inorder:\n        return None\n    root = TreeNode(preorder[0])\n    mid = inorder.index(preorder[0])\n    root.left = buildTree(preorder[1:mid+1], inorder[:mid])\n    root.right = buildTree(preorder[mid+1:], inorder[mid+1:])\n    return root",
+    "function": "buildTree",
+    "inputs": {
+      "kwargs": {
+        "preorder": "[3, 9, 20, 15, 7]",
+        "inorder": "[9, 3, 15, 20, 7]"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "preorder": [
+        3,
+        9,
+        20,
+        15,
+        7
+      ],
+      "inorder": [
+        9,
+        3,
+        15,
+        20,
+        7
+      ],
+      "root": "TreeNode(3)",
+      "mid": 1
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 8,
+          "end_col_offset": 15
+        },
+        "focus": "def buildTree(preorder, inorder):\n    if not preorder or not inorder:\n        return None\n    root = TreeNode(preorder[0])\n    mid = inorder.index(preorder[0])\n    root.left = buildTree(preorder[1:mid+1], inorder[:mid])\n    root.right = buildTree(preorder[mid+1:], inorder[mid+1:])\n    return root",
+        "name": "buildTree",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            9,
+            10
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 9,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 14,
+                "end_lineno": 1,
+                "end_col_offset": 22
+              },
+              "focus": "preorder",
+              "arg": "preorder"
+            },
+            {
+              "node_id": 10,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 24,
+                "end_lineno": 1,
+                "end_col_offset": 31
+              },
+              "focus": "inorder",
+              "arg": "inorder"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              11,
+              12
+            ],
+            "type": "If",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 19
+            },
+            "focus": "if not preorder or not inorder:\n        return None",
+            "test": {
+              "node_id": 11,
+              "children_node_ids": [
+                22,
+                23,
+                24
+              ],
+              "type": "BoolOp",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 7,
+                "end_lineno": 2,
+                "end_col_offset": 34
+              },
+              "focus": "not preorder or not inorder",
+              "op": {
+                "node_id": 22,
+                "children_node_ids": [],
+                "type": "Or",
+                "parent_node_id": 11
+              },
+              "values": [
+                {
+                  "node_id": 23,
+                  "children_node_ids": [
+                    40,
+                    41
+                  ],
+                  "type": "UnaryOp",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 7,
+                    "end_lineno": 2,
+                    "end_col_offset": 19
+                  },
+                  "focus": "not preorder",
+                  "op": {
+                    "node_id": 40,
+                    "children_node_ids": [],
+                    "type": "Not",
+                    "parent_node_id": 23
+                  },
+                  "operand": {
+                    "node_id": 41,
+                    "children_node_ids": [
+                      39
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 23,
+                    "location": {
+                      "lineno": 2,
+                      "col_offset": 11,
+                      "end_lineno": 2,
+                      "end_col_offset": 19
+                    },
+                    "focus": "preorder",
+                    "id": "preorder",
+                    "ctx": {
+                      "node_id": 39,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 41
+                    }
+                  }
+                },
+                {
+                  "node_id": 24,
+                  "children_node_ids": [
+                    40,
+                    42
+                  ],
+                  "type": "UnaryOp",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 23,
+                    "end_lineno": 2,
+                    "end_col_offset": 34
+                  },
+                  "focus": "not inorder",
+                  "op": {
+                    "node_id": 40,
+                    "children_node_ids": [],
+                    "type": "Not",
+                    "parent_node_id": 24
+                  },
+                  "operand": {
+                    "node_id": 42,
+                    "children_node_ids": [
+                      39
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 24,
+                    "location": {
+                      "lineno": 2,
+                      "col_offset": 27,
+                      "end_lineno": 2,
+                      "end_col_offset": 34
+                    },
+                    "focus": "inorder",
+                    "id": "inorder",
+                    "ctx": {
+                      "node_id": 39,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 42
+                    }
+                  }
+                }
+              ]
+            },
+            "body": [
+              {
+                "node_id": 12,
+                "children_node_ids": [
+                  25
+                ],
+                "type": "Return",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 8,
+                  "end_lineno": 3,
+                  "end_col_offset": 19
+                },
+                "focus": "return None",
+                "value": {
+                  "node_id": 25,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 12,
+                  "location": {
+                    "lineno": 3,
+                    "col_offset": 15,
+                    "end_lineno": 3,
+                    "end_col_offset": 19
+                  },
+                  "focus": "None"
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              13,
+              14
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 4,
+              "col_offset": 4,
+              "end_lineno": 4,
+              "end_col_offset": 32
+            },
+            "focus": "root = TreeNode(preorder[0])",
+            "targets": [
+              {
+                "node_id": 13,
+                "children_node_ids": [
+                  26
+                ],
+                "type": "Name",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 4,
+                  "end_lineno": 4,
+                  "end_col_offset": 8
+                },
+                "focus": "root",
+                "id": "root",
+                "ctx": {
+                  "node_id": 26,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 13
+                }
+              }
+            ],
+            "value": {
+              "node_id": 14,
+              "children_node_ids": [
+                27,
+                28
+              ],
+              "type": "Call",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 4,
+                "col_offset": 11,
+                "end_lineno": 4,
+                "end_col_offset": 32
+              },
+              "focus": "TreeNode(preorder[0])",
+              "func": {
+                "node_id": 27,
+                "children_node_ids": [
+                  39
+                ],
+                "type": "Name",
+                "parent_node_id": 14,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 11,
+                  "end_lineno": 4,
+                  "end_col_offset": 19
+                },
+                "focus": "TreeNode",
+                "id": "TreeNode",
+                "ctx": {
+                  "node_id": 39,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 27
+                }
+              },
+              "args": [
+                {
+                  "node_id": 28,
+                  "children_node_ids": [
+                    43,
+                    44,
+                    39
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 14,
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 20,
+                    "end_lineno": 4,
+                    "end_col_offset": 31
+                  },
+                  "focus": "preorder[0]",
+                  "value": {
+                    "node_id": 43,
+                    "children_node_ids": [
+                      39
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 28,
+                    "location": {
+                      "lineno": 4,
+                      "col_offset": 20,
+                      "end_lineno": 4,
+                      "end_col_offset": 28
+                    },
+                    "focus": "preorder",
+                    "id": "preorder",
+                    "ctx": {
+                      "node_id": 39,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 43
+                    }
+                  },
+                  "slice": {
+                    "node_id": 44,
+                    "children_node_ids": [],
+                    "type": "Constant",
+                    "parent_node_id": 28,
+                    "location": {
+                      "lineno": 4,
+                      "col_offset": 29,
+                      "end_lineno": 4,
+                      "end_col_offset": 30
+                    },
+                    "focus": "0",
+                    "value": 0
+                  },
+                  "ctx": {
+                    "node_id": 39,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 28
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              15,
+              16
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 5,
+              "col_offset": 4,
+              "end_lineno": 5,
+              "end_col_offset": 36
+            },
+            "focus": "mid = inorder.index(preorder[0])",
+            "targets": [
+              {
+                "node_id": 15,
+                "children_node_ids": [
+                  26
+                ],
+                "type": "Name",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 4,
+                  "end_lineno": 5,
+                  "end_col_offset": 7
+                },
+                "focus": "mid",
+                "id": "mid",
+                "ctx": {
+                  "node_id": 26,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 15
+                }
+              }
+            ],
+            "value": {
+              "node_id": 16,
+              "children_node_ids": [
+                29,
+                30
+              ],
+              "type": "Call",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 5,
+                "col_offset": 10,
+                "end_lineno": 5,
+                "end_col_offset": 36
+              },
+              "focus": "inorder.index(preorder[0])",
+              "func": {
+                "node_id": 29,
+                "children_node_ids": [
+                  45,
+                  39
+                ],
+                "type": "Attribute",
+                "parent_node_id": 16,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 10,
+                  "end_lineno": 5,
+                  "end_col_offset": 23
+                },
+                "focus": "inorder.index",
+                "value": {
+                  "node_id": 45,
+                  "children_node_ids": [
+                    39
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 29,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 10,
+                    "end_lineno": 5,
+                    "end_col_offset": 17
+                  },
+                  "focus": "inorder",
+                  "id": "inorder",
+                  "ctx": {
+                    "node_id": 39,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 45
+                  }
+                },
+                "attr": "index",
+                "ctx": {
+                  "node_id": 39,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 29
+                }
+              },
+              "args": [
+                {
+                  "node_id": 30,
+                  "children_node_ids": [
+                    46,
+                    47,
+                    39
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 16,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 24,
+                    "end_lineno": 5,
+                    "end_col_offset": 35
+                  },
+                  "focus": "preorder[0]",
+                  "value": {
+                    "node_id": 46,
+                    "children_node_ids": [
+                      39
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 30,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 24,
+                      "end_lineno": 5,
+                      "end_col_offset": 32
+                    },
+                    "focus": "preorder",
+                    "id": "preorder",
+                    "ctx": {
+                      "node_id": 39,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 46
+                    }
+                  },
+                  "slice": {
+                    "node_id": 47,
+                    "children_node_ids": [],
+                    "type": "Constant",
+                    "parent_node_id": 30,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 33,
+                      "end_lineno": 5,
+                      "end_col_offset": 34
+                    },
+                    "focus": "0",
+                    "value": 0
+                  },
+                  "ctx": {
+                    "node_id": 39,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 30
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              17,
+              18
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 6,
+              "col_offset": 4,
+              "end_lineno": 6,
+              "end_col_offset": 59
+            },
+            "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+            "targets": [
+              {
+                "node_id": 17,
+                "children_node_ids": [
+                  31,
+                  26
+                ],
+                "type": "Attribute",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 4,
+                  "end_lineno": 6,
+                  "end_col_offset": 13
+                },
+                "focus": "root.left",
+                "value": {
+                  "node_id": 31,
+                  "children_node_ids": [
+                    39
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 17,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 4,
+                    "end_lineno": 6,
+                    "end_col_offset": 8
+                  },
+                  "focus": "root",
+                  "id": "root",
+                  "ctx": {
+                    "node_id": 39,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 31
+                  }
+                },
+                "attr": "left",
+                "ctx": {
+                  "node_id": 26,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 17
+                }
+              }
+            ],
+            "value": {
+              "node_id": 18,
+              "children_node_ids": [
+                32,
+                33,
+                34
+              ],
+              "type": "Call",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 6,
+                "col_offset": 16,
+                "end_lineno": 6,
+                "end_col_offset": 59
+              },
+              "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+              "func": {
+                "node_id": 32,
+                "children_node_ids": [
+                  39
+                ],
+                "type": "Name",
+                "parent_node_id": 18,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 16,
+                  "end_lineno": 6,
+                  "end_col_offset": 25
+                },
+                "focus": "buildTree",
+                "id": "buildTree",
+                "ctx": {
+                  "node_id": 39,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 32
+                }
+              },
+              "args": [
+                {
+                  "node_id": 33,
+                  "children_node_ids": [
+                    48,
+                    49,
+                    39
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 18,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 26,
+                    "end_lineno": 6,
+                    "end_col_offset": 43
+                  },
+                  "focus": "preorder[1:mid+1]",
+                  "value": {
+                    "node_id": 48,
+                    "children_node_ids": [
+                      39
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 33,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 26,
+                      "end_lineno": 6,
+                      "end_col_offset": 34
+                    },
+                    "focus": "preorder",
+                    "id": "preorder",
+                    "ctx": {
+                      "node_id": 39,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 48
+                    }
+                  },
+                  "slice": {
+                    "node_id": 49,
+                    "children_node_ids": [
+                      56,
+                      57
+                    ],
+                    "type": "Slice",
+                    "parent_node_id": 33,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 35,
+                      "end_lineno": 6,
+                      "end_col_offset": 42
+                    },
+                    "focus": "1:mid+1",
+                    "lower": {
+                      "node_id": 56,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 49,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 35,
+                        "end_lineno": 6,
+                        "end_col_offset": 36
+                      },
+                      "focus": "1",
+                      "value": 1
+                    },
+                    "upper": {
+                      "node_id": 57,
+                      "children_node_ids": [
+                        61,
+                        62,
+                        63
+                      ],
+                      "type": "BinOp",
+                      "parent_node_id": 49,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 37,
+                        "end_lineno": 6,
+                        "end_col_offset": 42
+                      },
+                      "focus": "mid+1",
+                      "left": {
+                        "node_id": 61,
+                        "children_node_ids": [
+                          39
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 57,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 37,
+                          "end_lineno": 6,
+                          "end_col_offset": 40
+                        },
+                        "focus": "mid",
+                        "id": "mid",
+                        "ctx": {
+                          "node_id": 39,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 61
+                        }
+                      },
+                      "op": {
+                        "node_id": 62,
+                        "children_node_ids": [],
+                        "type": "Add",
+                        "parent_node_id": 57
+                      },
+                      "right": {
+                        "node_id": 63,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 57,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 41,
+                          "end_lineno": 6,
+                          "end_col_offset": 42
+                        },
+                        "focus": "1",
+                        "value": 1
+                      }
+                    }
+                  },
+                  "ctx": {
+                    "node_id": 39,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 33
+                  }
+                },
+                {
+                  "node_id": 34,
+                  "children_node_ids": [
+                    50,
+                    51,
+                    39
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 18,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 45,
+                    "end_lineno": 6,
+                    "end_col_offset": 58
+                  },
+                  "focus": "inorder[:mid]",
+                  "value": {
+                    "node_id": 50,
+                    "children_node_ids": [
+                      39
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 34,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 45,
+                      "end_lineno": 6,
+                      "end_col_offset": 52
+                    },
+                    "focus": "inorder",
+                    "id": "inorder",
+                    "ctx": {
+                      "node_id": 39,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 50
+                    }
+                  },
+                  "slice": {
+                    "node_id": 51,
+                    "children_node_ids": [
+                      58
+                    ],
+                    "type": "Slice",
+                    "parent_node_id": 34,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 53,
+                      "end_lineno": 6,
+                      "end_col_offset": 57
+                    },
+                    "focus": ":mid",
+                    "upper": {
+                      "node_id": 58,
+                      "children_node_ids": [
+                        39
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 51,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 54,
+                        "end_lineno": 6,
+                        "end_col_offset": 57
+                      },
+                      "focus": "mid",
+                      "id": "mid",
+                      "ctx": {
+                        "node_id": 39,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 58
+                      }
+                    }
+                  },
+                  "ctx": {
+                    "node_id": 39,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 34
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node_id": 7,
+            "children_node_ids": [
+              19,
+              20
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 7,
+              "col_offset": 4,
+              "end_lineno": 7,
+              "end_col_offset": 61
+            },
+            "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+            "targets": [
+              {
+                "node_id": 19,
+                "children_node_ids": [
+                  35,
+                  26
+                ],
+                "type": "Attribute",
+                "parent_node_id": 7,
+                "location": {
+                  "lineno": 7,
+                  "col_offset": 4,
+                  "end_lineno": 7,
+                  "end_col_offset": 14
+                },
+                "focus": "root.right",
+                "value": {
+                  "node_id": 35,
+                  "children_node_ids": [
+                    39
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 19,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 4,
+                    "end_lineno": 7,
+                    "end_col_offset": 8
+                  },
+                  "focus": "root",
+                  "id": "root",
+                  "ctx": {
+                    "node_id": 39,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 35
+                  }
+                },
+                "attr": "right",
+                "ctx": {
+                  "node_id": 26,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 19
+                }
+              }
+            ],
+            "value": {
+              "node_id": 20,
+              "children_node_ids": [
+                36,
+                37,
+                38
+              ],
+              "type": "Call",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 7,
+                "col_offset": 17,
+                "end_lineno": 7,
+                "end_col_offset": 61
+              },
+              "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+              "func": {
+                "node_id": 36,
+                "children_node_ids": [
+                  39
+                ],
+                "type": "Name",
+                "parent_node_id": 20,
+                "location": {
+                  "lineno": 7,
+                  "col_offset": 17,
+                  "end_lineno": 7,
+                  "end_col_offset": 26
+                },
+                "focus": "buildTree",
+                "id": "buildTree",
+                "ctx": {
+                  "node_id": 39,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 36
+                }
+              },
+              "args": [
+                {
+                  "node_id": 37,
+                  "children_node_ids": [
+                    52,
+                    53,
+                    39
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 20,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 27,
+                    "end_lineno": 7,
+                    "end_col_offset": 43
+                  },
+                  "focus": "preorder[mid+1:]",
+                  "value": {
+                    "node_id": 52,
+                    "children_node_ids": [
+                      39
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 37,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 27,
+                      "end_lineno": 7,
+                      "end_col_offset": 35
+                    },
+                    "focus": "preorder",
+                    "id": "preorder",
+                    "ctx": {
+                      "node_id": 39,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 52
+                    }
+                  },
+                  "slice": {
+                    "node_id": 53,
+                    "children_node_ids": [
+                      59
+                    ],
+                    "type": "Slice",
+                    "parent_node_id": 37,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 36,
+                      "end_lineno": 7,
+                      "end_col_offset": 42
+                    },
+                    "focus": "mid+1:",
+                    "lower": {
+                      "node_id": 59,
+                      "children_node_ids": [
+                        64,
+                        62,
+                        65
+                      ],
+                      "type": "BinOp",
+                      "parent_node_id": 53,
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 36,
+                        "end_lineno": 7,
+                        "end_col_offset": 41
+                      },
+                      "focus": "mid+1",
+                      "left": {
+                        "node_id": 64,
+                        "children_node_ids": [
+                          39
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 59,
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 36,
+                          "end_lineno": 7,
+                          "end_col_offset": 39
+                        },
+                        "focus": "mid",
+                        "id": "mid",
+                        "ctx": {
+                          "node_id": 39,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 64
+                        }
+                      },
+                      "op": {
+                        "node_id": 62,
+                        "children_node_ids": [],
+                        "type": "Add",
+                        "parent_node_id": 59
+                      },
+                      "right": {
+                        "node_id": 65,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 59,
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 40,
+                          "end_lineno": 7,
+                          "end_col_offset": 41
+                        },
+                        "focus": "1",
+                        "value": 1
+                      }
+                    }
+                  },
+                  "ctx": {
+                    "node_id": 39,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 37
+                  }
+                },
+                {
+                  "node_id": 38,
+                  "children_node_ids": [
+                    54,
+                    55,
+                    39
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 20,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 45,
+                    "end_lineno": 7,
+                    "end_col_offset": 60
+                  },
+                  "focus": "inorder[mid+1:]",
+                  "value": {
+                    "node_id": 54,
+                    "children_node_ids": [
+                      39
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 38,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 45,
+                      "end_lineno": 7,
+                      "end_col_offset": 52
+                    },
+                    "focus": "inorder",
+                    "id": "inorder",
+                    "ctx": {
+                      "node_id": 39,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 54
+                    }
+                  },
+                  "slice": {
+                    "node_id": 55,
+                    "children_node_ids": [
+                      60
+                    ],
+                    "type": "Slice",
+                    "parent_node_id": 38,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 53,
+                      "end_lineno": 7,
+                      "end_col_offset": 59
+                    },
+                    "focus": "mid+1:",
+                    "lower": {
+                      "node_id": 60,
+                      "children_node_ids": [
+                        66,
+                        62,
+                        67
+                      ],
+                      "type": "BinOp",
+                      "parent_node_id": 55,
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 53,
+                        "end_lineno": 7,
+                        "end_col_offset": 58
+                      },
+                      "focus": "mid+1",
+                      "left": {
+                        "node_id": 66,
+                        "children_node_ids": [
+                          39
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 60,
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 53,
+                          "end_lineno": 7,
+                          "end_col_offset": 56
+                        },
+                        "focus": "mid",
+                        "id": "mid",
+                        "ctx": {
+                          "node_id": 39,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 66
+                        }
+                      },
+                      "op": {
+                        "node_id": 62,
+                        "children_node_ids": [],
+                        "type": "Add",
+                        "parent_node_id": 60
+                      },
+                      "right": {
+                        "node_id": 67,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 60,
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 57,
+                          "end_lineno": 7,
+                          "end_col_offset": 58
+                        },
+                        "focus": "1",
+                        "value": 1
+                      }
+                    }
+                  },
+                  "ctx": {
+                    "node_id": 39,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 38
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node_id": 8,
+            "children_node_ids": [
+              21
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 8,
+              "col_offset": 4,
+              "end_lineno": 8,
+              "end_col_offset": 15
+            },
+            "focus": "return root",
+            "value": {
+              "node_id": 21,
+              "children_node_ids": [
+                39
+              ],
+              "type": "Name",
+              "parent_node_id": 8,
+              "location": {
+                "lineno": 8,
+                "col_offset": 11,
+                "end_lineno": 8,
+                "end_col_offset": 15
+              },
+              "focus": "root",
+              "id": "root",
+              "ctx": {
+                "node_id": 39,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 21
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def buildTree(preorder, inorder):\n    if not preorder or not inorder:\n        return None\n    root = TreeNode(preorder[0])\n    mid = inorder.index(preorder[0])\n    root.left = buildTree(preorder[1:mid+1], inorder[:mid])\n    root.right = buildTree(preorder[mid+1:], inorder[mid+1:])\n    return root",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def buildTree(preorder, inorder):\n    if not preorder or not inorder:\n        return None\n    root = TreeNode(preorder[0])\n    mid = inorder.index(preorder[0])\n    root.left = buildTree(preorder[1:mid+1], inorder[:mid])\n    root.right = buildTree(preorder[mid+1:], inorder[mid+1:])\n    return root",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [
+          3,
+          9,
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          9,
+          3,
+          15,
+          20,
+          7
+        ]
+      },
+      "delta": {
+        "preorder": {
+          "0": 3,
+          "1": 9,
+          "2": 20,
+          "3": 15,
+          "4": 7
+        },
+        "inorder": {
+          "0": 9,
+          "1": 3,
+          "2": 15,
+          "3": 20,
+          "4": 7
+        }
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": [
+            3,
+            9,
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": false
+        },
+        {
+          "step": 8,
+          "event": "before_expression",
+          "focus": "not inorder",
+          "node_id": 24
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 42
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 42,
+          "value": [
+            9,
+            3,
+            15,
+            20,
+            7
+          ]
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "not inorder",
+          "node_id": 24,
+          "value": false
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": false
+        },
+        {
+          "step": 13,
+          "event": "after_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "preorder": [
+          3,
+          9,
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          9,
+          3,
+          15,
+          20,
+          7
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 14,
+          "event": "before_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 28
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 43
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 43,
+          "value": [
+            3,
+            9,
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 44
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 44,
+          "value": 0
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 28,
+          "value": 3
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 23,
+          "event": "after_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4,
+          "locals": {
+            "preorder": [
+              3,
+              9,
+              20,
+              15,
+              7
+            ],
+            "inorder": [
+              9,
+              3,
+              15,
+              20,
+              7
+            ],
+            "root": "TreeNode(3)"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "preorder": [
+          3,
+          9,
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          9,
+          3,
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(3)"
+      },
+      "delta": {
+        "root": "TreeNode(3)"
+      },
+      "steps": [
+        {
+          "step": 24,
+          "event": "before_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "inorder.index",
+          "node_id": 29
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "inorder.index",
+          "node_id": 29,
+          "value": "list.index()"
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 30
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 46
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 46,
+          "value": [
+            3,
+            9,
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 47
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 47,
+          "value": 0
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 30,
+          "value": 3
+        },
+        {
+          "step": 34,
+          "event": "after_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16,
+          "value": 1
+        },
+        {
+          "step": 35,
+          "event": "after_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5,
+          "locals": {
+            "preorder": [
+              3,
+              9,
+              20,
+              15,
+              7
+            ],
+            "inorder": [
+              9,
+              3,
+              15,
+              20,
+              7
+            ],
+            "root": "TreeNode(3)",
+            "mid": 1
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          3,
+          9,
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          9,
+          3,
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(3)",
+        "mid": 1
+      },
+      "delta": {
+        "mid": 1
+      },
+      "steps": [
+        {
+          "step": 36,
+          "event": "before_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 48
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 48,
+          "value": [
+            3,
+            9,
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "1:mid+1",
+          "node_id": 49
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 56
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 56,
+          "value": 1
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 57
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 61
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 61,
+          "value": 1
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 63
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 63,
+          "value": 1
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 57,
+          "value": 2
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "1:mid+1",
+          "node_id": 49,
+          "value": "slice(1, 2, None)"
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33,
+          "value": [
+            9
+          ]
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 50
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 50,
+          "value": [
+            9,
+            3,
+            15,
+            20,
+            7
+          ]
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": ":mid",
+          "node_id": 51
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 58
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 58,
+          "value": 1
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": ":mid",
+          "node_id": 51,
+          "value": "slice(None, 1, None)"
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34,
+          "value": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [
+          9
+        ],
+        "inorder": [
+          9
+        ]
+      },
+      "delta": {
+        "preorder": {
+          "0": 9
+        }
+      },
+      "steps": [
+        {
+          "step": 60,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": [
+            9
+          ]
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": false
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "not inorder",
+          "node_id": 24
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 42
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 42,
+          "value": [
+            9
+          ]
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "not inorder",
+          "node_id": 24,
+          "value": false
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": false
+        },
+        {
+          "step": 71,
+          "event": "after_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "preorder": [
+          9
+        ],
+        "inorder": [
+          9
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 72,
+          "event": "before_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4
+        },
+        {
+          "step": 73,
+          "event": "before_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 28
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 43
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 43,
+          "value": [
+            9
+          ]
+        },
+        {
+          "step": 77,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 44
+        },
+        {
+          "step": 78,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 44,
+          "value": 0
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 28,
+          "value": 9
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14,
+          "value": "TreeNode(9)"
+        },
+        {
+          "step": 81,
+          "event": "after_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4,
+          "locals": {
+            "preorder": [
+              9
+            ],
+            "inorder": [
+              9
+            ],
+            "root": "TreeNode(9)"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "preorder": [
+          9
+        ],
+        "inorder": [
+          9
+        ],
+        "root": "TreeNode(9)"
+      },
+      "delta": {
+        "root": "TreeNode(9)"
+      },
+      "steps": [
+        {
+          "step": 82,
+          "event": "before_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16
+        },
+        {
+          "step": 84,
+          "event": "before_expression",
+          "focus": "inorder.index",
+          "node_id": 29
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "inorder.index",
+          "node_id": 29,
+          "value": "list.index()"
+        },
+        {
+          "step": 86,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 30
+        },
+        {
+          "step": 87,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 46
+        },
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 46,
+          "value": [
+            9
+          ]
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 47
+        },
+        {
+          "step": 90,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 47,
+          "value": 0
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 30,
+          "value": 9
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16,
+          "value": 0
+        },
+        {
+          "step": 93,
+          "event": "after_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5,
+          "locals": {
+            "preorder": [
+              9
+            ],
+            "inorder": [
+              9
+            ],
+            "root": "TreeNode(9)",
+            "mid": 0
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          9
+        ],
+        "inorder": [
+          9
+        ],
+        "root": "TreeNode(9)",
+        "mid": 0
+      },
+      "delta": {
+        "mid": 0
+      },
+      "steps": [
+        {
+          "step": 94,
+          "event": "before_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 48
+        },
+        {
+          "step": 98,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 48,
+          "value": [
+            9
+          ]
+        },
+        {
+          "step": 99,
+          "event": "before_expression",
+          "focus": "1:mid+1",
+          "node_id": 49
+        },
+        {
+          "step": 100,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 56
+        },
+        {
+          "step": 101,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 56,
+          "value": 1
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 57
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 61
+        },
+        {
+          "step": 104,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 61,
+          "value": 0
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 63
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 63,
+          "value": 1
+        },
+        {
+          "step": 107,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 57,
+          "value": 1
+        },
+        {
+          "step": 108,
+          "event": "after_expression",
+          "focus": "1:mid+1",
+          "node_id": 49,
+          "value": "slice(1, 1, None)"
+        },
+        {
+          "step": 109,
+          "event": "after_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33,
+          "value": []
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34
+        },
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 50
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 50,
+          "value": [
+            9
+          ]
+        },
+        {
+          "step": 113,
+          "event": "before_expression",
+          "focus": ":mid",
+          "node_id": 51
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 58
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 58,
+          "value": 0
+        },
+        {
+          "step": 116,
+          "event": "after_expression",
+          "focus": ":mid",
+          "node_id": 51,
+          "value": "slice(None, 0, None)"
+        },
+        {
+          "step": 117,
+          "event": "after_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34,
+          "value": []
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 118,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 119,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 120,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 121,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": []
+        },
+        {
+          "step": 123,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": true
+        },
+        {
+          "step": 124,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 125,
+          "event": "before_statement",
+          "focus": "return None",
+          "node_id": 12
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 25
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 25
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          9
+        ],
+        "inorder": [
+          9
+        ],
+        "root": "TreeNode(9)",
+        "mid": 0
+      },
+      "delta": {
+        "preorder": {
+          "0": 9
+        },
+        "inorder": {
+          "0": 9
+        },
+        "root": "TreeNode(9)",
+        "mid": 0
+      },
+      "steps": [
+        {
+          "step": 128,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18
+        },
+        {
+          "step": 129,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 31
+        },
+        {
+          "step": 130,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 31,
+          "value": "TreeNode(9)"
+        },
+        {
+          "step": 131,
+          "event": "after_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          9
+        ],
+        "inorder": [
+          9
+        ],
+        "root": "TreeNode(9)",
+        "mid": 0
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 132,
+          "event": "before_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20
+        },
+        {
+          "step": 134,
+          "event": "before_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37
+        },
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 52
+        },
+        {
+          "step": 136,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 52,
+          "value": [
+            9
+          ]
+        },
+        {
+          "step": 137,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 53
+        },
+        {
+          "step": 138,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 59
+        },
+        {
+          "step": 139,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 64
+        },
+        {
+          "step": 140,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 64,
+          "value": 0
+        },
+        {
+          "step": 141,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 65
+        },
+        {
+          "step": 142,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 65,
+          "value": 1
+        },
+        {
+          "step": 143,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 59,
+          "value": 1
+        },
+        {
+          "step": 144,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 53,
+          "value": "slice(1, None, None)"
+        },
+        {
+          "step": 145,
+          "event": "after_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37,
+          "value": []
+        },
+        {
+          "step": 146,
+          "event": "before_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38
+        },
+        {
+          "step": 147,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 54
+        },
+        {
+          "step": 148,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 54,
+          "value": [
+            9
+          ]
+        },
+        {
+          "step": 149,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 55
+        },
+        {
+          "step": 150,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 60
+        },
+        {
+          "step": 151,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 66
+        },
+        {
+          "step": 152,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 66,
+          "value": 0
+        },
+        {
+          "step": 153,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 67
+        },
+        {
+          "step": 154,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 67,
+          "value": 1
+        },
+        {
+          "step": 155,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 60,
+          "value": 1
+        },
+        {
+          "step": 156,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 55,
+          "value": "slice(1, None, None)"
+        },
+        {
+          "step": 157,
+          "event": "after_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38,
+          "value": []
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 158,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 159,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 160,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 161,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 162,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": []
+        },
+        {
+          "step": 163,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": true
+        },
+        {
+          "step": 164,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 165,
+          "event": "before_statement",
+          "focus": "return None",
+          "node_id": 12
+        },
+        {
+          "step": 166,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 25
+        },
+        {
+          "step": 167,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 25
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          9
+        ],
+        "inorder": [
+          9
+        ],
+        "root": "TreeNode(9)",
+        "mid": 0
+      },
+      "delta": {
+        "preorder": {
+          "0": 9
+        },
+        "inorder": {
+          "0": 9
+        },
+        "root": "TreeNode(9)",
+        "mid": 0
+      },
+      "steps": [
+        {
+          "step": 168,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20
+        },
+        {
+          "step": 169,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 35
+        },
+        {
+          "step": 170,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 35,
+          "value": "TreeNode(9)"
+        },
+        {
+          "step": 171,
+          "event": "after_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "preorder": [
+          9
+        ],
+        "inorder": [
+          9
+        ],
+        "root": "TreeNode(9)",
+        "mid": 0
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 172,
+          "event": "before_statement",
+          "focus": "return root",
+          "node_id": 8
+        },
+        {
+          "step": 173,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 21
+        },
+        {
+          "step": 174,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 21,
+          "value": "TreeNode(9)"
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          3,
+          9,
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          9,
+          3,
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(3)",
+        "mid": 1
+      },
+      "delta": {
+        "preorder": {
+          "0": 3,
+          "1": 9,
+          "2": 20,
+          "3": 15,
+          "4": 7
+        },
+        "inorder": {
+          "1": 3,
+          "2": 15,
+          "3": 20,
+          "4": 7
+        },
+        "root": "TreeNode(3)",
+        "mid": 1
+      },
+      "steps": [
+        {
+          "step": 175,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18,
+          "value": "TreeNode(9)"
+        },
+        {
+          "step": 176,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 31
+        },
+        {
+          "step": 177,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 31,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 178,
+          "event": "after_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          3,
+          9,
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          9,
+          3,
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(3)",
+        "mid": 1
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 179,
+          "event": "before_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        },
+        {
+          "step": 180,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20
+        },
+        {
+          "step": 181,
+          "event": "before_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37
+        },
+        {
+          "step": 182,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 52
+        },
+        {
+          "step": 183,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 52,
+          "value": [
+            3,
+            9,
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 184,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 53
+        },
+        {
+          "step": 185,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 59
+        },
+        {
+          "step": 186,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 64
+        },
+        {
+          "step": 187,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 64,
+          "value": 1
+        },
+        {
+          "step": 188,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 65
+        },
+        {
+          "step": 189,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 65,
+          "value": 1
+        },
+        {
+          "step": 190,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 59,
+          "value": 2
+        },
+        {
+          "step": 191,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 53,
+          "value": "slice(2, None, None)"
+        },
+        {
+          "step": 192,
+          "event": "after_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37,
+          "value": [
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 193,
+          "event": "before_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38
+        },
+        {
+          "step": 194,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 54
+        },
+        {
+          "step": 195,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 54,
+          "value": [
+            9,
+            3,
+            15,
+            20,
+            7
+          ]
+        },
+        {
+          "step": 196,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 55
+        },
+        {
+          "step": 197,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 60
+        },
+        {
+          "step": 198,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 66
+        },
+        {
+          "step": 199,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 66,
+          "value": 1
+        },
+        {
+          "step": 200,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 67
+        },
+        {
+          "step": 201,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 67,
+          "value": 1
+        },
+        {
+          "step": 202,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 60,
+          "value": 2
+        },
+        {
+          "step": 203,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 55,
+          "value": "slice(2, None, None)"
+        },
+        {
+          "step": 204,
+          "event": "after_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38,
+          "value": [
+            15,
+            20,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          15,
+          20,
+          7
+        ]
+      },
+      "delta": {
+        "preorder": {
+          "0": 20,
+          "1": 15,
+          "2": 7
+        },
+        "inorder": {
+          "0": 15,
+          "1": 20,
+          "2": 7
+        }
+      },
+      "steps": [
+        {
+          "step": 205,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 206,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 207,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 208,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 209,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": [
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 210,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": false
+        },
+        {
+          "step": 211,
+          "event": "before_expression",
+          "focus": "not inorder",
+          "node_id": 24
+        },
+        {
+          "step": 212,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 42
+        },
+        {
+          "step": 213,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 42,
+          "value": [
+            15,
+            20,
+            7
+          ]
+        },
+        {
+          "step": 214,
+          "event": "after_expression",
+          "focus": "not inorder",
+          "node_id": 24,
+          "value": false
+        },
+        {
+          "step": 215,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": false
+        },
+        {
+          "step": 216,
+          "event": "after_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "preorder": [
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          15,
+          20,
+          7
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 217,
+          "event": "before_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4
+        },
+        {
+          "step": 218,
+          "event": "before_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14
+        },
+        {
+          "step": 219,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 28
+        },
+        {
+          "step": 220,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 43
+        },
+        {
+          "step": 221,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 43,
+          "value": [
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 222,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 44
+        },
+        {
+          "step": 223,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 44,
+          "value": 0
+        },
+        {
+          "step": 224,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 28,
+          "value": 20
+        },
+        {
+          "step": 225,
+          "event": "after_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14,
+          "value": "TreeNode(20)"
+        },
+        {
+          "step": 226,
+          "event": "after_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4,
+          "locals": {
+            "preorder": [
+              20,
+              15,
+              7
+            ],
+            "inorder": [
+              15,
+              20,
+              7
+            ],
+            "root": "TreeNode(20)"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "preorder": [
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(20)"
+      },
+      "delta": {
+        "root": "TreeNode(20)"
+      },
+      "steps": [
+        {
+          "step": 227,
+          "event": "before_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5
+        },
+        {
+          "step": 228,
+          "event": "before_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16
+        },
+        {
+          "step": 229,
+          "event": "before_expression",
+          "focus": "inorder.index",
+          "node_id": 29
+        },
+        {
+          "step": 230,
+          "event": "after_expression",
+          "focus": "inorder.index",
+          "node_id": 29,
+          "value": "list.index()"
+        },
+        {
+          "step": 231,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 30
+        },
+        {
+          "step": 232,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 46
+        },
+        {
+          "step": 233,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 46,
+          "value": [
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 234,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 47
+        },
+        {
+          "step": 235,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 47,
+          "value": 0
+        },
+        {
+          "step": 236,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 30,
+          "value": 20
+        },
+        {
+          "step": 237,
+          "event": "after_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16,
+          "value": 1
+        },
+        {
+          "step": 238,
+          "event": "after_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5,
+          "locals": {
+            "preorder": [
+              20,
+              15,
+              7
+            ],
+            "inorder": [
+              15,
+              20,
+              7
+            ],
+            "root": "TreeNode(20)",
+            "mid": 1
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(20)",
+        "mid": 1
+      },
+      "delta": {
+        "mid": 1
+      },
+      "steps": [
+        {
+          "step": 239,
+          "event": "before_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        },
+        {
+          "step": 240,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18
+        },
+        {
+          "step": 241,
+          "event": "before_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33
+        },
+        {
+          "step": 242,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 48
+        },
+        {
+          "step": 243,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 48,
+          "value": [
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 244,
+          "event": "before_expression",
+          "focus": "1:mid+1",
+          "node_id": 49
+        },
+        {
+          "step": 245,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 56
+        },
+        {
+          "step": 246,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 56,
+          "value": 1
+        },
+        {
+          "step": 247,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 57
+        },
+        {
+          "step": 248,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 61
+        },
+        {
+          "step": 249,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 61,
+          "value": 1
+        },
+        {
+          "step": 250,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 63
+        },
+        {
+          "step": 251,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 63,
+          "value": 1
+        },
+        {
+          "step": 252,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 57,
+          "value": 2
+        },
+        {
+          "step": 253,
+          "event": "after_expression",
+          "focus": "1:mid+1",
+          "node_id": 49,
+          "value": "slice(1, 2, None)"
+        },
+        {
+          "step": 254,
+          "event": "after_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33,
+          "value": [
+            15
+          ]
+        },
+        {
+          "step": 255,
+          "event": "before_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34
+        },
+        {
+          "step": 256,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 50
+        },
+        {
+          "step": 257,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 50,
+          "value": [
+            15,
+            20,
+            7
+          ]
+        },
+        {
+          "step": 258,
+          "event": "before_expression",
+          "focus": ":mid",
+          "node_id": 51
+        },
+        {
+          "step": 259,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 58
+        },
+        {
+          "step": 260,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 58,
+          "value": 1
+        },
+        {
+          "step": 261,
+          "event": "after_expression",
+          "focus": ":mid",
+          "node_id": 51,
+          "value": "slice(None, 1, None)"
+        },
+        {
+          "step": 262,
+          "event": "after_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34,
+          "value": [
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [
+          15
+        ],
+        "inorder": [
+          15
+        ]
+      },
+      "delta": {
+        "preorder": {
+          "0": 15
+        }
+      },
+      "steps": [
+        {
+          "step": 263,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 264,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 265,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 266,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 267,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": [
+            15
+          ]
+        },
+        {
+          "step": 268,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": false
+        },
+        {
+          "step": 269,
+          "event": "before_expression",
+          "focus": "not inorder",
+          "node_id": 24
+        },
+        {
+          "step": 270,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 42
+        },
+        {
+          "step": 271,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 42,
+          "value": [
+            15
+          ]
+        },
+        {
+          "step": 272,
+          "event": "after_expression",
+          "focus": "not inorder",
+          "node_id": 24,
+          "value": false
+        },
+        {
+          "step": 273,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": false
+        },
+        {
+          "step": 274,
+          "event": "after_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "preorder": [
+          15
+        ],
+        "inorder": [
+          15
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 275,
+          "event": "before_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4
+        },
+        {
+          "step": 276,
+          "event": "before_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14
+        },
+        {
+          "step": 277,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 28
+        },
+        {
+          "step": 278,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 43
+        },
+        {
+          "step": 279,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 43,
+          "value": [
+            15
+          ]
+        },
+        {
+          "step": 280,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 44
+        },
+        {
+          "step": 281,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 44,
+          "value": 0
+        },
+        {
+          "step": 282,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 28,
+          "value": 15
+        },
+        {
+          "step": 283,
+          "event": "after_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14,
+          "value": "TreeNode(15)"
+        },
+        {
+          "step": 284,
+          "event": "after_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4,
+          "locals": {
+            "preorder": [
+              15
+            ],
+            "inorder": [
+              15
+            ],
+            "root": "TreeNode(15)"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "preorder": [
+          15
+        ],
+        "inorder": [
+          15
+        ],
+        "root": "TreeNode(15)"
+      },
+      "delta": {
+        "root": "TreeNode(15)"
+      },
+      "steps": [
+        {
+          "step": 285,
+          "event": "before_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5
+        },
+        {
+          "step": 286,
+          "event": "before_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16
+        },
+        {
+          "step": 287,
+          "event": "before_expression",
+          "focus": "inorder.index",
+          "node_id": 29
+        },
+        {
+          "step": 288,
+          "event": "after_expression",
+          "focus": "inorder.index",
+          "node_id": 29,
+          "value": "list.index()"
+        },
+        {
+          "step": 289,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 30
+        },
+        {
+          "step": 290,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 46
+        },
+        {
+          "step": 291,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 46,
+          "value": [
+            15
+          ]
+        },
+        {
+          "step": 292,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 47
+        },
+        {
+          "step": 293,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 47,
+          "value": 0
+        },
+        {
+          "step": 294,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 30,
+          "value": 15
+        },
+        {
+          "step": 295,
+          "event": "after_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16,
+          "value": 0
+        },
+        {
+          "step": 296,
+          "event": "after_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5,
+          "locals": {
+            "preorder": [
+              15
+            ],
+            "inorder": [
+              15
+            ],
+            "root": "TreeNode(15)",
+            "mid": 0
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          15
+        ],
+        "inorder": [
+          15
+        ],
+        "root": "TreeNode(15)",
+        "mid": 0
+      },
+      "delta": {
+        "mid": 0
+      },
+      "steps": [
+        {
+          "step": 297,
+          "event": "before_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        },
+        {
+          "step": 298,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18
+        },
+        {
+          "step": 299,
+          "event": "before_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33
+        },
+        {
+          "step": 300,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 48
+        },
+        {
+          "step": 301,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 48,
+          "value": [
+            15
+          ]
+        },
+        {
+          "step": 302,
+          "event": "before_expression",
+          "focus": "1:mid+1",
+          "node_id": 49
+        },
+        {
+          "step": 303,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 56
+        },
+        {
+          "step": 304,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 56,
+          "value": 1
+        },
+        {
+          "step": 305,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 57
+        },
+        {
+          "step": 306,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 61
+        },
+        {
+          "step": 307,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 61,
+          "value": 0
+        },
+        {
+          "step": 308,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 63
+        },
+        {
+          "step": 309,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 63,
+          "value": 1
+        },
+        {
+          "step": 310,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 57,
+          "value": 1
+        },
+        {
+          "step": 311,
+          "event": "after_expression",
+          "focus": "1:mid+1",
+          "node_id": 49,
+          "value": "slice(1, 1, None)"
+        },
+        {
+          "step": 312,
+          "event": "after_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33,
+          "value": []
+        },
+        {
+          "step": 313,
+          "event": "before_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34
+        },
+        {
+          "step": 314,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 50
+        },
+        {
+          "step": 315,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 50,
+          "value": [
+            15
+          ]
+        },
+        {
+          "step": 316,
+          "event": "before_expression",
+          "focus": ":mid",
+          "node_id": 51
+        },
+        {
+          "step": 317,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 58
+        },
+        {
+          "step": 318,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 58,
+          "value": 0
+        },
+        {
+          "step": 319,
+          "event": "after_expression",
+          "focus": ":mid",
+          "node_id": 51,
+          "value": "slice(None, 0, None)"
+        },
+        {
+          "step": 320,
+          "event": "after_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34,
+          "value": []
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 321,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 322,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 323,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 324,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 325,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": []
+        },
+        {
+          "step": 326,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": true
+        },
+        {
+          "step": 327,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 328,
+          "event": "before_statement",
+          "focus": "return None",
+          "node_id": 12
+        },
+        {
+          "step": 329,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 25
+        },
+        {
+          "step": 330,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 25
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          15
+        ],
+        "inorder": [
+          15
+        ],
+        "root": "TreeNode(15)",
+        "mid": 0
+      },
+      "delta": {
+        "preorder": {
+          "0": 15
+        },
+        "inorder": {
+          "0": 15
+        },
+        "root": "TreeNode(15)",
+        "mid": 0
+      },
+      "steps": [
+        {
+          "step": 331,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18
+        },
+        {
+          "step": 332,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 31
+        },
+        {
+          "step": 333,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 31,
+          "value": "TreeNode(15)"
+        },
+        {
+          "step": 334,
+          "event": "after_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          15
+        ],
+        "inorder": [
+          15
+        ],
+        "root": "TreeNode(15)",
+        "mid": 0
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 335,
+          "event": "before_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        },
+        {
+          "step": 336,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20
+        },
+        {
+          "step": 337,
+          "event": "before_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37
+        },
+        {
+          "step": 338,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 52
+        },
+        {
+          "step": 339,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 52,
+          "value": [
+            15
+          ]
+        },
+        {
+          "step": 340,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 53
+        },
+        {
+          "step": 341,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 59
+        },
+        {
+          "step": 342,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 64
+        },
+        {
+          "step": 343,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 64,
+          "value": 0
+        },
+        {
+          "step": 344,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 65
+        },
+        {
+          "step": 345,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 65,
+          "value": 1
+        },
+        {
+          "step": 346,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 59,
+          "value": 1
+        },
+        {
+          "step": 347,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 53,
+          "value": "slice(1, None, None)"
+        },
+        {
+          "step": 348,
+          "event": "after_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37,
+          "value": []
+        },
+        {
+          "step": 349,
+          "event": "before_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38
+        },
+        {
+          "step": 350,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 54
+        },
+        {
+          "step": 351,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 54,
+          "value": [
+            15
+          ]
+        },
+        {
+          "step": 352,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 55
+        },
+        {
+          "step": 353,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 60
+        },
+        {
+          "step": 354,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 66
+        },
+        {
+          "step": 355,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 66,
+          "value": 0
+        },
+        {
+          "step": 356,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 67
+        },
+        {
+          "step": 357,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 67,
+          "value": 1
+        },
+        {
+          "step": 358,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 60,
+          "value": 1
+        },
+        {
+          "step": 359,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 55,
+          "value": "slice(1, None, None)"
+        },
+        {
+          "step": 360,
+          "event": "after_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38,
+          "value": []
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 361,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 362,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 363,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 364,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 365,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": []
+        },
+        {
+          "step": 366,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": true
+        },
+        {
+          "step": 367,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 368,
+          "event": "before_statement",
+          "focus": "return None",
+          "node_id": 12
+        },
+        {
+          "step": 369,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 25
+        },
+        {
+          "step": 370,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 25
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          15
+        ],
+        "inorder": [
+          15
+        ],
+        "root": "TreeNode(15)",
+        "mid": 0
+      },
+      "delta": {
+        "preorder": {
+          "0": 15
+        },
+        "inorder": {
+          "0": 15
+        },
+        "root": "TreeNode(15)",
+        "mid": 0
+      },
+      "steps": [
+        {
+          "step": 371,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20
+        },
+        {
+          "step": 372,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 35
+        },
+        {
+          "step": 373,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 35,
+          "value": "TreeNode(15)"
+        },
+        {
+          "step": 374,
+          "event": "after_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "preorder": [
+          15
+        ],
+        "inorder": [
+          15
+        ],
+        "root": "TreeNode(15)",
+        "mid": 0
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 375,
+          "event": "before_statement",
+          "focus": "return root",
+          "node_id": 8
+        },
+        {
+          "step": 376,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 21
+        },
+        {
+          "step": 377,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 21,
+          "value": "TreeNode(15)"
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(20)",
+        "mid": 1
+      },
+      "delta": {
+        "preorder": {
+          "0": 20,
+          "1": 15,
+          "2": 7
+        },
+        "inorder": {
+          "1": 20,
+          "2": 7
+        },
+        "root": "TreeNode(20)",
+        "mid": 1
+      },
+      "steps": [
+        {
+          "step": 378,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18,
+          "value": "TreeNode(15)"
+        },
+        {
+          "step": 379,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 31
+        },
+        {
+          "step": 380,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 31,
+          "value": "TreeNode(20)"
+        },
+        {
+          "step": 381,
+          "event": "after_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(20)",
+        "mid": 1
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 382,
+          "event": "before_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        },
+        {
+          "step": 383,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20
+        },
+        {
+          "step": 384,
+          "event": "before_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37
+        },
+        {
+          "step": 385,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 52
+        },
+        {
+          "step": 386,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 52,
+          "value": [
+            20,
+            15,
+            7
+          ]
+        },
+        {
+          "step": 387,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 53
+        },
+        {
+          "step": 388,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 59
+        },
+        {
+          "step": 389,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 64
+        },
+        {
+          "step": 390,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 64,
+          "value": 1
+        },
+        {
+          "step": 391,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 65
+        },
+        {
+          "step": 392,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 65,
+          "value": 1
+        },
+        {
+          "step": 393,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 59,
+          "value": 2
+        },
+        {
+          "step": 394,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 53,
+          "value": "slice(2, None, None)"
+        },
+        {
+          "step": 395,
+          "event": "after_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37,
+          "value": [
+            7
+          ]
+        },
+        {
+          "step": 396,
+          "event": "before_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38
+        },
+        {
+          "step": 397,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 54
+        },
+        {
+          "step": 398,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 54,
+          "value": [
+            15,
+            20,
+            7
+          ]
+        },
+        {
+          "step": 399,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 55
+        },
+        {
+          "step": 400,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 60
+        },
+        {
+          "step": 401,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 66
+        },
+        {
+          "step": 402,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 66,
+          "value": 1
+        },
+        {
+          "step": 403,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 67
+        },
+        {
+          "step": 404,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 67,
+          "value": 1
+        },
+        {
+          "step": 405,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 60,
+          "value": 2
+        },
+        {
+          "step": 406,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 55,
+          "value": "slice(2, None, None)"
+        },
+        {
+          "step": 407,
+          "event": "after_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38,
+          "value": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [
+          7
+        ],
+        "inorder": [
+          7
+        ]
+      },
+      "delta": {
+        "preorder": {
+          "0": 7
+        },
+        "inorder": {
+          "0": 7
+        }
+      },
+      "steps": [
+        {
+          "step": 408,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 409,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 410,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 411,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 412,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": [
+            7
+          ]
+        },
+        {
+          "step": 413,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": false
+        },
+        {
+          "step": 414,
+          "event": "before_expression",
+          "focus": "not inorder",
+          "node_id": 24
+        },
+        {
+          "step": 415,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 42
+        },
+        {
+          "step": 416,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 42,
+          "value": [
+            7
+          ]
+        },
+        {
+          "step": 417,
+          "event": "after_expression",
+          "focus": "not inorder",
+          "node_id": 24,
+          "value": false
+        },
+        {
+          "step": 418,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": false
+        },
+        {
+          "step": 419,
+          "event": "after_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "preorder": [
+          7
+        ],
+        "inorder": [
+          7
+        ]
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 420,
+          "event": "before_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4
+        },
+        {
+          "step": 421,
+          "event": "before_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14
+        },
+        {
+          "step": 422,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 28
+        },
+        {
+          "step": 423,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 43
+        },
+        {
+          "step": 424,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 43,
+          "value": [
+            7
+          ]
+        },
+        {
+          "step": 425,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 44
+        },
+        {
+          "step": 426,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 44,
+          "value": 0
+        },
+        {
+          "step": 427,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 28,
+          "value": 7
+        },
+        {
+          "step": 428,
+          "event": "after_expression",
+          "focus": "TreeNode(preorder[0])",
+          "node_id": 14,
+          "value": "TreeNode(7)"
+        },
+        {
+          "step": 429,
+          "event": "after_statement",
+          "focus": "root = TreeNode(preorder[0])",
+          "node_id": 4,
+          "locals": {
+            "preorder": [
+              7
+            ],
+            "inorder": [
+              7
+            ],
+            "root": "TreeNode(7)"
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "preorder": [
+          7
+        ],
+        "inorder": [
+          7
+        ],
+        "root": "TreeNode(7)"
+      },
+      "delta": {
+        "root": "TreeNode(7)"
+      },
+      "steps": [
+        {
+          "step": 430,
+          "event": "before_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5
+        },
+        {
+          "step": 431,
+          "event": "before_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16
+        },
+        {
+          "step": 432,
+          "event": "before_expression",
+          "focus": "inorder.index",
+          "node_id": 29
+        },
+        {
+          "step": 433,
+          "event": "after_expression",
+          "focus": "inorder.index",
+          "node_id": 29,
+          "value": "list.index()"
+        },
+        {
+          "step": 434,
+          "event": "before_expression",
+          "focus": "preorder[0]",
+          "node_id": 30
+        },
+        {
+          "step": 435,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 46
+        },
+        {
+          "step": 436,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 46,
+          "value": [
+            7
+          ]
+        },
+        {
+          "step": 437,
+          "event": "before_expression",
+          "focus": "0",
+          "node_id": 47
+        },
+        {
+          "step": 438,
+          "event": "after_expression",
+          "focus": "0",
+          "node_id": 47,
+          "value": 0
+        },
+        {
+          "step": 439,
+          "event": "after_expression",
+          "focus": "preorder[0]",
+          "node_id": 30,
+          "value": 7
+        },
+        {
+          "step": 440,
+          "event": "after_expression",
+          "focus": "inorder.index(preorder[0])",
+          "node_id": 16,
+          "value": 0
+        },
+        {
+          "step": 441,
+          "event": "after_statement",
+          "focus": "mid = inorder.index(preorder[0])",
+          "node_id": 5,
+          "locals": {
+            "preorder": [
+              7
+            ],
+            "inorder": [
+              7
+            ],
+            "root": "TreeNode(7)",
+            "mid": 0
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          7
+        ],
+        "inorder": [
+          7
+        ],
+        "root": "TreeNode(7)",
+        "mid": 0
+      },
+      "delta": {
+        "mid": 0
+      },
+      "steps": [
+        {
+          "step": 442,
+          "event": "before_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        },
+        {
+          "step": 443,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18
+        },
+        {
+          "step": 444,
+          "event": "before_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33
+        },
+        {
+          "step": 445,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 48
+        },
+        {
+          "step": 446,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 48,
+          "value": [
+            7
+          ]
+        },
+        {
+          "step": 447,
+          "event": "before_expression",
+          "focus": "1:mid+1",
+          "node_id": 49
+        },
+        {
+          "step": 448,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 56
+        },
+        {
+          "step": 449,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 56,
+          "value": 1
+        },
+        {
+          "step": 450,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 57
+        },
+        {
+          "step": 451,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 61
+        },
+        {
+          "step": 452,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 61,
+          "value": 0
+        },
+        {
+          "step": 453,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 63
+        },
+        {
+          "step": 454,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 63,
+          "value": 1
+        },
+        {
+          "step": 455,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 57,
+          "value": 1
+        },
+        {
+          "step": 456,
+          "event": "after_expression",
+          "focus": "1:mid+1",
+          "node_id": 49,
+          "value": "slice(1, 1, None)"
+        },
+        {
+          "step": 457,
+          "event": "after_expression",
+          "focus": "preorder[1:mid+1]",
+          "node_id": 33,
+          "value": []
+        },
+        {
+          "step": 458,
+          "event": "before_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34
+        },
+        {
+          "step": 459,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 50
+        },
+        {
+          "step": 460,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 50,
+          "value": [
+            7
+          ]
+        },
+        {
+          "step": 461,
+          "event": "before_expression",
+          "focus": ":mid",
+          "node_id": 51
+        },
+        {
+          "step": 462,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 58
+        },
+        {
+          "step": 463,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 58,
+          "value": 0
+        },
+        {
+          "step": 464,
+          "event": "after_expression",
+          "focus": ":mid",
+          "node_id": 51,
+          "value": "slice(None, 0, None)"
+        },
+        {
+          "step": 465,
+          "event": "after_expression",
+          "focus": "inorder[:mid]",
+          "node_id": 34,
+          "value": []
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 466,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 467,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 468,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 469,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 470,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": []
+        },
+        {
+          "step": 471,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": true
+        },
+        {
+          "step": 472,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 473,
+          "event": "before_statement",
+          "focus": "return None",
+          "node_id": 12
+        },
+        {
+          "step": 474,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 25
+        },
+        {
+          "step": 475,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 25
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "preorder": [
+          7
+        ],
+        "inorder": [
+          7
+        ],
+        "root": "TreeNode(7)",
+        "mid": 0
+      },
+      "delta": {
+        "preorder": {
+          "0": 7
+        },
+        "inorder": {
+          "0": 7
+        },
+        "root": "TreeNode(7)",
+        "mid": 0
+      },
+      "steps": [
+        {
+          "step": 476,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 18
+        },
+        {
+          "step": 477,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 31
+        },
+        {
+          "step": 478,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 31,
+          "value": "TreeNode(7)"
+        },
+        {
+          "step": 479,
+          "event": "after_statement",
+          "focus": "root.left = buildTree(preorder[1:mid+1], inorder[:mid])",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          7
+        ],
+        "inorder": [
+          7
+        ],
+        "root": "TreeNode(7)",
+        "mid": 0
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 480,
+          "event": "before_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        },
+        {
+          "step": 481,
+          "event": "before_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20
+        },
+        {
+          "step": 482,
+          "event": "before_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37
+        },
+        {
+          "step": 483,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 52
+        },
+        {
+          "step": 484,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 52,
+          "value": [
+            7
+          ]
+        },
+        {
+          "step": 485,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 53
+        },
+        {
+          "step": 486,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 59
+        },
+        {
+          "step": 487,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 64
+        },
+        {
+          "step": 488,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 64,
+          "value": 0
+        },
+        {
+          "step": 489,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 65
+        },
+        {
+          "step": 490,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 65,
+          "value": 1
+        },
+        {
+          "step": 491,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 59,
+          "value": 1
+        },
+        {
+          "step": 492,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 53,
+          "value": "slice(1, None, None)"
+        },
+        {
+          "step": 493,
+          "event": "after_expression",
+          "focus": "preorder[mid+1:]",
+          "node_id": 37,
+          "value": []
+        },
+        {
+          "step": 494,
+          "event": "before_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38
+        },
+        {
+          "step": 495,
+          "event": "before_expression",
+          "focus": "inorder",
+          "node_id": 54
+        },
+        {
+          "step": 496,
+          "event": "after_expression",
+          "focus": "inorder",
+          "node_id": 54,
+          "value": [
+            7
+          ]
+        },
+        {
+          "step": 497,
+          "event": "before_expression",
+          "focus": "mid+1:",
+          "node_id": 55
+        },
+        {
+          "step": 498,
+          "event": "before_expression",
+          "focus": "mid+1",
+          "node_id": 60
+        },
+        {
+          "step": 499,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 66
+        },
+        {
+          "step": 500,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 66,
+          "value": 0
+        },
+        {
+          "step": 501,
+          "event": "before_expression",
+          "focus": "1",
+          "node_id": 67
+        },
+        {
+          "step": 502,
+          "event": "after_expression",
+          "focus": "1",
+          "node_id": 67,
+          "value": 1
+        },
+        {
+          "step": 503,
+          "event": "after_expression",
+          "focus": "mid+1",
+          "node_id": 60,
+          "value": 1
+        },
+        {
+          "step": 504,
+          "event": "after_expression",
+          "focus": "mid+1:",
+          "node_id": 55,
+          "value": "slice(1, None, None)"
+        },
+        {
+          "step": 505,
+          "event": "after_expression",
+          "focus": "inorder[mid+1:]",
+          "node_id": 38,
+          "value": []
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 506,
+          "event": "before_statement",
+          "focus": "if not preorder or not inorder:\n        return None",
+          "node_id": 3
+        },
+        {
+          "step": 507,
+          "event": "before_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11
+        },
+        {
+          "step": 508,
+          "event": "before_expression",
+          "focus": "not preorder",
+          "node_id": 23
+        },
+        {
+          "step": 509,
+          "event": "before_expression",
+          "focus": "preorder",
+          "node_id": 41
+        },
+        {
+          "step": 510,
+          "event": "after_expression",
+          "focus": "preorder",
+          "node_id": 41,
+          "value": []
+        },
+        {
+          "step": 511,
+          "event": "after_expression",
+          "focus": "not preorder",
+          "node_id": 23,
+          "value": true
+        },
+        {
+          "step": 512,
+          "event": "after_expression",
+          "focus": "not preorder or not inorder",
+          "node_id": 11,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "preorder": [],
+        "inorder": []
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 513,
+          "event": "before_statement",
+          "focus": "return None",
+          "node_id": 12
+        },
+        {
+          "step": 514,
+          "event": "before_expression",
+          "focus": "None",
+          "node_id": 25
+        },
+        {
+          "step": 515,
+          "event": "after_expression",
+          "focus": "None",
+          "node_id": 25
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          7
+        ],
+        "inorder": [
+          7
+        ],
+        "root": "TreeNode(7)",
+        "mid": 0
+      },
+      "delta": {
+        "preorder": {
+          "0": 7
+        },
+        "inorder": {
+          "0": 7
+        },
+        "root": "TreeNode(7)",
+        "mid": 0
+      },
+      "steps": [
+        {
+          "step": 516,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20
+        },
+        {
+          "step": 517,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 35
+        },
+        {
+          "step": 518,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 35,
+          "value": "TreeNode(7)"
+        },
+        {
+          "step": 519,
+          "event": "after_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "preorder": [
+          7
+        ],
+        "inorder": [
+          7
+        ],
+        "root": "TreeNode(7)",
+        "mid": 0
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 520,
+          "event": "before_statement",
+          "focus": "return root",
+          "node_id": 8
+        },
+        {
+          "step": 521,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 21
+        },
+        {
+          "step": 522,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 21,
+          "value": "TreeNode(7)"
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(20)",
+        "mid": 1
+      },
+      "delta": {
+        "preorder": {
+          "0": 20,
+          "1": 15,
+          "2": 7
+        },
+        "inorder": {
+          "0": 15,
+          "1": 20,
+          "2": 7
+        },
+        "root": "TreeNode(20)",
+        "mid": 1
+      },
+      "steps": [
+        {
+          "step": 523,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20,
+          "value": "TreeNode(7)"
+        },
+        {
+          "step": 524,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 35
+        },
+        {
+          "step": 525,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 35,
+          "value": "TreeNode(20)"
+        },
+        {
+          "step": 526,
+          "event": "after_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "preorder": [
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(20)",
+        "mid": 1
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 527,
+          "event": "before_statement",
+          "focus": "return root",
+          "node_id": 8
+        },
+        {
+          "step": 528,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 21
+        },
+        {
+          "step": 529,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 21,
+          "value": "TreeNode(20)"
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "preorder": [
+          3,
+          9,
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          9,
+          3,
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(3)",
+        "mid": 1
+      },
+      "delta": {
+        "preorder": {
+          "0": 3,
+          "1": 9,
+          "2": 20,
+          "3": 15,
+          "4": 7
+        },
+        "inorder": {
+          "0": 9,
+          "1": 3,
+          "2": 15,
+          "3": 20,
+          "4": 7
+        },
+        "root": "TreeNode(3)"
+      },
+      "steps": [
+        {
+          "step": 530,
+          "event": "after_expression",
+          "focus": "buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 20,
+          "value": "TreeNode(20)"
+        },
+        {
+          "step": 531,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 35
+        },
+        {
+          "step": 532,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 35,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 533,
+          "event": "after_statement",
+          "focus": "root.right = buildTree(preorder[mid+1:], inorder[mid+1:])",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "preorder": [
+          3,
+          9,
+          20,
+          15,
+          7
+        ],
+        "inorder": [
+          9,
+          3,
+          15,
+          20,
+          7
+        ],
+        "root": "TreeNode(3)",
+        "mid": 1
+      },
+      "delta": null,
+      "steps": [
+        {
+          "step": 534,
+          "event": "before_statement",
+          "focus": "return root",
+          "node_id": 8
+        },
+        {
+          "step": 535,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 21
+        },
+        {
+          "step": 536,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 21,
+          "value": "TreeNode(3)"
+        }
+      ]
+    }
+  ],
+  "result": "TreeNode(3)"
+}
