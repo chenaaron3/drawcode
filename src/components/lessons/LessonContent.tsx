@@ -1,12 +1,11 @@
-import { BookOpen, ChevronRight } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { ChevronRight } from 'lucide-react';
+import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import { markdownComponents } from '@/components/common/markdownComponents';
 import TaskList from '@/components/lessons/TaskList';
 import { Card, CardContent } from '@/components/ui/card';
-import lessonProblemsData from '@/data/lesson-problems.json';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { getLessonHook, hasLessonHook } from '@/lessons';
 import { useLessonStore } from '@/store/lessonStore';
