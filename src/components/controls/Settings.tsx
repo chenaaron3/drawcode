@@ -20,7 +20,6 @@ export function Settings() {
         isPlaying,
         playSpeed,
         mode,
-        modeLocked,
         setMode,
         setPlaySpeed,
         reset,
@@ -124,15 +123,14 @@ export function Settings() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" data-testid="settings-button">
+                <Button variant="outline" size="sm" data-tutorial="settings-button" data-testid="settings-button">
                     <SettingsIcon className="h-4 w-4" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>Navigation Mode</DropdownMenuLabel>
                 <DropdownMenuItem
-                    onClick={modeLocked ? undefined : () => setMode("line")}
-                    disabled={modeLocked}
+                    onClick={() => setMode("line")}
                 >
                     <div className="flex items-center justify-between w-full">
                         <span>Line Mode</span>
@@ -140,8 +138,7 @@ export function Settings() {
                     </div>
                 </DropdownMenuItem>
                 <DropdownMenuItem
-                    onClick={modeLocked ? undefined : () => setMode("step")}
-                    disabled={modeLocked}
+                    onClick={() => setMode("step")}
                 >
                     <div className="flex items-center justify-between w-full">
                         <span>Step Mode</span>

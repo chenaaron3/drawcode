@@ -9,7 +9,6 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import Editor from '@monaco-editor/react';
 
-import { useCurrentStep } from '../../hooks/useCurrentStep';
 import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
 import { InputsSection } from '../common';
 import { NavigationControls, Settings } from '../controls';
@@ -43,7 +42,6 @@ export default function CodePanel() {
         currentTab,
     } = useTraceStore();
     const currentLine = useTraceStore(selectCurrentLine);
-    const currentStep = useCurrentStep();
     const [isReadOnly, setIsReadOnly] = useState(true);
     const problemId = getCurrentProblemId();
     const problemData = problemId ? getCurrentProblemData(problemId) : null;

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { useLessonStore } from "@/store/lessonStore";
+import { useTutorialStore } from "@/store/tutorialStore";
 import {
   useCheckTerminalContainsAll,
   useTraceFinished,
@@ -13,6 +14,7 @@ export function useNumbers(lessonId: string) {
   const { startLesson, completeTask, currentTask } = useLessonStore();
   const traceFinished = useTraceFinished();
   const isDamageCalculated = useCheckTerminalContainsAll(["74.5"]);
+  const { startTutorial } = useTutorialStore();
 
   useEffect(() => {
     if (lessonId !== "numbers") return;
@@ -24,6 +26,18 @@ export function useNumbers(lessonId: string) {
         description: `In this lesson, we changed the stepper to be more granular.  
 Notice how the variables are stored and used in the code.  
 Step through the code to complete this task.`,
+        callback: () => {
+          startTutorial([
+            {
+              id: "settings",
+              title: "Settings",
+              content:
+                "You can change the stepping mode in the settings. Line mode navigates line by line. Step mode goes deeper in between the lines so you can see exactly how data is being used.",
+              targetSelector: '[data-tutorial="settings-button"]',
+              position: "bottom",
+            },
+          ]);
+        },
       },
       {
         id: "calculate-damage",

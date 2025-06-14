@@ -5,14 +5,12 @@ import { useNumbers } from "./hooks/numbers/useNumbers";
 import { useQuestNotes } from "./hooks/quest-notes/useQuestNotes";
 // Manual imports - more reliable for deployment
 import { useStrings } from "./hooks/strings/useStrings";
-import { useVoiceOfTheHero } from "./hooks/voice-of-the-hero/useVoiceOfTheHero";
 
 export const lessonHooks: Record<string, LessonHook> = {
   "hello-world": useHelloWorld,
   numbers: useNumbers,
   strings: useStrings,
   "quest-notes": useQuestNotes,
-  "voice-of-the-hero": useVoiceOfTheHero,
 };
 
 // Check if a lesson has a hook implementation
