@@ -7,6 +7,7 @@ export interface LessonState {
   currentLessonId: string | null;
   content: string;
   isLoading: boolean;
+  isComplete: boolean;
   error: string | null;
 
   // Tasks
@@ -20,9 +21,6 @@ export interface LessonState {
     string,
     {
       completed: boolean;
-      completedAt?: Date;
-      tasksCompleted: number;
-      totalTasks: number;
     }
   >;
 }
@@ -34,8 +32,12 @@ export interface LessonActions {
   setError: (error: string | null) => void;
 
   // Lesson management
-  startLesson: (lessonId: string) => void;
-  completeLesson: (lessonId: string) => void;
+  startLesson: (
+    lessonId: string,
+    content: string,
+    tasks: Omit<LessonTask, "completed" | "completedAt">[]
+  ) => void;
+  completeLesson: () => void;
 
   // Task management
   addTask: (task: Omit<LessonTask, "completed" | "completedAt">) => void;
@@ -50,6 +52,7 @@ const initialState: LessonState = {
   currentLessonId: null,
   content: "",
   isLoading: false,
+  isComplete: false,
   error: null,
   currentTask: null,
   allTasks: [],
@@ -68,30 +71,26 @@ export const useLessonStore = create<LessonState & LessonActions>(
     setError: (error) => set({ error }),
 
     // Lesson management
-    startLesson: (lessonId) =>
+    startLesson: (lessonId, content, tasks) =>
       set({
+        isComplete: false,
         currentLessonId: lessonId,
-        currentTask: null,
-        allTasks: [],
+        currentTask: tasks[0],
+        allTasks: tasks,
         completedTasks: [],
         completedTaskCount: 0,
         error: null,
-        content: "",
+        content: content,
       }),
 
-    completeLesson: (lessonId) => {
+    completeLesson: () => {
       const state = get();
-      const totalTasks = state.allTasks.length;
-      const completedTasks = state.completedTaskCount;
-
       set({
+        isComplete: true,
         lessonProgress: {
           ...state.lessonProgress,
-          [lessonId]: {
+          [state.currentLessonId!]: {
             completed: true,
-            completedAt: new Date(),
-            tasksCompleted: completedTasks,
-            totalTasks,
           },
         },
       });
@@ -130,8 +129,13 @@ export const useLessonStore = create<LessonState & LessonActions>(
         const remainingTasks = state.allTasks.slice(newCompletedCount);
         const nextTask = remainingTasks.length > 0 ? remainingTasks[0] : null;
 
+        // If the task has a callback, call it
         if (state.currentTask?.callback) {
           state.currentTask.callback();
+        }
+        // If all tasks are completed, complete the lesson
+        if (nextTask == null) {
+          get().completeLesson();
         }
 
         return {

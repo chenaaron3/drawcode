@@ -1,6 +1,6 @@
 # Quest Notes
 
-Every great adventurer keeps detailed notes about their journey. In Python, we use special markers called **comments** to write notes that help us remember what our code does, without affecting how our program runs.
+In Python, we use special markers called **comments** to write notes that help us remember what our code does, without affecting how our program runs.
 
 Python treats anything after a `#` symbol as a comment - it's like writing in invisible ink that only programmers can see!
 

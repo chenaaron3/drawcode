@@ -275,24 +275,21 @@ export default function CodePanel() {
                                     onMount={(editor) => {
                                         if (lastMouseClickRef.current) {
                                             const { x, y } = lastMouseClickRef.current;
-                                            // Get the target at the mouse click position
-                                            let target = typeof editor.getTargetAtClientPoint === 'function'
-                                                ? editor.getTargetAtClientPoint(x, y)
-                                                : null;
-
-                                            if (target) {
-                                                setEditorCursorAtClientPosition(editor, y, target);
-                                                lastMouseClickRef.current = null;
-                                            } else {
-                                                // Try again after a short delay
-                                                setTimeout(() => {
-                                                    const retryTarget = typeof editor.getTargetAtClientPoint === 'function'
-                                                        ? editor.getTargetAtClientPoint(x, y)
-                                                        : null;
-                                                    setEditorCursorAtClientPosition(editor, y, retryTarget);
+                                            const trySetCursor = (retriesLeft: number) => {
+                                                let target = typeof editor.getTargetAtClientPoint === 'function'
+                                                    ? editor.getTargetAtClientPoint(x, y)
+                                                    : null;
+                                                if (target) {
+                                                    setEditorCursorAtClientPosition(editor, y, target);
                                                     lastMouseClickRef.current = null;
-                                                }, 60);
-                                            }
+                                                } else if (retriesLeft > 0) {
+                                                    setTimeout(() => trySetCursor(retriesLeft - 1), 60);
+                                                } else {
+                                                    setEditorCursorAtClientPosition(editor, y, null);
+                                                    lastMouseClickRef.current = null;
+                                                }
+                                            };
+                                            trySetCursor(3);
                                         }
                                     }}
                                 />

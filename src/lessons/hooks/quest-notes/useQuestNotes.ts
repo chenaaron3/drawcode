@@ -16,19 +16,15 @@ export function useQuestNotes(lessonId: string) {
 
     const initializeLesson = async () => {
       // Start the lesson
-      startLesson(lessonId);
-      setCurrentProblem(lessonId);
-      // Set the content
-      setContent(questNotes);
-
-      // Add initial tasks
-      addTask({
-        id: "make-first-comment",
-        title: "Write a comment",
-        description:
-          "Write a comment describing the first quest you want to embark on in your programming adventure!",
-        callback: () => {},
-      });
+      startLesson(lessonId, questNotes, [
+        {
+          id: "make-first-comment",
+          title: "Write a comment",
+          description:
+            "Write a comment describing the first quest you want to embark on in your programming adventure!",
+          callback: () => {},
+        },
+      ]);
     };
     initializeLesson();
   }, [lessonId, setContent, startLesson, addTask, setCurrentProblem]);

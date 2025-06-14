@@ -11,12 +11,18 @@ import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useLessonStore } from '@/store/lessonStore';
+import { useTraceStore } from '@/store/traceStore';
 
 const TaskList: React.FC = () => {
     const {
         allTasks,
         completedTaskCount,
+        isComplete,
+        currentLessonId,
     } = useLessonStore();
+    const {
+        currentProblemId,
+    } = useTraceStore();
 
     // State to track which task is open (only one at a time)
     const [openTaskId, setOpenTaskId] = useState<string | null>(null);
@@ -24,8 +30,6 @@ const TaskList: React.FC = () => {
     // State for completion modal
     const [showCompletionModal, setShowCompletionModal] = useState(false);
     const [hasShownModal, setHasShownModal] = useState(false);
-
-    const isLessonComplete = completedTaskCount === allTasks.length && allTasks.length > 0;
 
     // Update open task when current task changes
     useEffect(() => {
@@ -37,11 +41,11 @@ const TaskList: React.FC = () => {
 
     // Show completion modal when lesson is completed
     useEffect(() => {
-        if (isLessonComplete && !hasShownModal) {
+        if (isComplete && !hasShownModal && currentLessonId === currentProblemId) {
             setShowCompletionModal(true);
             setHasShownModal(true);
         }
-    }, [isLessonComplete, hasShownModal]);
+    }, [isComplete, currentLessonId, currentProblemId, hasShownModal]);
 
     // Auto-close modal after 3 seconds
     useEffect(() => {

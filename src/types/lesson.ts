@@ -40,7 +40,7 @@ export interface LessonTask {
   title: string;
   description: string;
   callback?: () => void;
-  completed: boolean;
+  completed?: boolean;
   completedAt?: Date;
 }
 
