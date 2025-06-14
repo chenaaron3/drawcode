@@ -17,14 +17,14 @@ Let's explore the different types of numbers:
 
 ### Examples
 
-To create an `int` variable named `player_level` with the value `5`:
+To create an `int` variable named `health` with the value `100`:
 
 ```python
-player_level = 5
+health = 100
 ```
 
-To create a `float` variable named `critical_multiplier` with the value `1.5`:
+To create a `float` variable named `damage` with the value `25.5`:
 
 ```python
-critical_multiplier = 1.5
+damage = 25.5
 ```
