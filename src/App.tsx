@@ -80,7 +80,7 @@ export default function App() {
     return (
       <>
         <LandingPage onGetStarted={() => setShowLanding(false)} />
-        <Toaster />
+        <Toaster richColors />
       </>
     );
   }
@@ -89,7 +89,7 @@ export default function App() {
     <>
       <MainLayout />
       <TutorialOverlay />
-      <Toaster />
+      <Toaster richColors />
     </>
   );
 }

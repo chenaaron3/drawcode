@@ -78,6 +78,7 @@ import { useMemo } from "react";
  * Usage: Call inside a React component or hook.
  */
 import { useTerminalOutput } from "@/hooks/useTerminalOutput";
+import { useTraceStore } from "@/store/traceStore";
 
 export function useCheckTerminalOutputContains(str: string): boolean {
   const { terminalOutput } = useTerminalOutput();
@@ -85,4 +86,10 @@ export function useCheckTerminalOutputContains(str: string): boolean {
     () => terminalOutput.some((item) => item.output.includes(str)),
     [terminalOutput, str]
   );
+}
+
+// Hook that checks if the user clicked to the end of the code
+export function useTraceFinished(): boolean {
+  const { hasNext } = useTraceStore();
+  return !hasNext();
 }

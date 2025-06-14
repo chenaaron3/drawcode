@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 
-import lessonCoursesData from "@/data/lesson-courses.json";
-import lessonModulesData from "@/data/lesson-modules.json";
 import lessonProblemsData from "@/data/lesson-problems.json";
 import { getTraceData } from "@/data/traces";
 import { useTraceStore } from "@/store/traceStore";
-import { ProgressStorage } from "@/utils/progressStorage";
 
+import { useLessonNavigation } from "./useLessonNavigation";
 import { usePyodide } from "./usePyodide";
 
 // Helper function to check if a problemId is a lesson
@@ -37,6 +35,7 @@ export function useCodeInitialization() {
   const { isLoading: isPyodideLoading, generateTrace } = usePyodide();
   const [hasInitialized, setHasInitialized] = useState(false);
   const currentProblem = getCurrentProblemId();
+  const { gotoDefaultLesson } = useLessonNavigation();
 
   // When the page loads, check if there is code or problemId in the URL
   useEffect(() => {
@@ -128,26 +127,7 @@ export function useCodeInitialization() {
       } else {
         setCurrentTab("learn");
         // Auto-redirect to last uncompleted lesson if available
-        const lastPosition = ProgressStorage.getLastPosition();
-        if (lastPosition) {
-          setCurrentProblem(lastPosition.lessonId);
-          setHasInitialized(true);
-          return;
-        }
-        // Default to first lesson of first module of first course
-        const courses = lessonCoursesData.courses;
-        const firstCourse = courses[0];
-        const firstModuleId = firstCourse.moduleIds[0];
-        const modules = lessonModulesData.modules;
-        const firstModule = modules.find((m: any) => m.id === firstModuleId);
-        if (
-          firstModule &&
-          firstModule.lessonIds &&
-          firstModule.lessonIds.length > 0
-        ) {
-          const firstLessonId = firstModule.lessonIds[0];
-          setCurrentProblem(firstLessonId);
-        }
+        gotoDefaultLesson();
       }
       setHasInitialized(true);
     }

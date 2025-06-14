@@ -7,7 +7,7 @@ import CodePanel from '../panels/CodePanel';
 import ExecutionPanel from '../panels/ExecutionPanel';
 import LessonContent from './LessonContent';
 
-import type { Lesson } from '../../types/lesson';
+import type { Lesson, LessonCourse, LessonModule } from '../../types/lesson';
 
 // Simple hook for mobile detection (tailwind md breakpoint ~768px)
 function useIsMobile() {
@@ -30,11 +30,11 @@ type TabKey = typeof TABS[number]['key'];
 
 interface LessonPageProps {
     lesson: Lesson | null;
-    currentCourseId: string;
-    currentModuleId: string;
+    currentCourse: LessonCourse;
+    currentModule: LessonModule;
 }
 
-const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourseId, currentModuleId }) => {
+const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourse, currentModule }) => {
     const isMobile = useIsMobile();
     const [activeTab, setActiveTab] = useState<TabKey>('lesson');
 
@@ -45,8 +45,8 @@ const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourseId, curren
                 <LessonContent
                     key={lesson.id}
                     lesson={lesson}
-                    currentCourseId={currentCourseId}
-                    currentModuleId={currentModuleId ?? ""}
+                    currentCourseId={currentCourse.id}
+                    currentModuleId={currentModule.id}
                 />
             );
         }
@@ -98,8 +98,8 @@ const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourseId, curren
                                     <LessonContent
                                         key={lesson.id}
                                         lesson={lesson}
-                                        currentCourseId={currentCourseId}
-                                        currentModuleId={currentModuleId ?? ""}
+                                        currentCourseId={currentCourse.id}
+                                        currentModuleId={currentModule.id}
                                     />
                                 )}
                             </div>

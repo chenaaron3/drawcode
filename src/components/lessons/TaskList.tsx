@@ -5,17 +5,18 @@ import React, { useEffect, useState } from 'react';
 import ConfettiExplosion from 'react-confetti-explosion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { toast } from 'sonner';
 
 import { markdownComponents } from '@/components/common/markdownComponents';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { useLessonStore } from '@/store/lessonStore';
 import { useTraceStore } from '@/store/traceStore';
 import { ProgressStorage } from '@/utils/progressStorage';
 
 import type { Lesson } from '@/types/lesson';
-
 interface TaskListProps {
     lesson: Lesson;
     currentCourseId: string;
@@ -32,6 +33,7 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
     const {
         currentProblemId,
     } = useTraceStore();
+    const { gotoNextLesson } = useLessonNavigation();
 
     // State to track which task is open (only one at a time)
     const [openTaskId, setOpenTaskId] = useState<string | null>(null);
@@ -47,15 +49,20 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
         }
     }, [allTasks, completedTaskCount]);
 
-    // Show completion modal when lesson is completed
+    // Complement the users!
     useEffect(() => {
-        if (completedTaskCount === allTasks.length && allTasks.length > 0 && !isComplete) {
-            // This is the canonical place to complete a lesson
-            completeLesson();
-            setShowCompletionModal(true);
-            // Mark lesson as completed in ProgressStorage
-            if (currentCourseId && currentModuleId) {
-                ProgressStorage.markLessonCompleted(currentCourseId, currentModuleId, lesson.id);
+        if (allTasks.length > 0 && !isComplete) {
+            // Completed the lesson
+            if (completedTaskCount === allTasks.length) {
+                completeLesson();
+                setShowCompletionModal(true);
+                // Mark lesson as completed in ProgressStorage
+                if (currentCourseId && currentModuleId) {
+                    ProgressStorage.markLessonCompleted(currentCourseId, currentModuleId, lesson.id);
+                }
+            } else if (completedTaskCount > 0) {
+                // Just show a toast
+                toast.success(`Great Job! Task ${completedTaskCount} of ${allTasks.length} completed!`);
             }
         }
     }, [allTasks, isComplete, completedTaskCount, lesson.id, currentProblemId, currentCourseId, currentModuleId]);
@@ -302,7 +309,10 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
                         {/* Continue Button */}
                         <div className="mt-10 animate-[fadeInUp_0.6s_ease-out_0.9s_both]">
                             <Button
-                                onClick={() => setShowCompletionModal(false)}
+                                onClick={() => {
+                                    setShowCompletionModal(false);
+                                    gotoNextLesson();
+                                }}
                                 className="px-10 py-4 text-lg bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold rounded-full shadow-2xl hover:shadow-green-500/25 transform hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-green-400/50 animate-[buttonPulse_4s_ease-in-out_infinite]"
                             >
                                 ✨ Continue ✨

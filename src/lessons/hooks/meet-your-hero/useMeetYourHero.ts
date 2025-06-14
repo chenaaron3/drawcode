@@ -22,14 +22,12 @@ export function useMeetYourHero(lessonId: string) {
           title: "Take Your First Step",
           description: `Click the Forward Button ⏩️ to step through the code line by line.  
   You can also click the Play Button ▶️ to automatically step through the code.`,
-          callback: () => {},
         },
         {
           id: "change-hero-name",
           title: "Change The Hero's Name",
           description:
             "Update `Xaden` to your name. Run the code again and see what happens!",
-          callback: () => {},
         },
       ]);
     };

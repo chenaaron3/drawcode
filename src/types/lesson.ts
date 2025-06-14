@@ -1,10 +1,20 @@
 // Lesson types matching the existing problem structure
 
+export interface LessonCourse {
+  id: string;
+  title: string;
+  description: string;
+  difficulty: "Beginner" | "Intermediate" | "Advanced" | string;
+  estimatedTime: number; // in minutes
+  prerequisites: string[]; // moduleIds
+  moduleIds: string[];
+}
+
 export interface LessonModule {
   id: string;
   title: string;
   description: string;
-  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  difficulty: "Beginner" | "Intermediate" | "Advanced" | string;
   estimatedTime: number; // in minutes
   prerequisites: string[]; // moduleIds
   lessonIds: string[];

@@ -1,4 +1,4 @@
-# Quest Notes
+# Comments
 
 In Python, we use special markers called **comments** to write notes that help us remember what our code does, without affecting how our program runs.
 

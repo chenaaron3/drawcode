@@ -1,48 +1,31 @@
 import { Check, ChevronRight, Play } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
 import { ProgressStorage } from '../../utils/progressStorage';
 
-import type { LessonModule, Lesson } from '@/types/lesson';
+import type { LessonModule, Lesson, LessonCourse } from '@/types/lesson';
 interface LessonSidebarProps {
     modules: LessonModule[];
     lessons: Lesson[];
-    selectedLessonId?: string;
+    currentLesson: Lesson;
+    currentCourse: LessonCourse;
+    currentModule: LessonModule;
     onLessonSelect: (lessonId: string) => void;
-    currentCourseId: string;
-    currentModuleId: string;
 }
 
 export const LessonSidebar: React.FC<LessonSidebarProps> = ({
     modules,
     lessons,
-    selectedLessonId,
+    currentLesson,
+    currentCourse,
+    currentModule,
     onLessonSelect,
-    currentCourseId,
-    currentModuleId,
 }) => {
-    // Find which module contains the currently selected lesson
-    const currentModule = useMemo(() => {
-        if (!selectedLessonId) return null;
-        return modules.find(module => module.id === currentModuleId);
-    }, [selectedLessonId, modules]);
-
     // State to track which module is expanded (only one at a time)
     // Initialize with the current module if it exists
-    const [expandedModuleId, setExpandedModuleId] = useState<string | null>(
-        currentModule?.id || null
+    const [expandedModuleId, setExpandedModuleId] = useState<string>(
+        currentModule.id
     );
-
-    const handleToggleModule = (moduleId: string) => {
-        setExpandedModuleId(currentExpanded => {
-            // If clicking on the currently expanded module, collapse it
-            if (currentExpanded === moduleId) {
-                return null;
-            }
-            // Otherwise, expand the clicked module
-            return moduleId;
-        });
-    };
 
     const handleLessonSelect = (lessonId: string) => {
         // Find which module this lesson belongs to
@@ -70,7 +53,7 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                         {/* Module Header */}
                         <button
                             type="button"
-                            onClick={() => handleToggleModule(module.id)}
+                            onClick={() => setExpandedModuleId(module.id)}
                             className="w-full flex items-center gap-3 text-left p-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                         >
                             <ChevronRight
@@ -91,8 +74,8 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                         {isExpanded && moduleLessons.length > 0 && (
                             <div className="border-t border-slate-200 dark:border-slate-700">
                                 {moduleLessons.map((lesson) => {
-                                    const isSelected = selectedLessonId === lesson.id;
-                                    const isCompleted = ProgressStorage.isLessonCompleted(currentCourseId, module.id, lesson.id);
+                                    const isSelected = currentLesson.id === lesson.id;
+                                    const isCompleted = ProgressStorage.isLessonCompleted(currentCourse.id, module.id, lesson.id);
 
                                     return (
                                         <button

@@ -9,7 +9,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { getLessonHook, hasLessonHook } from '@/lessons';
 import { useLessonStore } from '@/store/lessonStore';
-import { useTraceStore } from '@/store/traceStore';
 
 import type { Lesson } from '@/types/lesson';
 
@@ -25,12 +24,7 @@ const LessonContent: React.FC<LessonContentProps> = ({
     currentModuleId,
 }) => {
     // Navigation logic
-    const { setCurrentProblem } = useTraceStore();
-    const navigationInfo = useLessonNavigation(
-        currentCourseId,
-        currentModuleId,
-        lesson.id
-    );
+    const navigationInfo = useLessonNavigation();
 
     // Get lesson state from store
     const {
@@ -95,7 +89,7 @@ const LessonContent: React.FC<LessonContentProps> = ({
                 <div className="w-full mt-6">
                     <div className="flex justify-between items-center">
                         <button
-                            onClick={() => navigationInfo.nextLesson && setCurrentProblem(navigationInfo.nextLesson.id)}
+                            onClick={() => navigationInfo.gotoNextLesson()}
                             disabled={!navigationInfo.nextLesson}
                             className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${navigationInfo.nextLesson
                                 ? 'bg-blue-600 hover:bg-blue-700 text-white'
