@@ -54,6 +54,7 @@ function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger?: numb
 
     // Update nodes and edges when variables change
     useEffect(() => {
+        console.log(variables, animatingVariable, isEvaluating, delta, stepIndex, traceData);
         const relationships = traceData?.relationships || [];
         const { nodes: newNodes, edges: newEdges } = generateFlowData({
             variables,
@@ -71,7 +72,7 @@ function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger?: numb
 
         setNodes(newLayoutedNodes);
         setEdges(newLayoutedEdges);
-    }, [variables, animatingVariable, isEvaluating, delta, stepIndex, traceData, setNodes, setEdges]);
+    }, [variables, animatingVariable, isEvaluating, delta, stepIndex, traceData]);
 
     // Fit view when nodes change
     useEffect(() => {

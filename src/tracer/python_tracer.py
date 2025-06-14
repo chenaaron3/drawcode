@@ -260,7 +260,20 @@ class PythonTracer:
         
         if current_steps:
             trace.append(_create_trace_entry(current_line, line_locals, current_steps))
-            
+
+        # Edge case if the last step is an assignment, we need another line to display the delta
+        line_locals = self.steps[-1]["locals"] if self.steps and "locals" in self.steps[-1] else {}
+        if trace and line_locals:
+            last_entry = trace[-1]
+            # If the last entry's locals do not match the final locals, append a synthetic entry
+            if last_entry["locals"] != line_locals:
+                trace.append({
+                    "line_number": last_entry["line_number"],
+                    "locals": line_locals,
+                    "delta": calculate_delta(last_entry["locals"], line_locals),
+                    "steps": [last_entry["steps"][0]] 
+                })
+
         print(f"Generated {len(trace)} trace entries")
 
         # Use the unwrapped AST for JSON output (clean structure with node IDs)

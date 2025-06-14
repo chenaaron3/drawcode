@@ -24,7 +24,8 @@ export interface Lesson {
   id: string;
   title: string;
   description: string;
-  solution: string; // The lesson code to execute
+  template: string; // The lesson code to intially provide
+  solution: string; // The lesson code that is acceptable as a solution
   entrypoint: string;
   inputs: Record<string, any>;
   contentPath: string; // Path to the markdown content file

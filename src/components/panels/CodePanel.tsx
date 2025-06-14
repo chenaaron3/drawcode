@@ -103,7 +103,7 @@ export default function CodePanel() {
         };
     }, [isPlaying, playSpeed, traceData, next]);
 
-    if (!traceData || !currentLine || !currentStep) {
+    if (!traceData) {
         return (
             <Card className={cn('flex flex-col')}>
                 <CardHeader>

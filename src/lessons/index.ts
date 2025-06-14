@@ -1,16 +1,16 @@
 import type { LessonHook } from "@/types/lesson";
 
 import { useHelloWorld } from "./hooks/hello-world/useHelloWorld";
-// Manual imports - more reliable for deployment
-import { useMeetYourHero } from "./hooks/meet-your-hero/useMeetYourHero";
 import { useNumbers } from "./hooks/numbers/useNumbers";
 import { useQuestNotes } from "./hooks/quest-notes/useQuestNotes";
+// Manual imports - more reliable for deployment
+import { useStrings } from "./hooks/strings/useStrings";
 import { useVoiceOfTheHero } from "./hooks/voice-of-the-hero/useVoiceOfTheHero";
 
 export const lessonHooks: Record<string, LessonHook> = {
   "hello-world": useHelloWorld,
   numbers: useNumbers,
-  "meet-your-hero": useMeetYourHero,
+  strings: useStrings,
   "quest-notes": useQuestNotes,
   "voice-of-the-hero": useVoiceOfTheHero,
 };

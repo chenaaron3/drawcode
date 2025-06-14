@@ -46,7 +46,8 @@ if __name__ == '__main__':
         print(f"Processing {problem['id']}...")
         tracer.reset()  # Reset tracer state for each problem
         transformed_ast = tracer.run_code(
-            problem['solution'], 
+            # we prioritize rendering the template over the solution
+            problem['template'] if 'template' in problem else problem['solution'], 
             problem['entrypoint'], 
             problem.get('special_inputs', None),
             problem_key,

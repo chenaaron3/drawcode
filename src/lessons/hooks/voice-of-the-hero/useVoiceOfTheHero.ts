@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useLessonStore } from "@/store/lessonStore";
 import { useTraceStore } from "@/store/traceStore";
 import { useTutorialStore } from "@/store/tutorialStore";
-import { useCheckTerminalOutputContains } from "@/utils/taskChecks";
+import { useCheckTerminalContainsAll } from "@/utils/taskChecks";
 
 import content from "./voice-of-the-hero.md?raw";
 
@@ -13,11 +13,12 @@ export function useVoiceOfTheHero(lessonId: string) {
   const { traceData } = useTraceStore();
   const { startTutorial } = useTutorialStore();
 
-  const isVictoryOrDeathPrinted =
-    useCheckTerminalOutputContains("Victory or death!");
-  const isDungeonAwaitsPrinted = useCheckTerminalOutputContains(
-    "The dungeon awaits!"
-  );
+  const isVictoryOrDeathPrinted = useCheckTerminalContainsAll([
+    "Victory or death!",
+  ]);
+  const isDungeonAwaitsPrinted = useCheckTerminalContainsAll([
+    "The dungeon awaits!",
+  ]);
 
   useEffect(() => {
     if (lessonId !== "voice-of-the-hero") return;
