@@ -1,7 +1,6 @@
 import { create } from "zustand";
 
 import type { LessonTask } from "@/types/lesson";
-
 export interface LessonState {
   // Current lesson
   currentLessonId: string | null;
@@ -43,6 +42,7 @@ export interface LessonActions {
   addTask: (task: Omit<LessonTask, "completed" | "completedAt">) => void;
   completeTask: () => void;
   clearTasks: () => void;
+  finishAllTasks: () => void;
 
   // Reset
   reset: () => void;
@@ -71,7 +71,7 @@ export const useLessonStore = create<LessonState & LessonActions>(
     setError: (error) => set({ error }),
 
     // Lesson management
-    startLesson: (lessonId, content, tasks) =>
+    startLesson: (lessonId, content, tasks) => {
       set({
         isComplete: false,
         currentLessonId: lessonId,
@@ -81,7 +81,8 @@ export const useLessonStore = create<LessonState & LessonActions>(
         completedTaskCount: 0,
         error: null,
         content: content,
-      }),
+      });
+    },
 
     completeLesson: () => {
       const state = get();
@@ -149,6 +150,14 @@ export const useLessonStore = create<LessonState & LessonActions>(
         completedTasks: [],
         completedTaskCount: 0,
       }),
+
+    finishAllTasks: () => {
+      set({
+        completedTasks: get().allTasks,
+        completedTaskCount: get().allTasks.length,
+        isComplete: true,
+      });
+    },
 
     // Reset
     reset: () => set(initialState),

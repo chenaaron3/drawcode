@@ -28,6 +28,7 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
         allTasks,
         completedTaskCount,
         completeLesson,
+        finishAllTasks,
         isComplete,
     } = useLessonStore();
     const {
@@ -40,6 +41,14 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
 
     // State for completion modal
     const [showCompletionModal, setShowCompletionModal] = useState(false);
+
+
+    // If the lesson is already completed, finish all tasks. 
+    useEffect(() => {
+        if (allTasks.length > 0 && ProgressStorage.isLessonCompleted(currentCourseId, currentModuleId, lesson.id)) {
+            finishAllTasks();
+        }
+    }, [allTasks, currentCourseId, currentModuleId, lesson.id, finishAllTasks]);
 
     // Update open task when current task changes
     useEffect(() => {
@@ -219,34 +228,32 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
                         }
                     `}</style>
                     {/* Confetti Explosions from both sides */}
-                    {showCompletionModal && (
-                        <>
-                            {/* Left side confetti */}
-                            <div className="fixed top-1/2 left-0 pointer-events-none z-50" style={{ transform: 'translateY(-50%)' }}>
-                                <ConfettiExplosion
-                                    particleCount={100}
-                                    particleSize={12}
-                                    duration={3000}
-                                    colors={['#FFD700', '#FF6B35', '#8B5CF6', '#10B981', '#3B82F6', '#F59E0B']}
-                                    force={0.6}
-                                    height="80vh"
-                                    width={800}
-                                />
-                            </div>
-                            {/* Right side confetti */}
-                            <div className="fixed top-1/2 right-0 pointer-events-none z-50" style={{ transform: 'translateY(-50%) scaleX(-1)' }}>
-                                <ConfettiExplosion
-                                    particleCount={100}
-                                    particleSize={12}
-                                    duration={3000}
-                                    colors={['#FFD700', '#FF6B35', '#8B5CF6', '#10B981', '#3B82F6', '#F59E0B']}
-                                    force={0.6}
-                                    height="80vh"
-                                    width={800}
-                                />
-                            </div>
-                        </>
-                    )}
+                    <>
+                        {/* Left side confetti */}
+                        <div className="fixed top-1/2 left-0 pointer-events-none z-50" style={{ transform: 'translateY(-50%)' }}>
+                            <ConfettiExplosion
+                                particleCount={100}
+                                particleSize={12}
+                                duration={3000}
+                                colors={['#FFD700', '#FF6B35', '#8B5CF6', '#10B981', '#3B82F6', '#F59E0B']}
+                                force={0.6}
+                                height="80vh"
+                                width={800}
+                            />
+                        </div>
+                        {/* Right side confetti */}
+                        <div className="fixed top-1/2 right-0 pointer-events-none z-50" style={{ transform: 'translateY(-50%) scaleX(-1)' }}>
+                            <ConfettiExplosion
+                                particleCount={100}
+                                particleSize={12}
+                                duration={3000}
+                                colors={['#FFD700', '#FF6B35', '#8B5CF6', '#10B981', '#3B82F6', '#F59E0B']}
+                                force={0.6}
+                                height="80vh"
+                                width={800}
+                            />
+                        </div>
+                    </>
 
                     <div className="text-center py-8 relative">
                         {/* Modal-wide sparkles */}

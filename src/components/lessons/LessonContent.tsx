@@ -5,7 +5,9 @@ import remarkGfm from 'remark-gfm';
 
 import { markdownComponents } from '@/components/common/markdownComponents';
 import TaskList from '@/components/lessons/TaskList';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { getLessonHook, hasLessonHook } from '@/lessons';
 import { useLessonStore } from '@/store/lessonStore';
@@ -32,7 +34,8 @@ const LessonContent: React.FC<LessonContentProps> = ({
         isLoading,
         error,
         setLoading,
-        setError
+        setError,
+        isComplete
     } = useLessonStore();
 
     // Try to get lesson hook
@@ -87,20 +90,31 @@ const LessonContent: React.FC<LessonContentProps> = ({
                 />
 
                 <div className="w-full mt-6">
-                    <div className="flex justify-between items-center">
-                        <button
-                            onClick={() => navigationInfo.gotoNextLesson()}
-                            disabled={!navigationInfo.nextLesson}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${navigationInfo.nextLesson
-                                ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                                : 'bg-slate-50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-600 cursor-not-allowed'
-                                }`}
-                        >
-                            <span className="text-sm">
-                                {navigationInfo.nextLesson ? 'Next: ' + navigationInfo.nextLesson.title : 'Course complete!'}
-                            </span>
-                            <ChevronRight className="w-4 h-4" />
-                        </button>
+                    <div className="flex justify-end items-center">
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <span>
+                                    <Button
+                                        onClick={() => navigationInfo.gotoNextLesson()}
+                                        disabled={!navigationInfo.nextLesson || !isComplete}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${navigationInfo.nextLesson && isComplete
+                                            ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                                            : 'bg-slate-50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-600 cursor-not-allowed'
+                                            }`}
+                                    >
+                                        <span className="text-sm">
+                                            {navigationInfo.nextLesson ? 'Next: ' + navigationInfo.nextLesson.title : 'Course complete!'}
+                                        </span>
+                                        <ChevronRight className="w-4 h-4" />
+                                    </Button>
+                                </span>
+                            </TooltipTrigger>
+                            {(!navigationInfo.nextLesson || !isComplete) && (
+                                <TooltipContent side="top" align="end">
+                                    Please complete all tasks to continue.
+                                </TooltipContent>
+                            )}
+                        </Tooltip>
                     </div>
                 </div>
             </CardContent>
