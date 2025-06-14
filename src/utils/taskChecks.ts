@@ -24,9 +24,18 @@ export function useTraceFinished(): boolean {
 export function useVariablesDefined(values: Record<string, any>): boolean {
   const { traceData } = useTraceStore();
   return Object.entries(values).every(([varName, value]) => {
-    if (value === null) {
+    // Undefined means we can have any value
+    if (value === undefined) {
       return traceData?.metadata?.finalLocals?.[varName] !== undefined;
     } else {
+      // Null means it has to be empty
+      if (value === null) {
+        return (
+          traceData?.metadata?.finalLocals?.[varName] === null ||
+          traceData?.metadata?.finalLocals?.[varName] === undefined
+        );
+      }
+      // Otherwise check for value equality
       return traceData?.metadata?.finalLocals?.[varName] === value;
     }
   });

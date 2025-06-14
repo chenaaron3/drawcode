@@ -1,6 +1,7 @@
 import type { LessonHook } from "@/types/lesson";
 
 import { useBooleanIntroduction } from "./hooks/boolean-introduction/useBooleanIntroduction";
+import { useEmptyVariables } from "./hooks/empty-variables/useEmptyVariables";
 import { useHelloWorld } from "./hooks/hello-world/useHelloWorld";
 import { useNumbers } from "./hooks/numbers/useNumbers";
 import { useQuestNotes } from "./hooks/quest-notes/useQuestNotes";
@@ -13,6 +14,7 @@ export const lessonHooks: Record<string, LessonHook> = {
   strings: useStrings,
   "quest-notes": useQuestNotes,
   "boolean-introduction": useBooleanIntroduction,
+  "empty-variables": useEmptyVariables,
 };
 
 // Check if a lesson has a hook implementation

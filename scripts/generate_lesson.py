@@ -8,6 +8,7 @@ load_dotenv()
 from openai import OpenAI
 
 USE_LLM_CACHE = False
+MODEL = "gpt-4o-mini"
 
 # Example file paths (update if needed)
 PROMPT_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), 'lesson_generation_prompt.txt')
@@ -97,9 +98,8 @@ def generate_lesson_content(client, source_text, module_id):
         }
     ]
     try:
-        # Use a cheaper model for testing (e.g., gpt-3.5-turbo-1106)
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo-1106",
+            model=MODEL,
             messages=[{"role": "user", "content": prompt}],
             functions=functions,
             function_call={"name": "generate_lesson"},
@@ -191,7 +191,7 @@ def main():
             with open("generated_content.json", "r", encoding="utf-8") as f:
                 generated_content = json.load(f)
         else:
-            print("Generating lesson content with GPT-3.5-turbo-1106 (function calling)...")
+            print(f"Generating lesson content with {MODEL} (function calling)...")
             generated_content = generate_lesson_content(client, source_text, args.module_id)
             json.dump(generated_content, open("generated_content.json", "w"), indent=2)
 
