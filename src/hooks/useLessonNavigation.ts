@@ -133,7 +133,11 @@ export function useLessonNavigation(): LessonNavigationInfo &
   // Goto default lesson: last position if available, else first lesson of first module of first course
   const gotoDefaultLesson = () => {
     const lastPosition = ProgressStorage.getLastPosition();
-    if (lastPosition && lastPosition.lessonId) {
+    if (
+      lastPosition &&
+      lastPosition.lessonId &&
+      orderedLessons.find((l) => l.id === lastPosition.lessonId)
+    ) {
       setCurrentProblem(lastPosition.lessonId);
       return;
     }
