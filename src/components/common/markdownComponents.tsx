@@ -99,7 +99,7 @@ export function markdownComponents(lessonData?: any) {
 
     return {
         h1: ({ children }: ChildrenOnly) => (
-            <h1 className="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 pb-2 border-b border-slate-200 dark:border-slate-700">
+            <h1 className="flex items-center gap-2 text-lg md:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 pb-2 border-b border-slate-200 dark:border-slate-700">
                 <BookOpen className="h-6 w-6 text-blue-600" />
                 {children}
                 {lessonData?.time && (
@@ -110,12 +110,12 @@ export function markdownComponents(lessonData?: any) {
             </h1>
         ),
         h2: ({ children }: ChildrenOnly) => (
-            <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3 mt-6">
+            <h2 className="text-base md:text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3 mt-6">
                 {children}
             </h2>
         ),
         h3: ({ children }: ChildrenOnly) => (
-            <h3 className="text-lg font-medium text-slate-900 dark:text-slate-100 mb-2 mt-4">
+            <h3 className="text-base md:text-lg font-medium text-slate-900 dark:text-slate-100 mb-2 mt-4">
                 {children}
             </h3>
         ),
@@ -144,7 +144,7 @@ export function markdownComponents(lessonData?: any) {
             </td>
         ),
         p: ({ children }: ChildrenOnly) => (
-            <p className="text-slate-700 mb-4 dark:text-slate-300">
+            <p className="text-sm md:text-base text-slate-700 mb-4 dark:text-slate-300">
                 {children}
             </p>
         ),

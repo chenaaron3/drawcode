@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { BookOpen, ChevronRight, Code, Menu, Play, Zap } from 'lucide-react';
+import { BookOpen, ChevronRight, Menu, Play, Zap } from 'lucide-react';
 import React, { useState } from 'react';
 
 import { useTraceStore } from '@/store/traceStore';
@@ -48,30 +48,38 @@ const MainLayout: React.FC = () => {
     };
 
     return (
-        <div className="h-screen bg-gray-50 flex flex-col">
+        <div className="w-screen h-screen max-w-full max-h-screen overflow-hidden bg-gray-50 flex flex-col">
             {/* Header */}
-            <header className="h-16 bg-white border-b border-gray-200 px-6 flex-shrink-0">
+            <header className="fixed top-0 left-0 right-0 h-12 md:h-16 bg-white border-b border-gray-200 px-3 md:px-6 flex-shrink-0 z-40">
                 <div className="flex items-center justify-between h-full">
                     {/* Logo and Title */}
-                    <div className="flex items-center gap-6" data-tutorial="logo">
-                        <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
+                    <div className="flex items-center gap-3 md:gap-6" data-tutorial="logo">
+                        <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
                                 <Zap className="h-5 w-5 text-white" />
                             </div>
-                            <h1 className="text-xl font-bold text-gray-900">
+                            <h1 className="text-base md:text-xl font-bold text-gray-900">
                                 Python Quest
                             </h1>
                         </div>
-
-                        {/* Lessons button - only show in learn mode */}
+                        {/* Lessons button - always show, icon-only on mobile, icon+text on desktop */}
                         {currentTab === 'learn' && (
-                            <button
-                                onClick={() => setIsSidebarOpen(true)}
-                                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
-                            >
-                                <Menu className="h-4 w-4" />
-                                Lessons
-                            </button>
+                            <>
+                                <button
+                                    onClick={() => setIsSidebarOpen(true)}
+                                    className="flex md:hidden items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    aria-label="Lessons"
+                                >
+                                    <Menu className="h-5 w-5" />
+                                </button>
+                                <button
+                                    onClick={() => setIsSidebarOpen(true)}
+                                    className="hidden md:flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
+                                >
+                                    <Menu className="h-4 w-4" />
+                                    Lessons
+                                </button>
+                            </>
                         )}
                     </div>
 
@@ -92,13 +100,12 @@ const MainLayout: React.FC = () => {
                     )}
 
                     {/* Scalable Navigation */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 md:gap-4">
                         <TutorialTrigger />
                         <div className="flex bg-gray-100 rounded-lg p-1 relative" data-tutorial="navigation-tabs">
                             {navigationModes.map((mode) => {
                                 const Icon = mode.icon;
                                 const isActive = currentTab === mode.id;
-
                                 return (
                                     <div key={mode.id} className="relative z-0">
                                         {isActive && (
@@ -114,13 +121,13 @@ const MainLayout: React.FC = () => {
                                         )}
                                         <button
                                             onClick={() => handleModeChange(mode)}
-                                            className={`relative z-20 flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${isActive
+                                            className={`relative z-20 flex items-center justify-center md:gap-2 px-2 md:px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${isActive
                                                 ? 'text-white'
                                                 : 'text-gray-600 hover:text-gray-900'
                                                 }`}
                                         >
-                                            <Icon className="h-4 w-4" />
-                                            {mode.label}
+                                            <Icon className="h-5 w-5 md:h-4 md:w-4" />
+                                            <span className="hidden md:inline">{mode.label}</span>
                                         </button>
                                     </div>
                                 );
@@ -130,7 +137,7 @@ const MainLayout: React.FC = () => {
                 </div>
             </header>
             {/* Main Content */}
-            <main className="flex-1 flex overflow-hidden h-0">
+            <main className="flex-1 flex overflow-hidden max-h-full m-4 lg:m-0 lg:pt-16" style={{ height: 'calc(100vh - 4rem)' }}>
                 {currentTab === 'learn' ? (
                     <LessonMode
                         isSidebarOpen={isSidebarOpen}

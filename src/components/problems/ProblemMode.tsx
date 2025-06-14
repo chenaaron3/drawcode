@@ -8,11 +8,11 @@ const ProblemMode: React.FC = () => {
     const { getCurrentProblemId } = useTraceStore();
     const currentProblemId = getCurrentProblemId();
 
-    if (currentProblemId) {
-        return <DebuggerPage />;
-    }
-
-    return <RoadmapPage />;
+    return (
+        <div className="h-full w-full overflow-hidden">
+            {currentProblemId ? <DebuggerPage /> : <RoadmapPage />}
+        </div>
+    );
 };
 
 export default ProblemMode; 

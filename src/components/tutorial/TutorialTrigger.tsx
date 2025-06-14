@@ -12,6 +12,7 @@ export const TutorialTrigger: React.FC = () => {
         hasSeenTutorial,
         startTutorial,
     } = useTutorialStore();
+    const { currentTab } = useTraceStore();
 
     // Auto-start tutorial for first-time users
     useEffect(() => {
@@ -24,8 +25,11 @@ export const TutorialTrigger: React.FC = () => {
         }
     }, [hasSeenTutorial, isActive, startTutorial]);
 
+    // Disable on mobile
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+        return null;
+    }
     // Hide if not in learn mode
-    const { currentTab } = useTraceStore();
     if (currentTab !== 'learn' && currentTab !== 'playground') {
         return null;
     }
