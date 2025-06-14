@@ -1,5 +1,5 @@
 import { Pencil } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -16,6 +16,13 @@ import { NavigationControls, Settings } from '../controls';
 import { ProblemDescriptionModal } from '../modals';
 import { ComputationWorkspaceOverlay } from '../overlays';
 import { ErrorPanel } from './ErrorPanel';
+
+// Type for Monaco editor mouse target
+type EditorMouseTarget = {
+    position?: { lineNumber: number; column: number } | null;
+    element?: HTMLElement | null;
+    mouseColumn?: number;
+};
 
 export default function CodePanel() {
     const {
@@ -40,6 +47,7 @@ export default function CodePanel() {
     const [isReadOnly, setIsReadOnly] = useState(true);
     const problemId = getCurrentProblemId();
     const problemData = problemId ? getCurrentProblemData(problemId) : null;
+    const lastMouseClickRef = useRef<{ x: number; y: number } | null>(null);
 
     // Handle input changes
     const handleInputChange = (key: string, value: any) => {
@@ -141,7 +149,15 @@ export default function CodePanel() {
 
                         <div className="rounded-md overflow-hidden bg-muted/30 flex-1 relative">
                             {isReadOnly ? (
-                                <div className="relative group h-full">
+                                <div
+                                    className="relative group h-full"
+                                    onClick={(e) => {
+                                        lastMouseClickRef.current = { x: e.clientX, y: e.clientY };
+                                        console.log('lastMouseClickRef', lastMouseClickRef.current);
+                                        setIsReadOnly(false);
+                                        setIsPlaying(false);
+                                    }}
+                                >
                                     <SyntaxHighlighter
                                         data-testid="code-editor-read"
                                         language="python"
@@ -196,12 +212,12 @@ export default function CodePanel() {
                                     {!hasChanges && (
                                         <div
                                             style={{ position: "absolute", inset: 0, zIndex: 50, cursor: 'text' }}
+                                            tabIndex={0}
+                                            aria-label="Edit code"
                                             onClick={() => {
                                                 setIsReadOnly(false);
                                                 setIsPlaying(false);
                                             }}
-                                            tabIndex={0}
-                                            aria-label="Edit code"
                                         >
                                             <ComputationWorkspaceOverlay />
                                         </div>
@@ -256,6 +272,29 @@ export default function CodePanel() {
                                             bottom: 4,
                                         },
                                     }}
+                                    onMount={(editor) => {
+                                        if (lastMouseClickRef.current) {
+                                            const { x, y } = lastMouseClickRef.current;
+                                            // Get the target at the mouse click position
+                                            let target = typeof editor.getTargetAtClientPoint === 'function'
+                                                ? editor.getTargetAtClientPoint(x, y)
+                                                : null;
+
+                                            if (target) {
+                                                setEditorCursorAtClientPosition(editor, y, target);
+                                                lastMouseClickRef.current = null;
+                                            } else {
+                                                // Try again after a short delay
+                                                setTimeout(() => {
+                                                    const retryTarget = typeof editor.getTargetAtClientPoint === 'function'
+                                                        ? editor.getTargetAtClientPoint(x, y)
+                                                        : null;
+                                                    setEditorCursorAtClientPosition(editor, y, retryTarget);
+                                                    lastMouseClickRef.current = null;
+                                                }, 60);
+                                            }
+                                        }
+                                    }}
                                 />
                             )}
                         </div>
@@ -264,4 +303,44 @@ export default function CodePanel() {
             </TooltipProvider>
         </>
     );
-} 
+}
+
+// Helper function to set the Monaco editor cursor at a given client (x, y) position
+function setEditorCursorAtClientPosition(
+    editor: any,
+    y: number,
+    target?: EditorMouseTarget | null
+) {
+    let lineNumber = 1;
+    let column = 1;
+    if (target) {
+        if (target.position && target.position !== null) {
+            lineNumber = target.position.lineNumber;
+            column = target.position.column;
+        } else if (target.element && target.mouseColumn) {
+            const editorDomNode = editor.getDomNode();
+            if (editorDomNode) {
+                const rect = editorDomNode.getBoundingClientRect();
+                const lineHeight = editor.getOption?.(editor._standaloneKeybindingService?._editorOptions?.lineHeight) || editor.getOption?.('lineHeight') || 22;
+                lineNumber = Math.floor((y - rect.top) / lineHeight) + 1;
+                column = target.mouseColumn;
+            }
+        }
+    } else {
+        // Fallback: estimate line number from DOM
+        const editorDomNode = editor.getDomNode();
+        if (editorDomNode) {
+            const rect = editorDomNode.getBoundingClientRect();
+            const lineHeight = editor.getOption?.(editor._standaloneKeybindingService?._editorOptions?.lineHeight) || editor.getOption?.('lineHeight') || 22;
+            lineNumber = Math.floor((y - rect.top) / lineHeight) + 1;
+        }
+    }
+    // Clamp line/col
+    const model = editor.getModel();
+    if (model) {
+        lineNumber = Math.max(1, Math.min(lineNumber, model.getLineCount()));
+        column = Math.max(1, Math.min(column, model.getLineMaxColumn(lineNumber)));
+    }
+    editor.setPosition({ lineNumber, column });
+    editor.focus();
+}

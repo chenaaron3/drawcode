@@ -122,7 +122,7 @@ const TaskList: React.FC = () => {
                                     } ${isOpen ? 'rotate-180' : ''}`} />
                             </CollapsibleTrigger>
                             <CollapsibleContent>
-                                <div className={`p-6 rounded-b-lg border border-t-0 ${isCompleted
+                                <div className={`p-4 rounded-b-lg border border-t-0 ${isCompleted
                                     ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-700'
                                     : isCurrent
                                         ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700'
