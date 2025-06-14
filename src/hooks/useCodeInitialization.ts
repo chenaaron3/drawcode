@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 
+import lessonCoursesData from "@/data/lesson-courses.json";
+import lessonModulesData from "@/data/lesson-modules.json";
 import lessonProblemsData from "@/data/lesson-problems.json";
 import { getTraceData } from "@/data/traces";
 import { useTraceStore } from "@/store/traceStore";
+import { ProgressStorage } from "@/utils/progressStorage";
 
 import { usePyodide } from "./usePyodide";
 
@@ -122,6 +125,29 @@ export function useCodeInitialization() {
       if (currentTab !== "learn" && currentProblem === null) {
         // Not in learn mode and no problem selected - default to two-sum
         setCurrentProblem("two-sum");
+      } else {
+        setCurrentTab("learn");
+        // Auto-redirect to last uncompleted lesson if available
+        const lastPosition = ProgressStorage.getLastPosition();
+        if (lastPosition) {
+          setCurrentProblem(lastPosition.lessonId);
+          setHasInitialized(true);
+          return;
+        }
+        // Default to first lesson of first module of first course
+        const courses = lessonCoursesData.courses;
+        const firstCourse = courses[0];
+        const firstModuleId = firstCourse.moduleIds[0];
+        const modules = lessonModulesData.modules;
+        const firstModule = modules.find((m: any) => m.id === firstModuleId);
+        if (
+          firstModule &&
+          firstModule.lessonIds &&
+          firstModule.lessonIds.length > 0
+        ) {
+          const firstLessonId = firstModule.lessonIds[0];
+          setCurrentProblem(firstLessonId);
+        }
       }
       setHasInitialized(true);
     }

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 import lessonModulesData from "../data/lesson-modules.json";
 import lessonProblemsData from "../data/lesson-problems.json";
@@ -77,6 +77,17 @@ export function useLessonNavigation(
       );
     };
   }
+
+  // Save last position on navigation
+  useEffect(() => {
+    if (currentCourseId && currentModuleId && currentLessonId) {
+      ProgressStorage.saveLastPosition(
+        currentCourseId,
+        currentModuleId,
+        currentLessonId
+      );
+    }
+  }, [currentCourseId, currentModuleId, currentLessonId]);
 
   return {
     ...navigationInfo,
