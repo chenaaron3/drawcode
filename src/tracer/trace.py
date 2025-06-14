@@ -11,9 +11,10 @@ from validate_trace import validate_directory
 if __name__ == '__main__':
     PROBLEM_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "data"))
     OUTPUT_DIR = os.path.abspath(os.path.join(__file__, "..", "..", "data", "traces"))
-    if os.path.exists(OUTPUT_DIR):
-        for file in os.listdir(OUTPUT_DIR):
-            os.remove(os.path.join(OUTPUT_DIR, file))
+    # Let's not delete the output directory for now
+    # if os.path.exists(OUTPUT_DIR):
+    #     for file in os.listdir(OUTPUT_DIR):
+    #         os.remove(os.path.join(OUTPUT_DIR, file))
     
     # Create output directory if it doesn't exist
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -25,8 +26,8 @@ if __name__ == '__main__':
     try:
         with open(os.path.join(PROBLEM_DIR, "problems.json"), "r") as f:
             problems = json.load(f)['problems']
-            all_problems.extend(problems)
-            print(f"Loaded {len(problems)} problems from problems.json")
+            # all_problems.extend(problems)
+            # print(f"Loaded {len(problems)} problems from problems.json")
     except FileNotFoundError:
         print("problems.json not found")
     

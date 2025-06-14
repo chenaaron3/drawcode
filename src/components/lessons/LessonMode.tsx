@@ -57,7 +57,7 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
                             currentLesson={currentLesson}
                             currentCourse={currentCourse}
                             currentModule={currentModule}
-                            modules={lessonModulesData.modules as LessonModule[]}
+                            modules={lessonModulesData as LessonModule[]}
                             lessons={lessonProblemsData as Lesson[]}
                             onLessonSelect={handleLessonSelect}
                         />

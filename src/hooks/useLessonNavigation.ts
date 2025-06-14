@@ -32,11 +32,11 @@ export interface LessonNavigationActions {
 export function useLessonNavigation(): LessonNavigationInfo &
   LessonNavigationActions {
   const { setCurrentProblem, getCurrentProblemId } = useTraceStore();
-  const courses = lessonCoursesData.courses;
+  const courses = lessonCoursesData;
   // Default to the first course (intro-to-python)
   const currentCourse = courses[0];
   // Filter modules and lessons for the current course
-  let modules = lessonModulesData.modules as LessonModule[];
+  let modules = lessonModulesData as LessonModule[];
   modules = modules.filter((m) => currentCourse.moduleIds.includes(m.id));
   const currentLessonId = getCurrentProblemId();
   const currentModule =
@@ -49,10 +49,10 @@ export function useLessonNavigation(): LessonNavigationInfo &
   // Get all lessons in order for the current course
   const orderedLessons = useMemo(() => {
     if (!currentCourseId) return [];
-    const courses = lessonCoursesData.courses as LessonCourse[];
+    const courses = lessonCoursesData as LessonCourse[];
     const course = courses.find((c) => c.id === currentCourseId);
     if (!course) return [];
-    let modules = lessonModulesData.modules as LessonModule[];
+    let modules = lessonModulesData as LessonModule[];
     modules = modules.filter((m) => course.moduleIds.includes(m.id));
     return modules
       .flatMap((module) =>

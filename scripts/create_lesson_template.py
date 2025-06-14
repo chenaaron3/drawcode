@@ -5,28 +5,30 @@ import json
 def to_pascal_case(s):
     return ''.join(word.capitalize() for word in s.replace('-', ' ').replace('_', ' ').split())
 
-def main():
-    if len(sys.argv) != 3:
-        print("Usage: python scripts/create_lesson_template.py <lessonId> <moduleId>")
-        sys.exit(1)
-
-    lesson_id = sys.argv[1]
-    module_id = sys.argv[2]
-
+def create_lesson_template(lesson_id, module_id):
+    """
+    Creates the lesson folder, markdown file, and hook file for a lesson.
+    Returns a dict with the generated paths:
+    {
+        'lesson_folder': <folder>,
+        'md_path': <markdown file>,
+        'hook_path': <hook file>
+    }
+    Raises exceptions on error.
+    """
     # Get project root (parent of 'scripts' directory)
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     # 1. Update module's lesson list in lesson-modules.json
     modules_json_path = os.path.join(project_root, 'src', 'data', 'lesson-modules.json')
     if not os.path.exists(modules_json_path):
-        print(f"Modules file not found: {modules_json_path}")
-        sys.exit(1)
+        raise FileNotFoundError(f"Modules file not found: {modules_json_path}")
 
     with open(modules_json_path, 'r', encoding='utf-8') as f:
         modules_data = json.load(f)
 
     module_found = False
-    for module in modules_data.get('modules', []):
+    for module in modules_data:
         if module.get('id') == module_id:
             module_found = True
             if 'lessonIds' not in module:
@@ -38,8 +40,7 @@ def main():
                 print(f"{lesson_id} already in module {module_id}")
 
     if not module_found:
-        print(f"Module id '{module_id}' not found in {modules_json_path}")
-        sys.exit(1)
+        raise ValueError(f"Module id '{module_id}' not found in {modules_json_path}")
 
     with open(modules_json_path, 'w', encoding='utf-8') as f:
         json.dump(modules_data, f, indent=2)
@@ -102,6 +103,27 @@ useEffect(() => {{
             print(e.output)
     else:
         print(f"trace.py not found at {trace_py_path}, skipping trace generation.")
+
+    return {
+        'lesson_folder': lesson_folder,
+        'md_path': md_path,
+        'hook_path': hook_path
+    }
+
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: python scripts/create_lesson_template.py <lessonId> <moduleId>")
+        sys.exit(1)
+    lesson_id = sys.argv[1]
+    module_id = sys.argv[2]
+    try:
+        paths = create_lesson_template(lesson_id, module_id)
+        print(f"Lesson folder: {paths['lesson_folder']}")
+        print(f"Markdown file: {paths['md_path']}")
+        print(f"Hook file: {paths['hook_path']}")
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
 
 if __name__ == '__main__':
     main() 
