@@ -14,6 +14,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { useLessonStore } from '@/store/lessonStore';
 import { useTraceStore } from '@/store/traceStore';
+import { trackLessonCompleted } from '@/utils/analytics';
 import { ProgressStorage } from '@/utils/progressStorage';
 
 import type { Lesson } from '@/types/lesson';
@@ -63,6 +64,8 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
         if (allTasks.length > 0 && !isComplete) {
             // Completed the lesson
             if (completedTaskCount === allTasks.length) {
+                // Log the lesson completion
+                trackLessonCompleted(lesson.id, currentCourseId, currentModuleId);
                 completeLesson();
                 setShowCompletionModal(true);
                 // Mark lesson as completed in ProgressStorage

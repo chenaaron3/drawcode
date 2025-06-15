@@ -6,6 +6,7 @@ import lessonModulesData from '@/data/lesson-modules.json';
 import lessonProblemsData from '@/data/lesson-problems.json';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { useTraceStore } from '@/store/traceStore';
+import { trackEvent, trackLessonViewed } from '@/utils/analytics';
 
 import { LessonPage } from './LessonPage';
 import { LessonSidebar } from './LessonSidebar';
@@ -31,6 +32,8 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
             gotoDefaultLesson();
         }
         else {
+            // Track analytics for the lesson
+            trackLessonViewed(currentLesson.id, currentCourse?.id || '', currentModule?.id || '');
             // For a new lesson, set the designated mode
             if (currentLesson.mode !== undefined) {
                 setMode(currentLesson.mode);

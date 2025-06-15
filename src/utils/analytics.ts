@@ -1,4 +1,4 @@
-import ReactGA from 'react-ga4';
+import ReactGA from "react-ga4";
 
 // Initialize Google Analytics
 export const initGA = () => {
@@ -76,4 +76,32 @@ export const trackNavigationStep = (
 
 export const trackPlaybackControl = (action: "play" | "pause" | "reset") => {
   trackEvent("playback_control", "Debugger", action);
+};
+
+export const trackLessonViewed = (
+  lessonId: string,
+  courseId: string,
+  moduleId: string
+) => {
+  // Send as a label JSON string for clarity
+  const label = JSON.stringify({
+    lesson_id: lessonId,
+    course_id: courseId,
+    module_id: moduleId,
+  });
+  trackEvent("lesson_viewed", "Lesson", label);
+};
+
+export const trackLessonCompleted = (
+  lessonId: string,
+  courseId: string,
+  moduleId: string
+) => {
+  // Send as a label JSON string for clarity
+  const label = JSON.stringify({
+    lesson_id: lessonId,
+    course_id: courseId,
+    module_id: moduleId,
+  });
+  trackEvent("lesson_completed", "Lesson", label);
 };
