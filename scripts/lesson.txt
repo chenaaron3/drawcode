@@ -1,34 +1,78 @@
-Modulo
-11 min
-Python offers a companion to the division operator called the 
+Plus Equals
+5 min
+Python offers a shorthand for updating 
 Preview: Docs Loading link description
-modulo
- operator. The modulo operator is indicated by % and gives the remainder of a division calculation. If the two numbers are divisible, then the result of the modulo operation will be 0.
+variables
+. When you have a number saved in a variable and want to add to the current value of the variable, you can use the += 
+Preview: Docs Operators are symbols that carry out arithmetic, logical, or relational operations.
+(plus-equals) operator
+.
 
-# Prints 4 because 29 / 5 is 5 with a remainder of 4
-print(29 % 5)
- 
-# Prints 2 because 32 / 3 is 10 with a remainder of 2
-print(32 % 3)
- 
-# Modulo by 2 returns 0 for even numbers and 1 for odd numbers
-# Prints 0
-print(44 % 2)
+# First we have a variable with a number saved
+number_of_miles_hiked = 12
 
-Copy to Clipboard
+# Then we need to update that variable
+# Let's say we hike another two miles today
+number_of_miles_hiked += 2
 
-Here, we use the modulo operator to find the remainder of division operations. We see that 29 % 5 equals 4, 32 % 3 equals 2, and 44 % 2 equals 0.
-
-Let’s look at another example to get a better idea of how modulo is useful in programming:
-
-print(3 % 3) # Prints 0
-print(4 % 3) # Prints 1
-print(5 % 3) # Prints 2
-print(6 % 3) # Prints 0
-print(7 % 3) # Prints 1
+# The new value is the old value
+# Plus the number after the plus-equals
+print(number_of_miles_hiked)
+# Prints 14
 
 Copy to Clipboard
 
-In each of these modulo operations, 3 is the divisor. Since 3 / 3 equals 1 with no remainder, the result of the first modulo operation is 0. Note that as the dividend increases by 1, the remainder also increases by 1, until we reach the next number that is evenly divisible by 3 — this creates a pattern that repeats contiuously as the dividend increases by 1!
+Above, we keep a running count of the number of miles a person has gone hiking over time. Instead of recalculating from the start, we keep a grand total and update it when we’ve gone hiking further.
 
-Because of this, the modulo operator is useful in programming when we want to perform an action every nth time something occurs. Imagine you own a small café and would like for every 7th customer to receive a survey. If every customer transaction is numbered in the order they occur, you can determine which customers should receive the survey by calculating transaction_number % 7 — if the result is 0, hand out the survey!
+The plus-equals operator also can be used for string concatenation, like so:
+
+hike_caption = "What an amazing time to walk through nature!"
+
+# Almost forgot the hashtags!
+hike_caption += " #nofilter"
+hike_caption += " #blessed"
+
+Copy to Clipboard
+
+We create the social media caption for the photograph of nature we took on our hike, but then update the caption to include important social media tags we almost forgot.
+
+# Task 1
+
+We’re doing a little bit of online shopping and find a pair of new sneakers. Right before we check out, we spot a nice sweater and some fun books we also want to purchase!
+
+Use the += operator to update the total_price to include the prices of nice_sweater and fun_books.
+
+The prices (also included in the workspace) are:
+
+new_sneakers = 50.00
+nice_sweater = 39.00
+fun_books = 20.00
+
+# Template
+total_price = 0
+
+new_sneakers = 50.00
+
+total_price += new_sneakers
+
+nice_sweater = 39.00
+fun_books = 20.00
+# Update total_price here:
+
+print("The total price is", total_price)
+
+# Solution
+total_price = 0
+
+new_sneakers = 50.00
+
+total_price += new_sneakers
+
+nice_sweater = 39.00
+fun_books = 20.00
+# Update total_price here:
+
+total_price += nice_sweater
+total_price += fun_books
+
+print("The total price is", total_price)

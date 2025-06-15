@@ -259,6 +259,60 @@ def escape_newlines_in_json(json_str):
     # For robust handling, use a JSON parser that supports non-standard JSON, or fix at the source
     return re.sub(r'(?<!\\)\n', r'\\n', json_str)
 
+def update_lesson_hooks_index(lesson_id, hook_path):
+    """
+    Adds an import and entry to lessonHooks in src/lessons/index.ts for the new lesson.
+    Uses the actual hook_path returned from create_lesson_files.
+    """
+    import os
+    # Get the index.ts path
+    index_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../src/lessons/index.ts'))
+
+    # Compute the import path relative to index.ts (without .ts extension)
+    import_path = os.path.relpath(hook_path, os.path.dirname(index_path)).replace('.ts', '').replace('\\', '/')
+    if not import_path.startswith('.'):
+        import_path = './' + import_path
+
+    # Derive hook name from filename
+    hook_name = os.path.splitext(os.path.basename(hook_path))[0]
+
+    with open(index_path, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+
+    # Check if already present
+    import_line = f'import {{ {hook_name} }} from "{import_path}";\n'
+    if any(import_line.strip() == line.strip() for line in lines):
+        return  # Already present
+
+    # Insert import after last import
+    last_import_idx = 0
+    for i, line in enumerate(lines):
+        if line.startswith('import '):
+            last_import_idx = i
+    lines.insert(last_import_idx + 1, import_line)
+
+    # Add to lessonHooks
+    for i, line in enumerate(lines):
+        if 'export const lessonHooks:' in line:
+            # Find the next '{'
+            for j in range(i, len(lines)):
+                if '{' in lines[j]:
+                    insert_idx = j + 1
+                    break
+            else:
+                continue
+            # Insert new entry
+            entry_line = f'  "{lesson_id}": {hook_name},\n'
+            # Find where to insert (before closing })
+            for k in range(insert_idx, len(lines)):
+                if '};' in lines[k]:
+                    lines.insert(k, entry_line)
+                    break
+            break
+
+    with open(index_path, 'w', encoding='utf-8') as f:
+        f.writelines(lines)
+
 def main():
     args = parse_arguments()
     lessons_json_path = os.path.join(os.path.dirname(__file__), '../src/data/lesson-problems.json')
@@ -309,6 +363,10 @@ def main():
         # Step 7: Create lesson files and get paths
         paths = create_lesson_files(lesson_id, args.module_id, parsed_content["markdown"], parsed_content["typescript"])
         print(f"Created/overwritten lesson files for '{lesson_id}' in module '{args.module_id}'.")
+
+        # Step 7.5: Update src/lessons/index.ts to import and register the new hook
+        update_lesson_hooks_index(lesson_id, paths["hook_path"])
+        print(f"Updated src/lessons/index.ts to register hook for '{lesson_id}'.")
 
         # Step 8: Print summary with actual paths
         print("\n✅ Lesson generation complete!")
