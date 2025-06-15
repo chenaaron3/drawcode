@@ -6,30 +6,31 @@ import {
   useVariablesDefined,
 } from "@/utils/taskChecks";
 
-import content from "./plus-equals.md?raw";
+import content from "./else-statements.md?raw";
 
-export function usePlusEquals(lessonId: string) {
+export function useElseStatements(lessonId: string) {
   const { startLesson, completeTask, currentTask } = useLessonStore();
   const taskComplete =
-    useTerminalContainsAll(["The total price is 109"]) &&
+    useTerminalContainsAll(["You do not meet the requirements to graduate."]) &&
     useVariablesDefined({
-      total_price: 109,
+      credits: 120,
+      gpa: 1.9,
     });
 
   useEffect(() => {
-    if (lessonId !== "plus-equals") return;
+    if (lessonId !== "else-statements") return;
     startLesson(lessonId, content, [
       {
-        id: "update-total-price",
-        title: "Update Total Price",
+        id: "add-else-statement",
+        title: "Add Else Statement",
         description:
-          "Use the += operator to update the total_price to include the prices of nice_sweater and fun_books.",
+          "Add an else statement to the existing if statement to handle the case where graduation requirements are not met.",
       },
     ]);
   }, [lessonId, startLesson]);
 
   useEffect(() => {
-    if (currentTask?.id === "update-total-price" && taskComplete) {
+    if (currentTask?.id === "add-else-statement" && taskComplete) {
       completeTask();
     }
   }, [lessonId, currentTask, taskComplete]);

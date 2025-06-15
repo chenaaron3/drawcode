@@ -22,10 +22,10 @@ EXAMPLES = {
         'md': os.path.join(HOOKS_PATH, 'changing-numbers', 'changing-numbers.md'),
         'hook': os.path.join(HOOKS_PATH, 'changing-numbers', 'useChangingNumbers.ts'),
     },
-    'exponents': {
-        'input': os.path.join(EXAMPLE_INPUT_PATH, 'exponents.txt'),
-        'md': os.path.join(HOOKS_PATH, 'exponents', 'exponents.md'),
-        'hook': os.path.join(HOOKS_PATH, 'exponents', 'useExponents.ts'),
+    'plus-equals': {
+        'input': os.path.join(EXAMPLE_INPUT_PATH, 'plus-equals.txt'),
+        'md': os.path.join(HOOKS_PATH, 'plus-equals', 'plus-equals.md'),
+        'hook': os.path.join(HOOKS_PATH, 'plus-equals', 'usePlusEquals.ts'),
     }
 }
 
@@ -44,7 +44,7 @@ LESSON_JSON_SCHEMA = {
     },
     "required": [
         "id", "title", "description", "template", "solution",
-        "entrypoint", "inputs", "time", "mode"
+        "entrypoint", "time", "mode"
     ],
     "additionalProperties": False
 }
