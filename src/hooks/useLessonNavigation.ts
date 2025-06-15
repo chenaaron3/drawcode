@@ -27,6 +27,7 @@ export interface LessonNavigationActions {
   gotoNextLesson: () => void;
   gotoPreviousLesson: () => void;
   gotoDefaultLesson: () => void;
+  getUnlockedLesson: () => Lesson | null;
 }
 
 export function useLessonNavigation(): LessonNavigationInfo &
@@ -133,6 +134,7 @@ export function useLessonNavigation(): LessonNavigationInfo &
   // Goto default lesson: last position if available, else first lesson of first module of first course
   const gotoDefaultLesson = () => {
     const lastPosition = ProgressStorage.getLastPosition();
+    // Go to last position
     if (
       lastPosition &&
       lastPosition.lessonId &&
@@ -141,7 +143,26 @@ export function useLessonNavigation(): LessonNavigationInfo &
       setCurrentProblem(lastPosition.lessonId);
       return;
     }
+    // Or go to first lesson of first module of first course if new user
     setCurrentProblem(orderedLessons[0]?.id);
+  };
+
+  let getUnlockedLesson = () => {
+    // Find the first lesson that is not completed
+    const firstUnlockedLesson = orderedLessons.find((l) => {
+      let moduleId = modules.find((m) => m.lessonIds.includes(l.id))?.id;
+      if (moduleId !== undefined) {
+        return !ProgressStorage.isLessonCompleted(
+          currentCourseId,
+          moduleId,
+          l.id
+        );
+      }
+    });
+    if (firstUnlockedLesson) {
+      return firstUnlockedLesson;
+    }
+    return null;
   };
 
   let gotoNextLesson = () => {
@@ -162,5 +183,6 @@ export function useLessonNavigation(): LessonNavigationInfo &
     gotoNextLesson,
     gotoPreviousLesson,
     gotoDefaultLesson,
+    getUnlockedLesson,
   };
 }

@@ -1,5 +1,7 @@
-import { Check, ChevronRight, Play } from 'lucide-react';
+import { Check, ChevronRight, Lock, Play } from 'lucide-react';
 import React, { useState } from 'react';
+
+import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 
 import { ProgressStorage } from '../../utils/progressStorage';
 
@@ -21,6 +23,7 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
     currentModule,
     onLessonSelect,
 }) => {
+    const { getUnlockedLesson } = useLessonNavigation();
     // State to track which module is expanded (only one at a time)
     // Initialize with the current module if it exists
     const [expandedModuleId, setExpandedModuleId] = useState<string>(
@@ -78,11 +81,28 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                             {moduleLessons.map((lesson) => {
                                 const isSelected = currentLesson.id === lesson.id;
                                 const isCompleted = ProgressStorage.isLessonCompleted(currentCourse.id, module.id, lesson.id);
+                                const isAvailable = isCompleted || lesson.id == getUnlockedLesson()?.id;
+
+                                let icon = null;
+                                // All lessons in the past should be completed
+                                // Only the current lesson should available
+                                // All future lessons should be locked
+                                if (isCompleted) {
+                                    icon = <Check className="w-3 h-3 text-green-900" />
+                                } else if (isAvailable) {
+                                    icon = <Play className={`w-3 h-3 ${isSelected
+                                        ? 'text-blue-900'
+                                        : 'text-slate-700'
+                                        }`} />
+                                } else {
+                                    icon = <Lock className="w-3 h-3 text-slate-700" />
+                                }
 
                                 return (
                                     <button
                                         key={lesson.id}
                                         type="button"
+                                        disabled={!isAvailable}
                                         onClick={() => handleLessonSelect(lesson.id)}
                                         className={`w-full flex items-center gap-3 text-left p-3 border-b border-slate-300 last:border-b-0 transition-colors
                                             ${isSelected
@@ -97,15 +117,8 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                                             : isSelected
                                                 ? 'bg-blue-300'
                                                 : 'bg-slate-100'
-                                            } group-hover:bg-slate-200 group-hover:bg-blue-400 group-hover:bg-green-300`}>
-                                            {isCompleted ? (
-                                                <Check className="w-3 h-3 text-green-900" />
-                                            ) : (
-                                                <Play className={`w-3 h-3 ${isSelected
-                                                    ? 'text-blue-900'
-                                                    : 'text-slate-700'
-                                                    }`} />
-                                            )}
+                                            }  group-hover:bg-green-300`}>
+                                            {icon}
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center justify-between gap-2 mb-1">
