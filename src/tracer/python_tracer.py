@@ -179,7 +179,8 @@ class PythonTracer:
             # If entrypoint is specified, call the function with transformed kwargs
             if entrypoint and entrypoint in namespace:
                 self.result = namespace[entrypoint](**transformed_kwargs)
-                
+        except Exception as e:
+            print(f"Error executing code: {e}")
         finally:
             # Always restore original stdout
             sys.stdout = original_stdout
