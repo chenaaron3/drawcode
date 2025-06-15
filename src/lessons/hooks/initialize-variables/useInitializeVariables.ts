@@ -1,13 +1,18 @@
 import { useEffect } from "react";
 
 import { useLessonStore } from "@/store/lessonStore";
-import { useTraceFinished } from "@/utils/taskChecks";
+import { useVariablesDefined, useVariablesPrinted } from "@/utils/taskChecks";
 
 import content from "./initialize-variables.md?raw";
 
 export function useInitializeVariables(lessonId: string) {
   const { startLesson, completeTask, currentTask } = useLessonStore();
-  const traceFinished = useTraceFinished();
+  const variablesDefined = useVariablesDefined({
+    level: 5,
+    strength: 42.1,
+    role: "Warrior",
+  });
+  const variablesPrinted = useVariablesPrinted(["level", "strength", "role"]);
 
   useEffect(() => {
     if (lessonId !== "initialize-variables") return;
@@ -24,9 +29,9 @@ export function useInitializeVariables(lessonId: string) {
 
   useEffect(() => {
     if (currentTask?.id === "initialize-attributes") {
-      if (traceFinished) {
+      if (variablesDefined && variablesPrinted) {
         completeTask();
       }
     }
-  }, [currentTask, completeTask, traceFinished]);
+  }, [currentTask, completeTask, variablesDefined, variablesPrinted]);
 }

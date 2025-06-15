@@ -1,4 +1,4 @@
-# Initialize Variables Recap
+# Variables Recap
 
 To recap, let's set up some important attributes for your character in the game.
 

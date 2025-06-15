@@ -9,8 +9,8 @@ export function useStrings(lessonId: string) {
   // Add lesson-specific logic here
   const { startLesson, completeTask, currentTask } = useLessonStore();
   const variablesDefined = useVariablesDefined({
-    character_class: null,
-    quest_name: null,
+    character_class: undefined,
+    quest_name: undefined,
   });
   const variablesPrinted = useVariablesPrinted([
     "character_class",

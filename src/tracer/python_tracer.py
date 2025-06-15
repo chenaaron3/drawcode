@@ -180,7 +180,9 @@ class PythonTracer:
             if entrypoint and entrypoint in namespace:
                 self.result = namespace[entrypoint](**transformed_kwargs)
         except Exception as e:
+            # if there is an error, we don't generate a trace
             print(f"Error executing code: {e}")
+            self.steps = []
         finally:
             # Always restore original stdout
             sys.stdout = original_stdout
