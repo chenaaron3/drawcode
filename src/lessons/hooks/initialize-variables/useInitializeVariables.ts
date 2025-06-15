@@ -22,7 +22,7 @@ export function useInitializeVariables(lessonId: string) {
         id: "initialize-attributes",
         title: "Initialize the attributes",
         description:
-          "Set `level` to 5, `strength` to 42.1, and `role` to 'Warrior'",
+          "Set `level` to `5`, `strength` to `42.1`, and `role` to `'Warrior'`",
       },
     ]);
   }, [lessonId, startLesson]);
