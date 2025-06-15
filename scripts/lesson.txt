@@ -1,43 +1,34 @@
-Hello World
-Changing Numbers
-6 min
+Modulo
+11 min
+Python offers a companion to the division operator called the 
 Preview: Docs Loading link description
-Variables
- that are assigned numeric values can be treated the same as the numbers themselves. Two variables can be added together, divided by 2, and multiplied by a third variable without Python distinguishing between the variables and literals (like the number 2 in this example). Performing arithmetic on variables does not change the variable — you can only update a variable using the = sign.
+modulo
+ operator. The modulo operator is indicated by % and gives the remainder of a division calculation. If the two numbers are divisible, then the result of the modulo operation will be 0.
 
-coffee_price = 1.50
-number_of_coffees = 4
-
-# Prints "6.0"
-print(coffee_price * number_of_coffees)
-# Prints "1.5"
-print(coffee_price)
-# Prints "4"
-print(number_of_coffees)
-
-# Updating the price 
-coffee_price = 2.00
-
-# Prints "8.0"
-print(coffee_price * number_of_coffees)
-# Prints "2.0"
-print(coffee_price)
-# Prints "4"
-print(number_of_coffees)
+# Prints 4 because 29 / 5 is 5 with a remainder of 4
+print(29 % 5)
+ 
+# Prints 2 because 32 / 3 is 10 with a remainder of 2
+print(32 % 3)
+ 
+# Modulo by 2 returns 0 for even numbers and 1 for odd numbers
+# Prints 0
+print(44 % 2)
 
 Copy to Clipboard
 
-We create two variables and assign numeric values to them. Then we perform a calculation on them. This doesn’t update the variables! When we update the coffee_price variable and perform the calculations again, they use the updated values for the variable!
+Here, we use the modulo operator to find the remainder of division operations. We see that 29 % 5 equals 4, 32 % 3 equals 2, and 44 % 2 equals 0.
 
-Instructions
-Checkpoint 1 Passed
-1.
-You’ve decided to get into quilting! To calculate the number of squares you’ll need for your first quilt let’s create two variables: quilt_width and quilt_length. Let’s make this first quilt 8 squares wide and 12 squares long.
+Let’s look at another example to get a better idea of how modulo is useful in programming:
 
-Checkpoint 2 Passed
-2.
-Print out the number of squares you’ll need to create the quilt!
+print(3 % 3) # Prints 0
+print(4 % 3) # Prints 1
+print(5 % 3) # Prints 2
+print(6 % 3) # Prints 0
+print(7 % 3) # Prints 1
 
-Checkpoint 3 Passed
-3.
-It turns out that quilt required a little more material than you have on hand! Let’s only make the quilt 8 squares long. How many squares will you need for this quilt instead?
+Copy to Clipboard
+
+In each of these modulo operations, 3 is the divisor. Since 3 / 3 equals 1 with no remainder, the result of the first modulo operation is 0. Note that as the dividend increases by 1, the remainder also increases by 1, until we reach the next number that is evenly divisible by 3 — this creates a pattern that repeats contiuously as the dividend increases by 1!
+
+Because of this, the modulo operator is useful in programming when we want to perform an action every nth time something occurs. Imagine you own a small café and would like for every 7th customer to receive a survey. If every customer transaction is numbered in the order they occur, you can determine which customers should receive the survey by calculating transaction_number % 7 — if the result is 0, hand out the survey!

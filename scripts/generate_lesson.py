@@ -4,11 +4,12 @@ import os
 import re
 import json
 from dotenv import load_dotenv
+import jsonschema
 load_dotenv()
 from openai import OpenAI
 
-USE_LLM_CACHE = True
-MODEL = "gpt-4o-mini"
+USE_LLM_CACHE = False
+MODEL = "gpt-4o"
 
 # Example file paths (update if needed)
 PROMPT_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), 'lesson_generation_verbaitm_prompt.txt')
@@ -20,7 +21,32 @@ EXAMPLES = {
         'input': os.path.join(EXAMPLE_INPUT_PATH, 'changing-numbers.txt'),
         'md': os.path.join(HOOKS_PATH, 'changing-numbers', 'changing-numbers.md'),
         'hook': os.path.join(HOOKS_PATH, 'changing-numbers', 'useChangingNumbers.ts'),
+    },
+    'exponents': {
+        'input': os.path.join(EXAMPLE_INPUT_PATH, 'exponents.txt'),
+        'md': os.path.join(HOOKS_PATH, 'exponents', 'exponents.md'),
+        'hook': os.path.join(HOOKS_PATH, 'exponents', 'useExponents.ts'),
     }
+}
+
+LESSON_JSON_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string"},
+        "description": {"type": "string"},
+        "template": {"type": "string"},
+        "solution": {"type": "string"},
+        "entrypoint": {"type": "string"},
+        "inputs": {"type": "object"},
+        "time": {"type": "integer"},
+        "mode": {"type": "string"}
+    },
+    "required": [
+        "id", "title", "description", "template", "solution",
+        "entrypoint", "inputs", "time", "mode"
+    ],
+    "additionalProperties": False
 }
 
 def parse_arguments():
@@ -125,7 +151,26 @@ def generate_lesson_content(client, source_text, module_id, lesson_id=None):
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "lesson_json": {"type": "string"},
+                    "lesson_json": {
+                        "type": "object",
+                        "description": "Lesson data object. All fields required. No additional properties allowed.",
+                        "properties": {
+                            "id": {"type": "string"},
+                            "title": {"type": "string"},
+                            "description": {"type": "string"},
+                            "template": {"type": "string"},
+                            "solution": {"type": "string"},
+                            "entrypoint": {"type": "string"},
+                            "inputs": {"type": "object"},
+                            "time": {"type": "integer"},
+                            "mode": {"type": "string"}
+                        },
+                        "required": [
+                            "id", "title", "description", "template", "solution",
+                            "entrypoint", "inputs", "time", "mode"
+                        ],
+                        "additionalProperties": False
+                    },
                     "lesson_markdown": {"type": "string"},
                     "lesson_typescript": {"type": "string"}
                 },
@@ -162,7 +207,7 @@ def parse_generated_content(content):
             missing = [f for f in required_fields if f not in data]
             raise ValueError(f"Missing fields in LLM output: {', '.join(missing)}")
         return {
-            "json": data["lesson_json"].strip(),
+            "json": data["lesson_json"],
             "markdown": data["lesson_markdown"].strip(),
             "typescript": data["lesson_typescript"].strip()
         }
@@ -183,13 +228,12 @@ def ensure_unique_lesson_id(lesson_id, lessons_file_path):
         counter += 1
     return f"{base_id}-{counter}"
 
-def update_lessons_json(lesson_json_str, lessons_file_path):
+def update_lessons_json(lesson_json_obj, lessons_file_path):
     if not os.path.exists(lessons_file_path):
         raise FileNotFoundError(f"lesson-problems.json not found: {lessons_file_path}")
     with open(lessons_file_path, 'r', encoding='utf-8') as f:
         lessons = json.load(f)
-    lesson_obj = json.loads(lesson_json_str)
-    lessons.append(lesson_obj)
+    lessons.append(lesson_json_obj)
     with open(lessons_file_path, 'w', encoding='utf-8') as f:
         json.dump(lessons, f, indent=2)
 
@@ -247,13 +291,19 @@ def main():
         print("Successfully parsed LLM output.")
 
         # Step 5: Extract lesson_id from the JSON artifact
-        lesson_json_obj = json.loads(escape_newlines_in_json(parsed_content["json"]))
+        lesson_json_obj = parsed_content["json"]
+        # Validate lesson_json_obj against schema
+        try:
+            jsonschema.validate(instance=lesson_json_obj, schema=LESSON_JSON_SCHEMA)
+        except jsonschema.ValidationError as ve:
+            print(f"❌ lesson_json validation error: {ve.message}", file=sys.stderr)
+            sys.exit(1)
         lesson_id = lesson_json_obj["id"]
         lesson_id = ensure_unique_lesson_id(lesson_id, lessons_json_path)
         print(f"Using lesson ID from LLM: {lesson_id}")
 
         # Step 6: Update lesson-problems.json
-        update_lessons_json(parsed_content["json"], lessons_json_path)
+        update_lessons_json(lesson_json_obj, lessons_json_path)
         print(f"Updated lesson-problems.json with new entry for '{lesson_id}'.")
 
         # Step 7: Create lesson files and get paths
