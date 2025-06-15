@@ -17,7 +17,7 @@ interface LessonModeProps {
 }
 
 const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
-    const { setCurrentProblem } = useTraceStore();
+    const { setCurrentProblem, setMode } = useTraceStore();
     const { gotoDefaultLesson, currentLesson, currentCourse, currentModule } = useLessonNavigation();
 
     const handleLessonSelect = (lessonId: string) => {
@@ -29,6 +29,12 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
         // If there is no selected lesson, set the first lesson of the first module of the first course
         if (!currentLesson) {
             gotoDefaultLesson();
+        }
+        else {
+            // For a new lesson, set the designated mode
+            if (currentLesson.mode !== undefined) {
+                setMode(currentLesson.mode);
+            }
         }
     }, [currentLesson]);
 
