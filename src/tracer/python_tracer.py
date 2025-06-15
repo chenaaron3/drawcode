@@ -12,8 +12,9 @@ from utils import serialize_value, calculate_delta, TreeNode, Node, ListNode, ad
 
 class PythonTracer:
     """Tracer that tracks execution of all statements and expressions"""
-    def __init__(self):
+    def __init__(self, is_server: bool = False):
         self.reset()
+        self._is_server = is_server
         self._install_marker_functions()
         
     def reset(self):
@@ -180,6 +181,9 @@ class PythonTracer:
             if entrypoint and entrypoint in namespace:
                 self.result = namespace[entrypoint](**transformed_kwargs)
         except Exception as e:
+            # Do not allow clients to swallow errors. We allow for server to generate templates
+            if not self._is_server:
+                raise e
             # if there is an error, we don't generate a trace
             print(f"Error executing code: {e}")
             self.steps = []
