@@ -2,10 +2,7 @@ import { useEffect } from "react";
 
 import { useLessonStore } from "@/store/lessonStore";
 import { useTutorialStore } from "@/store/tutorialStore";
-import {
-  useCheckTerminalContainsAll,
-  useTraceFinished,
-} from "@/utils/taskChecks";
+import { useTerminalContainsAll, useTraceFinished } from "@/utils/taskChecks";
 
 import content from "./numbers.md?raw";
 
@@ -13,7 +10,7 @@ export function useNumbers(lessonId: string) {
   // Add lesson-specific logic here
   const { startLesson, completeTask, currentTask } = useLessonStore();
   const traceFinished = useTraceFinished();
-  const isDamageCalculated = useCheckTerminalContainsAll(["74.5"]);
+  const isDamageCalculated = useTerminalContainsAll(["74.5"]);
   const { startTutorial } = useTutorialStore();
 
   useEffect(() => {

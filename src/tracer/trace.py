@@ -42,7 +42,7 @@ if __name__ == '__main__':
     
     print(f"Total items to process: {len(all_problems)}")
     
-    tracer = PythonTracer()
+    tracer = PythonTracer(is_server=True)
     for problem_key, problem in enumerate(all_problems):
         print(f"Processing {problem['id']}...")
         tracer.reset()  # Reset tracer state for each problem

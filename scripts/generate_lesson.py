@@ -7,14 +7,21 @@ from dotenv import load_dotenv
 load_dotenv()
 from openai import OpenAI
 
-USE_LLM_CACHE = False
+USE_LLM_CACHE = True
 MODEL = "gpt-4o-mini"
 
 # Example file paths (update if needed)
-PROMPT_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), 'lesson_generation_prompt.txt')
+PROMPT_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), 'lesson_generation_verbaitm_prompt.txt')
+HOOKS_PATH = os.path.join(os.path.dirname(__file__), '../src/lessons/hooks')
+EXAMPLE_INPUT_PATH = os.path.join(os.path.dirname(__file__), 'examples')
 EXAMPLE_JSON_PATH = os.path.join(os.path.dirname(__file__), '../src/data/lesson-problems.json')
-EXAMPLE_MD_PATH = os.path.join(os.path.dirname(__file__), '../src/lessons/hooks/hello-world/hello-world.md')
-EXAMPLE_HOOK_PATH = os.path.join(os.path.dirname(__file__), '../src/lessons/hooks/hello-world/useHelloWorld.ts')
+EXAMPLES = {
+    'changing-numbers': {
+        'input': os.path.join(EXAMPLE_INPUT_PATH, 'changing-numbers.txt'),
+        'md': os.path.join(HOOKS_PATH, 'changing-numbers', 'changing-numbers.md'),
+        'hook': os.path.join(HOOKS_PATH, 'changing-numbers', 'useChangingNumbers.ts'),
+    }
+}
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
@@ -34,53 +41,82 @@ def initialize_openai_client():
         print(f"Error initializing OpenAI client: {e}", file=sys.stderr)
         sys.exit(1)
 
-def load_few_shot_examples():
-    # Load the first lesson-problems.json entry
+def load_few_shot_example(lesson_id, i):
     if not os.path.exists(EXAMPLE_JSON_PATH):
         raise FileNotFoundError(f"Example JSON file not found: {EXAMPLE_JSON_PATH}")
     with open(EXAMPLE_JSON_PATH, 'r', encoding='utf-8') as f:
         json_data = f.read()
     try:
         json_list = json.loads(json_data)
-        example_json = json.dumps(json_list[0], indent=2)
+        lesson = next((l for l in json_list if l["id"] == lesson_id), None)
+        example_json = json.dumps(lesson, indent=2)
     except Exception as e:
-        raise ValueError(f"Failed to parse example JSON: {e}")
-
+        raise e
+    
     # Load markdown
+    EXAMPLE_MD_PATH = EXAMPLES[lesson_id]['md']
     if not os.path.exists(EXAMPLE_MD_PATH):
         raise FileNotFoundError(f"Example markdown file not found: {EXAMPLE_MD_PATH}")
     with open(EXAMPLE_MD_PATH, 'r', encoding='utf-8') as f:
         example_md = f.read()
 
     # Load hook
+    EXAMPLE_HOOK_PATH = EXAMPLES[lesson_id]['hook']
     if not os.path.exists(EXAMPLE_HOOK_PATH):
         raise FileNotFoundError(f"Example hook file not found: {EXAMPLE_HOOK_PATH}")
     with open(EXAMPLE_HOOK_PATH, 'r', encoding='utf-8') as f:
         example_hook = f.read()
 
-    return example_json, example_md, example_hook
+        # Load input
+    EXAMPLE_INPUT_PATH = EXAMPLES[lesson_id]['input']
+    if not os.path.exists(EXAMPLE_INPUT_PATH):
+        raise FileNotFoundError(f"Example input file not found: {EXAMPLE_INPUT_PATH}")
+    with open(EXAMPLE_INPUT_PATH, 'r', encoding='utf-8') as f:
+        example_input = f.read()
 
+    example_output = {
+        "lesson_json": example_json,
+        "lesson_markdown": example_md,
+        "lesson_typescript": example_hook
+    }
+    example_text = f"""
+# Example {i} Input:
+{example_input}
+
+# Example {i} Output:
+{example_output}
+"""
+    return example_text
+
+
+def load_few_shot_examples():
+    examples = ""
+    for i, key in enumerate(EXAMPLES):
+        example_output = load_few_shot_example(key, i)
+        examples += example_output + "\n\n"
+    return examples
+    
 def load_prompt_template():
     if not os.path.exists(PROMPT_TEMPLATE_PATH):
         raise FileNotFoundError(f"Prompt template file not found: {PROMPT_TEMPLATE_PATH}")
     with open(PROMPT_TEMPLATE_PATH, 'r', encoding='utf-8') as f:
         return f.read()
 
-def build_llm_prompt(source_text, module_id):
+def build_llm_prompt(source_text, module_id, lesson_id=None):
     prompt_template = load_prompt_template()
-    example_json, example_md, example_hook = load_few_shot_examples()
-    examples = (
-        '## Example lesson-problems.json\n```json\n' + example_json + '\n```\n\n'
-        '## Example lesson.md\n```markdown\n' + example_md + '\n```\n\n'
-        '## Example lesson-hook.ts\n```typescript\n' + example_hook + '\n```\n'
-    )
+    examples = load_few_shot_examples()
+
     prompt = prompt_template.replace('{EXAMPLES}', examples)
     prompt = prompt.replace('{INPUT}', source_text)
     prompt = prompt.replace('{MODULE_ID}', module_id)
+    if lesson_id:
+        prompt = prompt.replace('{LESSON_ID}', lesson_id)
+    else:
+        prompt = prompt.replace('{LESSON_ID}', '')
     return prompt
 
-def generate_lesson_content(client, source_text, module_id):
-    prompt = build_llm_prompt(source_text, module_id)
+def generate_lesson_content(client, source_text, module_id, lesson_id=None):
+    prompt = build_llm_prompt(source_text, module_id, lesson_id)
     # Define the function schema for OpenAI function calling
     functions = [
         {
@@ -174,6 +210,11 @@ def create_lesson_files(lesson_id, module_id, markdown_content, typescript_conte
         f.write(typescript_content)
     return paths
 
+def escape_newlines_in_json(json_str):
+    # This is a simple approach and assumes no multiline string values with embedded quotes
+    # For robust handling, use a JSON parser that supports non-standard JSON, or fix at the source
+    return re.sub(r'(?<!\\)\n', r'\\n', json_str)
+
 def main():
     args = parse_arguments()
     lessons_json_path = os.path.join(os.path.dirname(__file__), '../src/data/lesson-problems.json')
@@ -190,9 +231,12 @@ def main():
             print("Loading generated lesson content from file for testing...")
             with open("generated_content.json", "r", encoding="utf-8") as f:
                 generated_content = json.load(f)
+            prompt = build_llm_prompt(source_text, args.module_id, args.lesson_id)
+            print(prompt)
         else:
             print(f"Generating lesson content with {MODEL} (function calling)...")
-            generated_content = generate_lesson_content(client, source_text, args.module_id)
+            # pass in the lesson_id if specified
+            generated_content = generate_lesson_content(client, source_text, args.module_id, args.lesson_id)
             json.dump(generated_content, open("generated_content.json", "w"), indent=2)
 
         # Step 4: Parse LLM output
@@ -203,7 +247,7 @@ def main():
         print("Successfully parsed LLM output.")
 
         # Step 5: Extract lesson_id from the JSON artifact
-        lesson_json_obj = json.loads(parsed_content["json"])
+        lesson_json_obj = json.loads(escape_newlines_in_json(parsed_content["json"]))
         lesson_id = lesson_json_obj["id"]
         lesson_id = ensure_unique_lesson_id(lesson_id, lessons_json_path)
         print(f"Using lesson ID from LLM: {lesson_id}")

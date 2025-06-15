@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import useTerminalOutput from "@/hooks/useTerminalOutput";
 import { useTraceStore } from "@/store/traceStore";
 
-export function useCheckTerminalContainsAll(strs: string[]): boolean {
+export function useTerminalContainsAll(strs: string[]): boolean {
   const { terminalOutput } = useTerminalOutput();
   return useMemo(
     () =>

@@ -138,6 +138,9 @@ export const ProgressStorage = {
     moduleId: ModuleId,
     lessonId: LessonId
   ): boolean => {
+    if (process.env.NODE_ENV === "development") {
+      return true;
+    }
     const progress = getCoursesProgress();
     return !!progress.courses[courseId]?.modules[moduleId]?.lessons[lessonId]
       ?.isComplete;

@@ -1,6 +1,7 @@
 import type { LessonHook } from "@/types/lesson";
 
 import { useBooleanIntroduction } from "./hooks/boolean-introduction/useBooleanIntroduction";
+import { useChangingNumbers } from "./hooks/changing-numbers/useChangingNumbers";
 import { useEmptyVariables } from "./hooks/empty-variables/useEmptyVariables";
 import { useHelloWorld } from "./hooks/hello-world/useHelloWorld";
 import { useInitializeVariables } from "./hooks/initialize-variables/useInitializeVariables";
@@ -16,6 +17,7 @@ export const lessonHooks: Record<string, LessonHook> = {
   "boolean-introduction": useBooleanIntroduction,
   "empty-variables": useEmptyVariables,
   "initialize-variables": useInitializeVariables,
+  "changing-numbers": useChangingNumbers,
 };
 
 // Check if a lesson has a hook implementation

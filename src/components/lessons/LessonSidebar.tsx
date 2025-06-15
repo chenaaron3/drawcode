@@ -90,10 +90,7 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                                 if (isCompleted) {
                                     icon = <Check className="w-3 h-3 text-green-900" />
                                 } else if (isAvailable) {
-                                    icon = <Play className={`w-3 h-3 ${isSelected
-                                        ? 'text-blue-900'
-                                        : 'text-slate-700'
-                                        }`} />
+                                    icon = <Play className={`w-3 h-3 text-slate-700`} />
                                 } else {
                                     icon = <Lock className="w-3 h-3 text-slate-700" />
                                 }
