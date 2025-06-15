@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 
 import { useLessonStore } from "@/store/lessonStore";
-import {
-  useTerminalContainsAll,
-  useVariablesDefined,
-} from "@/utils/taskChecks";
+import { useVariablesDefined } from "@/utils/taskChecks";
 
 import content from "./list-contents.md?raw";
 
@@ -14,7 +11,7 @@ export function useListContents(lessonId: string) {
     ints_and_strings: [1, 2, 3, "four", "five", "Six"],
   });
   const task2Complete = useVariablesDefined({
-    sam_height_and_testscore: ["Sam", 67, 85.5, True],
+    sam_height_and_testscore: ["Sam", 67, 85.5, true],
   });
 
   useEffect(() => {
@@ -23,12 +20,14 @@ export function useListContents(lessonId: string) {
       {
         id: "add-string-to-list",
         title: "Add String to List",
-        description: "Add any additional string to the end of the list ints_and_strings.",
+        description:
+          "Add any additional string to the end of the list ints_and_strings.",
       },
       {
         id: "create-sam-list",
         title: "Create Sam's Details List",
-        description: "Create a new list called sam_height_and_testscore with the specified elements.",
+        description:
+          "Create a new list called sam_height_and_testscore with the specified elements.",
       },
     ]);
   }, [lessonId, startLesson]);

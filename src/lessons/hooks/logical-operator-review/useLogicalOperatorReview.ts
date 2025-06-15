@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 
 import { useLessonStore } from "@/store/lessonStore";
-import {
-  useTerminalContainsAll,
-  useTraceFinished,
-} from "@/utils/taskChecks";
+import { useTerminalContainsAll } from "@/utils/taskChecks";
 
 import content from "./logical-operator-review.md?raw";
 

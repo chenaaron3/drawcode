@@ -6,7 +6,7 @@ import lessonModulesData from '@/data/lesson-modules.json';
 import lessonProblemsData from '@/data/lesson-problems.json';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { useTraceStore } from '@/store/traceStore';
-import { trackEvent, trackLessonViewed } from '@/utils/analytics';
+import { trackLessonViewed } from '@/utils/analytics';
 
 import { LessonPage } from './LessonPage';
 import { LessonSidebar } from './LessonSidebar';

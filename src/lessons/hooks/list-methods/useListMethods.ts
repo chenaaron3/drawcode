@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 
 import { useLessonStore } from "@/store/lessonStore";
-import {
-  useTerminalContainsAll,
-  useVariablesDefined,
-} from "@/utils/taskChecks";
+import { useTerminalContainsAll } from "@/utils/taskChecks";
 
 import content from "./list-methods.md?raw";
 
