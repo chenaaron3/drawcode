@@ -1,0 +1,3001 @@
+{
+  "metadata": {
+    "code": "def kthSmallest(root, k):\n    stack = []\n    while True:\n        while root:\n            stack.append(root)\n            root = root.left\n        root = stack.pop()\n        k -= 1\n        if k == 0:\n            return root.val\n        root = root.right",
+    "function": "kthSmallest",
+    "inputs": {
+      "kwargs": {
+        "root": "[3, 1, 4, None, 2]",
+        "k": "1"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "root": "TreeNode(1)",
+      "k": 0,
+      "stack": [
+        "TreeNode(3)"
+      ]
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 11,
+          "end_col_offset": 25
+        },
+        "focus": "def kthSmallest(root, k):\n    stack = []\n    while True:\n        while root:\n            stack.append(root)\n            root = root.left\n        root = stack.pop()\n        k -= 1\n        if k == 0:\n            return root.val\n        root = root.right",
+        "name": "kthSmallest",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            5,
+            6
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 5,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 16,
+                "end_lineno": 1,
+                "end_col_offset": 20
+              },
+              "focus": "root",
+              "arg": "root"
+            },
+            {
+              "node_id": 6,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 22,
+                "end_lineno": 1,
+                "end_col_offset": 23
+              },
+              "focus": "k",
+              "arg": "k"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              7,
+              8
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 14
+            },
+            "focus": "stack = []",
+            "targets": [
+              {
+                "node_id": 7,
+                "children_node_ids": [
+                  15
+                ],
+                "type": "Name",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 9
+                },
+                "focus": "stack",
+                "id": "stack",
+                "ctx": {
+                  "node_id": 15,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 7
+                }
+              }
+            ],
+            "value": {
+              "node_id": 8,
+              "children_node_ids": [
+                16
+              ],
+              "type": "List",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 12,
+                "end_lineno": 2,
+                "end_col_offset": 14
+              },
+              "focus": "[]",
+              "elts": [],
+              "ctx": {
+                "node_id": 16,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 8
+              }
+            }
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "type": "While",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 3,
+              "col_offset": 4,
+              "end_lineno": 11,
+              "end_col_offset": 25
+            },
+            "focus": "while True:\n        while root:\n            stack.append(root)\n            root = root.left\n        root = stack.pop()\n        k -= 1\n        if k == 0:\n            return root.val\n        root = root.right",
+            "test": {
+              "node_id": 9,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 3,
+                "col_offset": 10,
+                "end_lineno": 3,
+                "end_col_offset": 14
+              },
+              "focus": "True",
+              "value": true
+            },
+            "body": [
+              {
+                "node_id": 10,
+                "children_node_ids": [
+                  17,
+                  18,
+                  19
+                ],
+                "type": "While",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 8,
+                  "end_lineno": 6,
+                  "end_col_offset": 28
+                },
+                "focus": "while root:\n            stack.append(root)\n            root = root.left",
+                "test": {
+                  "node_id": 17,
+                  "children_node_ids": [
+                    16
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 14,
+                    "end_lineno": 4,
+                    "end_col_offset": 18
+                  },
+                  "focus": "root",
+                  "id": "root",
+                  "ctx": {
+                    "node_id": 16,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 17
+                  }
+                },
+                "body": [
+                  {
+                    "node_id": 18,
+                    "children_node_ids": [
+                      29
+                    ],
+                    "type": "Expr",
+                    "parent_node_id": 10,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 12,
+                      "end_lineno": 5,
+                      "end_col_offset": 30
+                    },
+                    "focus": "stack.append(root)",
+                    "value": {
+                      "node_id": 29,
+                      "children_node_ids": [
+                        38,
+                        39
+                      ],
+                      "type": "Call",
+                      "parent_node_id": 18,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 12,
+                        "end_lineno": 5,
+                        "end_col_offset": 30
+                      },
+                      "focus": "stack.append(root)",
+                      "func": {
+                        "node_id": 38,
+                        "children_node_ids": [
+                          43,
+                          16
+                        ],
+                        "type": "Attribute",
+                        "parent_node_id": 29,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 12,
+                          "end_lineno": 5,
+                          "end_col_offset": 24
+                        },
+                        "focus": "stack.append",
+                        "value": {
+                          "node_id": 43,
+                          "children_node_ids": [
+                            16
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 38,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 12,
+                            "end_lineno": 5,
+                            "end_col_offset": 17
+                          },
+                          "focus": "stack",
+                          "id": "stack",
+                          "ctx": {
+                            "node_id": 16,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 43
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "node_id": 16,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 38
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 39,
+                          "children_node_ids": [
+                            16
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 29,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 25,
+                            "end_lineno": 5,
+                            "end_col_offset": 29
+                          },
+                          "focus": "root",
+                          "id": "root",
+                          "ctx": {
+                            "node_id": 16,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 39
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  },
+                  {
+                    "node_id": 19,
+                    "children_node_ids": [
+                      30,
+                      31
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 10,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 12,
+                      "end_lineno": 6,
+                      "end_col_offset": 28
+                    },
+                    "focus": "root = root.left",
+                    "targets": [
+                      {
+                        "node_id": 30,
+                        "children_node_ids": [
+                          15
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 19,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 12,
+                          "end_lineno": 6,
+                          "end_col_offset": 16
+                        },
+                        "focus": "root",
+                        "id": "root",
+                        "ctx": {
+                          "node_id": 15,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 30
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 31,
+                      "children_node_ids": [
+                        40,
+                        16
+                      ],
+                      "type": "Attribute",
+                      "parent_node_id": 19,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 19,
+                        "end_lineno": 6,
+                        "end_col_offset": 28
+                      },
+                      "focus": "root.left",
+                      "value": {
+                        "node_id": 40,
+                        "children_node_ids": [
+                          16
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 31,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 19,
+                          "end_lineno": 6,
+                          "end_col_offset": 23
+                        },
+                        "focus": "root",
+                        "id": "root",
+                        "ctx": {
+                          "node_id": 16,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 40
+                        }
+                      },
+                      "attr": "left",
+                      "ctx": {
+                        "node_id": 16,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 31
+                      }
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 11,
+                "children_node_ids": [
+                  20,
+                  21
+                ],
+                "type": "Assign",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 7,
+                  "col_offset": 8,
+                  "end_lineno": 7,
+                  "end_col_offset": 26
+                },
+                "focus": "root = stack.pop()",
+                "targets": [
+                  {
+                    "node_id": 20,
+                    "children_node_ids": [
+                      15
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 11,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 8,
+                      "end_lineno": 7,
+                      "end_col_offset": 12
+                    },
+                    "focus": "root",
+                    "id": "root",
+                    "ctx": {
+                      "node_id": 15,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 20
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 21,
+                  "children_node_ids": [
+                    32
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 15,
+                    "end_lineno": 7,
+                    "end_col_offset": 26
+                  },
+                  "focus": "stack.pop()",
+                  "func": {
+                    "node_id": 32,
+                    "children_node_ids": [
+                      41,
+                      16
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 21,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 15,
+                      "end_lineno": 7,
+                      "end_col_offset": 24
+                    },
+                    "focus": "stack.pop",
+                    "value": {
+                      "node_id": 41,
+                      "children_node_ids": [
+                        16
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 32,
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 15,
+                        "end_lineno": 7,
+                        "end_col_offset": 20
+                      },
+                      "focus": "stack",
+                      "id": "stack",
+                      "ctx": {
+                        "node_id": 16,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 41
+                      }
+                    },
+                    "attr": "pop",
+                    "ctx": {
+                      "node_id": 16,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 32
+                    }
+                  },
+                  "args": [],
+                  "keywords": []
+                }
+              },
+              {
+                "node_id": 12,
+                "children_node_ids": [
+                  22,
+                  23,
+                  24
+                ],
+                "type": "AugAssign",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 8,
+                  "end_lineno": 8,
+                  "end_col_offset": 14
+                },
+                "focus": "k -= 1",
+                "target": {
+                  "node_id": 22,
+                  "children_node_ids": [
+                    15
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 12,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 8,
+                    "end_lineno": 8,
+                    "end_col_offset": 9
+                  },
+                  "focus": "k",
+                  "id": "k",
+                  "ctx": {
+                    "node_id": 15,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 22
+                  }
+                },
+                "op": {
+                  "node_id": 23,
+                  "children_node_ids": [],
+                  "type": "Sub",
+                  "parent_node_id": 12
+                },
+                "value": {
+                  "node_id": 24,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 12,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 13,
+                    "end_lineno": 8,
+                    "end_col_offset": 14
+                  },
+                  "focus": "1",
+                  "value": 1
+                }
+              },
+              {
+                "node_id": 13,
+                "children_node_ids": [
+                  25,
+                  26
+                ],
+                "type": "If",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 9,
+                  "col_offset": 8,
+                  "end_lineno": 10,
+                  "end_col_offset": 27
+                },
+                "focus": "if k == 0:\n            return root.val",
+                "test": {
+                  "node_id": 25,
+                  "children_node_ids": [
+                    33,
+                    34,
+                    35
+                  ],
+                  "type": "Compare",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 9,
+                    "col_offset": 11,
+                    "end_lineno": 9,
+                    "end_col_offset": 17
+                  },
+                  "focus": "k == 0",
+                  "left": {
+                    "node_id": 33,
+                    "children_node_ids": [
+                      16
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 25,
+                    "location": {
+                      "lineno": 9,
+                      "col_offset": 11,
+                      "end_lineno": 9,
+                      "end_col_offset": 12
+                    },
+                    "focus": "k",
+                    "id": "k",
+                    "ctx": {
+                      "node_id": 16,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 33
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 34,
+                      "children_node_ids": [],
+                      "type": "Eq",
+                      "parent_node_id": 25
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 35,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 25,
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 16,
+                        "end_lineno": 9,
+                        "end_col_offset": 17
+                      },
+                      "focus": "0",
+                      "value": 0
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 26,
+                    "children_node_ids": [
+                      36
+                    ],
+                    "type": "Return",
+                    "parent_node_id": 13,
+                    "location": {
+                      "lineno": 10,
+                      "col_offset": 12,
+                      "end_lineno": 10,
+                      "end_col_offset": 27
+                    },
+                    "focus": "return root.val",
+                    "value": {
+                      "node_id": 36,
+                      "children_node_ids": [
+                        42,
+                        16
+                      ],
+                      "type": "Attribute",
+                      "parent_node_id": 26,
+                      "location": {
+                        "lineno": 10,
+                        "col_offset": 19,
+                        "end_lineno": 10,
+                        "end_col_offset": 27
+                      },
+                      "focus": "root.val",
+                      "value": {
+                        "node_id": 42,
+                        "children_node_ids": [
+                          16
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 36,
+                        "location": {
+                          "lineno": 10,
+                          "col_offset": 19,
+                          "end_lineno": 10,
+                          "end_col_offset": 23
+                        },
+                        "focus": "root",
+                        "id": "root",
+                        "ctx": {
+                          "node_id": 16,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 42
+                        }
+                      },
+                      "attr": "val",
+                      "ctx": {
+                        "node_id": 16,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 36
+                      }
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 14,
+                "children_node_ids": [
+                  27,
+                  28
+                ],
+                "type": "Assign",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 11,
+                  "col_offset": 8,
+                  "end_lineno": 11,
+                  "end_col_offset": 25
+                },
+                "focus": "root = root.right",
+                "targets": [
+                  {
+                    "node_id": 27,
+                    "children_node_ids": [
+                      15
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 14,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 8,
+                      "end_lineno": 11,
+                      "end_col_offset": 12
+                    },
+                    "focus": "root",
+                    "id": "root",
+                    "ctx": {
+                      "node_id": 15,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 27
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 28,
+                  "children_node_ids": [
+                    37,
+                    16
+                  ],
+                  "type": "Attribute",
+                  "parent_node_id": 14,
+                  "location": {
+                    "lineno": 11,
+                    "col_offset": 15,
+                    "end_lineno": 11,
+                    "end_col_offset": 25
+                  },
+                  "focus": "root.right",
+                  "value": {
+                    "node_id": 37,
+                    "children_node_ids": [
+                      16
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 28,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 15,
+                      "end_lineno": 11,
+                      "end_col_offset": 19
+                    },
+                    "focus": "root",
+                    "id": "root",
+                    "ctx": {
+                      "node_id": 16,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 37
+                    }
+                  },
+                  "attr": "right",
+                  "ctx": {
+                    "node_id": 16,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 28
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def kthSmallest(root, k):\n    stack = []\n    while True:\n        while root:\n            stack.append(root)\n            root = root.left\n        root = stack.pop()\n        k -= 1\n        if k == 0:\n            return root.val\n        root = root.right",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def kthSmallest(root, k):\n    stack = []\n    while True:\n        while root:\n            stack.append(root)\n            root = root.left\n        root = stack.pop()\n        k -= 1\n        if k == 0:\n            return root.val\n        root = root.right",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": "TreeNode(3)",
+        "k": 1
+      },
+      "delta": {
+        "root": "TreeNode(3)",
+        "k": 1
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338888352,
+        "k": 4308476064
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "stack = []",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "[]",
+          "node_id": 8
+        },
+        {
+          "step": 4,
+          "event": "after_expression",
+          "focus": "[]",
+          "node_id": 8,
+          "value": []
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "stack = []",
+          "node_id": 3,
+          "locals": {
+            "root": "TreeNode(3)",
+            "k": 1,
+            "stack": []
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338887440": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4338887440,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4338888048": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476160
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338888352": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338888048,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4380723520": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "root": 4338888352,
+            "k": 4308476064,
+            "stack": 4380723520
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "root": "TreeNode(3)",
+        "k": 1,
+        "stack": []
+      },
+      "delta": {
+        "stack": []
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338888352,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "while True:\n        while root:\n            stack.append(root)\n            root = root.left\n        root = stack.pop()\n        k -= 1\n        if k == 0:\n            return root.val\n        root = root.right",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "root": "TreeNode(3)",
+        "k": 1,
+        "stack": []
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338888352,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 7,
+          "event": "before_statement",
+          "focus": "while root:\n            stack.append(root)\n            root = root.left",
+          "node_id": 10
+        },
+        {
+          "step": 8,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 17
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 17,
+          "value": "TreeNode(3)"
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "root": "TreeNode(3)",
+        "k": 1,
+        "stack": []
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338888352,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 10,
+          "event": "before_statement",
+          "focus": "stack.append(root)",
+          "node_id": 18
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "stack.append(root)",
+          "node_id": 29
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "stack.append",
+          "node_id": 38
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 39
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 39,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "stack.append(root)",
+          "node_id": 29,
+          "locals": {
+            "root": "TreeNode(3)",
+            "k": 1,
+            "stack": [
+              "TreeNode(3)"
+            ]
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338887440": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4338887440,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4338888048": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476160
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338888352": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338888048,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4380723520": {
+              "type": "list",
+              "value": [
+                4338888352
+              ],
+              "mutable": true
+            }
+          }
+        },
+        {
+          "step": 16,
+          "event": "after_statement",
+          "focus": "stack.append(root)",
+          "node_id": 18,
+          "locals": {
+            "root": "TreeNode(3)",
+            "k": 1,
+            "stack": [
+              "TreeNode(3)"
+            ]
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338887440": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4338887440,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4338888048": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476160
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338888352": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338888048,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4380723520": {
+              "type": "list",
+              "value": [
+                4338888352
+              ],
+              "mutable": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "root": "TreeNode(3)",
+        "k": 1,
+        "stack": [
+          "TreeNode(3)"
+        ]
+      },
+      "delta": {
+        "stack": {
+          "0": "TreeNode(3)"
+        }
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [
+            4338888352
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338888352,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 17,
+          "event": "before_statement",
+          "focus": "root = root.left",
+          "node_id": 19
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "root.left",
+          "node_id": 31
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 40
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 40,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "root.left",
+          "node_id": 31,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 22,
+          "event": "after_statement",
+          "focus": "root = root.left",
+          "node_id": 19,
+          "locals": {
+            "root": "TreeNode(1)",
+            "k": 1,
+            "stack": [
+              "TreeNode(3)"
+            ]
+          },
+          "var_table": {
+            "root": 4338889568,
+            "k": 4308476064,
+            "stack": 4380723520
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "root": "TreeNode(1)",
+        "k": 1,
+        "stack": [
+          "TreeNode(3)"
+        ]
+      },
+      "delta": {
+        "root": "TreeNode(1)"
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [
+            4338888352
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338889568,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 17
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 17,
+          "value": "TreeNode(1)"
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "root": "TreeNode(1)",
+        "k": 1,
+        "stack": [
+          "TreeNode(3)"
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [
+            4338888352
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338889568,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 25,
+          "event": "before_statement",
+          "focus": "stack.append(root)",
+          "node_id": 18
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "stack.append(root)",
+          "node_id": 29
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "stack.append",
+          "node_id": 38
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 39
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 39,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "stack.append(root)",
+          "node_id": 29,
+          "locals": {
+            "root": "TreeNode(1)",
+            "k": 1,
+            "stack": [
+              "TreeNode(3)",
+              "TreeNode(1)"
+            ]
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338887440": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4338887440,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4338888048": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476160
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338888352": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338888048,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4380723520": {
+              "type": "list",
+              "value": [
+                4338888352,
+                4338889568
+              ],
+              "mutable": true
+            }
+          }
+        },
+        {
+          "step": 31,
+          "event": "after_statement",
+          "focus": "stack.append(root)",
+          "node_id": 18,
+          "locals": {
+            "root": "TreeNode(1)",
+            "k": 1,
+            "stack": [
+              "TreeNode(3)",
+              "TreeNode(1)"
+            ]
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338887440": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4338887440,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4338888048": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476160
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338888352": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338888048,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4380723520": {
+              "type": "list",
+              "value": [
+                4338888352,
+                4338889568
+              ],
+              "mutable": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "root": "TreeNode(1)",
+        "k": 1,
+        "stack": [
+          "TreeNode(3)",
+          "TreeNode(1)"
+        ]
+      },
+      "delta": {
+        "stack": {
+          "1": "TreeNode(1)"
+        }
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [
+            4338888352,
+            4338889568
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338889568,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 32,
+          "event": "before_statement",
+          "focus": "root = root.left",
+          "node_id": 19
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": "root.left",
+          "node_id": 31
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 40
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 40,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "root.left",
+          "node_id": 31
+        },
+        {
+          "step": 37,
+          "event": "after_statement",
+          "focus": "root = root.left",
+          "node_id": 19,
+          "locals": {
+            "root": null,
+            "k": 1,
+            "stack": [
+              "TreeNode(3)",
+              "TreeNode(1)"
+            ]
+          },
+          "var_table": {
+            "root": 4308329272,
+            "k": 4308476064,
+            "stack": 4380723520
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "root": null,
+        "k": 1,
+        "stack": [
+          "TreeNode(3)",
+          "TreeNode(1)"
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [
+            4338888352,
+            4338889568
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4308329272,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 17
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 17
+        },
+        {
+          "step": 40,
+          "event": "after_statement",
+          "focus": "while root:\n            stack.append(root)\n            root = root.left",
+          "node_id": 10
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "root": null,
+        "k": 1,
+        "stack": [
+          "TreeNode(3)",
+          "TreeNode(1)"
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [
+            4338888352,
+            4338889568
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4308329272,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 41,
+          "event": "before_statement",
+          "focus": "root = stack.pop()",
+          "node_id": 11
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "stack.pop()",
+          "node_id": 21
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "stack.pop",
+          "node_id": 32
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "stack.pop()",
+          "node_id": 21,
+          "locals": {
+            "root": null,
+            "k": 1,
+            "stack": [
+              "TreeNode(3)"
+            ]
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338887440": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4338887440,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4338888048": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476160
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338888352": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338888048,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4380723520": {
+              "type": "list",
+              "value": [
+                4338888352
+              ],
+              "mutable": true
+            }
+          },
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 45,
+          "event": "after_statement",
+          "focus": "root = stack.pop()",
+          "node_id": 11,
+          "locals": {
+            "root": "TreeNode(1)",
+            "k": 1,
+            "stack": [
+              "TreeNode(3)"
+            ]
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338887440": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4338887440,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4338888048": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476160
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338888352": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338888048,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4380723520": {
+              "type": "list",
+              "value": [
+                4338888352
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "root": 4338889568,
+            "k": 4308476064,
+            "stack": 4380723520
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "root": "TreeNode(1)",
+        "k": 1,
+        "stack": [
+          "TreeNode(3)"
+        ]
+      },
+      "delta": {
+        "root": "TreeNode(1)"
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [
+            4338888352
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338889568,
+        "k": 4308476064,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 46,
+          "event": "before_statement",
+          "focus": "k -= 1",
+          "node_id": 12
+        },
+        {
+          "step": 47,
+          "event": "after_statement",
+          "focus": "k -= 1",
+          "node_id": 12,
+          "locals": {
+            "root": "TreeNode(1)",
+            "k": 0,
+            "stack": [
+              "TreeNode(3)"
+            ]
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338887440": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4338887440,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4338888048": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476160
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338888352": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338888048,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4380723520": {
+              "type": "list",
+              "value": [
+                4338888352
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "root": 4338889568,
+            "k": 4308476032,
+            "stack": 4380723520
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "root": "TreeNode(1)",
+        "k": 0,
+        "stack": [
+          "TreeNode(3)"
+        ]
+      },
+      "delta": {
+        "k": 0
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [
+            4338888352
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338889568,
+        "k": 4308476032,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 48,
+          "event": "before_statement",
+          "focus": "if k == 0:\n            return root.val",
+          "node_id": 13
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "k == 0",
+          "node_id": 25
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "k",
+          "node_id": 33
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "k",
+          "node_id": 33,
+          "value": 0
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "k == 0",
+          "node_id": 25,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "root": "TreeNode(1)",
+        "k": 0,
+        "stack": [
+          "TreeNode(3)"
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338887440": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4338887440,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4338888048": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476160
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338888352": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338888048,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4380723520": {
+          "type": "list",
+          "value": [
+            4338888352
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338889568,
+        "k": 4308476032,
+        "stack": 4380723520
+      },
+      "steps": [
+        {
+          "step": 53,
+          "event": "before_statement",
+          "focus": "return root.val",
+          "node_id": 26
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "root.val",
+          "node_id": 36
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "root.val",
+          "node_id": 36,
+          "value": 1
+        }
+      ]
+    }
+  ],
+  "result": 1
+}

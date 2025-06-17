@@ -1,0 +1,6124 @@
+{
+  "metadata": {
+    "code": "def merge(intervals):\n    if not intervals:\n        return []\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    merged = [intervals[0]]\n    \n    for current in intervals[1:]:\n        last = merged[-1]\n        \n        # If current interval overlaps with the last one, merge them\n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)\n    \n    return merged\n",
+    "function": "merge",
+    "inputs": {
+      "kwargs": {
+        "intervals": "[[1, 3], [2, 6], [8, 10], [15, 18]]"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "intervals": [
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          15,
+          18
+        ]
+      ],
+      "merged": [
+        [
+          1,
+          6
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          15,
+          18
+        ]
+      ],
+      "current": [
+        15,
+        18
+      ],
+      "last": [
+        8,
+        10
+      ]
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 20,
+          "end_col_offset": 17
+        },
+        "focus": "def merge(intervals):\n    if not intervals:\n        return []\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    merged = [intervals[0]]\n    \n    for current in intervals[1:]:\n        last = merged[-1]\n        \n        # If current interval overlaps with the last one, merge them\n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)\n    \n    return merged",
+        "name": "merge",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            8
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 8,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 10,
+                "end_lineno": 1,
+                "end_col_offset": 19
+              },
+              "focus": "intervals",
+              "arg": "intervals"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              9,
+              10
+            ],
+            "type": "If",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 17
+            },
+            "focus": "if not intervals:\n        return []",
+            "test": {
+              "node_id": 9,
+              "children_node_ids": [
+                19,
+                20
+              ],
+              "type": "UnaryOp",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 7,
+                "end_lineno": 2,
+                "end_col_offset": 20
+              },
+              "focus": "not intervals",
+              "op": {
+                "node_id": 19,
+                "children_node_ids": [],
+                "type": "Not",
+                "parent_node_id": 9
+              },
+              "operand": {
+                "node_id": 20,
+                "children_node_ids": [
+                  26
+                ],
+                "type": "Name",
+                "parent_node_id": 9,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 11,
+                  "end_lineno": 2,
+                  "end_col_offset": 20
+                },
+                "focus": "intervals",
+                "id": "intervals",
+                "ctx": {
+                  "node_id": 26,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 20
+                }
+              }
+            },
+            "body": [
+              {
+                "node_id": 10,
+                "children_node_ids": [
+                  21
+                ],
+                "type": "Return",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 8,
+                  "end_lineno": 3,
+                  "end_col_offset": 17
+                },
+                "focus": "return []",
+                "value": {
+                  "node_id": 21,
+                  "children_node_ids": [
+                    26
+                  ],
+                  "type": "List",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 3,
+                    "col_offset": 15,
+                    "end_lineno": 3,
+                    "end_col_offset": 17
+                  },
+                  "focus": "[]",
+                  "elts": [],
+                  "ctx": {
+                    "node_id": 26,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 21
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              11
+            ],
+            "type": "Expr",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 6,
+              "col_offset": 4,
+              "end_lineno": 6,
+              "end_col_offset": 38
+            },
+            "focus": "intervals.sort(key=lambda x: x[0])",
+            "value": {
+              "node_id": 11,
+              "children_node_ids": [
+                22,
+                23
+              ],
+              "type": "Call",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 6,
+                "col_offset": 4,
+                "end_lineno": 6,
+                "end_col_offset": 38
+              },
+              "focus": "intervals.sort(key=lambda x: x[0])",
+              "func": {
+                "node_id": 22,
+                "children_node_ids": [
+                  34,
+                  26
+                ],
+                "type": "Attribute",
+                "parent_node_id": 11,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 4,
+                  "end_lineno": 6,
+                  "end_col_offset": 18
+                },
+                "focus": "intervals.sort",
+                "value": {
+                  "node_id": 34,
+                  "children_node_ids": [
+                    26
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 22,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 4,
+                    "end_lineno": 6,
+                    "end_col_offset": 13
+                  },
+                  "focus": "intervals",
+                  "id": "intervals",
+                  "ctx": {
+                    "node_id": 26,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 34
+                  }
+                },
+                "attr": "sort",
+                "ctx": {
+                  "node_id": 26,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 22
+                }
+              },
+              "args": [],
+              "keywords": [
+                {
+                  "node_id": 23,
+                  "children_node_ids": [
+                    35
+                  ],
+                  "type": "keyword",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 19,
+                    "end_lineno": 6,
+                    "end_col_offset": 37
+                  },
+                  "focus": "key=lambda x: x[0]",
+                  "arg": "key",
+                  "value": {
+                    "node_id": 35,
+                    "children_node_ids": [
+                      47,
+                      48
+                    ],
+                    "type": "Lambda",
+                    "parent_node_id": 23,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 23,
+                      "end_lineno": 6,
+                      "end_col_offset": 37
+                    },
+                    "focus": "lambda x: x[0]",
+                    "args": {
+                      "node_id": 47,
+                      "children_node_ids": [
+                        62
+                      ],
+                      "type": "arguments",
+                      "parent_node_id": 35,
+                      "posonlyargs": [],
+                      "args": [
+                        {
+                          "node_id": 62,
+                          "children_node_ids": [],
+                          "type": "arg",
+                          "parent_node_id": 47,
+                          "location": {
+                            "lineno": 6,
+                            "col_offset": 30,
+                            "end_lineno": 6,
+                            "end_col_offset": 31
+                          },
+                          "focus": "x",
+                          "arg": "x"
+                        }
+                      ],
+                      "kwonlyargs": [],
+                      "kw_defaults": [],
+                      "defaults": []
+                    },
+                    "body": {
+                      "node_id": 48,
+                      "children_node_ids": [
+                        63,
+                        64,
+                        26
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 35,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 33,
+                        "end_lineno": 6,
+                        "end_col_offset": 37
+                      },
+                      "focus": "x[0]",
+                      "value": {
+                        "node_id": 63,
+                        "children_node_ids": [
+                          26
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 48,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 33,
+                          "end_lineno": 6,
+                          "end_col_offset": 34
+                        },
+                        "focus": "x",
+                        "id": "x",
+                        "ctx": {
+                          "node_id": 26,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 63
+                        }
+                      },
+                      "slice": {
+                        "node_id": 64,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 48,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 35,
+                          "end_lineno": 6,
+                          "end_col_offset": 36
+                        },
+                        "focus": "0",
+                        "value": 0
+                      },
+                      "ctx": {
+                        "node_id": 26,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 48
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              12,
+              13
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 8,
+              "col_offset": 4,
+              "end_lineno": 8,
+              "end_col_offset": 27
+            },
+            "focus": "merged = [intervals[0]]",
+            "targets": [
+              {
+                "node_id": 12,
+                "children_node_ids": [
+                  24
+                ],
+                "type": "Name",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 4,
+                  "end_lineno": 8,
+                  "end_col_offset": 10
+                },
+                "focus": "merged",
+                "id": "merged",
+                "ctx": {
+                  "node_id": 24,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 12
+                }
+              }
+            ],
+            "value": {
+              "node_id": 13,
+              "children_node_ids": [
+                25,
+                26
+              ],
+              "type": "List",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 8,
+                "col_offset": 13,
+                "end_lineno": 8,
+                "end_col_offset": 27
+              },
+              "focus": "[intervals[0]]",
+              "elts": [
+                {
+                  "node_id": 25,
+                  "children_node_ids": [
+                    36,
+                    37,
+                    26
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 14,
+                    "end_lineno": 8,
+                    "end_col_offset": 26
+                  },
+                  "focus": "intervals[0]",
+                  "value": {
+                    "node_id": 36,
+                    "children_node_ids": [
+                      26
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 25,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 14,
+                      "end_lineno": 8,
+                      "end_col_offset": 23
+                    },
+                    "focus": "intervals",
+                    "id": "intervals",
+                    "ctx": {
+                      "node_id": 26,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 36
+                    }
+                  },
+                  "slice": {
+                    "node_id": 37,
+                    "children_node_ids": [],
+                    "type": "Constant",
+                    "parent_node_id": 25,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 24,
+                      "end_lineno": 8,
+                      "end_col_offset": 25
+                    },
+                    "focus": "0",
+                    "value": 0
+                  },
+                  "ctx": {
+                    "node_id": 26,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 25
+                  }
+                }
+              ],
+              "ctx": {
+                "node_id": 26,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 13
+              }
+            }
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              14,
+              15,
+              16,
+              17
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 10,
+              "col_offset": 4,
+              "end_lineno": 18,
+              "end_col_offset": 34
+            },
+            "focus": "for current in intervals[1:]:\n        last = merged[-1]\n        \n        # If current interval overlaps with the last one, merge them\n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+            "target": {
+              "node_id": 14,
+              "children_node_ids": [
+                24
+              ],
+              "type": "Name",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 10,
+                "col_offset": 8,
+                "end_lineno": 10,
+                "end_col_offset": 15
+              },
+              "focus": "current",
+              "id": "current",
+              "ctx": {
+                "node_id": 24,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 14
+              }
+            },
+            "iter": {
+              "node_id": 15,
+              "children_node_ids": [
+                27,
+                28,
+                26
+              ],
+              "type": "Subscript",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 10,
+                "col_offset": 19,
+                "end_lineno": 10,
+                "end_col_offset": 32
+              },
+              "focus": "intervals[1:]",
+              "value": {
+                "node_id": 27,
+                "children_node_ids": [
+                  26
+                ],
+                "type": "Name",
+                "parent_node_id": 15,
+                "location": {
+                  "lineno": 10,
+                  "col_offset": 19,
+                  "end_lineno": 10,
+                  "end_col_offset": 28
+                },
+                "focus": "intervals",
+                "id": "intervals",
+                "ctx": {
+                  "node_id": 26,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 27
+                }
+              },
+              "slice": {
+                "node_id": 28,
+                "children_node_ids": [
+                  38
+                ],
+                "type": "Slice",
+                "parent_node_id": 15,
+                "location": {
+                  "lineno": 10,
+                  "col_offset": 29,
+                  "end_lineno": 10,
+                  "end_col_offset": 31
+                },
+                "focus": "1:",
+                "lower": {
+                  "node_id": 38,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 28,
+                  "location": {
+                    "lineno": 10,
+                    "col_offset": 29,
+                    "end_lineno": 10,
+                    "end_col_offset": 30
+                  },
+                  "focus": "1",
+                  "value": 1
+                }
+              },
+              "ctx": {
+                "node_id": 26,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 15
+              }
+            },
+            "body": [
+              {
+                "node_id": 16,
+                "children_node_ids": [
+                  29,
+                  30
+                ],
+                "type": "Assign",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 11,
+                  "col_offset": 8,
+                  "end_lineno": 11,
+                  "end_col_offset": 25
+                },
+                "focus": "last = merged[-1]",
+                "targets": [
+                  {
+                    "node_id": 29,
+                    "children_node_ids": [
+                      24
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 16,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 8,
+                      "end_lineno": 11,
+                      "end_col_offset": 12
+                    },
+                    "focus": "last",
+                    "id": "last",
+                    "ctx": {
+                      "node_id": 24,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 29
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 30,
+                  "children_node_ids": [
+                    39,
+                    40,
+                    26
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 16,
+                  "location": {
+                    "lineno": 11,
+                    "col_offset": 15,
+                    "end_lineno": 11,
+                    "end_col_offset": 25
+                  },
+                  "focus": "merged[-1]",
+                  "value": {
+                    "node_id": 39,
+                    "children_node_ids": [
+                      26
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 30,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 15,
+                      "end_lineno": 11,
+                      "end_col_offset": 21
+                    },
+                    "focus": "merged",
+                    "id": "merged",
+                    "ctx": {
+                      "node_id": 26,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 39
+                    }
+                  },
+                  "slice": {
+                    "node_id": 40,
+                    "children_node_ids": [
+                      49,
+                      50
+                    ],
+                    "type": "UnaryOp",
+                    "parent_node_id": 30,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 22,
+                      "end_lineno": 11,
+                      "end_col_offset": 24
+                    },
+                    "focus": "-1",
+                    "op": {
+                      "node_id": 49,
+                      "children_node_ids": [],
+                      "type": "USub",
+                      "parent_node_id": 40
+                    },
+                    "operand": {
+                      "node_id": 50,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 40,
+                      "location": {
+                        "lineno": 11,
+                        "col_offset": 23,
+                        "end_lineno": 11,
+                        "end_col_offset": 24
+                      },
+                      "focus": "1",
+                      "value": 1
+                    }
+                  },
+                  "ctx": {
+                    "node_id": 26,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 30
+                  }
+                }
+              },
+              {
+                "node_id": 17,
+                "children_node_ids": [
+                  31,
+                  32,
+                  33
+                ],
+                "type": "If",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 14,
+                  "col_offset": 8,
+                  "end_lineno": 18,
+                  "end_col_offset": 34
+                },
+                "focus": "if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+                "test": {
+                  "node_id": 31,
+                  "children_node_ids": [
+                    41,
+                    42,
+                    43
+                  ],
+                  "type": "Compare",
+                  "parent_node_id": 17,
+                  "location": {
+                    "lineno": 14,
+                    "col_offset": 11,
+                    "end_lineno": 14,
+                    "end_col_offset": 32
+                  },
+                  "focus": "current[0] <= last[1]",
+                  "left": {
+                    "node_id": 41,
+                    "children_node_ids": [
+                      51,
+                      52,
+                      26
+                    ],
+                    "type": "Subscript",
+                    "parent_node_id": 31,
+                    "location": {
+                      "lineno": 14,
+                      "col_offset": 11,
+                      "end_lineno": 14,
+                      "end_col_offset": 21
+                    },
+                    "focus": "current[0]",
+                    "value": {
+                      "node_id": 51,
+                      "children_node_ids": [
+                        26
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 41,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 11,
+                        "end_lineno": 14,
+                        "end_col_offset": 18
+                      },
+                      "focus": "current",
+                      "id": "current",
+                      "ctx": {
+                        "node_id": 26,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 51
+                      }
+                    },
+                    "slice": {
+                      "node_id": 52,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 41,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 19,
+                        "end_lineno": 14,
+                        "end_col_offset": 20
+                      },
+                      "focus": "0",
+                      "value": 0
+                    },
+                    "ctx": {
+                      "node_id": 26,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 41
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 42,
+                      "children_node_ids": [],
+                      "type": "LtE",
+                      "parent_node_id": 31
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 43,
+                      "children_node_ids": [
+                        53,
+                        54,
+                        26
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 31,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 25,
+                        "end_lineno": 14,
+                        "end_col_offset": 32
+                      },
+                      "focus": "last[1]",
+                      "value": {
+                        "node_id": 53,
+                        "children_node_ids": [
+                          26
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 43,
+                        "location": {
+                          "lineno": 14,
+                          "col_offset": 25,
+                          "end_lineno": 14,
+                          "end_col_offset": 29
+                        },
+                        "focus": "last",
+                        "id": "last",
+                        "ctx": {
+                          "node_id": 26,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 53
+                        }
+                      },
+                      "slice": {
+                        "node_id": 54,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 43,
+                        "location": {
+                          "lineno": 14,
+                          "col_offset": 30,
+                          "end_lineno": 14,
+                          "end_col_offset": 31
+                        },
+                        "focus": "1",
+                        "value": 1
+                      },
+                      "ctx": {
+                        "node_id": 26,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 43
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 32,
+                    "children_node_ids": [
+                      44,
+                      45
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 17,
+                    "location": {
+                      "lineno": 15,
+                      "col_offset": 12,
+                      "end_lineno": 15,
+                      "end_col_offset": 46
+                    },
+                    "focus": "last[1] = max(last[1], current[1])",
+                    "targets": [
+                      {
+                        "node_id": 44,
+                        "children_node_ids": [
+                          55,
+                          56,
+                          24
+                        ],
+                        "type": "Subscript",
+                        "parent_node_id": 32,
+                        "location": {
+                          "lineno": 15,
+                          "col_offset": 12,
+                          "end_lineno": 15,
+                          "end_col_offset": 19
+                        },
+                        "focus": "last[1]",
+                        "value": {
+                          "node_id": 55,
+                          "children_node_ids": [
+                            26
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 44,
+                          "location": {
+                            "lineno": 15,
+                            "col_offset": 12,
+                            "end_lineno": 15,
+                            "end_col_offset": 16
+                          },
+                          "focus": "last",
+                          "id": "last",
+                          "ctx": {
+                            "node_id": 26,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 55
+                          }
+                        },
+                        "slice": {
+                          "node_id": 56,
+                          "children_node_ids": [],
+                          "type": "Constant",
+                          "parent_node_id": 44,
+                          "location": {
+                            "lineno": 15,
+                            "col_offset": 17,
+                            "end_lineno": 15,
+                            "end_col_offset": 18
+                          },
+                          "focus": "1",
+                          "value": 1
+                        },
+                        "ctx": {
+                          "node_id": 24,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 44
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 45,
+                      "children_node_ids": [
+                        57,
+                        58,
+                        59
+                      ],
+                      "type": "Call",
+                      "parent_node_id": 32,
+                      "location": {
+                        "lineno": 15,
+                        "col_offset": 22,
+                        "end_lineno": 15,
+                        "end_col_offset": 46
+                      },
+                      "focus": "max(last[1], current[1])",
+                      "func": {
+                        "node_id": 57,
+                        "children_node_ids": [
+                          26
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 45,
+                        "location": {
+                          "lineno": 15,
+                          "col_offset": 22,
+                          "end_lineno": 15,
+                          "end_col_offset": 25
+                        },
+                        "focus": "max",
+                        "id": "max",
+                        "ctx": {
+                          "node_id": 26,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 57
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 58,
+                          "children_node_ids": [
+                            65,
+                            66,
+                            26
+                          ],
+                          "type": "Subscript",
+                          "parent_node_id": 45,
+                          "location": {
+                            "lineno": 15,
+                            "col_offset": 26,
+                            "end_lineno": 15,
+                            "end_col_offset": 33
+                          },
+                          "focus": "last[1]",
+                          "value": {
+                            "node_id": 65,
+                            "children_node_ids": [
+                              26
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 58,
+                            "location": {
+                              "lineno": 15,
+                              "col_offset": 26,
+                              "end_lineno": 15,
+                              "end_col_offset": 30
+                            },
+                            "focus": "last",
+                            "id": "last",
+                            "ctx": {
+                              "node_id": 26,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 65
+                            }
+                          },
+                          "slice": {
+                            "node_id": 66,
+                            "children_node_ids": [],
+                            "type": "Constant",
+                            "parent_node_id": 58,
+                            "location": {
+                              "lineno": 15,
+                              "col_offset": 31,
+                              "end_lineno": 15,
+                              "end_col_offset": 32
+                            },
+                            "focus": "1",
+                            "value": 1
+                          },
+                          "ctx": {
+                            "node_id": 26,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 58
+                          }
+                        },
+                        {
+                          "node_id": 59,
+                          "children_node_ids": [
+                            67,
+                            68,
+                            26
+                          ],
+                          "type": "Subscript",
+                          "parent_node_id": 45,
+                          "location": {
+                            "lineno": 15,
+                            "col_offset": 35,
+                            "end_lineno": 15,
+                            "end_col_offset": 45
+                          },
+                          "focus": "current[1]",
+                          "value": {
+                            "node_id": 67,
+                            "children_node_ids": [
+                              26
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 59,
+                            "location": {
+                              "lineno": 15,
+                              "col_offset": 35,
+                              "end_lineno": 15,
+                              "end_col_offset": 42
+                            },
+                            "focus": "current",
+                            "id": "current",
+                            "ctx": {
+                              "node_id": 26,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 67
+                            }
+                          },
+                          "slice": {
+                            "node_id": 68,
+                            "children_node_ids": [],
+                            "type": "Constant",
+                            "parent_node_id": 59,
+                            "location": {
+                              "lineno": 15,
+                              "col_offset": 43,
+                              "end_lineno": 15,
+                              "end_col_offset": 44
+                            },
+                            "focus": "1",
+                            "value": 1
+                          },
+                          "ctx": {
+                            "node_id": 26,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 59
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "node_id": 33,
+                    "children_node_ids": [
+                      46
+                    ],
+                    "type": "Expr",
+                    "parent_node_id": 17,
+                    "location": {
+                      "lineno": 18,
+                      "col_offset": 12,
+                      "end_lineno": 18,
+                      "end_col_offset": 34
+                    },
+                    "focus": "merged.append(current)",
+                    "value": {
+                      "node_id": 46,
+                      "children_node_ids": [
+                        60,
+                        61
+                      ],
+                      "type": "Call",
+                      "parent_node_id": 33,
+                      "location": {
+                        "lineno": 18,
+                        "col_offset": 12,
+                        "end_lineno": 18,
+                        "end_col_offset": 34
+                      },
+                      "focus": "merged.append(current)",
+                      "func": {
+                        "node_id": 60,
+                        "children_node_ids": [
+                          69,
+                          26
+                        ],
+                        "type": "Attribute",
+                        "parent_node_id": 46,
+                        "location": {
+                          "lineno": 18,
+                          "col_offset": 12,
+                          "end_lineno": 18,
+                          "end_col_offset": 25
+                        },
+                        "focus": "merged.append",
+                        "value": {
+                          "node_id": 69,
+                          "children_node_ids": [
+                            26
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 60,
+                          "location": {
+                            "lineno": 18,
+                            "col_offset": 12,
+                            "end_lineno": 18,
+                            "end_col_offset": 18
+                          },
+                          "focus": "merged",
+                          "id": "merged",
+                          "ctx": {
+                            "node_id": 26,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 69
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "node_id": 26,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 60
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 61,
+                          "children_node_ids": [
+                            26
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 46,
+                          "location": {
+                            "lineno": 18,
+                            "col_offset": 26,
+                            "end_lineno": 18,
+                            "end_col_offset": 33
+                          },
+                          "focus": "current",
+                          "id": "current",
+                          "ctx": {
+                            "node_id": 26,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 61
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ]
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 7,
+            "children_node_ids": [
+              18
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 20,
+              "col_offset": 4,
+              "end_lineno": 20,
+              "end_col_offset": 17
+            },
+            "focus": "return merged",
+            "value": {
+              "node_id": 18,
+              "children_node_ids": [
+                26
+              ],
+              "type": "Name",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 20,
+                "col_offset": 11,
+                "end_lineno": 20,
+                "end_col_offset": 17
+              },
+              "focus": "merged",
+              "id": "merged",
+              "ctx": {
+                "node_id": 26,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 18
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def merge(intervals):\n    if not intervals:\n        return []\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    merged = [intervals[0]]\n    \n    for current in intervals[1:]:\n        last = merged[-1]\n        \n        # If current interval overlaps with the last one, merge them\n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)\n    \n    return merged",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def merge(intervals):\n    if not intervals:\n        return []\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    merged = [intervals[0]]\n    \n    for current in intervals[1:]:\n        last = merged[-1]\n        \n        # If current interval overlaps with the last one, merge them\n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)\n    \n    return merged",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ]
+      },
+      "delta": {
+        "intervals": {
+          "0": {
+            "0": 1,
+            "1": 3
+          },
+          "1": {
+            "0": 2,
+            "1": 6
+          },
+          "2": {
+            "0": 8,
+            "1": 10
+          },
+          "3": {
+            "0": 15,
+            "1": 18
+          }
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if not intervals:\n        return []",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "not intervals",
+          "node_id": 9
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 20
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 20,
+          "value": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              15,
+              18
+            ]
+          ]
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "not intervals",
+          "node_id": 9,
+          "value": false
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "if not intervals:\n        return []",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "intervals.sort(key=lambda x: x[0])",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "intervals.sort(key=lambda x: x[0])",
+          "node_id": 11
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "intervals.sort",
+          "node_id": 22
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "lambda x: x[0]",
+          "node_id": 35
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "x[0]",
+          "node_id": 48,
+          "locals": {
+            "x": [
+              1,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4338984000
+          }
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 63,
+          "locals": {
+            "x": [
+              1,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4338984000
+          }
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 63,
+          "locals": {
+            "x": [
+              1,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4338984000
+          },
+          "value": [
+            1,
+            3
+          ]
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "x[0]",
+          "node_id": 48,
+          "locals": {
+            "x": [
+              1,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4338984000
+          },
+          "value": 1
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "x[0]",
+          "node_id": 48,
+          "locals": {
+            "x": [
+              2,
+              6
+            ]
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4337945920
+          }
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 63,
+          "locals": {
+            "x": [
+              2,
+              6
+            ]
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4337945920
+          }
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 63,
+          "locals": {
+            "x": [
+              2,
+              6
+            ]
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4337945920
+          },
+          "value": [
+            2,
+            6
+          ]
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "x[0]",
+          "node_id": 48,
+          "locals": {
+            "x": [
+              2,
+              6
+            ]
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4337945920
+          },
+          "value": 2
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "x[0]",
+          "node_id": 48,
+          "locals": {
+            "x": [
+              8,
+              10
+            ]
+          },
+          "object_table": {
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4338909568
+          }
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 63,
+          "locals": {
+            "x": [
+              8,
+              10
+            ]
+          },
+          "object_table": {
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4338909568
+          }
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 63,
+          "locals": {
+            "x": [
+              8,
+              10
+            ]
+          },
+          "object_table": {
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4338909568
+          },
+          "value": [
+            8,
+            10
+          ]
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "x[0]",
+          "node_id": 48,
+          "locals": {
+            "x": [
+              8,
+              10
+            ]
+          },
+          "object_table": {
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4338909568
+          },
+          "value": 8
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "x[0]",
+          "node_id": 48,
+          "locals": {
+            "x": [
+              15,
+              18
+            ]
+          },
+          "object_table": {
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339346944
+          }
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 63,
+          "locals": {
+            "x": [
+              15,
+              18
+            ]
+          },
+          "object_table": {
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339346944
+          }
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 63,
+          "locals": {
+            "x": [
+              15,
+              18
+            ]
+          },
+          "object_table": {
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339346944
+          },
+          "value": [
+            15,
+            18
+          ]
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "x[0]",
+          "node_id": 48,
+          "locals": {
+            "x": [
+              15,
+              18
+            ]
+          },
+          "object_table": {
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339346944
+          },
+          "value": 15
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "intervals.sort(key=lambda x: x[0])",
+          "node_id": 11
+        },
+        {
+          "step": 29,
+          "event": "after_statement",
+          "focus": "intervals.sort(key=lambda x: x[0])",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504
+      },
+      "steps": [
+        {
+          "step": 30,
+          "event": "before_statement",
+          "focus": "merged = [intervals[0]]",
+          "node_id": 5
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "[intervals[0]]",
+          "node_id": 13
+        },
+        {
+          "step": 32,
+          "event": "before_expression",
+          "focus": "intervals[0]",
+          "node_id": 25
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 36
+        },
+        {
+          "step": 34,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 36,
+          "value": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              15,
+              18
+            ]
+          ]
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "intervals[0]",
+          "node_id": 25,
+          "value": [
+            1,
+            3
+          ]
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "[intervals[0]]",
+          "node_id": 13,
+          "value": [
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "step": 37,
+          "event": "after_statement",
+          "focus": "merged = [intervals[0]]",
+          "node_id": 5,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "merged": [
+              [
+                1,
+                3
+              ]
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            },
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            },
+            "4338909504": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4337945920,
+                4338909568,
+                4339346944
+              ],
+              "mutable": true
+            },
+            "4391825920": {
+              "type": "list",
+              "value": [
+                4338984000
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "intervals": 4338909504,
+            "merged": 4391825920
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "delta": {
+        "merged": {
+          "0": {
+            "0": 1,
+            "1": 3
+          }
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920
+      },
+      "steps": [
+        {
+          "step": 38,
+          "event": "before_statement",
+          "focus": "for current in intervals[1:]:\n        last = merged[-1]\n        \n        # If current interval overlaps with the last one, merge them\n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+          "node_id": 6
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "intervals[1:]",
+          "node_id": 15
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 27
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 27,
+          "value": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              15,
+              18
+            ]
+          ]
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "1:",
+          "node_id": 28
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "1:",
+          "node_id": 28,
+          "value": "slice(1, None, None)"
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "intervals[1:]",
+          "node_id": 15,
+          "value": [
+            [
+              2,
+              6
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              15,
+              18
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            3
+          ]
+        ],
+        "current": [
+          2,
+          6
+        ]
+      },
+      "delta": {
+        "current": {
+          "0": 2,
+          "1": 6
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4337945920
+      },
+      "steps": [
+        {
+          "step": 45,
+          "event": "before_statement",
+          "focus": "last = merged[-1]",
+          "node_id": 16
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "merged[-1]",
+          "node_id": 30
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "merged",
+          "node_id": 39
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "merged",
+          "node_id": 39,
+          "value": [
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "-1",
+          "node_id": 40
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "-1",
+          "node_id": 40,
+          "value": -1
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "merged[-1]",
+          "node_id": 30,
+          "value": [
+            1,
+            3
+          ]
+        },
+        {
+          "step": 52,
+          "event": "after_statement",
+          "focus": "last = merged[-1]",
+          "node_id": 16,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "merged": [
+              [
+                1,
+                3
+              ]
+            ],
+            "current": [
+              2,
+              6
+            ],
+            "last": [
+              1,
+              3
+            ]
+          },
+          "var_table": {
+            "intervals": 4338909504,
+            "merged": 4391825920,
+            "current": 4337945920,
+            "last": 4338984000
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            3
+          ]
+        ],
+        "current": [
+          2,
+          6
+        ],
+        "last": [
+          1,
+          3
+        ]
+      },
+      "delta": {
+        "last": {
+          "0": 1,
+          "1": 3
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4337945920,
+        "last": 4338984000
+      },
+      "steps": [
+        {
+          "step": 53,
+          "event": "before_statement",
+          "focus": "if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+          "node_id": 17
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "current[0] <= last[1]",
+          "node_id": 31
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": "current[0]",
+          "node_id": 41
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "current",
+          "node_id": 51
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "current",
+          "node_id": 51,
+          "value": [
+            2,
+            6
+          ]
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "current[0]",
+          "node_id": 41,
+          "value": 2
+        },
+        {
+          "step": 59,
+          "event": "before_expression",
+          "focus": "last[1]",
+          "node_id": 43
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "last",
+          "node_id": 53
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "last",
+          "node_id": 53,
+          "value": [
+            1,
+            3
+          ]
+        },
+        {
+          "step": 62,
+          "event": "after_expression",
+          "focus": "last[1]",
+          "node_id": 43,
+          "value": 3
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "current[0] <= last[1]",
+          "node_id": 31,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            3
+          ]
+        ],
+        "current": [
+          2,
+          6
+        ],
+        "last": [
+          1,
+          3
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4337945920,
+        "last": 4338984000
+      },
+      "steps": [
+        {
+          "step": 64,
+          "event": "before_statement",
+          "focus": "last[1] = max(last[1], current[1])",
+          "node_id": 32
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "max(last[1], current[1])",
+          "node_id": 45
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "last[1]",
+          "node_id": 58
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "last",
+          "node_id": 65
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "last",
+          "node_id": 65,
+          "value": [
+            1,
+            3
+          ]
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "last[1]",
+          "node_id": 58,
+          "value": 3
+        },
+        {
+          "step": 70,
+          "event": "before_expression",
+          "focus": "current[1]",
+          "node_id": 59
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "current",
+          "node_id": 67
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "current",
+          "node_id": 67,
+          "value": [
+            2,
+            6
+          ]
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "current[1]",
+          "node_id": 59,
+          "value": 6
+        },
+        {
+          "step": 74,
+          "event": "after_expression",
+          "focus": "max(last[1], current[1])",
+          "node_id": 45,
+          "value": 6
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "last",
+          "node_id": 55
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "last",
+          "node_id": 55,
+          "value": [
+            1,
+            3
+          ]
+        },
+        {
+          "step": 77,
+          "event": "after_statement",
+          "focus": "last[1] = max(last[1], current[1])",
+          "node_id": 32,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "merged": [
+              [
+                1,
+                6
+              ]
+            ],
+            "current": [
+              2,
+              6
+            ],
+            "last": [
+              1,
+              6
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            },
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            },
+            "4338909504": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4337945920,
+                4338909568,
+                4339346944
+              ],
+              "mutable": true
+            },
+            "4391825920": {
+              "type": "list",
+              "value": [
+                4338984000
+              ],
+              "mutable": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ]
+        ],
+        "current": [
+          2,
+          6
+        ],
+        "last": [
+          1,
+          6
+        ]
+      },
+      "delta": {
+        "intervals": {
+          "0": {
+            "1": 6
+          }
+        },
+        "merged": {
+          "0": {
+            "1": 6
+          }
+        },
+        "last": {
+          "1": 6
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4337945920,
+        "last": 4338984000
+      },
+      "steps": [
+        {
+          "step": 78,
+          "event": "after_statement",
+          "focus": "if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+          "node_id": 17
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ]
+        ],
+        "current": [
+          8,
+          10
+        ],
+        "last": [
+          1,
+          6
+        ]
+      },
+      "delta": {
+        "current": {
+          "0": 8,
+          "1": 10
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4338909568,
+        "last": 4338984000
+      },
+      "steps": [
+        {
+          "step": 79,
+          "event": "before_statement",
+          "focus": "last = merged[-1]",
+          "node_id": 16
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "merged[-1]",
+          "node_id": 30
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "merged",
+          "node_id": 39
+        },
+        {
+          "step": 82,
+          "event": "after_expression",
+          "focus": "merged",
+          "node_id": 39,
+          "value": [
+            [
+              1,
+              6
+            ]
+          ]
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "-1",
+          "node_id": 40
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "-1",
+          "node_id": 40,
+          "value": -1
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "merged[-1]",
+          "node_id": 30,
+          "value": [
+            1,
+            6
+          ]
+        },
+        {
+          "step": 86,
+          "event": "after_statement",
+          "focus": "last = merged[-1]",
+          "node_id": 16
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ]
+        ],
+        "current": [
+          8,
+          10
+        ],
+        "last": [
+          1,
+          6
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4338909568,
+        "last": 4338984000
+      },
+      "steps": [
+        {
+          "step": 87,
+          "event": "before_statement",
+          "focus": "if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+          "node_id": 17
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "current[0] <= last[1]",
+          "node_id": 31
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "current[0]",
+          "node_id": 41
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "current",
+          "node_id": 51
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "current",
+          "node_id": 51,
+          "value": [
+            8,
+            10
+          ]
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "current[0]",
+          "node_id": 41,
+          "value": 8
+        },
+        {
+          "step": 93,
+          "event": "before_expression",
+          "focus": "last[1]",
+          "node_id": 43
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "last",
+          "node_id": 53
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "last",
+          "node_id": 53,
+          "value": [
+            1,
+            6
+          ]
+        },
+        {
+          "step": 96,
+          "event": "after_expression",
+          "focus": "last[1]",
+          "node_id": 43,
+          "value": 6
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "current[0] <= last[1]",
+          "node_id": 31,
+          "value": false
+        }
+      ]
+    },
+    {
+      "line_number": 18,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ]
+        ],
+        "current": [
+          8,
+          10
+        ],
+        "last": [
+          1,
+          6
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4338909568,
+        "last": 4338984000
+      },
+      "steps": [
+        {
+          "step": 98,
+          "event": "before_statement",
+          "focus": "merged.append(current)",
+          "node_id": 33
+        },
+        {
+          "step": 99,
+          "event": "before_expression",
+          "focus": "merged.append(current)",
+          "node_id": 46
+        },
+        {
+          "step": 100,
+          "event": "before_expression",
+          "focus": "merged.append",
+          "node_id": 60
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "current",
+          "node_id": 61
+        },
+        {
+          "step": 102,
+          "event": "after_expression",
+          "focus": "current",
+          "node_id": 61,
+          "value": [
+            8,
+            10
+          ]
+        },
+        {
+          "step": 103,
+          "event": "after_expression",
+          "focus": "merged.append(current)",
+          "node_id": 46,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "merged": [
+              [
+                1,
+                6
+              ],
+              [
+                8,
+                10
+              ]
+            ],
+            "current": [
+              8,
+              10
+            ],
+            "last": [
+              1,
+              6
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            },
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            },
+            "4338909504": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4337945920,
+                4338909568,
+                4339346944
+              ],
+              "mutable": true
+            },
+            "4391825920": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4338909568
+              ],
+              "mutable": true
+            }
+          }
+        },
+        {
+          "step": 104,
+          "event": "after_statement",
+          "focus": "merged.append(current)",
+          "node_id": 33,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "merged": [
+              [
+                1,
+                6
+              ],
+              [
+                8,
+                10
+              ]
+            ],
+            "current": [
+              8,
+              10
+            ],
+            "last": [
+              1,
+              6
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            },
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            },
+            "4338909504": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4337945920,
+                4338909568,
+                4339346944
+              ],
+              "mutable": true
+            },
+            "4391825920": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4338909568
+              ],
+              "mutable": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "current": [
+          8,
+          10
+        ],
+        "last": [
+          1,
+          6
+        ]
+      },
+      "delta": {
+        "merged": {
+          "1": {
+            "0": 8,
+            "1": 10
+          }
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4338909568
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4338909568,
+        "last": 4338984000
+      },
+      "steps": [
+        {
+          "step": 105,
+          "event": "after_statement",
+          "focus": "if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+          "node_id": 17
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "current": [
+          15,
+          18
+        ],
+        "last": [
+          1,
+          6
+        ]
+      },
+      "delta": {
+        "current": {
+          "0": 15,
+          "1": 18
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4338909568
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4339346944,
+        "last": 4338984000
+      },
+      "steps": [
+        {
+          "step": 106,
+          "event": "before_statement",
+          "focus": "last = merged[-1]",
+          "node_id": 16
+        },
+        {
+          "step": 107,
+          "event": "before_expression",
+          "focus": "merged[-1]",
+          "node_id": 30
+        },
+        {
+          "step": 108,
+          "event": "before_expression",
+          "focus": "merged",
+          "node_id": 39
+        },
+        {
+          "step": 109,
+          "event": "after_expression",
+          "focus": "merged",
+          "node_id": 39,
+          "value": [
+            [
+              1,
+              6
+            ],
+            [
+              8,
+              10
+            ]
+          ]
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "-1",
+          "node_id": 40
+        },
+        {
+          "step": 111,
+          "event": "after_expression",
+          "focus": "-1",
+          "node_id": 40,
+          "value": -1
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "merged[-1]",
+          "node_id": 30,
+          "value": [
+            8,
+            10
+          ]
+        },
+        {
+          "step": 113,
+          "event": "after_statement",
+          "focus": "last = merged[-1]",
+          "node_id": 16,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "merged": [
+              [
+                1,
+                6
+              ],
+              [
+                8,
+                10
+              ]
+            ],
+            "current": [
+              15,
+              18
+            ],
+            "last": [
+              8,
+              10
+            ]
+          },
+          "var_table": {
+            "intervals": 4338909504,
+            "merged": 4391825920,
+            "current": 4339346944,
+            "last": 4338909568
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "current": [
+          15,
+          18
+        ],
+        "last": [
+          8,
+          10
+        ]
+      },
+      "delta": {
+        "last": {
+          "0": 8,
+          "1": 10
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4338909568
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4339346944,
+        "last": 4338909568
+      },
+      "steps": [
+        {
+          "step": 114,
+          "event": "before_statement",
+          "focus": "if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+          "node_id": 17
+        },
+        {
+          "step": 115,
+          "event": "before_expression",
+          "focus": "current[0] <= last[1]",
+          "node_id": 31
+        },
+        {
+          "step": 116,
+          "event": "before_expression",
+          "focus": "current[0]",
+          "node_id": 41
+        },
+        {
+          "step": 117,
+          "event": "before_expression",
+          "focus": "current",
+          "node_id": 51
+        },
+        {
+          "step": 118,
+          "event": "after_expression",
+          "focus": "current",
+          "node_id": 51,
+          "value": [
+            15,
+            18
+          ]
+        },
+        {
+          "step": 119,
+          "event": "after_expression",
+          "focus": "current[0]",
+          "node_id": 41,
+          "value": 15
+        },
+        {
+          "step": 120,
+          "event": "before_expression",
+          "focus": "last[1]",
+          "node_id": 43
+        },
+        {
+          "step": 121,
+          "event": "before_expression",
+          "focus": "last",
+          "node_id": 53
+        },
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "last",
+          "node_id": 53,
+          "value": [
+            8,
+            10
+          ]
+        },
+        {
+          "step": 123,
+          "event": "after_expression",
+          "focus": "last[1]",
+          "node_id": 43,
+          "value": 10
+        },
+        {
+          "step": 124,
+          "event": "after_expression",
+          "focus": "current[0] <= last[1]",
+          "node_id": 31,
+          "value": false
+        }
+      ]
+    },
+    {
+      "line_number": 18,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "current": [
+          15,
+          18
+        ],
+        "last": [
+          8,
+          10
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4338909568
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4339346944,
+        "last": 4338909568
+      },
+      "steps": [
+        {
+          "step": 125,
+          "event": "before_statement",
+          "focus": "merged.append(current)",
+          "node_id": 33
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "merged.append(current)",
+          "node_id": 46
+        },
+        {
+          "step": 127,
+          "event": "before_expression",
+          "focus": "merged.append",
+          "node_id": 60
+        },
+        {
+          "step": 128,
+          "event": "before_expression",
+          "focus": "current",
+          "node_id": 61
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "current",
+          "node_id": 61,
+          "value": [
+            15,
+            18
+          ]
+        },
+        {
+          "step": 130,
+          "event": "after_expression",
+          "focus": "merged.append(current)",
+          "node_id": 46,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "merged": [
+              [
+                1,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "current": [
+              15,
+              18
+            ],
+            "last": [
+              8,
+              10
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            },
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            },
+            "4338909504": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4337945920,
+                4338909568,
+                4339346944
+              ],
+              "mutable": true
+            },
+            "4391825920": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4338909568,
+                4339346944
+              ],
+              "mutable": true
+            }
+          }
+        },
+        {
+          "step": 131,
+          "event": "after_statement",
+          "focus": "merged.append(current)",
+          "node_id": 33,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "merged": [
+              [
+                1,
+                6
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                15,
+                18
+              ]
+            ],
+            "current": [
+              15,
+              18
+            ],
+            "last": [
+              8,
+              10
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4338984000": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4337945920": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476224
+              ],
+              "mutable": true
+            },
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            },
+            "4308476352": {
+              "type": "int",
+              "value": 10,
+              "mutable": false
+            },
+            "4338909568": {
+              "type": "list",
+              "value": [
+                4308476288,
+                4308476352
+              ],
+              "mutable": true
+            },
+            "4308476512": {
+              "type": "int",
+              "value": 15,
+              "mutable": false
+            },
+            "4308476608": {
+              "type": "int",
+              "value": 18,
+              "mutable": false
+            },
+            "4339346944": {
+              "type": "list",
+              "value": [
+                4308476512,
+                4308476608
+              ],
+              "mutable": true
+            },
+            "4338909504": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4337945920,
+                4338909568,
+                4339346944
+              ],
+              "mutable": true
+            },
+            "4391825920": {
+              "type": "list",
+              "value": [
+                4338984000,
+                4338909568,
+                4339346944
+              ],
+              "mutable": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "current": [
+          15,
+          18
+        ],
+        "last": [
+          8,
+          10
+        ]
+      },
+      "delta": {
+        "merged": {
+          "2": {
+            "0": 15,
+            "1": 18
+          }
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4339346944,
+        "last": 4338909568
+      },
+      "steps": [
+        {
+          "step": 132,
+          "event": "after_statement",
+          "focus": "if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+          "node_id": 17
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "current": [
+          15,
+          18
+        ],
+        "last": [
+          8,
+          10
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4339346944,
+        "last": 4338909568
+      },
+      "steps": [
+        {
+          "step": 133,
+          "event": "after_statement",
+          "focus": "for current in intervals[1:]:\n        last = merged[-1]\n        \n        # If current interval overlaps with the last one, merge them\n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "merged": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "current": [
+          15,
+          18
+        ],
+        "last": [
+          8,
+          10
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4338984000": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4337945920": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476224
+          ],
+          "mutable": true
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        },
+        "4308476352": {
+          "type": "int",
+          "value": 10,
+          "mutable": false
+        },
+        "4338909568": {
+          "type": "list",
+          "value": [
+            4308476288,
+            4308476352
+          ],
+          "mutable": true
+        },
+        "4308476512": {
+          "type": "int",
+          "value": 15,
+          "mutable": false
+        },
+        "4308476608": {
+          "type": "int",
+          "value": 18,
+          "mutable": false
+        },
+        "4339346944": {
+          "type": "list",
+          "value": [
+            4308476512,
+            4308476608
+          ],
+          "mutable": true
+        },
+        "4338909504": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4337945920,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        },
+        "4391825920": {
+          "type": "list",
+          "value": [
+            4338984000,
+            4338909568,
+            4339346944
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4338909504,
+        "merged": 4391825920,
+        "current": 4339346944,
+        "last": 4338909568
+      },
+      "steps": [
+        {
+          "step": 134,
+          "event": "before_statement",
+          "focus": "return merged",
+          "node_id": 7
+        },
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "merged",
+          "node_id": 18
+        },
+        {
+          "step": 136,
+          "event": "after_expression",
+          "focus": "merged",
+          "node_id": 18,
+          "value": [
+            [
+              1,
+              6
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              15,
+              18
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "result": [
+    [
+      1,
+      6
+    ],
+    [
+      8,
+      10
+    ],
+    [
+      15,
+      18
+    ]
+  ]
+}

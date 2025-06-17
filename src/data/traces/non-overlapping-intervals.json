@@ -1,0 +1,4634 @@
+{
+  "metadata": {
+    "code": "def eraseOverlapIntervals(intervals):\n    if not intervals:\n        return 0\n    \n    # Sort by end time\n    intervals.sort(key=lambda x: x[1])\n    \n    count = 0\n    end = intervals[0][1]\n    \n    for i in range(1, len(intervals)):\n        # If current interval overlaps with previous\n        if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]  # Update end time\n    \n    return count\n",
+    "function": "eraseOverlapIntervals",
+    "inputs": {
+      "kwargs": {
+        "intervals": "[[1, 2], [2, 3], [3, 4], [1, 3]]"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "intervals": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "count": 1,
+      "end": 4,
+      "i": 3
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 18,
+          "end_col_offset": 16
+        },
+        "focus": "def eraseOverlapIntervals(intervals):\n    if not intervals:\n        return 0\n    \n    # Sort by end time\n    intervals.sort(key=lambda x: x[1])\n    \n    count = 0\n    end = intervals[0][1]\n    \n    for i in range(1, len(intervals)):\n        # If current interval overlaps with previous\n        if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]  # Update end time\n    \n    return count",
+        "name": "eraseOverlapIntervals",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            9
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 9,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 26,
+                "end_lineno": 1,
+                "end_col_offset": 35
+              },
+              "focus": "intervals",
+              "arg": "intervals"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              10,
+              11
+            ],
+            "type": "If",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 16
+            },
+            "focus": "if not intervals:\n        return 0",
+            "test": {
+              "node_id": 10,
+              "children_node_ids": [
+                21,
+                22
+              ],
+              "type": "UnaryOp",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 7,
+                "end_lineno": 2,
+                "end_col_offset": 20
+              },
+              "focus": "not intervals",
+              "op": {
+                "node_id": 21,
+                "children_node_ids": [],
+                "type": "Not",
+                "parent_node_id": 10
+              },
+              "operand": {
+                "node_id": 22,
+                "children_node_ids": [
+                  29
+                ],
+                "type": "Name",
+                "parent_node_id": 10,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 11,
+                  "end_lineno": 2,
+                  "end_col_offset": 20
+                },
+                "focus": "intervals",
+                "id": "intervals",
+                "ctx": {
+                  "node_id": 29,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 22
+                }
+              }
+            },
+            "body": [
+              {
+                "node_id": 11,
+                "children_node_ids": [
+                  23
+                ],
+                "type": "Return",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 8,
+                  "end_lineno": 3,
+                  "end_col_offset": 16
+                },
+                "focus": "return 0",
+                "value": {
+                  "node_id": 23,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 3,
+                    "col_offset": 15,
+                    "end_lineno": 3,
+                    "end_col_offset": 16
+                  },
+                  "focus": "0",
+                  "value": 0
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              12
+            ],
+            "type": "Expr",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 6,
+              "col_offset": 4,
+              "end_lineno": 6,
+              "end_col_offset": 38
+            },
+            "focus": "intervals.sort(key=lambda x: x[1])",
+            "value": {
+              "node_id": 12,
+              "children_node_ids": [
+                24,
+                25
+              ],
+              "type": "Call",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 6,
+                "col_offset": 4,
+                "end_lineno": 6,
+                "end_col_offset": 38
+              },
+              "focus": "intervals.sort(key=lambda x: x[1])",
+              "func": {
+                "node_id": 24,
+                "children_node_ids": [
+                  36,
+                  29
+                ],
+                "type": "Attribute",
+                "parent_node_id": 12,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 4,
+                  "end_lineno": 6,
+                  "end_col_offset": 18
+                },
+                "focus": "intervals.sort",
+                "value": {
+                  "node_id": 36,
+                  "children_node_ids": [
+                    29
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 24,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 4,
+                    "end_lineno": 6,
+                    "end_col_offset": 13
+                  },
+                  "focus": "intervals",
+                  "id": "intervals",
+                  "ctx": {
+                    "node_id": 29,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 36
+                  }
+                },
+                "attr": "sort",
+                "ctx": {
+                  "node_id": 29,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 24
+                }
+              },
+              "args": [],
+              "keywords": [
+                {
+                  "node_id": 25,
+                  "children_node_ids": [
+                    37
+                  ],
+                  "type": "keyword",
+                  "parent_node_id": 12,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 19,
+                    "end_lineno": 6,
+                    "end_col_offset": 37
+                  },
+                  "focus": "key=lambda x: x[1]",
+                  "arg": "key",
+                  "value": {
+                    "node_id": 37,
+                    "children_node_ids": [
+                      50,
+                      51
+                    ],
+                    "type": "Lambda",
+                    "parent_node_id": 25,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 23,
+                      "end_lineno": 6,
+                      "end_col_offset": 37
+                    },
+                    "focus": "lambda x: x[1]",
+                    "args": {
+                      "node_id": 50,
+                      "children_node_ids": [
+                        56
+                      ],
+                      "type": "arguments",
+                      "parent_node_id": 37,
+                      "posonlyargs": [],
+                      "args": [
+                        {
+                          "node_id": 56,
+                          "children_node_ids": [],
+                          "type": "arg",
+                          "parent_node_id": 50,
+                          "location": {
+                            "lineno": 6,
+                            "col_offset": 30,
+                            "end_lineno": 6,
+                            "end_col_offset": 31
+                          },
+                          "focus": "x",
+                          "arg": "x"
+                        }
+                      ],
+                      "kwonlyargs": [],
+                      "kw_defaults": [],
+                      "defaults": []
+                    },
+                    "body": {
+                      "node_id": 51,
+                      "children_node_ids": [
+                        57,
+                        58,
+                        29
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 37,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 33,
+                        "end_lineno": 6,
+                        "end_col_offset": 37
+                      },
+                      "focus": "x[1]",
+                      "value": {
+                        "node_id": 57,
+                        "children_node_ids": [
+                          29
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 51,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 33,
+                          "end_lineno": 6,
+                          "end_col_offset": 34
+                        },
+                        "focus": "x",
+                        "id": "x",
+                        "ctx": {
+                          "node_id": 29,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 57
+                        }
+                      },
+                      "slice": {
+                        "node_id": 58,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 51,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 35,
+                          "end_lineno": 6,
+                          "end_col_offset": 36
+                        },
+                        "focus": "1",
+                        "value": 1
+                      },
+                      "ctx": {
+                        "node_id": 29,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 51
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              13,
+              14
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 8,
+              "col_offset": 4,
+              "end_lineno": 8,
+              "end_col_offset": 13
+            },
+            "focus": "count = 0",
+            "targets": [
+              {
+                "node_id": 13,
+                "children_node_ids": [
+                  26
+                ],
+                "type": "Name",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 4,
+                  "end_lineno": 8,
+                  "end_col_offset": 9
+                },
+                "focus": "count",
+                "id": "count",
+                "ctx": {
+                  "node_id": 26,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 13
+                }
+              }
+            ],
+            "value": {
+              "node_id": 14,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 8,
+                "col_offset": 12,
+                "end_lineno": 8,
+                "end_col_offset": 13
+              },
+              "focus": "0",
+              "value": 0
+            }
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              15,
+              16
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 9,
+              "col_offset": 4,
+              "end_lineno": 9,
+              "end_col_offset": 25
+            },
+            "focus": "end = intervals[0][1]",
+            "targets": [
+              {
+                "node_id": 15,
+                "children_node_ids": [
+                  26
+                ],
+                "type": "Name",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 9,
+                  "col_offset": 4,
+                  "end_lineno": 9,
+                  "end_col_offset": 7
+                },
+                "focus": "end",
+                "id": "end",
+                "ctx": {
+                  "node_id": 26,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 15
+                }
+              }
+            ],
+            "value": {
+              "node_id": 16,
+              "children_node_ids": [
+                27,
+                28,
+                29
+              ],
+              "type": "Subscript",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 9,
+                "col_offset": 10,
+                "end_lineno": 9,
+                "end_col_offset": 25
+              },
+              "focus": "intervals[0][1]",
+              "value": {
+                "node_id": 27,
+                "children_node_ids": [
+                  38,
+                  39,
+                  29
+                ],
+                "type": "Subscript",
+                "parent_node_id": 16,
+                "location": {
+                  "lineno": 9,
+                  "col_offset": 10,
+                  "end_lineno": 9,
+                  "end_col_offset": 22
+                },
+                "focus": "intervals[0]",
+                "value": {
+                  "node_id": 38,
+                  "children_node_ids": [
+                    29
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 27,
+                  "location": {
+                    "lineno": 9,
+                    "col_offset": 10,
+                    "end_lineno": 9,
+                    "end_col_offset": 19
+                  },
+                  "focus": "intervals",
+                  "id": "intervals",
+                  "ctx": {
+                    "node_id": 29,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 38
+                  }
+                },
+                "slice": {
+                  "node_id": 39,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 27,
+                  "location": {
+                    "lineno": 9,
+                    "col_offset": 20,
+                    "end_lineno": 9,
+                    "end_col_offset": 21
+                  },
+                  "focus": "0",
+                  "value": 0
+                },
+                "ctx": {
+                  "node_id": 29,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 27
+                }
+              },
+              "slice": {
+                "node_id": 28,
+                "children_node_ids": [],
+                "type": "Constant",
+                "parent_node_id": 16,
+                "location": {
+                  "lineno": 9,
+                  "col_offset": 23,
+                  "end_lineno": 9,
+                  "end_col_offset": 24
+                },
+                "focus": "1",
+                "value": 1
+              },
+              "ctx": {
+                "node_id": 29,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 16
+              }
+            }
+          },
+          {
+            "node_id": 7,
+            "children_node_ids": [
+              17,
+              18,
+              19
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 11,
+              "col_offset": 4,
+              "end_lineno": 16,
+              "end_col_offset": 33
+            },
+            "focus": "for i in range(1, len(intervals)):\n        # If current interval overlaps with previous\n        if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+            "target": {
+              "node_id": 17,
+              "children_node_ids": [
+                26
+              ],
+              "type": "Name",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 11,
+                "col_offset": 8,
+                "end_lineno": 11,
+                "end_col_offset": 9
+              },
+              "focus": "i",
+              "id": "i",
+              "ctx": {
+                "node_id": 26,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 17
+              }
+            },
+            "iter": {
+              "node_id": 18,
+              "children_node_ids": [
+                30,
+                31,
+                32
+              ],
+              "type": "Call",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 11,
+                "col_offset": 13,
+                "end_lineno": 11,
+                "end_col_offset": 37
+              },
+              "focus": "range(1, len(intervals))",
+              "func": {
+                "node_id": 30,
+                "children_node_ids": [
+                  29
+                ],
+                "type": "Name",
+                "parent_node_id": 18,
+                "location": {
+                  "lineno": 11,
+                  "col_offset": 13,
+                  "end_lineno": 11,
+                  "end_col_offset": 18
+                },
+                "focus": "range",
+                "id": "range",
+                "ctx": {
+                  "node_id": 29,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 30
+                }
+              },
+              "args": [
+                {
+                  "node_id": 31,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 18,
+                  "location": {
+                    "lineno": 11,
+                    "col_offset": 19,
+                    "end_lineno": 11,
+                    "end_col_offset": 20
+                  },
+                  "focus": "1",
+                  "value": 1
+                },
+                {
+                  "node_id": 32,
+                  "children_node_ids": [
+                    40,
+                    41
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 18,
+                  "location": {
+                    "lineno": 11,
+                    "col_offset": 22,
+                    "end_lineno": 11,
+                    "end_col_offset": 36
+                  },
+                  "focus": "len(intervals)",
+                  "func": {
+                    "node_id": 40,
+                    "children_node_ids": [
+                      29
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 32,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 22,
+                      "end_lineno": 11,
+                      "end_col_offset": 25
+                    },
+                    "focus": "len",
+                    "id": "len",
+                    "ctx": {
+                      "node_id": 29,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 40
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 41,
+                      "children_node_ids": [
+                        29
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 32,
+                      "location": {
+                        "lineno": 11,
+                        "col_offset": 26,
+                        "end_lineno": 11,
+                        "end_col_offset": 35
+                      },
+                      "focus": "intervals",
+                      "id": "intervals",
+                      "ctx": {
+                        "node_id": 29,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 41
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "node_id": 19,
+                "children_node_ids": [
+                  33,
+                  34,
+                  35
+                ],
+                "type": "If",
+                "parent_node_id": 7,
+                "location": {
+                  "lineno": 13,
+                  "col_offset": 8,
+                  "end_lineno": 16,
+                  "end_col_offset": 33
+                },
+                "focus": "if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+                "test": {
+                  "node_id": 33,
+                  "children_node_ids": [
+                    42,
+                    43,
+                    44
+                  ],
+                  "type": "Compare",
+                  "parent_node_id": 19,
+                  "location": {
+                    "lineno": 13,
+                    "col_offset": 11,
+                    "end_lineno": 13,
+                    "end_col_offset": 32
+                  },
+                  "focus": "intervals[i][0] < end",
+                  "left": {
+                    "node_id": 42,
+                    "children_node_ids": [
+                      52,
+                      53,
+                      29
+                    ],
+                    "type": "Subscript",
+                    "parent_node_id": 33,
+                    "location": {
+                      "lineno": 13,
+                      "col_offset": 11,
+                      "end_lineno": 13,
+                      "end_col_offset": 26
+                    },
+                    "focus": "intervals[i][0]",
+                    "value": {
+                      "node_id": 52,
+                      "children_node_ids": [
+                        59,
+                        60,
+                        29
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 42,
+                      "location": {
+                        "lineno": 13,
+                        "col_offset": 11,
+                        "end_lineno": 13,
+                        "end_col_offset": 23
+                      },
+                      "focus": "intervals[i]",
+                      "value": {
+                        "node_id": 59,
+                        "children_node_ids": [
+                          29
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 52,
+                        "location": {
+                          "lineno": 13,
+                          "col_offset": 11,
+                          "end_lineno": 13,
+                          "end_col_offset": 20
+                        },
+                        "focus": "intervals",
+                        "id": "intervals",
+                        "ctx": {
+                          "node_id": 29,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 59
+                        }
+                      },
+                      "slice": {
+                        "node_id": 60,
+                        "children_node_ids": [
+                          29
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 52,
+                        "location": {
+                          "lineno": 13,
+                          "col_offset": 21,
+                          "end_lineno": 13,
+                          "end_col_offset": 22
+                        },
+                        "focus": "i",
+                        "id": "i",
+                        "ctx": {
+                          "node_id": 29,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 60
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 29,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 52
+                      }
+                    },
+                    "slice": {
+                      "node_id": 53,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 42,
+                      "location": {
+                        "lineno": 13,
+                        "col_offset": 24,
+                        "end_lineno": 13,
+                        "end_col_offset": 25
+                      },
+                      "focus": "0",
+                      "value": 0
+                    },
+                    "ctx": {
+                      "node_id": 29,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 42
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 43,
+                      "children_node_ids": [],
+                      "type": "Lt",
+                      "parent_node_id": 33
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 44,
+                      "children_node_ids": [
+                        29
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 33,
+                      "location": {
+                        "lineno": 13,
+                        "col_offset": 29,
+                        "end_lineno": 13,
+                        "end_col_offset": 32
+                      },
+                      "focus": "end",
+                      "id": "end",
+                      "ctx": {
+                        "node_id": 29,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 44
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 34,
+                    "children_node_ids": [
+                      45,
+                      46,
+                      47
+                    ],
+                    "type": "AugAssign",
+                    "parent_node_id": 19,
+                    "location": {
+                      "lineno": 14,
+                      "col_offset": 12,
+                      "end_lineno": 14,
+                      "end_col_offset": 22
+                    },
+                    "focus": "count += 1",
+                    "target": {
+                      "node_id": 45,
+                      "children_node_ids": [
+                        26
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 34,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 12,
+                        "end_lineno": 14,
+                        "end_col_offset": 17
+                      },
+                      "focus": "count",
+                      "id": "count",
+                      "ctx": {
+                        "node_id": 26,
+                        "children_node_ids": [],
+                        "type": "Store",
+                        "parent_node_id": 45
+                      }
+                    },
+                    "op": {
+                      "node_id": 46,
+                      "children_node_ids": [],
+                      "type": "Add",
+                      "parent_node_id": 34
+                    },
+                    "value": {
+                      "node_id": 47,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 34,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 21,
+                        "end_lineno": 14,
+                        "end_col_offset": 22
+                      },
+                      "focus": "1",
+                      "value": 1
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "node_id": 35,
+                    "children_node_ids": [
+                      48,
+                      49
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 19,
+                    "location": {
+                      "lineno": 16,
+                      "col_offset": 12,
+                      "end_lineno": 16,
+                      "end_col_offset": 33
+                    },
+                    "focus": "end = intervals[i][1]",
+                    "targets": [
+                      {
+                        "node_id": 48,
+                        "children_node_ids": [
+                          26
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 35,
+                        "location": {
+                          "lineno": 16,
+                          "col_offset": 12,
+                          "end_lineno": 16,
+                          "end_col_offset": 15
+                        },
+                        "focus": "end",
+                        "id": "end",
+                        "ctx": {
+                          "node_id": 26,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 48
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 49,
+                      "children_node_ids": [
+                        54,
+                        55,
+                        29
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 35,
+                      "location": {
+                        "lineno": 16,
+                        "col_offset": 18,
+                        "end_lineno": 16,
+                        "end_col_offset": 33
+                      },
+                      "focus": "intervals[i][1]",
+                      "value": {
+                        "node_id": 54,
+                        "children_node_ids": [
+                          61,
+                          62,
+                          29
+                        ],
+                        "type": "Subscript",
+                        "parent_node_id": 49,
+                        "location": {
+                          "lineno": 16,
+                          "col_offset": 18,
+                          "end_lineno": 16,
+                          "end_col_offset": 30
+                        },
+                        "focus": "intervals[i]",
+                        "value": {
+                          "node_id": 61,
+                          "children_node_ids": [
+                            29
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 54,
+                          "location": {
+                            "lineno": 16,
+                            "col_offset": 18,
+                            "end_lineno": 16,
+                            "end_col_offset": 27
+                          },
+                          "focus": "intervals",
+                          "id": "intervals",
+                          "ctx": {
+                            "node_id": 29,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 61
+                          }
+                        },
+                        "slice": {
+                          "node_id": 62,
+                          "children_node_ids": [
+                            29
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 54,
+                          "location": {
+                            "lineno": 16,
+                            "col_offset": 28,
+                            "end_lineno": 16,
+                            "end_col_offset": 29
+                          },
+                          "focus": "i",
+                          "id": "i",
+                          "ctx": {
+                            "node_id": 29,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 62
+                          }
+                        },
+                        "ctx": {
+                          "node_id": 29,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 54
+                        }
+                      },
+                      "slice": {
+                        "node_id": 55,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 49,
+                        "location": {
+                          "lineno": 16,
+                          "col_offset": 31,
+                          "end_lineno": 16,
+                          "end_col_offset": 32
+                        },
+                        "focus": "1",
+                        "value": 1
+                      },
+                      "ctx": {
+                        "node_id": 29,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 49
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 8,
+            "children_node_ids": [
+              20
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 18,
+              "col_offset": 4,
+              "end_lineno": 18,
+              "end_col_offset": 16
+            },
+            "focus": "return count",
+            "value": {
+              "node_id": 20,
+              "children_node_ids": [
+                29
+              ],
+              "type": "Name",
+              "parent_node_id": 8,
+              "location": {
+                "lineno": 18,
+                "col_offset": 11,
+                "end_lineno": 18,
+                "end_col_offset": 16
+              },
+              "focus": "count",
+              "id": "count",
+              "ctx": {
+                "node_id": 29,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 20
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "intervals",
+      "cursor": "i",
+      "type": "key_index",
+      "node_id": 7
+    },
+    {
+      "container": "intervals",
+      "cursor": "i",
+      "type": "key_access",
+      "node_id": 52
+    },
+    {
+      "container": "intervals",
+      "cursor": "i",
+      "type": "key_access",
+      "node_id": 54
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def eraseOverlapIntervals(intervals):\n    if not intervals:\n        return 0\n    \n    # Sort by end time\n    intervals.sort(key=lambda x: x[1])\n    \n    count = 0\n    end = intervals[0][1]\n    \n    for i in range(1, len(intervals)):\n        # If current interval overlaps with previous\n        if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]  # Update end time\n    \n    return count",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def eraseOverlapIntervals(intervals):\n    if not intervals:\n        return 0\n    \n    # Sort by end time\n    intervals.sort(key=lambda x: x[1])\n    \n    count = 0\n    end = intervals[0][1]\n    \n    for i in range(1, len(intervals)):\n        # If current interval overlaps with previous\n        if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]  # Update end time\n    \n    return count",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "delta": {
+        "intervals": {
+          "0": {
+            "0": 1,
+            "1": 2
+          },
+          "1": {
+            "0": 2,
+            "1": 3
+          },
+          "2": {
+            "0": 3,
+            "1": 4
+          },
+          "3": {
+            "0": 1,
+            "1": 3
+          }
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347904,
+            4339347968
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if not intervals:\n        return 0",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "not intervals",
+          "node_id": 10
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 22
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 22,
+          "value": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "not intervals",
+          "node_id": 10,
+          "value": false
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "if not intervals:\n        return 0",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347904,
+            4339347968
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "intervals.sort(key=lambda x: x[1])",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "intervals.sort(key=lambda x: x[1])",
+          "node_id": 12
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "intervals.sort",
+          "node_id": 24
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "lambda x: x[1]",
+          "node_id": 37
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "x[1]",
+          "node_id": 51,
+          "locals": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4339347776": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476096
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347776
+          }
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 57,
+          "locals": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4339347776": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476096
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347776
+          }
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 57,
+          "locals": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4339347776": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476096
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347776
+          },
+          "value": [
+            1,
+            2
+          ]
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "x[1]",
+          "node_id": 51,
+          "locals": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4339347776": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476096
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347776
+          },
+          "value": 2
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "x[1]",
+          "node_id": 51,
+          "locals": {
+            "x": [
+              2,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347840": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347840
+          }
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 57,
+          "locals": {
+            "x": [
+              2,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347840": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347840
+          }
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 57,
+          "locals": {
+            "x": [
+              2,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347840": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347840
+          },
+          "value": [
+            2,
+            3
+          ]
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "x[1]",
+          "node_id": 51,
+          "locals": {
+            "x": [
+              2,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347840": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347840
+          },
+          "value": 3
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "x[1]",
+          "node_id": 51,
+          "locals": {
+            "x": [
+              3,
+              4
+            ]
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4339347904": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476160
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347904
+          }
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 57,
+          "locals": {
+            "x": [
+              3,
+              4
+            ]
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4339347904": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476160
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347904
+          }
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 57,
+          "locals": {
+            "x": [
+              3,
+              4
+            ]
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4339347904": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476160
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347904
+          },
+          "value": [
+            3,
+            4
+          ]
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "x[1]",
+          "node_id": 51,
+          "locals": {
+            "x": [
+              3,
+              4
+            ]
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4339347904": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476160
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347904
+          },
+          "value": 4
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "x[1]",
+          "node_id": 51,
+          "locals": {
+            "x": [
+              1,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347968": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347968
+          }
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 57,
+          "locals": {
+            "x": [
+              1,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347968": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347968
+          }
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 57,
+          "locals": {
+            "x": [
+              1,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347968": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347968
+          },
+          "value": [
+            1,
+            3
+          ]
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "x[1]",
+          "node_id": 51,
+          "locals": {
+            "x": [
+              1,
+              3
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347968": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "x": 4339347968
+          },
+          "value": 3
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "intervals.sort(key=lambda x: x[1])",
+          "node_id": 12,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4339347776": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476096
+              ],
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347840": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4339347968": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4339347904": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476160
+              ],
+              "mutable": true
+            },
+            "4339347712": {
+              "type": "list",
+              "value": [
+                4339347776,
+                4339347840,
+                4339347968,
+                4339347904
+              ],
+              "mutable": true
+            }
+          }
+        },
+        {
+          "step": 29,
+          "event": "after_statement",
+          "focus": "intervals.sort(key=lambda x: x[1])",
+          "node_id": 4,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4339347776": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476096
+              ],
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347840": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4339347968": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4339347904": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476160
+              ],
+              "mutable": true
+            },
+            "4339347712": {
+              "type": "list",
+              "value": [
+                4339347776,
+                4339347840,
+                4339347968,
+                4339347904
+              ],
+              "mutable": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "delta": {
+        "intervals": {
+          "2": {
+            "0": 1,
+            "1": 3
+          },
+          "3": {
+            "0": 3,
+            "1": 4
+          }
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712
+      },
+      "steps": [
+        {
+          "step": 30,
+          "event": "before_statement",
+          "focus": "count = 0",
+          "node_id": 5
+        },
+        {
+          "step": 31,
+          "event": "after_statement",
+          "focus": "count = 0",
+          "node_id": 5,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "count": 0
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4339347776": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476096
+              ],
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347840": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4339347968": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4339347904": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476160
+              ],
+              "mutable": true
+            },
+            "4339347712": {
+              "type": "list",
+              "value": [
+                4339347776,
+                4339347840,
+                4339347968,
+                4339347904
+              ],
+              "mutable": true
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "intervals": 4339347712,
+            "count": 4308476032
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 0
+      },
+      "delta": {
+        "count": 0
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476032
+      },
+      "steps": [
+        {
+          "step": 32,
+          "event": "before_statement",
+          "focus": "end = intervals[0][1]",
+          "node_id": 6
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": "intervals[0][1]",
+          "node_id": 16
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "intervals[0]",
+          "node_id": 27
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 38
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 38,
+          "value": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "intervals[0]",
+          "node_id": 27,
+          "value": [
+            1,
+            2
+          ]
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "intervals[0][1]",
+          "node_id": 16,
+          "value": 2
+        },
+        {
+          "step": 39,
+          "event": "after_statement",
+          "focus": "end = intervals[0][1]",
+          "node_id": 6,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "count": 0,
+            "end": 2
+          },
+          "var_table": {
+            "intervals": 4339347712,
+            "count": 4308476032,
+            "end": 4308476096
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 0,
+        "end": 2
+      },
+      "delta": {
+        "end": 2
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476032,
+        "end": 4308476096
+      },
+      "steps": [
+        {
+          "step": 40,
+          "event": "before_statement",
+          "focus": "for i in range(1, len(intervals)):\n        # If current interval overlaps with previous\n        if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+          "node_id": 7
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "range(1, len(intervals))",
+          "node_id": 18
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "len(intervals)",
+          "node_id": 32
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 41
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 41,
+          "value": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "step": 45,
+          "event": "after_expression",
+          "focus": "len(intervals)",
+          "node_id": 32,
+          "value": 4
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "range(1, len(intervals))",
+          "node_id": 18,
+          "value": [
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 0,
+        "end": 2,
+        "i": 1
+      },
+      "delta": {
+        "i": 1
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476032,
+        "end": 4308476096,
+        "i": 4308476064
+      },
+      "steps": [
+        {
+          "step": 47,
+          "event": "before_statement",
+          "focus": "if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+          "node_id": 19
+        },
+        {
+          "step": 48,
+          "event": "before_expression",
+          "focus": "intervals[i][0] < end",
+          "node_id": 33
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "intervals[i][0]",
+          "node_id": 42
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "intervals[i]",
+          "node_id": 52
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 59
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 59,
+          "value": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 60
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 60,
+          "value": 1
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "intervals[i]",
+          "node_id": 52,
+          "value": [
+            2,
+            3
+          ]
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "intervals[i][0]",
+          "node_id": 42,
+          "value": 2
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "end",
+          "node_id": 44
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "end",
+          "node_id": 44,
+          "value": 2
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "intervals[i][0] < end",
+          "node_id": 33,
+          "value": false
+        }
+      ]
+    },
+    {
+      "line_number": 16,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 0,
+        "end": 2,
+        "i": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476032,
+        "end": 4308476096,
+        "i": 4308476064
+      },
+      "steps": [
+        {
+          "step": 60,
+          "event": "before_statement",
+          "focus": "end = intervals[i][1]",
+          "node_id": 35
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "intervals[i][1]",
+          "node_id": 49
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "intervals[i]",
+          "node_id": 54
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 61
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 61,
+          "value": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 62
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 62,
+          "value": 1
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "intervals[i]",
+          "node_id": 54,
+          "value": [
+            2,
+            3
+          ]
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "intervals[i][1]",
+          "node_id": 49,
+          "value": 3
+        },
+        {
+          "step": 69,
+          "event": "after_statement",
+          "focus": "end = intervals[i][1]",
+          "node_id": 35,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "count": 0,
+            "end": 3,
+            "i": 1
+          },
+          "var_table": {
+            "intervals": 4339347712,
+            "count": 4308476032,
+            "end": 4308476128,
+            "i": 4308476064
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 0,
+        "end": 3,
+        "i": 1
+      },
+      "delta": {
+        "end": 3
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476032,
+        "end": 4308476128,
+        "i": 4308476064
+      },
+      "steps": [
+        {
+          "step": 70,
+          "event": "after_statement",
+          "focus": "if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 0,
+        "end": 3,
+        "i": 2
+      },
+      "delta": {
+        "i": 2
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476032,
+        "end": 4308476128,
+        "i": 4308476096
+      },
+      "steps": [
+        {
+          "step": 71,
+          "event": "before_statement",
+          "focus": "if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+          "node_id": 19
+        },
+        {
+          "step": 72,
+          "event": "before_expression",
+          "focus": "intervals[i][0] < end",
+          "node_id": 33
+        },
+        {
+          "step": 73,
+          "event": "before_expression",
+          "focus": "intervals[i][0]",
+          "node_id": 42
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "intervals[i]",
+          "node_id": 52
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 59
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 59,
+          "value": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "step": 77,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 60
+        },
+        {
+          "step": 78,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 60,
+          "value": 2
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "intervals[i]",
+          "node_id": 52,
+          "value": [
+            1,
+            3
+          ]
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "intervals[i][0]",
+          "node_id": 42,
+          "value": 1
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "end",
+          "node_id": 44
+        },
+        {
+          "step": 82,
+          "event": "after_expression",
+          "focus": "end",
+          "node_id": 44,
+          "value": 3
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "intervals[i][0] < end",
+          "node_id": 33,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 0,
+        "end": 3,
+        "i": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476032,
+        "end": 4308476128,
+        "i": 4308476096
+      },
+      "steps": [
+        {
+          "step": 84,
+          "event": "before_statement",
+          "focus": "count += 1",
+          "node_id": 34
+        },
+        {
+          "step": 85,
+          "event": "after_statement",
+          "focus": "count += 1",
+          "node_id": 34,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "count": 1,
+            "end": 3,
+            "i": 2
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4339347776": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476096
+              ],
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339347840": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4339347968": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4339347904": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476160
+              ],
+              "mutable": true
+            },
+            "4339347712": {
+              "type": "list",
+              "value": [
+                4339347776,
+                4339347840,
+                4339347968,
+                4339347904
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "intervals": 4339347712,
+            "count": 4308476064,
+            "end": 4308476128,
+            "i": 4308476096
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 1,
+        "end": 3,
+        "i": 2
+      },
+      "delta": {
+        "count": 1
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476064,
+        "end": 4308476128,
+        "i": 4308476096
+      },
+      "steps": [
+        {
+          "step": 86,
+          "event": "after_statement",
+          "focus": "if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 1,
+        "end": 3,
+        "i": 3
+      },
+      "delta": {
+        "i": 3
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476064,
+        "end": 4308476128,
+        "i": 4308476128
+      },
+      "steps": [
+        {
+          "step": 87,
+          "event": "before_statement",
+          "focus": "if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+          "node_id": 19
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "intervals[i][0] < end",
+          "node_id": 33
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "intervals[i][0]",
+          "node_id": 42
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "intervals[i]",
+          "node_id": 52
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 59
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 59,
+          "value": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "step": 93,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 60
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 60,
+          "value": 3
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "intervals[i]",
+          "node_id": 52,
+          "value": [
+            3,
+            4
+          ]
+        },
+        {
+          "step": 96,
+          "event": "after_expression",
+          "focus": "intervals[i][0]",
+          "node_id": 42,
+          "value": 3
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "end",
+          "node_id": 44
+        },
+        {
+          "step": 98,
+          "event": "after_expression",
+          "focus": "end",
+          "node_id": 44,
+          "value": 3
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "intervals[i][0] < end",
+          "node_id": 33,
+          "value": false
+        }
+      ]
+    },
+    {
+      "line_number": 16,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 1,
+        "end": 3,
+        "i": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476064,
+        "end": 4308476128,
+        "i": 4308476128
+      },
+      "steps": [
+        {
+          "step": 100,
+          "event": "before_statement",
+          "focus": "end = intervals[i][1]",
+          "node_id": 35
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "intervals[i][1]",
+          "node_id": 49
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "intervals[i]",
+          "node_id": 54
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 61
+        },
+        {
+          "step": 104,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 61,
+          "value": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 62
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 62,
+          "value": 3
+        },
+        {
+          "step": 107,
+          "event": "after_expression",
+          "focus": "intervals[i]",
+          "node_id": 54,
+          "value": [
+            3,
+            4
+          ]
+        },
+        {
+          "step": 108,
+          "event": "after_expression",
+          "focus": "intervals[i][1]",
+          "node_id": 49,
+          "value": 4
+        },
+        {
+          "step": 109,
+          "event": "after_statement",
+          "focus": "end = intervals[i][1]",
+          "node_id": 35,
+          "locals": {
+            "intervals": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "count": 1,
+            "end": 4,
+            "i": 3
+          },
+          "var_table": {
+            "intervals": 4339347712,
+            "count": 4308476064,
+            "end": 4308476160,
+            "i": 4308476128
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 1,
+        "end": 4,
+        "i": 3
+      },
+      "delta": {
+        "end": 4
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476064,
+        "end": 4308476160,
+        "i": 4308476128
+      },
+      "steps": [
+        {
+          "step": 110,
+          "event": "after_statement",
+          "focus": "if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 1,
+        "end": 4,
+        "i": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476064,
+        "end": 4308476160,
+        "i": 4308476128
+      },
+      "steps": [
+        {
+          "step": 111,
+          "event": "after_statement",
+          "focus": "for i in range(1, len(intervals)):\n        # If current interval overlaps with previous\n        if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 18,
+      "locals": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "count": 1,
+        "end": 4,
+        "i": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4339347776": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339347840": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339347968": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4339347904": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4339347712": {
+          "type": "list",
+          "value": [
+            4339347776,
+            4339347840,
+            4339347968,
+            4339347904
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "intervals": 4339347712,
+        "count": 4308476064,
+        "end": 4308476160,
+        "i": 4308476128
+      },
+      "steps": [
+        {
+          "step": 112,
+          "event": "before_statement",
+          "focus": "return count",
+          "node_id": 8
+        },
+        {
+          "step": 113,
+          "event": "before_expression",
+          "focus": "count",
+          "node_id": 20
+        },
+        {
+          "step": 114,
+          "event": "after_expression",
+          "focus": "count",
+          "node_id": 20,
+          "value": 1
+        }
+      ]
+    }
+  ],
+  "result": 1
+}

@@ -1,0 +1,2084 @@
+{
+  "metadata": {
+    "code": "def majorityElement(nums):\n    count = 0\n    candidate = None\n    \n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1\n    \n    return candidate\n",
+    "function": "majorityElement",
+    "inputs": {
+      "kwargs": {
+        "nums": "[3, 2, 3]"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "nums": [
+        3,
+        2,
+        3
+      ],
+      "count": 1,
+      "candidate": 3,
+      "num": 3
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 10,
+          "end_col_offset": 20
+        },
+        "focus": "def majorityElement(nums):\n    count = 0\n    candidate = None\n    \n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1\n    \n    return candidate",
+        "name": "majorityElement",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            7
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 7,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 20,
+                "end_lineno": 1,
+                "end_col_offset": 24
+              },
+              "focus": "nums",
+              "arg": "nums"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              8,
+              9
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 13
+            },
+            "focus": "count = 0",
+            "targets": [
+              {
+                "node_id": 8,
+                "children_node_ids": [
+                  17
+                ],
+                "type": "Name",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 9
+                },
+                "focus": "count",
+                "id": "count",
+                "ctx": {
+                  "node_id": 17,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 8
+                }
+              }
+            ],
+            "value": {
+              "node_id": 9,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 12,
+                "end_lineno": 2,
+                "end_col_offset": 13
+              },
+              "focus": "0",
+              "value": 0
+            }
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              10,
+              11
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 3,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 20
+            },
+            "focus": "candidate = None",
+            "targets": [
+              {
+                "node_id": 10,
+                "children_node_ids": [
+                  17
+                ],
+                "type": "Name",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 4,
+                  "end_lineno": 3,
+                  "end_col_offset": 13
+                },
+                "focus": "candidate",
+                "id": "candidate",
+                "ctx": {
+                  "node_id": 17,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 10
+                }
+              }
+            ],
+            "value": {
+              "node_id": 11,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 3,
+                "col_offset": 16,
+                "end_lineno": 3,
+                "end_col_offset": 20
+              },
+              "focus": "None"
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              12,
+              13,
+              14,
+              15
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 5,
+              "col_offset": 4,
+              "end_lineno": 8,
+              "end_col_offset": 46
+            },
+            "focus": "for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1",
+            "target": {
+              "node_id": 12,
+              "children_node_ids": [
+                17
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 5,
+                "col_offset": 8,
+                "end_lineno": 5,
+                "end_col_offset": 11
+              },
+              "focus": "num",
+              "id": "num",
+              "ctx": {
+                "node_id": 17,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 12
+              }
+            },
+            "iter": {
+              "node_id": 13,
+              "children_node_ids": [
+                18
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 5,
+                "col_offset": 15,
+                "end_lineno": 5,
+                "end_col_offset": 19
+              },
+              "focus": "nums",
+              "id": "nums",
+              "ctx": {
+                "node_id": 18,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 13
+              }
+            },
+            "body": [
+              {
+                "node_id": 14,
+                "children_node_ids": [
+                  19,
+                  20
+                ],
+                "type": "If",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 8,
+                  "end_lineno": 7,
+                  "end_col_offset": 27
+                },
+                "focus": "if count == 0:\n            candidate = num",
+                "test": {
+                  "node_id": 19,
+                  "children_node_ids": [
+                    24,
+                    25,
+                    26
+                  ],
+                  "type": "Compare",
+                  "parent_node_id": 14,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 11,
+                    "end_lineno": 6,
+                    "end_col_offset": 21
+                  },
+                  "focus": "count == 0",
+                  "left": {
+                    "node_id": 24,
+                    "children_node_ids": [
+                      18
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 19,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 11,
+                      "end_lineno": 6,
+                      "end_col_offset": 16
+                    },
+                    "focus": "count",
+                    "id": "count",
+                    "ctx": {
+                      "node_id": 18,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 24
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Eq",
+                      "parent_node_id": 19
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 26,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 19,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 20,
+                        "end_lineno": 6,
+                        "end_col_offset": 21
+                      },
+                      "focus": "0",
+                      "value": 0
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 20,
+                    "children_node_ids": [
+                      27,
+                      28
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 14,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 12,
+                      "end_lineno": 7,
+                      "end_col_offset": 27
+                    },
+                    "focus": "candidate = num",
+                    "targets": [
+                      {
+                        "node_id": 27,
+                        "children_node_ids": [
+                          17
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 20,
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 12,
+                          "end_lineno": 7,
+                          "end_col_offset": 21
+                        },
+                        "focus": "candidate",
+                        "id": "candidate",
+                        "ctx": {
+                          "node_id": 17,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 27
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 28,
+                      "children_node_ids": [
+                        18
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 20,
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 24,
+                        "end_lineno": 7,
+                        "end_col_offset": 27
+                      },
+                      "focus": "num",
+                      "id": "num",
+                      "ctx": {
+                        "node_id": 18,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 28
+                      }
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 15,
+                "children_node_ids": [
+                  21,
+                  22,
+                  23
+                ],
+                "type": "AugAssign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 8,
+                  "end_lineno": 8,
+                  "end_col_offset": 46
+                },
+                "focus": "count += 1 if num == candidate else -1",
+                "target": {
+                  "node_id": 21,
+                  "children_node_ids": [
+                    17
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 15,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 8,
+                    "end_lineno": 8,
+                    "end_col_offset": 13
+                  },
+                  "focus": "count",
+                  "id": "count",
+                  "ctx": {
+                    "node_id": 17,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 21
+                  }
+                },
+                "op": {
+                  "node_id": 22,
+                  "children_node_ids": [],
+                  "type": "Add",
+                  "parent_node_id": 15
+                },
+                "value": {
+                  "node_id": 23,
+                  "children_node_ids": [
+                    29,
+                    30,
+                    31
+                  ],
+                  "type": "IfExp",
+                  "parent_node_id": 15,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 17,
+                    "end_lineno": 8,
+                    "end_col_offset": 46
+                  },
+                  "focus": "1 if num == candidate else -1",
+                  "test": {
+                    "node_id": 29,
+                    "children_node_ids": [
+                      32,
+                      25,
+                      33
+                    ],
+                    "type": "Compare",
+                    "parent_node_id": 23,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 22,
+                      "end_lineno": 8,
+                      "end_col_offset": 38
+                    },
+                    "focus": "num == candidate",
+                    "left": {
+                      "node_id": 32,
+                      "children_node_ids": [
+                        18
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 29,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 22,
+                        "end_lineno": 8,
+                        "end_col_offset": 25
+                      },
+                      "focus": "num",
+                      "id": "num",
+                      "ctx": {
+                        "node_id": 18,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 32
+                      }
+                    },
+                    "ops": [
+                      {
+                        "node_id": 25,
+                        "children_node_ids": [],
+                        "type": "Eq",
+                        "parent_node_id": 29
+                      }
+                    ],
+                    "comparators": [
+                      {
+                        "node_id": 33,
+                        "children_node_ids": [
+                          18
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 29,
+                        "location": {
+                          "lineno": 8,
+                          "col_offset": 29,
+                          "end_lineno": 8,
+                          "end_col_offset": 38
+                        },
+                        "focus": "candidate",
+                        "id": "candidate",
+                        "ctx": {
+                          "node_id": 18,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 33
+                        }
+                      }
+                    ]
+                  },
+                  "body": {
+                    "node_id": 30,
+                    "children_node_ids": [],
+                    "type": "Constant",
+                    "parent_node_id": 23,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 17,
+                      "end_lineno": 8,
+                      "end_col_offset": 18
+                    },
+                    "focus": "1",
+                    "value": 1
+                  },
+                  "orelse": {
+                    "node_id": 31,
+                    "children_node_ids": [
+                      34,
+                      35
+                    ],
+                    "type": "UnaryOp",
+                    "parent_node_id": 23,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 44,
+                      "end_lineno": 8,
+                      "end_col_offset": 46
+                    },
+                    "focus": "-1",
+                    "op": {
+                      "node_id": 34,
+                      "children_node_ids": [],
+                      "type": "USub",
+                      "parent_node_id": 31
+                    },
+                    "operand": {
+                      "node_id": 35,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 31,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 45,
+                        "end_lineno": 8,
+                        "end_col_offset": 46
+                      },
+                      "focus": "1",
+                      "value": 1
+                    }
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              16
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 10,
+              "col_offset": 4,
+              "end_lineno": 10,
+              "end_col_offset": 20
+            },
+            "focus": "return candidate",
+            "value": {
+              "node_id": 16,
+              "children_node_ids": [
+                18
+              ],
+              "type": "Name",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 10,
+                "col_offset": 11,
+                "end_lineno": 10,
+                "end_col_offset": 20
+              },
+              "focus": "candidate",
+              "id": "candidate",
+              "ctx": {
+                "node_id": 18,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 16
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "nums",
+      "cursor": "num",
+      "type": "value_index",
+      "node_id": 5
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def majorityElement(nums):\n    count = 0\n    candidate = None\n    \n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1\n    \n    return candidate",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def majorityElement(nums):\n    count = 0\n    candidate = None\n    \n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1\n    \n    return candidate",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ]
+      },
+      "delta": {
+        "nums": {
+          "0": 3,
+          "1": 2,
+          "2": 3
+        }
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4338989056
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "count = 0",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "count = 0",
+          "node_id": 3,
+          "locals": {
+            "nums": [
+              3,
+              2,
+              3
+            ],
+            "count": 0
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338989056": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338989056,
+            "count": 4308476032
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0
+      },
+      "delta": {
+        "count": 0
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "candidate = None",
+          "node_id": 4
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "candidate = None",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              3,
+              2,
+              3
+            ],
+            "count": 0,
+            "candidate": null
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338989056": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338989056,
+            "count": 4308476032,
+            "candidate": 4308329272
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0,
+        "candidate": null
+      },
+      "delta": {
+        "candidate": null
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032,
+        "candidate": 4308329272
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1",
+          "node_id": 5
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 13
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 13,
+          "value": [
+            3,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0,
+        "candidate": null,
+        "num": 3
+      },
+      "delta": {
+        "num": 3
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032,
+        "candidate": 4308329272,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 9,
+          "event": "before_statement",
+          "focus": "if count == 0:\n            candidate = num",
+          "node_id": 14
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "count == 0",
+          "node_id": 19
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "count",
+          "node_id": 24
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "count",
+          "node_id": 24,
+          "value": 0
+        },
+        {
+          "step": 13,
+          "event": "after_expression",
+          "focus": "count == 0",
+          "node_id": 19,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0,
+        "candidate": null,
+        "num": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032,
+        "candidate": 4308329272,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 14,
+          "event": "before_statement",
+          "focus": "candidate = num",
+          "node_id": 20
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 28
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 28,
+          "value": 3
+        },
+        {
+          "step": 17,
+          "event": "after_statement",
+          "focus": "candidate = num",
+          "node_id": 20,
+          "locals": {
+            "nums": [
+              3,
+              2,
+              3
+            ],
+            "count": 0,
+            "candidate": 3,
+            "num": 3
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338989056": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338989056,
+            "count": 4308476032,
+            "candidate": 4308476128,
+            "num": 4308476128
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0,
+        "candidate": 3,
+        "num": 3
+      },
+      "delta": {
+        "candidate": 3
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032,
+        "candidate": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 18,
+          "event": "after_statement",
+          "focus": "if count == 0:\n            candidate = num",
+          "node_id": 14
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0,
+        "candidate": 3,
+        "num": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032,
+        "candidate": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 19,
+          "event": "before_statement",
+          "focus": "count += 1 if num == candidate else -1",
+          "node_id": 15
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "1 if num == candidate else -1",
+          "node_id": 23
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "num == candidate",
+          "node_id": 29
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 32
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 32,
+          "value": 3
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "candidate",
+          "node_id": 33
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "candidate",
+          "node_id": 33,
+          "value": 3
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "num == candidate",
+          "node_id": 29,
+          "value": true
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "1 if num == candidate else -1",
+          "node_id": 23,
+          "value": 1
+        },
+        {
+          "step": 28,
+          "event": "after_statement",
+          "focus": "count += 1 if num == candidate else -1",
+          "node_id": 15,
+          "locals": {
+            "nums": [
+              3,
+              2,
+              3
+            ],
+            "count": 1,
+            "candidate": 3,
+            "num": 3
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338989056": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338989056,
+            "count": 4308476064,
+            "candidate": 4308476128,
+            "num": 4308476128
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 1,
+        "candidate": 3,
+        "num": 2
+      },
+      "delta": {
+        "count": 1,
+        "num": 2
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476064,
+        "candidate": 4308476128,
+        "num": 4308476096
+      },
+      "steps": [
+        {
+          "step": 29,
+          "event": "before_statement",
+          "focus": "if count == 0:\n            candidate = num",
+          "node_id": 14
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "count == 0",
+          "node_id": 19
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "count",
+          "node_id": 24
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "count",
+          "node_id": 24,
+          "value": 1
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "count == 0",
+          "node_id": 19,
+          "value": false
+        },
+        {
+          "step": 34,
+          "event": "after_statement",
+          "focus": "if count == 0:\n            candidate = num",
+          "node_id": 14
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 1,
+        "candidate": 3,
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476064,
+        "candidate": 4308476128,
+        "num": 4308476096
+      },
+      "steps": [
+        {
+          "step": 35,
+          "event": "before_statement",
+          "focus": "count += 1 if num == candidate else -1",
+          "node_id": 15
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "1 if num == candidate else -1",
+          "node_id": 23
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "num == candidate",
+          "node_id": 29
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 32
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 32,
+          "value": 2
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "candidate",
+          "node_id": 33
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "candidate",
+          "node_id": 33,
+          "value": 3
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "num == candidate",
+          "node_id": 29,
+          "value": false
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "-1",
+          "node_id": 31
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "-1",
+          "node_id": 31,
+          "value": -1
+        },
+        {
+          "step": 45,
+          "event": "after_expression",
+          "focus": "1 if num == candidate else -1",
+          "node_id": 23,
+          "value": -1
+        },
+        {
+          "step": 46,
+          "event": "after_statement",
+          "focus": "count += 1 if num == candidate else -1",
+          "node_id": 15,
+          "locals": {
+            "nums": [
+              3,
+              2,
+              3
+            ],
+            "count": 0,
+            "candidate": 3,
+            "num": 2
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338989056": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338989056,
+            "count": 4308476032,
+            "candidate": 4308476128,
+            "num": 4308476096
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0,
+        "candidate": 3,
+        "num": 3
+      },
+      "delta": {
+        "count": 0,
+        "num": 3
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032,
+        "candidate": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 47,
+          "event": "before_statement",
+          "focus": "if count == 0:\n            candidate = num",
+          "node_id": 14
+        },
+        {
+          "step": 48,
+          "event": "before_expression",
+          "focus": "count == 0",
+          "node_id": 19
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "count",
+          "node_id": 24
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "count",
+          "node_id": 24,
+          "value": 0
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "count == 0",
+          "node_id": 19,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0,
+        "candidate": 3,
+        "num": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032,
+        "candidate": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 52,
+          "event": "before_statement",
+          "focus": "candidate = num",
+          "node_id": 20
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 28
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 28,
+          "value": 3
+        },
+        {
+          "step": 55,
+          "event": "after_statement",
+          "focus": "candidate = num",
+          "node_id": 20
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0,
+        "candidate": 3,
+        "num": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032,
+        "candidate": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 56,
+          "event": "after_statement",
+          "focus": "if count == 0:\n            candidate = num",
+          "node_id": 14
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 0,
+        "candidate": 3,
+        "num": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476032,
+        "candidate": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 57,
+          "event": "before_statement",
+          "focus": "count += 1 if num == candidate else -1",
+          "node_id": 15
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "1 if num == candidate else -1",
+          "node_id": 23
+        },
+        {
+          "step": 59,
+          "event": "before_expression",
+          "focus": "num == candidate",
+          "node_id": 29
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 32
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 32,
+          "value": 3
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "candidate",
+          "node_id": 33
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "candidate",
+          "node_id": 33,
+          "value": 3
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "num == candidate",
+          "node_id": 29,
+          "value": true
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "1 if num == candidate else -1",
+          "node_id": 23,
+          "value": 1
+        },
+        {
+          "step": 66,
+          "event": "after_statement",
+          "focus": "count += 1 if num == candidate else -1",
+          "node_id": 15,
+          "locals": {
+            "nums": [
+              3,
+              2,
+              3
+            ],
+            "count": 1,
+            "candidate": 3,
+            "num": 3
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338989056": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338989056,
+            "count": 4308476064,
+            "candidate": 4308476128,
+            "num": 4308476128
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 1,
+        "candidate": 3,
+        "num": 3
+      },
+      "delta": {
+        "count": 1
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476064,
+        "candidate": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 67,
+          "event": "after_statement",
+          "focus": "for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "count": 1,
+        "candidate": 3,
+        "num": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338989056": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338989056,
+        "count": 4308476064,
+        "candidate": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 68,
+          "event": "before_statement",
+          "focus": "return candidate",
+          "node_id": 6
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "candidate",
+          "node_id": 16
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "candidate",
+          "node_id": 16,
+          "value": 3
+        }
+      ]
+    }
+  ],
+  "result": 3
+}

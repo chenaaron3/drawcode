@@ -1,0 +1,5981 @@
+{
+  "metadata": {
+    "code": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())\n",
+    "function": "groupAnagrams",
+    "inputs": {
+      "kwargs": {
+        "strs": "['eat', 'tea', 'tan', 'ate', 'nat', 'bat']"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "strs": [
+        "eat",
+        "tea",
+        "tan",
+        "ate",
+        "nat",
+        "bat"
+      ],
+      "anagram_map": {
+        "aet": [
+          "eat",
+          "tea",
+          "ate"
+        ],
+        "ant": [
+          "tan",
+          "nat"
+        ],
+        "abt": [
+          "bat"
+        ]
+      },
+      "s": "bat",
+      "key": "abt"
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 11,
+          "end_col_offset": 37
+        },
+        "focus": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())",
+        "name": "groupAnagrams",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            7
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 7,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 18,
+                "end_lineno": 1,
+                "end_col_offset": 22
+              },
+              "focus": "strs",
+              "arg": "strs"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              8
+            ],
+            "type": "ImportFrom",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 39
+            },
+            "focus": "from collections import defaultdict",
+            "module": "collections",
+            "names": [
+              {
+                "node_id": 8,
+                "children_node_ids": [],
+                "type": "alias",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 28,
+                  "end_lineno": 2,
+                  "end_col_offset": 39
+                },
+                "focus": "defaultdict",
+                "name": "defaultdict"
+              }
+            ],
+            "level": 0
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              9,
+              10
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 4,
+              "col_offset": 4,
+              "end_lineno": 4,
+              "end_col_offset": 35
+            },
+            "focus": "anagram_map = defaultdict(list)",
+            "targets": [
+              {
+                "node_id": 9,
+                "children_node_ids": [
+                  16
+                ],
+                "type": "Name",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 4,
+                  "end_lineno": 4,
+                  "end_col_offset": 15
+                },
+                "focus": "anagram_map",
+                "id": "anagram_map",
+                "ctx": {
+                  "node_id": 16,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 9
+                }
+              }
+            ],
+            "value": {
+              "node_id": 10,
+              "children_node_ids": [
+                17,
+                18
+              ],
+              "type": "Call",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 4,
+                "col_offset": 18,
+                "end_lineno": 4,
+                "end_col_offset": 35
+              },
+              "focus": "defaultdict(list)",
+              "func": {
+                "node_id": 17,
+                "children_node_ids": [
+                  19
+                ],
+                "type": "Name",
+                "parent_node_id": 10,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 18,
+                  "end_lineno": 4,
+                  "end_col_offset": 29
+                },
+                "focus": "defaultdict",
+                "id": "defaultdict",
+                "ctx": {
+                  "node_id": 19,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 17
+                }
+              },
+              "args": [
+                {
+                  "node_id": 18,
+                  "children_node_ids": [
+                    19
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 30,
+                    "end_lineno": 4,
+                    "end_col_offset": 34
+                  },
+                  "focus": "list",
+                  "id": "list",
+                  "ctx": {
+                    "node_id": 19,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 18
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              11,
+              12,
+              13,
+              14
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 6,
+              "col_offset": 4,
+              "end_lineno": 9,
+              "end_col_offset": 34
+            },
+            "focus": "for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)",
+            "target": {
+              "node_id": 11,
+              "children_node_ids": [
+                16
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 6,
+                "col_offset": 8,
+                "end_lineno": 6,
+                "end_col_offset": 9
+              },
+              "focus": "s",
+              "id": "s",
+              "ctx": {
+                "node_id": 16,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 11
+              }
+            },
+            "iter": {
+              "node_id": 12,
+              "children_node_ids": [
+                19
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 6,
+                "col_offset": 13,
+                "end_lineno": 6,
+                "end_col_offset": 17
+              },
+              "focus": "strs",
+              "id": "strs",
+              "ctx": {
+                "node_id": 19,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 12
+              }
+            },
+            "body": [
+              {
+                "node_id": 13,
+                "children_node_ids": [
+                  20,
+                  21
+                ],
+                "type": "Assign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 8,
+                  "end_lineno": 8,
+                  "end_col_offset": 32
+                },
+                "focus": "key = ''.join(sorted(s))",
+                "targets": [
+                  {
+                    "node_id": 20,
+                    "children_node_ids": [
+                      16
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 13,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 8,
+                      "end_lineno": 8,
+                      "end_col_offset": 11
+                    },
+                    "focus": "key",
+                    "id": "key",
+                    "ctx": {
+                      "node_id": 16,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 20
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 21,
+                  "children_node_ids": [
+                    25,
+                    26
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 14,
+                    "end_lineno": 8,
+                    "end_col_offset": 32
+                  },
+                  "focus": "''.join(sorted(s))",
+                  "func": {
+                    "node_id": 25,
+                    "children_node_ids": [
+                      30,
+                      19
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 21,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 14,
+                      "end_lineno": 8,
+                      "end_col_offset": 21
+                    },
+                    "focus": "''.join",
+                    "value": {
+                      "node_id": 30,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 25,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 14,
+                        "end_lineno": 8,
+                        "end_col_offset": 16
+                      },
+                      "focus": "''",
+                      "value": ""
+                    },
+                    "attr": "join",
+                    "ctx": {
+                      "node_id": 19,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 25
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 26,
+                      "children_node_ids": [
+                        31,
+                        32
+                      ],
+                      "type": "Call",
+                      "parent_node_id": 21,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 22,
+                        "end_lineno": 8,
+                        "end_col_offset": 31
+                      },
+                      "focus": "sorted(s)",
+                      "func": {
+                        "node_id": 31,
+                        "children_node_ids": [
+                          19
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 26,
+                        "location": {
+                          "lineno": 8,
+                          "col_offset": 22,
+                          "end_lineno": 8,
+                          "end_col_offset": 28
+                        },
+                        "focus": "sorted",
+                        "id": "sorted",
+                        "ctx": {
+                          "node_id": 19,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 31
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 32,
+                          "children_node_ids": [
+                            19
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 26,
+                          "location": {
+                            "lineno": 8,
+                            "col_offset": 29,
+                            "end_lineno": 8,
+                            "end_col_offset": 30
+                          },
+                          "focus": "s",
+                          "id": "s",
+                          "ctx": {
+                            "node_id": 19,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 32
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  ],
+                  "keywords": []
+                }
+              },
+              {
+                "node_id": 14,
+                "children_node_ids": [
+                  22
+                ],
+                "type": "Expr",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 9,
+                  "col_offset": 8,
+                  "end_lineno": 9,
+                  "end_col_offset": 34
+                },
+                "focus": "anagram_map[key].append(s)",
+                "value": {
+                  "node_id": 22,
+                  "children_node_ids": [
+                    27,
+                    28
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 14,
+                  "location": {
+                    "lineno": 9,
+                    "col_offset": 8,
+                    "end_lineno": 9,
+                    "end_col_offset": 34
+                  },
+                  "focus": "anagram_map[key].append(s)",
+                  "func": {
+                    "node_id": 27,
+                    "children_node_ids": [
+                      33,
+                      19
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 22,
+                    "location": {
+                      "lineno": 9,
+                      "col_offset": 8,
+                      "end_lineno": 9,
+                      "end_col_offset": 31
+                    },
+                    "focus": "anagram_map[key].append",
+                    "value": {
+                      "node_id": 33,
+                      "children_node_ids": [
+                        35,
+                        36,
+                        19
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 27,
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 8,
+                        "end_lineno": 9,
+                        "end_col_offset": 24
+                      },
+                      "focus": "anagram_map[key]",
+                      "value": {
+                        "node_id": 35,
+                        "children_node_ids": [
+                          19
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 33,
+                        "location": {
+                          "lineno": 9,
+                          "col_offset": 8,
+                          "end_lineno": 9,
+                          "end_col_offset": 19
+                        },
+                        "focus": "anagram_map",
+                        "id": "anagram_map",
+                        "ctx": {
+                          "node_id": 19,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 35
+                        }
+                      },
+                      "slice": {
+                        "node_id": 36,
+                        "children_node_ids": [
+                          19
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 33,
+                        "location": {
+                          "lineno": 9,
+                          "col_offset": 20,
+                          "end_lineno": 9,
+                          "end_col_offset": 23
+                        },
+                        "focus": "key",
+                        "id": "key",
+                        "ctx": {
+                          "node_id": 19,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 36
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 19,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 33
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "node_id": 19,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 27
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 28,
+                      "children_node_ids": [
+                        19
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 22,
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 32,
+                        "end_lineno": 9,
+                        "end_col_offset": 33
+                      },
+                      "focus": "s",
+                      "id": "s",
+                      "ctx": {
+                        "node_id": 19,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 28
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              15
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 11,
+              "col_offset": 4,
+              "end_lineno": 11,
+              "end_col_offset": 37
+            },
+            "focus": "return list(anagram_map.values())",
+            "value": {
+              "node_id": 15,
+              "children_node_ids": [
+                23,
+                24
+              ],
+              "type": "Call",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 11,
+                "col_offset": 11,
+                "end_lineno": 11,
+                "end_col_offset": 37
+              },
+              "focus": "list(anagram_map.values())",
+              "func": {
+                "node_id": 23,
+                "children_node_ids": [
+                  19
+                ],
+                "type": "Name",
+                "parent_node_id": 15,
+                "location": {
+                  "lineno": 11,
+                  "col_offset": 11,
+                  "end_lineno": 11,
+                  "end_col_offset": 15
+                },
+                "focus": "list",
+                "id": "list",
+                "ctx": {
+                  "node_id": 19,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 23
+                }
+              },
+              "args": [
+                {
+                  "node_id": 24,
+                  "children_node_ids": [
+                    29
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 15,
+                  "location": {
+                    "lineno": 11,
+                    "col_offset": 16,
+                    "end_lineno": 11,
+                    "end_col_offset": 36
+                  },
+                  "focus": "anagram_map.values()",
+                  "func": {
+                    "node_id": 29,
+                    "children_node_ids": [
+                      34,
+                      19
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 24,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 16,
+                      "end_lineno": 11,
+                      "end_col_offset": 34
+                    },
+                    "focus": "anagram_map.values",
+                    "value": {
+                      "node_id": 34,
+                      "children_node_ids": [
+                        19
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 29,
+                      "location": {
+                        "lineno": 11,
+                        "col_offset": 16,
+                        "end_lineno": 11,
+                        "end_col_offset": 27
+                      },
+                      "focus": "anagram_map",
+                      "id": "anagram_map",
+                      "ctx": {
+                        "node_id": 19,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 34
+                      }
+                    },
+                    "attr": "values",
+                    "ctx": {
+                      "node_id": 19,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 29
+                    }
+                  },
+                  "args": [],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "strs",
+      "cursor": "s",
+      "type": "value_index",
+      "node_id": 5
+    },
+    {
+      "container": "anagram_map",
+      "cursor": "key",
+      "type": "key_access",
+      "node_id": 33
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ]
+      },
+      "delta": {
+        "strs": {
+          "0": "eat",
+          "1": "tea",
+          "2": "tan",
+          "3": "ate",
+          "4": "nat",
+          "5": "bat"
+        }
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "strs": 4338645312
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "from collections import defaultdict",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "from collections import defaultdict",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "strs": 4338645312
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "anagram_map = defaultdict(list)",
+          "node_id": 4
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "defaultdict(list)",
+          "node_id": 10
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 18
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "defaultdict(list)",
+          "node_id": 10,
+          "value": {}
+        },
+        {
+          "step": 8,
+          "event": "after_statement",
+          "focus": "anagram_map = defaultdict(list)",
+          "node_id": 4,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {}
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {},
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "strs": 4338645312,
+            "anagram_map": 4338941072
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {}
+      },
+      "delta": {
+        "anagram_map": {}
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {},
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072
+      },
+      "steps": [
+        {
+          "step": 9,
+          "event": "before_statement",
+          "focus": "for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)",
+          "node_id": 5
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "strs",
+          "node_id": 12
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "strs",
+          "node_id": 12,
+          "value": [
+            "eat",
+            "tea",
+            "tan",
+            "ate",
+            "nat",
+            "bat"
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {},
+        "s": "eat"
+      },
+      "delta": {
+        "s": "eat"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {},
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763072
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "eat"
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "e",
+            "t"
+          ]
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "aet"
+        },
+        {
+          "step": 20,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {},
+            "s": "eat",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {},
+              "mutable": true
+            },
+            "4380119504": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "strs": 4338645312,
+            "anagram_map": 4338941072,
+            "s": 4338763072,
+            "key": 4380119504
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {},
+        "s": "eat",
+        "key": "aet"
+      },
+      "delta": {
+        "key": "aet"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {},
+          "mutable": true
+        },
+        "4380119504": {
+          "type": "str",
+          "value": "aet",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763072,
+        "key": 4380119504
+      },
+      "steps": [
+        {
+          "step": 21,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {}
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "aet"
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": []
+            },
+            "s": "eat",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160
+              },
+              "mutable": true
+            },
+            "4380119504": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          },
+          "value": []
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": []
+            },
+            "s": "eat",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160
+              },
+              "mutable": true
+            },
+            "4380119504": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": []
+            },
+            "s": "eat",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160
+              },
+              "mutable": true
+            },
+            "4380119504": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          },
+          "value": "eat"
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat"
+              ]
+            },
+            "s": "eat",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160
+              },
+              "mutable": true
+            },
+            "4380119504": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 33,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat"
+              ]
+            },
+            "s": "eat",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160
+              },
+              "mutable": true
+            },
+            "4380119504": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat"
+          ]
+        },
+        "s": "tea",
+        "key": "aet"
+      },
+      "delta": {
+        "anagram_map": {
+          "aet": {
+            "0": "eat"
+          }
+        },
+        "s": "tea"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160
+          },
+          "mutable": true
+        },
+        "4380119504": {
+          "type": "str",
+          "value": "aet",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763120,
+        "key": 4380119504
+      },
+      "steps": [
+        {
+          "step": 34,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "tea"
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "e",
+            "t"
+          ]
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "aet"
+        },
+        {
+          "step": 42,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160
+              },
+              "mutable": true
+            },
+            "4384351136": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "strs": 4338645312,
+            "anagram_map": 4338941072,
+            "s": 4338763120,
+            "key": 4384351136
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat"
+          ]
+        },
+        "s": "tea",
+        "key": "aet"
+      },
+      "delta": null,
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160
+          },
+          "mutable": true
+        },
+        "4384351136": {
+          "type": "str",
+          "value": "aet",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763120,
+        "key": 4384351136
+      },
+      "steps": [
+        {
+          "step": 43,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat"
+            ]
+          }
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "aet"
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "value": [
+            "eat"
+          ]
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "value": "tea"
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ]
+            },
+            "s": "tea",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160
+              },
+              "mutable": true
+            },
+            "4384351136": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 55,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ]
+            },
+            "s": "tea",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160
+              },
+              "mutable": true
+            },
+            "4384351136": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea"
+          ]
+        },
+        "s": "tan",
+        "key": "aet"
+      },
+      "delta": {
+        "anagram_map": {
+          "aet": {
+            "1": "tea"
+          }
+        },
+        "s": "tan"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160
+          },
+          "mutable": true
+        },
+        "4384351136": {
+          "type": "str",
+          "value": "aet",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763168,
+        "key": 4384351136
+      },
+      "steps": [
+        {
+          "step": 56,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 59,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "tan"
+        },
+        {
+          "step": 62,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "n",
+            "t"
+          ]
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "ant"
+        },
+        {
+          "step": 64,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ]
+            },
+            "s": "tan",
+            "key": "ant"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160
+              },
+              "mutable": true
+            },
+            "4380115952": {
+              "type": "str",
+              "value": "ant",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "strs": 4338645312,
+            "anagram_map": 4338941072,
+            "s": 4338763168,
+            "key": 4380115952
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea"
+          ]
+        },
+        "s": "tan",
+        "key": "ant"
+      },
+      "delta": {
+        "key": "ant"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160
+          },
+          "mutable": true
+        },
+        "4380115952": {
+          "type": "str",
+          "value": "ant",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763168,
+        "key": 4380115952
+      },
+      "steps": [
+        {
+          "step": 65,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat",
+              "tea"
+            ]
+          }
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "ant"
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": []
+            },
+            "s": "tan",
+            "key": "ant"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4380115952": {
+              "type": "str",
+              "value": "ant",
+              "mutable": false
+            }
+          },
+          "value": []
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": []
+            },
+            "s": "tan",
+            "key": "ant"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4380115952": {
+              "type": "str",
+              "value": "ant",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 75,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": []
+            },
+            "s": "tan",
+            "key": "ant"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4380115952": {
+              "type": "str",
+              "value": "ant",
+              "mutable": false
+            }
+          },
+          "value": "tan"
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "tan",
+            "key": "ant"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4380115952": {
+              "type": "str",
+              "value": "ant",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 77,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "tan",
+            "key": "ant"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4380115952": {
+              "type": "str",
+              "value": "ant",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea"
+          ],
+          "ant": [
+            "tan"
+          ]
+        },
+        "s": "ate",
+        "key": "ant"
+      },
+      "delta": {
+        "anagram_map": {
+          "ant": {
+            "0": "tan"
+          }
+        },
+        "s": "ate"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120
+          ],
+          "mutable": true
+        },
+        "4380192448": {
+          "type": "list",
+          "value": [
+            4338763168
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160,
+            "ant": 4380192448
+          },
+          "mutable": true
+        },
+        "4380115952": {
+          "type": "str",
+          "value": "ant",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763216,
+        "key": 4380115952
+      },
+      "steps": [
+        {
+          "step": 78,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "ate"
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "e",
+            "t"
+          ]
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "aet"
+        },
+        {
+          "step": 86,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "ate",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4384355984": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "strs": 4338645312,
+            "anagram_map": 4338941072,
+            "s": 4338763216,
+            "key": 4384355984
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea"
+          ],
+          "ant": [
+            "tan"
+          ]
+        },
+        "s": "ate",
+        "key": "aet"
+      },
+      "delta": {
+        "key": "aet"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120
+          ],
+          "mutable": true
+        },
+        "4380192448": {
+          "type": "list",
+          "value": [
+            4338763168
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160,
+            "ant": 4380192448
+          },
+          "mutable": true
+        },
+        "4384355984": {
+          "type": "str",
+          "value": "aet",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763216,
+        "key": 4384355984
+      },
+      "steps": [
+        {
+          "step": 87,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat",
+              "tea"
+            ],
+            "ant": [
+              "tan"
+            ]
+          }
+        },
+        {
+          "step": 93,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "aet"
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "value": [
+            "eat",
+            "tea"
+          ]
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "value": "ate"
+        },
+        {
+          "step": 98,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "ate",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4384355984": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 99,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "ate",
+            "key": "aet"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4384355984": {
+              "type": "str",
+              "value": "aet",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan"
+          ]
+        },
+        "s": "nat",
+        "key": "aet"
+      },
+      "delta": {
+        "anagram_map": {
+          "aet": {
+            "2": "ate"
+          }
+        },
+        "s": "nat"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763216
+          ],
+          "mutable": true
+        },
+        "4380192448": {
+          "type": "list",
+          "value": [
+            4338763168
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160,
+            "ant": 4380192448
+          },
+          "mutable": true
+        },
+        "4384355984": {
+          "type": "str",
+          "value": "aet",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763264,
+        "key": 4384355984
+      },
+      "steps": [
+        {
+          "step": 100,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 105,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "nat"
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "n",
+            "t"
+          ]
+        },
+        {
+          "step": 107,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "ant"
+        },
+        {
+          "step": 108,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan"
+              ]
+            },
+            "s": "nat",
+            "key": "ant"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4379521840": {
+              "type": "str",
+              "value": "ant",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "strs": 4338645312,
+            "anagram_map": 4338941072,
+            "s": 4338763264,
+            "key": 4379521840
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan"
+          ]
+        },
+        "s": "nat",
+        "key": "ant"
+      },
+      "delta": {
+        "key": "ant"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763216
+          ],
+          "mutable": true
+        },
+        "4380192448": {
+          "type": "list",
+          "value": [
+            4338763168
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160,
+            "ant": 4380192448
+          },
+          "mutable": true
+        },
+        "4379521840": {
+          "type": "str",
+          "value": "ant",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763264,
+        "key": 4379521840
+      },
+      "steps": [
+        {
+          "step": 109,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 112,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 113,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 114,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat",
+              "tea",
+              "ate"
+            ],
+            "ant": [
+              "tan"
+            ]
+          }
+        },
+        {
+          "step": 115,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 116,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "ant"
+        },
+        {
+          "step": 117,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "value": [
+            "tan"
+          ]
+        },
+        {
+          "step": 118,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28
+        },
+        {
+          "step": 119,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "value": "nat"
+        },
+        {
+          "step": 120,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ]
+            },
+            "s": "nat",
+            "key": "ant"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168,
+                4338763264
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4379521840": {
+              "type": "str",
+              "value": "ant",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 121,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ]
+            },
+            "s": "nat",
+            "key": "ant"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168,
+                4338763264
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4379521840": {
+              "type": "str",
+              "value": "ant",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan",
+            "nat"
+          ]
+        },
+        "s": "bat",
+        "key": "ant"
+      },
+      "delta": {
+        "anagram_map": {
+          "ant": {
+            "1": "nat"
+          }
+        },
+        "s": "bat"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763216
+          ],
+          "mutable": true
+        },
+        "4380192448": {
+          "type": "list",
+          "value": [
+            4338763168,
+            4338763264
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160,
+            "ant": 4380192448
+          },
+          "mutable": true
+        },
+        "4379521840": {
+          "type": "str",
+          "value": "ant",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763312,
+        "key": 4379521840
+      },
+      "steps": [
+        {
+          "step": 122,
+          "event": "before_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13
+        },
+        {
+          "step": 123,
+          "event": "before_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21
+        },
+        {
+          "step": 124,
+          "event": "before_expression",
+          "focus": "''.join",
+          "node_id": 25
+        },
+        {
+          "step": 125,
+          "event": "before_expression",
+          "focus": "sorted(s)",
+          "node_id": 26
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 32
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 32,
+          "value": "bat"
+        },
+        {
+          "step": 128,
+          "event": "after_expression",
+          "focus": "sorted(s)",
+          "node_id": 26,
+          "value": [
+            "a",
+            "b",
+            "t"
+          ]
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "''.join(sorted(s))",
+          "node_id": 21,
+          "value": "abt"
+        },
+        {
+          "step": 130,
+          "event": "after_statement",
+          "focus": "key = ''.join(sorted(s))",
+          "node_id": 13,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ]
+            },
+            "s": "bat",
+            "key": "abt"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168,
+                4338763264
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448
+              },
+              "mutable": true
+            },
+            "4379528432": {
+              "type": "str",
+              "value": "abt",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "strs": 4338645312,
+            "anagram_map": 4338941072,
+            "s": 4338763312,
+            "key": 4379528432
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan",
+            "nat"
+          ]
+        },
+        "s": "bat",
+        "key": "abt"
+      },
+      "delta": {
+        "key": "abt"
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763216
+          ],
+          "mutable": true
+        },
+        "4380192448": {
+          "type": "list",
+          "value": [
+            4338763168,
+            4338763264
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160,
+            "ant": 4380192448
+          },
+          "mutable": true
+        },
+        "4379528432": {
+          "type": "str",
+          "value": "abt",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763312,
+        "key": 4379528432
+      },
+      "steps": [
+        {
+          "step": 131,
+          "event": "before_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14
+        },
+        {
+          "step": 132,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "anagram_map[key].append",
+          "node_id": 27
+        },
+        {
+          "step": 134,
+          "event": "before_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33
+        },
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "anagram_map",
+          "node_id": 35
+        },
+        {
+          "step": 136,
+          "event": "after_expression",
+          "focus": "anagram_map",
+          "node_id": 35,
+          "value": {
+            "aet": [
+              "eat",
+              "tea",
+              "ate"
+            ],
+            "ant": [
+              "tan",
+              "nat"
+            ]
+          }
+        },
+        {
+          "step": 137,
+          "event": "before_expression",
+          "focus": "key",
+          "node_id": 36
+        },
+        {
+          "step": 138,
+          "event": "after_expression",
+          "focus": "key",
+          "node_id": 36,
+          "value": "abt"
+        },
+        {
+          "step": 139,
+          "event": "after_expression",
+          "focus": "anagram_map[key]",
+          "node_id": 33,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": []
+            },
+            "s": "bat",
+            "key": "abt"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168,
+                4338763264
+              ],
+              "mutable": true
+            },
+            "4380589824": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448,
+                "abt": 4380589824
+              },
+              "mutable": true
+            },
+            "4379528432": {
+              "type": "str",
+              "value": "abt",
+              "mutable": false
+            }
+          },
+          "value": []
+        },
+        {
+          "step": 140,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": []
+            },
+            "s": "bat",
+            "key": "abt"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168,
+                4338763264
+              ],
+              "mutable": true
+            },
+            "4380589824": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448,
+                "abt": 4380589824
+              },
+              "mutable": true
+            },
+            "4379528432": {
+              "type": "str",
+              "value": "abt",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 141,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 28,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": []
+            },
+            "s": "bat",
+            "key": "abt"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168,
+                4338763264
+              ],
+              "mutable": true
+            },
+            "4380589824": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448,
+                "abt": 4380589824
+              },
+              "mutable": true
+            },
+            "4379528432": {
+              "type": "str",
+              "value": "abt",
+              "mutable": false
+            }
+          },
+          "value": "bat"
+        },
+        {
+          "step": 142,
+          "event": "after_expression",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 22,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": [
+                "bat"
+              ]
+            },
+            "s": "bat",
+            "key": "abt"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168,
+                4338763264
+              ],
+              "mutable": true
+            },
+            "4380589824": {
+              "type": "list",
+              "value": [
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448,
+                "abt": 4380589824
+              },
+              "mutable": true
+            },
+            "4379528432": {
+              "type": "str",
+              "value": "abt",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 143,
+          "event": "after_statement",
+          "focus": "anagram_map[key].append(s)",
+          "node_id": 14,
+          "locals": {
+            "strs": [
+              "eat",
+              "tea",
+              "tan",
+              "ate",
+              "nat",
+              "bat"
+            ],
+            "anagram_map": {
+              "aet": [
+                "eat",
+                "tea",
+                "ate"
+              ],
+              "ant": [
+                "tan",
+                "nat"
+              ],
+              "abt": [
+                "bat"
+              ]
+            },
+            "s": "bat",
+            "key": "abt"
+          },
+          "object_table": {
+            "4338763072": {
+              "type": "str",
+              "value": "eat",
+              "mutable": false
+            },
+            "4338763120": {
+              "type": "str",
+              "value": "tea",
+              "mutable": false
+            },
+            "4338763168": {
+              "type": "str",
+              "value": "tan",
+              "mutable": false
+            },
+            "4338763216": {
+              "type": "str",
+              "value": "ate",
+              "mutable": false
+            },
+            "4338763264": {
+              "type": "str",
+              "value": "nat",
+              "mutable": false
+            },
+            "4338763312": {
+              "type": "str",
+              "value": "bat",
+              "mutable": false
+            },
+            "4338645312": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763168,
+                4338763216,
+                4338763264,
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4344404160": {
+              "type": "list",
+              "value": [
+                4338763072,
+                4338763120,
+                4338763216
+              ],
+              "mutable": true
+            },
+            "4380192448": {
+              "type": "list",
+              "value": [
+                4338763168,
+                4338763264
+              ],
+              "mutable": true
+            },
+            "4380589824": {
+              "type": "list",
+              "value": [
+                4338763312
+              ],
+              "mutable": true
+            },
+            "4338941072": {
+              "type": "defaultdict",
+              "value": {
+                "aet": 4344404160,
+                "ant": 4380192448,
+                "abt": 4380589824
+              },
+              "mutable": true
+            },
+            "4379528432": {
+              "type": "str",
+              "value": "abt",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan",
+            "nat"
+          ],
+          "abt": [
+            "bat"
+          ]
+        },
+        "s": "bat",
+        "key": "abt"
+      },
+      "delta": {
+        "anagram_map": {
+          "abt": {
+            "0": "bat"
+          }
+        }
+      },
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763216
+          ],
+          "mutable": true
+        },
+        "4380192448": {
+          "type": "list",
+          "value": [
+            4338763168,
+            4338763264
+          ],
+          "mutable": true
+        },
+        "4380589824": {
+          "type": "list",
+          "value": [
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160,
+            "ant": 4380192448,
+            "abt": 4380589824
+          },
+          "mutable": true
+        },
+        "4379528432": {
+          "type": "str",
+          "value": "abt",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763312,
+        "key": 4379528432
+      },
+      "steps": [
+        {
+          "step": 144,
+          "event": "after_statement",
+          "focus": "for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "anagram_map": {
+          "aet": [
+            "eat",
+            "tea",
+            "ate"
+          ],
+          "ant": [
+            "tan",
+            "nat"
+          ],
+          "abt": [
+            "bat"
+          ]
+        },
+        "s": "bat",
+        "key": "abt"
+      },
+      "delta": null,
+      "object_table": {
+        "4338763072": {
+          "type": "str",
+          "value": "eat",
+          "mutable": false
+        },
+        "4338763120": {
+          "type": "str",
+          "value": "tea",
+          "mutable": false
+        },
+        "4338763168": {
+          "type": "str",
+          "value": "tan",
+          "mutable": false
+        },
+        "4338763216": {
+          "type": "str",
+          "value": "ate",
+          "mutable": false
+        },
+        "4338763264": {
+          "type": "str",
+          "value": "nat",
+          "mutable": false
+        },
+        "4338763312": {
+          "type": "str",
+          "value": "bat",
+          "mutable": false
+        },
+        "4338645312": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763168,
+            4338763216,
+            4338763264,
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4344404160": {
+          "type": "list",
+          "value": [
+            4338763072,
+            4338763120,
+            4338763216
+          ],
+          "mutable": true
+        },
+        "4380192448": {
+          "type": "list",
+          "value": [
+            4338763168,
+            4338763264
+          ],
+          "mutable": true
+        },
+        "4380589824": {
+          "type": "list",
+          "value": [
+            4338763312
+          ],
+          "mutable": true
+        },
+        "4338941072": {
+          "type": "defaultdict",
+          "value": {
+            "aet": 4344404160,
+            "ant": 4380192448,
+            "abt": 4380589824
+          },
+          "mutable": true
+        },
+        "4379528432": {
+          "type": "str",
+          "value": "abt",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "strs": 4338645312,
+        "anagram_map": 4338941072,
+        "s": 4338763312,
+        "key": 4379528432
+      },
+      "steps": [
+        {
+          "step": 145,
+          "event": "before_statement",
+          "focus": "return list(anagram_map.values())",
+          "node_id": 6
+        },
+        {
+          "step": 146,
+          "event": "before_expression",
+          "focus": "list(anagram_map.values())",
+          "node_id": 15
+        },
+        {
+          "step": 147,
+          "event": "before_expression",
+          "focus": "anagram_map.values()",
+          "node_id": 24
+        },
+        {
+          "step": 148,
+          "event": "before_expression",
+          "focus": "anagram_map.values",
+          "node_id": 29
+        },
+        {
+          "step": 149,
+          "event": "after_expression",
+          "focus": "anagram_map.values()",
+          "node_id": 24,
+          "value": "dict_values([['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']])"
+        },
+        {
+          "step": 150,
+          "event": "after_expression",
+          "focus": "list(anagram_map.values())",
+          "node_id": 15,
+          "value": [
+            [
+              "eat",
+              "tea",
+              "ate"
+            ],
+            [
+              "tan",
+              "nat"
+            ],
+            [
+              "bat"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "result": [
+    [
+      "eat",
+      "tea",
+      "ate"
+    ],
+    [
+      "tan",
+      "nat"
+    ],
+    [
+      "bat"
+    ]
+  ]
+}

@@ -1,0 +1,1485 @@
+{
+  "metadata": {
+    "code": "def getSum(a, b):\n    MAX = 0x7FFFFFFF\n    mask = 0xFFFFFFFF\n    while b:\n        a, b = (a ^ b) & mask, ((a & b) << 1) & mask\n    return a if a <= MAX else ~(a ^ mask)",
+    "function": "getSum",
+    "inputs": {
+      "kwargs": {
+        "a": "1",
+        "b": "2"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "a": 3,
+      "b": 0,
+      "MAX": 2147483647,
+      "mask": 4294967295
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 6,
+          "end_col_offset": 41
+        },
+        "focus": "def getSum(a, b):\n    MAX = 0x7FFFFFFF\n    mask = 0xFFFFFFFF\n    while b:\n        a, b = (a ^ b) & mask, ((a & b) << 1) & mask\n    return a if a <= MAX else ~(a ^ mask)",
+        "name": "getSum",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            7,
+            8
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 7,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 11,
+                "end_lineno": 1,
+                "end_col_offset": 12
+              },
+              "focus": "a",
+              "arg": "a"
+            },
+            {
+              "node_id": 8,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 14,
+                "end_lineno": 1,
+                "end_col_offset": 15
+              },
+              "focus": "b",
+              "arg": "b"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              9,
+              10
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 20
+            },
+            "focus": "MAX = 0x7FFFFFFF",
+            "targets": [
+              {
+                "node_id": 9,
+                "children_node_ids": [
+                  16
+                ],
+                "type": "Name",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 7
+                },
+                "focus": "MAX",
+                "id": "MAX",
+                "ctx": {
+                  "node_id": 16,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 9
+                }
+              }
+            ],
+            "value": {
+              "node_id": 10,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 10,
+                "end_lineno": 2,
+                "end_col_offset": 20
+              },
+              "focus": "0x7FFFFFFF",
+              "value": 2147483647
+            }
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              11,
+              12
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 3,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 21
+            },
+            "focus": "mask = 0xFFFFFFFF",
+            "targets": [
+              {
+                "node_id": 11,
+                "children_node_ids": [
+                  16
+                ],
+                "type": "Name",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 4,
+                  "end_lineno": 3,
+                  "end_col_offset": 8
+                },
+                "focus": "mask",
+                "id": "mask",
+                "ctx": {
+                  "node_id": 16,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 11
+                }
+              }
+            ],
+            "value": {
+              "node_id": 12,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 3,
+                "col_offset": 11,
+                "end_lineno": 3,
+                "end_col_offset": 21
+              },
+              "focus": "0xFFFFFFFF",
+              "value": 4294967295
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              13,
+              14
+            ],
+            "type": "While",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 4,
+              "col_offset": 4,
+              "end_lineno": 5,
+              "end_col_offset": 52
+            },
+            "focus": "while b:\n        a, b = (a ^ b) & mask, ((a & b) << 1) & mask",
+            "test": {
+              "node_id": 13,
+              "children_node_ids": [
+                17
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 4,
+                "col_offset": 10,
+                "end_lineno": 4,
+                "end_col_offset": 11
+              },
+              "focus": "b",
+              "id": "b",
+              "ctx": {
+                "node_id": 17,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 13
+              }
+            },
+            "body": [
+              {
+                "node_id": 14,
+                "children_node_ids": [
+                  18,
+                  19
+                ],
+                "type": "Assign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 8,
+                  "end_lineno": 5,
+                  "end_col_offset": 52
+                },
+                "focus": "a, b = (a ^ b) & mask, ((a & b) << 1) & mask",
+                "targets": [
+                  {
+                    "node_id": 18,
+                    "children_node_ids": [
+                      23,
+                      24,
+                      16
+                    ],
+                    "type": "Tuple",
+                    "parent_node_id": 14,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 8,
+                      "end_lineno": 5,
+                      "end_col_offset": 12
+                    },
+                    "focus": "a, b",
+                    "elts": [
+                      {
+                        "node_id": 23,
+                        "children_node_ids": [
+                          16
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 18,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 8,
+                          "end_lineno": 5,
+                          "end_col_offset": 9
+                        },
+                        "focus": "a",
+                        "id": "a",
+                        "ctx": {
+                          "node_id": 16,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 23
+                        }
+                      },
+                      {
+                        "node_id": 24,
+                        "children_node_ids": [
+                          16
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 18,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 11,
+                          "end_lineno": 5,
+                          "end_col_offset": 12
+                        },
+                        "focus": "b",
+                        "id": "b",
+                        "ctx": {
+                          "node_id": 16,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 24
+                        }
+                      }
+                    ],
+                    "ctx": {
+                      "node_id": 16,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 18
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 19,
+                  "children_node_ids": [
+                    25,
+                    26,
+                    17
+                  ],
+                  "type": "Tuple",
+                  "parent_node_id": 14,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 15,
+                    "end_lineno": 5,
+                    "end_col_offset": 52
+                  },
+                  "focus": "(a ^ b) & mask, ((a & b) << 1) & mask",
+                  "elts": [
+                    {
+                      "node_id": 25,
+                      "children_node_ids": [
+                        32,
+                        33,
+                        34
+                      ],
+                      "type": "BinOp",
+                      "parent_node_id": 19,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 15,
+                        "end_lineno": 5,
+                        "end_col_offset": 29
+                      },
+                      "focus": "(a ^ b) & mask",
+                      "left": {
+                        "node_id": 32,
+                        "children_node_ids": [
+                          40,
+                          38,
+                          41
+                        ],
+                        "type": "BinOp",
+                        "parent_node_id": 25,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 16,
+                          "end_lineno": 5,
+                          "end_col_offset": 21
+                        },
+                        "focus": "a ^ b",
+                        "left": {
+                          "node_id": 40,
+                          "children_node_ids": [
+                            17
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 32,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 16,
+                            "end_lineno": 5,
+                            "end_col_offset": 17
+                          },
+                          "focus": "a",
+                          "id": "a",
+                          "ctx": {
+                            "node_id": 17,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 40
+                          }
+                        },
+                        "op": {
+                          "node_id": 38,
+                          "children_node_ids": [],
+                          "type": "BitXor",
+                          "parent_node_id": 32
+                        },
+                        "right": {
+                          "node_id": 41,
+                          "children_node_ids": [
+                            17
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 32,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 20,
+                            "end_lineno": 5,
+                            "end_col_offset": 21
+                          },
+                          "focus": "b",
+                          "id": "b",
+                          "ctx": {
+                            "node_id": 17,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 41
+                          }
+                        }
+                      },
+                      "op": {
+                        "node_id": 33,
+                        "children_node_ids": [],
+                        "type": "BitAnd",
+                        "parent_node_id": 25
+                      },
+                      "right": {
+                        "node_id": 34,
+                        "children_node_ids": [
+                          17
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 25,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 25,
+                          "end_lineno": 5,
+                          "end_col_offset": 29
+                        },
+                        "focus": "mask",
+                        "id": "mask",
+                        "ctx": {
+                          "node_id": 17,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 34
+                        }
+                      }
+                    },
+                    {
+                      "node_id": 26,
+                      "children_node_ids": [
+                        35,
+                        33,
+                        36
+                      ],
+                      "type": "BinOp",
+                      "parent_node_id": 19,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 31,
+                        "end_lineno": 5,
+                        "end_col_offset": 52
+                      },
+                      "focus": "((a & b) << 1) & mask",
+                      "left": {
+                        "node_id": 35,
+                        "children_node_ids": [
+                          42,
+                          43,
+                          44
+                        ],
+                        "type": "BinOp",
+                        "parent_node_id": 26,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 32,
+                          "end_lineno": 5,
+                          "end_col_offset": 44
+                        },
+                        "focus": "(a & b) << 1",
+                        "left": {
+                          "node_id": 42,
+                          "children_node_ids": [
+                            45,
+                            33,
+                            46
+                          ],
+                          "type": "BinOp",
+                          "parent_node_id": 35,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 33,
+                            "end_lineno": 5,
+                            "end_col_offset": 38
+                          },
+                          "focus": "a & b",
+                          "left": {
+                            "node_id": 45,
+                            "children_node_ids": [
+                              17
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 42,
+                            "location": {
+                              "lineno": 5,
+                              "col_offset": 33,
+                              "end_lineno": 5,
+                              "end_col_offset": 34
+                            },
+                            "focus": "a",
+                            "id": "a",
+                            "ctx": {
+                              "node_id": 17,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 45
+                            }
+                          },
+                          "op": {
+                            "node_id": 33,
+                            "children_node_ids": [],
+                            "type": "BitAnd",
+                            "parent_node_id": 42
+                          },
+                          "right": {
+                            "node_id": 46,
+                            "children_node_ids": [
+                              17
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 42,
+                            "location": {
+                              "lineno": 5,
+                              "col_offset": 37,
+                              "end_lineno": 5,
+                              "end_col_offset": 38
+                            },
+                            "focus": "b",
+                            "id": "b",
+                            "ctx": {
+                              "node_id": 17,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 46
+                            }
+                          }
+                        },
+                        "op": {
+                          "node_id": 43,
+                          "children_node_ids": [],
+                          "type": "LShift",
+                          "parent_node_id": 35
+                        },
+                        "right": {
+                          "node_id": 44,
+                          "children_node_ids": [],
+                          "type": "Constant",
+                          "parent_node_id": 35,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 43,
+                            "end_lineno": 5,
+                            "end_col_offset": 44
+                          },
+                          "focus": "1",
+                          "value": 1
+                        }
+                      },
+                      "op": {
+                        "node_id": 33,
+                        "children_node_ids": [],
+                        "type": "BitAnd",
+                        "parent_node_id": 26
+                      },
+                      "right": {
+                        "node_id": 36,
+                        "children_node_ids": [
+                          17
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 26,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 48,
+                          "end_lineno": 5,
+                          "end_col_offset": 52
+                        },
+                        "focus": "mask",
+                        "id": "mask",
+                        "ctx": {
+                          "node_id": 17,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 36
+                        }
+                      }
+                    }
+                  ],
+                  "ctx": {
+                    "node_id": 17,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 19
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              15
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 6,
+              "col_offset": 4,
+              "end_lineno": 6,
+              "end_col_offset": 41
+            },
+            "focus": "return a if a <= MAX else ~(a ^ mask)",
+            "value": {
+              "node_id": 15,
+              "children_node_ids": [
+                20,
+                21,
+                22
+              ],
+              "type": "IfExp",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 6,
+                "col_offset": 11,
+                "end_lineno": 6,
+                "end_col_offset": 41
+              },
+              "focus": "a if a <= MAX else ~(a ^ mask)",
+              "test": {
+                "node_id": 20,
+                "children_node_ids": [
+                  27,
+                  28,
+                  29
+                ],
+                "type": "Compare",
+                "parent_node_id": 15,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 16,
+                  "end_lineno": 6,
+                  "end_col_offset": 24
+                },
+                "focus": "a <= MAX",
+                "left": {
+                  "node_id": 27,
+                  "children_node_ids": [
+                    17
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 20,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 16,
+                    "end_lineno": 6,
+                    "end_col_offset": 17
+                  },
+                  "focus": "a",
+                  "id": "a",
+                  "ctx": {
+                    "node_id": 17,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 27
+                  }
+                },
+                "ops": [
+                  {
+                    "node_id": 28,
+                    "children_node_ids": [],
+                    "type": "LtE",
+                    "parent_node_id": 20
+                  }
+                ],
+                "comparators": [
+                  {
+                    "node_id": 29,
+                    "children_node_ids": [
+                      17
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 20,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 21,
+                      "end_lineno": 6,
+                      "end_col_offset": 24
+                    },
+                    "focus": "MAX",
+                    "id": "MAX",
+                    "ctx": {
+                      "node_id": 17,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 29
+                    }
+                  }
+                ]
+              },
+              "body": {
+                "node_id": 21,
+                "children_node_ids": [
+                  17
+                ],
+                "type": "Name",
+                "parent_node_id": 15,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 11,
+                  "end_lineno": 6,
+                  "end_col_offset": 12
+                },
+                "focus": "a",
+                "id": "a",
+                "ctx": {
+                  "node_id": 17,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 21
+                }
+              },
+              "orelse": {
+                "node_id": 22,
+                "children_node_ids": [
+                  30,
+                  31
+                ],
+                "type": "UnaryOp",
+                "parent_node_id": 15,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 30,
+                  "end_lineno": 6,
+                  "end_col_offset": 41
+                },
+                "focus": "~(a ^ mask)",
+                "op": {
+                  "node_id": 30,
+                  "children_node_ids": [],
+                  "type": "Invert",
+                  "parent_node_id": 22
+                },
+                "operand": {
+                  "node_id": 31,
+                  "children_node_ids": [
+                    37,
+                    38,
+                    39
+                  ],
+                  "type": "BinOp",
+                  "parent_node_id": 22,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 32,
+                    "end_lineno": 6,
+                    "end_col_offset": 40
+                  },
+                  "focus": "a ^ mask",
+                  "left": {
+                    "node_id": 37,
+                    "children_node_ids": [
+                      17
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 31,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 32,
+                      "end_lineno": 6,
+                      "end_col_offset": 33
+                    },
+                    "focus": "a",
+                    "id": "a",
+                    "ctx": {
+                      "node_id": 17,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 37
+                    }
+                  },
+                  "op": {
+                    "node_id": 38,
+                    "children_node_ids": [],
+                    "type": "BitXor",
+                    "parent_node_id": 31
+                  },
+                  "right": {
+                    "node_id": 39,
+                    "children_node_ids": [
+                      17
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 31,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 36,
+                      "end_lineno": 6,
+                      "end_col_offset": 40
+                    },
+                    "focus": "mask",
+                    "id": "mask",
+                    "ctx": {
+                      "node_id": 17,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 39
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def getSum(a, b):\n    MAX = 0x7FFFFFFF\n    mask = 0xFFFFFFFF\n    while b:\n        a, b = (a ^ b) & mask, ((a & b) << 1) & mask\n    return a if a <= MAX else ~(a ^ mask)",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def getSum(a, b):\n    MAX = 0x7FFFFFFF\n    mask = 0xFFFFFFFF\n    while b:\n        a, b = (a ^ b) & mask, ((a & b) << 1) & mask\n    return a if a <= MAX else ~(a ^ mask)",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "a": 1,
+        "b": 2
+      },
+      "delta": {
+        "a": 1,
+        "b": 2
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "a": 4308476064,
+        "b": 4308476096
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "MAX = 0x7FFFFFFF",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "MAX = 0x7FFFFFFF",
+          "node_id": 3,
+          "locals": {
+            "a": 1,
+            "b": 2,
+            "MAX": 2147483647
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4344548080": {
+              "type": "int",
+              "value": 2147483647,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "a": 4308476064,
+            "b": 4308476096,
+            "MAX": 4344548080
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "a": 1,
+        "b": 2,
+        "MAX": 2147483647
+      },
+      "delta": {
+        "MAX": 2147483647
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4344548080": {
+          "type": "int",
+          "value": 2147483647,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "a": 4308476064,
+        "b": 4308476096,
+        "MAX": 4344548080
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "mask = 0xFFFFFFFF",
+          "node_id": 4
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "mask = 0xFFFFFFFF",
+          "node_id": 4,
+          "locals": {
+            "a": 1,
+            "b": 2,
+            "MAX": 2147483647,
+            "mask": 4294967295
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4344548080": {
+              "type": "int",
+              "value": 2147483647,
+              "mutable": false
+            },
+            "4344548656": {
+              "type": "int",
+              "value": 4294967295,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "a": 4308476064,
+            "b": 4308476096,
+            "MAX": 4344548080,
+            "mask": 4344548656
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "a": 1,
+        "b": 2,
+        "MAX": 2147483647,
+        "mask": 4294967295
+      },
+      "delta": {
+        "mask": 4294967295
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4344548080": {
+          "type": "int",
+          "value": 2147483647,
+          "mutable": false
+        },
+        "4344548656": {
+          "type": "int",
+          "value": 4294967295,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "a": 4308476064,
+        "b": 4308476096,
+        "MAX": 4344548080,
+        "mask": 4344548656
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "while b:\n        a, b = (a ^ b) & mask, ((a & b) << 1) & mask",
+          "node_id": 5
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "b",
+          "node_id": 13
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "b",
+          "node_id": 13,
+          "value": 2
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "a": 1,
+        "b": 2,
+        "MAX": 2147483647,
+        "mask": 4294967295
+      },
+      "delta": null,
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4344548080": {
+          "type": "int",
+          "value": 2147483647,
+          "mutable": false
+        },
+        "4344548656": {
+          "type": "int",
+          "value": 4294967295,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "a": 4308476064,
+        "b": 4308476096,
+        "MAX": 4344548080,
+        "mask": 4344548656
+      },
+      "steps": [
+        {
+          "step": 9,
+          "event": "before_statement",
+          "focus": "a, b = (a ^ b) & mask, ((a & b) << 1) & mask",
+          "node_id": 14
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "(a ^ b) & mask, ((a & b) << 1) & mask",
+          "node_id": 19
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "(a ^ b) & mask",
+          "node_id": 25
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "a ^ b",
+          "node_id": 32
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "a",
+          "node_id": 40
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "a",
+          "node_id": 40,
+          "value": 1
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "b",
+          "node_id": 41
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "b",
+          "node_id": 41,
+          "value": 2
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "a ^ b",
+          "node_id": 32,
+          "value": 3
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "mask",
+          "node_id": 34
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "mask",
+          "node_id": 34,
+          "value": 4294967295
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "(a ^ b) & mask",
+          "node_id": 25,
+          "value": 3
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "((a & b) << 1) & mask",
+          "node_id": 26
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "(a & b) << 1",
+          "node_id": 35
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "a & b",
+          "node_id": 42
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "a",
+          "node_id": 45
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "a",
+          "node_id": 45,
+          "value": 1
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "b",
+          "node_id": 46
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "b",
+          "node_id": 46,
+          "value": 2
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "a & b",
+          "node_id": 42,
+          "value": 0
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "(a & b) << 1",
+          "node_id": 35,
+          "value": 0
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "mask",
+          "node_id": 36
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "mask",
+          "node_id": 36,
+          "value": 4294967295
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "((a & b) << 1) & mask",
+          "node_id": 26,
+          "value": 0
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "(a ^ b) & mask, ((a & b) << 1) & mask",
+          "node_id": 19,
+          "value": [
+            3,
+            0
+          ]
+        },
+        {
+          "step": 34,
+          "event": "after_statement",
+          "focus": "a, b = (a ^ b) & mask, ((a & b) << 1) & mask",
+          "node_id": 14,
+          "locals": {
+            "a": 3,
+            "b": 0,
+            "MAX": 2147483647,
+            "mask": 4294967295
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4344548080": {
+              "type": "int",
+              "value": 2147483647,
+              "mutable": false
+            },
+            "4344548656": {
+              "type": "int",
+              "value": 4294967295,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "a": 4308476128,
+            "b": 4308476032,
+            "MAX": 4344548080,
+            "mask": 4344548656
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "a": 3,
+        "b": 0,
+        "MAX": 2147483647,
+        "mask": 4294967295
+      },
+      "delta": {
+        "a": 3,
+        "b": 0
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4344548080": {
+          "type": "int",
+          "value": 2147483647,
+          "mutable": false
+        },
+        "4344548656": {
+          "type": "int",
+          "value": 4294967295,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "a": 4308476128,
+        "b": 4308476032,
+        "MAX": 4344548080,
+        "mask": 4344548656
+      },
+      "steps": [
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "b",
+          "node_id": 13
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "b",
+          "node_id": 13,
+          "value": 0
+        },
+        {
+          "step": 37,
+          "event": "after_statement",
+          "focus": "while b:\n        a, b = (a ^ b) & mask, ((a & b) << 1) & mask",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "a": 3,
+        "b": 0,
+        "MAX": 2147483647,
+        "mask": 4294967295
+      },
+      "delta": null,
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4344548080": {
+          "type": "int",
+          "value": 2147483647,
+          "mutable": false
+        },
+        "4344548656": {
+          "type": "int",
+          "value": 4294967295,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "a": 4308476128,
+        "b": 4308476032,
+        "MAX": 4344548080,
+        "mask": 4344548656
+      },
+      "steps": [
+        {
+          "step": 38,
+          "event": "before_statement",
+          "focus": "return a if a <= MAX else ~(a ^ mask)",
+          "node_id": 6
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "a if a <= MAX else ~(a ^ mask)",
+          "node_id": 15
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "a <= MAX",
+          "node_id": 20
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "a",
+          "node_id": 27
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "a",
+          "node_id": 27,
+          "value": 3
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "MAX",
+          "node_id": 29
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "MAX",
+          "node_id": 29,
+          "value": 2147483647
+        },
+        {
+          "step": 45,
+          "event": "after_expression",
+          "focus": "a <= MAX",
+          "node_id": 20,
+          "value": true
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "a",
+          "node_id": 21
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "a",
+          "node_id": 21,
+          "value": 3
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "a if a <= MAX else ~(a ^ mask)",
+          "node_id": 15,
+          "value": 3
+        }
+      ]
+    }
+  ],
+  "result": 3
+}

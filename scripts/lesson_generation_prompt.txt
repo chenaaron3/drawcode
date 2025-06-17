@@ -1,0 +1,90 @@
+You are an AI Assistant drafting a Python beginner-friendly curriculum for PythonQuest. Target audience: adults (high school to post-grad) with no prior Python knowledge.
+
+# RPG Elements
+- **Classes**: Warrior, Mage, Healer, Tank, Assassin
+- **Core Loop**: Train skills → Clear dungeons → Collect loot → Buy equipment → Repeat
+- **Mechanics**: Skills (1-100 levels), Equipment (weapons/armor), Gold, Inventory, Combat
+
+# Existing Lesson
+I am borrowing lessons from another curriculum. Help me reskin this content to fit our RPG theme and avoid copyright. 
+You should mostly be changing the code samples. Don't clutter the technical explanations with fantasy words.
+
+# JSON Instructions
+- The template is the pre-populated code provided for the lesson. Make sure it compiles. 
+- If you want to demonstrate errors in the template, use comments so the code can still compile.
+	- For example, print("Hello') should be commented out to # print("Hello') because it doesn't compile
+- Try to include comments or placeholders than help guide the users complete the tasks
+- The solution is code that passes all the tasks within the lesson. Users can see the solution if they are stumped.
+- Make sure there is no mention of the original curriculum platform or PythonQuest in the content or code
+- Make sure the format aligns with the schema below:
+
+## Lesson Data Schema
+{
+	"id": "hello-world", // Come up with an appropriate kebab-case id based on title, or use the lesson id if provided
+	"title": "Hello World", // Keep technical and succinct, 1-2 words
+	"description": "Run your first program", // Keep technical and descriptive
+	"template": "", // The autofilled code before the lesson
+	"solution": "print('Hello World')\n", // Example code that passes the tasks
+	"entrypoint": "",
+	"inputs": {},
+	"time": 1,
+	"mode": "line"
+}
+
+# MD Instructions
+- The reskinned content should be around the same length as the original content
+- Transform code examples to use RPG elements while teaching the same technical concepts
+- Reword original content to avoid copyright issues but maintain technical depth
+- Examples should be intuitive for adults familiar with basic gaming concepts
+- Avoid excessive analogies or cheesy metaphors in explanations
+- Make sure there is no mention of the original curriculum platform or PythonQuest in the content or code
+
+## Content Guidelines
+- **Code Examples**: Rich RPG elements - make examples contextual and relatable
+- **Technical Descriptions**: Professional and clear. Light fantasy touches only as enhancement
+- **Consistency**: All code examples should reference the same game world/mechanics
+- **Rewriting**: Transform original content to avoid copyright while maintaining technical depth
+- **Terminology**: Keep all technical terms intact (variables, functions, etc.)
+
+# TS Instructions
+- The TS file has 2 primary jobs: to define the interactive tasks and to verify task completion.
+- If the lesson is complex enough, the tasks should build off of each other in terms of code changes. Each task should represent a meaningful step in a progressive solution, not independent or redundant steps.
+- Here are some verification utilties you can use:
+
+## Task Verification Utilities
+The following React hooks are available in `@/utils/taskChecks.ts` and should be used for verification in the generated lesson hook file:
+
+- `useCheckTerminalContainsAll(strs: string[]): boolean` — Returns true if all provided strings appear in the terminal output.
+- `useTraceFinished(): boolean` — Returns true if the user has stepped through all code (end of trace).
+- `useVariablesDefined(values: Record<string, any>): boolean` — Returns true if the specified variables are defined (and optionally have the given values) in the final locals.
+- `useVariablesPrinted(variables: string[]): boolean` — Returns true if the specified variables' values are printed in the terminal output.
+
+# Overall instructions
+- You should output a single JSON object with the following fields:
+  - `lesson_json`: The lesson data schema as a JSON string.
+  - `lesson_markdown`: The lesson content in markdown.
+  - `lesson_typescript`: The lesson hook file in TypeScript.
+- Do NOT wrap the output in markdown or code blocks. Only output the raw JSON object.
+
+# Few-Shot Examples
+{EXAMPLES}
+
+# Output
+Return a single JSON object with the following fields:
+- `lesson_json`: The lesson data schema as a JSON string.
+- `lesson_markdown`: The lesson content in markdown.
+- `lesson_typescript`: The lesson hook file in TypeScript.
+
+Example output:
+{
+  "lesson_json": "{\n  \"id\": \"hello-world\",\n  \"title\": \"Hello World\",\n  \"description\": \"Run your first program\",\n  \"template\": \"\",\n  \"solution\": \"print('Hello World')\\n\",\n  \"entrypoint\": \"\",\n  \"inputs\": {},\n  \"time\": 1,\n  \"mode\": \"line\"\n}",
+  "lesson_markdown": "# Hello World\\n\\nWelcome to your first adventure! ...",
+  "lesson_typescript": "import ..."
+}
+
+# Input
+Here is the original lesson data:
+{INPUT}
+
+# Module ID: {MODULE_ID}
+# Lesson ID: {LESSON_ID}

@@ -1,0 +1,4273 @@
+{
+  "metadata": {
+    "code": "def isValidBST(root):\n    def validate(node, low, high):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        return validate(node.left, low, node.val) and validate(node.right, node.val, high)\n    return validate(root, float('-inf'), float('inf'))",
+    "function": "isValidBST",
+    "inputs": {
+      "kwargs": {
+        "root": "[2, 1, 3]"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "root": "TreeNode(2)"
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 8,
+          "end_col_offset": 54
+        },
+        "focus": "def isValidBST(root):\n    def validate(node, low, high):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        return validate(node.left, low, node.val) and validate(node.right, node.val, high)\n    return validate(root, float('-inf'), float('inf'))",
+        "name": "isValidBST",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            5
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 5,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 15,
+                "end_lineno": 1,
+                "end_col_offset": 19
+              },
+              "focus": "root",
+              "arg": "root"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              6,
+              7,
+              8,
+              9
+            ],
+            "type": "FunctionDef",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 7,
+              "end_col_offset": 90
+            },
+            "focus": "def validate(node, low, high):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        return validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+            "name": "validate",
+            "args": {
+              "node_id": 6,
+              "children_node_ids": [
+                11,
+                12,
+                13
+              ],
+              "type": "arguments",
+              "parent_node_id": 3,
+              "posonlyargs": [],
+              "args": [
+                {
+                  "node_id": 11,
+                  "children_node_ids": [],
+                  "type": "arg",
+                  "parent_node_id": 6,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 17,
+                    "end_lineno": 2,
+                    "end_col_offset": 21
+                  },
+                  "focus": "node",
+                  "arg": "node"
+                },
+                {
+                  "node_id": 12,
+                  "children_node_ids": [],
+                  "type": "arg",
+                  "parent_node_id": 6,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 23,
+                    "end_lineno": 2,
+                    "end_col_offset": 26
+                  },
+                  "focus": "low",
+                  "arg": "low"
+                },
+                {
+                  "node_id": 13,
+                  "children_node_ids": [],
+                  "type": "arg",
+                  "parent_node_id": 6,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 28,
+                    "end_lineno": 2,
+                    "end_col_offset": 32
+                  },
+                  "focus": "high",
+                  "arg": "high"
+                }
+              ],
+              "kwonlyargs": [],
+              "kw_defaults": [],
+              "defaults": []
+            },
+            "body": [
+              {
+                "node_id": 7,
+                "children_node_ids": [
+                  14,
+                  15
+                ],
+                "type": "If",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 8,
+                  "end_lineno": 4,
+                  "end_col_offset": 23
+                },
+                "focus": "if not node:\n            return True",
+                "test": {
+                  "node_id": 14,
+                  "children_node_ids": [
+                    23,
+                    24
+                  ],
+                  "type": "UnaryOp",
+                  "parent_node_id": 7,
+                  "location": {
+                    "lineno": 3,
+                    "col_offset": 11,
+                    "end_lineno": 3,
+                    "end_col_offset": 19
+                  },
+                  "focus": "not node",
+                  "op": {
+                    "node_id": 23,
+                    "children_node_ids": [],
+                    "type": "Not",
+                    "parent_node_id": 14
+                  },
+                  "operand": {
+                    "node_id": 24,
+                    "children_node_ids": [
+                      31
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 14,
+                    "location": {
+                      "lineno": 3,
+                      "col_offset": 15,
+                      "end_lineno": 3,
+                      "end_col_offset": 19
+                    },
+                    "focus": "node",
+                    "id": "node",
+                    "ctx": {
+                      "node_id": 31,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 24
+                    }
+                  }
+                },
+                "body": [
+                  {
+                    "node_id": 15,
+                    "children_node_ids": [
+                      25
+                    ],
+                    "type": "Return",
+                    "parent_node_id": 7,
+                    "location": {
+                      "lineno": 4,
+                      "col_offset": 12,
+                      "end_lineno": 4,
+                      "end_col_offset": 23
+                    },
+                    "focus": "return True",
+                    "value": {
+                      "node_id": 25,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 15,
+                      "location": {
+                        "lineno": 4,
+                        "col_offset": 19,
+                        "end_lineno": 4,
+                        "end_col_offset": 23
+                      },
+                      "focus": "True",
+                      "value": true
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 8,
+                "children_node_ids": [
+                  16,
+                  17
+                ],
+                "type": "If",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 8,
+                  "end_lineno": 6,
+                  "end_col_offset": 24
+                },
+                "focus": "if not (low < node.val < high):\n            return False",
+                "test": {
+                  "node_id": 16,
+                  "children_node_ids": [
+                    23,
+                    26
+                  ],
+                  "type": "UnaryOp",
+                  "parent_node_id": 8,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 11,
+                    "end_lineno": 5,
+                    "end_col_offset": 38
+                  },
+                  "focus": "not (low < node.val < high)",
+                  "op": {
+                    "node_id": 23,
+                    "children_node_ids": [],
+                    "type": "Not",
+                    "parent_node_id": 16
+                  },
+                  "operand": {
+                    "node_id": 26,
+                    "children_node_ids": [
+                      36,
+                      37,
+                      37,
+                      38,
+                      39
+                    ],
+                    "type": "Compare",
+                    "parent_node_id": 16,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 16,
+                      "end_lineno": 5,
+                      "end_col_offset": 37
+                    },
+                    "focus": "low < node.val < high",
+                    "left": {
+                      "node_id": 36,
+                      "children_node_ids": [
+                        31
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 26,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 16,
+                        "end_lineno": 5,
+                        "end_col_offset": 19
+                      },
+                      "focus": "low",
+                      "id": "low",
+                      "ctx": {
+                        "node_id": 31,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 36
+                      }
+                    },
+                    "ops": [
+                      {
+                        "node_id": 37,
+                        "children_node_ids": [],
+                        "type": "Lt",
+                        "parent_node_id": 26
+                      },
+                      {
+                        "node_id": 37,
+                        "children_node_ids": [],
+                        "type": "Lt",
+                        "parent_node_id": 26
+                      }
+                    ],
+                    "comparators": [
+                      {
+                        "node_id": 38,
+                        "children_node_ids": [
+                          48,
+                          31
+                        ],
+                        "type": "Attribute",
+                        "parent_node_id": 26,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 22,
+                          "end_lineno": 5,
+                          "end_col_offset": 30
+                        },
+                        "focus": "node.val",
+                        "value": {
+                          "node_id": 48,
+                          "children_node_ids": [
+                            31
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 38,
+                          "location": {
+                            "lineno": 5,
+                            "col_offset": 22,
+                            "end_lineno": 5,
+                            "end_col_offset": 26
+                          },
+                          "focus": "node",
+                          "id": "node",
+                          "ctx": {
+                            "node_id": 31,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 48
+                          }
+                        },
+                        "attr": "val",
+                        "ctx": {
+                          "node_id": 31,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 38
+                        }
+                      },
+                      {
+                        "node_id": 39,
+                        "children_node_ids": [
+                          31
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 26,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 33,
+                          "end_lineno": 5,
+                          "end_col_offset": 37
+                        },
+                        "focus": "high",
+                        "id": "high",
+                        "ctx": {
+                          "node_id": 31,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 39
+                        }
+                      }
+                    ]
+                  }
+                },
+                "body": [
+                  {
+                    "node_id": 17,
+                    "children_node_ids": [
+                      27
+                    ],
+                    "type": "Return",
+                    "parent_node_id": 8,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 12,
+                      "end_lineno": 6,
+                      "end_col_offset": 24
+                    },
+                    "focus": "return False",
+                    "value": {
+                      "node_id": 27,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 17,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 19,
+                        "end_lineno": 6,
+                        "end_col_offset": 24
+                      },
+                      "focus": "False",
+                      "value": false
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 9,
+                "children_node_ids": [
+                  18
+                ],
+                "type": "Return",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 7,
+                  "col_offset": 8,
+                  "end_lineno": 7,
+                  "end_col_offset": 90
+                },
+                "focus": "return validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+                "value": {
+                  "node_id": 18,
+                  "children_node_ids": [
+                    28,
+                    29,
+                    30
+                  ],
+                  "type": "BoolOp",
+                  "parent_node_id": 9,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 15,
+                    "end_lineno": 7,
+                    "end_col_offset": 90
+                  },
+                  "focus": "validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+                  "op": {
+                    "node_id": 28,
+                    "children_node_ids": [],
+                    "type": "And",
+                    "parent_node_id": 18
+                  },
+                  "values": [
+                    {
+                      "node_id": 29,
+                      "children_node_ids": [
+                        40,
+                        41,
+                        42,
+                        43
+                      ],
+                      "type": "Call",
+                      "parent_node_id": 18,
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 15,
+                        "end_lineno": 7,
+                        "end_col_offset": 49
+                      },
+                      "focus": "validate(node.left, low, node.val)",
+                      "func": {
+                        "node_id": 40,
+                        "children_node_ids": [
+                          31
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 29,
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 15,
+                          "end_lineno": 7,
+                          "end_col_offset": 23
+                        },
+                        "focus": "validate",
+                        "id": "validate",
+                        "ctx": {
+                          "node_id": 31,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 40
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 41,
+                          "children_node_ids": [
+                            49,
+                            31
+                          ],
+                          "type": "Attribute",
+                          "parent_node_id": 29,
+                          "location": {
+                            "lineno": 7,
+                            "col_offset": 24,
+                            "end_lineno": 7,
+                            "end_col_offset": 33
+                          },
+                          "focus": "node.left",
+                          "value": {
+                            "node_id": 49,
+                            "children_node_ids": [
+                              31
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 41,
+                            "location": {
+                              "lineno": 7,
+                              "col_offset": 24,
+                              "end_lineno": 7,
+                              "end_col_offset": 28
+                            },
+                            "focus": "node",
+                            "id": "node",
+                            "ctx": {
+                              "node_id": 31,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 49
+                            }
+                          },
+                          "attr": "left",
+                          "ctx": {
+                            "node_id": 31,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 41
+                          }
+                        },
+                        {
+                          "node_id": 42,
+                          "children_node_ids": [
+                            31
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 29,
+                          "location": {
+                            "lineno": 7,
+                            "col_offset": 35,
+                            "end_lineno": 7,
+                            "end_col_offset": 38
+                          },
+                          "focus": "low",
+                          "id": "low",
+                          "ctx": {
+                            "node_id": 31,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 42
+                          }
+                        },
+                        {
+                          "node_id": 43,
+                          "children_node_ids": [
+                            50,
+                            31
+                          ],
+                          "type": "Attribute",
+                          "parent_node_id": 29,
+                          "location": {
+                            "lineno": 7,
+                            "col_offset": 40,
+                            "end_lineno": 7,
+                            "end_col_offset": 48
+                          },
+                          "focus": "node.val",
+                          "value": {
+                            "node_id": 50,
+                            "children_node_ids": [
+                              31
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 43,
+                            "location": {
+                              "lineno": 7,
+                              "col_offset": 40,
+                              "end_lineno": 7,
+                              "end_col_offset": 44
+                            },
+                            "focus": "node",
+                            "id": "node",
+                            "ctx": {
+                              "node_id": 31,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 50
+                            }
+                          },
+                          "attr": "val",
+                          "ctx": {
+                            "node_id": 31,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 43
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    },
+                    {
+                      "node_id": 30,
+                      "children_node_ids": [
+                        44,
+                        45,
+                        46,
+                        47
+                      ],
+                      "type": "Call",
+                      "parent_node_id": 18,
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 54,
+                        "end_lineno": 7,
+                        "end_col_offset": 90
+                      },
+                      "focus": "validate(node.right, node.val, high)",
+                      "func": {
+                        "node_id": 44,
+                        "children_node_ids": [
+                          31
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 30,
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 54,
+                          "end_lineno": 7,
+                          "end_col_offset": 62
+                        },
+                        "focus": "validate",
+                        "id": "validate",
+                        "ctx": {
+                          "node_id": 31,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 44
+                        }
+                      },
+                      "args": [
+                        {
+                          "node_id": 45,
+                          "children_node_ids": [
+                            51,
+                            31
+                          ],
+                          "type": "Attribute",
+                          "parent_node_id": 30,
+                          "location": {
+                            "lineno": 7,
+                            "col_offset": 63,
+                            "end_lineno": 7,
+                            "end_col_offset": 73
+                          },
+                          "focus": "node.right",
+                          "value": {
+                            "node_id": 51,
+                            "children_node_ids": [
+                              31
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 45,
+                            "location": {
+                              "lineno": 7,
+                              "col_offset": 63,
+                              "end_lineno": 7,
+                              "end_col_offset": 67
+                            },
+                            "focus": "node",
+                            "id": "node",
+                            "ctx": {
+                              "node_id": 31,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 51
+                            }
+                          },
+                          "attr": "right",
+                          "ctx": {
+                            "node_id": 31,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 45
+                          }
+                        },
+                        {
+                          "node_id": 46,
+                          "children_node_ids": [
+                            52,
+                            31
+                          ],
+                          "type": "Attribute",
+                          "parent_node_id": 30,
+                          "location": {
+                            "lineno": 7,
+                            "col_offset": 75,
+                            "end_lineno": 7,
+                            "end_col_offset": 83
+                          },
+                          "focus": "node.val",
+                          "value": {
+                            "node_id": 52,
+                            "children_node_ids": [
+                              31
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 46,
+                            "location": {
+                              "lineno": 7,
+                              "col_offset": 75,
+                              "end_lineno": 7,
+                              "end_col_offset": 79
+                            },
+                            "focus": "node",
+                            "id": "node",
+                            "ctx": {
+                              "node_id": 31,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 52
+                            }
+                          },
+                          "attr": "val",
+                          "ctx": {
+                            "node_id": 31,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 46
+                          }
+                        },
+                        {
+                          "node_id": 47,
+                          "children_node_ids": [
+                            31
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 30,
+                          "location": {
+                            "lineno": 7,
+                            "col_offset": 85,
+                            "end_lineno": 7,
+                            "end_col_offset": 89
+                          },
+                          "focus": "high",
+                          "id": "high",
+                          "ctx": {
+                            "node_id": 31,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 47
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  ]
+                }
+              }
+            ],
+            "decorator_list": [],
+            "type_params": []
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              10
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 8,
+              "col_offset": 4,
+              "end_lineno": 8,
+              "end_col_offset": 54
+            },
+            "focus": "return validate(root, float('-inf'), float('inf'))",
+            "value": {
+              "node_id": 10,
+              "children_node_ids": [
+                19,
+                20,
+                21,
+                22
+              ],
+              "type": "Call",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 8,
+                "col_offset": 11,
+                "end_lineno": 8,
+                "end_col_offset": 54
+              },
+              "focus": "validate(root, float('-inf'), float('inf'))",
+              "func": {
+                "node_id": 19,
+                "children_node_ids": [
+                  31
+                ],
+                "type": "Name",
+                "parent_node_id": 10,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 11,
+                  "end_lineno": 8,
+                  "end_col_offset": 19
+                },
+                "focus": "validate",
+                "id": "validate",
+                "ctx": {
+                  "node_id": 31,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 19
+                }
+              },
+              "args": [
+                {
+                  "node_id": 20,
+                  "children_node_ids": [
+                    31
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 20,
+                    "end_lineno": 8,
+                    "end_col_offset": 24
+                  },
+                  "focus": "root",
+                  "id": "root",
+                  "ctx": {
+                    "node_id": 31,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 20
+                  }
+                },
+                {
+                  "node_id": 21,
+                  "children_node_ids": [
+                    32,
+                    33
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 26,
+                    "end_lineno": 8,
+                    "end_col_offset": 39
+                  },
+                  "focus": "float('-inf')",
+                  "func": {
+                    "node_id": 32,
+                    "children_node_ids": [
+                      31
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 21,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 26,
+                      "end_lineno": 8,
+                      "end_col_offset": 31
+                    },
+                    "focus": "float",
+                    "id": "float",
+                    "ctx": {
+                      "node_id": 31,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 32
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 33,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 21,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 32,
+                        "end_lineno": 8,
+                        "end_col_offset": 38
+                      },
+                      "focus": "'-inf'",
+                      "value": "-inf"
+                    }
+                  ],
+                  "keywords": []
+                },
+                {
+                  "node_id": 22,
+                  "children_node_ids": [
+                    34,
+                    35
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 41,
+                    "end_lineno": 8,
+                    "end_col_offset": 53
+                  },
+                  "focus": "float('inf')",
+                  "func": {
+                    "node_id": 34,
+                    "children_node_ids": [
+                      31
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 22,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 41,
+                      "end_lineno": 8,
+                      "end_col_offset": 46
+                    },
+                    "focus": "float",
+                    "id": "float",
+                    "ctx": {
+                      "node_id": 31,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 34
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 35,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 22,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 47,
+                        "end_lineno": 8,
+                        "end_col_offset": 52
+                      },
+                      "focus": "'inf'",
+                      "value": "inf"
+                    }
+                  ],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def isValidBST(root):\n    def validate(node, low, high):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        return validate(node.left, low, node.val) and validate(node.right, node.val, high)\n    return validate(root, float('-inf'), float('inf'))",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def isValidBST(root):\n    def validate(node, low, high):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        return validate(node.left, low, node.val) and validate(node.right, node.val, high)\n    return validate(root, float('-inf'), float('inf'))",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": "TreeNode(2)"
+      },
+      "delta": {
+        "root": "TreeNode(2)"
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338891392": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338891088,
+            "val": 4308476096
+          },
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338891392
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "def validate(node, low, high):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        return validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "def validate(node, low, high):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        return validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "root": "TreeNode(2)"
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338891392": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338891088,
+            "val": 4308476096
+          },
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338891392
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "return validate(root, float('-inf'), float('inf'))",
+          "node_id": 4
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "validate(root, float('-inf'), float('inf'))",
+          "node_id": 10
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 20
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 20,
+          "value": "TreeNode(2)"
+        },
+        {
+          "step": 8,
+          "event": "before_expression",
+          "focus": "float('-inf')",
+          "node_id": 21
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "float('-inf')",
+          "node_id": 21,
+          "value": "-Infinity"
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "float('inf')",
+          "node_id": 22
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "float('inf')",
+          "node_id": 22,
+          "value": "Infinity"
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "node": "TreeNode(2)",
+        "low": "-Infinity",
+        "high": "Infinity"
+      },
+      "delta": {
+        "node": "TreeNode(2)",
+        "low": "-Infinity",
+        "high": "Infinity"
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338891392": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338891088,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338891392,
+        "low": 4477956240,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "not node",
+          "node_id": 14
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 24,
+          "value": "TreeNode(2)"
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "not node",
+          "node_id": 14,
+          "value": false
+        },
+        {
+          "step": 17,
+          "event": "after_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "node": "TreeNode(2)",
+        "low": "-Infinity",
+        "high": "Infinity"
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338891392": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338891088,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338891392,
+        "low": 4477956240,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 18,
+          "event": "before_statement",
+          "focus": "if not (low < node.val < high):\n            return False",
+          "node_id": 8
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "not (low < node.val < high)",
+          "node_id": 16
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "low < node.val < high",
+          "node_id": 26
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "low",
+          "node_id": 36
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "low",
+          "node_id": 36,
+          "value": "-Infinity"
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "node.val",
+          "node_id": 38
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 48
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 48,
+          "value": "TreeNode(2)"
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "node.val",
+          "node_id": 38,
+          "value": 2
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "high",
+          "node_id": 39
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "high",
+          "node_id": 39,
+          "value": "Infinity"
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "low < node.val < high",
+          "node_id": 26,
+          "value": true
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "not (low < node.val < high)",
+          "node_id": 16,
+          "value": false
+        },
+        {
+          "step": 31,
+          "event": "after_statement",
+          "focus": "if not (low < node.val < high):\n            return False",
+          "node_id": 8
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "node": "TreeNode(2)",
+        "low": "-Infinity",
+        "high": "Infinity"
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338891392": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338891088,
+            "val": 4308476096
+          },
+          "mutable": true
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338891392,
+        "low": 4477956240,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 32,
+          "event": "before_statement",
+          "focus": "return validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 9
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": "validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 18
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "validate(node.left, low, node.val)",
+          "node_id": 29
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "node.left",
+          "node_id": 41
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 49
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 49,
+          "value": "TreeNode(2)"
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "node.left",
+          "node_id": 41,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "low",
+          "node_id": 42
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "low",
+          "node_id": 42,
+          "value": "-Infinity"
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "node.val",
+          "node_id": 43
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 50
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 50,
+          "value": "TreeNode(2)"
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "node.val",
+          "node_id": 43,
+          "value": 2
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "node": "TreeNode(1)",
+        "low": "-Infinity",
+        "high": 2
+      },
+      "delta": {
+        "node": "TreeNode(1)",
+        "high": 2
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338889568,
+        "low": 4477956240,
+        "high": 4308476096
+      },
+      "steps": [
+        {
+          "step": 45,
+          "event": "before_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "not node",
+          "node_id": 14
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 24,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "not node",
+          "node_id": 14,
+          "value": false
+        },
+        {
+          "step": 50,
+          "event": "after_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "node": "TreeNode(1)",
+        "low": "-Infinity",
+        "high": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338889568,
+        "low": 4477956240,
+        "high": 4308476096
+      },
+      "steps": [
+        {
+          "step": 51,
+          "event": "before_statement",
+          "focus": "if not (low < node.val < high):\n            return False",
+          "node_id": 8
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "not (low < node.val < high)",
+          "node_id": 16
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "low < node.val < high",
+          "node_id": 26
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "low",
+          "node_id": 36
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "low",
+          "node_id": 36,
+          "value": "-Infinity"
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "node.val",
+          "node_id": 38
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 48
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 48,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "node.val",
+          "node_id": 38,
+          "value": 1
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "high",
+          "node_id": 39
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "high",
+          "node_id": 39,
+          "value": 2
+        },
+        {
+          "step": 62,
+          "event": "after_expression",
+          "focus": "low < node.val < high",
+          "node_id": 26,
+          "value": true
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "not (low < node.val < high)",
+          "node_id": 16,
+          "value": false
+        },
+        {
+          "step": 64,
+          "event": "after_statement",
+          "focus": "if not (low < node.val < high):\n            return False",
+          "node_id": 8
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "node": "TreeNode(1)",
+        "low": "-Infinity",
+        "high": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338889568,
+        "low": 4477956240,
+        "high": 4308476096
+      },
+      "steps": [
+        {
+          "step": 65,
+          "event": "before_statement",
+          "focus": "return validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 9
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 18
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "validate(node.left, low, node.val)",
+          "node_id": 29
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "node.left",
+          "node_id": 41
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 49
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 49,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 71,
+          "event": "after_expression",
+          "focus": "node.left",
+          "node_id": 41
+        },
+        {
+          "step": 72,
+          "event": "before_expression",
+          "focus": "low",
+          "node_id": 42
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "low",
+          "node_id": 42,
+          "value": "-Infinity"
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "node.val",
+          "node_id": 43
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 50
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 50,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 77,
+          "event": "after_expression",
+          "focus": "node.val",
+          "node_id": 43,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "node": null,
+        "low": "-Infinity",
+        "high": 1
+      },
+      "delta": {
+        "high": 1
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4308329272,
+        "low": 4477956240,
+        "high": 4308476064
+      },
+      "steps": [
+        {
+          "step": 78,
+          "event": "before_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        },
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "not node",
+          "node_id": 14
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 82,
+          "event": "after_expression",
+          "focus": "not node",
+          "node_id": 14,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "node": null,
+        "low": "-Infinity",
+        "high": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4308329272,
+        "low": 4477956240,
+        "high": 4308476064
+      },
+      "steps": [
+        {
+          "step": 83,
+          "event": "before_statement",
+          "focus": "return True",
+          "node_id": 15
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "node": "TreeNode(1)",
+        "low": "-Infinity",
+        "high": 2
+      },
+      "delta": {
+        "node": "TreeNode(1)",
+        "high": 2
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338889568,
+        "low": 4477956240,
+        "high": 4308476096
+      },
+      "steps": [
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "validate(node.left, low, node.val)",
+          "node_id": 29,
+          "value": true
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "validate(node.right, node.val, high)",
+          "node_id": 30
+        },
+        {
+          "step": 86,
+          "event": "before_expression",
+          "focus": "node.right",
+          "node_id": 45
+        },
+        {
+          "step": 87,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 51
+        },
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 51,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "node.right",
+          "node_id": 45
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "node.val",
+          "node_id": 46
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 52
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 52,
+          "value": "TreeNode(1)"
+        },
+        {
+          "step": 93,
+          "event": "after_expression",
+          "focus": "node.val",
+          "node_id": 46,
+          "value": 1
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "high",
+          "node_id": 47
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "high",
+          "node_id": 47,
+          "value": 2
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "node": null,
+        "low": 1,
+        "high": 2
+      },
+      "delta": {
+        "low": 1
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4308329272,
+        "low": 4308476064,
+        "high": 4308476096
+      },
+      "steps": [
+        {
+          "step": 96,
+          "event": "before_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "not node",
+          "node_id": 14
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 100,
+          "event": "after_expression",
+          "focus": "not node",
+          "node_id": 14,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "node": null,
+        "low": 1,
+        "high": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4308329272,
+        "low": 4308476064,
+        "high": 4308476096
+      },
+      "steps": [
+        {
+          "step": 101,
+          "event": "before_statement",
+          "focus": "return True",
+          "node_id": 15
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "node": "TreeNode(1)",
+        "low": "-Infinity",
+        "high": 2
+      },
+      "delta": {
+        "node": "TreeNode(1)",
+        "low": "-Infinity"
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4477956240": {
+          "type": "float",
+          "value": "-Infinity",
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338889568,
+        "low": 4477956240,
+        "high": 4308476096
+      },
+      "steps": [
+        {
+          "step": 102,
+          "event": "after_expression",
+          "focus": "validate(node.right, node.val, high)",
+          "node_id": 30,
+          "value": true
+        },
+        {
+          "step": 103,
+          "event": "after_expression",
+          "focus": "validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 18,
+          "value": true
+        },
+        {
+          "step": 104,
+          "event": "after_expression",
+          "focus": "validate(node.left, low, node.val)",
+          "node_id": 29,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          },
+          "value": true
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "validate(node.right, node.val, high)",
+          "node_id": 30,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          }
+        },
+        {
+          "step": 106,
+          "event": "before_expression",
+          "focus": "node.right",
+          "node_id": 45,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          }
+        },
+        {
+          "step": 107,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 51,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          }
+        },
+        {
+          "step": 108,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 51,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          },
+          "value": "TreeNode(2)"
+        },
+        {
+          "step": 109,
+          "event": "after_expression",
+          "focus": "node.right",
+          "node_id": 45,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          },
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "node.val",
+          "node_id": 46,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          }
+        },
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 52,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          }
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 52,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          },
+          "value": "TreeNode(2)"
+        },
+        {
+          "step": 113,
+          "event": "after_expression",
+          "focus": "node.val",
+          "node_id": 46,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          },
+          "value": 2
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "high",
+          "node_id": 47,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          }
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "high",
+          "node_id": 47,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          },
+          "value": "Infinity"
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "node": "TreeNode(3)",
+        "low": 2,
+        "high": "Infinity"
+      },
+      "delta": {
+        "node": "TreeNode(3)",
+        "low": 2,
+        "high": "Infinity"
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338891088,
+        "low": 4308476096,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 116,
+          "event": "before_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        },
+        {
+          "step": 117,
+          "event": "before_expression",
+          "focus": "not node",
+          "node_id": 14
+        },
+        {
+          "step": 118,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 119,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 24,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 120,
+          "event": "after_expression",
+          "focus": "not node",
+          "node_id": 14,
+          "value": false
+        },
+        {
+          "step": 121,
+          "event": "after_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "node": "TreeNode(3)",
+        "low": 2,
+        "high": "Infinity"
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338891088,
+        "low": 4308476096,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 122,
+          "event": "before_statement",
+          "focus": "if not (low < node.val < high):\n            return False",
+          "node_id": 8
+        },
+        {
+          "step": 123,
+          "event": "before_expression",
+          "focus": "not (low < node.val < high)",
+          "node_id": 16
+        },
+        {
+          "step": 124,
+          "event": "before_expression",
+          "focus": "low < node.val < high",
+          "node_id": 26
+        },
+        {
+          "step": 125,
+          "event": "before_expression",
+          "focus": "low",
+          "node_id": 36
+        },
+        {
+          "step": 126,
+          "event": "after_expression",
+          "focus": "low",
+          "node_id": 36,
+          "value": 2
+        },
+        {
+          "step": 127,
+          "event": "before_expression",
+          "focus": "node.val",
+          "node_id": 38
+        },
+        {
+          "step": 128,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 48
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 48,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 130,
+          "event": "after_expression",
+          "focus": "node.val",
+          "node_id": 38,
+          "value": 3
+        },
+        {
+          "step": 131,
+          "event": "before_expression",
+          "focus": "high",
+          "node_id": 39
+        },
+        {
+          "step": 132,
+          "event": "after_expression",
+          "focus": "high",
+          "node_id": 39,
+          "value": "Infinity"
+        },
+        {
+          "step": 133,
+          "event": "after_expression",
+          "focus": "low < node.val < high",
+          "node_id": 26,
+          "value": true
+        },
+        {
+          "step": 134,
+          "event": "after_expression",
+          "focus": "not (low < node.val < high)",
+          "node_id": 16,
+          "value": false
+        },
+        {
+          "step": 135,
+          "event": "after_statement",
+          "focus": "if not (low < node.val < high):\n            return False",
+          "node_id": 8
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "node": "TreeNode(3)",
+        "low": 2,
+        "high": "Infinity"
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338891088,
+        "low": 4308476096,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 136,
+          "event": "before_statement",
+          "focus": "return validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 9
+        },
+        {
+          "step": 137,
+          "event": "before_expression",
+          "focus": "validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 18
+        },
+        {
+          "step": 138,
+          "event": "before_expression",
+          "focus": "validate(node.left, low, node.val)",
+          "node_id": 29
+        },
+        {
+          "step": 139,
+          "event": "before_expression",
+          "focus": "node.left",
+          "node_id": 41
+        },
+        {
+          "step": 140,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 49
+        },
+        {
+          "step": 141,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 49,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 142,
+          "event": "after_expression",
+          "focus": "node.left",
+          "node_id": 41
+        },
+        {
+          "step": 143,
+          "event": "before_expression",
+          "focus": "low",
+          "node_id": 42
+        },
+        {
+          "step": 144,
+          "event": "after_expression",
+          "focus": "low",
+          "node_id": 42,
+          "value": 2
+        },
+        {
+          "step": 145,
+          "event": "before_expression",
+          "focus": "node.val",
+          "node_id": 43
+        },
+        {
+          "step": 146,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 50
+        },
+        {
+          "step": 147,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 50,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 148,
+          "event": "after_expression",
+          "focus": "node.val",
+          "node_id": 43,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "node": null,
+        "low": 2,
+        "high": 3
+      },
+      "delta": {
+        "high": 3
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4308329272,
+        "low": 4308476096,
+        "high": 4308476128
+      },
+      "steps": [
+        {
+          "step": 149,
+          "event": "before_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        },
+        {
+          "step": 150,
+          "event": "before_expression",
+          "focus": "not node",
+          "node_id": 14
+        },
+        {
+          "step": 151,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 152,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 153,
+          "event": "after_expression",
+          "focus": "not node",
+          "node_id": 14,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "node": null,
+        "low": 2,
+        "high": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4308329272,
+        "low": 4308476096,
+        "high": 4308476128
+      },
+      "steps": [
+        {
+          "step": 154,
+          "event": "before_statement",
+          "focus": "return True",
+          "node_id": 15
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "node": "TreeNode(3)",
+        "low": 2,
+        "high": "Infinity"
+      },
+      "delta": {
+        "node": "TreeNode(3)",
+        "high": "Infinity"
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338891088,
+        "low": 4308476096,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 155,
+          "event": "after_expression",
+          "focus": "validate(node.left, low, node.val)",
+          "node_id": 29,
+          "value": true
+        },
+        {
+          "step": 156,
+          "event": "before_expression",
+          "focus": "validate(node.right, node.val, high)",
+          "node_id": 30
+        },
+        {
+          "step": 157,
+          "event": "before_expression",
+          "focus": "node.right",
+          "node_id": 45
+        },
+        {
+          "step": 158,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 51
+        },
+        {
+          "step": 159,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 51,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 160,
+          "event": "after_expression",
+          "focus": "node.right",
+          "node_id": 45
+        },
+        {
+          "step": 161,
+          "event": "before_expression",
+          "focus": "node.val",
+          "node_id": 46
+        },
+        {
+          "step": 162,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 52
+        },
+        {
+          "step": 163,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 52,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 164,
+          "event": "after_expression",
+          "focus": "node.val",
+          "node_id": 46,
+          "value": 3
+        },
+        {
+          "step": 165,
+          "event": "before_expression",
+          "focus": "high",
+          "node_id": 47
+        },
+        {
+          "step": 166,
+          "event": "after_expression",
+          "focus": "high",
+          "node_id": 47,
+          "value": "Infinity"
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "node": null,
+        "low": 3,
+        "high": "Infinity"
+      },
+      "delta": {
+        "low": 3
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4308329272,
+        "low": 4308476128,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 167,
+          "event": "before_statement",
+          "focus": "if not node:\n            return True",
+          "node_id": 7
+        },
+        {
+          "step": 168,
+          "event": "before_expression",
+          "focus": "not node",
+          "node_id": 14
+        },
+        {
+          "step": 169,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 170,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 24
+        },
+        {
+          "step": 171,
+          "event": "after_expression",
+          "focus": "not node",
+          "node_id": 14,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "node": null,
+        "low": 3,
+        "high": "Infinity"
+      },
+      "delta": null,
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4308329272,
+        "low": 4308476128,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 172,
+          "event": "before_statement",
+          "focus": "return True",
+          "node_id": 15
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "node": "TreeNode(3)",
+        "low": 2,
+        "high": "Infinity"
+      },
+      "delta": {
+        "node": "TreeNode(3)",
+        "low": 2
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4379770352": {
+          "type": "float",
+          "value": "Infinity",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "node": 4338891088,
+        "low": 4308476096,
+        "high": 4379770352
+      },
+      "steps": [
+        {
+          "step": 173,
+          "event": "after_expression",
+          "focus": "validate(node.right, node.val, high)",
+          "node_id": 30,
+          "value": true
+        },
+        {
+          "step": 174,
+          "event": "after_expression",
+          "focus": "validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 18,
+          "value": true
+        },
+        {
+          "step": 175,
+          "event": "after_expression",
+          "focus": "validate(node.right, node.val, high)",
+          "node_id": 30,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          },
+          "value": true
+        },
+        {
+          "step": 176,
+          "event": "after_expression",
+          "focus": "validate(node.left, low, node.val) and validate(node.right, node.val, high)",
+          "node_id": 18,
+          "locals": {
+            "node": "TreeNode(2)",
+            "low": "-Infinity",
+            "high": "Infinity"
+          },
+          "object_table": {
+            "4308329272": {
+              "type": "NoneType",
+              "value": null,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4338889568": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476064
+              },
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4338891088": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4308329272,
+                "right": 4308329272,
+                "val": 4308476128
+              },
+              "mutable": true
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4338891392": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4338889568,
+                "right": 4338891088,
+                "val": 4308476096
+              },
+              "mutable": true
+            },
+            "4477956240": {
+              "type": "float",
+              "value": "-Infinity",
+              "mutable": false
+            },
+            "4379770352": {
+              "type": "float",
+              "value": "Infinity",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "node": 4338891392,
+            "low": 4477956240,
+            "high": 4379770352
+          },
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "root": "TreeNode(2)"
+      },
+      "delta": {
+        "root": "TreeNode(2)"
+      },
+      "object_table": {
+        "4308329272": {
+          "type": "NoneType",
+          "value": null,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4338889568": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476064
+          },
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4338891088": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4308329272,
+            "right": 4308329272,
+            "val": 4308476128
+          },
+          "mutable": true
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4338891392": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4338889568,
+            "right": 4338891088,
+            "val": 4308476096
+          },
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "root": 4338891392
+      },
+      "steps": [
+        {
+          "step": 177,
+          "event": "after_expression",
+          "focus": "validate(root, float('-inf'), float('inf'))",
+          "node_id": 10,
+          "value": true
+        }
+      ]
+    }
+  ],
+  "result": true
+}

@@ -1,0 +1,341 @@
+import { Pencil } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
+import Editor from '@monaco-editor/react';
+
+import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
+import { InputsSection } from '../common';
+import { NavigationControls, Settings } from '../controls';
+import { ProblemDescriptionModal } from '../modals';
+import { ComputationWorkspaceOverlay } from '../overlays';
+import { ErrorPanel } from './ErrorPanel';
+
+// Type for Monaco editor mouse target
+type EditorMouseTarget = {
+    position?: { lineNumber: number; column: number } | null;
+    element?: HTMLElement | null;
+    mouseColumn?: number;
+};
+
+export default function CodePanel() {
+    const {
+        traceData,
+        isPlaying,
+        playSpeed,
+        setIsPlaying,
+        next,
+        setInputOverride,
+        getInputOverrides,
+        currentCode,
+        setCurrentCode,
+        hasChanges,
+        currentError,
+        clearError,
+        getCurrentProblemId,
+        getCurrentProblemData,
+        currentTab,
+    } = useTraceStore();
+    const currentLine = useTraceStore(selectCurrentLine);
+    const [isReadOnly, setIsReadOnly] = useState(true);
+    const problemId = getCurrentProblemId();
+    const problemData = problemId ? getCurrentProblemData(problemId) : null;
+    const lastMouseClickRef = useRef<{ x: number; y: number } | null>(null);
+
+    // Handle input changes
+    const handleInputChange = (key: string, value: any) => {
+        setInputOverride(key, value);
+        // Clear validation error when user changes the input
+        if (currentError?.type === 'validation' && currentError?.invalidField === key) {
+            clearError();
+        }
+    };
+
+    // Get current input values (overrides or defaults)
+    const getCurrentInputs = () => {
+        if (!traceData) return {};
+        const overrides = getInputOverrides();
+        return { ...traceData.metadata.inputs.kwargs, ...overrides };
+    };
+
+    // Handle clicking outside editor to exit edit mode
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const target = event.target as Element;
+            // Check if click is outside the Monaco editor
+            if (isReadOnly === false && !target.closest('.monaco-editor')) {
+                setIsReadOnly(true);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isReadOnly]);
+
+    // Exit edit mode when changes are reset or trace is updated
+    useEffect(() => {
+        if (!hasChanges) {
+            setIsReadOnly(true);
+        }
+    }, [hasChanges]);
+
+    // Handle auto-play
+    useEffect(() => {
+        let intervalId: number | null = null;
+
+        if (isPlaying && traceData) {
+            intervalId = window.setInterval(() => {
+                next();
+            }, playSpeed);
+        }
+
+        return () => {
+            if (intervalId) window.clearInterval(intervalId);
+        };
+    }, [isPlaying, playSpeed, traceData, next]);
+
+    if (!traceData) {
+        return (
+            <Card className={cn('flex flex-col')}>
+                <CardHeader>
+                    <CardTitle>Code</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1 flex items-center justify-center text-muted-foreground">
+                    No trace data loaded
+                </CardContent>
+            </Card>
+        );
+    }
+
+    return (
+        <>
+            <TooltipProvider>
+                <Card className="h-full flex flex-col" data-tutorial="code-panel">
+                    <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0">
+                        <div className="flex items-center gap-2">
+                            <CardTitle className="text-lg">
+                                {currentTab === "learn" ? "Program" : (problemData?.title ?? "Code")}
+                            </CardTitle>
+                            {problemId && problemData?.details && (
+                                <ProblemDescriptionModal problemId={problemId} />
+                            )}
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <NavigationControls />
+                            <Settings />
+                        </div>
+                    </CardHeader>
+                    <CardContent className="flex-1 overflow-hidden flex flex-col">
+                        {/* Error Panel */}
+                        <ErrorPanel error={currentError} />
+
+                        {/* Inputs Section */}
+                        {traceData && (
+                            <InputsSection
+                                inputs={getCurrentInputs()}
+                                onInputChange={handleInputChange}
+                                validationError={currentError}
+                            />
+                        )}
+
+                        <div className="rounded-md overflow-hidden bg-muted/30 flex-1 relative">
+                            {isReadOnly ? (
+                                <div
+                                    className="relative group h-full"
+                                    onClick={(e) => {
+                                        lastMouseClickRef.current = { x: e.clientX, y: e.clientY };
+                                        console.log('lastMouseClickRef', lastMouseClickRef.current);
+                                        setIsReadOnly(false);
+                                        setIsPlaying(false);
+                                    }}
+                                >
+                                    <SyntaxHighlighter
+                                        data-testid="code-editor-read"
+                                        language="python"
+                                        style={oneLight}
+                                        customStyle={{
+                                            margin: 0,
+                                            padding: 0,
+                                            background: 'transparent',
+                                            fontSize: '0.75rem',
+                                            fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+                                            height: '100%',
+                                            overflow: 'auto',
+                                            lineHeight: '1.3',
+                                            cursor: 'text',
+                                        }}
+                                        showLineNumbers={true}
+                                        lineNumberStyle={{
+                                            minWidth: '2rem',
+                                            paddingRight: '0.75rem',
+                                            color: '#6b7280',
+                                            fontSize: '0.7rem',
+                                            textAlign: 'right',
+                                            userSelect: 'none',
+                                        }}
+                                        wrapLines={true}
+                                        lineProps={(lineNumber) => {
+                                            const isCurrentLine = currentLine?.line_number === lineNumber;
+                                            return {
+                                                style: {
+                                                    display: 'block',
+                                                    backgroundColor: isCurrentLine ? 'rgb(219 234 254)' : 'transparent',
+                                                    borderLeft: isCurrentLine ? '3px solid rgb(59 130 246)' : '3px solid transparent',
+                                                    fontWeight: isCurrentLine ? '500' : 'normal',
+                                                    padding: '0.25rem 0.75rem',
+                                                    transition: 'all 0.2s ease',
+                                                    lineHeight: '1.3',
+                                                    cursor: 'text',
+                                                },
+                                                'data-line-number': lineNumber,
+                                                'data-is-current': isCurrentLine,
+                                                onClick: () => {
+                                                    setIsReadOnly(false);
+                                                    setIsPlaying(false); // Pause debugger when entering edit mode
+                                                },
+                                            };
+                                        }}
+                                    >
+                                        {currentCode || ''}
+                                    </SyntaxHighlighter>
+
+                                    {/* Computation Workspace Overlay */}
+                                    {!hasChanges && (
+                                        <div
+                                            style={{ position: "absolute", inset: 0, zIndex: 50, cursor: 'text' }}
+                                            tabIndex={0}
+                                            aria-label="Edit code"
+                                            onClick={() => {
+                                                setIsReadOnly(false);
+                                                setIsPlaying(false);
+                                            }}
+                                        >
+                                            <ComputationWorkspaceOverlay />
+                                        </div>
+                                    )}
+
+                                    {/* Edit Button Overlay - only visible on hover */}
+                                    <div data-testid="edit-button" className="absolute top-3 right-3 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                        <Button
+                                            variant="secondary"
+                                            size="sm"
+                                            onClick={() => {
+                                                setIsReadOnly(false);
+                                                setIsPlaying(false);
+                                            }}
+                                            className="shadow-sm"
+                                        >
+                                            <Pencil className="h-4 w-4 mr-1" />
+                                            Edit
+                                        </Button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <Editor
+                                    data-testid="code-editor-write"
+                                    height="100%"
+                                    language="python"
+                                    value={currentCode || ''}
+                                    onChange={(value) => setCurrentCode(value || '')}
+                                    options={{
+                                        fontSize: 12,
+                                        lineHeight: 1.8,
+                                        fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+                                        minimap: { enabled: false },
+                                        scrollBeyondLastLine: false,
+                                        automaticLayout: true,
+                                        lineNumbers: 'on',
+                                        lineNumbersMinChars: 5,
+                                        glyphMargin: false,
+                                        folding: false,
+                                        lineDecorationsWidth: 12,
+                                        renderLineHighlight: 'none',
+                                        hideCursorInOverviewRuler: true,
+                                        overviewRulerBorder: false,
+                                        scrollbar: {
+                                            vertical: 'auto',
+                                            horizontal: 'auto',
+                                            verticalScrollbarSize: 14,
+                                            horizontalScrollbarSize: 14,
+                                        },
+                                        padding: {
+                                            top: 4,
+                                            bottom: 4,
+                                        },
+                                    }}
+                                    onMount={(editor) => {
+                                        if (lastMouseClickRef.current) {
+                                            const { x, y } = lastMouseClickRef.current;
+                                            const trySetCursor = (retriesLeft: number) => {
+                                                let target = typeof editor.getTargetAtClientPoint === 'function'
+                                                    ? editor.getTargetAtClientPoint(x, y)
+                                                    : null;
+                                                if (target) {
+                                                    setEditorCursorAtClientPosition(editor, y, target);
+                                                    lastMouseClickRef.current = null;
+                                                } else if (retriesLeft > 0) {
+                                                    setTimeout(() => trySetCursor(retriesLeft - 1), 60);
+                                                } else {
+                                                    setEditorCursorAtClientPosition(editor, y, null);
+                                                    lastMouseClickRef.current = null;
+                                                }
+                                            };
+                                            trySetCursor(3);
+                                        }
+                                    }}
+                                />
+                            )}
+                        </div>
+                    </CardContent>
+                </Card>
+            </TooltipProvider>
+        </>
+    );
+}
+
+// Helper function to set the Monaco editor cursor at a given client (x, y) position
+function setEditorCursorAtClientPosition(
+    editor: any,
+    y: number,
+    target?: EditorMouseTarget | null
+) {
+    let lineNumber = 1;
+    let column = 1;
+    if (target) {
+        if (target.position && target.position !== null) {
+            lineNumber = target.position.lineNumber;
+            column = target.position.column;
+        } else if (target.element && target.mouseColumn) {
+            const editorDomNode = editor.getDomNode();
+            if (editorDomNode) {
+                const rect = editorDomNode.getBoundingClientRect();
+                const lineHeight = editor.getOption?.(editor._standaloneKeybindingService?._editorOptions?.lineHeight) || editor.getOption?.('lineHeight') || 22;
+                lineNumber = Math.floor((y - rect.top) / lineHeight) + 1;
+                column = target.mouseColumn;
+            }
+        }
+    } else {
+        // Fallback: estimate line number from DOM
+        const editorDomNode = editor.getDomNode();
+        if (editorDomNode) {
+            const rect = editorDomNode.getBoundingClientRect();
+            const lineHeight = editor.getOption?.(editor._standaloneKeybindingService?._editorOptions?.lineHeight) || editor.getOption?.('lineHeight') || 22;
+            lineNumber = Math.floor((y - rect.top) / lineHeight) + 1;
+        }
+    }
+    // Clamp line/col
+    const model = editor.getModel();
+    if (model) {
+        lineNumber = Math.max(1, Math.min(lineNumber, model.getLineCount()));
+        column = Math.max(1, Math.min(column, model.getLineMaxColumn(lineNumber)));
+    }
+    editor.setPosition({ lineNumber, column });
+    editor.focus();
+}

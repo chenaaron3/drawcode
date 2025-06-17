@@ -1,0 +1,7128 @@
+{
+  "metadata": {
+    "code": "def canFinish(numCourses, prerequisites):\n    from collections import defaultdict, deque\n    graph = defaultdict(list)\n    indegree = [0] * numCourses\n    for dest, src in prerequisites:\n        graph[src].append(dest)\n        indegree[dest] += 1\n    queue = deque([i for i in range(numCourses) if indegree[i] == 0])\n    count = 0\n    while queue:\n        node = queue.popleft()\n        count += 1\n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    return count == numCourses",
+    "function": "canFinish",
+    "inputs": {
+      "kwargs": {
+        "numCourses": "2",
+        "prerequisites": "[[1, 0]]"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "numCourses": 2,
+      "prerequisites": [
+        [
+          1,
+          0
+        ]
+      ],
+      "graph": {
+        "0": [
+          1
+        ],
+        "1": []
+      },
+      "indegree": [
+        0,
+        0
+      ],
+      "dest": 1,
+      "src": 0,
+      "queue": "deque([])",
+      "count": 2,
+      "node": 1,
+      "neighbor": 1
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 17,
+          "end_col_offset": 30
+        },
+        "focus": "def canFinish(numCourses, prerequisites):\n    from collections import defaultdict, deque\n    graph = defaultdict(list)\n    indegree = [0] * numCourses\n    for dest, src in prerequisites:\n        graph[src].append(dest)\n        indegree[dest] += 1\n    queue = deque([i for i in range(numCourses) if indegree[i] == 0])\n    count = 0\n    while queue:\n        node = queue.popleft()\n        count += 1\n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    return count == numCourses",
+        "name": "canFinish",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            11,
+            12
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 11,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 14,
+                "end_lineno": 1,
+                "end_col_offset": 24
+              },
+              "focus": "numCourses",
+              "arg": "numCourses"
+            },
+            {
+              "node_id": 12,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 26,
+                "end_lineno": 1,
+                "end_col_offset": 39
+              },
+              "focus": "prerequisites",
+              "arg": "prerequisites"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              13,
+              14
+            ],
+            "type": "ImportFrom",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 46
+            },
+            "focus": "from collections import defaultdict, deque",
+            "module": "collections",
+            "names": [
+              {
+                "node_id": 13,
+                "children_node_ids": [],
+                "type": "alias",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 28,
+                  "end_lineno": 2,
+                  "end_col_offset": 39
+                },
+                "focus": "defaultdict",
+                "name": "defaultdict"
+              },
+              {
+                "node_id": 14,
+                "children_node_ids": [],
+                "type": "alias",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 41,
+                  "end_lineno": 2,
+                  "end_col_offset": 46
+                },
+                "focus": "deque",
+                "name": "deque"
+              }
+            ],
+            "level": 0
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              15,
+              16
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 3,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 29
+            },
+            "focus": "graph = defaultdict(list)",
+            "targets": [
+              {
+                "node_id": 15,
+                "children_node_ids": [
+                  32
+                ],
+                "type": "Name",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 4,
+                  "end_lineno": 3,
+                  "end_col_offset": 9
+                },
+                "focus": "graph",
+                "id": "graph",
+                "ctx": {
+                  "node_id": 32,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 15
+                }
+              }
+            ],
+            "value": {
+              "node_id": 16,
+              "children_node_ids": [
+                33,
+                34
+              ],
+              "type": "Call",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 3,
+                "col_offset": 12,
+                "end_lineno": 3,
+                "end_col_offset": 29
+              },
+              "focus": "defaultdict(list)",
+              "func": {
+                "node_id": 33,
+                "children_node_ids": [
+                  40
+                ],
+                "type": "Name",
+                "parent_node_id": 16,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 12,
+                  "end_lineno": 3,
+                  "end_col_offset": 23
+                },
+                "focus": "defaultdict",
+                "id": "defaultdict",
+                "ctx": {
+                  "node_id": 40,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 33
+                }
+              },
+              "args": [
+                {
+                  "node_id": 34,
+                  "children_node_ids": [
+                    40
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 16,
+                  "location": {
+                    "lineno": 3,
+                    "col_offset": 24,
+                    "end_lineno": 3,
+                    "end_col_offset": 28
+                  },
+                  "focus": "list",
+                  "id": "list",
+                  "ctx": {
+                    "node_id": 40,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 34
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              17,
+              18
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 4,
+              "col_offset": 4,
+              "end_lineno": 4,
+              "end_col_offset": 31
+            },
+            "focus": "indegree = [0] * numCourses",
+            "targets": [
+              {
+                "node_id": 17,
+                "children_node_ids": [
+                  32
+                ],
+                "type": "Name",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 4,
+                  "end_lineno": 4,
+                  "end_col_offset": 12
+                },
+                "focus": "indegree",
+                "id": "indegree",
+                "ctx": {
+                  "node_id": 32,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 17
+                }
+              }
+            ],
+            "value": {
+              "node_id": 18,
+              "children_node_ids": [
+                35,
+                36,
+                37
+              ],
+              "type": "BinOp",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 4,
+                "col_offset": 15,
+                "end_lineno": 4,
+                "end_col_offset": 31
+              },
+              "focus": "[0] * numCourses",
+              "left": {
+                "node_id": 35,
+                "children_node_ids": [
+                  58,
+                  40
+                ],
+                "type": "List",
+                "parent_node_id": 18,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 15,
+                  "end_lineno": 4,
+                  "end_col_offset": 18
+                },
+                "focus": "[0]",
+                "elts": [
+                  {
+                    "node_id": 58,
+                    "children_node_ids": [],
+                    "type": "Constant",
+                    "parent_node_id": 35,
+                    "location": {
+                      "lineno": 4,
+                      "col_offset": 16,
+                      "end_lineno": 4,
+                      "end_col_offset": 17
+                    },
+                    "focus": "0",
+                    "value": 0
+                  }
+                ],
+                "ctx": {
+                  "node_id": 40,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 35
+                }
+              },
+              "op": {
+                "node_id": 36,
+                "children_node_ids": [],
+                "type": "Mult",
+                "parent_node_id": 18
+              },
+              "right": {
+                "node_id": 37,
+                "children_node_ids": [
+                  40
+                ],
+                "type": "Name",
+                "parent_node_id": 18,
+                "location": {
+                  "lineno": 4,
+                  "col_offset": 21,
+                  "end_lineno": 4,
+                  "end_col_offset": 31
+                },
+                "focus": "numCourses",
+                "id": "numCourses",
+                "ctx": {
+                  "node_id": 40,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 37
+                }
+              }
+            }
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              19,
+              20,
+              21,
+              22
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 5,
+              "col_offset": 4,
+              "end_lineno": 7,
+              "end_col_offset": 27
+            },
+            "focus": "for dest, src in prerequisites:\n        graph[src].append(dest)\n        indegree[dest] += 1",
+            "target": {
+              "node_id": 19,
+              "children_node_ids": [
+                38,
+                39,
+                32
+              ],
+              "type": "Tuple",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 5,
+                "col_offset": 8,
+                "end_lineno": 5,
+                "end_col_offset": 17
+              },
+              "focus": "dest, src",
+              "elts": [
+                {
+                  "node_id": 38,
+                  "children_node_ids": [
+                    32
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 19,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 8,
+                    "end_lineno": 5,
+                    "end_col_offset": 12
+                  },
+                  "focus": "dest",
+                  "id": "dest",
+                  "ctx": {
+                    "node_id": 32,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 38
+                  }
+                },
+                {
+                  "node_id": 39,
+                  "children_node_ids": [
+                    32
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 19,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 14,
+                    "end_lineno": 5,
+                    "end_col_offset": 17
+                  },
+                  "focus": "src",
+                  "id": "src",
+                  "ctx": {
+                    "node_id": 32,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 39
+                  }
+                }
+              ],
+              "ctx": {
+                "node_id": 32,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 19
+              }
+            },
+            "iter": {
+              "node_id": 20,
+              "children_node_ids": [
+                40
+              ],
+              "type": "Name",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 5,
+                "col_offset": 21,
+                "end_lineno": 5,
+                "end_col_offset": 34
+              },
+              "focus": "prerequisites",
+              "id": "prerequisites",
+              "ctx": {
+                "node_id": 40,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 20
+              }
+            },
+            "body": [
+              {
+                "node_id": 21,
+                "children_node_ids": [
+                  41
+                ],
+                "type": "Expr",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 8,
+                  "end_lineno": 6,
+                  "end_col_offset": 31
+                },
+                "focus": "graph[src].append(dest)",
+                "value": {
+                  "node_id": 41,
+                  "children_node_ids": [
+                    59,
+                    60
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 21,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 8,
+                    "end_lineno": 6,
+                    "end_col_offset": 31
+                  },
+                  "focus": "graph[src].append(dest)",
+                  "func": {
+                    "node_id": 59,
+                    "children_node_ids": [
+                      73,
+                      40
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 41,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 8,
+                      "end_lineno": 6,
+                      "end_col_offset": 25
+                    },
+                    "focus": "graph[src].append",
+                    "value": {
+                      "node_id": 73,
+                      "children_node_ids": [
+                        83,
+                        84,
+                        40
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 59,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 8,
+                        "end_lineno": 6,
+                        "end_col_offset": 18
+                      },
+                      "focus": "graph[src]",
+                      "value": {
+                        "node_id": 83,
+                        "children_node_ids": [
+                          40
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 73,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 8,
+                          "end_lineno": 6,
+                          "end_col_offset": 13
+                        },
+                        "focus": "graph",
+                        "id": "graph",
+                        "ctx": {
+                          "node_id": 40,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 83
+                        }
+                      },
+                      "slice": {
+                        "node_id": 84,
+                        "children_node_ids": [
+                          40
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 73,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 14,
+                          "end_lineno": 6,
+                          "end_col_offset": 17
+                        },
+                        "focus": "src",
+                        "id": "src",
+                        "ctx": {
+                          "node_id": 40,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 84
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 40,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 73
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "node_id": 40,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 59
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 60,
+                      "children_node_ids": [
+                        40
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 41,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 26,
+                        "end_lineno": 6,
+                        "end_col_offset": 30
+                      },
+                      "focus": "dest",
+                      "id": "dest",
+                      "ctx": {
+                        "node_id": 40,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 60
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              },
+              {
+                "node_id": 22,
+                "children_node_ids": [
+                  42,
+                  43,
+                  44
+                ],
+                "type": "AugAssign",
+                "parent_node_id": 6,
+                "location": {
+                  "lineno": 7,
+                  "col_offset": 8,
+                  "end_lineno": 7,
+                  "end_col_offset": 27
+                },
+                "focus": "indegree[dest] += 1",
+                "target": {
+                  "node_id": 42,
+                  "children_node_ids": [
+                    61,
+                    62,
+                    32
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 22,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 8,
+                    "end_lineno": 7,
+                    "end_col_offset": 22
+                  },
+                  "focus": "indegree[dest]",
+                  "value": {
+                    "node_id": 61,
+                    "children_node_ids": [
+                      40
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 42,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 8,
+                      "end_lineno": 7,
+                      "end_col_offset": 16
+                    },
+                    "focus": "indegree",
+                    "id": "indegree",
+                    "ctx": {
+                      "node_id": 40,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 61
+                    }
+                  },
+                  "slice": {
+                    "node_id": 62,
+                    "children_node_ids": [
+                      40
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 42,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 17,
+                      "end_lineno": 7,
+                      "end_col_offset": 21
+                    },
+                    "focus": "dest",
+                    "id": "dest",
+                    "ctx": {
+                      "node_id": 40,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 62
+                    }
+                  },
+                  "ctx": {
+                    "node_id": 32,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 42
+                  }
+                },
+                "op": {
+                  "node_id": 43,
+                  "children_node_ids": [],
+                  "type": "Add",
+                  "parent_node_id": 22
+                },
+                "value": {
+                  "node_id": 44,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 22,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 26,
+                    "end_lineno": 7,
+                    "end_col_offset": 27
+                  },
+                  "focus": "1",
+                  "value": 1
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 7,
+            "children_node_ids": [
+              23,
+              24
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 8,
+              "col_offset": 4,
+              "end_lineno": 8,
+              "end_col_offset": 69
+            },
+            "focus": "queue = deque([i for i in range(numCourses) if indegree[i] == 0])",
+            "targets": [
+              {
+                "node_id": 23,
+                "children_node_ids": [
+                  32
+                ],
+                "type": "Name",
+                "parent_node_id": 7,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 4,
+                  "end_lineno": 8,
+                  "end_col_offset": 9
+                },
+                "focus": "queue",
+                "id": "queue",
+                "ctx": {
+                  "node_id": 32,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 23
+                }
+              }
+            ],
+            "value": {
+              "node_id": 24,
+              "children_node_ids": [
+                45,
+                46
+              ],
+              "type": "Call",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 8,
+                "col_offset": 12,
+                "end_lineno": 8,
+                "end_col_offset": 69
+              },
+              "focus": "deque([i for i in range(numCourses) if indegree[i] == 0])",
+              "func": {
+                "node_id": 45,
+                "children_node_ids": [
+                  40
+                ],
+                "type": "Name",
+                "parent_node_id": 24,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 12,
+                  "end_lineno": 8,
+                  "end_col_offset": 17
+                },
+                "focus": "deque",
+                "id": "deque",
+                "ctx": {
+                  "node_id": 40,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 45
+                }
+              },
+              "args": [
+                {
+                  "node_id": 46,
+                  "children_node_ids": [
+                    63,
+                    64
+                  ],
+                  "type": "ListComp",
+                  "parent_node_id": 24,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 18,
+                    "end_lineno": 8,
+                    "end_col_offset": 68
+                  },
+                  "focus": "[i for i in range(numCourses) if indegree[i] == 0]",
+                  "elt": {
+                    "node_id": 63,
+                    "children_node_ids": [
+                      40
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 46,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 19,
+                      "end_lineno": 8,
+                      "end_col_offset": 20
+                    },
+                    "focus": "i",
+                    "id": "i",
+                    "ctx": {
+                      "node_id": 40,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 63
+                    }
+                  },
+                  "generators": [
+                    {
+                      "node_id": 64,
+                      "children_node_ids": [
+                        74,
+                        75,
+                        76
+                      ],
+                      "type": "comprehension",
+                      "parent_node_id": 46,
+                      "target": {
+                        "node_id": 74,
+                        "children_node_ids": [
+                          32
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 64,
+                        "location": {
+                          "lineno": 8,
+                          "col_offset": 25,
+                          "end_lineno": 8,
+                          "end_col_offset": 26
+                        },
+                        "focus": "i",
+                        "id": "i",
+                        "ctx": {
+                          "node_id": 32,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 74
+                        }
+                      },
+                      "iter": {
+                        "node_id": 75,
+                        "children_node_ids": [
+                          85,
+                          86
+                        ],
+                        "type": "Call",
+                        "parent_node_id": 64,
+                        "location": {
+                          "lineno": 8,
+                          "col_offset": 30,
+                          "end_lineno": 8,
+                          "end_col_offset": 47
+                        },
+                        "focus": "range(numCourses)",
+                        "func": {
+                          "node_id": 85,
+                          "children_node_ids": [
+                            40
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 75,
+                          "location": {
+                            "lineno": 8,
+                            "col_offset": 30,
+                            "end_lineno": 8,
+                            "end_col_offset": 35
+                          },
+                          "focus": "range",
+                          "id": "range",
+                          "ctx": {
+                            "node_id": 40,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 85
+                          }
+                        },
+                        "args": [
+                          {
+                            "node_id": 86,
+                            "children_node_ids": [
+                              40
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 75,
+                            "location": {
+                              "lineno": 8,
+                              "col_offset": 36,
+                              "end_lineno": 8,
+                              "end_col_offset": 46
+                            },
+                            "focus": "numCourses",
+                            "id": "numCourses",
+                            "ctx": {
+                              "node_id": 40,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 86
+                            }
+                          }
+                        ],
+                        "keywords": []
+                      },
+                      "ifs": [
+                        {
+                          "node_id": 76,
+                          "children_node_ids": [
+                            87,
+                            56,
+                            88
+                          ],
+                          "type": "Compare",
+                          "parent_node_id": 64,
+                          "location": {
+                            "lineno": 8,
+                            "col_offset": 51,
+                            "end_lineno": 8,
+                            "end_col_offset": 67
+                          },
+                          "focus": "indegree[i] == 0",
+                          "left": {
+                            "node_id": 87,
+                            "children_node_ids": [
+                              93,
+                              94,
+                              40
+                            ],
+                            "type": "Subscript",
+                            "parent_node_id": 76,
+                            "location": {
+                              "lineno": 8,
+                              "col_offset": 51,
+                              "end_lineno": 8,
+                              "end_col_offset": 62
+                            },
+                            "focus": "indegree[i]",
+                            "value": {
+                              "node_id": 93,
+                              "children_node_ids": [
+                                40
+                              ],
+                              "type": "Name",
+                              "parent_node_id": 87,
+                              "location": {
+                                "lineno": 8,
+                                "col_offset": 51,
+                                "end_lineno": 8,
+                                "end_col_offset": 59
+                              },
+                              "focus": "indegree",
+                              "id": "indegree",
+                              "ctx": {
+                                "node_id": 40,
+                                "children_node_ids": [],
+                                "type": "Load",
+                                "parent_node_id": 93
+                              }
+                            },
+                            "slice": {
+                              "node_id": 94,
+                              "children_node_ids": [
+                                40
+                              ],
+                              "type": "Name",
+                              "parent_node_id": 87,
+                              "location": {
+                                "lineno": 8,
+                                "col_offset": 60,
+                                "end_lineno": 8,
+                                "end_col_offset": 61
+                              },
+                              "focus": "i",
+                              "id": "i",
+                              "ctx": {
+                                "node_id": 40,
+                                "children_node_ids": [],
+                                "type": "Load",
+                                "parent_node_id": 94
+                              }
+                            },
+                            "ctx": {
+                              "node_id": 40,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 87
+                            }
+                          },
+                          "ops": [
+                            {
+                              "node_id": 56,
+                              "children_node_ids": [],
+                              "type": "Eq",
+                              "parent_node_id": 76
+                            }
+                          ],
+                          "comparators": [
+                            {
+                              "node_id": 88,
+                              "children_node_ids": [],
+                              "type": "Constant",
+                              "parent_node_id": 76,
+                              "location": {
+                                "lineno": 8,
+                                "col_offset": 66,
+                                "end_lineno": 8,
+                                "end_col_offset": 67
+                              },
+                              "focus": "0",
+                              "value": 0
+                            }
+                          ]
+                        }
+                      ],
+                      "is_async": 0
+                    }
+                  ]
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node_id": 8,
+            "children_node_ids": [
+              25,
+              26
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 9,
+              "col_offset": 4,
+              "end_lineno": 9,
+              "end_col_offset": 13
+            },
+            "focus": "count = 0",
+            "targets": [
+              {
+                "node_id": 25,
+                "children_node_ids": [
+                  32
+                ],
+                "type": "Name",
+                "parent_node_id": 8,
+                "location": {
+                  "lineno": 9,
+                  "col_offset": 4,
+                  "end_lineno": 9,
+                  "end_col_offset": 9
+                },
+                "focus": "count",
+                "id": "count",
+                "ctx": {
+                  "node_id": 32,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 25
+                }
+              }
+            ],
+            "value": {
+              "node_id": 26,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 8,
+              "location": {
+                "lineno": 9,
+                "col_offset": 12,
+                "end_lineno": 9,
+                "end_col_offset": 13
+              },
+              "focus": "0",
+              "value": 0
+            }
+          },
+          {
+            "node_id": 9,
+            "children_node_ids": [
+              27,
+              28,
+              29,
+              30
+            ],
+            "type": "While",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 10,
+              "col_offset": 4,
+              "end_lineno": 16,
+              "end_col_offset": 38
+            },
+            "focus": "while queue:\n        node = queue.popleft()\n        count += 1\n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+            "test": {
+              "node_id": 27,
+              "children_node_ids": [
+                40
+              ],
+              "type": "Name",
+              "parent_node_id": 9,
+              "location": {
+                "lineno": 10,
+                "col_offset": 10,
+                "end_lineno": 10,
+                "end_col_offset": 15
+              },
+              "focus": "queue",
+              "id": "queue",
+              "ctx": {
+                "node_id": 40,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 27
+              }
+            },
+            "body": [
+              {
+                "node_id": 28,
+                "children_node_ids": [
+                  47,
+                  48
+                ],
+                "type": "Assign",
+                "parent_node_id": 9,
+                "location": {
+                  "lineno": 11,
+                  "col_offset": 8,
+                  "end_lineno": 11,
+                  "end_col_offset": 30
+                },
+                "focus": "node = queue.popleft()",
+                "targets": [
+                  {
+                    "node_id": 47,
+                    "children_node_ids": [
+                      32
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 28,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 8,
+                      "end_lineno": 11,
+                      "end_col_offset": 12
+                    },
+                    "focus": "node",
+                    "id": "node",
+                    "ctx": {
+                      "node_id": 32,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 47
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 48,
+                  "children_node_ids": [
+                    65
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 28,
+                  "location": {
+                    "lineno": 11,
+                    "col_offset": 15,
+                    "end_lineno": 11,
+                    "end_col_offset": 30
+                  },
+                  "focus": "queue.popleft()",
+                  "func": {
+                    "node_id": 65,
+                    "children_node_ids": [
+                      77,
+                      40
+                    ],
+                    "type": "Attribute",
+                    "parent_node_id": 48,
+                    "location": {
+                      "lineno": 11,
+                      "col_offset": 15,
+                      "end_lineno": 11,
+                      "end_col_offset": 28
+                    },
+                    "focus": "queue.popleft",
+                    "value": {
+                      "node_id": 77,
+                      "children_node_ids": [
+                        40
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 65,
+                      "location": {
+                        "lineno": 11,
+                        "col_offset": 15,
+                        "end_lineno": 11,
+                        "end_col_offset": 20
+                      },
+                      "focus": "queue",
+                      "id": "queue",
+                      "ctx": {
+                        "node_id": 40,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 77
+                      }
+                    },
+                    "attr": "popleft",
+                    "ctx": {
+                      "node_id": 40,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 65
+                    }
+                  },
+                  "args": [],
+                  "keywords": []
+                }
+              },
+              {
+                "node_id": 29,
+                "children_node_ids": [
+                  49,
+                  43,
+                  50
+                ],
+                "type": "AugAssign",
+                "parent_node_id": 9,
+                "location": {
+                  "lineno": 12,
+                  "col_offset": 8,
+                  "end_lineno": 12,
+                  "end_col_offset": 18
+                },
+                "focus": "count += 1",
+                "target": {
+                  "node_id": 49,
+                  "children_node_ids": [
+                    32
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 29,
+                  "location": {
+                    "lineno": 12,
+                    "col_offset": 8,
+                    "end_lineno": 12,
+                    "end_col_offset": 13
+                  },
+                  "focus": "count",
+                  "id": "count",
+                  "ctx": {
+                    "node_id": 32,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 49
+                  }
+                },
+                "op": {
+                  "node_id": 43,
+                  "children_node_ids": [],
+                  "type": "Add",
+                  "parent_node_id": 29
+                },
+                "value": {
+                  "node_id": 50,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 29,
+                  "location": {
+                    "lineno": 12,
+                    "col_offset": 17,
+                    "end_lineno": 12,
+                    "end_col_offset": 18
+                  },
+                  "focus": "1",
+                  "value": 1
+                }
+              },
+              {
+                "node_id": 30,
+                "children_node_ids": [
+                  51,
+                  52,
+                  53,
+                  54
+                ],
+                "type": "For",
+                "parent_node_id": 9,
+                "location": {
+                  "lineno": 13,
+                  "col_offset": 8,
+                  "end_lineno": 16,
+                  "end_col_offset": 38
+                },
+                "focus": "for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+                "target": {
+                  "node_id": 51,
+                  "children_node_ids": [
+                    32
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 30,
+                  "location": {
+                    "lineno": 13,
+                    "col_offset": 12,
+                    "end_lineno": 13,
+                    "end_col_offset": 20
+                  },
+                  "focus": "neighbor",
+                  "id": "neighbor",
+                  "ctx": {
+                    "node_id": 32,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 51
+                  }
+                },
+                "iter": {
+                  "node_id": 52,
+                  "children_node_ids": [
+                    66,
+                    67,
+                    40
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 30,
+                  "location": {
+                    "lineno": 13,
+                    "col_offset": 24,
+                    "end_lineno": 13,
+                    "end_col_offset": 35
+                  },
+                  "focus": "graph[node]",
+                  "value": {
+                    "node_id": 66,
+                    "children_node_ids": [
+                      40
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 52,
+                    "location": {
+                      "lineno": 13,
+                      "col_offset": 24,
+                      "end_lineno": 13,
+                      "end_col_offset": 29
+                    },
+                    "focus": "graph",
+                    "id": "graph",
+                    "ctx": {
+                      "node_id": 40,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 66
+                    }
+                  },
+                  "slice": {
+                    "node_id": 67,
+                    "children_node_ids": [
+                      40
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 52,
+                    "location": {
+                      "lineno": 13,
+                      "col_offset": 30,
+                      "end_lineno": 13,
+                      "end_col_offset": 34
+                    },
+                    "focus": "node",
+                    "id": "node",
+                    "ctx": {
+                      "node_id": 40,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 67
+                    }
+                  },
+                  "ctx": {
+                    "node_id": 40,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 52
+                  }
+                },
+                "body": [
+                  {
+                    "node_id": 53,
+                    "children_node_ids": [
+                      68,
+                      69,
+                      70
+                    ],
+                    "type": "AugAssign",
+                    "parent_node_id": 30,
+                    "location": {
+                      "lineno": 14,
+                      "col_offset": 12,
+                      "end_lineno": 14,
+                      "end_col_offset": 35
+                    },
+                    "focus": "indegree[neighbor] -= 1",
+                    "target": {
+                      "node_id": 68,
+                      "children_node_ids": [
+                        78,
+                        79,
+                        32
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 53,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 12,
+                        "end_lineno": 14,
+                        "end_col_offset": 30
+                      },
+                      "focus": "indegree[neighbor]",
+                      "value": {
+                        "node_id": 78,
+                        "children_node_ids": [
+                          40
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 68,
+                        "location": {
+                          "lineno": 14,
+                          "col_offset": 12,
+                          "end_lineno": 14,
+                          "end_col_offset": 20
+                        },
+                        "focus": "indegree",
+                        "id": "indegree",
+                        "ctx": {
+                          "node_id": 40,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 78
+                        }
+                      },
+                      "slice": {
+                        "node_id": 79,
+                        "children_node_ids": [
+                          40
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 68,
+                        "location": {
+                          "lineno": 14,
+                          "col_offset": 21,
+                          "end_lineno": 14,
+                          "end_col_offset": 29
+                        },
+                        "focus": "neighbor",
+                        "id": "neighbor",
+                        "ctx": {
+                          "node_id": 40,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 79
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 32,
+                        "children_node_ids": [],
+                        "type": "Store",
+                        "parent_node_id": 68
+                      }
+                    },
+                    "op": {
+                      "node_id": 69,
+                      "children_node_ids": [],
+                      "type": "Sub",
+                      "parent_node_id": 53
+                    },
+                    "value": {
+                      "node_id": 70,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 53,
+                      "location": {
+                        "lineno": 14,
+                        "col_offset": 34,
+                        "end_lineno": 14,
+                        "end_col_offset": 35
+                      },
+                      "focus": "1",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "node_id": 54,
+                    "children_node_ids": [
+                      71,
+                      72
+                    ],
+                    "type": "If",
+                    "parent_node_id": 30,
+                    "location": {
+                      "lineno": 15,
+                      "col_offset": 12,
+                      "end_lineno": 16,
+                      "end_col_offset": 38
+                    },
+                    "focus": "if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+                    "test": {
+                      "node_id": 71,
+                      "children_node_ids": [
+                        80,
+                        56,
+                        81
+                      ],
+                      "type": "Compare",
+                      "parent_node_id": 54,
+                      "location": {
+                        "lineno": 15,
+                        "col_offset": 15,
+                        "end_lineno": 15,
+                        "end_col_offset": 38
+                      },
+                      "focus": "indegree[neighbor] == 0",
+                      "left": {
+                        "node_id": 80,
+                        "children_node_ids": [
+                          89,
+                          90,
+                          40
+                        ],
+                        "type": "Subscript",
+                        "parent_node_id": 71,
+                        "location": {
+                          "lineno": 15,
+                          "col_offset": 15,
+                          "end_lineno": 15,
+                          "end_col_offset": 33
+                        },
+                        "focus": "indegree[neighbor]",
+                        "value": {
+                          "node_id": 89,
+                          "children_node_ids": [
+                            40
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 80,
+                          "location": {
+                            "lineno": 15,
+                            "col_offset": 15,
+                            "end_lineno": 15,
+                            "end_col_offset": 23
+                          },
+                          "focus": "indegree",
+                          "id": "indegree",
+                          "ctx": {
+                            "node_id": 40,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 89
+                          }
+                        },
+                        "slice": {
+                          "node_id": 90,
+                          "children_node_ids": [
+                            40
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 80,
+                          "location": {
+                            "lineno": 15,
+                            "col_offset": 24,
+                            "end_lineno": 15,
+                            "end_col_offset": 32
+                          },
+                          "focus": "neighbor",
+                          "id": "neighbor",
+                          "ctx": {
+                            "node_id": 40,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 90
+                          }
+                        },
+                        "ctx": {
+                          "node_id": 40,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 80
+                        }
+                      },
+                      "ops": [
+                        {
+                          "node_id": 56,
+                          "children_node_ids": [],
+                          "type": "Eq",
+                          "parent_node_id": 71
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "node_id": 81,
+                          "children_node_ids": [],
+                          "type": "Constant",
+                          "parent_node_id": 71,
+                          "location": {
+                            "lineno": 15,
+                            "col_offset": 37,
+                            "end_lineno": 15,
+                            "end_col_offset": 38
+                          },
+                          "focus": "0",
+                          "value": 0
+                        }
+                      ]
+                    },
+                    "body": [
+                      {
+                        "node_id": 72,
+                        "children_node_ids": [
+                          82
+                        ],
+                        "type": "Expr",
+                        "parent_node_id": 54,
+                        "location": {
+                          "lineno": 16,
+                          "col_offset": 16,
+                          "end_lineno": 16,
+                          "end_col_offset": 38
+                        },
+                        "focus": "queue.append(neighbor)",
+                        "value": {
+                          "node_id": 82,
+                          "children_node_ids": [
+                            91,
+                            92
+                          ],
+                          "type": "Call",
+                          "parent_node_id": 72,
+                          "location": {
+                            "lineno": 16,
+                            "col_offset": 16,
+                            "end_lineno": 16,
+                            "end_col_offset": 38
+                          },
+                          "focus": "queue.append(neighbor)",
+                          "func": {
+                            "node_id": 91,
+                            "children_node_ids": [
+                              95,
+                              40
+                            ],
+                            "type": "Attribute",
+                            "parent_node_id": 82,
+                            "location": {
+                              "lineno": 16,
+                              "col_offset": 16,
+                              "end_lineno": 16,
+                              "end_col_offset": 28
+                            },
+                            "focus": "queue.append",
+                            "value": {
+                              "node_id": 95,
+                              "children_node_ids": [
+                                40
+                              ],
+                              "type": "Name",
+                              "parent_node_id": 91,
+                              "location": {
+                                "lineno": 16,
+                                "col_offset": 16,
+                                "end_lineno": 16,
+                                "end_col_offset": 21
+                              },
+                              "focus": "queue",
+                              "id": "queue",
+                              "ctx": {
+                                "node_id": 40,
+                                "children_node_ids": [],
+                                "type": "Load",
+                                "parent_node_id": 95
+                              }
+                            },
+                            "attr": "append",
+                            "ctx": {
+                              "node_id": 40,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 91
+                            }
+                          },
+                          "args": [
+                            {
+                              "node_id": 92,
+                              "children_node_ids": [
+                                40
+                              ],
+                              "type": "Name",
+                              "parent_node_id": 82,
+                              "location": {
+                                "lineno": 16,
+                                "col_offset": 29,
+                                "end_lineno": 16,
+                                "end_col_offset": 37
+                              },
+                              "focus": "neighbor",
+                              "id": "neighbor",
+                              "ctx": {
+                                "node_id": 40,
+                                "children_node_ids": [],
+                                "type": "Load",
+                                "parent_node_id": 92
+                              }
+                            }
+                          ],
+                          "keywords": []
+                        }
+                      }
+                    ],
+                    "orelse": []
+                  }
+                ],
+                "orelse": []
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 10,
+            "children_node_ids": [
+              31
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 17,
+              "col_offset": 4,
+              "end_lineno": 17,
+              "end_col_offset": 30
+            },
+            "focus": "return count == numCourses",
+            "value": {
+              "node_id": 31,
+              "children_node_ids": [
+                55,
+                56,
+                57
+              ],
+              "type": "Compare",
+              "parent_node_id": 10,
+              "location": {
+                "lineno": 17,
+                "col_offset": 11,
+                "end_lineno": 17,
+                "end_col_offset": 30
+              },
+              "focus": "count == numCourses",
+              "left": {
+                "node_id": 55,
+                "children_node_ids": [
+                  40
+                ],
+                "type": "Name",
+                "parent_node_id": 31,
+                "location": {
+                  "lineno": 17,
+                  "col_offset": 11,
+                  "end_lineno": 17,
+                  "end_col_offset": 16
+                },
+                "focus": "count",
+                "id": "count",
+                "ctx": {
+                  "node_id": 40,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 55
+                }
+              },
+              "ops": [
+                {
+                  "node_id": 56,
+                  "children_node_ids": [],
+                  "type": "Eq",
+                  "parent_node_id": 31
+                }
+              ],
+              "comparators": [
+                {
+                  "node_id": 57,
+                  "children_node_ids": [
+                    40
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 31,
+                  "location": {
+                    "lineno": 17,
+                    "col_offset": 20,
+                    "end_lineno": 17,
+                    "end_col_offset": 30
+                  },
+                  "focus": "numCourses",
+                  "id": "numCourses",
+                  "ctx": {
+                    "node_id": 40,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 57
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "indegree",
+      "cursor": "dest",
+      "type": "key_assignment",
+      "node_id": 42
+    },
+    {
+      "container": "graph",
+      "cursor": "node",
+      "type": "key_access",
+      "node_id": 52
+    },
+    {
+      "container": "indegree",
+      "cursor": "neighbor",
+      "type": "key_assignment",
+      "node_id": 68
+    },
+    {
+      "container": "graph",
+      "cursor": "src",
+      "type": "key_access",
+      "node_id": 73
+    },
+    {
+      "container": "indegree",
+      "cursor": "neighbor",
+      "type": "key_access",
+      "node_id": 80
+    },
+    {
+      "container": "indegree",
+      "cursor": "i",
+      "type": "key_access",
+      "node_id": 87
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def canFinish(numCourses, prerequisites):\n    from collections import defaultdict, deque\n    graph = defaultdict(list)\n    indegree = [0] * numCourses\n    for dest, src in prerequisites:\n        graph[src].append(dest)\n        indegree[dest] += 1\n    queue = deque([i for i in range(numCourses) if indegree[i] == 0])\n    count = 0\n    while queue:\n        node = queue.popleft()\n        count += 1\n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    return count == numCourses",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def canFinish(numCourses, prerequisites):\n    from collections import defaultdict, deque\n    graph = defaultdict(list)\n    indegree = [0] * numCourses\n    for dest, src in prerequisites:\n        graph[src].append(dest)\n        indegree[dest] += 1\n    queue = deque([i for i in range(numCourses) if indegree[i] == 0])\n    count = 0\n    while queue:\n        node = queue.popleft()\n        count += 1\n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    return count == numCourses",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "delta": {
+        "numCourses": 2,
+        "prerequisites": {
+          "0": {
+            "0": 1,
+            "1": 0
+          }
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "from collections import defaultdict, deque",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "from collections import defaultdict, deque",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "graph = defaultdict(list)",
+          "node_id": 4
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "defaultdict(list)",
+          "node_id": 16
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 34
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "defaultdict(list)",
+          "node_id": 16,
+          "value": {}
+        },
+        {
+          "step": 8,
+          "event": "after_statement",
+          "focus": "graph = defaultdict(list)",
+          "node_id": 4,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {}
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {},
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {}
+      },
+      "delta": {
+        "graph": {}
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {},
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992
+      },
+      "steps": [
+        {
+          "step": 9,
+          "event": "before_statement",
+          "focus": "indegree = [0] * numCourses",
+          "node_id": 5
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "[0] * numCourses",
+          "node_id": 18
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "[0]",
+          "node_id": 35
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "[0]",
+          "node_id": 35,
+          "value": [
+            0
+          ]
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "numCourses",
+          "node_id": 37
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "numCourses",
+          "node_id": 37,
+          "value": 2
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "[0] * numCourses",
+          "node_id": 18,
+          "value": [
+            0,
+            0
+          ]
+        },
+        {
+          "step": 16,
+          "event": "after_statement",
+          "focus": "indegree = [0] * numCourses",
+          "node_id": 5,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {},
+            "indegree": [
+              0,
+              0
+            ]
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {},
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {},
+        "indegree": [
+          0,
+          0
+        ]
+      },
+      "delta": {
+        "indegree": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {},
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400
+      },
+      "steps": [
+        {
+          "step": 17,
+          "event": "before_statement",
+          "focus": "for dest, src in prerequisites:\n        graph[src].append(dest)\n        indegree[dest] += 1",
+          "node_id": 6
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "prerequisites",
+          "node_id": 20
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "prerequisites",
+          "node_id": 20,
+          "value": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {},
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0
+      },
+      "delta": {
+        "dest": 1,
+        "src": 0
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {},
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032
+      },
+      "steps": [
+        {
+          "step": 20,
+          "event": "before_statement",
+          "focus": "graph[src].append(dest)",
+          "node_id": 21
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "graph[src].append(dest)",
+          "node_id": 41
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "graph[src].append",
+          "node_id": 59
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "graph[src]",
+          "node_id": 73
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "graph",
+          "node_id": 83
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "graph",
+          "node_id": 83,
+          "value": {}
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "src",
+          "node_id": 84
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "src",
+          "node_id": 84,
+          "value": 0
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "graph[src]",
+          "node_id": 73,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": []
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            }
+          },
+          "value": []
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "dest",
+          "node_id": 60,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": []
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            }
+          }
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "dest",
+          "node_id": 60,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": []
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            }
+          },
+          "value": 1
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "graph[src].append(dest)",
+          "node_id": 41,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            }
+          }
+        },
+        {
+          "step": 32,
+          "event": "after_statement",
+          "focus": "graph[src].append(dest)",
+          "node_id": 21,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0
+      },
+      "delta": {
+        "graph": {
+          "0": {
+            "0": 1
+          }
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032
+      },
+      "steps": [
+        {
+          "step": 33,
+          "event": "before_statement",
+          "focus": "indegree[dest] += 1",
+          "node_id": 22
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "indegree",
+          "node_id": 61
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "indegree",
+          "node_id": 61,
+          "value": [
+            0,
+            0
+          ]
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "dest",
+          "node_id": 62
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "dest",
+          "node_id": 62,
+          "value": 1
+        },
+        {
+          "step": 38,
+          "event": "after_statement",
+          "focus": "indegree[dest] += 1",
+          "node_id": 22,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476064
+              ],
+              "mutable": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          1
+        ],
+        "dest": 1,
+        "src": 0
+      },
+      "delta": {
+        "indegree": {
+          "1": 1
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476064
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032
+      },
+      "steps": [
+        {
+          "step": 39,
+          "event": "after_statement",
+          "focus": "for dest, src in prerequisites:\n        graph[src].append(dest)\n        indegree[dest] += 1",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          1
+        ],
+        "dest": 1,
+        "src": 0
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476064
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032
+      },
+      "steps": [
+        {
+          "step": 40,
+          "event": "before_statement",
+          "focus": "queue = deque([i for i in range(numCourses) if indegree[i] == 0])",
+          "node_id": 7
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "deque([i for i in range(numCourses) if indegree[i] == 0])",
+          "node_id": 24
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "[i for i in range(numCourses) if indegree[i] == 0]",
+          "node_id": 46
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "range(numCourses)",
+          "node_id": 75
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "numCourses",
+          "node_id": 86
+        },
+        {
+          "step": 45,
+          "event": "after_expression",
+          "focus": "numCourses",
+          "node_id": 86,
+          "value": 2
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "range(numCourses)",
+          "node_id": 75,
+          "value": [
+            0,
+            1
+          ]
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "indegree[i] == 0",
+          "node_id": 76,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          }
+        },
+        {
+          "step": 48,
+          "event": "before_expression",
+          "focus": "indegree[i]",
+          "node_id": 87,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          }
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "indegree",
+          "node_id": 93,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          }
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "indegree",
+          "node_id": 93,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          },
+          "value": [
+            0,
+            1
+          ]
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 94,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          }
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 94,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          },
+          "value": 0
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "indegree[i]",
+          "node_id": 87,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          },
+          "value": 0
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "indegree[i] == 0",
+          "node_id": 76,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          },
+          "value": true
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 63,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          }
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 63,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476032
+          },
+          "value": 0
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "indegree[i] == 0",
+          "node_id": 76,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 1
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476064
+          }
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "indegree[i]",
+          "node_id": 87,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 1
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476064
+          }
+        },
+        {
+          "step": 59,
+          "event": "before_expression",
+          "focus": "indegree",
+          "node_id": 93,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 1
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476064
+          }
+        },
+        {
+          "step": 60,
+          "event": "after_expression",
+          "focus": "indegree",
+          "node_id": 93,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 1
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476064
+          },
+          "value": [
+            0,
+            1
+          ]
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 94,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 1
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476064
+          }
+        },
+        {
+          "step": 62,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 94,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 1
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476064
+          },
+          "value": 1
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "indegree[i]",
+          "node_id": 87,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 1
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476064
+          },
+          "value": 1
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "indegree[i] == 0",
+          "node_id": 76,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "i": 1
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "i": 4308476064
+          },
+          "value": false
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "[i for i in range(numCourses) if indegree[i] == 0]",
+          "node_id": 46,
+          "value": [
+            0
+          ]
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "deque([i for i in range(numCourses) if indegree[i] == 0])",
+          "node_id": 24,
+          "value": "deque([0])"
+        },
+        {
+          "step": 67,
+          "event": "after_statement",
+          "focus": "queue = deque([i for i in range(numCourses) if indegree[i] == 0])",
+          "node_id": 7,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([0])"
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([0])",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "queue": 4380242176
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          1
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([0])"
+      },
+      "delta": {
+        "queue": "deque([0])"
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([0])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176
+      },
+      "steps": [
+        {
+          "step": 68,
+          "event": "before_statement",
+          "focus": "count = 0",
+          "node_id": 8
+        },
+        {
+          "step": 69,
+          "event": "after_statement",
+          "focus": "count = 0",
+          "node_id": 8,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([0])",
+            "count": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "queue": 4380242176,
+            "count": 4308476032
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          1
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([0])",
+        "count": 0
+      },
+      "delta": {
+        "count": 0
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([0])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476032
+      },
+      "steps": [
+        {
+          "step": 70,
+          "event": "before_statement",
+          "focus": "while queue:\n        node = queue.popleft()\n        count += 1\n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+          "node_id": 9
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "queue",
+          "node_id": 27
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "queue",
+          "node_id": 27,
+          "value": "deque([0])"
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          1
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([0])",
+        "count": 0
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([0])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476032
+      },
+      "steps": [
+        {
+          "step": 73,
+          "event": "before_statement",
+          "focus": "node = queue.popleft()",
+          "node_id": 28
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "queue.popleft()",
+          "node_id": 48
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "queue.popleft",
+          "node_id": 65
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "queue.popleft()",
+          "node_id": 48,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([])",
+            "count": 0
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([])",
+              "mutable": false
+            }
+          },
+          "value": 0
+        },
+        {
+          "step": 77,
+          "event": "after_statement",
+          "focus": "node = queue.popleft()",
+          "node_id": 28,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([])",
+            "count": 0,
+            "node": 0
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([])",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "queue": 4380242176,
+            "count": 4308476032,
+            "node": 4308476032
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          1
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([])",
+        "count": 0,
+        "node": 0
+      },
+      "delta": {
+        "queue": "deque([])",
+        "node": 0
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476032,
+        "node": 4308476032
+      },
+      "steps": [
+        {
+          "step": 78,
+          "event": "before_statement",
+          "focus": "count += 1",
+          "node_id": 29
+        },
+        {
+          "step": 79,
+          "event": "after_statement",
+          "focus": "count += 1",
+          "node_id": 29,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              1
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([])",
+            "count": 1,
+            "node": 0
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "queue": 4380242176,
+            "count": 4308476064,
+            "node": 4308476032
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          1
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([])",
+        "count": 1,
+        "node": 0
+      },
+      "delta": {
+        "count": 1
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476064,
+        "node": 4308476032
+      },
+      "steps": [
+        {
+          "step": 80,
+          "event": "before_statement",
+          "focus": "for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+          "node_id": 30
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "graph[node]",
+          "node_id": 52
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "graph",
+          "node_id": 66
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "graph",
+          "node_id": 66,
+          "value": {
+            "0": [
+              1
+            ]
+          }
+        },
+        {
+          "step": 84,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 67
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 67,
+          "value": 0
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "graph[node]",
+          "node_id": 52,
+          "value": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          1
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([])",
+        "count": 1,
+        "node": 0,
+        "neighbor": 1
+      },
+      "delta": {
+        "neighbor": 1
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476064,
+        "node": 4308476032,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 87,
+          "event": "before_statement",
+          "focus": "indegree[neighbor] -= 1",
+          "node_id": 53
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "indegree",
+          "node_id": 78
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "indegree",
+          "node_id": 78,
+          "value": [
+            0,
+            1
+          ]
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "neighbor",
+          "node_id": 79
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "neighbor",
+          "node_id": 79,
+          "value": 1
+        },
+        {
+          "step": 92,
+          "event": "after_statement",
+          "focus": "indegree[neighbor] -= 1",
+          "node_id": 53,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([])",
+            "count": 1,
+            "node": 0,
+            "neighbor": 1
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([])",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([])",
+        "count": 1,
+        "node": 0,
+        "neighbor": 1
+      },
+      "delta": {
+        "indegree": {
+          "1": 0
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476064,
+        "node": 4308476032,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 93,
+          "event": "before_statement",
+          "focus": "if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+          "node_id": 54
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "indegree[neighbor] == 0",
+          "node_id": 71
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "indegree[neighbor]",
+          "node_id": 80
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "indegree",
+          "node_id": 89
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "indegree",
+          "node_id": 89,
+          "value": [
+            0,
+            0
+          ]
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "neighbor",
+          "node_id": 90
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "neighbor",
+          "node_id": 90,
+          "value": 1
+        },
+        {
+          "step": 100,
+          "event": "after_expression",
+          "focus": "indegree[neighbor]",
+          "node_id": 80,
+          "value": 0
+        },
+        {
+          "step": 101,
+          "event": "after_expression",
+          "focus": "indegree[neighbor] == 0",
+          "node_id": 71,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 16,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([])",
+        "count": 1,
+        "node": 0,
+        "neighbor": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476064,
+        "node": 4308476032,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 102,
+          "event": "before_statement",
+          "focus": "queue.append(neighbor)",
+          "node_id": 72
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "queue.append(neighbor)",
+          "node_id": 82
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "queue.append",
+          "node_id": 91
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "neighbor",
+          "node_id": 92
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "neighbor",
+          "node_id": 92,
+          "value": 1
+        },
+        {
+          "step": 107,
+          "event": "after_expression",
+          "focus": "queue.append(neighbor)",
+          "node_id": 82,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([1])",
+            "count": 1,
+            "node": 0,
+            "neighbor": 1
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([1])",
+              "mutable": false
+            }
+          }
+        },
+        {
+          "step": 108,
+          "event": "after_statement",
+          "focus": "queue.append(neighbor)",
+          "node_id": 72,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([1])",
+            "count": 1,
+            "node": 0,
+            "neighbor": 1
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([1])",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([1])",
+        "count": 1,
+        "node": 0,
+        "neighbor": 1
+      },
+      "delta": {
+        "queue": "deque([1])"
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([1])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476064,
+        "node": 4308476032,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 109,
+          "event": "after_statement",
+          "focus": "if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+          "node_id": 54
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([1])",
+        "count": 1,
+        "node": 0,
+        "neighbor": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([1])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476064,
+        "node": 4308476032,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 110,
+          "event": "after_statement",
+          "focus": "for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+          "node_id": 30
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([1])",
+        "count": 1,
+        "node": 0,
+        "neighbor": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([1])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476064,
+        "node": 4308476032,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "queue",
+          "node_id": 27
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "queue",
+          "node_id": 27,
+          "value": "deque([1])"
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([1])",
+        "count": 1,
+        "node": 0,
+        "neighbor": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([1])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476064,
+        "node": 4308476032,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 113,
+          "event": "before_statement",
+          "focus": "node = queue.popleft()",
+          "node_id": 28
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "queue.popleft()",
+          "node_id": 48
+        },
+        {
+          "step": 115,
+          "event": "before_expression",
+          "focus": "queue.popleft",
+          "node_id": 65
+        },
+        {
+          "step": 116,
+          "event": "after_expression",
+          "focus": "queue.popleft()",
+          "node_id": 48,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([])",
+            "count": 1,
+            "node": 0,
+            "neighbor": 1
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([])",
+              "mutable": false
+            }
+          },
+          "value": 1
+        },
+        {
+          "step": 117,
+          "event": "after_statement",
+          "focus": "node = queue.popleft()",
+          "node_id": 28,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([])",
+            "count": 1,
+            "node": 1,
+            "neighbor": 1
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([])",
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "queue": 4380242176,
+            "count": 4308476064,
+            "node": 4308476064,
+            "neighbor": 4308476064
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([])",
+        "count": 1,
+        "node": 1,
+        "neighbor": 1
+      },
+      "delta": {
+        "queue": "deque([])",
+        "node": 1
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476064,
+        "node": 4308476064,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 118,
+          "event": "before_statement",
+          "focus": "count += 1",
+          "node_id": 29
+        },
+        {
+          "step": 119,
+          "event": "after_statement",
+          "focus": "count += 1",
+          "node_id": 29,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ]
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([])",
+            "count": 2,
+            "node": 1,
+            "neighbor": 1
+          },
+          "var_table": {
+            "numCourses": 4308476096,
+            "prerequisites": 4339503296,
+            "graph": 4338938992,
+            "indegree": 4381878400,
+            "dest": 4308476064,
+            "src": 4308476032,
+            "queue": 4380242176,
+            "count": 4308476096,
+            "node": 4308476064,
+            "neighbor": 4308476064
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ]
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([])",
+        "count": 2,
+        "node": 1,
+        "neighbor": 1
+      },
+      "delta": {
+        "count": 2
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476096,
+        "node": 4308476064,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 120,
+          "event": "before_statement",
+          "focus": "for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+          "node_id": 30
+        },
+        {
+          "step": 121,
+          "event": "before_expression",
+          "focus": "graph[node]",
+          "node_id": 52
+        },
+        {
+          "step": 122,
+          "event": "before_expression",
+          "focus": "graph",
+          "node_id": 66
+        },
+        {
+          "step": 123,
+          "event": "after_expression",
+          "focus": "graph",
+          "node_id": 66,
+          "value": {
+            "0": [
+              1
+            ]
+          }
+        },
+        {
+          "step": 124,
+          "event": "before_expression",
+          "focus": "node",
+          "node_id": 67
+        },
+        {
+          "step": 125,
+          "event": "after_expression",
+          "focus": "node",
+          "node_id": 67,
+          "value": 1
+        },
+        {
+          "step": 126,
+          "event": "after_expression",
+          "focus": "graph[node]",
+          "node_id": 52,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ],
+              "1": []
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([])",
+            "count": 2,
+            "node": 1,
+            "neighbor": 1
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4379797248": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520,
+                "1": 4379797248
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([])",
+              "mutable": false
+            }
+          },
+          "value": []
+        },
+        {
+          "step": 127,
+          "event": "after_statement",
+          "focus": "for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+          "node_id": 30,
+          "locals": {
+            "numCourses": 2,
+            "prerequisites": [
+              [
+                1,
+                0
+              ]
+            ],
+            "graph": {
+              "0": [
+                1
+              ],
+              "1": []
+            },
+            "indegree": [
+              0,
+              0
+            ],
+            "dest": 1,
+            "src": 0,
+            "queue": "deque([])",
+            "count": 2,
+            "node": 1,
+            "neighbor": 1
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            },
+            "4339503360": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4339503296": {
+              "type": "list",
+              "value": [
+                4339503360
+              ],
+              "mutable": true
+            },
+            "4339787520": {
+              "type": "list",
+              "value": [
+                4308476064
+              ],
+              "mutable": true
+            },
+            "4379797248": {
+              "type": "list",
+              "value": [],
+              "mutable": true
+            },
+            "4338938992": {
+              "type": "defaultdict",
+              "value": {
+                "0": 4339787520,
+                "1": 4379797248
+              },
+              "mutable": true
+            },
+            "4381878400": {
+              "type": "list",
+              "value": [
+                4308476032,
+                4308476032
+              ],
+              "mutable": true
+            },
+            "4380242176": {
+              "type": "deque",
+              "value": "deque([])",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ],
+          "1": []
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([])",
+        "count": 2,
+        "node": 1,
+        "neighbor": 1
+      },
+      "delta": {
+        "graph": {
+          "1": []
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4379797248": {
+          "type": "list",
+          "value": [],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520,
+            "1": 4379797248
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476096,
+        "node": 4308476064,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 128,
+          "event": "before_expression",
+          "focus": "queue",
+          "node_id": 27
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "queue",
+          "node_id": 27,
+          "value": "deque([])"
+        },
+        {
+          "step": 130,
+          "event": "after_statement",
+          "focus": "while queue:\n        node = queue.popleft()\n        count += 1\n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)",
+          "node_id": 9
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "graph": {
+          "0": [
+            1
+          ],
+          "1": []
+        },
+        "indegree": [
+          0,
+          0
+        ],
+        "dest": 1,
+        "src": 0,
+        "queue": "deque([])",
+        "count": 2,
+        "node": 1,
+        "neighbor": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        },
+        "4339503360": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4339503296": {
+          "type": "list",
+          "value": [
+            4339503360
+          ],
+          "mutable": true
+        },
+        "4339787520": {
+          "type": "list",
+          "value": [
+            4308476064
+          ],
+          "mutable": true
+        },
+        "4379797248": {
+          "type": "list",
+          "value": [],
+          "mutable": true
+        },
+        "4338938992": {
+          "type": "defaultdict",
+          "value": {
+            "0": 4339787520,
+            "1": 4379797248
+          },
+          "mutable": true
+        },
+        "4381878400": {
+          "type": "list",
+          "value": [
+            4308476032,
+            4308476032
+          ],
+          "mutable": true
+        },
+        "4380242176": {
+          "type": "deque",
+          "value": "deque([])",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "numCourses": 4308476096,
+        "prerequisites": 4339503296,
+        "graph": 4338938992,
+        "indegree": 4381878400,
+        "dest": 4308476064,
+        "src": 4308476032,
+        "queue": 4380242176,
+        "count": 4308476096,
+        "node": 4308476064,
+        "neighbor": 4308476064
+      },
+      "steps": [
+        {
+          "step": 131,
+          "event": "before_statement",
+          "focus": "return count == numCourses",
+          "node_id": 10
+        },
+        {
+          "step": 132,
+          "event": "before_expression",
+          "focus": "count == numCourses",
+          "node_id": 31
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "count",
+          "node_id": 55
+        },
+        {
+          "step": 134,
+          "event": "after_expression",
+          "focus": "count",
+          "node_id": 55,
+          "value": 2
+        },
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "numCourses",
+          "node_id": 57
+        },
+        {
+          "step": 136,
+          "event": "after_expression",
+          "focus": "numCourses",
+          "node_id": 57,
+          "value": 2
+        },
+        {
+          "step": 137,
+          "event": "after_expression",
+          "focus": "count == numCourses",
+          "node_id": 31,
+          "value": true
+        }
+      ]
+    }
+  ],
+  "result": true
+}

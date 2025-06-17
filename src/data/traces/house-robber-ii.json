@@ -1,0 +1,2787 @@
+{
+  "metadata": {
+    "code": "def rob(nums):\n    if len(nums) == 1:\n        return nums[0]\n    def rob_line(houses):\n        prev = curr = 0\n        for num in houses:\n            prev, curr = curr, max(curr, prev + num)\n        return curr\n    return max(rob_line(nums[:-1]), rob_line(nums[1:]))",
+    "function": "rob",
+    "inputs": {
+      "kwargs": {
+        "nums": "[2, 3, 2]"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "nums": [
+        2,
+        3,
+        2
+      ]
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 9,
+          "end_col_offset": 55
+        },
+        "focus": "def rob(nums):\n    if len(nums) == 1:\n        return nums[0]\n    def rob_line(houses):\n        prev = curr = 0\n        for num in houses:\n            prev, curr = curr, max(curr, prev + num)\n        return curr\n    return max(rob_line(nums[:-1]), rob_line(nums[1:]))",
+        "name": "rob",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            6
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 6,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 8,
+                "end_lineno": 1,
+                "end_col_offset": 12
+              },
+              "focus": "nums",
+              "arg": "nums"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              7,
+              8
+            ],
+            "type": "If",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 22
+            },
+            "focus": "if len(nums) == 1:\n        return nums[0]",
+            "test": {
+              "node_id": 7,
+              "children_node_ids": [
+                14,
+                15,
+                16
+              ],
+              "type": "Compare",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 7,
+                "end_lineno": 2,
+                "end_col_offset": 21
+              },
+              "focus": "len(nums) == 1",
+              "left": {
+                "node_id": 14,
+                "children_node_ids": [
+                  29,
+                  30
+                ],
+                "type": "Call",
+                "parent_node_id": 7,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 7,
+                  "end_lineno": 2,
+                  "end_col_offset": 16
+                },
+                "focus": "len(nums)",
+                "func": {
+                  "node_id": 29,
+                  "children_node_ids": [
+                    33
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 14,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 7,
+                    "end_lineno": 2,
+                    "end_col_offset": 10
+                  },
+                  "focus": "len",
+                  "id": "len",
+                  "ctx": {
+                    "node_id": 33,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 29
+                  }
+                },
+                "args": [
+                  {
+                    "node_id": 30,
+                    "children_node_ids": [
+                      33
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 14,
+                    "location": {
+                      "lineno": 2,
+                      "col_offset": 11,
+                      "end_lineno": 2,
+                      "end_col_offset": 15
+                    },
+                    "focus": "nums",
+                    "id": "nums",
+                    "ctx": {
+                      "node_id": 33,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 30
+                    }
+                  }
+                ],
+                "keywords": []
+              },
+              "ops": [
+                {
+                  "node_id": 15,
+                  "children_node_ids": [],
+                  "type": "Eq",
+                  "parent_node_id": 7
+                }
+              ],
+              "comparators": [
+                {
+                  "node_id": 16,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 7,
+                  "location": {
+                    "lineno": 2,
+                    "col_offset": 20,
+                    "end_lineno": 2,
+                    "end_col_offset": 21
+                  },
+                  "focus": "1",
+                  "value": 1
+                }
+              ]
+            },
+            "body": [
+              {
+                "node_id": 8,
+                "children_node_ids": [
+                  17
+                ],
+                "type": "Return",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 8,
+                  "end_lineno": 3,
+                  "end_col_offset": 22
+                },
+                "focus": "return nums[0]",
+                "value": {
+                  "node_id": 17,
+                  "children_node_ids": [
+                    31,
+                    32,
+                    33
+                  ],
+                  "type": "Subscript",
+                  "parent_node_id": 8,
+                  "location": {
+                    "lineno": 3,
+                    "col_offset": 15,
+                    "end_lineno": 3,
+                    "end_col_offset": 22
+                  },
+                  "focus": "nums[0]",
+                  "value": {
+                    "node_id": 31,
+                    "children_node_ids": [
+                      33
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 17,
+                    "location": {
+                      "lineno": 3,
+                      "col_offset": 15,
+                      "end_lineno": 3,
+                      "end_col_offset": 19
+                    },
+                    "focus": "nums",
+                    "id": "nums",
+                    "ctx": {
+                      "node_id": 33,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 31
+                    }
+                  },
+                  "slice": {
+                    "node_id": 32,
+                    "children_node_ids": [],
+                    "type": "Constant",
+                    "parent_node_id": 17,
+                    "location": {
+                      "lineno": 3,
+                      "col_offset": 20,
+                      "end_lineno": 3,
+                      "end_col_offset": 21
+                    },
+                    "focus": "0",
+                    "value": 0
+                  },
+                  "ctx": {
+                    "node_id": 33,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 17
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              9,
+              10,
+              11,
+              12
+            ],
+            "type": "FunctionDef",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 4,
+              "col_offset": 4,
+              "end_lineno": 8,
+              "end_col_offset": 19
+            },
+            "focus": "def rob_line(houses):\n        prev = curr = 0\n        for num in houses:\n            prev, curr = curr, max(curr, prev + num)\n        return curr",
+            "name": "rob_line",
+            "args": {
+              "node_id": 9,
+              "children_node_ids": [
+                18
+              ],
+              "type": "arguments",
+              "parent_node_id": 4,
+              "posonlyargs": [],
+              "args": [
+                {
+                  "node_id": 18,
+                  "children_node_ids": [],
+                  "type": "arg",
+                  "parent_node_id": 9,
+                  "location": {
+                    "lineno": 4,
+                    "col_offset": 17,
+                    "end_lineno": 4,
+                    "end_col_offset": 23
+                  },
+                  "focus": "houses",
+                  "arg": "houses"
+                }
+              ],
+              "kwonlyargs": [],
+              "kw_defaults": [],
+              "defaults": []
+            },
+            "body": [
+              {
+                "node_id": 10,
+                "children_node_ids": [
+                  19,
+                  20,
+                  21
+                ],
+                "type": "Assign",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 8,
+                  "end_lineno": 5,
+                  "end_col_offset": 23
+                },
+                "focus": "prev = curr = 0",
+                "targets": [
+                  {
+                    "node_id": 19,
+                    "children_node_ids": [
+                      34
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 10,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 8,
+                      "end_lineno": 5,
+                      "end_col_offset": 12
+                    },
+                    "focus": "prev",
+                    "id": "prev",
+                    "ctx": {
+                      "node_id": 34,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 19
+                    }
+                  },
+                  {
+                    "node_id": 20,
+                    "children_node_ids": [
+                      34
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 10,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 15,
+                      "end_lineno": 5,
+                      "end_col_offset": 19
+                    },
+                    "focus": "curr",
+                    "id": "curr",
+                    "ctx": {
+                      "node_id": 34,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 20
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 21,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 10,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 22,
+                    "end_lineno": 5,
+                    "end_col_offset": 23
+                  },
+                  "focus": "0",
+                  "value": 0
+                }
+              },
+              {
+                "node_id": 11,
+                "children_node_ids": [
+                  22,
+                  23,
+                  24
+                ],
+                "type": "For",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 8,
+                  "end_lineno": 7,
+                  "end_col_offset": 52
+                },
+                "focus": "for num in houses:\n            prev, curr = curr, max(curr, prev + num)",
+                "target": {
+                  "node_id": 22,
+                  "children_node_ids": [
+                    34
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 12,
+                    "end_lineno": 6,
+                    "end_col_offset": 15
+                  },
+                  "focus": "num",
+                  "id": "num",
+                  "ctx": {
+                    "node_id": 34,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 22
+                  }
+                },
+                "iter": {
+                  "node_id": 23,
+                  "children_node_ids": [
+                    33
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 11,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 19,
+                    "end_lineno": 6,
+                    "end_col_offset": 25
+                  },
+                  "focus": "houses",
+                  "id": "houses",
+                  "ctx": {
+                    "node_id": 33,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 23
+                  }
+                },
+                "body": [
+                  {
+                    "node_id": 24,
+                    "children_node_ids": [
+                      35,
+                      36
+                    ],
+                    "type": "Assign",
+                    "parent_node_id": 11,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 12,
+                      "end_lineno": 7,
+                      "end_col_offset": 52
+                    },
+                    "focus": "prev, curr = curr, max(curr, prev + num)",
+                    "targets": [
+                      {
+                        "node_id": 35,
+                        "children_node_ids": [
+                          41,
+                          42,
+                          34
+                        ],
+                        "type": "Tuple",
+                        "parent_node_id": 24,
+                        "location": {
+                          "lineno": 7,
+                          "col_offset": 12,
+                          "end_lineno": 7,
+                          "end_col_offset": 22
+                        },
+                        "focus": "prev, curr",
+                        "elts": [
+                          {
+                            "node_id": 41,
+                            "children_node_ids": [
+                              34
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 35,
+                            "location": {
+                              "lineno": 7,
+                              "col_offset": 12,
+                              "end_lineno": 7,
+                              "end_col_offset": 16
+                            },
+                            "focus": "prev",
+                            "id": "prev",
+                            "ctx": {
+                              "node_id": 34,
+                              "children_node_ids": [],
+                              "type": "Store",
+                              "parent_node_id": 41
+                            }
+                          },
+                          {
+                            "node_id": 42,
+                            "children_node_ids": [
+                              34
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 35,
+                            "location": {
+                              "lineno": 7,
+                              "col_offset": 18,
+                              "end_lineno": 7,
+                              "end_col_offset": 22
+                            },
+                            "focus": "curr",
+                            "id": "curr",
+                            "ctx": {
+                              "node_id": 34,
+                              "children_node_ids": [],
+                              "type": "Store",
+                              "parent_node_id": 42
+                            }
+                          }
+                        ],
+                        "ctx": {
+                          "node_id": 34,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 35
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node_id": 36,
+                      "children_node_ids": [
+                        43,
+                        44,
+                        33
+                      ],
+                      "type": "Tuple",
+                      "parent_node_id": 24,
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 25,
+                        "end_lineno": 7,
+                        "end_col_offset": 52
+                      },
+                      "focus": "curr, max(curr, prev + num)",
+                      "elts": [
+                        {
+                          "node_id": 43,
+                          "children_node_ids": [
+                            33
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 36,
+                          "location": {
+                            "lineno": 7,
+                            "col_offset": 25,
+                            "end_lineno": 7,
+                            "end_col_offset": 29
+                          },
+                          "focus": "curr",
+                          "id": "curr",
+                          "ctx": {
+                            "node_id": 33,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 43
+                          }
+                        },
+                        {
+                          "node_id": 44,
+                          "children_node_ids": [
+                            49,
+                            50,
+                            51
+                          ],
+                          "type": "Call",
+                          "parent_node_id": 36,
+                          "location": {
+                            "lineno": 7,
+                            "col_offset": 31,
+                            "end_lineno": 7,
+                            "end_col_offset": 52
+                          },
+                          "focus": "max(curr, prev + num)",
+                          "func": {
+                            "node_id": 49,
+                            "children_node_ids": [
+                              33
+                            ],
+                            "type": "Name",
+                            "parent_node_id": 44,
+                            "location": {
+                              "lineno": 7,
+                              "col_offset": 31,
+                              "end_lineno": 7,
+                              "end_col_offset": 34
+                            },
+                            "focus": "max",
+                            "id": "max",
+                            "ctx": {
+                              "node_id": 33,
+                              "children_node_ids": [],
+                              "type": "Load",
+                              "parent_node_id": 49
+                            }
+                          },
+                          "args": [
+                            {
+                              "node_id": 50,
+                              "children_node_ids": [
+                                33
+                              ],
+                              "type": "Name",
+                              "parent_node_id": 44,
+                              "location": {
+                                "lineno": 7,
+                                "col_offset": 35,
+                                "end_lineno": 7,
+                                "end_col_offset": 39
+                              },
+                              "focus": "curr",
+                              "id": "curr",
+                              "ctx": {
+                                "node_id": 33,
+                                "children_node_ids": [],
+                                "type": "Load",
+                                "parent_node_id": 50
+                              }
+                            },
+                            {
+                              "node_id": 51,
+                              "children_node_ids": [
+                                54,
+                                55,
+                                56
+                              ],
+                              "type": "BinOp",
+                              "parent_node_id": 44,
+                              "location": {
+                                "lineno": 7,
+                                "col_offset": 41,
+                                "end_lineno": 7,
+                                "end_col_offset": 51
+                              },
+                              "focus": "prev + num",
+                              "left": {
+                                "node_id": 54,
+                                "children_node_ids": [
+                                  33
+                                ],
+                                "type": "Name",
+                                "parent_node_id": 51,
+                                "location": {
+                                  "lineno": 7,
+                                  "col_offset": 41,
+                                  "end_lineno": 7,
+                                  "end_col_offset": 45
+                                },
+                                "focus": "prev",
+                                "id": "prev",
+                                "ctx": {
+                                  "node_id": 33,
+                                  "children_node_ids": [],
+                                  "type": "Load",
+                                  "parent_node_id": 54
+                                }
+                              },
+                              "op": {
+                                "node_id": 55,
+                                "children_node_ids": [],
+                                "type": "Add",
+                                "parent_node_id": 51
+                              },
+                              "right": {
+                                "node_id": 56,
+                                "children_node_ids": [
+                                  33
+                                ],
+                                "type": "Name",
+                                "parent_node_id": 51,
+                                "location": {
+                                  "lineno": 7,
+                                  "col_offset": 48,
+                                  "end_lineno": 7,
+                                  "end_col_offset": 51
+                                },
+                                "focus": "num",
+                                "id": "num",
+                                "ctx": {
+                                  "node_id": 33,
+                                  "children_node_ids": [],
+                                  "type": "Load",
+                                  "parent_node_id": 56
+                                }
+                              }
+                            }
+                          ],
+                          "keywords": []
+                        }
+                      ],
+                      "ctx": {
+                        "node_id": 33,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 36
+                      }
+                    }
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "node_id": 12,
+                "children_node_ids": [
+                  25
+                ],
+                "type": "Return",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 8,
+                  "end_lineno": 8,
+                  "end_col_offset": 19
+                },
+                "focus": "return curr",
+                "value": {
+                  "node_id": 25,
+                  "children_node_ids": [
+                    33
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 12,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 15,
+                    "end_lineno": 8,
+                    "end_col_offset": 19
+                  },
+                  "focus": "curr",
+                  "id": "curr",
+                  "ctx": {
+                    "node_id": 33,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 25
+                  }
+                }
+              }
+            ],
+            "decorator_list": [],
+            "type_params": []
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              13
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 9,
+              "col_offset": 4,
+              "end_lineno": 9,
+              "end_col_offset": 55
+            },
+            "focus": "return max(rob_line(nums[:-1]), rob_line(nums[1:]))",
+            "value": {
+              "node_id": 13,
+              "children_node_ids": [
+                26,
+                27,
+                28
+              ],
+              "type": "Call",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 9,
+                "col_offset": 11,
+                "end_lineno": 9,
+                "end_col_offset": 55
+              },
+              "focus": "max(rob_line(nums[:-1]), rob_line(nums[1:]))",
+              "func": {
+                "node_id": 26,
+                "children_node_ids": [
+                  33
+                ],
+                "type": "Name",
+                "parent_node_id": 13,
+                "location": {
+                  "lineno": 9,
+                  "col_offset": 11,
+                  "end_lineno": 9,
+                  "end_col_offset": 14
+                },
+                "focus": "max",
+                "id": "max",
+                "ctx": {
+                  "node_id": 33,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 26
+                }
+              },
+              "args": [
+                {
+                  "node_id": 27,
+                  "children_node_ids": [
+                    37,
+                    38
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 9,
+                    "col_offset": 15,
+                    "end_lineno": 9,
+                    "end_col_offset": 34
+                  },
+                  "focus": "rob_line(nums[:-1])",
+                  "func": {
+                    "node_id": 37,
+                    "children_node_ids": [
+                      33
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 27,
+                    "location": {
+                      "lineno": 9,
+                      "col_offset": 15,
+                      "end_lineno": 9,
+                      "end_col_offset": 23
+                    },
+                    "focus": "rob_line",
+                    "id": "rob_line",
+                    "ctx": {
+                      "node_id": 33,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 37
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 38,
+                      "children_node_ids": [
+                        45,
+                        46,
+                        33
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 27,
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 24,
+                        "end_lineno": 9,
+                        "end_col_offset": 33
+                      },
+                      "focus": "nums[:-1]",
+                      "value": {
+                        "node_id": 45,
+                        "children_node_ids": [
+                          33
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 38,
+                        "location": {
+                          "lineno": 9,
+                          "col_offset": 24,
+                          "end_lineno": 9,
+                          "end_col_offset": 28
+                        },
+                        "focus": "nums",
+                        "id": "nums",
+                        "ctx": {
+                          "node_id": 33,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 45
+                        }
+                      },
+                      "slice": {
+                        "node_id": 46,
+                        "children_node_ids": [
+                          52
+                        ],
+                        "type": "Slice",
+                        "parent_node_id": 38,
+                        "location": {
+                          "lineno": 9,
+                          "col_offset": 29,
+                          "end_lineno": 9,
+                          "end_col_offset": 32
+                        },
+                        "focus": ":-1",
+                        "upper": {
+                          "node_id": 52,
+                          "children_node_ids": [
+                            57,
+                            58
+                          ],
+                          "type": "UnaryOp",
+                          "parent_node_id": 46,
+                          "location": {
+                            "lineno": 9,
+                            "col_offset": 30,
+                            "end_lineno": 9,
+                            "end_col_offset": 32
+                          },
+                          "focus": "-1",
+                          "op": {
+                            "node_id": 57,
+                            "children_node_ids": [],
+                            "type": "USub",
+                            "parent_node_id": 52
+                          },
+                          "operand": {
+                            "node_id": 58,
+                            "children_node_ids": [],
+                            "type": "Constant",
+                            "parent_node_id": 52,
+                            "location": {
+                              "lineno": 9,
+                              "col_offset": 31,
+                              "end_lineno": 9,
+                              "end_col_offset": 32
+                            },
+                            "focus": "1",
+                            "value": 1
+                          }
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 33,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 38
+                      }
+                    }
+                  ],
+                  "keywords": []
+                },
+                {
+                  "node_id": 28,
+                  "children_node_ids": [
+                    39,
+                    40
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 9,
+                    "col_offset": 36,
+                    "end_lineno": 9,
+                    "end_col_offset": 54
+                  },
+                  "focus": "rob_line(nums[1:])",
+                  "func": {
+                    "node_id": 39,
+                    "children_node_ids": [
+                      33
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 28,
+                    "location": {
+                      "lineno": 9,
+                      "col_offset": 36,
+                      "end_lineno": 9,
+                      "end_col_offset": 44
+                    },
+                    "focus": "rob_line",
+                    "id": "rob_line",
+                    "ctx": {
+                      "node_id": 33,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 39
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 40,
+                      "children_node_ids": [
+                        47,
+                        48,
+                        33
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 28,
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 45,
+                        "end_lineno": 9,
+                        "end_col_offset": 53
+                      },
+                      "focus": "nums[1:]",
+                      "value": {
+                        "node_id": 47,
+                        "children_node_ids": [
+                          33
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 40,
+                        "location": {
+                          "lineno": 9,
+                          "col_offset": 45,
+                          "end_lineno": 9,
+                          "end_col_offset": 49
+                        },
+                        "focus": "nums",
+                        "id": "nums",
+                        "ctx": {
+                          "node_id": 33,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 47
+                        }
+                      },
+                      "slice": {
+                        "node_id": 48,
+                        "children_node_ids": [
+                          53
+                        ],
+                        "type": "Slice",
+                        "parent_node_id": 40,
+                        "location": {
+                          "lineno": 9,
+                          "col_offset": 50,
+                          "end_lineno": 9,
+                          "end_col_offset": 52
+                        },
+                        "focus": "1:",
+                        "lower": {
+                          "node_id": 53,
+                          "children_node_ids": [],
+                          "type": "Constant",
+                          "parent_node_id": 48,
+                          "location": {
+                            "lineno": 9,
+                            "col_offset": 50,
+                            "end_lineno": 9,
+                            "end_col_offset": 51
+                          },
+                          "focus": "1",
+                          "value": 1
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 33,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 40
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "houses",
+      "cursor": "num",
+      "type": "value_index",
+      "node_id": 11
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def rob(nums):\n    if len(nums) == 1:\n        return nums[0]\n    def rob_line(houses):\n        prev = curr = 0\n        for num in houses:\n            prev, curr = curr, max(curr, prev + num)\n        return curr\n    return max(rob_line(nums[:-1]), rob_line(nums[1:]))",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def rob(nums):\n    if len(nums) == 1:\n        return nums[0]\n    def rob_line(houses):\n        prev = curr = 0\n        for num in houses:\n            prev, curr = curr, max(curr, prev + num)\n        return curr\n    return max(rob_line(nums[:-1]), rob_line(nums[1:]))",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          2,
+          3,
+          2
+        ]
+      },
+      "delta": {
+        "nums": {
+          "0": 2,
+          "1": 3,
+          "2": 2
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339505472": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4339505472
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if len(nums) == 1:\n        return nums[0]",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "len(nums) == 1",
+          "node_id": 7
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "len(nums)",
+          "node_id": 14
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 30
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 30,
+          "value": [
+            2,
+            3,
+            2
+          ]
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "len(nums)",
+          "node_id": 14,
+          "value": 3
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "len(nums) == 1",
+          "node_id": 7,
+          "value": false
+        },
+        {
+          "step": 9,
+          "event": "after_statement",
+          "focus": "if len(nums) == 1:\n        return nums[0]",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "nums": [
+          2,
+          3,
+          2
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339505472": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4339505472
+      },
+      "steps": [
+        {
+          "step": 10,
+          "event": "before_statement",
+          "focus": "def rob_line(houses):\n        prev = curr = 0\n        for num in houses:\n            prev, curr = curr, max(curr, prev + num)\n        return curr",
+          "node_id": 4
+        },
+        {
+          "step": 11,
+          "event": "after_statement",
+          "focus": "def rob_line(houses):\n        prev = curr = 0\n        for num in houses:\n            prev, curr = curr, max(curr, prev + num)\n        return curr",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums": [
+          2,
+          3,
+          2
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339505472": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4339505472
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "return max(rob_line(nums[:-1]), rob_line(nums[1:]))",
+          "node_id": 5
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "max(rob_line(nums[:-1]), rob_line(nums[1:]))",
+          "node_id": 13
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "rob_line(nums[:-1])",
+          "node_id": 27
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "nums[:-1]",
+          "node_id": 38
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 45
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 45,
+          "value": [
+            2,
+            3,
+            2
+          ]
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": ":-1",
+          "node_id": 46
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "-1",
+          "node_id": 52
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "-1",
+          "node_id": 52,
+          "value": -1
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": ":-1",
+          "node_id": 46,
+          "value": "slice(None, -1, None)"
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "nums[:-1]",
+          "node_id": 38,
+          "value": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "houses": [
+          2,
+          3
+        ]
+      },
+      "delta": {
+        "houses": {
+          "0": 2,
+          "1": 3
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4381878272": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "houses": 4381878272
+      },
+      "steps": [
+        {
+          "step": 23,
+          "event": "before_statement",
+          "focus": "prev = curr = 0",
+          "node_id": 10
+        },
+        {
+          "step": 24,
+          "event": "after_statement",
+          "focus": "prev = curr = 0",
+          "node_id": 10,
+          "locals": {
+            "houses": [
+              2,
+              3
+            ],
+            "prev": 0,
+            "curr": 0
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4381878272": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "houses": 4381878272,
+            "prev": 4308476032,
+            "curr": 4308476032
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "houses": [
+          2,
+          3
+        ],
+        "prev": 0,
+        "curr": 0
+      },
+      "delta": {
+        "prev": 0,
+        "curr": 0
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4381878272": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "houses": 4381878272,
+        "prev": 4308476032,
+        "curr": 4308476032
+      },
+      "steps": [
+        {
+          "step": 25,
+          "event": "before_statement",
+          "focus": "for num in houses:\n            prev, curr = curr, max(curr, prev + num)",
+          "node_id": 11
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "houses",
+          "node_id": 23
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "houses",
+          "node_id": 23,
+          "value": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "houses": [
+          2,
+          3
+        ],
+        "prev": 0,
+        "curr": 0,
+        "num": 2
+      },
+      "delta": {
+        "num": 2
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4381878272": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "houses": 4381878272,
+        "prev": 4308476032,
+        "curr": 4308476032,
+        "num": 4308476096
+      },
+      "steps": [
+        {
+          "step": 28,
+          "event": "before_statement",
+          "focus": "prev, curr = curr, max(curr, prev + num)",
+          "node_id": 24
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "curr, max(curr, prev + num)",
+          "node_id": 36
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 43
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 43,
+          "value": 0
+        },
+        {
+          "step": 32,
+          "event": "before_expression",
+          "focus": "max(curr, prev + num)",
+          "node_id": 44
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 50
+        },
+        {
+          "step": 34,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 50,
+          "value": 0
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "prev + num",
+          "node_id": 51
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "prev",
+          "node_id": 54
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "prev",
+          "node_id": 54,
+          "value": 0
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 56
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 56,
+          "value": 2
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "prev + num",
+          "node_id": 51,
+          "value": 2
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "max(curr, prev + num)",
+          "node_id": 44,
+          "value": 2
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "curr, max(curr, prev + num)",
+          "node_id": 36,
+          "value": [
+            0,
+            2
+          ]
+        },
+        {
+          "step": 43,
+          "event": "after_statement",
+          "focus": "prev, curr = curr, max(curr, prev + num)",
+          "node_id": 24,
+          "locals": {
+            "houses": [
+              2,
+              3
+            ],
+            "prev": 0,
+            "curr": 2,
+            "num": 2
+          },
+          "var_table": {
+            "houses": 4381878272,
+            "prev": 4308476032,
+            "curr": 4308476096,
+            "num": 4308476096
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "houses": [
+          2,
+          3
+        ],
+        "prev": 0,
+        "curr": 2,
+        "num": 3
+      },
+      "delta": {
+        "curr": 2,
+        "num": 3
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4381878272": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "houses": 4381878272,
+        "prev": 4308476032,
+        "curr": 4308476096,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 44,
+          "event": "before_statement",
+          "focus": "prev, curr = curr, max(curr, prev + num)",
+          "node_id": 24
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "curr, max(curr, prev + num)",
+          "node_id": 36
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 43
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 43,
+          "value": 2
+        },
+        {
+          "step": 48,
+          "event": "before_expression",
+          "focus": "max(curr, prev + num)",
+          "node_id": 44
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 50
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 50,
+          "value": 2
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "prev + num",
+          "node_id": 51
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "prev",
+          "node_id": 54
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "prev",
+          "node_id": 54,
+          "value": 0
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 56
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 56,
+          "value": 3
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "prev + num",
+          "node_id": 51,
+          "value": 3
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "max(curr, prev + num)",
+          "node_id": 44,
+          "value": 3
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "curr, max(curr, prev + num)",
+          "node_id": 36,
+          "value": [
+            2,
+            3
+          ]
+        },
+        {
+          "step": 59,
+          "event": "after_statement",
+          "focus": "prev, curr = curr, max(curr, prev + num)",
+          "node_id": 24,
+          "locals": {
+            "houses": [
+              2,
+              3
+            ],
+            "prev": 2,
+            "curr": 3,
+            "num": 3
+          },
+          "object_table": {
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4381878272": {
+              "type": "list",
+              "value": [
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "houses": 4381878272,
+            "prev": 4308476096,
+            "curr": 4308476128,
+            "num": 4308476128
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "houses": [
+          2,
+          3
+        ],
+        "prev": 2,
+        "curr": 3,
+        "num": 3
+      },
+      "delta": {
+        "prev": 2,
+        "curr": 3
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4381878272": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "houses": 4381878272,
+        "prev": 4308476096,
+        "curr": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 60,
+          "event": "after_statement",
+          "focus": "for num in houses:\n            prev, curr = curr, max(curr, prev + num)",
+          "node_id": 11
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "houses": [
+          2,
+          3
+        ],
+        "prev": 2,
+        "curr": 3,
+        "num": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4381878272": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "houses": 4381878272,
+        "prev": 4308476096,
+        "curr": 4308476128,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 61,
+          "event": "before_statement",
+          "focus": "return curr",
+          "node_id": 12
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 25
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 25,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums": [
+          2,
+          3,
+          2
+        ]
+      },
+      "delta": {
+        "nums": {
+          "0": 2,
+          "1": 3,
+          "2": 2
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339505472": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4339505472
+      },
+      "steps": [
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "rob_line(nums[:-1])",
+          "node_id": 27,
+          "value": 3
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "rob_line(nums[1:])",
+          "node_id": 28
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "nums[1:]",
+          "node_id": 40
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 47
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 47,
+          "value": [
+            2,
+            3,
+            2
+          ]
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "1:",
+          "node_id": 48
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "1:",
+          "node_id": 48,
+          "value": "slice(1, None, None)"
+        },
+        {
+          "step": 71,
+          "event": "after_expression",
+          "focus": "nums[1:]",
+          "node_id": 40,
+          "value": [
+            3,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "houses": [
+          3,
+          2
+        ]
+      },
+      "delta": {
+        "houses": {
+          "0": 3,
+          "1": 2
+        }
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4345220864": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "houses": 4345220864
+      },
+      "steps": [
+        {
+          "step": 72,
+          "event": "before_statement",
+          "focus": "prev = curr = 0",
+          "node_id": 10
+        },
+        {
+          "step": 73,
+          "event": "after_statement",
+          "focus": "prev = curr = 0",
+          "node_id": 10,
+          "locals": {
+            "houses": [
+              3,
+              2
+            ],
+            "prev": 0,
+            "curr": 0
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4345220864": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476096
+              ],
+              "mutable": true
+            },
+            "4308476032": {
+              "type": "int",
+              "value": 0,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "houses": 4345220864,
+            "prev": 4308476032,
+            "curr": 4308476032
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "houses": [
+          3,
+          2
+        ],
+        "prev": 0,
+        "curr": 0
+      },
+      "delta": {
+        "prev": 0,
+        "curr": 0
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4345220864": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "houses": 4345220864,
+        "prev": 4308476032,
+        "curr": 4308476032
+      },
+      "steps": [
+        {
+          "step": 74,
+          "event": "before_statement",
+          "focus": "for num in houses:\n            prev, curr = curr, max(curr, prev + num)",
+          "node_id": 11
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "houses",
+          "node_id": 23
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "houses",
+          "node_id": 23,
+          "value": [
+            3,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "houses": [
+          3,
+          2
+        ],
+        "prev": 0,
+        "curr": 0,
+        "num": 3
+      },
+      "delta": {
+        "num": 3
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4345220864": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "houses": 4345220864,
+        "prev": 4308476032,
+        "curr": 4308476032,
+        "num": 4308476128
+      },
+      "steps": [
+        {
+          "step": 77,
+          "event": "before_statement",
+          "focus": "prev, curr = curr, max(curr, prev + num)",
+          "node_id": 24
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "curr, max(curr, prev + num)",
+          "node_id": 36
+        },
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 43
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 43,
+          "value": 0
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "max(curr, prev + num)",
+          "node_id": 44
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 50
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 50,
+          "value": 0
+        },
+        {
+          "step": 84,
+          "event": "before_expression",
+          "focus": "prev + num",
+          "node_id": 51
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "prev",
+          "node_id": 54
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "prev",
+          "node_id": 54,
+          "value": 0
+        },
+        {
+          "step": 87,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 56
+        },
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 56,
+          "value": 3
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "prev + num",
+          "node_id": 51,
+          "value": 3
+        },
+        {
+          "step": 90,
+          "event": "after_expression",
+          "focus": "max(curr, prev + num)",
+          "node_id": 44,
+          "value": 3
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "curr, max(curr, prev + num)",
+          "node_id": 36,
+          "value": [
+            0,
+            3
+          ]
+        },
+        {
+          "step": 92,
+          "event": "after_statement",
+          "focus": "prev, curr = curr, max(curr, prev + num)",
+          "node_id": 24,
+          "locals": {
+            "houses": [
+              3,
+              2
+            ],
+            "prev": 0,
+            "curr": 3,
+            "num": 3
+          },
+          "var_table": {
+            "houses": 4345220864,
+            "prev": 4308476032,
+            "curr": 4308476128,
+            "num": 4308476128
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "houses": [
+          3,
+          2
+        ],
+        "prev": 0,
+        "curr": 3,
+        "num": 2
+      },
+      "delta": {
+        "curr": 3,
+        "num": 2
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4345220864": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "houses": 4345220864,
+        "prev": 4308476032,
+        "curr": 4308476128,
+        "num": 4308476096
+      },
+      "steps": [
+        {
+          "step": 93,
+          "event": "before_statement",
+          "focus": "prev, curr = curr, max(curr, prev + num)",
+          "node_id": 24
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "curr, max(curr, prev + num)",
+          "node_id": 36
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 43
+        },
+        {
+          "step": 96,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 43,
+          "value": 3
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "max(curr, prev + num)",
+          "node_id": 44
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 50
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 50,
+          "value": 3
+        },
+        {
+          "step": 100,
+          "event": "before_expression",
+          "focus": "prev + num",
+          "node_id": 51
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "prev",
+          "node_id": 54
+        },
+        {
+          "step": 102,
+          "event": "after_expression",
+          "focus": "prev",
+          "node_id": 54,
+          "value": 0
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 56
+        },
+        {
+          "step": 104,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 56,
+          "value": 2
+        },
+        {
+          "step": 105,
+          "event": "after_expression",
+          "focus": "prev + num",
+          "node_id": 51,
+          "value": 2
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "max(curr, prev + num)",
+          "node_id": 44,
+          "value": 3
+        },
+        {
+          "step": 107,
+          "event": "after_expression",
+          "focus": "curr, max(curr, prev + num)",
+          "node_id": 36,
+          "value": [
+            3,
+            3
+          ]
+        },
+        {
+          "step": 108,
+          "event": "after_statement",
+          "focus": "prev, curr = curr, max(curr, prev + num)",
+          "node_id": 24,
+          "locals": {
+            "houses": [
+              3,
+              2
+            ],
+            "prev": 3,
+            "curr": 3,
+            "num": 2
+          },
+          "object_table": {
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4345220864": {
+              "type": "list",
+              "value": [
+                4308476128,
+                4308476096
+              ],
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "houses": 4345220864,
+            "prev": 4308476128,
+            "curr": 4308476128,
+            "num": 4308476096
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "houses": [
+          3,
+          2
+        ],
+        "prev": 3,
+        "curr": 3,
+        "num": 2
+      },
+      "delta": {
+        "prev": 3
+      },
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4345220864": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "houses": 4345220864,
+        "prev": 4308476128,
+        "curr": 4308476128,
+        "num": 4308476096
+      },
+      "steps": [
+        {
+          "step": 109,
+          "event": "after_statement",
+          "focus": "for num in houses:\n            prev, curr = curr, max(curr, prev + num)",
+          "node_id": 11
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "houses": [
+          3,
+          2
+        ],
+        "prev": 3,
+        "curr": 3,
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4345220864": {
+          "type": "list",
+          "value": [
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "houses": 4345220864,
+        "prev": 4308476128,
+        "curr": 4308476128,
+        "num": 4308476096
+      },
+      "steps": [
+        {
+          "step": 110,
+          "event": "before_statement",
+          "focus": "return curr",
+          "node_id": 12
+        },
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 25
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 25,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums": [
+          2,
+          3,
+          2
+        ]
+      },
+      "delta": {
+        "nums": {
+          "0": 2,
+          "1": 3,
+          "2": 2
+        }
+      },
+      "object_table": {
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339505472": {
+          "type": "list",
+          "value": [
+            4308476096,
+            4308476128,
+            4308476096
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4339505472
+      },
+      "steps": [
+        {
+          "step": 113,
+          "event": "after_expression",
+          "focus": "rob_line(nums[1:])",
+          "node_id": 28,
+          "value": 3
+        },
+        {
+          "step": 114,
+          "event": "after_expression",
+          "focus": "max(rob_line(nums[:-1]), rob_line(nums[1:]))",
+          "node_id": 13,
+          "value": 3
+        }
+      ]
+    }
+  ],
+  "result": 3
+}

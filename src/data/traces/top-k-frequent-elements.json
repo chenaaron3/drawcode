@@ -1,0 +1,1019 @@
+{
+  "metadata": {
+    "code": "import heapq\nfrom collections import Counter\n\ndef topKFrequent(nums, k):\n    count = Counter(nums)\n    return [item for item, _ in count.most_common(k)]",
+    "function": "topKFrequent",
+    "inputs": {
+      "kwargs": {
+        "nums": "[1, 1, 1, 2, 2, 3]",
+        "k": "2"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "nums": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "k": 2,
+      "count": {
+        "1": 3,
+        "2": 2,
+        "3": 1
+      }
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1,
+      2,
+      3
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          4
+        ],
+        "type": "Import",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 1,
+          "end_col_offset": 12
+        },
+        "focus": "import heapq",
+        "names": [
+          {
+            "node_id": 4,
+            "children_node_ids": [],
+            "type": "alias",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 1,
+              "col_offset": 7,
+              "end_lineno": 1,
+              "end_col_offset": 12
+            },
+            "focus": "heapq",
+            "name": "heapq"
+          }
+        ]
+      },
+      {
+        "node_id": 2,
+        "children_node_ids": [
+          5
+        ],
+        "type": "ImportFrom",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 2,
+          "col_offset": 0,
+          "end_lineno": 2,
+          "end_col_offset": 31
+        },
+        "focus": "from collections import Counter",
+        "module": "collections",
+        "names": [
+          {
+            "node_id": 5,
+            "children_node_ids": [],
+            "type": "alias",
+            "parent_node_id": 2,
+            "location": {
+              "lineno": 2,
+              "col_offset": 24,
+              "end_lineno": 2,
+              "end_col_offset": 31
+            },
+            "focus": "Counter",
+            "name": "Counter"
+          }
+        ],
+        "level": 0
+      },
+      {
+        "node_id": 3,
+        "children_node_ids": [
+          6,
+          7,
+          8
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 4,
+          "col_offset": 0,
+          "end_lineno": 6,
+          "end_col_offset": 53
+        },
+        "focus": "def topKFrequent(nums, k):\n    count = Counter(nums)\n    return [item for item, _ in count.most_common(k)]",
+        "name": "topKFrequent",
+        "args": {
+          "node_id": 6,
+          "children_node_ids": [
+            9,
+            10
+          ],
+          "type": "arguments",
+          "parent_node_id": 3,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 9,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 4,
+                "col_offset": 17,
+                "end_lineno": 4,
+                "end_col_offset": 21
+              },
+              "focus": "nums",
+              "arg": "nums"
+            },
+            {
+              "node_id": 10,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 4,
+                "col_offset": 23,
+                "end_lineno": 4,
+                "end_col_offset": 24
+              },
+              "focus": "k",
+              "arg": "k"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 7,
+            "children_node_ids": [
+              11,
+              12
+            ],
+            "type": "Assign",
+            "parent_node_id": 3,
+            "location": {
+              "lineno": 5,
+              "col_offset": 4,
+              "end_lineno": 5,
+              "end_col_offset": 25
+            },
+            "focus": "count = Counter(nums)",
+            "targets": [
+              {
+                "node_id": 11,
+                "children_node_ids": [
+                  14
+                ],
+                "type": "Name",
+                "parent_node_id": 7,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 4,
+                  "end_lineno": 5,
+                  "end_col_offset": 9
+                },
+                "focus": "count",
+                "id": "count",
+                "ctx": {
+                  "node_id": 14,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 11
+                }
+              }
+            ],
+            "value": {
+              "node_id": 12,
+              "children_node_ids": [
+                15,
+                16
+              ],
+              "type": "Call",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 5,
+                "col_offset": 12,
+                "end_lineno": 5,
+                "end_col_offset": 25
+              },
+              "focus": "Counter(nums)",
+              "func": {
+                "node_id": 15,
+                "children_node_ids": [
+                  19
+                ],
+                "type": "Name",
+                "parent_node_id": 12,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 12,
+                  "end_lineno": 5,
+                  "end_col_offset": 19
+                },
+                "focus": "Counter",
+                "id": "Counter",
+                "ctx": {
+                  "node_id": 19,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 15
+                }
+              },
+              "args": [
+                {
+                  "node_id": 16,
+                  "children_node_ids": [
+                    19
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 12,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 20,
+                    "end_lineno": 5,
+                    "end_col_offset": 24
+                  },
+                  "focus": "nums",
+                  "id": "nums",
+                  "ctx": {
+                    "node_id": 19,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 16
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node_id": 8,
+            "children_node_ids": [
+              13
+            ],
+            "type": "Return",
+            "parent_node_id": 3,
+            "location": {
+              "lineno": 6,
+              "col_offset": 4,
+              "end_lineno": 6,
+              "end_col_offset": 53
+            },
+            "focus": "return [item for item, _ in count.most_common(k)]",
+            "value": {
+              "node_id": 13,
+              "children_node_ids": [
+                17,
+                18
+              ],
+              "type": "ListComp",
+              "parent_node_id": 8,
+              "location": {
+                "lineno": 6,
+                "col_offset": 11,
+                "end_lineno": 6,
+                "end_col_offset": 53
+              },
+              "focus": "[item for item, _ in count.most_common(k)]",
+              "elt": {
+                "node_id": 17,
+                "children_node_ids": [
+                  19
+                ],
+                "type": "Name",
+                "parent_node_id": 13,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 12,
+                  "end_lineno": 6,
+                  "end_col_offset": 16
+                },
+                "focus": "item",
+                "id": "item",
+                "ctx": {
+                  "node_id": 19,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 17
+                }
+              },
+              "generators": [
+                {
+                  "node_id": 18,
+                  "children_node_ids": [
+                    20,
+                    21
+                  ],
+                  "type": "comprehension",
+                  "parent_node_id": 13,
+                  "target": {
+                    "node_id": 20,
+                    "children_node_ids": [
+                      22,
+                      23,
+                      14
+                    ],
+                    "type": "Tuple",
+                    "parent_node_id": 18,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 21,
+                      "end_lineno": 6,
+                      "end_col_offset": 28
+                    },
+                    "focus": "item, _",
+                    "elts": [
+                      {
+                        "node_id": 22,
+                        "children_node_ids": [
+                          14
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 20,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 21,
+                          "end_lineno": 6,
+                          "end_col_offset": 25
+                        },
+                        "focus": "item",
+                        "id": "item",
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 22
+                        }
+                      },
+                      {
+                        "node_id": 23,
+                        "children_node_ids": [
+                          14
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 20,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 27,
+                          "end_lineno": 6,
+                          "end_col_offset": 28
+                        },
+                        "focus": "_",
+                        "id": "_",
+                        "ctx": {
+                          "node_id": 14,
+                          "children_node_ids": [],
+                          "type": "Store",
+                          "parent_node_id": 23
+                        }
+                      }
+                    ],
+                    "ctx": {
+                      "node_id": 14,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 20
+                    }
+                  },
+                  "iter": {
+                    "node_id": 21,
+                    "children_node_ids": [
+                      24,
+                      25
+                    ],
+                    "type": "Call",
+                    "parent_node_id": 18,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 32,
+                      "end_lineno": 6,
+                      "end_col_offset": 52
+                    },
+                    "focus": "count.most_common(k)",
+                    "func": {
+                      "node_id": 24,
+                      "children_node_ids": [
+                        26,
+                        19
+                      ],
+                      "type": "Attribute",
+                      "parent_node_id": 21,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 32,
+                        "end_lineno": 6,
+                        "end_col_offset": 49
+                      },
+                      "focus": "count.most_common",
+                      "value": {
+                        "node_id": 26,
+                        "children_node_ids": [
+                          19
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 24,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 32,
+                          "end_lineno": 6,
+                          "end_col_offset": 37
+                        },
+                        "focus": "count",
+                        "id": "count",
+                        "ctx": {
+                          "node_id": 19,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 26
+                        }
+                      },
+                      "attr": "most_common",
+                      "ctx": {
+                        "node_id": 19,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 24
+                      }
+                    },
+                    "args": [
+                      {
+                        "node_id": 25,
+                        "children_node_ids": [
+                          19
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 21,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 50,
+                          "end_lineno": 6,
+                          "end_col_offset": 51
+                        },
+                        "focus": "k",
+                        "id": "k",
+                        "ctx": {
+                          "node_id": 19,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 25
+                        }
+                      }
+                    ],
+                    "keywords": []
+                  },
+                  "ifs": [],
+                  "is_async": 0
+                }
+              ]
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "import heapq",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "import heapq",
+          "node_id": 1,
+          "locals": {
+            "heapq": "<module 'heapq' from '/opt/homebrew/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/heapq.py'>"
+          },
+          "object_table": {
+            "4302014800": {
+              "type": "module",
+              "value": {},
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "heapq": 4302014800
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "heapq": "<module 'heapq' from '/opt/homebrew/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/heapq.py'>"
+      },
+      "delta": {
+        "heapq": "<module 'heapq' from '/opt/homebrew/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/heapq.py'>"
+      },
+      "object_table": {
+        "4302014800": {
+          "type": "module",
+          "value": {},
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "heapq": 4302014800
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "from collections import Counter",
+          "node_id": 2
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "from collections import Counter",
+          "node_id": 2
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "heapq": "<module 'heapq' from '/opt/homebrew/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/heapq.py'>"
+      },
+      "delta": null,
+      "object_table": {
+        "4302014800": {
+          "type": "module",
+          "value": {},
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "heapq": 4302014800
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "def topKFrequent(nums, k):\n    count = Counter(nums)\n    return [item for item, _ in count.most_common(k)]",
+          "node_id": 3
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "def topKFrequent(nums, k):\n    count = Counter(nums)\n    return [item for item, _ in count.most_common(k)]",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "delta": {
+        "nums": {
+          "0": 1,
+          "1": 1,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 3
+        },
+        "k": 2
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339513984": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476064,
+            4308476064,
+            4308476096,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4339513984,
+        "k": 4308476096
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "count = Counter(nums)",
+          "node_id": 7
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "Counter(nums)",
+          "node_id": 12
+        },
+        {
+          "step": 8,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 16
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 16,
+          "value": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "Counter(nums)",
+          "node_id": 12,
+          "value": {
+            "1": 3,
+            "2": 2,
+            "3": 1
+          }
+        },
+        {
+          "step": 11,
+          "event": "after_statement",
+          "focus": "count = Counter(nums)",
+          "node_id": 7,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            }
+          },
+          "object_table": {
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4339513984": {
+              "type": "list",
+              "value": [
+                4308476064,
+                4308476064,
+                4308476064,
+                4308476096,
+                4308476096,
+                4308476128
+              ],
+              "mutable": true
+            },
+            "4339892384": {
+              "type": "Counter",
+              "value": {
+                "1": 4308476128,
+                "2": 4308476096,
+                "3": 4308476064
+              },
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "nums": 4339513984,
+            "k": 4308476096,
+            "count": 4339892384
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 2,
+        "count": {
+          "1": 3,
+          "2": 2,
+          "3": 1
+        }
+      },
+      "delta": {
+        "count": {
+          "1": 3,
+          "2": 2,
+          "3": 1
+        }
+      },
+      "object_table": {
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4339513984": {
+          "type": "list",
+          "value": [
+            4308476064,
+            4308476064,
+            4308476064,
+            4308476096,
+            4308476096,
+            4308476128
+          ],
+          "mutable": true
+        },
+        "4339892384": {
+          "type": "Counter",
+          "value": {
+            "1": 4308476128,
+            "2": 4308476096,
+            "3": 4308476064
+          },
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4339513984,
+        "k": 4308476096,
+        "count": 4339892384
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "return [item for item, _ in count.most_common(k)]",
+          "node_id": 8
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "[item for item, _ in count.most_common(k)]",
+          "node_id": 13
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "count.most_common(k)",
+          "node_id": 21
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "count.most_common",
+          "node_id": 24
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "k",
+          "node_id": 25
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "k",
+          "node_id": 25,
+          "value": 2
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "count.most_common(k)",
+          "node_id": 21,
+          "value": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "item",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            },
+            "item": 1
+          },
+          "var_table": {
+            "nums": 4339513984,
+            "k": 4308476096,
+            "count": 4339892384,
+            "item": 4308476064
+          }
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "item",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            },
+            "item": 1
+          },
+          "var_table": {
+            "nums": 4339513984,
+            "k": 4308476096,
+            "count": 4339892384,
+            "item": 4308476064
+          },
+          "value": 1
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "item",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            },
+            "item": 2
+          },
+          "var_table": {
+            "nums": 4339513984,
+            "k": 4308476096,
+            "count": 4339892384,
+            "item": 4308476096
+          }
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "item",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            },
+            "item": 2
+          },
+          "var_table": {
+            "nums": 4339513984,
+            "k": 4308476096,
+            "count": 4339892384,
+            "item": 4308476096
+          },
+          "value": 2
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "[item for item, _ in count.most_common(k)]",
+          "node_id": 13,
+          "value": [
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "result": [
+    1,
+    2
+  ]
+}

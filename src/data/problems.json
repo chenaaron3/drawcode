@@ -1,0 +1,2070 @@
+{
+    "problems": [
+        {
+            "id": "test",
+            "number": -1,
+            "title": "Test",
+            "inputs": {},
+            "entrypoint": "",
+            "solution": "x = [1, 2, 3]\ny=x\nz=[x,y,3]\nprint(z)"
+        },
+        {
+            "id": "sandbox",
+            "number": 0,
+            "title": "Sandbox",
+            "inputs": {},
+            "entrypoint": "helloWorld",
+            "solution": "def helloWorld():\n    print('Hello, World!')"
+        },
+        {
+            "id": "two-sum",
+            "number": 1,
+            "title": "Two Sum",
+            "inputs": {
+                "nums": [
+                    2,
+                    11,
+                    15,
+                    7
+                ],
+                "target": 9
+            },
+            "entrypoint": "twoSum",
+            "solution": "def twoSum(nums, target):\n    num_to_index = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_to_index:\n            return [num_to_index[complement], i]\n        num_to_index[num] = i\n"
+        },
+        {
+            "id": "add-two-numbers",
+            "number": 2,
+            "title": "Add Two Numbers",
+            "inputs": {
+                "l1": [
+                    2,
+                    4,
+                    3
+                ],
+                "l2": [
+                    5,
+                    6,
+                    4
+                ]
+            },
+            "entrypoint": "addTwoNumbers",
+            "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef addTwoNumbers(l1, l2):\n    def list_to_linked(arr):\n        if not arr: return None\n        head = ListNode(arr[0])\n        curr = head\n        for val in arr[1:]:\n            curr.next = ListNode(val)\n            curr = curr.next\n        return head\n    \n    l1 = list_to_linked(l1)\n    l2 = list_to_linked(l2)\n    \n    dummy = ListNode(0)\n    curr = dummy\n    carry = 0\n    \n    while l1 or l2 or carry:\n        val1 = l1.val if l1 else 0\n        val2 = l2.val if l2 else 0\n        total = val1 + val2 + carry\n        \n        carry = total // 10\n        curr.next = ListNode(total % 10)\n        curr = curr.next\n        \n        if l1: l1 = l1.next\n        if l2: l2 = l2.next\n    \n    result = []\n    curr = dummy.next\n    while curr:\n        result.append(curr.val)\n        curr = curr.next\n    return result\n"
+        },
+        {
+            "id": "longest-substring-without-repeating-characters",
+            "number": 3,
+            "title": "Longest Substring Without Repeating Characters",
+            "inputs": {
+                "s": "abcabcbb"
+            },
+            "entrypoint": "lengthOfLongestSubstring",
+            "solution": "def lengthOfLongestSubstring(s):\n    char_set = set()\n    left = 0\n    max_len = 0\n    \n    for right in range(len(s)):\n        while s[right] in char_set:\n            char_set.remove(s[left])\n            left += 1\n        char_set.add(s[right])\n        max_len = max(max_len, right - left + 1)\n    \n    return max_len\n"
+        },
+        {
+            "id": "median-of-two-sorted-arrays",
+            "number": 4,
+            "title": "Median of Two Sorted Arrays",
+            "inputs": {
+                "nums1": [
+                    1,
+                    3
+                ],
+                "nums2": [
+                    2
+                ]
+            },
+            "entrypoint": "findMedianSortedArrays",
+            "solution": "def findMedianSortedArrays(nums1, nums2):\n    merged = sorted(nums1 + nums2)\n    n = len(merged)\n    if n % 2 == 1:\n        return float(merged[n // 2])\n    else:\n        return (merged[n // 2 - 1] + merged[n // 2]) / 2.0\n"
+        },
+        {
+            "id": "longest-palindromic-substring",
+            "number": 5,
+            "title": "Longest Palindromic Substring",
+            "inputs": {
+                "s": "babad"
+            },
+            "entrypoint": "longestPalindrome",
+            "solution": "def longestPalindrome(s):\n    def expand_around_center(left, right):\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        return right - left - 1\n    \n    start = 0\n    max_len = 0\n    \n    for i in range(len(s)):\n        len1 = expand_around_center(i, i)\n        len2 = expand_around_center(i, i + 1)\n        curr_len = max(len1, len2)\n        \n        if curr_len > max_len:\n            max_len = curr_len\n            start = i - (curr_len - 1) // 2\n    \n    return s[start:start + max_len]\n"
+        },
+        {
+            "id": "container-with-most-water",
+            "number": 11,
+            "title": "Container With Most Water",
+            "inputs": {
+                "height": [
+                    1,
+                    8,
+                    6,
+                    2,
+                    5,
+                    4,
+                    8,
+                    3,
+                    7
+                ]
+            },
+            "entrypoint": "maxArea",
+            "solution": "def maxArea(height):\n    left, right = 0, len(height) - 1\n    max_area = 0\n    \n    while left < right:\n        area = min(height[left], height[right]) * (right - left)\n        max_area = max(max_area, area)\n        \n        if height[left] < height[right]:\n            left += 1\n        else:\n            right -= 1\n    \n    return max_area\n"
+        },
+        {
+            "id": "3sum",
+            "number": 15,
+            "title": "3Sum",
+            "inputs": {
+                "nums": [
+                    -1,
+                    0,
+                    1,
+                    2,
+                    -1,
+                    -4
+                ]
+            },
+            "entrypoint": "threeSum",
+            "solution": "def threeSum(nums):\n    nums.sort()\n    result = []\n    \n    for i in range(len(nums) - 2):\n        if i > 0 and nums[i] == nums[i - 1]:\n            continue\n        \n        left, right = i + 1, len(nums) - 1\n        \n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            \n            if total < 0:\n                left += 1\n            elif total > 0:\n                right -= 1\n            else:\n                result.append([nums[i], nums[left], nums[right]])\n                while left < right and nums[left] == nums[left + 1]:\n                    left += 1\n                while left < right and nums[right] == nums[right - 1]:\n                    right -= 1\n                left += 1\n                right -= 1\n    \n    return result\n"
+        },
+        {
+            "id": "valid-parentheses",
+            "number": 20,
+            "title": "Valid Parentheses",
+            "inputs": {
+                "s": "()[]{}"
+            },
+            "entrypoint": "isValid",
+            "solution": "def isValid(s):\n    stack = []\n    mapping = {')': '(', '}': '{', ']': '['}\n    \n    for char in s:\n        if char in mapping:\n            if not stack or stack.pop() != mapping[char]:\n                return False\n        else:\n            stack.append(char)\n    \n    return not stack\n"
+        },
+        {
+            "id": "merge-two-sorted-lists",
+            "number": 21,
+            "title": "Merge Two Sorted Lists",
+            "inputs": {
+                "list1": [
+                    1,
+                    2,
+                    4
+                ],
+                "list2": [
+                    1,
+                    3,
+                    4
+                ]
+            },
+            "entrypoint": "mergeTwoLists",
+            "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef mergeTwoLists(list1, list2):\n    def list_to_linked(arr):\n        if not arr: return None\n        head = ListNode(arr[0])\n        curr = head\n        for val in arr[1:]:\n            curr.next = ListNode(val)\n            curr = curr.next\n        return head\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    l1 = list_to_linked(list1)\n    l2 = list_to_linked(list2)\n    \n    dummy = ListNode(0)\n    curr = dummy\n    \n    while l1 and l2:\n        if l1.val <= l2.val:\n            curr.next = l1\n            l1 = l1.next\n        else:\n            curr.next = l2\n            l2 = l2.next\n        curr = curr.next\n    \n    curr.next = l1 or l2\n    return linked_to_list(dummy.next)\n"
+        },
+        {
+            "id": "remove-duplicates-from-sorted-array",
+            "number": 26,
+            "title": "Remove Duplicates from Sorted Array",
+            "inputs": {
+                "nums": [
+                    1,
+                    1,
+                    2
+                ]
+            },
+            "entrypoint": "removeDuplicates",
+            "solution": "def removeDuplicates(nums):\n    if not nums:\n        return 0\n    i = 0\n    for j in range(1, len(nums)):\n        if nums[j] != nums[i]:\n            i += 1\n            nums[i] = nums[j]\n    return i + 1\n"
+        },
+        {
+            "id": "search-insert-position",
+            "number": 35,
+            "title": "Search Insert Position",
+            "inputs": {
+                "nums": [
+                    1,
+                    3,
+                    5,
+                    6
+                ],
+                "target": 5
+            },
+            "entrypoint": "searchInsert",
+            "solution": "def searchInsert(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return left\n"
+        },
+        {
+            "id": "binary-search",
+            "number": 704,
+            "title": "Binary Search",
+            "inputs": {
+                "nums": [
+                    -1,
+                    0,
+                    3,
+                    5,
+                    9,
+                    12
+                ],
+                "target": 9
+            },
+            "entrypoint": "search",
+            "solution": "def search(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return -1\n",
+            "manualRelationships": [
+                {
+                    "container": "nums",
+                    "cursor": "left",
+                    "type": "key_index",
+                    "description": "Left pointer used as index for binary search bounds"
+                },
+                {
+                    "container": "nums",
+                    "cursor": "right",
+                    "type": "key_index",
+                    "description": "Right pointer used as index for binary search bounds"
+                },
+                {
+                    "container": "nums",
+                    "cursor": "mid",
+                    "type": "key_index",
+                    "description": "Middle index calculated from left and right pointers"
+                }
+            ]
+        },
+        {
+            "id": "maximum-subarray",
+            "number": 53,
+            "title": "Maximum Subarray",
+            "inputs": {
+                "nums": [
+                    -2,
+                    1,
+                    -3,
+                    4,
+                    -1,
+                    2,
+                    1,
+                    -5,
+                    4
+                ]
+            },
+            "entrypoint": "maxSubArray",
+            "solution": "def maxSubArray(nums):\n    max_sum = nums[0]\n    current_sum = nums[0]\n    \n    for i in range(1, len(nums)):\n        current_sum = max(nums[i], current_sum + nums[i])\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum\n"
+        },
+        {
+            "id": "climbing-stairs",
+            "number": 70,
+            "title": "Climbing Stairs",
+            "inputs": {
+                "n": 3
+            },
+            "entrypoint": "climbStairs",
+            "solution": "def climbStairs(n):\n    if n <= 2:\n        return n\n    \n    prev2, prev1 = 1, 2\n    \n    for i in range(3, n + 1):\n        curr = prev1 + prev2\n        prev2, prev1 = prev1, curr\n    \n    return prev1\n"
+        },
+        {
+            "id": "merge-sorted-array",
+            "number": 88,
+            "title": "Merge Sorted Array",
+            "inputs": {
+                "nums1": [
+                    1,
+                    2,
+                    3,
+                    0,
+                    0,
+                    0
+                ],
+                "m": 3,
+                "nums2": [
+                    2,
+                    5,
+                    6
+                ],
+                "n": 3
+            },
+            "entrypoint": "merge",
+            "solution": "def merge(nums1, m, nums2, n):\n    i, j, k = m - 1, n - 1, m + n - 1\n    \n    while j >= 0:\n        if i >= 0 and nums1[i] > nums2[j]:\n            nums1[k] = nums1[i]\n            i -= 1\n        else:\n            nums1[k] = nums2[j]\n            j -= 1\n        k -= 1\n    \n    return nums1\n"
+        },
+        {
+            "id": "binary-tree-inorder-traversal",
+            "number": 94,
+            "title": "Binary Tree Inorder Traversal",
+            "inputs": {
+                "root": [
+                    1,
+                    null,
+                    2,
+                    3
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "inorderTraversal",
+            "solution": "def inorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def inorder(node):\n        if node:\n            inorder(node.left)\n            result.append(node.val)\n            inorder(node.right)\n    \n    inorder(root)\n    return result\n"
+        },
+        {
+            "id": "same-tree",
+            "number": 100,
+            "title": "Same Tree",
+            "inputs": {
+                "p": [
+                    1,
+                    2,
+                    3
+                ],
+                "q": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "p",
+                    "type": "tree",
+                    "output_key": "p"
+                },
+                {
+                    "key": "q",
+                    "type": "tree",
+                    "output_key": "q"
+                }
+            ],
+            "entrypoint": "isSameTree",
+            "solution": "def isSameTree(p, q):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(p, list):\n        p = build_tree(p)\n    if isinstance(q, list):\n        q = build_tree(q)\n    \n    if not p and not q:\n        return True\n    if not p or not q:\n        return False\n    \n    return p.val == q.val and isSameTree(p.left, q.left) and isSameTree(p.right, q.right)\n"
+        },
+        {
+            "id": "symmetric-tree",
+            "number": 101,
+            "title": "Symmetric Tree",
+            "inputs": {
+                "root": [
+                    1,
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    3
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "isSymmetric",
+            "solution": "def isSymmetric(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    def is_mirror(left, right):\n        if not left and not right:\n            return True\n        if not left or not right:\n            return False\n        return left.val == right.val and is_mirror(left.left, right.right) and is_mirror(left.right, right.left)\n    \n    return not root or is_mirror(root.left, root.right)\n"
+        },
+        {
+            "id": "maximum-depth-binary-tree",
+            "number": 104,
+            "title": "Maximum Depth of Binary Tree",
+            "inputs": {
+                "root": [
+                    3,
+                    9,
+                    20,
+                    null,
+                    null,
+                    15,
+                    7
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "maxDepth",
+            "solution": "def maxDepth(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return 0\n    \n    return 1 + max(maxDepth(root.left), maxDepth(root.right))\n"
+        },
+        {
+            "id": "best-time-to-buy-and-sell-stock",
+            "number": 121,
+            "title": "Best Time to Buy and Sell Stock",
+            "inputs": {
+                "prices": [
+                    7,
+                    1,
+                    5,
+                    3,
+                    6,
+                    4
+                ]
+            },
+            "entrypoint": "maxProfit",
+            "solution": "def maxProfit(prices):\n    min_price = float('inf')\n    max_profit = 0\n    \n    for price in prices:\n        if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price\n    \n    return max_profit\n"
+        },
+        {
+            "id": "best-time-to-buy-and-sell-stock-ii",
+            "number": 122,
+            "title": "Best Time to Buy and Sell Stock II",
+            "inputs": {
+                "prices": [
+                    7,
+                    1,
+                    5,
+                    3,
+                    6,
+                    4
+                ]
+            },
+            "entrypoint": "maxProfit",
+            "solution": "def maxProfit(prices):\n    profit = 0\n    for i in range(1, len(prices)):\n        if prices[i] > prices[i - 1]:\n            profit += prices[i] - prices[i - 1]\n    return profit\n"
+        },
+        {
+            "id": "valid-palindrome",
+            "number": 125,
+            "title": "Valid Palindrome",
+            "inputs": {
+                "s": "A man, a plan, a canal: Panama"
+            },
+            "entrypoint": "isPalindrome",
+            "solution": "def isPalindrome(s):\n    cleaned = ''.join(char.lower() for char in s if char.isalnum())\n    return cleaned == cleaned[::-1]\n"
+        },
+        {
+            "id": "single-number",
+            "number": 136,
+            "title": "Single Number",
+            "inputs": {
+                "nums": [
+                    4,
+                    1,
+                    2,
+                    1,
+                    2
+                ]
+            },
+            "entrypoint": "singleNumber",
+            "solution": "def singleNumber(nums):\n    result = 0\n    for num in nums:\n        result ^= num\n    return result\n"
+        },
+        {
+            "id": "linked-list-cycle",
+            "number": 141,
+            "title": "Linked List Cycle",
+            "inputs": {
+                "head": [
+                    3,
+                    2,
+                    0,
+                    -4
+                ],
+                "pos": 1
+            },
+            "entrypoint": "hasCycle",
+            "solution": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None\n\ndef hasCycle(head, pos=-1):\n    def create_linked_list(arr, pos):\n        if not arr:\n            return None\n        \n        nodes = [ListNode(val) for val in arr]\n        for i in range(len(nodes) - 1):\n            nodes[i].next = nodes[i + 1]\n        \n        if pos >= 0:\n            nodes[-1].next = nodes[pos]\n        \n        return nodes[0]\n    \n    if isinstance(head, list):\n        head = create_linked_list(head, pos)\n    \n    slow = fast = head\n    \n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n    \n    return False\n"
+        },
+        {
+            "id": "binary-tree-preorder-traversal",
+            "number": 144,
+            "title": "Binary Tree Preorder Traversal",
+            "inputs": {
+                "root": [
+                    1,
+                    null,
+                    2,
+                    3
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "preorderTraversal",
+            "solution": "def preorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def preorder(node):\n        if node:\n            result.append(node.val)\n            preorder(node.left)\n            preorder(node.right)\n    \n    preorder(root)\n    return result\n"
+        },
+        {
+            "id": "binary-tree-postorder-traversal",
+            "number": 145,
+            "title": "Binary Tree Postorder Traversal",
+            "inputs": {
+                "root": [
+                    1,
+                    null,
+                    2,
+                    3
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "postorderTraversal",
+            "solution": "def postorderTraversal(root):\n    def build_tree(arr, i=0):\n        if i >= len(arr) or arr[i] is None:\n            return None\n        node = TreeNode(arr[i])\n        node.left = build_tree(arr, 2 * i + 1)\n        node.right = build_tree(arr, 2 * i + 2)\n        return node\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    result = []\n    \n    def postorder(node):\n        if node:\n            postorder(node.left)\n            postorder(node.right)\n            result.append(node.val)\n    \n    postorder(root)\n    return result\n"
+        },
+        {
+            "id": "min-stack",
+            "number": 155,
+            "title": "Min Stack",
+            "inputs": {
+                "operations": [
+                    "MinStack",
+                    "push",
+                    "push",
+                    "push",
+                    "getMin",
+                    "pop",
+                    "top",
+                    "getMin"
+                ],
+                "values": [
+                    [],
+                    [
+                        -2
+                    ],
+                    [
+                        0
+                    ],
+                    [
+                        -3
+                    ],
+                    [],
+                    [],
+                    [],
+                    []
+                ]
+            },
+            "entrypoint": "runMinStack",
+            "solution": "class MinStack:\n    def __init__(self):\n        self.stack = []\n        self.min_stack = []\n    \n    def push(self, val):\n        self.stack.append(val)\n        if not self.min_stack or val <= self.min_stack[-1]:\n            self.min_stack.append(val)\n    \n    def pop(self):\n        if self.stack:\n            val = self.stack.pop()\n            if self.min_stack and val == self.min_stack[-1]:\n                self.min_stack.pop()\n    \n    def top(self):\n        return self.stack[-1] if self.stack else None\n    \n    def getMin(self):\n        return self.min_stack[-1] if self.min_stack else None\n\ndef runMinStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MinStack\":\n            obj = MinStack()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            obj.pop()\n            results.append(None)\n        elif op == \"top\":\n            results.append(obj.top())\n        elif op == \"getMin\":\n            results.append(obj.getMin())\n    \n    return results\n"
+        },
+        {
+            "id": "intersection-two-linked-lists",
+            "number": 160,
+            "title": "Intersection of Two Linked Lists",
+            "inputs": {
+                "listA": [
+                    4,
+                    1,
+                    8,
+                    4,
+                    5
+                ],
+                "listB": [
+                    5,
+                    6,
+                    1,
+                    8,
+                    4,
+                    5
+                ],
+                "skipA": 2,
+                "skipB": 3
+            },
+            "entrypoint": "getIntersectionNode",
+            "solution": "class ListNode:\n    def __init__(self, x):\n        self.val = x\n        self.next = None\n\ndef getIntersectionNode(listA, listB, skipA=0, skipB=0):\n    def create_lists(listA, listB, skipA, skipB):\n        if not listA or not listB:\n            return None, None\n        \n        nodesA = [ListNode(val) for val in listA]\n        nodesB = [ListNode(val) for val in listB]\n        \n        for i in range(len(nodesA) - 1):\n            nodesA[i].next = nodesA[i + 1]\n        \n        for i in range(len(nodesB) - 1):\n            nodesB[i].next = nodesB[i + 1]\n        \n        # Create intersection\n        if skipA < len(nodesA) and skipB < len(nodesB):\n            nodesB[skipB - 1].next = nodesA[skipA]\n        \n        return nodesA[0], nodesB[0]\n    \n    if isinstance(listA, list):\n        headA, headB = create_lists(listA, listB, skipA, skipB)\n    else:\n        headA, headB = listA, listB\n    \n    if not headA or not headB:\n        return None\n    \n    pA, pB = headA, headB\n    \n    while pA != pB:\n        pA = pA.next if pA else headB\n        pB = pB.next if pB else headA\n    \n    return pA.val if pA else None\n"
+        },
+        {
+            "id": "majority-element",
+            "number": 169,
+            "title": "Majority Element",
+            "inputs": {
+                "nums": [
+                    3,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "majorityElement",
+            "solution": "def majorityElement(nums):\n    count = 0\n    candidate = None\n    \n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1\n    \n    return candidate\n"
+        },
+        {
+            "id": "reverse-linked-list",
+            "number": 206,
+            "title": "Reverse Linked List",
+            "inputs": {
+                "head": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            "entrypoint": "reverseList",
+            "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverseList(head):\n    def list_to_linked(arr):\n        if not arr:\n            return None\n        head = ListNode(arr[0])\n        curr = head\n        for val in arr[1:]:\n            curr.next = ListNode(val)\n            curr = curr.next\n        return head\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head = list_to_linked(head)\n    \n    prev = None\n    curr = head\n    \n    while curr:\n        next_temp = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_temp\n    \n    return linked_to_list(prev)\n"
+        },
+        {
+            "id": "contains-duplicate",
+            "number": 217,
+            "title": "Contains Duplicate",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3,
+                    1
+                ]
+            },
+            "entrypoint": "containsDuplicate",
+            "solution": "def containsDuplicate(nums):\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False\n"
+        },
+        {
+            "id": "invert-binary-tree",
+            "number": 226,
+            "title": "Invert Binary Tree",
+            "inputs": {
+                "root": [
+                    4,
+                    2,
+                    7,
+                    1,
+                    3,
+                    6,
+                    9
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "invertTree",
+            "solution": "def invertTree(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    def tree_to_list(root):\n        if not root:\n            return []\n        result = []\n        queue = [root]\n        while queue:\n            node = queue.pop(0)\n            if node:\n                result.append(node.val)\n                queue.append(node.left)\n                queue.append(node.right)\n            else:\n                result.append(None)\n        while result and result[-1] is None:\n            result.pop()\n        return result\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return []\n    \n    root.left, root.right = root.right, root.left\n    invertTree(root.left)\n    invertTree(root.right)\n    \n    return tree_to_list(root)\n"
+        },
+        {
+            "id": "palindromic-substrings",
+            "number": 647,
+            "title": "Palindromic Substrings",
+            "inputs": {
+                "s": "abc"
+            },
+            "entrypoint": "countSubstrings",
+            "solution": "def countSubstrings(s):\n    def expand_around_center(left, right):\n        count = 0\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            count += 1\n            left -= 1\n            right += 1\n        return count\n    \n    total = 0\n    for i in range(len(s)):\n        total += expand_around_center(i, i)  # odd length\n        total += expand_around_center(i, i + 1)  # even length\n    \n    return total\n"
+        },
+        {
+            "id": "move-zeroes",
+            "number": 283,
+            "title": "Move Zeroes",
+            "inputs": {
+                "nums": [
+                    0,
+                    1,
+                    0,
+                    3,
+                    12
+                ]
+            },
+            "entrypoint": "moveZeroes",
+            "solution": "def moveZeroes(nums):\n    left = 0\n    \n    for right in range(len(nums)):\n        if nums[right] != 0:\n            nums[left], nums[right] = nums[right], nums[left]\n            left += 1\n    \n    return nums\n"
+        },
+        {
+            "id": "find-disappeared-numbers",
+            "number": 448,
+            "title": "Find All Numbers Disappeared in an Array",
+            "inputs": {
+                "nums": [
+                    4,
+                    3,
+                    2,
+                    7,
+                    8,
+                    2,
+                    3,
+                    1
+                ]
+            },
+            "entrypoint": "findDisappearedNumbers",
+            "solution": "def findDisappearedNumbers(nums):\n    num_set = set(nums)\n    result = []\n    \n    for i in range(1, len(nums) + 1):\n        if i not in num_set:\n            result.append(i)\n    \n    return result\n"
+        },
+        {
+            "id": "array-intersection-2",
+            "number": 350,
+            "title": "Intersection of Two Arrays II",
+            "inputs": {
+                "nums1": [
+                    1,
+                    2,
+                    2,
+                    1
+                ],
+                "nums2": [
+                    2,
+                    2
+                ]
+            },
+            "entrypoint": "intersect",
+            "solution": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    \n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    \n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    \n    return result\n"
+        },
+        {
+            "id": "first-unique-character",
+            "number": 387,
+            "title": "First Unique Character in a String",
+            "inputs": {
+                "s": "leetcode"
+            },
+            "entrypoint": "firstUniqChar",
+            "solution": "def firstUniqChar(s):\n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i\n    \n    return -1\n"
+        },
+        {
+            "id": "fizz-buzz",
+            "number": 412,
+            "title": "Fizz Buzz",
+            "inputs": {
+                "n": 15
+            },
+            "entrypoint": "fizzBuzz",
+            "solution": "def fizzBuzz(n):\n    result = []\n    \n    for i in range(1, n + 1):\n        if i % 15 == 0:\n            result.append(\"FizzBuzz\")\n        elif i % 3 == 0:\n            result.append(\"Fizz\")\n        elif i % 5 == 0:\n            result.append(\"Buzz\")\n        else:\n            result.append(str(i))\n    \n    return result\n"
+        },
+        {
+            "id": "rotate-array",
+            "number": 189,
+            "title": "Rotate Array",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ],
+                "k": 3
+            },
+            "entrypoint": "rotate",
+            "solution": "def rotate(nums, k):\n    n = len(nums)\n    k %= n\n    nums = nums[-k:] + nums[:-k]\n    return nums\n"
+        },
+        {
+            "id": "house-robber",
+            "number": 198,
+            "title": "House Robber",
+            "inputs": {
+                "nums": [
+                    2,
+                    7,
+                    9,
+                    3,
+                    1
+                ]
+            },
+            "entrypoint": "rob",
+            "solution": "def rob(nums):\n    if not nums:\n        return 0\n    if len(nums) == 1:\n        return nums[0]\n    \n    prev2, prev1 = 0, 0\n    \n    for num in nums:\n        curr = max(prev1, prev2 + num)\n        prev2, prev1 = prev1, curr\n    \n    return prev1\n"
+        },
+        {
+            "id": "happy-number",
+            "number": 202,
+            "title": "Happy Number",
+            "inputs": {
+                "n": 19
+            },
+            "entrypoint": "isHappy",
+            "solution": "def isHappy(n):\n    def get_sum_of_squares(num):\n        total = 0\n        while num > 0:\n            digit = num % 10\n            total += digit * digit\n            num //= 10\n        return total\n    \n    seen = set()\n    \n    while n != 1 and n not in seen:\n        seen.add(n)\n        n = get_sum_of_squares(n)\n    \n    return n == 1\n"
+        },
+        {
+            "id": "count-primes",
+            "number": 204,
+            "title": "Count Primes",
+            "inputs": {
+                "n": 10
+            },
+            "entrypoint": "countPrimes",
+            "solution": "def countPrimes(n):\n    if n <= 2:\n        return 0\n    \n    is_prime = [True] * n\n    is_prime[0] = is_prime[1] = False\n    \n    for i in range(2, int(n ** 0.5) + 1):\n        if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False\n    \n    return sum(is_prime)\n"
+        },
+        {
+            "id": "isomorphic-strings",
+            "number": 205,
+            "title": "Isomorphic Strings",
+            "inputs": {
+                "s": "egg",
+                "t": "add"
+            },
+            "entrypoint": "isIsomorphic",
+            "solution": "def isIsomorphic(s, t):\n    if len(s) != len(t):\n        return False\n    \n    s_to_t = {}\n    t_to_s = {}\n    \n    for i in range(len(s)):\n        char_s, char_t = s[i], t[i]\n        \n        if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t\n        \n        if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s\n    \n    return True\n"
+        },
+        {
+            "id": "remove-linked-list-elements",
+            "number": 203,
+            "title": "Remove Linked List Elements",
+            "inputs": {
+                "head": [
+                    1,
+                    2,
+                    6,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "val": 6
+            },
+            "entrypoint": "removeElements",
+            "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef removeElements(head, val):\n    def list_to_linked(arr):\n        if not arr:\n            return None\n        head = ListNode(arr[0])\n        curr = head\n        for v in arr[1:]:\n            curr.next = ListNode(v)\n            curr = curr.next\n        return head\n    \n    def linked_to_list(head):\n        result = []\n        while head:\n            result.append(head.val)\n            head = head.next\n        return result\n    \n    if isinstance(head, list):\n        head = list_to_linked(head)\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    curr = dummy\n    \n    while curr.next:\n        if curr.next.val == val:\n            curr.next = curr.next.next\n        else:\n            curr = curr.next\n    \n    return linked_to_list(dummy.next)\n"
+        },
+        {
+            "id": "implement-stack-using-queues",
+            "number": 225,
+            "title": "Implement Stack using Queues",
+            "inputs": {
+                "operations": [
+                    "MyStack",
+                    "push",
+                    "push",
+                    "top",
+                    "pop",
+                    "empty"
+                ],
+                "values": [
+                    [],
+                    [
+                        1
+                    ],
+                    [
+                        2
+                    ],
+                    [],
+                    [],
+                    []
+                ]
+            },
+            "entrypoint": "runMyStack",
+            "solution": "from collections import deque\n\nclass MyStack:\n    def __init__(self):\n        self.queue = deque()\n    \n    def push(self, x):\n        self.queue.append(x)\n        for _ in range(len(self.queue) - 1):\n            self.queue.append(self.queue.popleft())\n    \n    def pop(self):\n        return self.queue.popleft()\n    \n    def top(self):\n        return self.queue[0]\n    \n    def empty(self):\n        return len(self.queue) == 0\n\ndef runMyStack(operations, values):\n    obj = None\n    results = []\n    \n    for i, op in enumerate(operations):\n        if op == \"MyStack\":\n            obj = MyStack()\n            results.append(None)\n        elif op == \"push\":\n            obj.push(values[i][0])\n            results.append(None)\n        elif op == \"pop\":\n            results.append(obj.pop())\n        elif op == \"top\":\n            results.append(obj.top())\n        elif op == \"empty\":\n            results.append(obj.empty())\n    \n    return results\n"
+        },
+        {
+            "id": "power-of-two",
+            "number": 231,
+            "title": "Power of Two",
+            "inputs": {
+                "n": 16
+            },
+            "entrypoint": "isPowerOfTwo",
+            "solution": "def isPowerOfTwo(n):\n    return n > 0 and (n & (n - 1)) == 0\n"
+        },
+        {
+            "id": "valid-anagram",
+            "number": 242,
+            "title": "Valid Anagram",
+            "inputs": {
+                "s": "anagram",
+                "t": "nagaram"
+            },
+            "entrypoint": "isAnagram",
+            "solution": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None\n    \n    return all(v is None or v == 0 for v in char_count.values())\n"
+        },
+        {
+            "id": "missing-number",
+            "number": 268,
+            "title": "Missing Number",
+            "inputs": {
+                "nums": [
+                    3,
+                    0,
+                    1
+                ]
+            },
+            "entrypoint": "missingNumber",
+            "solution": "def missingNumber(nums):\n    n = len(nums)\n    expected_sum = n * (n + 1) // 2\n    actual_sum = sum(nums)\n    return expected_sum - actual_sum\n"
+        },
+        {
+            "id": "ugly-number",
+            "number": 263,
+            "title": "Ugly Number",
+            "inputs": {
+                "n": 6
+            },
+            "entrypoint": "isUgly",
+            "solution": "def isUgly(n):\n    if n <= 0:\n        return False\n    \n    for factor in [2, 3, 5]:\n        while n % factor == 0:\n            n //= factor\n    \n    return n == 1\n"
+        },
+        {
+            "id": "add-digits",
+            "number": 258,
+            "title": "Add Digits",
+            "inputs": {
+                "num": 38
+            },
+            "entrypoint": "addDigits",
+            "solution": "def addDigits(num):\n    if num == 0:\n        return 0\n    return 1 + (num - 1) % 9\n"
+        },
+        {
+            "id": "excel-sheet-column-number",
+            "number": 171,
+            "title": "Excel Sheet Column Number",
+            "inputs": {
+                "columnTitle": "AB"
+            },
+            "entrypoint": "titleToNumber",
+            "solution": "def titleToNumber(columnTitle):\n    result = 0\n    for char in columnTitle:\n        result = result * 26 + (ord(char) - ord('A') + 1)\n    return result\n"
+        },
+        {
+            "id": "factorial-trailing-zeroes",
+            "number": 172,
+            "title": "Factorial Trailing Zeroes",
+            "inputs": {
+                "n": 5
+            },
+            "entrypoint": "trailingZeroes",
+            "solution": "def trailingZeroes(n):\n    count = 0\n    while n >= 5:\n        n //= 5\n        count += n\n    return count\n"
+        },
+        {
+            "id": "excel-sheet-column-title",
+            "number": 168,
+            "title": "Excel Sheet Column Title",
+            "inputs": {
+                "columnNumber": 28
+            },
+            "entrypoint": "convertToTitle",
+            "solution": "def convertToTitle(columnNumber):\n    result = \"\"\n    while columnNumber > 0:\n        columnNumber -= 1\n        result = chr(columnNumber % 26 + ord('A')) + result\n        columnNumber //= 26\n    return result\n"
+        },
+        {
+            "id": "pascals-triangle",
+            "number": 118,
+            "title": "Pascal's Triangle",
+            "inputs": {
+                "numRows": 5
+            },
+            "entrypoint": "generate",
+            "solution": "def generate(numRows):\n    triangle = []\n    \n    for i in range(numRows):\n        row = [1] * (i + 1)\n        for j in range(1, i):\n            row[j] = triangle[i-1][j-1] + triangle[i-1][j]\n        triangle.append(row)\n    \n    return triangle\n"
+        },
+        {
+            "id": "pascals-triangle-ii",
+            "number": 119,
+            "title": "Pascal's Triangle II",
+            "inputs": {
+                "rowIndex": 3
+            },
+            "entrypoint": "getRow",
+            "solution": "def getRow(rowIndex):\n    row = [1]\n    for i in range(rowIndex):\n        row = [1] + [row[j] + row[j + 1] for j in range(len(row) - 1)] + [1]\n    return row\n"
+        },
+        {
+            "id": "product-of-array-except-self",
+            "number": 238,
+            "title": "Product of Array Except Self",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            },
+            "entrypoint": "productExceptSelf",
+            "solution": "def productExceptSelf(nums):\n    n = len(nums)\n    answer = [1] * n\n    \n    # Left pass\n    for i in range(1, n):\n        answer[i] = answer[i-1] * nums[i-1]\n    \n    # Right pass\n    right = 1\n    for i in range(n-1, -1, -1):\n        answer[i] *= right\n        right *= nums[i]\n    \n    return answer\n"
+        },
+        {
+            "id": "group-anagrams",
+            "number": 49,
+            "title": "Group Anagrams",
+            "inputs": {
+                "strs": [
+                    "eat",
+                    "tea",
+                    "tan",
+                    "ate",
+                    "nat",
+                    "bat"
+                ]
+            },
+            "entrypoint": "groupAnagrams",
+            "solution": "def groupAnagrams(strs):\n    from collections import defaultdict\n    \n    anagram_map = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string to create a key\n        key = ''.join(sorted(s))\n        anagram_map[key].append(s)\n    \n    return list(anagram_map.values())\n"
+        },
+        {
+            "id": "maximum-product-subarray",
+            "number": 152,
+            "title": "Maximum Product Subarray",
+            "inputs": {
+                "nums": [
+                    2,
+                    3,
+                    -2,
+                    4
+                ]
+            },
+            "entrypoint": "maxProduct",
+            "solution": "def maxProduct(nums):\n    max_so_far = nums[0]\n    min_so_far = nums[0]\n    result = nums[0]\n    \n    for i in range(1, len(nums)):\n        if nums[i] < 0:\n            max_so_far, min_so_far = min_so_far, max_so_far\n        \n        max_so_far = max(nums[i], max_so_far * nums[i])\n        min_so_far = min(nums[i], min_so_far * nums[i])\n        \n        result = max(result, max_so_far)\n    \n    return result\n"
+        },
+        {
+            "id": "longest-consecutive-sequence",
+            "number": 128,
+            "title": "Longest Consecutive Sequence",
+            "inputs": {
+                "nums": [
+                    100,
+                    4,
+                    200,
+                    1,
+                    3,
+                    2
+                ]
+            },
+            "entrypoint": "longestConsecutive",
+            "solution": "def longestConsecutive(nums):\n    num_set = set(nums)\n    longest = 0\n    \n    for num in num_set:\n        # Only start counting if this is the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n            \n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n            \n            longest = max(longest, current_length)\n    \n    return longest\n"
+        },
+        {
+            "id": "insert-interval",
+            "number": 57,
+            "title": "Insert Interval",
+            "inputs": {
+                "intervals": [
+                    [
+                        1,
+                        3
+                    ],
+                    [
+                        6,
+                        9
+                    ]
+                ],
+                "newInterval": [
+                    2,
+                    5
+                ]
+            },
+            "entrypoint": "insert",
+            "solution": "def insert(intervals, newInterval):\n    result = []\n    i = 0\n    n = len(intervals)\n    \n    # Add all intervals that end before newInterval starts\n    while i < n and intervals[i][1] < newInterval[0]:\n        result.append(intervals[i])\n        i += 1\n    \n    # Merge overlapping intervals\n    while i < n and intervals[i][0] <= newInterval[1]:\n        newInterval[0] = min(newInterval[0], intervals[i][0])\n        newInterval[1] = max(newInterval[1], intervals[i][1])\n        i += 1\n    \n    result.append(newInterval)\n    \n    # Add remaining intervals\n    while i < n:\n        result.append(intervals[i])\n        i += 1\n    \n    return result\n"
+        },
+        {
+            "id": "merge-intervals",
+            "number": 56,
+            "title": "Merge Intervals",
+            "inputs": {
+                "intervals": [
+                    [
+                        1,
+                        3
+                    ],
+                    [
+                        2,
+                        6
+                    ],
+                    [
+                        8,
+                        10
+                    ],
+                    [
+                        15,
+                        18
+                    ]
+                ]
+            },
+            "entrypoint": "merge",
+            "solution": "def merge(intervals):\n    if not intervals:\n        return []\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    merged = [intervals[0]]\n    \n    for current in intervals[1:]:\n        last = merged[-1]\n        \n        # If current interval overlaps with the last one, merge them\n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            # No overlap, add current interval\n            merged.append(current)\n    \n    return merged\n"
+        },
+        {
+            "id": "meeting-rooms",
+            "number": 252,
+            "title": "Meeting Rooms",
+            "inputs": {
+                "intervals": [
+                    [
+                        0,
+                        30
+                    ],
+                    [
+                        5,
+                        10
+                    ],
+                    [
+                        15,
+                        20
+                    ]
+                ]
+            },
+            "entrypoint": "canAttendMeetings",
+            "solution": "def canAttendMeetings(intervals):\n    if not intervals:\n        return True\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    # Check for overlaps\n    for i in range(1, len(intervals)):\n        if intervals[i][0] < intervals[i-1][1]:\n            return False\n    \n    return True\n"
+        },
+        {
+            "id": "non-overlapping-intervals",
+            "number": 435,
+            "title": "Non-overlapping Intervals",
+            "inputs": {
+                "intervals": [
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        2,
+                        3
+                    ],
+                    [
+                        3,
+                        4
+                    ],
+                    [
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "entrypoint": "eraseOverlapIntervals",
+            "solution": "def eraseOverlapIntervals(intervals):\n    if not intervals:\n        return 0\n    \n    # Sort by end time\n    intervals.sort(key=lambda x: x[1])\n    \n    count = 0\n    end = intervals[0][1]\n    \n    for i in range(1, len(intervals)):\n        # If current interval overlaps with previous\n        if intervals[i][0] < end:\n            count += 1  # Remove current interval\n        else:\n            end = intervals[i][1]  # Update end time\n    \n    return count\n"
+        },
+        {
+            "id": "trapping-rain-water",
+            "number": 42,
+            "title": "Trapping Rain Water",
+            "inputs": {
+                "height": [
+                    0,
+                    1,
+                    0,
+                    2,
+                    1,
+                    0,
+                    1,
+                    3,
+                    2,
+                    1,
+                    2,
+                    1
+                ]
+            },
+            "entrypoint": "trap",
+            "solution": "def trap(height):\n    if not height:\n        return 0\n    \n    left, right = 0, len(height) - 1\n    left_max, right_max = 0, 0\n    water = 0\n    \n    while left < right:\n        if height[left] < height[right]:\n            if height[left] >= left_max:\n                left_max = height[left]\n            else:\n                water += left_max - height[left]\n            left += 1\n        else:\n            if height[right] >= right_max:\n                right_max = height[right]\n            else:\n                water += right_max - height[right]\n            right -= 1\n    \n    return water\n"
+        },
+        {
+            "id": "two-sum-ii-input-array-is-sorted",
+            "number": 167,
+            "title": "Two Sum II - Input Array Is Sorted",
+            "inputs": {
+                "numbers": [
+                    2,
+                    7,
+                    11,
+                    15
+                ],
+                "target": 9
+            },
+            "entrypoint": "twoSum",
+            "solution": "def twoSum(numbers, target):\n    left, right = 0, len(numbers) - 1\n    \n    while left < right:\n        current_sum = numbers[left] + numbers[right]\n        \n        if current_sum == target:\n            return [left + 1, right + 1]  # 1-indexed\n        elif current_sum < target:\n            left += 1\n        else:\n            right -= 1\n    \n    return []  # No solution found\n",
+            "manualRelationships": [
+                {
+                    "container": "numbers",
+                    "cursor": "left",
+                    "type": "key_index",
+                    "description": "Left pointer for two-pointer technique"
+                },
+                {
+                    "container": "numbers",
+                    "cursor": "right",
+                    "type": "key_index",
+                    "description": "Right pointer for two-pointer technique"
+                }
+            ]
+        },
+        {
+            "id": "minimum-window-substring",
+            "number": 76,
+            "title": "Minimum Window Substring",
+            "inputs": {
+                "s": "ADOBECODEBANC",
+                "t": "ABC"
+            },
+            "entrypoint": "minWindow",
+            "solution": "def minWindow(s, t):\n    from collections import Counter, defaultdict\n    \n    if not s or not t:\n        return ''\n    \n    # Dictionary to keep count of characters in t\n    dict_t = Counter(t)\n    required = len(dict_t)\n    \n    # Left and right pointers\n    left = right = 0\n    \n    # Formed is used to keep track of how many unique characters in the current window\n    # have the desired frequency in t\n    formed = 0\n    \n    # Dictionary to keep count of characters in current window\n    window_counts = defaultdict(int)\n    \n    # ans tuple of the form (window length, left, right)\n    ans = float('inf'), None, None\n    \n    while right < len(s):\n        # Add one character from the right to the window\n        character = s[right]\n        window_counts[character] += 1\n        \n        # If this character's frequency matches the desired count in t, increment formed\n        if character in dict_t and window_counts[character] == dict_t[character]:\n            formed += 1\n        \n        # Try to contract the window\n        while left <= right and formed == required:\n            character = s[left]\n            \n            # Save the smallest window\n            if right - left + 1 < ans[0]:\n                ans = (right - left + 1, left, right)\n            \n            # Remove from the left of the window\n            window_counts[character] -= 1\n            if character in dict_t and window_counts[character] < dict_t[character]:\n                formed -= 1\n            \n            left += 1\n        \n        right += 1\n    \n    return '' if ans[0] == float('inf') else s[ans[1]:ans[2] + 1]\n"
+        },
+        {
+            "id": "longest-repeating-character-replacement",
+            "number": 424,
+            "title": "Longest Repeating Character Replacement",
+            "inputs": {
+                "s": "ABAB",
+                "k": 2
+            },
+            "entrypoint": "characterReplacement",
+            "solution": "def characterReplacement(s, k):\n    from collections import defaultdict\n    \n    left = 0\n    max_count = 0\n    max_length = 0\n    count = defaultdict(int)\n    \n    for right in range(len(s)):\n        count[s[right]] += 1\n        max_count = max(max_count, count[s[right]])\n        \n        # If window size - max_count > k, shrink window\n        if right - left + 1 - max_count > k:\n            count[s[left]] -= 1\n            left += 1\n        \n        max_length = max(max_length, right - left + 1)\n    \n    return max_length\n"
+        },
+        {
+            "id": "permutation-in-string",
+            "number": 567,
+            "title": "Permutation in String",
+            "inputs": {
+                "s1": "ab",
+                "s2": "eidbaooo"
+            },
+            "entrypoint": "checkInclusion",
+            "solution": "def checkInclusion(s1, s2):\n    from collections import Counter\n    \n    if len(s1) > len(s2):\n        return False\n    \n    s1_count = Counter(s1)\n    window_size = len(s1)\n    \n    # Initialize sliding window\n    window_count = Counter(s2[:window_size])\n    \n    if window_count == s1_count:\n        return True\n    \n    # Slide the window\n    for i in range(window_size, len(s2)):\n        # Add new character\n        window_count[s2[i]] += 1\n        \n        # Remove old character\n        left_char = s2[i - window_size]\n        window_count[left_char] -= 1\n        if window_count[left_char] == 0:\n            del window_count[left_char]\n        \n        if window_count == s1_count:\n            return True\n    \n    return False\n"
+        },
+        {
+            "id": "sliding-window-maximum",
+            "number": 239,
+            "title": "Sliding Window Maximum",
+            "inputs": {
+                "nums": [
+                    1,
+                    3,
+                    -1,
+                    -3,
+                    5,
+                    3,
+                    6,
+                    7
+                ],
+                "k": 3
+            },
+            "entrypoint": "maxSlidingWindow",
+            "solution": "def maxSlidingWindow(nums, k):\n    from collections import deque\n    \n    if not nums:\n        return []\n    \n    dq = deque()  # stores indices\n    result = []\n    \n    for i in range(len(nums)):\n        # Remove indices that are out of current window\n        while dq and dq[0] < i - k + 1:\n            dq.popleft()\n        \n        # Remove indices whose corresponding values are smaller than current element\n        while dq and nums[dq[-1]] < nums[i]:\n            dq.pop()\n        \n        dq.append(i)\n        \n        # The front of deque contains the index of maximum element in current window\n        if i >= k - 1:\n            result.append(nums[dq[0]])\n    \n    return result\n"
+        },
+        {
+            "id": "car-fleet",
+            "number": 853,
+            "title": "Car Fleet",
+            "inputs": {
+                "target": 12,
+                "position": [
+                    10,
+                    8,
+                    0,
+                    5,
+                    3
+                ],
+                "speed": [
+                    2,
+                    4,
+                    1,
+                    1,
+                    3
+                ]
+            },
+            "entrypoint": "carFleet",
+            "solution": "def carFleet(target, position, speed):\n    # Pair positions with speeds and sort by position (closest to target first)\n    cars = sorted(zip(position, speed), reverse=True)\n    \n    stack = []\n    \n    for pos, spd in cars:\n        # Calculate time to reach target\n        time = (target - pos) / spd\n        \n        # If this car takes longer or equal time than the previous car,\n        # they will form a fleet (or this car will join the previous fleet)\n        if not stack or time > stack[-1]:\n            stack.append(time)\n    \n    return len(stack)\n"
+        },
+        {
+            "id": "largest-rectangle-in-histogram",
+            "number": 84,
+            "title": "Largest Rectangle in Histogram",
+            "inputs": {
+                "heights": [
+                    2,
+                    1,
+                    5,
+                    6,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "largestRectangleArea",
+            "solution": "def largestRectangleArea(heights):\n    stack = []\n    max_area = 0\n    index = 0\n    \n    while index < len(heights):\n        # Push index to stack if it's empty or current height >= stack top height\n        if not stack or heights[index] >= heights[stack[-1]]:\n            stack.append(index)\n            index += 1\n        else:\n            # Pop the top and calculate area\n            top = stack.pop()\n            area = heights[top] * (index if not stack else index - stack[-1] - 1)\n            max_area = max(max_area, area)\n    \n    # Calculate remaining areas for indices left in stack\n    while stack:\n        top = stack.pop()\n        area = heights[top] * (index if not stack else index - stack[-1] - 1)\n        max_area = max(max_area, area)\n    \n    return max_area\n"
+        },
+        {
+            "id": "alien-dictionary",
+            "number": 269,
+            "title": "Alien Dictionary",
+            "inputs": {
+                "words": [
+                    "wrt",
+                    "wrf",
+                    "er",
+                    "ett",
+                    "rftt"
+                ]
+            },
+            "entrypoint": "alienOrder",
+            "solution": "from collections import defaultdict, deque\n\ndef alienOrder(words):\n    adj = defaultdict(set)\n    in_degree = {c: 0 for word in words for c in word}\n\n    for i in range(len(words) - 1):\n        w1, w2 = words[i], words[i + 1]\n        min_len = min(len(w1), len(w2))\n        if len(w1) > len(w2) and w1[:min_len] == w2[:min_len]:\n            return \"\"\n        for c1, c2 in zip(w1, w2):\n            if c1 != c2:\n                if c2 not in adj[c1]:\n                    adj[c1].add(c2)\n                    in_degree[c2] += 1\n                break\n\n    queue = deque([c for c in in_degree if in_degree[c] == 0])\n    res = []\n    while queue:\n        c = queue.popleft()\n        res.append(c)\n        for nei in adj[c]:\n            in_degree[nei] -= 1\n            if in_degree[nei] == 0:\n                queue.append(nei)\n\n    return \"\".join(res) if len(res) == len(in_degree) else \"\""
+        },
+        {
+            "id": "binary-tree-level-order-traversal",
+            "number": 102,
+            "title": "Binary Tree Level Order Traversal",
+            "inputs": {
+                "root": [
+                    3,
+                    9,
+                    20,
+                    null,
+                    null,
+                    15,
+                    7
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "levelOrder",
+            "solution": "from collections import deque\n\ndef levelOrder(root):\n    if not root:\n        return []\n    res = []\n    queue = deque([root])\n    while queue:\n        level = []\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left:\n                queue.append(node.left)\n            if node.right:\n                queue.append(node.right)\n        res.append(level)\n    return res"
+        },
+        {
+            "id": "binary-tree-right-side-view",
+            "number": 199,
+            "title": "Binary Tree Right Side View",
+            "inputs": {
+                "root": [
+                    1,
+                    2,
+                    3,
+                    null,
+                    5,
+                    null,
+                    4
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "rightSideView",
+            "solution": "from collections import deque\n\ndef rightSideView(root):\n    if not root:\n        return []\n    res = []\n    queue = deque([root])\n    while queue:\n        level_length = len(queue)\n        for i in range(level_length):\n            node = queue.popleft()\n            if i == level_length - 1:\n                res.append(node.val)\n            if node.left:\n                queue.append(node.left)\n            if node.right:\n                queue.append(node.right)\n    return res"
+        },
+        {
+            "id": "binary-tree-zigzag-level-order-traversal",
+            "number": 103,
+            "title": "Binary Tree Zigzag Level Order Traversal",
+            "inputs": {
+                "root": [
+                    3,
+                    9,
+                    20,
+                    null,
+                    null,
+                    15,
+                    7
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "zigzagLevelOrder",
+            "solution": "from collections import deque\n\ndef zigzagLevelOrder(root):\n    if not root:\n        return []\n    res = []\n    queue = deque([root])\n    left_to_right = True\n    while queue:\n        level = deque()\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            if left_to_right:\n                level.append(node.val)\n            else:\n                level.appendleft(node.val)\n            if node.left:\n                queue.append(node.left)\n            if node.right:\n                queue.append(node.right)\n        res.append(list(level))\n        left_to_right = not left_to_right\n    return res"
+        },
+        {
+            "id": "clone-graph",
+            "number": 133,
+            "title": "Clone Graph",
+            "inputs": {
+                "adjList": [
+                    [
+                        2,
+                        4
+                    ],
+                    [
+                        1,
+                        3
+                    ],
+                    [
+                        2,
+                        4
+                    ],
+                    [
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "adjList",
+                    "type": "graph",
+                    "output_key": "node"
+                }
+            ],
+            "entrypoint": "cloneGraph",
+            "solution": "def cloneGraph(node):\n    if not node:\n        return None\n    old_to_new = {}\n    def dfs(n):\n        if n in old_to_new:\n            return old_to_new[n]\n        copy = Node(n.val)\n        old_to_new[n] = copy\n        for neighbor in n.neighbors:\n            copy.neighbors.append(dfs(neighbor))\n        return copy\n    return dfs(node)"
+        },
+        {
+            "id": "coin-change",
+            "number": 322,
+            "title": "Coin Change",
+            "inputs": {
+                "coins": [
+                    1,
+                    2,
+                    5
+                ],
+                "amount": 11
+            },
+            "entrypoint": "coinChange",
+            "solution": "def coinChange(coins, amount):\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n    for coin in coins:\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    return dp[amount] if dp[amount] != float('inf') else -1"
+        },
+        {
+            "id": "combination-sum",
+            "number": 39,
+            "title": "Combination Sum",
+            "inputs": {
+                "candidates": [
+                    2,
+                    3,
+                    6,
+                    7
+                ],
+                "target": 7
+            },
+            "entrypoint": "combinationSum",
+            "solution": "def combinationSum(candidates, target):\n    res = []\n    def backtrack(start, path, total):\n        if total == target:\n            res.append(list(path))\n            return\n        if total > target:\n            return\n        for i in range(start, len(candidates)):\n            path.append(candidates[i])\n            backtrack(i, path, total + candidates[i])\n            path.pop()\n    backtrack(0, [], 0)\n    return res"
+        },
+        {
+            "id": "construct-binary-tree-from-preorder-and-inorder-traversal",
+            "number": 105,
+            "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+            "inputs": {
+                "preorder": [
+                    3,
+                    9,
+                    20,
+                    15,
+                    7
+                ],
+                "inorder": [
+                    9,
+                    3,
+                    15,
+                    20,
+                    7
+                ]
+            },
+            "entrypoint": "buildTree",
+            "solution": "def buildTree(preorder, inorder):\n    if not preorder or not inorder:\n        return None\n    root = TreeNode(preorder[0])\n    mid = inorder.index(preorder[0])\n    root.left = buildTree(preorder[1:mid+1], inorder[:mid])\n    root.right = buildTree(preorder[mid+1:], inorder[mid+1:])\n    return root"
+        },
+        {
+            "id": "counting-bits",
+            "number": 338,
+            "title": "Counting Bits",
+            "inputs": {
+                "n": 5
+            },
+            "entrypoint": "countBits",
+            "solution": "def countBits(n):\n    dp = [0] * (n + 1)\n    for i in range(1, n + 1):\n        dp[i] = dp[i >> 1] + (i & 1)\n    return dp"
+        },
+        {
+            "id": "course-schedule",
+            "number": 207,
+            "title": "Course Schedule",
+            "inputs": {
+                "numCourses": 2,
+                "prerequisites": [
+                    [
+                        1,
+                        0
+                    ]
+                ]
+            },
+            "entrypoint": "canFinish",
+            "solution": "def canFinish(numCourses, prerequisites):\n    from collections import defaultdict, deque\n    graph = defaultdict(list)\n    indegree = [0] * numCourses\n    for dest, src in prerequisites:\n        graph[src].append(dest)\n        indegree[dest] += 1\n    queue = deque([i for i in range(numCourses) if indegree[i] == 0])\n    count = 0\n    while queue:\n        node = queue.popleft()\n        count += 1\n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    return count == numCourses"
+        },
+        {
+            "id": "daily-temperatures",
+            "number": 739,
+            "title": "Daily Temperatures",
+            "inputs": {
+                "temperatures": [
+                    73,
+                    74,
+                    75,
+                    71,
+                    69,
+                    72,
+                    76,
+                    73
+                ]
+            },
+            "entrypoint": "dailyTemperatures",
+            "solution": "def dailyTemperatures(temperatures):\n    res = [0] * len(temperatures)\n    stack = []\n    for i, temp in enumerate(temperatures):\n        while stack and temperatures[stack[-1]] < temp:\n            idx = stack.pop()\n            res[idx] = i - idx\n        stack.append(i)\n    return res"
+        },
+        {
+            "id": "decode-ways",
+            "number": 91,
+            "title": "Decode Ways",
+            "inputs": {
+                "s": "226"
+            },
+            "entrypoint": "numDecodings",
+            "solution": "def numDecodings(s):\n    if not s:\n        return 0\n    dp = [0] * (len(s) + 1)\n    dp[0] = 1\n    dp[1] = 0 if s[0] == '0' else 1\n    for i in range(2, len(s) + 1):\n        if s[i-1] != '0':\n            dp[i] += dp[i-1]\n        if 10 <= int(s[i-2:i]) <= 26:\n            dp[i] += dp[i-2]\n    return dp[-1]"
+        },
+        {
+            "id": "find-minimum-in-rotated-sorted-array",
+            "number": 153,
+            "title": "Find Minimum in Rotated Sorted Array",
+            "inputs": {
+                "nums": [
+                    3,
+                    4,
+                    5,
+                    1,
+                    2
+                ]
+            },
+            "entrypoint": "findMin",
+            "solution": "def findMin(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid\n    return nums[left]"
+        },
+        {
+            "id": "graph-valid-tree",
+            "number": 261,
+            "title": "Graph Valid Tree",
+            "inputs": {
+                "n": 5,
+                "edges": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0,
+                        2
+                    ],
+                    [
+                        0,
+                        3
+                    ],
+                    [
+                        1,
+                        4
+                    ]
+                ]
+            },
+            "entrypoint": "validTree",
+            "solution": "def validTree(n, edges):\n    if len(edges) != n - 1:\n        return False\n    parent = [i for i in range(n)]\n    \n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    \n    for a, b in edges:\n        rootA = find(a)\n        rootB = find(b)\n        if rootA == rootB:\n            return False\n        parent[rootA] = rootB\n    return True"
+        },
+        {
+            "id": "house-robber-ii",
+            "number": 213,
+            "title": "House Robber II",
+            "inputs": {
+                "nums": [
+                    2,
+                    3,
+                    2
+                ]
+            },
+            "entrypoint": "rob",
+            "solution": "def rob(nums):\n    if len(nums) == 1:\n        return nums[0]\n    def rob_line(houses):\n        prev = curr = 0\n        for num in houses:\n            prev, curr = curr, max(curr, prev + num)\n        return curr\n    return max(rob_line(nums[:-1]), rob_line(nums[1:]))"
+        },
+        {
+            "id": "jump-game",
+            "number": 55,
+            "title": "Jump Game",
+            "inputs": {
+                "nums": [
+                    2,
+                    3,
+                    1,
+                    1,
+                    4
+                ]
+            },
+            "entrypoint": "canJump",
+            "solution": "def canJump(nums):\n    max_reach = 0\n    for i, num in enumerate(nums):\n        if i > max_reach:\n            return False\n        max_reach = max(max_reach, i + num)\n    return True"
+        },
+        {
+            "id": "kth-smallest-element-in-a-bst",
+            "number": 230,
+            "title": "Kth Smallest Element in a BST",
+            "inputs": {
+                "root": [
+                    3,
+                    1,
+                    4,
+                    null,
+                    2
+                ],
+                "k": 1
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "kthSmallest",
+            "solution": "def kthSmallest(root, k):\n    stack = []\n    while True:\n        while root:\n            stack.append(root)\n            root = root.left\n        root = stack.pop()\n        k -= 1\n        if k == 0:\n            return root.val\n        root = root.right"
+        },
+        {
+            "id": "letter-combinations-of-a-phone-number",
+            "number": 17,
+            "title": "Letter Combinations of a Phone Number",
+            "inputs": {
+                "digits": "23"
+            },
+            "entrypoint": "letterCombinations",
+            "solution": "def letterCombinations(digits):\n    if not digits:\n        return []\n    phone = {\n        '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',\n        '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'\n    }\n    res = ['']\n    for digit in digits:\n        res = [prefix + char for prefix in res for char in phone[digit]]\n    return res"
+        },
+        {
+            "id": "longest-common-subsequence",
+            "number": 1143,
+            "title": "Longest Common Subsequence",
+            "inputs": {
+                "text1": "abcde",
+                "text2": "ace"
+            },
+            "entrypoint": "longestCommonSubsequence",
+            "solution": "def longestCommonSubsequence(text1, text2):\n    m, n = len(text1), len(text2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    for i in range(m):\n        for j in range(n):\n            if text1[i] == text2[j]:\n                dp[i+1][j+1] = dp[i][j] + 1\n            else:\n                dp[i+1][j+1] = max(dp[i][j+1], dp[i+1][j])\n    return dp[m][n]"
+        },
+        {
+            "id": "longest-increasing-subsequence",
+            "number": 300,
+            "title": "Longest Increasing Subsequence",
+            "inputs": {
+                "nums": [
+                    10,
+                    9,
+                    2,
+                    5,
+                    3,
+                    7,
+                    101,
+                    18
+                ]
+            },
+            "entrypoint": "lengthOfLIS",
+            "solution": "def lengthOfLIS(nums):\n    dp = []\n    for num in nums:\n        left, right = 0, len(dp)\n        while left < right:\n            mid = (left + right) // 2\n            if dp[mid] < num:\n                left = mid + 1\n            else:\n                right = mid\n        if left == len(dp):\n            dp.append(num)\n        else:\n            dp[left] = num\n    return len(dp)"
+        },
+        {
+            "id": "lowest-common-ancestor-of-a-binary-tree",
+            "number": 236,
+            "title": "Lowest Common Ancestor of a Binary Tree",
+            "inputs": {
+                "root": [
+                    3,
+                    5,
+                    1,
+                    6,
+                    2,
+                    0,
+                    8,
+                    null,
+                    null,
+                    7,
+                    4
+                ],
+                "p": 5,
+                "q": 1
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "lowestCommonAncestor",
+            "solution": "def lowestCommonAncestor(root, p, q):\n    if not root or root == p or root == q:\n        return root\n    left = lowestCommonAncestor(root.left, p, q)\n    right = lowestCommonAncestor(root.right, p, q)\n    if left and right:\n        return root\n    return left if left else right"
+        },
+        {
+            "id": "meeting-rooms-ii",
+            "number": 253,
+            "title": "Meeting Rooms II",
+            "inputs": {
+                "intervals": [
+                    [
+                        0,
+                        30
+                    ],
+                    [
+                        5,
+                        10
+                    ],
+                    [
+                        15,
+                        20
+                    ]
+                ]
+            },
+            "entrypoint": "minMeetingRooms",
+            "solution": "def minMeetingRooms(intervals):\n    if not intervals:\n        return 0\n    starts = sorted(i[0] for i in intervals)\n    ends = sorted(i[1] for i in intervals)\n    s = e = rooms = 0\n    while s < len(intervals):\n        if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1\n    return rooms"
+        },
+        {
+            "id": "number-of-1-bits",
+            "number": 191,
+            "title": "Number of 1 Bits",
+            "inputs": {
+                "n": 11
+            },
+            "entrypoint": "hammingWeight",
+            "solution": "def hammingWeight(n):\n    count = 0\n    while n:\n        n &= n - 1\n        count += 1\n    return count"
+        },
+        {
+            "id": "number-of-connected-components-in-an-undirected-graph",
+            "number": 323,
+            "title": "Number of Connected Components in an Undirected Graph",
+            "inputs": {
+                "n": 5,
+                "edges": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        3,
+                        4
+                    ]
+                ]
+            },
+            "entrypoint": "countComponents",
+            "solution": "def countComponents(n, edges):\n    parent = [i for i in range(n)]\n\n    def find(x):\n        if parent[x] != x:\n            parent[x] = find(parent[x])\n        return parent[x]\n\n    def union(x, y):\n        rootX = find(x)\n        rootY = find(y)\n        if rootX != rootY:\n            parent[rootX] = rootY\n\n    for u, v in edges:\n        union(u, v)\n\n    return len(set(find(i) for i in range(n)))"
+        },
+        {
+            "id": "number-of-islands",
+            "number": 200,
+            "title": "Number of Islands",
+            "inputs": {
+                "grid": [
+                    [
+                        "1",
+                        "1",
+                        "1",
+                        "1",
+                        "0"
+                    ],
+                    [
+                        "1",
+                        "1",
+                        "0",
+                        "1",
+                        "0"
+                    ],
+                    [
+                        "1",
+                        "1",
+                        "0",
+                        "0",
+                        "0"
+                    ],
+                    [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                    ]
+                ]
+            },
+            "entrypoint": "numIslands",
+            "solution": "def numIslands(grid):\n    if not grid:\n        return 0\n    count = 0\n    rows, cols = len(grid), len(grid[0])\n\n    def dfs(r, c):\n        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] == '0':\n            return\n        grid[r][c] = '0'\n        dfs(r+1, c)\n        dfs(r-1, c)\n        dfs(r, c+1)\n        dfs(r, c-1)\n\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1':\n                dfs(r, c)\n                count += 1\n\n    return count"
+        },
+        {
+            "id": "pacific-atlantic-water-flow",
+            "number": 417,
+            "title": "Pacific Atlantic Water Flow",
+            "inputs": {
+                "heights": [
+                    [
+                        1,
+                        2,
+                        2,
+                        3,
+                        5
+                    ],
+                    [
+                        3,
+                        2,
+                        3,
+                        4,
+                        4
+                    ],
+                    [
+                        2,
+                        4,
+                        5,
+                        3,
+                        1
+                    ],
+                    [
+                        6,
+                        7,
+                        1,
+                        4,
+                        5
+                    ],
+                    [
+                        5,
+                        1,
+                        1,
+                        2,
+                        4
+                    ]
+                ]
+            },
+            "entrypoint": "pacificAtlantic",
+            "solution": "def pacificAtlantic(heights):\n    if not heights:\n        return []\n    m, n = len(heights), len(heights[0])\n    pacific = [[False] * n for _ in range(m)]\n    atlantic = [[False] * n for _ in range(m)]\n\n    def dfs(r, c, visited, prev):\n        if (r < 0 or r >= m or c < 0 or c >= n or visited[r][c] or heights[r][c] < prev):\n            return\n        visited[r][c] = True\n        for dr, dc in [(-1,0), (1,0), (0,-1), (0,1)]:\n            dfs(r+dr, c+dc, visited, heights[r][c])\n\n    for i in range(m):\n        dfs(i, 0, pacific, heights[i][0])\n        dfs(i, n-1, atlantic, heights[i][n-1])\n    for j in range(n):\n        dfs(0, j, pacific, heights[0][j])\n        dfs(m-1, j, atlantic, heights[m-1][j])\n\n    result = []\n    for i in range(m):\n        for j in range(n):\n            if pacific[i][j] and atlantic[i][j]:\n                result.append([i, j])\n    return result"
+        },
+        {
+            "id": "palindrome-partitioning",
+            "number": 131,
+            "title": "Palindrome Partitioning",
+            "inputs": {
+                "s": "aab"
+            },
+            "entrypoint": "partition",
+            "solution": "def partition(s):\n    res = []\n    def is_palindrome(sub):\n        return sub == sub[::-1]\n\n    def backtrack(start, path):\n        if start == len(s):\n            res.append(path[:])\n            return\n        for end in range(start + 1, len(s) + 1):\n            if is_palindrome(s[start:end]):\n                backtrack(end, path + [s[start:end]])\n\n    backtrack(0, [])\n    return res"
+        },
+        {
+            "id": "remove-nth-node-from-end-of-list",
+            "number": 19,
+            "title": "Remove Nth Node From End of List",
+            "inputs": {
+                "head": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "n": 2
+            },
+            "special_inputs": [
+                {
+                    "key": "head",
+                    "type": "linkedList",
+                    "output_key": "head"
+                }
+            ],
+            "entrypoint": "removeNthFromEnd",
+            "solution": "def removeNthFromEnd(head, n):\n    dummy = ListNode(0)\n    dummy.next = head\n    fast = slow = dummy\n    for _ in range(n):\n        fast = fast.next\n    while fast.next:\n        fast = fast.next\n        slow = slow.next\n    slow.next = slow.next.next\n    return dummy.next"
+        },
+        {
+            "id": "reorder-list",
+            "number": 143,
+            "title": "Reorder List",
+            "inputs": {
+                "head": [
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "head",
+                    "type": "linkedList",
+                    "output_key": "head"
+                }
+            ],
+            "entrypoint": "reorderList",
+            "solution": "def reorderList(head):\n    if not head:\n        return\n    slow, fast = head, head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n\n    prev, curr = None, slow.next\n    slow.next = None\n    while curr:\n        tmp = curr.next\n        curr.next = prev\n        prev = curr\n        curr = tmp\n\n    first, second = head, prev\n    while second:\n        tmp1, tmp2 = first.next, second.next\n        first.next = second\n        second.next = tmp1\n        first, second = tmp1, tmp2"
+        },
+        {
+            "id": "reverse-bits",
+            "number": 190,
+            "title": "Reverse Bits",
+            "inputs": {
+                "n": 43261596
+            },
+            "entrypoint": "reverseBits",
+            "solution": "def reverseBits(n):\n    res = 0\n    for _ in range(32):\n        res = (res << 1) | (n & 1)\n        n >>= 1\n    return res"
+        },
+        {
+            "id": "search-in-rotated-sorted-array",
+            "number": 33,
+            "title": "Search in Rotated Sorted Array",
+            "inputs": {
+                "nums": [
+                    4,
+                    5,
+                    6,
+                    7,
+                    0,
+                    1,
+                    2
+                ],
+                "target": 0
+            },
+            "entrypoint": "search",
+            "solution": "def search(nums, target):\n    left, right = 0, len(nums) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        if nums[left] <= nums[mid]:\n            if nums[left] <= target < nums[mid]:\n                right = mid - 1\n            else:\n                left = mid + 1\n        else:\n            if nums[mid] < target <= nums[right]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    return -1"
+        },
+        {
+            "id": "subsets",
+            "number": 78,
+            "title": "Subsets",
+            "inputs": {
+                "nums": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            "entrypoint": "subsets",
+            "solution": "def subsets(nums):\n    res = []\n    def backtrack(start, path):\n        res.append(path[:])\n        for i in range(start, len(nums)):\n            backtrack(i+1, path + [nums[i]])\n    backtrack(0, [])\n    return res"
+        },
+        {
+            "id": "subtree-of-another-tree",
+            "number": 572,
+            "title": "Subtree of Another Tree",
+            "inputs": {
+                "root": [
+                    3,
+                    4,
+                    5,
+                    1,
+                    2
+                ],
+                "subRoot": [
+                    4,
+                    1,
+                    2
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                },
+                {
+                    "key": "subRoot",
+                    "type": "tree",
+                    "output_key": "subRoot"
+                }
+            ],
+            "entrypoint": "isSubtree",
+            "solution": "def isSubtree(root, subRoot):\n    if not root:\n        return False\n    if isSameTree(root, subRoot):\n        return True\n    return isSubtree(root.left, subRoot) or isSubtree(root.right, subRoot)\n\ndef isSameTree(s, t):\n    if not s and not t:\n        return True\n    if not s or not t or s.val != t.val:\n        return False\n    return isSameTree(s.left, t.left) and isSameTree(s.right, t.right)"
+        },
+        {
+            "id": "sum-of-two-integers",
+            "number": 371,
+            "title": "Sum of Two Integers",
+            "inputs": {
+                "a": 1,
+                "b": 2
+            },
+            "entrypoint": "getSum",
+            "solution": "def getSum(a, b):\n    MAX = 0x7FFFFFFF\n    mask = 0xFFFFFFFF\n    while b:\n        a, b = (a ^ b) & mask, ((a & b) << 1) & mask\n    return a if a <= MAX else ~(a ^ mask)"
+        },
+        {
+            "id": "top-k-frequent-elements",
+            "number": 347,
+            "title": "Top K Frequent Elements",
+            "inputs": {
+                "nums": [
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    3
+                ],
+                "k": 2
+            },
+            "entrypoint": "topKFrequent",
+            "solution": "import heapq\nfrom collections import Counter\n\ndef topKFrequent(nums, k):\n    count = Counter(nums)\n    return [item for item, _ in count.most_common(k)]"
+        },
+        {
+            "id": "unique-paths",
+            "number": 62,
+            "title": "Unique Paths",
+            "inputs": {
+                "m": 3,
+                "n": 7
+            },
+            "entrypoint": "uniquePaths",
+            "solution": "def uniquePaths(m, n):\n    dp = [[1]*n for _ in range(m)]\n    for i in range(1, m):\n        for j in range(1, n):\n            dp[i][j] = dp[i-1][j] + dp[i][j-1]\n    return dp[-1][-1]"
+        },
+        {
+            "id": "validate-binary-search-tree",
+            "number": 98,
+            "title": "Validate Binary Search Tree",
+            "inputs": {
+                "root": [
+                    2,
+                    1,
+                    3
+                ]
+            },
+            "special_inputs": [
+                {
+                    "key": "root",
+                    "type": "tree",
+                    "output_key": "root"
+                }
+            ],
+            "entrypoint": "isValidBST",
+            "solution": "def isValidBST(root):\n    def validate(node, low, high):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        return validate(node.left, low, node.val) and validate(node.right, node.val, high)\n    return validate(root, float('-inf'), float('inf'))"
+        },
+        {
+            "id": "word-break",
+            "number": 139,
+            "title": "Word Break",
+            "inputs": {
+                "s": "leetcode",
+                "wordDict": [
+                    "leet",
+                    "code"
+                ]
+            },
+            "entrypoint": "wordBreak",
+            "solution": "def wordBreak(s, wordDict):\n    dp = [False] * (len(s) + 1)\n    dp[0] = True\n    word_set = set(wordDict)\n    for i in range(1, len(s)+1):\n        for j in range(i):\n            if dp[j] and s[j:i] in word_set:\n                dp[i] = True\n                break\n    return dp[-1]"
+        },
+        {
+            "id": "word-search",
+            "number": 79,
+            "title": "Word Search",
+            "inputs": {
+                "board": [
+                    [
+                        "A",
+                        "B",
+                        "C",
+                        "E"
+                    ],
+                    [
+                        "S",
+                        "F",
+                        "C",
+                        "S"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "E",
+                        "E"
+                    ]
+                ],
+                "word": "ABCCED"
+            },
+            "entrypoint": "exist",
+            "solution": "def exist(board, word):\n    rows, cols = len(board), len(board[0])\n    def backtrack(r, c, i):\n        if i == len(word): return True\n        if r < 0 or c < 0 or r >= rows or c >= cols or board[r][c] != word[i]: return False\n        tmp, board[r][c] = board[r][c], '#'\n        for dr, dc in [(0,1), (1,0), (0,-1), (-1,0)]:\n            if backtrack(r+dr, c+dc, i+1): return True\n        board[r][c] = tmp\n        return False\n    for r in range(rows):\n        for c in range(cols):\n            if backtrack(r, c, 0): return True\n    return False"
+        },
+        {
+            "id": "word-search-ii",
+            "number": 212,
+            "title": "Word Search II",
+            "inputs": {
+                "board": [
+                    [
+                        "o",
+                        "a",
+                        "a",
+                        "n"
+                    ],
+                    [
+                        "e",
+                        "t",
+                        "a",
+                        "e"
+                    ],
+                    [
+                        "i",
+                        "h",
+                        "k",
+                        "r"
+                    ],
+                    [
+                        "i",
+                        "f",
+                        "l",
+                        "v"
+                    ]
+                ],
+                "words": [
+                    "oath",
+                    "pea",
+                    "eat",
+                    "rain"
+                ]
+            },
+            "entrypoint": "findWords",
+            "solution": "def findWords(board, words):\n    from collections import defaultdict\n    trie = lambda: defaultdict(trie)\n    root = trie()\n    for word in words:\n        node = root\n        for ch in word:\n            node = node[ch]\n        node['$'] = word\n\n    rows, cols = len(board), len(board[0])\n    res = []\n\n    def backtrack(r, c, parent):\n        letter = board[r][c]\n        curr = parent[letter]\n        if '$' in curr:\n            res.append(curr['$'])\n            del curr['$']\n\n        board[r][c] = '#'\n        for dr, dc in [(0,1), (1,0), (0,-1), (-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0 <= nr < rows and 0 <= nc < cols and board[nr][nc] in curr:\n                backtrack(nr, nc, curr)\n        board[r][c] = letter\n        if not curr:\n            parent.pop(letter)\n\n    for r in range(rows):\n        for c in range(cols):\n            if board[r][c] in root:\n                backtrack(r, c, root)\n\n    return res"
+        }
+    ]
+}

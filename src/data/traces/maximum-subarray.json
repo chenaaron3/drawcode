@@ -1,0 +1,5088 @@
+{
+  "metadata": {
+    "code": "def maxSubArray(nums):\n    max_sum = nums[0]\n    current_sum = nums[0]\n    \n    for i in range(1, len(nums)):\n        current_sum = max(nums[i], current_sum + nums[i])\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum\n",
+    "function": "maxSubArray",
+    "inputs": {
+      "kwargs": {
+        "nums": "[-2, 1, -3, 4, -1, 2, 1, -5, 4]"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "nums": [
+        -2,
+        1,
+        -3,
+        4,
+        -1,
+        2,
+        1,
+        -5,
+        4
+      ],
+      "max_sum": 6,
+      "current_sum": 5,
+      "i": 8
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 9,
+          "end_col_offset": 18
+        },
+        "focus": "def maxSubArray(nums):\n    max_sum = nums[0]\n    current_sum = nums[0]\n    \n    for i in range(1, len(nums)):\n        current_sum = max(nums[i], current_sum + nums[i])\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum",
+        "name": "maxSubArray",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            7
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 7,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 16,
+                "end_lineno": 1,
+                "end_col_offset": 20
+              },
+              "focus": "nums",
+              "arg": "nums"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              8,
+              9
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 21
+            },
+            "focus": "max_sum = nums[0]",
+            "targets": [
+              {
+                "node_id": 8,
+                "children_node_ids": [
+                  17
+                ],
+                "type": "Name",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 11
+                },
+                "focus": "max_sum",
+                "id": "max_sum",
+                "ctx": {
+                  "node_id": 17,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 8
+                }
+              }
+            ],
+            "value": {
+              "node_id": 9,
+              "children_node_ids": [
+                18,
+                19,
+                20
+              ],
+              "type": "Subscript",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 14,
+                "end_lineno": 2,
+                "end_col_offset": 21
+              },
+              "focus": "nums[0]",
+              "value": {
+                "node_id": 18,
+                "children_node_ids": [
+                  20
+                ],
+                "type": "Name",
+                "parent_node_id": 9,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 14,
+                  "end_lineno": 2,
+                  "end_col_offset": 18
+                },
+                "focus": "nums",
+                "id": "nums",
+                "ctx": {
+                  "node_id": 20,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 18
+                }
+              },
+              "slice": {
+                "node_id": 19,
+                "children_node_ids": [],
+                "type": "Constant",
+                "parent_node_id": 9,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 19,
+                  "end_lineno": 2,
+                  "end_col_offset": 20
+                },
+                "focus": "0",
+                "value": 0
+              },
+              "ctx": {
+                "node_id": 20,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 9
+              }
+            }
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              10,
+              11
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 3,
+              "col_offset": 4,
+              "end_lineno": 3,
+              "end_col_offset": 25
+            },
+            "focus": "current_sum = nums[0]",
+            "targets": [
+              {
+                "node_id": 10,
+                "children_node_ids": [
+                  17
+                ],
+                "type": "Name",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 4,
+                  "end_lineno": 3,
+                  "end_col_offset": 15
+                },
+                "focus": "current_sum",
+                "id": "current_sum",
+                "ctx": {
+                  "node_id": 17,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 10
+                }
+              }
+            ],
+            "value": {
+              "node_id": 11,
+              "children_node_ids": [
+                21,
+                22,
+                20
+              ],
+              "type": "Subscript",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 3,
+                "col_offset": 18,
+                "end_lineno": 3,
+                "end_col_offset": 25
+              },
+              "focus": "nums[0]",
+              "value": {
+                "node_id": 21,
+                "children_node_ids": [
+                  20
+                ],
+                "type": "Name",
+                "parent_node_id": 11,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 18,
+                  "end_lineno": 3,
+                  "end_col_offset": 22
+                },
+                "focus": "nums",
+                "id": "nums",
+                "ctx": {
+                  "node_id": 20,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 21
+                }
+              },
+              "slice": {
+                "node_id": 22,
+                "children_node_ids": [],
+                "type": "Constant",
+                "parent_node_id": 11,
+                "location": {
+                  "lineno": 3,
+                  "col_offset": 23,
+                  "end_lineno": 3,
+                  "end_col_offset": 24
+                },
+                "focus": "0",
+                "value": 0
+              },
+              "ctx": {
+                "node_id": 20,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 11
+              }
+            }
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              12,
+              13,
+              14,
+              15
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 5,
+              "col_offset": 4,
+              "end_lineno": 7,
+              "end_col_offset": 43
+            },
+            "focus": "for i in range(1, len(nums)):\n        current_sum = max(nums[i], current_sum + nums[i])\n        max_sum = max(max_sum, current_sum)",
+            "target": {
+              "node_id": 12,
+              "children_node_ids": [
+                17
+              ],
+              "type": "Name",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 5,
+                "col_offset": 8,
+                "end_lineno": 5,
+                "end_col_offset": 9
+              },
+              "focus": "i",
+              "id": "i",
+              "ctx": {
+                "node_id": 17,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 12
+              }
+            },
+            "iter": {
+              "node_id": 13,
+              "children_node_ids": [
+                23,
+                24,
+                25
+              ],
+              "type": "Call",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 5,
+                "col_offset": 13,
+                "end_lineno": 5,
+                "end_col_offset": 32
+              },
+              "focus": "range(1, len(nums))",
+              "func": {
+                "node_id": 23,
+                "children_node_ids": [
+                  20
+                ],
+                "type": "Name",
+                "parent_node_id": 13,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 13,
+                  "end_lineno": 5,
+                  "end_col_offset": 18
+                },
+                "focus": "range",
+                "id": "range",
+                "ctx": {
+                  "node_id": 20,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 23
+                }
+              },
+              "args": [
+                {
+                  "node_id": 24,
+                  "children_node_ids": [],
+                  "type": "Constant",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 19,
+                    "end_lineno": 5,
+                    "end_col_offset": 20
+                  },
+                  "focus": "1",
+                  "value": 1
+                },
+                {
+                  "node_id": 25,
+                  "children_node_ids": [
+                    30,
+                    31
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 22,
+                    "end_lineno": 5,
+                    "end_col_offset": 31
+                  },
+                  "focus": "len(nums)",
+                  "func": {
+                    "node_id": 30,
+                    "children_node_ids": [
+                      20
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 25,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 22,
+                      "end_lineno": 5,
+                      "end_col_offset": 25
+                    },
+                    "focus": "len",
+                    "id": "len",
+                    "ctx": {
+                      "node_id": 20,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 30
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 31,
+                      "children_node_ids": [
+                        20
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 25,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 26,
+                        "end_lineno": 5,
+                        "end_col_offset": 30
+                      },
+                      "focus": "nums",
+                      "id": "nums",
+                      "ctx": {
+                        "node_id": 20,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 31
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "node_id": 14,
+                "children_node_ids": [
+                  26,
+                  27
+                ],
+                "type": "Assign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 6,
+                  "col_offset": 8,
+                  "end_lineno": 6,
+                  "end_col_offset": 57
+                },
+                "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+                "targets": [
+                  {
+                    "node_id": 26,
+                    "children_node_ids": [
+                      17
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 14,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 8,
+                      "end_lineno": 6,
+                      "end_col_offset": 19
+                    },
+                    "focus": "current_sum",
+                    "id": "current_sum",
+                    "ctx": {
+                      "node_id": 17,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 26
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 27,
+                  "children_node_ids": [
+                    32,
+                    33,
+                    34
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 14,
+                  "location": {
+                    "lineno": 6,
+                    "col_offset": 22,
+                    "end_lineno": 6,
+                    "end_col_offset": 57
+                  },
+                  "focus": "max(nums[i], current_sum + nums[i])",
+                  "func": {
+                    "node_id": 32,
+                    "children_node_ids": [
+                      20
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 27,
+                    "location": {
+                      "lineno": 6,
+                      "col_offset": 22,
+                      "end_lineno": 6,
+                      "end_col_offset": 25
+                    },
+                    "focus": "max",
+                    "id": "max",
+                    "ctx": {
+                      "node_id": 20,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 32
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 33,
+                      "children_node_ids": [
+                        38,
+                        39,
+                        20
+                      ],
+                      "type": "Subscript",
+                      "parent_node_id": 27,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 26,
+                        "end_lineno": 6,
+                        "end_col_offset": 33
+                      },
+                      "focus": "nums[i]",
+                      "value": {
+                        "node_id": 38,
+                        "children_node_ids": [
+                          20
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 33,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 26,
+                          "end_lineno": 6,
+                          "end_col_offset": 30
+                        },
+                        "focus": "nums",
+                        "id": "nums",
+                        "ctx": {
+                          "node_id": 20,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 38
+                        }
+                      },
+                      "slice": {
+                        "node_id": 39,
+                        "children_node_ids": [
+                          20
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 33,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 31,
+                          "end_lineno": 6,
+                          "end_col_offset": 32
+                        },
+                        "focus": "i",
+                        "id": "i",
+                        "ctx": {
+                          "node_id": 20,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 39
+                        }
+                      },
+                      "ctx": {
+                        "node_id": 20,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 33
+                      }
+                    },
+                    {
+                      "node_id": 34,
+                      "children_node_ids": [
+                        40,
+                        41,
+                        42
+                      ],
+                      "type": "BinOp",
+                      "parent_node_id": 27,
+                      "location": {
+                        "lineno": 6,
+                        "col_offset": 35,
+                        "end_lineno": 6,
+                        "end_col_offset": 56
+                      },
+                      "focus": "current_sum + nums[i]",
+                      "left": {
+                        "node_id": 40,
+                        "children_node_ids": [
+                          20
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 34,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 35,
+                          "end_lineno": 6,
+                          "end_col_offset": 46
+                        },
+                        "focus": "current_sum",
+                        "id": "current_sum",
+                        "ctx": {
+                          "node_id": 20,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 40
+                        }
+                      },
+                      "op": {
+                        "node_id": 41,
+                        "children_node_ids": [],
+                        "type": "Add",
+                        "parent_node_id": 34
+                      },
+                      "right": {
+                        "node_id": 42,
+                        "children_node_ids": [
+                          43,
+                          44,
+                          20
+                        ],
+                        "type": "Subscript",
+                        "parent_node_id": 34,
+                        "location": {
+                          "lineno": 6,
+                          "col_offset": 49,
+                          "end_lineno": 6,
+                          "end_col_offset": 56
+                        },
+                        "focus": "nums[i]",
+                        "value": {
+                          "node_id": 43,
+                          "children_node_ids": [
+                            20
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 42,
+                          "location": {
+                            "lineno": 6,
+                            "col_offset": 49,
+                            "end_lineno": 6,
+                            "end_col_offset": 53
+                          },
+                          "focus": "nums",
+                          "id": "nums",
+                          "ctx": {
+                            "node_id": 20,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 43
+                          }
+                        },
+                        "slice": {
+                          "node_id": 44,
+                          "children_node_ids": [
+                            20
+                          ],
+                          "type": "Name",
+                          "parent_node_id": 42,
+                          "location": {
+                            "lineno": 6,
+                            "col_offset": 54,
+                            "end_lineno": 6,
+                            "end_col_offset": 55
+                          },
+                          "focus": "i",
+                          "id": "i",
+                          "ctx": {
+                            "node_id": 20,
+                            "children_node_ids": [],
+                            "type": "Load",
+                            "parent_node_id": 44
+                          }
+                        },
+                        "ctx": {
+                          "node_id": 20,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 42
+                        }
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              },
+              {
+                "node_id": 15,
+                "children_node_ids": [
+                  28,
+                  29
+                ],
+                "type": "Assign",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 7,
+                  "col_offset": 8,
+                  "end_lineno": 7,
+                  "end_col_offset": 43
+                },
+                "focus": "max_sum = max(max_sum, current_sum)",
+                "targets": [
+                  {
+                    "node_id": 28,
+                    "children_node_ids": [
+                      17
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 15,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 8,
+                      "end_lineno": 7,
+                      "end_col_offset": 15
+                    },
+                    "focus": "max_sum",
+                    "id": "max_sum",
+                    "ctx": {
+                      "node_id": 17,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 28
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 29,
+                  "children_node_ids": [
+                    35,
+                    36,
+                    37
+                  ],
+                  "type": "Call",
+                  "parent_node_id": 15,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 18,
+                    "end_lineno": 7,
+                    "end_col_offset": 43
+                  },
+                  "focus": "max(max_sum, current_sum)",
+                  "func": {
+                    "node_id": 35,
+                    "children_node_ids": [
+                      20
+                    ],
+                    "type": "Name",
+                    "parent_node_id": 29,
+                    "location": {
+                      "lineno": 7,
+                      "col_offset": 18,
+                      "end_lineno": 7,
+                      "end_col_offset": 21
+                    },
+                    "focus": "max",
+                    "id": "max",
+                    "ctx": {
+                      "node_id": 20,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 35
+                    }
+                  },
+                  "args": [
+                    {
+                      "node_id": 36,
+                      "children_node_ids": [
+                        20
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 29,
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 22,
+                        "end_lineno": 7,
+                        "end_col_offset": 29
+                      },
+                      "focus": "max_sum",
+                      "id": "max_sum",
+                      "ctx": {
+                        "node_id": 20,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 36
+                      }
+                    },
+                    {
+                      "node_id": 37,
+                      "children_node_ids": [
+                        20
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 29,
+                      "location": {
+                        "lineno": 7,
+                        "col_offset": 31,
+                        "end_lineno": 7,
+                        "end_col_offset": 42
+                      },
+                      "focus": "current_sum",
+                      "id": "current_sum",
+                      "ctx": {
+                        "node_id": 20,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 37
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              16
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 9,
+              "col_offset": 4,
+              "end_lineno": 9,
+              "end_col_offset": 18
+            },
+            "focus": "return max_sum",
+            "value": {
+              "node_id": 16,
+              "children_node_ids": [
+                20
+              ],
+              "type": "Name",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 9,
+                "col_offset": 11,
+                "end_lineno": 9,
+                "end_col_offset": 18
+              },
+              "focus": "max_sum",
+              "id": "max_sum",
+              "ctx": {
+                "node_id": 20,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 16
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "nums",
+      "cursor": "i",
+      "type": "key_index",
+      "node_id": 5
+    },
+    {
+      "container": "nums",
+      "cursor": "i",
+      "type": "key_access",
+      "node_id": 33
+    },
+    {
+      "container": "nums",
+      "cursor": "i",
+      "type": "key_access",
+      "node_id": 42
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def maxSubArray(nums):\n    max_sum = nums[0]\n    current_sum = nums[0]\n    \n    for i in range(1, len(nums)):\n        current_sum = max(nums[i], current_sum + nums[i])\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def maxSubArray(nums):\n    max_sum = nums[0]\n    current_sum = nums[0]\n    \n    for i in range(1, len(nums)):\n        current_sum = max(nums[i], current_sum + nums[i])\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ]
+      },
+      "delta": {
+        "nums": {
+          "0": -2,
+          "1": 1,
+          "2": -3,
+          "3": 4,
+          "4": -1,
+          "5": 2,
+          "6": 1,
+          "7": -5,
+          "8": 4
+        }
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4338749568
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "max_sum = nums[0]",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "nums[0]",
+          "node_id": 9
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 18
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 18,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "nums[0]",
+          "node_id": 9,
+          "value": -2
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "max_sum = nums[0]",
+          "node_id": 3,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": -2
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308475968
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": -2
+      },
+      "delta": {
+        "max_sum": -2
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308475968
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "current_sum = nums[0]",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "nums[0]",
+          "node_id": 11
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 21
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 21,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "nums[0]",
+          "node_id": 11,
+          "value": -2
+        },
+        {
+          "step": 13,
+          "event": "after_statement",
+          "focus": "current_sum = nums[0]",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": -2,
+            "current_sum": -2
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308475968,
+            "current_sum": 4308475968
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": -2,
+        "current_sum": -2
+      },
+      "delta": {
+        "current_sum": -2
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308475968,
+        "current_sum": 4308475968
+      },
+      "steps": [
+        {
+          "step": 14,
+          "event": "before_statement",
+          "focus": "for i in range(1, len(nums)):\n        current_sum = max(nums[i], current_sum + nums[i])\n        max_sum = max(max_sum, current_sum)",
+          "node_id": 5
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "range(1, len(nums))",
+          "node_id": 13
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "len(nums)",
+          "node_id": 25
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 31
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 31,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "len(nums)",
+          "node_id": 25,
+          "value": 9
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "range(1, len(nums))",
+          "node_id": 13,
+          "value": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": -2,
+        "current_sum": -2,
+        "i": 1
+      },
+      "delta": {
+        "i": 1
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308475968,
+        "current_sum": 4308475968,
+        "i": 4308476064
+      },
+      "steps": [
+        {
+          "step": 21,
+          "event": "before_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 33
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 38
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 38,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 39
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 39,
+          "value": 1
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 33,
+          "value": 1
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 40
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 40,
+          "value": -2
+        },
+        {
+          "step": 32,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 42
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 43
+        },
+        {
+          "step": 34,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 43,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 44
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 44,
+          "value": 1
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 42,
+          "value": 1
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34,
+          "value": -1
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27,
+          "value": 1
+        },
+        {
+          "step": 40,
+          "event": "after_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": -2,
+            "current_sum": 1,
+            "i": 1
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308475968,
+            "current_sum": 4308476064,
+            "i": 4308476064
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": -2,
+        "current_sum": 1,
+        "i": 1
+      },
+      "delta": {
+        "current_sum": 1
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308475968,
+        "current_sum": 4308476064,
+        "i": 4308476064
+      },
+      "steps": [
+        {
+          "step": 41,
+          "event": "before_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "max_sum",
+          "node_id": 36
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "max_sum",
+          "node_id": 36,
+          "value": -2
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 37
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 37,
+          "value": 1
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29,
+          "value": 1
+        },
+        {
+          "step": 48,
+          "event": "after_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 1,
+            "current_sum": 1,
+            "i": 1
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476064,
+            "current_sum": 4308476064,
+            "i": 4308476064
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 1,
+        "current_sum": 1,
+        "i": 2
+      },
+      "delta": {
+        "max_sum": 1,
+        "i": 2
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476064,
+        "current_sum": 4308476064,
+        "i": 4308476096
+      },
+      "steps": [
+        {
+          "step": 49,
+          "event": "before_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 33
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 38
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 38,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 39
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 39,
+          "value": 2
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 33,
+          "value": -3
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 40
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 40,
+          "value": 1
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 42
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 43
+        },
+        {
+          "step": 62,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 43,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 44
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 44,
+          "value": 2
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 42,
+          "value": -3
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34,
+          "value": -2
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27,
+          "value": -2
+        },
+        {
+          "step": 68,
+          "event": "after_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 1,
+            "current_sum": -2,
+            "i": 2
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476064,
+            "current_sum": 4308475968,
+            "i": 4308476096
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 1,
+        "current_sum": -2,
+        "i": 2
+      },
+      "delta": {
+        "current_sum": -2
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476064,
+        "current_sum": 4308475968,
+        "i": 4308476096
+      },
+      "steps": [
+        {
+          "step": 69,
+          "event": "before_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        },
+        {
+          "step": 70,
+          "event": "before_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "max_sum",
+          "node_id": 36
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "max_sum",
+          "node_id": 36,
+          "value": 1
+        },
+        {
+          "step": 73,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 37
+        },
+        {
+          "step": 74,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 37,
+          "value": -2
+        },
+        {
+          "step": 75,
+          "event": "after_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29,
+          "value": 1
+        },
+        {
+          "step": 76,
+          "event": "after_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 1,
+        "current_sum": -2,
+        "i": 3
+      },
+      "delta": {
+        "i": 3
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476064,
+        "current_sum": 4308475968,
+        "i": 4308476128
+      },
+      "steps": [
+        {
+          "step": 77,
+          "event": "before_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27
+        },
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 33
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 38
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 38,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 39
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 39,
+          "value": 3
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 33,
+          "value": 4
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34
+        },
+        {
+          "step": 86,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 40
+        },
+        {
+          "step": 87,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 40,
+          "value": -2
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 42
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 43
+        },
+        {
+          "step": 90,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 43,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 44
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 44,
+          "value": 3
+        },
+        {
+          "step": 93,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 42,
+          "value": 4
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34,
+          "value": 2
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27,
+          "value": 4
+        },
+        {
+          "step": 96,
+          "event": "after_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 1,
+            "current_sum": 4,
+            "i": 3
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476064,
+            "current_sum": 4308476160,
+            "i": 4308476128
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 1,
+        "current_sum": 4,
+        "i": 3
+      },
+      "delta": {
+        "current_sum": 4
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476064,
+        "current_sum": 4308476160,
+        "i": 4308476128
+      },
+      "steps": [
+        {
+          "step": 97,
+          "event": "before_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29
+        },
+        {
+          "step": 99,
+          "event": "before_expression",
+          "focus": "max_sum",
+          "node_id": 36
+        },
+        {
+          "step": 100,
+          "event": "after_expression",
+          "focus": "max_sum",
+          "node_id": 36,
+          "value": 1
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 37
+        },
+        {
+          "step": 102,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 37,
+          "value": 4
+        },
+        {
+          "step": 103,
+          "event": "after_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29,
+          "value": 4
+        },
+        {
+          "step": 104,
+          "event": "after_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 4,
+            "current_sum": 4,
+            "i": 3
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476160,
+            "current_sum": 4308476160,
+            "i": 4308476128
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 4,
+        "current_sum": 4,
+        "i": 4
+      },
+      "delta": {
+        "max_sum": 4,
+        "i": 4
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476160,
+        "current_sum": 4308476160,
+        "i": 4308476160
+      },
+      "steps": [
+        {
+          "step": 105,
+          "event": "before_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14
+        },
+        {
+          "step": 106,
+          "event": "before_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27
+        },
+        {
+          "step": 107,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 33
+        },
+        {
+          "step": 108,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 38
+        },
+        {
+          "step": 109,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 38,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 39
+        },
+        {
+          "step": 111,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 39,
+          "value": 4
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 33,
+          "value": -1
+        },
+        {
+          "step": 113,
+          "event": "before_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 40
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 40,
+          "value": 4
+        },
+        {
+          "step": 116,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 42
+        },
+        {
+          "step": 117,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 43
+        },
+        {
+          "step": 118,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 43,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 119,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 44
+        },
+        {
+          "step": 120,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 44,
+          "value": 4
+        },
+        {
+          "step": 121,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 42,
+          "value": -1
+        },
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34,
+          "value": 3
+        },
+        {
+          "step": 123,
+          "event": "after_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27,
+          "value": 3
+        },
+        {
+          "step": 124,
+          "event": "after_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 4,
+            "current_sum": 3,
+            "i": 4
+          },
+          "object_table": {
+            "4308475968": {
+              "type": "int",
+              "value": -2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308475936": {
+              "type": "int",
+              "value": -3,
+              "mutable": false
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4308476000": {
+              "type": "int",
+              "value": -1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308475872": {
+              "type": "int",
+              "value": -5,
+              "mutable": false
+            },
+            "4338749568": {
+              "type": "list",
+              "value": [
+                4308475968,
+                4308476064,
+                4308475936,
+                4308476160,
+                4308476000,
+                4308476096,
+                4308476064,
+                4308475872,
+                4308476160
+              ],
+              "mutable": true
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476160,
+            "current_sum": 4308476128,
+            "i": 4308476160
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 4,
+        "current_sum": 3,
+        "i": 4
+      },
+      "delta": {
+        "current_sum": 3
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476160,
+        "current_sum": 4308476128,
+        "i": 4308476160
+      },
+      "steps": [
+        {
+          "step": 125,
+          "event": "before_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29
+        },
+        {
+          "step": 127,
+          "event": "before_expression",
+          "focus": "max_sum",
+          "node_id": 36
+        },
+        {
+          "step": 128,
+          "event": "after_expression",
+          "focus": "max_sum",
+          "node_id": 36,
+          "value": 4
+        },
+        {
+          "step": 129,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 37
+        },
+        {
+          "step": 130,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 37,
+          "value": 3
+        },
+        {
+          "step": 131,
+          "event": "after_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29,
+          "value": 4
+        },
+        {
+          "step": 132,
+          "event": "after_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 4,
+        "current_sum": 3,
+        "i": 5
+      },
+      "delta": {
+        "i": 5
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4308476192": {
+          "type": "int",
+          "value": 5,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476160,
+        "current_sum": 4308476128,
+        "i": 4308476192
+      },
+      "steps": [
+        {
+          "step": 133,
+          "event": "before_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14
+        },
+        {
+          "step": 134,
+          "event": "before_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27
+        },
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 33
+        },
+        {
+          "step": 136,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 38
+        },
+        {
+          "step": 137,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 38,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 138,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 39
+        },
+        {
+          "step": 139,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 39,
+          "value": 5
+        },
+        {
+          "step": 140,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 33,
+          "value": 2
+        },
+        {
+          "step": 141,
+          "event": "before_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34
+        },
+        {
+          "step": 142,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 40
+        },
+        {
+          "step": 143,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 40,
+          "value": 3
+        },
+        {
+          "step": 144,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 42
+        },
+        {
+          "step": 145,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 43
+        },
+        {
+          "step": 146,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 43,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 147,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 44
+        },
+        {
+          "step": 148,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 44,
+          "value": 5
+        },
+        {
+          "step": 149,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 42,
+          "value": 2
+        },
+        {
+          "step": 150,
+          "event": "after_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34,
+          "value": 5
+        },
+        {
+          "step": 151,
+          "event": "after_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27,
+          "value": 5
+        },
+        {
+          "step": 152,
+          "event": "after_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 4,
+            "current_sum": 5,
+            "i": 5
+          },
+          "object_table": {
+            "4308475968": {
+              "type": "int",
+              "value": -2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308475936": {
+              "type": "int",
+              "value": -3,
+              "mutable": false
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4308476000": {
+              "type": "int",
+              "value": -1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308475872": {
+              "type": "int",
+              "value": -5,
+              "mutable": false
+            },
+            "4338749568": {
+              "type": "list",
+              "value": [
+                4308475968,
+                4308476064,
+                4308475936,
+                4308476160,
+                4308476000,
+                4308476096,
+                4308476064,
+                4308475872,
+                4308476160
+              ],
+              "mutable": true
+            },
+            "4308476192": {
+              "type": "int",
+              "value": 5,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476160,
+            "current_sum": 4308476192,
+            "i": 4308476192
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 4,
+        "current_sum": 5,
+        "i": 5
+      },
+      "delta": {
+        "current_sum": 5
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476192": {
+          "type": "int",
+          "value": 5,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476160,
+        "current_sum": 4308476192,
+        "i": 4308476192
+      },
+      "steps": [
+        {
+          "step": 153,
+          "event": "before_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        },
+        {
+          "step": 154,
+          "event": "before_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29
+        },
+        {
+          "step": 155,
+          "event": "before_expression",
+          "focus": "max_sum",
+          "node_id": 36
+        },
+        {
+          "step": 156,
+          "event": "after_expression",
+          "focus": "max_sum",
+          "node_id": 36,
+          "value": 4
+        },
+        {
+          "step": 157,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 37
+        },
+        {
+          "step": 158,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 37,
+          "value": 5
+        },
+        {
+          "step": 159,
+          "event": "after_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29,
+          "value": 5
+        },
+        {
+          "step": 160,
+          "event": "after_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 5,
+            "current_sum": 5,
+            "i": 5
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476192,
+            "current_sum": 4308476192,
+            "i": 4308476192
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 5,
+        "current_sum": 5,
+        "i": 6
+      },
+      "delta": {
+        "max_sum": 5,
+        "i": 6
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476192": {
+          "type": "int",
+          "value": 5,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476192,
+        "current_sum": 4308476192,
+        "i": 4308476224
+      },
+      "steps": [
+        {
+          "step": 161,
+          "event": "before_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14
+        },
+        {
+          "step": 162,
+          "event": "before_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27
+        },
+        {
+          "step": 163,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 33
+        },
+        {
+          "step": 164,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 38
+        },
+        {
+          "step": 165,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 38,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 166,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 39
+        },
+        {
+          "step": 167,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 39,
+          "value": 6
+        },
+        {
+          "step": 168,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 33,
+          "value": 1
+        },
+        {
+          "step": 169,
+          "event": "before_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34
+        },
+        {
+          "step": 170,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 40
+        },
+        {
+          "step": 171,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 40,
+          "value": 5
+        },
+        {
+          "step": 172,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 42
+        },
+        {
+          "step": 173,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 43
+        },
+        {
+          "step": 174,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 43,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 175,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 44
+        },
+        {
+          "step": 176,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 44,
+          "value": 6
+        },
+        {
+          "step": 177,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 42,
+          "value": 1
+        },
+        {
+          "step": 178,
+          "event": "after_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34,
+          "value": 6
+        },
+        {
+          "step": 179,
+          "event": "after_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27,
+          "value": 6
+        },
+        {
+          "step": 180,
+          "event": "after_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 5,
+            "current_sum": 6,
+            "i": 6
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476192,
+            "current_sum": 4308476224,
+            "i": 4308476224
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 5,
+        "current_sum": 6,
+        "i": 6
+      },
+      "delta": {
+        "current_sum": 6
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476192": {
+          "type": "int",
+          "value": 5,
+          "mutable": false
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476192,
+        "current_sum": 4308476224,
+        "i": 4308476224
+      },
+      "steps": [
+        {
+          "step": 181,
+          "event": "before_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        },
+        {
+          "step": 182,
+          "event": "before_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29
+        },
+        {
+          "step": 183,
+          "event": "before_expression",
+          "focus": "max_sum",
+          "node_id": 36
+        },
+        {
+          "step": 184,
+          "event": "after_expression",
+          "focus": "max_sum",
+          "node_id": 36,
+          "value": 5
+        },
+        {
+          "step": 185,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 37
+        },
+        {
+          "step": 186,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 37,
+          "value": 6
+        },
+        {
+          "step": 187,
+          "event": "after_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29,
+          "value": 6
+        },
+        {
+          "step": 188,
+          "event": "after_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 6,
+            "current_sum": 6,
+            "i": 6
+          },
+          "object_table": {
+            "4308475968": {
+              "type": "int",
+              "value": -2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308475936": {
+              "type": "int",
+              "value": -3,
+              "mutable": false
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4308476000": {
+              "type": "int",
+              "value": -1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308475872": {
+              "type": "int",
+              "value": -5,
+              "mutable": false
+            },
+            "4338749568": {
+              "type": "list",
+              "value": [
+                4308475968,
+                4308476064,
+                4308475936,
+                4308476160,
+                4308476000,
+                4308476096,
+                4308476064,
+                4308475872,
+                4308476160
+              ],
+              "mutable": true
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476224,
+            "current_sum": 4308476224,
+            "i": 4308476224
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 6,
+        "current_sum": 6,
+        "i": 7
+      },
+      "delta": {
+        "max_sum": 6,
+        "i": 7
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4308476256": {
+          "type": "int",
+          "value": 7,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476224,
+        "current_sum": 4308476224,
+        "i": 4308476256
+      },
+      "steps": [
+        {
+          "step": 189,
+          "event": "before_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14
+        },
+        {
+          "step": 190,
+          "event": "before_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27
+        },
+        {
+          "step": 191,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 33
+        },
+        {
+          "step": 192,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 38
+        },
+        {
+          "step": 193,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 38,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 194,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 39
+        },
+        {
+          "step": 195,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 39,
+          "value": 7
+        },
+        {
+          "step": 196,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 33,
+          "value": -5
+        },
+        {
+          "step": 197,
+          "event": "before_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34
+        },
+        {
+          "step": 198,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 40
+        },
+        {
+          "step": 199,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 40,
+          "value": 6
+        },
+        {
+          "step": 200,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 42
+        },
+        {
+          "step": 201,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 43
+        },
+        {
+          "step": 202,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 43,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 203,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 44
+        },
+        {
+          "step": 204,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 44,
+          "value": 7
+        },
+        {
+          "step": 205,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 42,
+          "value": -5
+        },
+        {
+          "step": 206,
+          "event": "after_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34,
+          "value": 1
+        },
+        {
+          "step": 207,
+          "event": "after_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27,
+          "value": 1
+        },
+        {
+          "step": 208,
+          "event": "after_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 6,
+            "current_sum": 1,
+            "i": 7
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476224,
+            "current_sum": 4308476064,
+            "i": 4308476256
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 6,
+        "current_sum": 1,
+        "i": 7
+      },
+      "delta": {
+        "current_sum": 1
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4308476256": {
+          "type": "int",
+          "value": 7,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476224,
+        "current_sum": 4308476064,
+        "i": 4308476256
+      },
+      "steps": [
+        {
+          "step": 209,
+          "event": "before_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        },
+        {
+          "step": 210,
+          "event": "before_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29
+        },
+        {
+          "step": 211,
+          "event": "before_expression",
+          "focus": "max_sum",
+          "node_id": 36
+        },
+        {
+          "step": 212,
+          "event": "after_expression",
+          "focus": "max_sum",
+          "node_id": 36,
+          "value": 6
+        },
+        {
+          "step": 213,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 37
+        },
+        {
+          "step": 214,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 37,
+          "value": 1
+        },
+        {
+          "step": 215,
+          "event": "after_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29,
+          "value": 6
+        },
+        {
+          "step": 216,
+          "event": "after_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 6,
+        "current_sum": 1,
+        "i": 8
+      },
+      "delta": {
+        "i": 8
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476224,
+        "current_sum": 4308476064,
+        "i": 4308476288
+      },
+      "steps": [
+        {
+          "step": 217,
+          "event": "before_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14
+        },
+        {
+          "step": 218,
+          "event": "before_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27
+        },
+        {
+          "step": 219,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 33
+        },
+        {
+          "step": 220,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 38
+        },
+        {
+          "step": 221,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 38,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 222,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 39
+        },
+        {
+          "step": 223,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 39,
+          "value": 8
+        },
+        {
+          "step": 224,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 33,
+          "value": 4
+        },
+        {
+          "step": 225,
+          "event": "before_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34
+        },
+        {
+          "step": 226,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 40
+        },
+        {
+          "step": 227,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 40,
+          "value": 1
+        },
+        {
+          "step": 228,
+          "event": "before_expression",
+          "focus": "nums[i]",
+          "node_id": 42
+        },
+        {
+          "step": 229,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 43
+        },
+        {
+          "step": 230,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 43,
+          "value": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        {
+          "step": 231,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 44
+        },
+        {
+          "step": 232,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 44,
+          "value": 8
+        },
+        {
+          "step": 233,
+          "event": "after_expression",
+          "focus": "nums[i]",
+          "node_id": 42,
+          "value": 4
+        },
+        {
+          "step": 234,
+          "event": "after_expression",
+          "focus": "current_sum + nums[i]",
+          "node_id": 34,
+          "value": 5
+        },
+        {
+          "step": 235,
+          "event": "after_expression",
+          "focus": "max(nums[i], current_sum + nums[i])",
+          "node_id": 27,
+          "value": 5
+        },
+        {
+          "step": 236,
+          "event": "after_statement",
+          "focus": "current_sum = max(nums[i], current_sum + nums[i])",
+          "node_id": 14,
+          "locals": {
+            "nums": [
+              -2,
+              1,
+              -3,
+              4,
+              -1,
+              2,
+              1,
+              -5,
+              4
+            ],
+            "max_sum": 6,
+            "current_sum": 5,
+            "i": 8
+          },
+          "object_table": {
+            "4308475968": {
+              "type": "int",
+              "value": -2,
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308475936": {
+              "type": "int",
+              "value": -3,
+              "mutable": false
+            },
+            "4308476160": {
+              "type": "int",
+              "value": 4,
+              "mutable": false
+            },
+            "4308476000": {
+              "type": "int",
+              "value": -1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4308475872": {
+              "type": "int",
+              "value": -5,
+              "mutable": false
+            },
+            "4338749568": {
+              "type": "list",
+              "value": [
+                4308475968,
+                4308476064,
+                4308475936,
+                4308476160,
+                4308476000,
+                4308476096,
+                4308476064,
+                4308475872,
+                4308476160
+              ],
+              "mutable": true
+            },
+            "4308476224": {
+              "type": "int",
+              "value": 6,
+              "mutable": false
+            },
+            "4308476192": {
+              "type": "int",
+              "value": 5,
+              "mutable": false
+            },
+            "4308476288": {
+              "type": "int",
+              "value": 8,
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "nums": 4338749568,
+            "max_sum": 4308476224,
+            "current_sum": 4308476192,
+            "i": 4308476288
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 6,
+        "current_sum": 5,
+        "i": 8
+      },
+      "delta": {
+        "current_sum": 5
+      },
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4308476192": {
+          "type": "int",
+          "value": 5,
+          "mutable": false
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476224,
+        "current_sum": 4308476192,
+        "i": 4308476288
+      },
+      "steps": [
+        {
+          "step": 237,
+          "event": "before_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        },
+        {
+          "step": 238,
+          "event": "before_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29
+        },
+        {
+          "step": 239,
+          "event": "before_expression",
+          "focus": "max_sum",
+          "node_id": 36
+        },
+        {
+          "step": 240,
+          "event": "after_expression",
+          "focus": "max_sum",
+          "node_id": 36,
+          "value": 6
+        },
+        {
+          "step": 241,
+          "event": "before_expression",
+          "focus": "current_sum",
+          "node_id": 37
+        },
+        {
+          "step": 242,
+          "event": "after_expression",
+          "focus": "current_sum",
+          "node_id": 37,
+          "value": 5
+        },
+        {
+          "step": 243,
+          "event": "after_expression",
+          "focus": "max(max_sum, current_sum)",
+          "node_id": 29,
+          "value": 6
+        },
+        {
+          "step": 244,
+          "event": "after_statement",
+          "focus": "max_sum = max(max_sum, current_sum)",
+          "node_id": 15
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 6,
+        "current_sum": 5,
+        "i": 8
+      },
+      "delta": null,
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4308476192": {
+          "type": "int",
+          "value": 5,
+          "mutable": false
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476224,
+        "current_sum": 4308476192,
+        "i": 4308476288
+      },
+      "steps": [
+        {
+          "step": 245,
+          "event": "after_statement",
+          "focus": "for i in range(1, len(nums)):\n        current_sum = max(nums[i], current_sum + nums[i])\n        max_sum = max(max_sum, current_sum)",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "max_sum": 6,
+        "current_sum": 5,
+        "i": 8
+      },
+      "delta": null,
+      "object_table": {
+        "4308475968": {
+          "type": "int",
+          "value": -2,
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308475936": {
+          "type": "int",
+          "value": -3,
+          "mutable": false
+        },
+        "4308476160": {
+          "type": "int",
+          "value": 4,
+          "mutable": false
+        },
+        "4308476000": {
+          "type": "int",
+          "value": -1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4308475872": {
+          "type": "int",
+          "value": -5,
+          "mutable": false
+        },
+        "4338749568": {
+          "type": "list",
+          "value": [
+            4308475968,
+            4308476064,
+            4308475936,
+            4308476160,
+            4308476000,
+            4308476096,
+            4308476064,
+            4308475872,
+            4308476160
+          ],
+          "mutable": true
+        },
+        "4308476224": {
+          "type": "int",
+          "value": 6,
+          "mutable": false
+        },
+        "4308476192": {
+          "type": "int",
+          "value": 5,
+          "mutable": false
+        },
+        "4308476288": {
+          "type": "int",
+          "value": 8,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "nums": 4338749568,
+        "max_sum": 4308476224,
+        "current_sum": 4308476192,
+        "i": 4308476288
+      },
+      "steps": [
+        {
+          "step": 246,
+          "event": "before_statement",
+          "focus": "return max_sum",
+          "node_id": 6
+        },
+        {
+          "step": 247,
+          "event": "before_expression",
+          "focus": "max_sum",
+          "node_id": 16
+        },
+        {
+          "step": 248,
+          "event": "after_expression",
+          "focus": "max_sum",
+          "node_id": 16,
+          "value": 6
+        }
+      ]
+    }
+  ],
+  "result": 6
+}

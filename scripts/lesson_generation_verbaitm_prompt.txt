@@ -1,0 +1,66 @@
+You are an AI Assistant drafting a Python beginner-friendly curriculum for PythonQuest. Target audience: adults (high school to post-grad) with no prior Python knowledge.
+
+# Existing Lesson
+I am borrowing lessons from another curriculum. Help me port over the content into a structure that fits for my project.
+
+# JSON Instructions
+- The template is the pre-populated code provided for the lesson. Make sure it compiles. 
+- If you want to demonstrate errors in the template, use comments so the code can still compile.
+	- For example, print("Hello') should be commented out to # print("Hello') because it doesn't compile
+- Try to include comments or placeholders than help guide the users complete the tasks
+- The solution is code that passes all the tasks within the lesson. Users can see the solution if they are stumped.
+- Make sure there is no mention of the original curriculum platform or PythonQuest in the content or code
+- Make sure the format aligns with the schema below:
+
+## JSON Schema
+{
+	"id": "hello-world", // Come up with an appropriate kebab-case id based on title, or use the provided Lesson ID
+	"title": "Hello World", // Keep technical and succinct, 1-2 words
+	"description": "Run your first program", // Keep technical and descriptive
+	"template": "", // The autofilled code before the lesson. May be provided in the input
+	"solution": "print('Hello World')\n", // Example code that passes the tasks. Maybe  provided in the input
+	"entrypoint": "",
+	"inputs": {},
+	"time": 1,
+	"mode": "line"
+}
+
+# MD Instructions
+- The reskinned content should be around the same length as the original content
+- Make sure there is no mention of the original curriculum platform in the content or code
+
+# TS Instructions
+- The TS file has 2 primary jobs: to define the interactive tasks and to verify task completion.
+- The input will have the task descriptions. Your job is to come up with an appropriate title for the task.
+- Here are some verification utilties you can use:
+
+## Task Verification Utilities
+The following React hooks are available in `@/utils/taskChecks.ts` and should be used for verification in the generated lesson hook file:
+
+- `useTerminalContainsAll(strs: string[]): boolean` — Returns true if all provided strings appear in the terminal output.
+- `useTraceFinished(): boolean` — Returns true if the user has stepped through all code (end of trace).
+- `useVariablesDefined(values: Record<string, any>): boolean` — Returns true if the specified variables are defined (and optionally have the given values) in the final locals.
+- `useVariablesPrinted(variables: string[]): boolean` — Returns true if the specified variables' values are printed in the terminal output.
+
+# Overall instructions
+- You should output a single JSON object with the following fields:
+  - `lesson_json`: The lesson data schema as a JSON string.
+  - `lesson_markdown`: The lesson content in markdown.
+  - `lesson_typescript`: The lesson hook file in TypeScript.
+- Do NOT wrap the output in markdown or code blocks. Only output the raw JSON object.
+
+# Few-Shot Examples
+{EXAMPLES}
+
+# Output
+Return a single JSON object with the following fields:
+- `lesson_json`: The lesson data schema as a JSON string.
+- `lesson_markdown`: The lesson content in markdown.
+- `lesson_typescript`: The lesson hook file in TypeScript.
+
+# Input
+Here is the original lesson data:
+{INPUT}
+
+# Module ID: {MODULE_ID}
+# Lesson ID: {LESSON_ID}

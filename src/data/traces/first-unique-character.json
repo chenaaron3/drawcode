@@ -1,0 +1,2803 @@
+{
+  "metadata": {
+    "code": "def firstUniqChar(s):\n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i\n    \n    return -1\n",
+    "function": "firstUniqChar",
+    "inputs": {
+      "kwargs": {
+        "s": "'leetcode'"
+      }
+    },
+    "stdout": "",
+    "finalLocals": {
+      "s": "leetcode",
+      "char_count": {
+        "l": 1,
+        "e": 3,
+        "t": 1,
+        "c": 1,
+        "o": 1,
+        "d": 1
+      },
+      "char": "l",
+      "i": 0
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "FunctionDef",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 11,
+          "end_col_offset": 13
+        },
+        "focus": "def firstUniqChar(s):\n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i\n    \n    return -1",
+        "name": "firstUniqChar",
+        "args": {
+          "node_id": 2,
+          "children_node_ids": [
+            7
+          ],
+          "type": "arguments",
+          "parent_node_id": 1,
+          "posonlyargs": [],
+          "args": [
+            {
+              "node_id": 7,
+              "children_node_ids": [],
+              "type": "arg",
+              "parent_node_id": 2,
+              "location": {
+                "lineno": 1,
+                "col_offset": 18,
+                "end_lineno": 1,
+                "end_col_offset": 19
+              },
+              "focus": "s",
+              "arg": "s"
+            }
+          ],
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "defaults": []
+        },
+        "body": [
+          {
+            "node_id": 3,
+            "children_node_ids": [
+              8,
+              9
+            ],
+            "type": "Assign",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 4,
+              "end_lineno": 2,
+              "end_col_offset": 19
+            },
+            "focus": "char_count = {}",
+            "targets": [
+              {
+                "node_id": 8,
+                "children_node_ids": [
+                  17
+                ],
+                "type": "Name",
+                "parent_node_id": 3,
+                "location": {
+                  "lineno": 2,
+                  "col_offset": 4,
+                  "end_lineno": 2,
+                  "end_col_offset": 14
+                },
+                "focus": "char_count",
+                "id": "char_count",
+                "ctx": {
+                  "node_id": 17,
+                  "children_node_ids": [],
+                  "type": "Store",
+                  "parent_node_id": 8
+                }
+              }
+            ],
+            "value": {
+              "node_id": 9,
+              "children_node_ids": [],
+              "type": "Dict",
+              "parent_node_id": 3,
+              "location": {
+                "lineno": 2,
+                "col_offset": 17,
+                "end_lineno": 2,
+                "end_col_offset": 19
+              },
+              "focus": "{}",
+              "keys": [],
+              "values": []
+            }
+          },
+          {
+            "node_id": 4,
+            "children_node_ids": [
+              10,
+              11,
+              12
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 4,
+              "col_offset": 4,
+              "end_lineno": 5,
+              "end_col_offset": 54
+            },
+            "focus": "for char in s:\n        char_count[char] = char_count.get(char, 0) + 1",
+            "target": {
+              "node_id": 10,
+              "children_node_ids": [
+                17
+              ],
+              "type": "Name",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 4,
+                "col_offset": 8,
+                "end_lineno": 4,
+                "end_col_offset": 12
+              },
+              "focus": "char",
+              "id": "char",
+              "ctx": {
+                "node_id": 17,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 10
+              }
+            },
+            "iter": {
+              "node_id": 11,
+              "children_node_ids": [
+                18
+              ],
+              "type": "Name",
+              "parent_node_id": 4,
+              "location": {
+                "lineno": 4,
+                "col_offset": 16,
+                "end_lineno": 4,
+                "end_col_offset": 17
+              },
+              "focus": "s",
+              "id": "s",
+              "ctx": {
+                "node_id": 18,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 11
+              }
+            },
+            "body": [
+              {
+                "node_id": 12,
+                "children_node_ids": [
+                  19,
+                  20
+                ],
+                "type": "Assign",
+                "parent_node_id": 4,
+                "location": {
+                  "lineno": 5,
+                  "col_offset": 8,
+                  "end_lineno": 5,
+                  "end_col_offset": 54
+                },
+                "focus": "char_count[char] = char_count.get(char, 0) + 1",
+                "targets": [
+                  {
+                    "node_id": 19,
+                    "children_node_ids": [
+                      29,
+                      30,
+                      17
+                    ],
+                    "type": "Subscript",
+                    "parent_node_id": 12,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 8,
+                      "end_lineno": 5,
+                      "end_col_offset": 24
+                    },
+                    "focus": "char_count[char]",
+                    "value": {
+                      "node_id": 29,
+                      "children_node_ids": [
+                        18
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 19,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 8,
+                        "end_lineno": 5,
+                        "end_col_offset": 18
+                      },
+                      "focus": "char_count",
+                      "id": "char_count",
+                      "ctx": {
+                        "node_id": 18,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 29
+                      }
+                    },
+                    "slice": {
+                      "node_id": 30,
+                      "children_node_ids": [
+                        18
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 19,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 19,
+                        "end_lineno": 5,
+                        "end_col_offset": 23
+                      },
+                      "focus": "char",
+                      "id": "char",
+                      "ctx": {
+                        "node_id": 18,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 30
+                      }
+                    },
+                    "ctx": {
+                      "node_id": 17,
+                      "children_node_ids": [],
+                      "type": "Store",
+                      "parent_node_id": 19
+                    }
+                  }
+                ],
+                "value": {
+                  "node_id": 20,
+                  "children_node_ids": [
+                    31,
+                    32,
+                    33
+                  ],
+                  "type": "BinOp",
+                  "parent_node_id": 12,
+                  "location": {
+                    "lineno": 5,
+                    "col_offset": 27,
+                    "end_lineno": 5,
+                    "end_col_offset": 54
+                  },
+                  "focus": "char_count.get(char, 0) + 1",
+                  "left": {
+                    "node_id": 31,
+                    "children_node_ids": [
+                      38,
+                      39,
+                      40
+                    ],
+                    "type": "Call",
+                    "parent_node_id": 20,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 27,
+                      "end_lineno": 5,
+                      "end_col_offset": 50
+                    },
+                    "focus": "char_count.get(char, 0)",
+                    "func": {
+                      "node_id": 38,
+                      "children_node_ids": [
+                        43,
+                        18
+                      ],
+                      "type": "Attribute",
+                      "parent_node_id": 31,
+                      "location": {
+                        "lineno": 5,
+                        "col_offset": 27,
+                        "end_lineno": 5,
+                        "end_col_offset": 41
+                      },
+                      "focus": "char_count.get",
+                      "value": {
+                        "node_id": 43,
+                        "children_node_ids": [
+                          18
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 38,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 27,
+                          "end_lineno": 5,
+                          "end_col_offset": 37
+                        },
+                        "focus": "char_count",
+                        "id": "char_count",
+                        "ctx": {
+                          "node_id": 18,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 43
+                        }
+                      },
+                      "attr": "get",
+                      "ctx": {
+                        "node_id": 18,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 38
+                      }
+                    },
+                    "args": [
+                      {
+                        "node_id": 39,
+                        "children_node_ids": [
+                          18
+                        ],
+                        "type": "Name",
+                        "parent_node_id": 31,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 42,
+                          "end_lineno": 5,
+                          "end_col_offset": 46
+                        },
+                        "focus": "char",
+                        "id": "char",
+                        "ctx": {
+                          "node_id": 18,
+                          "children_node_ids": [],
+                          "type": "Load",
+                          "parent_node_id": 39
+                        }
+                      },
+                      {
+                        "node_id": 40,
+                        "children_node_ids": [],
+                        "type": "Constant",
+                        "parent_node_id": 31,
+                        "location": {
+                          "lineno": 5,
+                          "col_offset": 48,
+                          "end_lineno": 5,
+                          "end_col_offset": 49
+                        },
+                        "focus": "0",
+                        "value": 0
+                      }
+                    ],
+                    "keywords": []
+                  },
+                  "op": {
+                    "node_id": 32,
+                    "children_node_ids": [],
+                    "type": "Add",
+                    "parent_node_id": 20
+                  },
+                  "right": {
+                    "node_id": 33,
+                    "children_node_ids": [],
+                    "type": "Constant",
+                    "parent_node_id": 20,
+                    "location": {
+                      "lineno": 5,
+                      "col_offset": 53,
+                      "end_lineno": 5,
+                      "end_col_offset": 54
+                    },
+                    "focus": "1",
+                    "value": 1
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              13,
+              14,
+              15
+            ],
+            "type": "For",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 7,
+              "col_offset": 4,
+              "end_lineno": 9,
+              "end_col_offset": 20
+            },
+            "focus": "for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i",
+            "target": {
+              "node_id": 13,
+              "children_node_ids": [
+                21,
+                22,
+                17
+              ],
+              "type": "Tuple",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 7,
+                "col_offset": 8,
+                "end_lineno": 7,
+                "end_col_offset": 15
+              },
+              "focus": "i, char",
+              "elts": [
+                {
+                  "node_id": 21,
+                  "children_node_ids": [
+                    17
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 8,
+                    "end_lineno": 7,
+                    "end_col_offset": 9
+                  },
+                  "focus": "i",
+                  "id": "i",
+                  "ctx": {
+                    "node_id": 17,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 21
+                  }
+                },
+                {
+                  "node_id": 22,
+                  "children_node_ids": [
+                    17
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 13,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 11,
+                    "end_lineno": 7,
+                    "end_col_offset": 15
+                  },
+                  "focus": "char",
+                  "id": "char",
+                  "ctx": {
+                    "node_id": 17,
+                    "children_node_ids": [],
+                    "type": "Store",
+                    "parent_node_id": 22
+                  }
+                }
+              ],
+              "ctx": {
+                "node_id": 17,
+                "children_node_ids": [],
+                "type": "Store",
+                "parent_node_id": 13
+              }
+            },
+            "iter": {
+              "node_id": 14,
+              "children_node_ids": [
+                23,
+                24
+              ],
+              "type": "Call",
+              "parent_node_id": 5,
+              "location": {
+                "lineno": 7,
+                "col_offset": 19,
+                "end_lineno": 7,
+                "end_col_offset": 31
+              },
+              "focus": "enumerate(s)",
+              "func": {
+                "node_id": 23,
+                "children_node_ids": [
+                  18
+                ],
+                "type": "Name",
+                "parent_node_id": 14,
+                "location": {
+                  "lineno": 7,
+                  "col_offset": 19,
+                  "end_lineno": 7,
+                  "end_col_offset": 28
+                },
+                "focus": "enumerate",
+                "id": "enumerate",
+                "ctx": {
+                  "node_id": 18,
+                  "children_node_ids": [],
+                  "type": "Load",
+                  "parent_node_id": 23
+                }
+              },
+              "args": [
+                {
+                  "node_id": 24,
+                  "children_node_ids": [
+                    18
+                  ],
+                  "type": "Name",
+                  "parent_node_id": 14,
+                  "location": {
+                    "lineno": 7,
+                    "col_offset": 29,
+                    "end_lineno": 7,
+                    "end_col_offset": 30
+                  },
+                  "focus": "s",
+                  "id": "s",
+                  "ctx": {
+                    "node_id": 18,
+                    "children_node_ids": [],
+                    "type": "Load",
+                    "parent_node_id": 24
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "node_id": 15,
+                "children_node_ids": [
+                  25,
+                  26
+                ],
+                "type": "If",
+                "parent_node_id": 5,
+                "location": {
+                  "lineno": 8,
+                  "col_offset": 8,
+                  "end_lineno": 9,
+                  "end_col_offset": 20
+                },
+                "focus": "if char_count[char] == 1:\n            return i",
+                "test": {
+                  "node_id": 25,
+                  "children_node_ids": [
+                    34,
+                    35,
+                    36
+                  ],
+                  "type": "Compare",
+                  "parent_node_id": 15,
+                  "location": {
+                    "lineno": 8,
+                    "col_offset": 11,
+                    "end_lineno": 8,
+                    "end_col_offset": 32
+                  },
+                  "focus": "char_count[char] == 1",
+                  "left": {
+                    "node_id": 34,
+                    "children_node_ids": [
+                      41,
+                      42,
+                      18
+                    ],
+                    "type": "Subscript",
+                    "parent_node_id": 25,
+                    "location": {
+                      "lineno": 8,
+                      "col_offset": 11,
+                      "end_lineno": 8,
+                      "end_col_offset": 27
+                    },
+                    "focus": "char_count[char]",
+                    "value": {
+                      "node_id": 41,
+                      "children_node_ids": [
+                        18
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 34,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 11,
+                        "end_lineno": 8,
+                        "end_col_offset": 21
+                      },
+                      "focus": "char_count",
+                      "id": "char_count",
+                      "ctx": {
+                        "node_id": 18,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 41
+                      }
+                    },
+                    "slice": {
+                      "node_id": 42,
+                      "children_node_ids": [
+                        18
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 34,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 22,
+                        "end_lineno": 8,
+                        "end_col_offset": 26
+                      },
+                      "focus": "char",
+                      "id": "char",
+                      "ctx": {
+                        "node_id": 18,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 42
+                      }
+                    },
+                    "ctx": {
+                      "node_id": 18,
+                      "children_node_ids": [],
+                      "type": "Load",
+                      "parent_node_id": 34
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node_id": 35,
+                      "children_node_ids": [],
+                      "type": "Eq",
+                      "parent_node_id": 25
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node_id": 36,
+                      "children_node_ids": [],
+                      "type": "Constant",
+                      "parent_node_id": 25,
+                      "location": {
+                        "lineno": 8,
+                        "col_offset": 31,
+                        "end_lineno": 8,
+                        "end_col_offset": 32
+                      },
+                      "focus": "1",
+                      "value": 1
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "node_id": 26,
+                    "children_node_ids": [
+                      37
+                    ],
+                    "type": "Return",
+                    "parent_node_id": 15,
+                    "location": {
+                      "lineno": 9,
+                      "col_offset": 12,
+                      "end_lineno": 9,
+                      "end_col_offset": 20
+                    },
+                    "focus": "return i",
+                    "value": {
+                      "node_id": 37,
+                      "children_node_ids": [
+                        18
+                      ],
+                      "type": "Name",
+                      "parent_node_id": 26,
+                      "location": {
+                        "lineno": 9,
+                        "col_offset": 19,
+                        "end_lineno": 9,
+                        "end_col_offset": 20
+                      },
+                      "focus": "i",
+                      "id": "i",
+                      "ctx": {
+                        "node_id": 18,
+                        "children_node_ids": [],
+                        "type": "Load",
+                        "parent_node_id": 37
+                      }
+                    }
+                  }
+                ],
+                "orelse": []
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "node_id": 6,
+            "children_node_ids": [
+              16
+            ],
+            "type": "Return",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 11,
+              "col_offset": 4,
+              "end_lineno": 11,
+              "end_col_offset": 13
+            },
+            "focus": "return -1",
+            "value": {
+              "node_id": 16,
+              "children_node_ids": [
+                27,
+                28
+              ],
+              "type": "UnaryOp",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 11,
+                "col_offset": 11,
+                "end_lineno": 11,
+                "end_col_offset": 13
+              },
+              "focus": "-1",
+              "op": {
+                "node_id": 27,
+                "children_node_ids": [],
+                "type": "USub",
+                "parent_node_id": 16
+              },
+              "operand": {
+                "node_id": 28,
+                "children_node_ids": [],
+                "type": "Constant",
+                "parent_node_id": 16,
+                "location": {
+                  "lineno": 11,
+                  "col_offset": 12,
+                  "end_lineno": 11,
+                  "end_col_offset": 13
+                },
+                "focus": "1",
+                "value": 1
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [
+    {
+      "container": "s",
+      "cursor": "char",
+      "type": "value_index",
+      "node_id": 4
+    },
+    {
+      "container": "s",
+      "cursor": "i",
+      "type": "key_index",
+      "node_id": 5
+    },
+    {
+      "container": "s",
+      "cursor": "char",
+      "type": "value_index",
+      "node_id": 5
+    },
+    {
+      "container": "char_count",
+      "cursor": "char",
+      "type": "key_assignment",
+      "node_id": 19
+    },
+    {
+      "container": "char_count",
+      "cursor": "char",
+      "type": "key_access",
+      "node_id": 34
+    }
+  ],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def firstUniqChar(s):\n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i\n    \n    return -1",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def firstUniqChar(s):\n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i\n    \n    return -1",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "s": "leetcode"
+      },
+      "delta": {
+        "s": "leetcode"
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "char_count = {}",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "{}",
+          "node_id": 9
+        },
+        {
+          "step": 4,
+          "event": "after_expression",
+          "focus": "{}",
+          "node_id": 9,
+          "value": {}
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "char_count = {}",
+          "node_id": 3,
+          "locals": {
+            "s": "leetcode",
+            "char_count": {}
+          },
+          "object_table": {
+            "4339339824": {
+              "type": "str",
+              "value": "leetcode",
+              "mutable": false
+            },
+            "4382364032": {
+              "type": "dict",
+              "value": {},
+              "mutable": true
+            }
+          },
+          "var_table": {
+            "s": 4339339824,
+            "char_count": 4382364032
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {}
+      },
+      "delta": {
+        "char_count": {}
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {},
+          "mutable": true
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "for char in s:\n        char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 4
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 11
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 11,
+          "value": "leetcode"
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {},
+        "char": "l"
+      },
+      "delta": {
+        "char": "l"
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {},
+          "mutable": true
+        },
+        "4308541160": {
+          "type": "str",
+          "value": "l",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308541160
+      },
+      "steps": [
+        {
+          "step": 9,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 38
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 39
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 39,
+          "value": "l"
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31,
+          "value": 0
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20,
+          "value": 1
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 29
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 29,
+          "value": {}
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 30
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 30,
+          "value": "l"
+        },
+        {
+          "step": 21,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12,
+          "locals": {
+            "s": "leetcode",
+            "char_count": {
+              "l": 1
+            },
+            "char": "l"
+          },
+          "object_table": {
+            "4339339824": {
+              "type": "str",
+              "value": "leetcode",
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4382364032": {
+              "type": "dict",
+              "value": {
+                "l": 4308476064
+              },
+              "mutable": true
+            },
+            "4308541160": {
+              "type": "str",
+              "value": "l",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1
+        },
+        "char": "e"
+      },
+      "delta": {
+        "char_count": {
+          "l": 1
+        },
+        "char": "e"
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064
+          },
+          "mutable": true
+        },
+        "4308540824": {
+          "type": "str",
+          "value": "e",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308540824
+      },
+      "steps": [
+        {
+          "step": 22,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 38
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 39
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 39,
+          "value": "e"
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31,
+          "value": 0
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20,
+          "value": 1
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 29
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 29,
+          "value": {
+            "l": 1
+          }
+        },
+        {
+          "step": 32,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 30
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 30,
+          "value": "e"
+        },
+        {
+          "step": 34,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12,
+          "locals": {
+            "s": "leetcode",
+            "char_count": {
+              "l": 1,
+              "e": 1
+            },
+            "char": "e"
+          },
+          "object_table": {
+            "4339339824": {
+              "type": "str",
+              "value": "leetcode",
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4382364032": {
+              "type": "dict",
+              "value": {
+                "l": 4308476064,
+                "e": 4308476064
+              },
+              "mutable": true
+            },
+            "4308540824": {
+              "type": "str",
+              "value": "e",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 1
+        },
+        "char": "e"
+      },
+      "delta": {
+        "char_count": {
+          "e": 1
+        }
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476064
+          },
+          "mutable": true
+        },
+        "4308540824": {
+          "type": "str",
+          "value": "e",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308540824
+      },
+      "steps": [
+        {
+          "step": 35,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 38
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 39
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 39,
+          "value": "e"
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20,
+          "value": 2
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 29
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 29,
+          "value": {
+            "l": 1,
+            "e": 1
+          }
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 30
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 30,
+          "value": "e"
+        },
+        {
+          "step": 47,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12,
+          "locals": {
+            "s": "leetcode",
+            "char_count": {
+              "l": 1,
+              "e": 2
+            },
+            "char": "e"
+          },
+          "object_table": {
+            "4339339824": {
+              "type": "str",
+              "value": "leetcode",
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4382364032": {
+              "type": "dict",
+              "value": {
+                "l": 4308476064,
+                "e": 4308476096
+              },
+              "mutable": true
+            },
+            "4308540824": {
+              "type": "str",
+              "value": "e",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 2
+        },
+        "char": "t"
+      },
+      "delta": {
+        "char_count": {
+          "e": 2
+        },
+        "char": "t"
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476096
+          },
+          "mutable": true
+        },
+        "4308541544": {
+          "type": "str",
+          "value": "t",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308541544
+      },
+      "steps": [
+        {
+          "step": 48,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 38
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 39
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 39,
+          "value": "t"
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31,
+          "value": 0
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20,
+          "value": 1
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 29
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 29,
+          "value": {
+            "l": 1,
+            "e": 2
+          }
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 30
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 30,
+          "value": "t"
+        },
+        {
+          "step": 60,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12,
+          "locals": {
+            "s": "leetcode",
+            "char_count": {
+              "l": 1,
+              "e": 2,
+              "t": 1
+            },
+            "char": "t"
+          },
+          "object_table": {
+            "4339339824": {
+              "type": "str",
+              "value": "leetcode",
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4382364032": {
+              "type": "dict",
+              "value": {
+                "l": 4308476064,
+                "e": 4308476096,
+                "t": 4308476064
+              },
+              "mutable": true
+            },
+            "4308541544": {
+              "type": "str",
+              "value": "t",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 2,
+          "t": 1
+        },
+        "char": "c"
+      },
+      "delta": {
+        "char_count": {
+          "t": 1
+        },
+        "char": "c"
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476096,
+            "t": 4308476064
+          },
+          "mutable": true
+        },
+        "4308540728": {
+          "type": "str",
+          "value": "c",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308540728
+      },
+      "steps": [
+        {
+          "step": 61,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31
+        },
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 38
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 39
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 39,
+          "value": "c"
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31,
+          "value": 0
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20,
+          "value": 1
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 29
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 29,
+          "value": {
+            "l": 1,
+            "e": 2,
+            "t": 1
+          }
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 30
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 30,
+          "value": "c"
+        },
+        {
+          "step": 73,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12,
+          "locals": {
+            "s": "leetcode",
+            "char_count": {
+              "l": 1,
+              "e": 2,
+              "t": 1,
+              "c": 1
+            },
+            "char": "c"
+          },
+          "object_table": {
+            "4339339824": {
+              "type": "str",
+              "value": "leetcode",
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4382364032": {
+              "type": "dict",
+              "value": {
+                "l": 4308476064,
+                "e": 4308476096,
+                "t": 4308476064,
+                "c": 4308476064
+              },
+              "mutable": true
+            },
+            "4308540728": {
+              "type": "str",
+              "value": "c",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 2,
+          "t": 1,
+          "c": 1
+        },
+        "char": "o"
+      },
+      "delta": {
+        "char_count": {
+          "c": 1
+        },
+        "char": "o"
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476096,
+            "t": 4308476064,
+            "c": 4308476064
+          },
+          "mutable": true
+        },
+        "4308541304": {
+          "type": "str",
+          "value": "o",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308541304
+      },
+      "steps": [
+        {
+          "step": 74,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20
+        },
+        {
+          "step": 76,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31
+        },
+        {
+          "step": 77,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 38
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 39
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 39,
+          "value": "o"
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31,
+          "value": 0
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20,
+          "value": 1
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 29
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 29,
+          "value": {
+            "l": 1,
+            "e": 2,
+            "t": 1,
+            "c": 1
+          }
+        },
+        {
+          "step": 84,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 30
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 30,
+          "value": "o"
+        },
+        {
+          "step": 86,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12,
+          "locals": {
+            "s": "leetcode",
+            "char_count": {
+              "l": 1,
+              "e": 2,
+              "t": 1,
+              "c": 1,
+              "o": 1
+            },
+            "char": "o"
+          },
+          "object_table": {
+            "4339339824": {
+              "type": "str",
+              "value": "leetcode",
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4382364032": {
+              "type": "dict",
+              "value": {
+                "l": 4308476064,
+                "e": 4308476096,
+                "t": 4308476064,
+                "c": 4308476064,
+                "o": 4308476064
+              },
+              "mutable": true
+            },
+            "4308541304": {
+              "type": "str",
+              "value": "o",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 2,
+          "t": 1,
+          "c": 1,
+          "o": 1
+        },
+        "char": "d"
+      },
+      "delta": {
+        "char_count": {
+          "o": 1
+        },
+        "char": "d"
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476096,
+            "t": 4308476064,
+            "c": 4308476064,
+            "o": 4308476064
+          },
+          "mutable": true
+        },
+        "4308540776": {
+          "type": "str",
+          "value": "d",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308540776
+      },
+      "steps": [
+        {
+          "step": 87,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 38
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 39
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 39,
+          "value": "d"
+        },
+        {
+          "step": 93,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31,
+          "value": 0
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20,
+          "value": 1
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 29
+        },
+        {
+          "step": 96,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 29,
+          "value": {
+            "l": 1,
+            "e": 2,
+            "t": 1,
+            "c": 1,
+            "o": 1
+          }
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 30
+        },
+        {
+          "step": 98,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 30,
+          "value": "d"
+        },
+        {
+          "step": 99,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12,
+          "locals": {
+            "s": "leetcode",
+            "char_count": {
+              "l": 1,
+              "e": 2,
+              "t": 1,
+              "c": 1,
+              "o": 1,
+              "d": 1
+            },
+            "char": "d"
+          },
+          "object_table": {
+            "4339339824": {
+              "type": "str",
+              "value": "leetcode",
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476096": {
+              "type": "int",
+              "value": 2,
+              "mutable": false
+            },
+            "4382364032": {
+              "type": "dict",
+              "value": {
+                "l": 4308476064,
+                "e": 4308476096,
+                "t": 4308476064,
+                "c": 4308476064,
+                "o": 4308476064,
+                "d": 4308476064
+              },
+              "mutable": true
+            },
+            "4308540776": {
+              "type": "str",
+              "value": "d",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 2,
+          "t": 1,
+          "c": 1,
+          "o": 1,
+          "d": 1
+        },
+        "char": "e"
+      },
+      "delta": {
+        "char_count": {
+          "d": 1
+        },
+        "char": "e"
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476096": {
+          "type": "int",
+          "value": 2,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476096,
+            "t": 4308476064,
+            "c": 4308476064,
+            "o": 4308476064,
+            "d": 4308476064
+          },
+          "mutable": true
+        },
+        "4308540824": {
+          "type": "str",
+          "value": "e",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308540824
+      },
+      "steps": [
+        {
+          "step": 100,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 38
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 39
+        },
+        {
+          "step": 105,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 39,
+          "value": "e"
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 31,
+          "value": 2
+        },
+        {
+          "step": 107,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 20,
+          "value": 3
+        },
+        {
+          "step": 108,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 29
+        },
+        {
+          "step": 109,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 29,
+          "value": {
+            "l": 1,
+            "e": 2,
+            "t": 1,
+            "c": 1,
+            "o": 1,
+            "d": 1
+          }
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 30
+        },
+        {
+          "step": 111,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 30,
+          "value": "e"
+        },
+        {
+          "step": 112,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 12,
+          "locals": {
+            "s": "leetcode",
+            "char_count": {
+              "l": 1,
+              "e": 3,
+              "t": 1,
+              "c": 1,
+              "o": 1,
+              "d": 1
+            },
+            "char": "e"
+          },
+          "object_table": {
+            "4339339824": {
+              "type": "str",
+              "value": "leetcode",
+              "mutable": false
+            },
+            "4308476064": {
+              "type": "int",
+              "value": 1,
+              "mutable": false
+            },
+            "4308476128": {
+              "type": "int",
+              "value": 3,
+              "mutable": false
+            },
+            "4382364032": {
+              "type": "dict",
+              "value": {
+                "l": 4308476064,
+                "e": 4308476128,
+                "t": 4308476064,
+                "c": 4308476064,
+                "o": 4308476064,
+                "d": 4308476064
+              },
+              "mutable": true
+            },
+            "4308540824": {
+              "type": "str",
+              "value": "e",
+              "mutable": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 3,
+          "t": 1,
+          "c": 1,
+          "o": 1,
+          "d": 1
+        },
+        "char": "e"
+      },
+      "delta": {
+        "char_count": {
+          "e": 3
+        }
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476128,
+            "t": 4308476064,
+            "c": 4308476064,
+            "o": 4308476064,
+            "d": 4308476064
+          },
+          "mutable": true
+        },
+        "4308540824": {
+          "type": "str",
+          "value": "e",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308540824
+      },
+      "steps": [
+        {
+          "step": 113,
+          "event": "after_statement",
+          "focus": "for char in s:\n        char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 3,
+          "t": 1,
+          "c": 1,
+          "o": 1,
+          "d": 1
+        },
+        "char": "e"
+      },
+      "delta": null,
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476128,
+            "t": 4308476064,
+            "c": 4308476064,
+            "o": 4308476064,
+            "d": 4308476064
+          },
+          "mutable": true
+        },
+        "4308540824": {
+          "type": "str",
+          "value": "e",
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308540824
+      },
+      "steps": [
+        {
+          "step": 114,
+          "event": "before_statement",
+          "focus": "for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i",
+          "node_id": 5
+        },
+        {
+          "step": 115,
+          "event": "before_expression",
+          "focus": "enumerate(s)",
+          "node_id": 14
+        },
+        {
+          "step": 116,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 24
+        },
+        {
+          "step": 117,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 24,
+          "value": "leetcode"
+        },
+        {
+          "step": 118,
+          "event": "after_expression",
+          "focus": "enumerate(s)",
+          "node_id": 14,
+          "value": [
+            [
+              0,
+              "l"
+            ],
+            [
+              1,
+              "e"
+            ],
+            [
+              2,
+              "e"
+            ],
+            [
+              3,
+              "t"
+            ],
+            [
+              4,
+              "c"
+            ],
+            [
+              5,
+              "o"
+            ],
+            [
+              6,
+              "d"
+            ],
+            [
+              7,
+              "e"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 3,
+          "t": 1,
+          "c": 1,
+          "o": 1,
+          "d": 1
+        },
+        "char": "l",
+        "i": 0
+      },
+      "delta": {
+        "char": "l",
+        "i": 0
+      },
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476128,
+            "t": 4308476064,
+            "c": 4308476064,
+            "o": 4308476064,
+            "d": 4308476064
+          },
+          "mutable": true
+        },
+        "4308541160": {
+          "type": "str",
+          "value": "l",
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308541160,
+        "i": 4308476032
+      },
+      "steps": [
+        {
+          "step": 119,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 1:\n            return i",
+          "node_id": 15
+        },
+        {
+          "step": 120,
+          "event": "before_expression",
+          "focus": "char_count[char] == 1",
+          "node_id": 25
+        },
+        {
+          "step": 121,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 34
+        },
+        {
+          "step": 122,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 41
+        },
+        {
+          "step": 123,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 41,
+          "value": {
+            "l": 1,
+            "e": 3,
+            "t": 1,
+            "c": 1,
+            "o": 1,
+            "d": 1
+          }
+        },
+        {
+          "step": 124,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 42
+        },
+        {
+          "step": 125,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 42,
+          "value": "l"
+        },
+        {
+          "step": 126,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 34,
+          "value": 1
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "char_count[char] == 1",
+          "node_id": 25,
+          "value": true
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "s": "leetcode",
+        "char_count": {
+          "l": 1,
+          "e": 3,
+          "t": 1,
+          "c": 1,
+          "o": 1,
+          "d": 1
+        },
+        "char": "l",
+        "i": 0
+      },
+      "delta": null,
+      "object_table": {
+        "4339339824": {
+          "type": "str",
+          "value": "leetcode",
+          "mutable": false
+        },
+        "4308476064": {
+          "type": "int",
+          "value": 1,
+          "mutable": false
+        },
+        "4308476128": {
+          "type": "int",
+          "value": 3,
+          "mutable": false
+        },
+        "4382364032": {
+          "type": "dict",
+          "value": {
+            "l": 4308476064,
+            "e": 4308476128,
+            "t": 4308476064,
+            "c": 4308476064,
+            "o": 4308476064,
+            "d": 4308476064
+          },
+          "mutable": true
+        },
+        "4308541160": {
+          "type": "str",
+          "value": "l",
+          "mutable": false
+        },
+        "4308476032": {
+          "type": "int",
+          "value": 0,
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "s": 4339339824,
+        "char_count": 4382364032,
+        "char": 4308541160,
+        "i": 4308476032
+      },
+      "steps": [
+        {
+          "step": 128,
+          "event": "before_statement",
+          "focus": "return i",
+          "node_id": 26
+        },
+        {
+          "step": 129,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 37
+        },
+        {
+          "step": 130,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 37,
+          "value": 0
+        }
+      ]
+    }
+  ],
+  "result": 0
+}

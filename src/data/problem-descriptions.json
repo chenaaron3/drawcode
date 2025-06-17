@@ -1,0 +1,1198 @@
+{
+  "remove-duplicates-from-sorted-array": {
+    "link": "https://leetcode.com/problems/remove-duplicates-from-sorted-array",
+    "questionId": "26",
+    "questionFrontendId": "26",
+    "questionTitle": "Remove Duplicates from Sorted Array",
+    "titleSlug": "remove-duplicates-from-sorted-array",
+    "difficulty": "Easy",
+    "isPaidOnly": false,
+    "question": "<p>Given an integer array <code>nums</code> sorted in <strong>non-decreasing order</strong>, remove the duplicates <a href=\"https://en.wikipedia.org/wiki/In-place_algorithm\" target=\"_blank\"><strong>in-place</strong></a> such that each unique element appears only <strong>once</strong>. The <strong>relative order</strong> of the elements should be kept the <strong>same</strong>. Then return <em>the number of unique elements in </em><code>nums</code>.</p>\n\n<p>Consider the number of unique elements of <code>nums</code> to be <code>k</code>, to get accepted, you need to do the following things:</p>\n\n<ul>\n\t<li>Change the array <code>nums</code> such that the first <code>k</code> elements of <code>nums</code> contain the unique elements in the order they were present in <code>nums</code> initially. The remaining elements of <code>nums</code> are not important as well as the size of <code>nums</code>.</li>\n\t<li>Return <code>k</code>.</li>\n</ul>\n\n<p><strong>Custom Judge:</strong></p>\n\n<p>The judge will test your solution with the following code:</p>\n\n<pre>\nint[] nums = [...]; // Input array\nint[] expectedNums = [...]; // The expected answer with correct length\n\nint k = removeDuplicates(nums); // Calls your implementation\n\nassert k == expectedNums.length;\nfor (int i = 0; i &lt; k; i++) {\n    assert nums[i] == expectedNums[i];\n}\n</pre>\n\n<p>If all assertions pass, then your solution will be <strong>accepted</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,1,2]\n<strong>Output:</strong> 2, nums = [1,2,_]\n<strong>Explanation:</strong> Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,0,1,1,1,2,2,3,3,4]\n<strong>Output:</strong> 5, nums = [0,1,2,3,4,_,_,_,_,_]\n<strong>Explanation:</strong> Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores).\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li><code>-100 &lt;= nums[i] &lt;= 100</code></li>\n\t<li><code>nums</code> is sorted in <strong>non-decreasing</strong> order.</li>\n</ul>\n",
+    "exampleTestcases": "[1,1,2]\n[0,0,1,1,1,2,2,3,3,4]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "In this problem, the key point to focus on is the input array being sorted. As far as duplicate elements are concerned, what is their positioning in the array when the given array is sorted? Look at the image below for the answer. If we know the position of one of the elements, do we also know the positioning of all the duplicate elements?\r\n\r\n<br>\r\n<img src=\"https://assets.leetcode.com/uploads/2019/10/20/hint_rem_dup.png\" width=\"500\"/>",
+      "We need to modify the array in-place and the size of the final array would potentially be smaller than the size of the input array. So, we ought to use a two-pointer approach here. One, that would keep track of the current element in the original array and another one for just the unique elements.",
+      "Essentially, once an element is encountered, you simply need to <b>bypass</b> its duplicates and move on to the next unique element."
+    ],
+    "solution": {
+      "id": "1562",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 16736,
+    "dislikes": 19811,
+    "similarQuestions": "[{\"title\": \"Remove Element\", \"titleSlug\": \"remove-element\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Remove Duplicates from Sorted Array II\", \"titleSlug\": \"remove-duplicates-from-sorted-array-ii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Apply Operations to an Array\", \"titleSlug\": \"apply-operations-to-an-array\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Sum of Distances\", \"titleSlug\": \"sum-of-distances\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "two-sum": {
+    "link": "https://leetcode.com/problems/two-sum",
+    "questionId": "1",
+    "questionFrontendId": "1",
+    "questionTitle": "Two Sum",
+    "titleSlug": "two-sum",
+    "difficulty": "Easy",
+    "isPaidOnly": false,
+    "question": "<p>Given an array of integers <code>nums</code>&nbsp;and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to <code>target</code></em>.</p>\n\n<p>You may assume that each input would have <strong><em>exactly</em> one solution</strong>, and you may not use the <em>same</em> element twice.</p>\n\n<p>You can return the answer in any order.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,7,11,15], target = 9\n<strong>Output:</strong> [0,1]\n<strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,2,4], target = 6\n<strong>Output:</strong> [1,2]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,3], target = 6\n<strong>Output:</strong> [0,1]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= target &lt;= 10<sup>9</sup></code></li>\n\t<li><strong>Only one valid answer exists.</strong></li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow-up:&nbsp;</strong>Can you come up with an algorithm that is less than <code>O(n<sup>2</sup>)</code><font face=\"monospace\">&nbsp;</font>time complexity?",
+    "exampleTestcases": "[2,7,11,15]\n9\n[3,2,4]\n6\n[3,3]\n6",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "A really brute force way would be to search for all possible pairs of numbers but that would be too slow. Again, it's best to try out brute force solutions for just for completeness. It is from these brute force solutions that you can come up with optimizations.",
+      "So, if we fix one of the numbers, say <code>x</code>, we have to scan the entire array to find the next number <code>y</code> which is <code>value - x</code> where value is the input parameter. Can we change our array somehow so that this search becomes faster?",
+      "The second train of thought is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?"
+    ],
+    "solution": {
+      "id": "7",
+      "canSeeDetail": true,
+      "paidOnly": false,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": false
+    },
+    "companyTagStats": null,
+    "likes": 61836,
+    "dislikes": 2228,
+    "similarQuestions": "[{\"title\": \"3Sum\", \"titleSlug\": \"3sum\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"4Sum\", \"titleSlug\": \"4sum\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Two Sum II - Input Array Is Sorted\", \"titleSlug\": \"two-sum-ii-input-array-is-sorted\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Two Sum III - Data structure design\", \"titleSlug\": \"two-sum-iii-data-structure-design\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Subarray Sum Equals K\", \"titleSlug\": \"subarray-sum-equals-k\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Two Sum IV - Input is a BST\", \"titleSlug\": \"two-sum-iv-input-is-a-bst\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Two Sum Less Than K\", \"titleSlug\": \"two-sum-less-than-k\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Max Number of K-Sum Pairs\", \"titleSlug\": \"max-number-of-k-sum-pairs\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Count Good Meals\", \"titleSlug\": \"count-good-meals\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Count Number of Pairs With Absolute Difference K\", \"titleSlug\": \"count-number-of-pairs-with-absolute-difference-k\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Number of Pairs of Strings With Concatenation Equal to Target\", \"titleSlug\": \"number-of-pairs-of-strings-with-concatenation-equal-to-target\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find All K-Distant Indices in an Array\", \"titleSlug\": \"find-all-k-distant-indices-in-an-array\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"First Letter to Appear Twice\", \"titleSlug\": \"first-letter-to-appear-twice\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Number of Excellent Pairs\", \"titleSlug\": \"number-of-excellent-pairs\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Number of Arithmetic Triplets\", \"titleSlug\": \"number-of-arithmetic-triplets\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Node With Highest Edge Score\", \"titleSlug\": \"node-with-highest-edge-score\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Check Distances Between Same Letters\", \"titleSlug\": \"check-distances-between-same-letters\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Find Subarrays With Equal Sum\", \"titleSlug\": \"find-subarrays-with-equal-sum\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Largest Positive Integer That Exists With Its Negative\", \"titleSlug\": \"largest-positive-integer-that-exists-with-its-negative\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Number of Distinct Averages\", \"titleSlug\": \"number-of-distinct-averages\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Count Pairs Whose Sum is Less than Target\", \"titleSlug\": \"count-pairs-whose-sum-is-less-than-target\", \"difficulty\": \"Easy\", \"translatedTitle\": null}]"
+  },
+  "best-time-to-buy-and-sell-stock-ii": {
+    "link": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii",
+    "questionId": "122",
+    "questionFrontendId": "122",
+    "questionTitle": "Best Time to Buy and Sell Stock II",
+    "titleSlug": "best-time-to-buy-and-sell-stock-ii",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>You are given an integer array <code>prices</code> where <code>prices[i]</code> is the price of a given stock on the <code>i<sup>th</sup></code> day.</p>\n\n<p>On each day, you may decide to buy and/or sell the stock. You can only hold <strong>at most one</strong> share of the stock at any time. However, you can buy it then immediately sell it on the <strong>same day</strong>.</p>\n\n<p>Find and return <em>the <strong>maximum</strong> profit you can achieve</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> prices = [7,1,5,3,6,4]\n<strong>Output:</strong> 7\n<strong>Explanation:</strong> Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.\nThen buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.\nTotal profit is 4 + 3 = 7.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> prices = [1,2,3,4,5]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.\nTotal profit is 4.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> prices = [7,6,4,3,1]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= prices.length &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= prices[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[7,1,5,3,6,4]\n[1,2,3,4,5]\n[7,6,4,3,1]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "53",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 14501,
+    "dislikes": 2765,
+    "similarQuestions": "[{\"title\": \"Best Time to Buy and Sell Stock\", \"titleSlug\": \"best-time-to-buy-and-sell-stock\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Best Time to Buy and Sell Stock III\", \"titleSlug\": \"best-time-to-buy-and-sell-stock-iii\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Best Time to Buy and Sell Stock IV\", \"titleSlug\": \"best-time-to-buy-and-sell-stock-iv\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Best Time to Buy and Sell Stock with Cooldown\", \"titleSlug\": \"best-time-to-buy-and-sell-stock-with-cooldown\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Best Time to Buy and Sell Stock with Transaction Fee\", \"titleSlug\": \"best-time-to-buy-and-sell-stock-with-transaction-fee\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximum Profit From Trading Stocks\", \"titleSlug\": \"maximum-profit-from-trading-stocks\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "rotate-array": {
+    "link": "https://leetcode.com/problems/rotate-array",
+    "questionId": "189",
+    "questionFrontendId": "189",
+    "questionTitle": "Rotate Array",
+    "titleSlug": "rotate-array",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given an integer array <code>nums</code>, rotate the array to the right by <code>k</code> steps, where <code>k</code> is non-negative.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,5,6,7], k = 3\n<strong>Output:</strong> [5,6,7,1,2,3,4]\n<strong>Explanation:</strong>\nrotate 1 steps to the right: [7,1,2,3,4,5,6]\nrotate 2 steps to the right: [6,7,1,2,3,4,5]\nrotate 3 steps to the right: [5,6,7,1,2,3,4]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,-100,3,99], k = 2\n<strong>Output:</strong> [3,99,-1,-100]\n<strong>Explanation:</strong> \nrotate 1 steps to the right: [99,-1,-100,3]\nrotate 2 steps to the right: [3,99,-1,-100]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>\n\t<li><code>0 &lt;= k &lt;= 10<sup>5</sup></code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong></p>\n\n<ul>\n\t<li>Try to come up with as many solutions as you can. There are at least <strong>three</strong> different ways to solve this problem.</li>\n\t<li>Could you do it in-place with <code>O(1)</code> extra space?</li>\n</ul>\n",
+    "exampleTestcases": "[1,2,3,4,5,6,7]\n3\n[-1,-100,3,99]\n2",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "The easiest solution would use additional memory and that is perfectly fine.",
+      "The actual trick comes when trying to solve this problem without using any additional memory. This means you need to use the original array somehow to move the elements around. Now, we can place each element in its original location and shift all the elements around it to adjust as that would be too costly and most likely will time out on larger input arrays.",
+      "One line of thought is based on reversing the array (or parts of it) to obtain the desired result. Think about how reversal might potentially help us out by using an example.",
+      "The other line of thought is a tad bit complicated but essentially it builds on the idea of placing each element in its original position while keeping track of the element originally in that position. Basically, at every step, we place an element in its rightful position and keep track of the element already there or the one being overwritten in an additional variable. We can't do this in one linear pass and the idea here is based on <b>cyclic-dependencies</b> between elements."
+    ],
+    "solution": {
+      "id": "59",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 19451,
+    "dislikes": 2105,
+    "similarQuestions": "[{\"title\": \"Rotate List\", \"titleSlug\": \"rotate-list\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Reverse Words in a String II\", \"titleSlug\": \"reverse-words-in-a-string-ii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Make K-Subarray Sums Equal\", \"titleSlug\": \"make-k-subarray-sums-equal\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximum Number of Matching Indices After Right Shifts\", \"titleSlug\": \"maximum-number-of-matching-indices-after-right-shifts\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "contains-duplicate": {
+    "link": "https://leetcode.com/problems/contains-duplicate",
+    "questionId": "217",
+    "questionFrontendId": "217",
+    "questionTitle": "Contains Duplicate",
+    "titleSlug": "contains-duplicate",
+    "difficulty": "Easy",
+    "isPaidOnly": false,
+    "question": "<p>Given an integer array <code>nums</code>, return <code>true</code> if any value appears <strong>at least twice</strong> in the array, and return <code>false</code> if every element is distinct.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The element 1 occurs at the indices 0 and 3.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,4]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>All elements are distinct.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,1,1,3,3,4,3,2,4,2]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[1,2,3,1]\n[1,2,3,4]\n[1,1,1,3,3,4,3,2,4,2]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "23",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 12885,
+    "dislikes": 1328,
+    "similarQuestions": "[{\"title\": \"Contains Duplicate II\", \"titleSlug\": \"contains-duplicate-ii\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Contains Duplicate III\", \"titleSlug\": \"contains-duplicate-iii\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Make Array Zero by Subtracting Equal Amounts\", \"titleSlug\": \"make-array-zero-by-subtracting-equal-amounts\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Find Valid Pair of Adjacent Digits in String\", \"titleSlug\": \"find-valid-pair-of-adjacent-digits-in-string\", \"difficulty\": \"Easy\", \"translatedTitle\": null}]"
+  },
+  "single-number": {
+    "link": "https://leetcode.com/problems/single-number",
+    "questionId": "136",
+    "questionFrontendId": "136",
+    "questionTitle": "Single Number",
+    "titleSlug": "single-number",
+    "difficulty": "Easy",
+    "isPaidOnly": false,
+    "question": "<p>Given a <strong>non-empty</strong>&nbsp;array of integers <code>nums</code>, every element appears <em>twice</em> except for one. Find that single one.</p>\n\n<p>You must&nbsp;implement a solution with a linear runtime complexity and use&nbsp;only constant&nbsp;extra space.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [2,2,1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [4,1,2,1,2]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">4</span></p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li><code>-3 * 10<sup>4</sup> &lt;= nums[i] &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li>Each element in the array appears twice except for one element which appears only once.</li>\n</ul>\n",
+    "exampleTestcases": "[2,2,1]\n[4,1,2,1,2]\n[1]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Bit Manipulation",
+        "slug": "bit-manipulation",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Think about the XOR (^) operator's property."
+    ],
+    "solution": {
+      "id": "234",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 17556,
+    "dislikes": 812,
+    "similarQuestions": "[{\"title\": \"Single Number II\", \"titleSlug\": \"single-number-ii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Single Number III\", \"titleSlug\": \"single-number-iii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Missing Number\", \"titleSlug\": \"missing-number\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Find the Duplicate Number\", \"titleSlug\": \"find-the-duplicate-number\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find the Difference\", \"titleSlug\": \"find-the-difference\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Find the XOR of Numbers Which Appear Twice\", \"titleSlug\": \"find-the-xor-of-numbers-which-appear-twice\", \"difficulty\": \"Easy\", \"translatedTitle\": null}]"
+  },
+  "product-of-array-except-self": {
+    "link": "https://leetcode.com/problems/product-of-array-except-self",
+    "questionId": "238",
+    "questionFrontendId": "238",
+    "questionTitle": "Product of Array Except Self",
+    "titleSlug": "product-of-array-except-self",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given an integer array <code>nums</code>, return <em>an array</em> <code>answer</code> <em>such that</em> <code>answer[i]</code> <em>is equal to the product of all the elements of</em> <code>nums</code> <em>except</em> <code>nums[i]</code>.</p>\n\n<p>The product of any prefix or suffix of <code>nums</code> is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> integer.</p>\n\n<p>You must write an algorithm that runs in&nbsp;<code>O(n)</code>&nbsp;time and without using the division operation.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,3,4]\n<strong>Output:</strong> [24,12,8,6]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [-1,1,0,-3,3]\n<strong>Output:</strong> [0,0,9,0,0]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-30 &lt;= nums[i] &lt;= 30</code></li>\n\t<li>The input is generated such that <code>answer[i]</code> is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> integer.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong>&nbsp;Can you solve the problem in <code>O(1)</code>&nbsp;extra&nbsp;space complexity? (The output array <strong>does not</strong> count as extra space for space complexity analysis.)</p>\n",
+    "exampleTestcases": "[1,2,3,4]\n[-1,1,0,-3,3]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Think how you can efficiently utilize prefix and suffix products to calculate the product of all elements except self for each index. Can you pre-compute the prefix and suffix products in linear time to avoid redundant calculations?",
+      "Can you minimize additional space usage by reusing memory or modifying the input array to store intermediate results?"
+    ],
+    "solution": {
+      "id": "727",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 24194,
+    "dislikes": 1557,
+    "similarQuestions": "[{\"title\": \"Trapping Rain Water\", \"titleSlug\": \"trapping-rain-water\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Maximum Product Subarray\", \"titleSlug\": \"maximum-product-subarray\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Paint House II\", \"titleSlug\": \"paint-house-ii\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Minimum Difference in Sums After Removal of Elements\", \"titleSlug\": \"minimum-difference-in-sums-after-removal-of-elements\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Construct Product Matrix\", \"titleSlug\": \"construct-product-matrix\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find Sum of Array Product of Magical Sequences\", \"titleSlug\": \"find-sum-of-array-product-of-magical-sequences\", \"difficulty\": \"Hard\", \"translatedTitle\": null}]"
+  },
+  "maximum-subarray": {
+    "link": "https://leetcode.com/problems/maximum-subarray",
+    "questionId": "53",
+    "questionFrontendId": "53",
+    "questionTitle": "Maximum Subarray",
+    "titleSlug": "maximum-subarray",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given an integer array <code>nums</code>, find the <span data-keyword=\"subarray-nonempty\">subarray</span> with the largest sum, and return <em>its sum</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-2,1,-3,4,-1,2,1,-5,4]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The subarray [4,-1,2,1] has the largest sum 6.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The subarray [1] has the largest sum 1.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [5,4,-1,7,8]\n<strong>Output:</strong> 23\n<strong>Explanation:</strong> The subarray [5,4,-1,7,8] has the largest sum 23.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> If you have figured out the <code>O(n)</code> solution, try coding another solution using the <strong>divide and conquer</strong> approach, which is more subtle.</p>\n",
+    "exampleTestcases": "[-2,1,-3,4,-1,2,1,-5,4]\n[1]\n[5,4,-1,7,8]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Divide and Conquer",
+        "slug": "divide-and-conquer",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "1121",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 35740,
+    "dislikes": 1511,
+    "similarQuestions": "[{\"title\": \"Best Time to Buy and Sell Stock\", \"titleSlug\": \"best-time-to-buy-and-sell-stock\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Maximum Product Subarray\", \"titleSlug\": \"maximum-product-subarray\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Degree of an Array\", \"titleSlug\": \"degree-of-an-array\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Longest Turbulent Subarray\", \"titleSlug\": \"longest-turbulent-subarray\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximum Score Of Spliced Array\", \"titleSlug\": \"maximum-score-of-spliced-array\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Maximum Absolute Sum of Any Subarray\", \"titleSlug\": \"maximum-absolute-sum-of-any-subarray\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximum Subarray Sum After One Operation\", \"titleSlug\": \"maximum-subarray-sum-after-one-operation\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Substring With Largest Variance\", \"titleSlug\": \"substring-with-largest-variance\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Count Subarrays With Score Less Than K\", \"titleSlug\": \"count-subarrays-with-score-less-than-k\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Maximum Value of a String in an Array\", \"titleSlug\": \"maximum-value-of-a-string-in-an-array\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Find the Substring With Maximum Cost\", \"titleSlug\": \"find-the-substring-with-maximum-cost\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"K Items With the Maximum Sum\", \"titleSlug\": \"k-items-with-the-maximum-sum\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Maximum Good Subarray Sum\", \"titleSlug\": \"maximum-good-subarray-sum\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximize Subarray Sum After Removing All Occurrences of One Element\", \"titleSlug\": \"maximize-subarray-sum-after-removing-all-occurrences-of-one-element\", \"difficulty\": \"Hard\", \"translatedTitle\": null}]"
+  },
+  "group-anagrams": {
+    "link": "https://leetcode.com/problems/group-anagrams",
+    "questionId": "49",
+    "questionFrontendId": "49",
+    "questionTitle": "Group Anagrams",
+    "titleSlug": "group-anagrams",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given an array of strings <code>strs</code>, group the <span data-keyword=\"anagram\">anagrams</span> together. You can return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">strs = [&quot;eat&quot;,&quot;tea&quot;,&quot;tan&quot;,&quot;ate&quot;,&quot;nat&quot;,&quot;bat&quot;]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>There is no string in strs that can be rearranged to form <code>&quot;bat&quot;</code>.</li>\n\t<li>The strings <code>&quot;nat&quot;</code> and <code>&quot;tan&quot;</code> are anagrams as they can be rearranged to form each other.</li>\n\t<li>The strings <code>&quot;ate&quot;</code>, <code>&quot;eat&quot;</code>, and <code>&quot;tea&quot;</code> are anagrams as they can be rearranged to form each other.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">strs = [&quot;&quot;]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[[&quot;&quot;]]</span></p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">strs = [&quot;a&quot;]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[[&quot;a&quot;]]</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= strs.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= strs[i].length &lt;= 100</code></li>\n\t<li><code>strs[i]</code> consists of lowercase English letters.</li>\n</ul>\n",
+    "exampleTestcases": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n[\"\"]\n[\"a\"]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "236",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 20530,
+    "dislikes": 692,
+    "similarQuestions": "[{\"title\": \"Valid Anagram\", \"titleSlug\": \"valid-anagram\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Group Shifted Strings\", \"titleSlug\": \"group-shifted-strings\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find Resultant Array After Removing Anagrams\", \"titleSlug\": \"find-resultant-array-after-removing-anagrams\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Count Anagrams\", \"titleSlug\": \"count-anagrams\", \"difficulty\": \"Hard\", \"translatedTitle\": null}]"
+  },
+  "valid-anagram": {
+    "link": "https://leetcode.com/problems/valid-anagram",
+    "questionId": "242",
+    "questionFrontendId": "242",
+    "questionTitle": "Valid Anagram",
+    "titleSlug": "valid-anagram",
+    "difficulty": "Easy",
+    "isPaidOnly": false,
+    "question": "<p>Given two strings <code>s</code> and <code>t</code>, return <code>true</code> if <code>t</code> is an <span data-keyword=\"anagram\">anagram</span> of <code>s</code>, and <code>false</code> otherwise.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;anagram&quot;, t = &quot;nagaram&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;rat&quot;, t = &quot;car&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length, t.length &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>s</code> and <code>t</code> consist of lowercase English letters.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> What if the inputs contain Unicode characters? How would you adapt your solution to such a case?</p>\n",
+    "exampleTestcases": "\"anagram\"\n\"nagaram\"\n\"rat\"\n\"car\"",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "5",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 13061,
+    "dislikes": 432,
+    "similarQuestions": "[{\"title\": \"Group Anagrams\", \"titleSlug\": \"group-anagrams\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Palindrome Permutation\", \"titleSlug\": \"palindrome-permutation\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Find All Anagrams in a String\", \"titleSlug\": \"find-all-anagrams-in-a-string\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find Resultant Array After Removing Anagrams\", \"titleSlug\": \"find-resultant-array-after-removing-anagrams\", \"difficulty\": \"Easy\", \"translatedTitle\": null}]"
+  },
+  "longest-consecutive-sequence": {
+    "link": "https://leetcode.com/problems/longest-consecutive-sequence",
+    "questionId": "128",
+    "questionFrontendId": "128",
+    "questionTitle": "Longest Consecutive Sequence",
+    "titleSlug": "longest-consecutive-sequence",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given an unsorted array of integers <code>nums</code>, return <em>the length of the longest consecutive elements sequence.</em></p>\n\n<p>You must write an algorithm that runs in&nbsp;<code>O(n)</code>&nbsp;time.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [100,4,200,1,3,2]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The longest consecutive elements sequence is <code>[1, 2, 3, 4]</code>. Therefore its length is 4.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,3,7,2,5,8,4,6,0,1]\n<strong>Output:</strong> 9\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,0,1,2]\n<strong>Output:</strong> 3\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[100,4,200,1,3,2]\n[0,3,7,2,5,8,4,6,0,1]\n[1,0,1,2]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Union Find",
+        "slug": "union-find",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "280",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 21410,
+    "dislikes": 1150,
+    "similarQuestions": "[{\"title\": \"Binary Tree Longest Consecutive Sequence\", \"titleSlug\": \"binary-tree-longest-consecutive-sequence\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find Three Consecutive Integers That Sum to a Given Number\", \"titleSlug\": \"find-three-consecutive-integers-that-sum-to-a-given-number\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximum Consecutive Floors Without Special Floors\", \"titleSlug\": \"maximum-consecutive-floors-without-special-floors\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Length of the Longest Alphabetical Continuous Substring\", \"titleSlug\": \"length-of-the-longest-alphabetical-continuous-substring\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find the Maximum Number of Elements in Subset\", \"titleSlug\": \"find-the-maximum-number-of-elements-in-subset\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "insert-interval": {
+    "link": "https://leetcode.com/problems/insert-interval",
+    "questionId": "57",
+    "questionFrontendId": "57",
+    "questionTitle": "Insert Interval",
+    "titleSlug": "insert-interval",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>You are given an array of non-overlapping intervals <code>intervals</code> where <code>intervals[i] = [start<sub>i</sub>, end<sub>i</sub>]</code> represent the start and the end of the <code>i<sup>th</sup></code> interval and <code>intervals</code> is sorted in ascending order by <code>start<sub>i</sub></code>. You are also given an interval <code>newInterval = [start, end]</code> that represents the start and end of another interval.</p>\n\n<p>Insert <code>newInterval</code> into <code>intervals</code> such that <code>intervals</code> is still sorted in ascending order by <code>start<sub>i</sub></code> and <code>intervals</code> still does not have any overlapping intervals (merge overlapping intervals if necessary).</p>\n\n<p>Return <code>intervals</code><em> after the insertion</em>.</p>\n\n<p><strong>Note</strong> that you don&#39;t need to modify <code>intervals</code> in-place. You can make a new array and return it.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,3],[6,9]], newInterval = [2,5]\n<strong>Output:</strong> [[1,5],[6,9]]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]\n<strong>Output:</strong> [[1,2],[3,10],[12,16]]\n<strong>Explanation:</strong> Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= intervals.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>intervals[i].length == 2</code></li>\n\t<li><code>0 &lt;= start<sub>i</sub> &lt;= end<sub>i</sub> &lt;= 10<sup>5</sup></code></li>\n\t<li><code>intervals</code> is sorted by <code>start<sub>i</sub></code> in <strong>ascending</strong> order.</li>\n\t<li><code>newInterval.length == 2</code></li>\n\t<li><code>0 &lt;= start &lt;= end &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[[1,3],[6,9]]\n[2,5]\n[[1,2],[3,5],[6,7],[8,10],[12,16]]\n[4,8]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Intervals Array is sorted. Can you use Binary Search to find the correct position to insert the new Interval.?",
+      "Can you try merging the overlapping intervals while inserting the new interval?",
+      "This can be done by comparing the end of the last interval with the start of the new interval and vice versa."
+    ],
+    "solution": {
+      "id": "2269",
+      "canSeeDetail": true,
+      "paidOnly": false,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 11091,
+    "dislikes": 881,
+    "similarQuestions": "[{\"title\": \"Merge Intervals\", \"titleSlug\": \"merge-intervals\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Range Module\", \"titleSlug\": \"range-module\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Count Integers in Intervals\", \"titleSlug\": \"count-integers-in-intervals\", \"difficulty\": \"Hard\", \"translatedTitle\": null}]"
+  },
+  "merge-intervals": {
+    "link": "https://leetcode.com/problems/merge-intervals",
+    "questionId": "56",
+    "questionFrontendId": "56",
+    "questionTitle": "Merge Intervals",
+    "titleSlug": "merge-intervals",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given an array&nbsp;of <code>intervals</code>&nbsp;where <code>intervals[i] = [start<sub>i</sub>, end<sub>i</sub>]</code>, merge all overlapping intervals, and return <em>an array of the non-overlapping intervals that cover all the intervals in the input</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,3],[2,6],[8,10],[15,18]]\n<strong>Output:</strong> [[1,6],[8,10],[15,18]]\n<strong>Explanation:</strong> Since intervals [1,3] and [2,6] overlap, merge them into [1,6].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,4],[4,5]]\n<strong>Output:</strong> [[1,5]]\n<strong>Explanation:</strong> Intervals [1,4] and [4,5] are considered overlapping.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= intervals.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>intervals[i].length == 2</code></li>\n\t<li><code>0 &lt;= start<sub>i</sub> &lt;= end<sub>i</sub> &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[[1,3],[2,6],[8,10],[15,18]]\n[[1,4],[4,5]]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "294",
+      "canSeeDetail": true,
+      "paidOnly": false,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": false
+    },
+    "companyTagStats": null,
+    "likes": 23407,
+    "dislikes": 849,
+    "similarQuestions": "[{\"title\": \"Insert Interval\", \"titleSlug\": \"insert-interval\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Meeting Rooms\", \"titleSlug\": \"meeting-rooms\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Meeting Rooms II\", \"titleSlug\": \"meeting-rooms-ii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Teemo Attacking\", \"titleSlug\": \"teemo-attacking\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Add Bold Tag in String\", \"titleSlug\": \"add-bold-tag-in-string\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Range Module\", \"titleSlug\": \"range-module\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Employee Free Time\", \"titleSlug\": \"employee-free-time\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Partition Labels\", \"titleSlug\": \"partition-labels\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Interval List Intersections\", \"titleSlug\": \"interval-list-intersections\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Amount of New Area Painted Each Day\", \"titleSlug\": \"amount-of-new-area-painted-each-day\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Longest Substring of One Repeating Character\", \"titleSlug\": \"longest-substring-of-one-repeating-character\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Count Integers in Intervals\", \"titleSlug\": \"count-integers-in-intervals\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Divide Intervals Into Minimum Number of Groups\", \"titleSlug\": \"divide-intervals-into-minimum-number-of-groups\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Determine if Two Events Have Conflict\", \"titleSlug\": \"determine-if-two-events-have-conflict\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Count Ways to Group Overlapping Ranges\", \"titleSlug\": \"count-ways-to-group-overlapping-ranges\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Points That Intersect With Cars\", \"titleSlug\": \"points-that-intersect-with-cars\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Count Days Without Meetings\", \"titleSlug\": \"count-days-without-meetings\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Minimize Connected Groups by Inserting Interval\", \"titleSlug\": \"minimize-connected-groups-by-inserting-interval\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "non-overlapping-intervals": {
+    "link": "https://leetcode.com/problems/non-overlapping-intervals",
+    "questionId": "435",
+    "questionFrontendId": "435",
+    "questionTitle": "Non-overlapping Intervals",
+    "titleSlug": "non-overlapping-intervals",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given an array of intervals <code>intervals</code> where <code>intervals[i] = [start<sub>i</sub>, end<sub>i</sub>]</code>, return <em>the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping</em>.</p>\n\n<p><strong>Note</strong> that intervals which only touch at a point are <strong>non-overlapping</strong>. For example, <code>[1, 2]</code> and <code>[2, 3]</code> are non-overlapping.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,2],[2,3],[3,4],[1,3]]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> [1,3] can be removed and the rest of the intervals are non-overlapping.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,2],[1,2],[1,2]]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> You need to remove two [1,2] to make the rest of the intervals non-overlapping.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> intervals = [[1,2],[2,3]]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> You don&#39;t need to remove any of the intervals since they&#39;re already non-overlapping.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= intervals.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>intervals[i].length == 2</code></li>\n\t<li><code>-5 * 10<sup>4</sup> &lt;= start<sub>i</sub> &lt; end<sub>i</sub> &lt;= 5 * 10<sup>4</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[[1,2],[2,3],[3,4],[1,3]]\n[[1,2],[1,2],[1,2]]\n[[1,2],[2,3]]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "1948",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 8652,
+    "dislikes": 236,
+    "similarQuestions": "[{\"title\": \"Minimum Number of Arrows to Burst Balloons\", \"titleSlug\": \"minimum-number-of-arrows-to-burst-balloons\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Determine if Two Events Have Conflict\", \"titleSlug\": \"determine-if-two-events-have-conflict\", \"difficulty\": \"Easy\", \"translatedTitle\": null}]"
+  },
+  "3sum": {
+    "link": "https://leetcode.com/problems/3sum",
+    "questionId": "15",
+    "questionFrontendId": "15",
+    "questionTitle": "3Sum",
+    "titleSlug": "3sum",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given an integer array nums, return all the triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, and <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>\n\n<p>Notice that the solution set must not contain duplicate triplets.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,0,1,2,-1,-4]\n<strong>Output:</strong> [[-1,-1,2],[-1,0,1]]\n<strong>Explanation:</strong> \nnums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.\nnums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.\nnums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.\nThe distinct triplets are [-1,0,1] and [-1,-1,2].\nNotice that the order of the output and the order of the triplets does not matter.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1,1]\n<strong>Output:</strong> []\n<strong>Explanation:</strong> The only possible triplet does not sum up to 0.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,0,0]\n<strong>Output:</strong> [[0,0,0]]\n<strong>Explanation:</strong> The only possible triplet sums up to 0.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= nums.length &lt;= 3000</code></li>\n\t<li><code>-10<sup>5</sup> &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[-1,0,1,2,-1,-4]\n[0,1,1]\n[0,0,0]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "So, we essentially need to find three numbers x, y, and z such that they add up to the given value. If we fix one of the numbers say x, we are left with the two-sum problem at hand!",
+      "For the two-sum problem, if we fix one of the numbers, say x, we have to scan the entire array to find the next number y, which is value - x where value is the input parameter. Can we change our array somehow so that this search becomes faster?",
+      "The second train of thought for two-sum is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?"
+    ],
+    "solution": {
+      "id": "938",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 32996,
+    "dislikes": 3100,
+    "similarQuestions": "[{\"title\": \"Two Sum\", \"titleSlug\": \"two-sum\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"3Sum Closest\", \"titleSlug\": \"3sum-closest\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"4Sum\", \"titleSlug\": \"4sum\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"3Sum Smaller\", \"titleSlug\": \"3sum-smaller\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Number of Arithmetic Triplets\", \"titleSlug\": \"number-of-arithmetic-triplets\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Minimum Sum of Mountain Triplets I\", \"titleSlug\": \"minimum-sum-of-mountain-triplets-i\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Minimum Sum of Mountain Triplets II\", \"titleSlug\": \"minimum-sum-of-mountain-triplets-ii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "container-with-most-water": {
+    "link": "https://leetcode.com/problems/container-with-most-water",
+    "questionId": "11",
+    "questionFrontendId": "11",
+    "questionTitle": "Container With Most Water",
+    "titleSlug": "container-with-most-water",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>You are given an integer array <code>height</code> of length <code>n</code>. There are <code>n</code> vertical lines drawn such that the two endpoints of the <code>i<sup>th</sup></code> line are <code>(i, 0)</code> and <code>(i, height[i])</code>.</p>\n\n<p>Find two lines that together with the x-axis form a container, such that the container contains the most water.</p>\n\n<p>Return <em>the maximum amount of water a container can store</em>.</p>\n\n<p><strong>Notice</strong> that you may not slant the container.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg\" style=\"width: 600px; height: 287px;\" />\n<pre>\n<strong>Input:</strong> height = [1,8,6,2,5,4,8,3,7]\n<strong>Output:</strong> 49\n<strong>Explanation:</strong> The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> height = [1,1]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == height.length</code></li>\n\t<li><code>2 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= height[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[1,8,6,2,5,4,8,3,7]\n[1,1]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "If you simulate the problem, it will be O(n^2) which is not efficient.",
+      "Try to use two-pointers. Set one pointer to the left and one to the right of the array. Always move the pointer that points to the lower line.",
+      "How can you calculate the amount of water at each step?"
+    ],
+    "solution": {
+      "id": "55",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 31297,
+    "dislikes": 2006,
+    "similarQuestions": "[{\"title\": \"Trapping Rain Water\", \"titleSlug\": \"trapping-rain-water\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Maximum Tastiness of Candy Basket\", \"titleSlug\": \"maximum-tastiness-of-candy-basket\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"House Robber IV\", \"titleSlug\": \"house-robber-iv\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "trapping-rain-water": {
+    "link": "https://leetcode.com/problems/trapping-rain-water",
+    "questionId": "42",
+    "questionFrontendId": "42",
+    "questionTitle": "Trapping Rain Water",
+    "titleSlug": "trapping-rain-water",
+    "difficulty": "Hard",
+    "isPaidOnly": false,
+    "question": "<p>Given <code>n</code> non-negative integers representing an elevation map where the width of each bar is <code>1</code>, compute how much water it can trap after raining.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img src=\"https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png\" style=\"width: 412px; height: 161px;\" />\n<pre>\n<strong>Input:</strong> height = [0,1,0,2,1,0,1,3,2,1,2,1]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> height = [4,2,0,3,2,5]\n<strong>Output:</strong> 9\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == height.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= height[i] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[0,1,0,2,1,0,1,3,2,1,2,1]\n[4,2,0,3,2,5]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Stack",
+        "slug": "monotonic-stack",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "150",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 34124,
+    "dislikes": 602,
+    "similarQuestions": "[{\"title\": \"Container With Most Water\", \"titleSlug\": \"container-with-most-water\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Product of Array Except Self\", \"titleSlug\": \"product-of-array-except-self\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Trapping Rain Water II\", \"titleSlug\": \"trapping-rain-water-ii\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Pour Water\", \"titleSlug\": \"pour-water\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximum Value of an Ordered Triplet II\", \"titleSlug\": \"maximum-value-of-an-ordered-triplet-ii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "valid-palindrome": {
+    "link": "https://leetcode.com/problems/valid-palindrome",
+    "questionId": "125",
+    "questionFrontendId": "125",
+    "questionTitle": "Valid Palindrome",
+    "titleSlug": "valid-palindrome",
+    "difficulty": "Easy",
+    "isPaidOnly": false,
+    "question": "<p>A phrase is a <strong>palindrome</strong> if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.</p>\n\n<p>Given a string <code>s</code>, return <code>true</code><em> if it is a <strong>palindrome</strong>, or </em><code>false</code><em> otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;A man, a plan, a canal: Panama&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> &quot;amanaplanacanalpanama&quot; is a palindrome.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;race a car&quot;\n<strong>Output:</strong> false\n<strong>Explanation:</strong> &quot;raceacar&quot; is not a palindrome.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot; &quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> s is an empty string &quot;&quot; after removing non-alphanumeric characters.\nSince an empty string reads the same forward and backward, it is a palindrome.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 2 * 10<sup>5</sup></code></li>\n\t<li><code>s</code> consists only of printable ASCII characters.</li>\n</ul>\n",
+    "exampleTestcases": "\"A man, a plan, a canal: Panama\"\n\"race a car\"\n\" \"",
+    "topicTags": [
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "909",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 10370,
+    "dislikes": 8548,
+    "similarQuestions": "[{\"title\": \"Palindrome Linked List\", \"titleSlug\": \"palindrome-linked-list\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Valid Palindrome II\", \"titleSlug\": \"valid-palindrome-ii\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Maximum Product of the Length of Two Palindromic Subsequences\", \"titleSlug\": \"maximum-product-of-the-length-of-two-palindromic-subsequences\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find First Palindromic String in the Array\", \"titleSlug\": \"find-first-palindromic-string-in-the-array\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Valid Palindrome IV\", \"titleSlug\": \"valid-palindrome-iv\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximum Palindromes After Operations\", \"titleSlug\": \"maximum-palindromes-after-operations\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "minimum-window-substring": {
+    "link": "https://leetcode.com/problems/minimum-window-substring",
+    "questionId": "76",
+    "questionFrontendId": "76",
+    "questionTitle": "Minimum Window Substring",
+    "titleSlug": "minimum-window-substring",
+    "difficulty": "Hard",
+    "isPaidOnly": false,
+    "question": "<p>Given two strings <code>s</code> and <code>t</code> of lengths <code>m</code> and <code>n</code> respectively, return <em>the <strong>minimum window</strong></em> <span data-keyword=\"substring-nonempty\"><strong><em>substring</em></strong></span><em> of </em><code>s</code><em> such that every character in </em><code>t</code><em> (<strong>including duplicates</strong>) is included in the window</em>. If there is no such substring, return <em>the empty string </em><code>&quot;&quot;</code>.</p>\n\n<p>The testcases will be generated such that the answer is <strong>unique</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;ADOBECODEBANC&quot;, t = &quot;ABC&quot;\n<strong>Output:</strong> &quot;BANC&quot;\n<strong>Explanation:</strong> The minimum window substring &quot;BANC&quot; includes &#39;A&#39;, &#39;B&#39;, and &#39;C&#39; from string t.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;a&quot;, t = &quot;a&quot;\n<strong>Output:</strong> &quot;a&quot;\n<strong>Explanation:</strong> The entire string s is the minimum window.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;a&quot;, t = &quot;aa&quot;\n<strong>Output:</strong> &quot;&quot;\n<strong>Explanation:</strong> Both &#39;a&#39;s from t must be included in the window.\nSince the largest window of s only has one &#39;a&#39;, return empty string.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>m == s.length</code></li>\n\t<li><code>n == t.length</code></li>\n\t<li><code>1 &lt;= m, n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>s</code> and <code>t</code> consist of uppercase and lowercase English letters.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Could you find an algorithm that runs in <code>O(m + n)</code> time?</p>\n",
+    "exampleTestcases": "\"ADOBECODEBANC\"\n\"ABC\"\n\"a\"\n\"a\"\n\"a\"\n\"aa\"",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use two pointers to create a window of letters in s, which would have all the characters from t.",
+      "Expand the right pointer until all the characters of t are covered.",
+      "Once all the characters are covered, move the left pointer and ensure that all the characters are still covered to minimize the subarray size.",
+      "Continue expanding the right and left pointers until you reach the end of s."
+    ],
+    "solution": {
+      "id": "541",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 18924,
+    "dislikes": 784,
+    "similarQuestions": "[{\"title\": \"Substring with Concatenation of All Words\", \"titleSlug\": \"substring-with-concatenation-of-all-words\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Minimum Size Subarray Sum\", \"titleSlug\": \"minimum-size-subarray-sum\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Sliding Window Maximum\", \"titleSlug\": \"sliding-window-maximum\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Permutation in String\", \"titleSlug\": \"permutation-in-string\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Smallest Range Covering Elements from K Lists\", \"titleSlug\": \"smallest-range-covering-elements-from-k-lists\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Minimum Window Subsequence\", \"titleSlug\": \"minimum-window-subsequence\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Count Substrings That Can Be Rearranged to Contain a String II\", \"titleSlug\": \"count-substrings-that-can-be-rearranged-to-contain-a-string-ii\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Count Substrings That Can Be Rearranged to Contain a String I\", \"titleSlug\": \"count-substrings-that-can-be-rearranged-to-contain-a-string-i\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "longest-repeating-character-replacement": {
+    "link": "https://leetcode.com/problems/longest-repeating-character-replacement",
+    "questionId": "424",
+    "questionFrontendId": "424",
+    "questionTitle": "Longest Repeating Character Replacement",
+    "titleSlug": "longest-repeating-character-replacement",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>You are given a string <code>s</code> and an integer <code>k</code>. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most <code>k</code> times.</p>\n\n<p>Return <em>the length of the longest substring containing the same letter you can get after performing the above operations</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;ABAB&quot;, k = 2\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> Replace the two &#39;A&#39;s with two &#39;B&#39;s or vice versa.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;AABABBA&quot;, k = 1\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> Replace the one &#39;A&#39; in the middle with &#39;B&#39; and form &quot;AABBBBA&quot;.\nThe substring &quot;BBBB&quot; has the longest repeating letters, which is 4.\nThere may exists other ways to achieve this answer too.</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>s</code> consists of only uppercase English letters.</li>\n\t<li><code>0 &lt;= k &lt;= s.length</code></li>\n</ul>\n",
+    "exampleTestcases": "\"ABAB\"\n2\n\"AABABBA\"\n1",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "1609",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 11754,
+    "dislikes": 648,
+    "similarQuestions": "[{\"title\": \"Longest Substring with At Most K Distinct Characters\", \"titleSlug\": \"longest-substring-with-at-most-k-distinct-characters\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Max Consecutive Ones III\", \"titleSlug\": \"max-consecutive-ones-iii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Minimum Number of Operations to Make Array Continuous\", \"titleSlug\": \"minimum-number-of-operations-to-make-array-continuous\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Maximize the Confusion of an Exam\", \"titleSlug\": \"maximize-the-confusion-of-an-exam\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Longest Substring of One Repeating Character\", \"titleSlug\": \"longest-substring-of-one-repeating-character\", \"difficulty\": \"Hard\", \"translatedTitle\": null}]"
+  },
+  "permutation-in-string": {
+    "link": "https://leetcode.com/problems/permutation-in-string",
+    "questionId": "567",
+    "questionFrontendId": "567",
+    "questionTitle": "Permutation in String",
+    "titleSlug": "permutation-in-string",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given two strings <code>s1</code> and <code>s2</code>, return <code>true</code> if <code>s2</code> contains a <span data-keyword=\"permutation-string\">permutation</span> of <code>s1</code>, or <code>false</code> otherwise.</p>\n\n<p>In other words, return <code>true</code> if one of <code>s1</code>&#39;s permutations is the substring of <code>s2</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;ab&quot;, s2 = &quot;eidbaooo&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> s2 contains one permutation of s1 (&quot;ba&quot;).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;ab&quot;, s2 = &quot;eidboaoo&quot;\n<strong>Output:</strong> false\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s1.length, s2.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>s1</code> and <code>s2</code> consist of lowercase English letters.</li>\n</ul>\n",
+    "exampleTestcases": "\"ab\"\n\"eidbaooo\"\n\"ab\"\n\"eidboaoo\"",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Obviously, brute force will result in TLE. Think of something else.",
+      "How will you check whether one string is a permutation of another string?",
+      "One way is to sort the string and then compare. But, Is there a better way?",
+      "If one string is a permutation of another string then they must have one common metric. What is that?",
+      "Both strings must have same character frequencies, if  one is permutation of another. Which data structure should be used to store frequencies?",
+      "What about hash table?  An array of size 26?"
+    ],
+    "solution": {
+      "id": "121",
+      "canSeeDetail": true,
+      "paidOnly": false,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 12309,
+    "dislikes": 484,
+    "similarQuestions": "[{\"title\": \"Minimum Window Substring\", \"titleSlug\": \"minimum-window-substring\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Find All Anagrams in a String\", \"titleSlug\": \"find-all-anagrams-in-a-string\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "sliding-window-maximum": {
+    "link": "https://leetcode.com/problems/sliding-window-maximum",
+    "questionId": "239",
+    "questionFrontendId": "239",
+    "questionTitle": "Sliding Window Maximum",
+    "titleSlug": "sliding-window-maximum",
+    "difficulty": "Hard",
+    "isPaidOnly": false,
+    "question": "<p>You are given an array of integers&nbsp;<code>nums</code>, there is a sliding window of size <code>k</code> which is moving from the very left of the array to the very right. You can only see the <code>k</code> numbers in the window. Each time the sliding window moves right by one position.</p>\n\n<p>Return <em>the max sliding window</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,-1,-3,5,3,6,7], k = 3\n<strong>Output:</strong> [3,3,5,5,6,7]\n<strong>Explanation:</strong> \nWindow position                Max\n---------------               -----\n[1  3  -1] -3  5  3  6  7       <strong>3</strong>\n 1 [3  -1  -3] 5  3  6  7       <strong>3</strong>\n 1  3 [-1  -3  5] 3  6  7      <strong> 5</strong>\n 1  3  -1 [-3  5  3] 6  7       <strong>5</strong>\n 1  3  -1  -3 [5  3  6] 7       <strong>6</strong>\n 1  3  -1  -3  5 [3  6  7]      <strong>7</strong>\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1], k = 1\n<strong>Output:</strong> [1]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= k &lt;= nums.length</code></li>\n</ul>\n",
+    "exampleTestcases": "[1,3,-1,-3,5,3,6,7]\n3\n[1]\n1",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Queue",
+        "slug": "queue",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      },
+      {
+        "name": "Heap (Priority Queue)",
+        "slug": "heap-priority-queue",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Queue",
+        "slug": "monotonic-queue",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "How about using a data structure such as deque (double-ended queue)?",
+      "The queue size need not be the same as the window’s size.",
+      "Remove redundant elements and the queue should store only elements that need to be considered."
+    ],
+    "solution": {
+      "id": "1984",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 19192,
+    "dislikes": 755,
+    "similarQuestions": "[{\"title\": \"Minimum Window Substring\", \"titleSlug\": \"minimum-window-substring\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Min Stack\", \"titleSlug\": \"min-stack\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Longest Substring with At Most Two Distinct Characters\", \"titleSlug\": \"longest-substring-with-at-most-two-distinct-characters\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Paint House II\", \"titleSlug\": \"paint-house-ii\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Jump Game VI\", \"titleSlug\": \"jump-game-vi\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximum Number of Robots Within Budget\", \"titleSlug\": \"maximum-number-of-robots-within-budget\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Maximum Tastiness of Candy Basket\", \"titleSlug\": \"maximum-tastiness-of-candy-basket\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximal Score After Applying K Operations\", \"titleSlug\": \"maximal-score-after-applying-k-operations\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "search-in-rotated-sorted-array": {
+    "link": "https://leetcode.com/problems/search-in-rotated-sorted-array",
+    "questionId": "33",
+    "questionFrontendId": "33",
+    "questionTitle": "Search in Rotated Sorted Array",
+    "titleSlug": "search-in-rotated-sorted-array",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>There is an integer array <code>nums</code> sorted in ascending order (with <strong>distinct</strong> values).</p>\n\n<p>Prior to being passed to your function, <code>nums</code> is <strong>possibly rotated</strong> at an unknown pivot index <code>k</code> (<code>1 &lt;= k &lt; nums.length</code>) such that the resulting array is <code>[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]</code> (<strong>0-indexed</strong>). For example, <code>[0,1,2,4,5,6,7]</code> might be rotated at pivot index <code>3</code> and become <code>[4,5,6,7,0,1,2]</code>.</p>\n\n<p>Given the array <code>nums</code> <strong>after</strong> the possible rotation and an integer <code>target</code>, return <em>the index of </em><code>target</code><em> if it is in </em><code>nums</code><em>, or </em><code>-1</code><em> if it is not in </em><code>nums</code>.</p>\n\n<p>You must write an algorithm with <code>O(log n)</code> runtime complexity.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [4,5,6,7,0,1,2], target = 0\n<strong>Output:</strong> 4\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [4,5,6,7,0,1,2], target = 3\n<strong>Output:</strong> -1\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> nums = [1], target = 0\n<strong>Output:</strong> -1\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 5000</code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n\t<li>All values of <code>nums</code> are <strong>unique</strong>.</li>\n\t<li><code>nums</code> is an ascending array that is possibly rotated.</li>\n\t<li><code>-10<sup>4</sup> &lt;= target &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[4,5,6,7,0,1,2]\n0\n[4,5,6,7,0,1,2]\n3\n[1]\n0",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "1990",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 28034,
+    "dislikes": 1703,
+    "similarQuestions": "[{\"title\": \"Search in Rotated Sorted Array II\", \"titleSlug\": \"search-in-rotated-sorted-array-ii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find Minimum in Rotated Sorted Array\", \"titleSlug\": \"find-minimum-in-rotated-sorted-array\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Pour Water Between Buckets to Make Water Levels Equal\", \"titleSlug\": \"pour-water-between-buckets-to-make-water-levels-equal\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "find-minimum-in-rotated-sorted-array": {
+    "link": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array",
+    "questionId": "153",
+    "questionFrontendId": "153",
+    "questionTitle": "Find Minimum in Rotated Sorted Array",
+    "titleSlug": "find-minimum-in-rotated-sorted-array",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Suppose an array of length <code>n</code> sorted in ascending order is <strong>rotated</strong> between <code>1</code> and <code>n</code> times. For example, the array <code>nums = [0,1,2,4,5,6,7]</code> might become:</p>\n\n<ul>\n\t<li><code>[4,5,6,7,0,1,2]</code> if it was rotated <code>4</code> times.</li>\n\t<li><code>[0,1,2,4,5,6,7]</code> if it was rotated <code>7</code> times.</li>\n</ul>\n\n<p>Notice that <strong>rotating</strong> an array <code>[a[0], a[1], a[2], ..., a[n-1]]</code> 1 time results in the array <code>[a[n-1], a[0], a[1], a[2], ..., a[n-2]]</code>.</p>\n\n<p>Given the sorted rotated array <code>nums</code> of <strong>unique</strong> elements, return <em>the minimum element of this array</em>.</p>\n\n<p>You must write an algorithm that runs in&nbsp;<code>O(log n) time</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,4,5,1,2]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The original array was [1,2,3,4,5] rotated 3 times.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [4,5,6,7,0,1,2]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [11,13,15,17]\n<strong>Output:</strong> 11\n<strong>Explanation:</strong> The original array was [11,13,15,17] and it was rotated 4 times. \n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == nums.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 5000</code></li>\n\t<li><code>-5000 &lt;= nums[i] &lt;= 5000</code></li>\n\t<li>All the integers of <code>nums</code> are <strong>unique</strong>.</li>\n\t<li><code>nums</code> is sorted and rotated between <code>1</code> and <code>n</code> times.</li>\n</ul>\n",
+    "exampleTestcases": "[3,4,5,1,2]\n[4,5,6,7,0,1,2]\n[11,13,15,17]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Array was originally in ascending order. Now that the array is rotated, there would be a point in the array where there is a small deflection from the increasing sequence. eg. The array would be something like [4, 5, 6, 7, 0, 1, 2].",
+      "You can divide the search space into two and see which direction to go.\r\nCan you think of an algorithm which has O(logN) search complexity?",
+      "<ol>\r\n<li>All the elements to the left of inflection point > first element of the array.</li>\r\n<li>All the elements to the right of inflection point < first element of the array.</li>\r\n<ol>"
+    ],
+    "solution": {
+      "id": "549",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 14232,
+    "dislikes": 625,
+    "similarQuestions": "[{\"title\": \"Search in Rotated Sorted Array\", \"titleSlug\": \"search-in-rotated-sorted-array\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Find Minimum in Rotated Sorted Array II\", \"titleSlug\": \"find-minimum-in-rotated-sorted-array-ii\", \"difficulty\": \"Hard\", \"translatedTitle\": null}]"
+  },
+  "valid-parentheses": {
+    "link": "https://leetcode.com/problems/valid-parentheses",
+    "questionId": "20",
+    "questionFrontendId": "20",
+    "questionTitle": "Valid Parentheses",
+    "titleSlug": "valid-parentheses",
+    "difficulty": "Easy",
+    "isPaidOnly": false,
+    "question": "<p>Given a string <code>s</code> containing just the characters <code>&#39;(&#39;</code>, <code>&#39;)&#39;</code>, <code>&#39;{&#39;</code>, <code>&#39;}&#39;</code>, <code>&#39;[&#39;</code> and <code>&#39;]&#39;</code>, determine if the input string is valid.</p>\n\n<p>An input string is valid if:</p>\n\n<ol>\n\t<li>Open brackets must be closed by the same type of brackets.</li>\n\t<li>Open brackets must be closed in the correct order.</li>\n\t<li>Every close bracket has a corresponding open bracket of the same type.</li>\n</ol>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;()&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;()[]{}&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;(]&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n</div>\n\n<p><strong class=\"example\">Example 4:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;([])&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>s</code> consists of parentheses only <code>&#39;()[]{}&#39;</code>.</li>\n</ul>\n",
+    "exampleTestcases": "\"()\"\n\"()[]{}\"\n\"(]\"\n\"([])\"",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use a stack of characters.",
+      "When you encounter an opening bracket, push it to the top of the stack.",
+      "When you encounter a closing bracket, check if the top of the stack was the opening for it. If yes, pop it from the stack. Otherwise, return false."
+    ],
+    "solution": {
+      "id": "570",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 25821,
+    "dislikes": 1883,
+    "similarQuestions": "[{\"title\": \"Generate Parentheses\", \"titleSlug\": \"generate-parentheses\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Longest Valid Parentheses\", \"titleSlug\": \"longest-valid-parentheses\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Remove Invalid Parentheses\", \"titleSlug\": \"remove-invalid-parentheses\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Check If Word Is Valid After Substitutions\", \"titleSlug\": \"check-if-word-is-valid-after-substitutions\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Check if a Parentheses String Can Be Valid\", \"titleSlug\": \"check-if-a-parentheses-string-can-be-valid\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Move Pieces to Obtain a String\", \"titleSlug\": \"move-pieces-to-obtain-a-string\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "daily-temperatures": {
+    "link": "https://leetcode.com/problems/daily-temperatures",
+    "questionId": "739",
+    "questionFrontendId": "739",
+    "questionTitle": "Daily Temperatures",
+    "titleSlug": "daily-temperatures",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>Given an array of integers <code>temperatures</code> represents the daily temperatures, return <em>an array</em> <code>answer</code> <em>such that</em> <code>answer[i]</code> <em>is the number of days you have to wait after the</em> <code>i<sup>th</sup></code> <em>day to get a warmer temperature</em>. If there is no future day for which this is possible, keep <code>answer[i] == 0</code> instead.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> temperatures = [73,74,75,71,69,72,76,73]\n<strong>Output:</strong> [1,1,4,2,1,1,0,0]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> temperatures = [30,40,50,60]\n<strong>Output:</strong> [1,1,1,0]\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> temperatures = [30,60,90]\n<strong>Output:</strong> [1,1,0]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;=&nbsp;temperatures.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>30 &lt;=&nbsp;temperatures[i] &lt;= 100</code></li>\n</ul>\n",
+    "exampleTestcases": "[73,74,75,71,69,72,76,73]\n[30,40,50,60]\n[30,60,90]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Stack",
+        "slug": "monotonic-stack",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "If the temperature is say, 70 today, then in the future a warmer temperature must be either 71, 72, 73, ..., 99, or 100.  We could remember when all of them occur next."
+    ],
+    "solution": {
+      "id": "1206",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 13857,
+    "dislikes": 350,
+    "similarQuestions": "[{\"title\": \"Next Greater Element I\", \"titleSlug\": \"next-greater-element-i\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Online Stock Span\", \"titleSlug\": \"online-stock-span\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "car-fleet": {
+    "link": "https://leetcode.com/problems/car-fleet",
+    "questionId": "883",
+    "questionFrontendId": "853",
+    "questionTitle": "Car Fleet",
+    "titleSlug": "car-fleet",
+    "difficulty": "Medium",
+    "isPaidOnly": false,
+    "question": "<p>There are <code>n</code> cars at given miles away from the starting mile 0, traveling to reach the mile <code>target</code>.</p>\n\n<p>You are given two integer array <code>position</code> and <code>speed</code>, both of length <code>n</code>, where <code>position[i]</code> is the starting mile of the <code>i<sup>th</sup></code> car and <code>speed[i]</code> is the speed of the <code>i<sup>th</sup></code> car in miles per hour.</p>\n\n<p>A car cannot pass another car, but it can catch up and then travel next to it at the speed of the slower car.</p>\n\n<p>A <strong>car fleet</strong> is a car or cars driving next to each other. The speed of the car fleet is the <strong>minimum</strong> speed of any car in the fleet.</p>\n\n<p>If a car catches up to a car fleet at the mile <code>target</code>, it will still be considered as part of the car fleet.</p>\n\n<p>Return the number of car fleets that will arrive at the destination.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">3</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The cars starting at 10 (speed 2) and 8 (speed 4) become a fleet, meeting each other at 12. The fleet forms at <code>target</code>.</li>\n\t<li>The car starting at 0 (speed 1) does not catch up to any other car, so it is a fleet by itself.</li>\n\t<li>The cars starting at 5 (speed 1) and 3 (speed 3) become a fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches <code>target</code>.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">target = 10, position = [3], speed = [3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\nThere is only one car, hence there is only one fleet.</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">target = 100, position = [0,2,4], speed = [4,2,1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The cars starting at 0 (speed 4) and 2 (speed 2) become a fleet, meeting each other at 4. The car starting at 4 (speed 1) travels to 5.</li>\n\t<li>Then, the fleet at 4 (speed 2) and the car at position 5 (speed 1) become one fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches <code>target</code>.</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == position.length == speed.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt; target &lt;= 10<sup>6</sup></code></li>\n\t<li><code>0 &lt;= position[i] &lt; target</code></li>\n\t<li>All the values of <code>position</code> are <strong>unique</strong>.</li>\n\t<li><code>0 &lt; speed[i] &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "12\n[10,8,0,5,3]\n[2,4,1,1,3]\n10\n[3]\n[3]\n100\n[0,2,4]\n[4,2,1]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Stack",
+        "slug": "monotonic-stack",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "1206",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": false,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 3935,
+    "dislikes": 1128,
+    "similarQuestions": "[{\"title\": \"Car Fleet II\", \"titleSlug\": \"car-fleet-ii\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Count Collisions on a Road\", \"titleSlug\": \"count-collisions-on-a-road\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  },
+  "largest-rectangle-in-histogram": {
+    "link": "https://leetcode.com/problems/largest-rectangle-in-histogram",
+    "questionId": "84",
+    "questionFrontendId": "84",
+    "questionTitle": "Largest Rectangle in Histogram",
+    "titleSlug": "largest-rectangle-in-histogram",
+    "difficulty": "Hard",
+    "isPaidOnly": false,
+    "question": "<p>Given an array of integers <code>heights</code> representing the histogram&#39;s bar height where the width of each bar is <code>1</code>, return <em>the area of the largest rectangle in the histogram</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/04/histogram.jpg\" style=\"width: 522px; height: 242px;\" />\n<pre>\n<strong>Input:</strong> heights = [2,1,5,6,2,3]\n<strong>Output:</strong> 10\n<strong>Explanation:</strong> The above is a histogram where width of each bar is 1.\nThe largest rectangle is shown in the red area, which has an area = 10 units.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/04/histogram-1.jpg\" style=\"width: 202px; height: 362px;\" />\n<pre>\n<strong>Input:</strong> heights = [2,4]\n<strong>Output:</strong> 4\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= heights.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= heights[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "exampleTestcases": "[2,1,5,6,2,3]\n[2,4]",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Stack",
+        "slug": "monotonic-stack",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "67",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 18289,
+    "dislikes": 329,
+    "similarQuestions": "[{\"title\": \"Maximal Rectangle\", \"titleSlug\": \"maximal-rectangle\", \"difficulty\": \"Hard\", \"translatedTitle\": null}, {\"title\": \"Maximum Score of a Good Subarray\", \"titleSlug\": \"maximum-score-of-a-good-subarray\", \"difficulty\": \"Hard\", \"translatedTitle\": null}]"
+  },
+  "reverse-linked-list": {
+    "link": "https://leetcode.com/problems/reverse-linked-list",
+    "questionId": "206",
+    "questionFrontendId": "206",
+    "questionTitle": "Reverse Linked List",
+    "titleSlug": "reverse-linked-list",
+    "difficulty": "Easy",
+    "isPaidOnly": false,
+    "question": "<p>Given the <code>head</code> of a singly linked list, reverse the list, and return <em>the reversed list</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg\" style=\"width: 542px; height: 222px;\" />\n<pre>\n<strong>Input:</strong> head = [1,2,3,4,5]\n<strong>Output:</strong> [5,4,3,2,1]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/02/19/rev1ex2.jpg\" style=\"width: 182px; height: 222px;\" />\n<pre>\n<strong>Input:</strong> head = [1,2]\n<strong>Output:</strong> [2,1]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> head = []\n<strong>Output:</strong> []\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>\n\t<li><code>-5000 &lt;= Node.val &lt;= 5000</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> A linked list can be reversed either iteratively or recursively. Could you implement both?</p>\n",
+    "exampleTestcases": "[1,2,3,4,5]\n[1,2]\n[]",
+    "topicTags": [
+      {
+        "name": "Linked List",
+        "slug": "linked-list",
+        "translatedName": null
+      },
+      {
+        "name": "Recursion",
+        "slug": "recursion",
+        "translatedName": null
+      }
+    ],
+    "hints": [],
+    "solution": {
+      "id": "6",
+      "canSeeDetail": false,
+      "paidOnly": true,
+      "hasVideoSolution": true,
+      "paidOnlyVideo": true
+    },
+    "companyTagStats": null,
+    "likes": 22964,
+    "dislikes": 529,
+    "similarQuestions": "[{\"title\": \"Reverse Linked List II\", \"titleSlug\": \"reverse-linked-list-ii\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Binary Tree Upside Down\", \"titleSlug\": \"binary-tree-upside-down\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Palindrome Linked List\", \"titleSlug\": \"palindrome-linked-list\", \"difficulty\": \"Easy\", \"translatedTitle\": null}, {\"title\": \"Reverse Nodes in Even Length Groups\", \"titleSlug\": \"reverse-nodes-in-even-length-groups\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Maximum Twin Sum of a Linked List\", \"titleSlug\": \"maximum-twin-sum-of-a-linked-list\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Remove Nodes From Linked List\", \"titleSlug\": \"remove-nodes-from-linked-list\", \"difficulty\": \"Medium\", \"translatedTitle\": null}, {\"title\": \"Insert Greatest Common Divisors in Linked List\", \"titleSlug\": \"insert-greatest-common-divisors-in-linked-list\", \"difficulty\": \"Medium\", \"translatedTitle\": null}]"
+  }
+}
