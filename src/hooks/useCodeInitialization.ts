@@ -19,9 +19,8 @@ function getProblemRoute(problemId: string): string {
   if (problemId === "sandbox") {
     return "/sandbox";
   }
-
   // Check if it's a lesson
-  return isLessonId(problemId) ? "/lesson" : "/roadmap";
+  return isLessonId(problemId) ? "/lesson" : "/sandbox";
 }
 
 export function useCodeInitialization() {
@@ -40,11 +39,6 @@ export function useCodeInitialization() {
   // When the page loads, check if there is code or problemId in the URL
   useEffect(() => {
     if (hasInitialized) {
-      return;
-    }
-
-    if (router.pathname === "/") {
-      setHasInitialized(true);
       return;
     }
 
@@ -74,7 +68,7 @@ export function useCodeInitialization() {
           } catch (error) {
             // Fallback to two-sum if compilation fails
             setCurrentProblem("two-sum");
-            router.push("/roadmap");
+            router.push("/sandbox");
           } finally {
             setHasInitialized(true);
             // Clear the URL parameter after loading
@@ -87,7 +81,7 @@ export function useCodeInitialization() {
         console.error("Failed to decode shared code:", error);
         // Fallback to default problem
         setCurrentProblem("two-sum");
-        router.push("/roadmap");
+        router.push("/sandbox");
         setHasInitialized(true);
       }
     } else if (problemId) {
@@ -109,14 +103,14 @@ export function useCodeInitialization() {
           }, 100);
         } else {
           setCurrentProblem("two-sum");
-          // Default to roadmap for fallback
-          router.push("/roadmap");
+          // Default to sandbox for fallback
+          router.push("/sandbox");
         }
       } catch (error) {
         console.error("Failed to load problem from URL:", error);
         setCurrentProblem("two-sum");
-        // Default to roadmap for error case
-        router.push("/roadmap");
+        // Default to sandbox for error case
+        router.push("/sandbox");
       }
       setHasInitialized(true);
     } else {
@@ -127,6 +121,8 @@ export function useCodeInitialization() {
       } else if (router.pathname === "/lesson") {
         // Auto-redirect to last uncompleted lesson if available
         gotoDefaultLesson();
+      } else if (router.pathname === "/") {
+        // Home page, do nothing
       }
       setHasInitialized(true);
     }
