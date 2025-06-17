@@ -25,10 +25,7 @@ const navigationModes = [
     },
 ] as const;
 
-interface HeaderProps {
-}
-
-export const Header: React.FC<HeaderProps> = () => {
+export const Header: React.FC = () => {
     const router = useRouter();
     const { getCurrentProblemId, getCurrentProblemData, setCurrentProblem } = useTraceStore();
     const { setSidebarOpen } = useAppStore();

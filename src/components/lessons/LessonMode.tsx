@@ -13,11 +13,8 @@ import { LessonPage } from './LessonPage';
 import { LessonSidebar } from './LessonSidebar';
 
 import type { LessonModule, Lesson } from '@/types/lesson';
-interface LessonModeProps {
 
-}
-
-const LessonMode: React.FC<LessonModeProps> = ({ }) => {
+const LessonMode: React.FC = () => {
     const { setCurrentProblem, setMode } = useTraceStore();
     const { gotoDefaultLesson, currentLesson, currentCourse, currentModule } = useLessonNavigation();
 

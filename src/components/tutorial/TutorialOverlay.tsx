@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, HelpCircle, X } from 'lucide-react';
+import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -16,7 +17,6 @@ interface ElementPosition {
 }
 
 export const TutorialOverlay: React.FC = () => {
-    const { currentTab } = useTraceStore();
     const {
         isActive,
         currentStepIndex,
@@ -26,9 +26,10 @@ export const TutorialOverlay: React.FC = () => {
         skipTutorial,
         completeTutorial
     } = useTutorialStore();
+    const router = useRouter();
 
     // Show tutorial on learning and play pages
-    const shouldShowTutorial = (currentTab === 'learn' || currentTab === 'playground') && isActive;
+    const shouldShowTutorial = (router.pathname === '/lesson' || router.pathname === '/sandbox') && isActive;
 
     const [targetElement, setTargetElement] = useState<ElementPosition | null>(null);
     const [tooltipPosition, setTooltipPosition] = useState<{ top: number; left: number } | null>(null);

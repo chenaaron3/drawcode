@@ -12,10 +12,7 @@ import variablesImage from '@/assets/variables.png';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
-interface LandingPageProps {
-}
-
-export const LandingPage: React.FC<LandingPageProps> = ({ }) => {
+export const LandingPage: React.FC = () => {
     const [activeStep, setActiveStep] = useState(1);
     const router = useRouter();
 

@@ -1,4 +1,5 @@
 import { HelpCircle } from 'lucide-react';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,7 @@ export const TutorialTrigger: React.FC = () => {
         hasSeenTutorial,
         startTutorial,
     } = useTutorialStore();
-    const { currentTab } = useTraceStore();
+    const router = useRouter();
 
     // Auto-start tutorial for first-time users
     useEffect(() => {
@@ -25,12 +26,8 @@ export const TutorialTrigger: React.FC = () => {
         }
     }, [hasSeenTutorial, isActive, startTutorial]);
 
-    // Disable on mobile
-    // if (typeof window !== 'undefined' && window.innerWidth < 768) {
-    //     return null;
-    // }
     // Hide if not in learn mode
-    if (currentTab !== 'learn' && currentTab !== 'playground') {
+    if (router.pathname !== '/lesson' && router.pathname !== '/sandbox') {
         return null;
     }
 
