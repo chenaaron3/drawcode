@@ -1,4 +1,5 @@
 import { Pencil } from 'lucide-react';
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
@@ -39,8 +40,8 @@ export default function CodePanel() {
         clearError,
         getCurrentProblemId,
         getCurrentProblemData,
-        currentTab,
     } = useTraceStore();
+    const router = useRouter();
     const currentLine = useTraceStore(selectCurrentLine);
     const [isReadOnly, setIsReadOnly] = useState(true);
     const problemId = getCurrentProblemId();
@@ -121,7 +122,7 @@ export default function CodePanel() {
                     <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0">
                         <div className="flex items-center gap-2">
                             <CardTitle className="text-lg">
-                                {currentTab === "learn" ? "Program" : (problemData?.title ?? "Code")}
+                                {router.pathname === "/lesson" ? "Program" : (problemData?.title ?? "Code")}
                             </CardTitle>
                             {problemId && problemData?.details && (
                                 <ProblemDescriptionModal problemId={problemId} />

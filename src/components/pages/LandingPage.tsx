@@ -2,6 +2,7 @@ import {
     ArrowRight, BookOpen, CheckCircle, Eye, Github, Heart, Play, Users, X, Zap
 } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 // Import images
@@ -12,11 +13,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface LandingPageProps {
-    onGetStarted: () => void;
 }
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
+export const LandingPage: React.FC<LandingPageProps> = ({ }) => {
     const [activeStep, setActiveStep] = useState(1);
+    const router = useRouter();
+
+    const onGetStarted = () => {
+        router.push('/lesson');
+    }
 
     const steps = [
         {
@@ -43,34 +48,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-            {/* Header */}
-            <header className="px-6 py-4 bg-white/80 backdrop-blur-sm border-b border-gray-200/50">
-                <div className="max-w-7xl mx-auto flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
-                            <Zap className="h-6 w-6 text-white" />
-                        </div>
-                        <div>
-                            <h1 className="text-2xl font-bold text-gray-900">Python Quest</h1>
-                            <p className="text-sm text-gray-500">Learn Python Through Adventure</p>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <Button variant="ghost" size="sm" className="text-gray-600" asChild>
-                            <a href="https://github.com/chenaaron3/drawcode" target="_blank" rel="noopener noreferrer">
-                                <Github className="h-4 w-4 mr-2" />
-                                GitHub
-                            </a>
-                        </Button>
-                        <Button onClick={onGetStarted} className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                            Get Started
-                            <ArrowRight className="h-4 w-4 ml-2" />
-                        </Button>
-                    </div>
-                </div>
-            </header>
-
+        <div className="w-full h-full overflow-auto bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             {/* Hero Section */}
             <section className="px-6 py-20">
                 <div className="max-w-7xl mx-auto text-center">
@@ -82,7 +60,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                             </span>
                         </h1>
                         <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                            Learning to code doesn&apost have to be frustrating. Watch your Python code come alive with
+                            Learning to code doesn&apos;t have to be frustrating. Watch your Python code come alive with
                             step-by-step visualizations that make programming concepts crystal clear.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -107,7 +85,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                             Why Python Quest?
                         </h2>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Learning to code doesn&apost have to be frustrating. We make programming visual, interactive, and fun.
+                            Learning to code doesn&apos;t have to be frustrating. We make programming visual, interactive, and fun.
                         </p>
                     </div>
 
@@ -139,8 +117,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                                 </p>
                             </CardContent>
                         </Card>
-
-
 
                         {/* No Setup Required */}
                         <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-orange-50 to-amber-50">
@@ -417,8 +393,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </section>
 

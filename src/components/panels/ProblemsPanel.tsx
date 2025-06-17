@@ -1,14 +1,17 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, Search, X } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import router, { useRouter } from 'next/router';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { map } from 'zod';
+
+import { useTraceStore } from '@/store/traceStore';
+import { trackProblemSelection } from '@/utils/analytics';
 
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/input';
 
 import type { title } from 'process';
-
 interface Problem {
     id: string;
     title: string;
@@ -30,7 +33,6 @@ interface ProblemsPanelProps {
     selectedPattern: Pattern | null;
     problems: Problem[];
     onClearFilter: () => void;
-    onProblemClick: (problemId: string) => void;
 }
 
 // Simple fuzzy search implementation
@@ -57,9 +59,10 @@ const ProblemsPanel: React.FC<ProblemsPanelProps> = ({
     selectedPattern,
     problems,
     onClearFilter,
-    onProblemClick,
 }) => {
     const [searchQuery, setSearchQuery] = useState('');
+    const { setCurrentProblem } = useTraceStore();
+    const router = useRouter();
 
     // Get the base problem set (all problems or pattern-filtered problems)
     const baseProblems = useMemo(() => {
@@ -75,11 +78,18 @@ const ProblemsPanel: React.FC<ProblemsPanelProps> = ({
     }, [selectedPattern, problems]);
 
     // Clear search when a pattern is selected
-    React.useEffect(() => {
+    useEffect(() => {
         if (selectedPattern) {
             setSearchQuery('');
         }
     }, [selectedPattern]);
+
+    const handleProblemClick = useCallback((problemId: string) => {
+        setCurrentProblem(problemId);
+        trackProblemSelection(problemId, 'roadmap');
+        // Route to the problem page
+        router.push(`/sandbox`);
+    }, [setCurrentProblem]);
 
     // Apply search filter and sort
     const filteredProblems = useMemo(() => {
@@ -180,7 +190,7 @@ const ProblemsPanel: React.FC<ProblemsPanelProps> = ({
                                     key={problem.id}
                                     className={`p-2 rounded border cursor-pointer transition-all hover:shadow-md ${isCompleted ? 'bg-green-50 border-green-200 ring-1 ring-green-300' : 'bg-card border-border hover:bg-accent'
                                         }`}
-                                    onClick={() => onProblemClick(problem.id)}
+                                    onClick={() => handleProblemClick(problem.id)}
                                     onContextMenu={(e) => {
                                         e.preventDefault();
                                     }}

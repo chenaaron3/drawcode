@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sh
 import lessonModulesData from '@/data/lesson-modules.json';
 import lessonProblemsData from '@/data/lesson-problems.json';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
+import { useAppStore } from '@/store/appStore';
 import { useTraceStore } from '@/store/traceStore';
 import { trackLessonViewed } from '@/utils/analytics';
 
@@ -13,17 +14,18 @@ import { LessonSidebar } from './LessonSidebar';
 
 import type { LessonModule, Lesson } from '@/types/lesson';
 interface LessonModeProps {
-    isSidebarOpen: boolean;
-    setIsSidebarOpen: (open: boolean) => void;
+
 }
 
-const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
+const LessonMode: React.FC<LessonModeProps> = ({ }) => {
     const { setCurrentProblem, setMode } = useTraceStore();
     const { gotoDefaultLesson, currentLesson, currentCourse, currentModule } = useLessonNavigation();
 
+    const { isSidebarOpen, setSidebarOpen } = useAppStore();
+
     const handleLessonSelect = (lessonId: string) => {
         setCurrentProblem(lessonId);
-        setIsSidebarOpen(false); // Close drawer after selection
+        setSidebarOpen(false); // Close drawer after selection
     };
 
     useEffect(() => {
@@ -56,7 +58,7 @@ const LessonMode: React.FC<LessonModeProps> = ({ isSidebarOpen, setIsSidebarOpen
     return (
         <div className="h-full w-full relative">
             {/* Sheet Drawer */}
-            <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
+            <Sheet open={isSidebarOpen} onOpenChange={setSidebarOpen}>
                 <SheetContent side="left" className="min-w-[20rem] max-w-[24rem] p-0 flex flex-col">
                     <SheetHeader className="mx-6 py-4 border-b border-slate-200 dark:border-slate-700 flex-shrink-0">
                         <SheetTitle className="text-lg font-semibold">{currentCourse.title}</SheetTitle>

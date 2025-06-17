@@ -2,11 +2,16 @@ import '@/styles/globals.css';
 
 import { SessionProvider } from 'next-auth/react';
 import { Geist } from 'next/font/google';
+import { Toaster } from 'sonner';
 
+import MainLayout from '@/components/layout/MainLayout';
+import { TutorialOverlay } from '@/components/tutorial';
+import { PageLoadingIndicator } from '@/components/ui/PageLoadingIndicator';
 import { api } from '@/utils/api';
 
 import type { AppType } from 'next/app';
 import type { Session } from 'next-auth';
+
 const geist = Geist({
   subsets: ["latin"],
 });
@@ -17,8 +22,14 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <div className={geist.className}>
-        <Component {...pageProps} />
+      <div className={`${geist.className} w-screen h-screen max-w-full max-h-screen overflow-hidden bg-gray-50 flex flex-col`}>
+        <Toaster richColors />
+        <PageLoadingIndicator />
+        <MainLayout />
+        <TutorialOverlay />
+        <div className="flex-1 flex overflow-hidden max-h-full m-4 lg:m-0 lg:pt-16" style={{ height: 'calc(100vh - 4rem)' }}>
+          <Component {...pageProps} />
+        </div>
       </div>
     </SessionProvider>
   );

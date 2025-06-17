@@ -10,7 +10,9 @@ export default function TraceVisualizer() {
         traceData: currentTraceData
     } = useTraceStore();
 
-    if (!currentTraceData) return null;
+    if (!currentTraceData) return <div>No trace data</div>;
+
+    console.log(currentTraceData);
 
     return (
         <LayoutGroup>

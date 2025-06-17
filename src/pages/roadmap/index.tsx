@@ -31,12 +31,6 @@ const RoadmapPage: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const { setCurrentProblem } = useTraceStore();
 
-    const handleProblemClick = useCallback((problemId: string) => {
-        setCurrentProblem(problemId);
-        trackProblemSelection(problemId, 'roadmap');
-        // Navigation happens automatically via ProblemMode checking the store
-    }, [setCurrentProblem]);
-
     // Process patterns and problems data
     const { patterns, problems } = useMemo(() => {
         const patterns: Pattern[] = patternsData.patterns;
@@ -82,7 +76,6 @@ const RoadmapPage: React.FC = () => {
             <RoadmapGraph
                 patterns={patterns}
                 problems={problems}
-                onProblemClick={handleProblemClick}
             />
         </div>
     );

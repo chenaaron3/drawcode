@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import lessonProblemsData from '@/data/lesson-problems.json';
@@ -12,25 +13,24 @@ function isLessonId(problemId: string): boolean {
   return lessonProblemsData.some((lesson) => lesson.id === problemId);
 }
 
-// Helper function to determine the correct tab for a problem
-function getProblemTab(problemId: string): "learn" | "practice" | "playground" {
+// Helper function to determine the correct route for a problem
+function getProblemRoute(problemId: string): string {
   // Sandbox always goes to playground
   if (problemId === "sandbox") {
-    return "playground";
+    return "/sandbox";
   }
 
   // Check if it's a lesson
-  return isLessonId(problemId) ? "learn" : "practice";
+  return isLessonId(problemId) ? "/lesson" : "/roadmap";
 }
 
 export function useCodeInitialization() {
+  const router = useRouter();
   const {
     setCurrentCode,
     setCurrentProblem,
     setTraceData,
     getCurrentProblemId,
-    currentTab,
-    setCurrentTab,
   } = useTraceStore();
   const { isLoading: isPyodideLoading, generateTrace } = usePyodide();
   const [hasInitialized, setHasInitialized] = useState(false);
@@ -40,6 +40,11 @@ export function useCodeInitialization() {
   // When the page loads, check if there is code or problemId in the URL
   useEffect(() => {
     if (hasInitialized) {
+      return;
+    }
+
+    if (router.pathname === "/") {
+      setHasInitialized(true);
       return;
     }
 
@@ -59,7 +64,7 @@ export function useCodeInitialization() {
         setCurrentCode(decodedCode);
 
         // Sandbox always goes to playground mode
-        setCurrentTab("playground");
+        router.push("/sandbox");
 
         const generateTraceAsync = async () => {
           // Wrap just in case we get an invalid code
@@ -69,6 +74,7 @@ export function useCodeInitialization() {
           } catch (error) {
             // Fallback to two-sum if compilation fails
             setCurrentProblem("two-sum");
+            router.push("/roadmap");
           } finally {
             setHasInitialized(true);
             // Clear the URL parameter after loading
@@ -81,6 +87,7 @@ export function useCodeInitialization() {
         console.error("Failed to decode shared code:", error);
         // Fallback to default problem
         setCurrentProblem("two-sum");
+        router.push("/roadmap");
         setHasInitialized(true);
       }
     } else if (problemId) {
@@ -90,9 +97,9 @@ export function useCodeInitialization() {
         const problemTraceData = getTraceData(problemId);
         console.log("problemTraceData", problemTraceData);
         if (problemTraceData) {
-          // Set the correct tab based on whether it's a lesson, practice, or playground
-          const correctTab = getProblemTab(problemId);
-          setCurrentTab(correctTab);
+          // Set the correct route based on whether it's a lesson, practice, or playground
+          const correctRoute = getProblemRoute(problemId);
+          router.push(correctRoute);
 
           setCurrentProblem(problemId);
           // Clear the URL parameter after loading with a small delay
@@ -102,23 +109,22 @@ export function useCodeInitialization() {
           }, 100);
         } else {
           setCurrentProblem("two-sum");
-          // Default to practice mode for fallback
-          setCurrentTab("practice");
+          // Default to roadmap for fallback
+          router.push("/roadmap");
         }
       } catch (error) {
         console.error("Failed to load problem from URL:", error);
         setCurrentProblem("two-sum");
-        // Default to practice mode for error case
-        setCurrentTab("practice");
+        // Default to roadmap for error case
+        router.push("/roadmap");
       }
       setHasInitialized(true);
     } else {
-      // Default initialization for non-learn mode
-      if (currentTab !== "learn" && currentProblem === null) {
-        // Not in learn mode and no problem selected - default to two-sum
-        setCurrentProblem("two-sum");
-      } else {
-        setCurrentTab("learn");
+      // Default initialization
+      if (router.pathname === "/sandbox") {
+        // No problem selected - default to two-sum
+        setCurrentProblem("sandbox");
+      } else if (router.pathname === "/lesson") {
         // Auto-redirect to last uncompleted lesson if available
         gotoDefaultLesson();
       }
@@ -131,9 +137,8 @@ export function useCodeInitialization() {
     setCurrentProblem,
     generateTrace,
     setTraceData,
-    currentTab,
-    setCurrentTab,
     currentProblem,
+    router,
   ]);
 
   // Initialize trace data when problem changes

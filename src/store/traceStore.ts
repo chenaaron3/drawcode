@@ -48,9 +48,6 @@ interface TraceState {
   animatingVariable: string | null;
   isEvaluating: boolean; // True during before_expression, false during after_expression
 
-  // UI state
-  currentTab: "learn" | "practice" | "playground"; // Current navigation tab
-
   // Input overrides for current problem only
   currentProblemId: string | null;
   inputOverrides: Record<string, any>; // input name -> value for current problem
@@ -97,9 +94,6 @@ interface TraceActions {
   setAnimatingVariable: (variableName: string | null) => void;
   setIsEvaluating: (isEvaluating: boolean) => void;
 
-  // UI state
-  setCurrentTab: (tab: "learn" | "practice" | "playground") => void;
-
   // Problems
   setCurrentProblem: (problemId: string | null) => void;
   getCurrentProblemId: () => string | null;
@@ -140,7 +134,6 @@ const initialState: TraceState = {
   mode: "line",
   animatingVariable: null,
   isEvaluating: false,
-  currentTab: "learn",
   currentProblemId: null,
   inputOverrides: {},
   originalCode: null,
@@ -213,11 +206,6 @@ export const useTraceStore = create<TraceStore>()(
     setIsEvaluating: (isEvaluating) =>
       set((state) => {
         state.isEvaluating = isEvaluating;
-      }),
-
-    setCurrentTab: (tab) =>
-      set((state) => {
-        state.currentTab = tab;
       }),
 
     next: () =>

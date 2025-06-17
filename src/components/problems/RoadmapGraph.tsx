@@ -8,11 +8,12 @@ import ReactFlow, {
     useEdgesState, useNodesState
 } from 'reactflow';
 
+import { trackProblemSelection } from '@/utils/analytics';
+
 import { useTraceStore } from '../../store/traceStore';
 import { ProblemsPanel } from '../panels';
 
 import type { Connection, Edge, Node, NodeTypes } from 'reactflow';
-
 interface Pattern {
     id: string;
     name: string;
@@ -33,7 +34,6 @@ interface Problem {
 interface RoadmapGraphProps {
     patterns: Pattern[];
     problems?: Problem[];
-    onProblemClick?: (problemId: string) => void;
 }
 
 const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
@@ -125,7 +125,7 @@ const nodeTypes: NodeTypes = {
     patternNode: PatternNode,
 };
 
-const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [], onProblemClick, }) => {
+const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [] }) => {
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [selectedPattern, setSelectedPattern] = useState<Pattern | null>(null);
@@ -139,14 +139,6 @@ const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [
     const togglePatternSelection = useCallback((pattern: Pattern) => {
         setSelectedPattern(prev => prev?.id === pattern.id ? null : pattern);
     }, []);
-
-    const handleProblemClick = useCallback((problemId: string) => {
-        if (onProblemClick) {
-            onProblemClick(problemId);
-        } else {
-            setCurrentProblem(problemId);
-        }
-    }, [onProblemClick, setCurrentProblem]);
 
     const { graphNodes, graphEdges } = useMemo(() => {
         const nodes: Node[] = [];
@@ -239,7 +231,6 @@ const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [
                         selectedPattern={selectedPattern}
                         problems={problems}
                         onClearFilter={() => setSelectedPattern(null)}
-                        onProblemClick={handleProblemClick}
                     />
                 </Panel>
             </ReactFlow>
@@ -247,13 +238,12 @@ const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [
     );
 };
 
-const RoadmapGraph: React.FC<RoadmapGraphProps> = ({ patterns, problems, onProblemClick }) => {
+const RoadmapGraph: React.FC<RoadmapGraphProps> = ({ patterns, problems }) => {
     return (
         <ReactFlowProvider>
             <RoadmapGraphInner
                 patterns={patterns}
                 problems={problems}
-                onProblemClick={onProblemClick}
             />
         </ReactFlowProvider>
     );
