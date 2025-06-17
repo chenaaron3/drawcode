@@ -3,7 +3,6 @@
  * for Docker builds.
  */
 import "./src/env.js";
-import { PyodidePlugin } from '@pyodide/webpack-plugin';
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -23,14 +22,7 @@ const config = {
     // Handle markdown and Python files
     config.module.rules.push({
       test: /\.(md|py)$/,
-      use: [
-        {
-          loader: 'raw-loader',
-          options: {
-            esModule: true
-          }
-        }
-      ]
+      use: 'raw-loader'
     });
 
     // Handle JSON files
@@ -38,17 +30,6 @@ const config = {
       test: /\.json$/,
       type: 'json',
     });
-
-    // // Add Pyodide webpack plugin
-    // // if (!isServer) {
-    //   config.plugins.push(
-    //     new PyodidePlugin({
-    //       // packageIndexUrl: "https://cdn.jsdelivr.net/pyodide/v0.27.6/full/",
-    //       // globalLoadPyodide: true,
-    //       // outDirectory: "public/pyodide"
-    //     })
-    //   );
-    // // }
 
     return config;
   }

@@ -1,4 +1,4 @@
-import type { loadPyodide, PyodideInterface } from "pyodide";
+import type { PyodideInterface } from "pyodide";
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import astTransformerCode from '@/tracer/ast_transformer.py';
@@ -7,10 +7,11 @@ import relationshipAnalyzerCode from '@/tracer/relationship_analyzer.py';
 // Import Python tracer files as raw text
 import utilsCode from '@/tracer/utils.py';
 
-import { usePyodideInstance } from './usePyodideInstance';
+import { usePyodideScript } from './usePyodideInstance';
 
 import type { SpecialInput } from "@/types/problem";
 import type { ManualRelationship } from "@/types/trace";
+
 interface UsePyodideResult {
   pyodide: PyodideInterface | null;
   isLoading: boolean;
@@ -26,8 +27,8 @@ interface UsePyodideResult {
 }
 
 export function usePyodide(): UsePyodideResult {
-  const { pyodide } = usePyodideInstance();
-  // const [pyodide, setPyodide] = useState<PyodideInterface | null>(null);
+  const { pyodideScriptLoading } = usePyodideScript();
+  const [pyodide, setPyodide] = useState<PyodideInterface | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const isInitializing = useRef(false);
 
@@ -40,6 +41,7 @@ export function usePyodide(): UsePyodideResult {
   ];
 
   useEffect(() => {
+    if (pyodideScriptLoading) return;
     if (isInitializing.current) return;
     isInitializing.current = true;
 
@@ -48,7 +50,7 @@ export function usePyodide(): UsePyodideResult {
     }
 
     initializePyodide();
-  }, []);
+  }, [pyodideScriptLoading]);
 
   const loadTracer = async (pyodide: PyodideInterface) => {
     if (!pyodide) throw new Error("Pyodide not ready");
@@ -82,12 +84,11 @@ exec("""${file.code.replace(/"/g, '\\"')}""", module.__dict__)
     setIsLoading(true);
 
     try {
-      // const pyodideInstance = await loadPyodide({
-      //   indexURL: "https://cdn.jsdelivr.net/pyodide/v0.27.6/full/",
-      // });
-
+      const pyodide = await (window as any).loadPyodide({
+        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/",
+      });
       await pyodide.loadPackage(["micropip"]);
-      // setPyodide(pyodide);
+      setPyodide(pyodide);
 
       setIsLoading(false);
 

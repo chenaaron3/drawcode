@@ -8,7 +8,6 @@ import ReactFlow, {
     useEdgesState, useNodesState
 } from 'reactflow';
 
-import { useProgress } from '../../hooks/useProgress';
 import { useTraceStore } from '../../store/traceStore';
 import { ProblemsPanel } from '../panels';
 
@@ -35,7 +34,6 @@ interface RoadmapGraphProps {
     patterns: Pattern[];
     problems?: Problem[];
     onProblemClick?: (problemId: string) => void;
-    onProblemToggleCompletion?: (problemId: string) => void;
 }
 
 const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
@@ -127,12 +125,11 @@ const nodeTypes: NodeTypes = {
     patternNode: PatternNode,
 };
 
-const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [], onProblemClick, onProblemToggleCompletion }) => {
+const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [], onProblemClick, }) => {
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [selectedPattern, setSelectedPattern] = useState<Pattern | null>(null);
     const { setCurrentProblem } = useTraceStore();
-    const { getPatternCompletion, toggleProblemCompletion } = useProgress();
 
     const onConnect = useCallback(
         (params: Connection) => setEdges((eds) => addEdge(params, eds)),
@@ -151,22 +148,13 @@ const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [
         }
     }, [onProblemClick, setCurrentProblem]);
 
-    const handleProblemToggleCompletion = useCallback((problemId: string) => {
-        if (onProblemToggleCompletion) {
-            onProblemToggleCompletion(problemId);
-        } else {
-            toggleProblemCompletion(problemId);
-        }
-    }, [onProblemToggleCompletion, toggleProblemCompletion]);
-
     const { graphNodes, graphEdges } = useMemo(() => {
         const nodes: Node[] = [];
         const edges: Edge[] = [];
 
         // Create pattern nodes only (problems are now in side panel)
         patterns.forEach((pattern) => {
-            const completionPercentage = getPatternCompletion(pattern.problemIds);
-            const isCompleted = completionPercentage === 100;
+            const isCompleted = false;
             const isSelected = selectedPattern?.id === pattern.id;
 
             nodes.push({
@@ -175,7 +163,7 @@ const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [
                 position: { x: 0, y: 0 }, // Will be set by dagre layout
                 data: {
                     ...pattern,
-                    completionPercentage,
+                    completionPercentage: 0,
                     isCompleted,
                     isSelected,
                     onClick: () => togglePatternSelection(pattern),
@@ -207,7 +195,7 @@ const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [
 
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(nodes, edges);
         return { graphNodes: layoutedNodes, graphEdges: layoutedEdges };
-    }, [patterns, problems, selectedPattern, getPatternCompletion, togglePatternSelection]);
+    }, [patterns, problems, selectedPattern, togglePatternSelection]);
 
     useEffect(() => {
         setNodes(graphNodes);
@@ -252,7 +240,6 @@ const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [
                         problems={problems}
                         onClearFilter={() => setSelectedPattern(null)}
                         onProblemClick={handleProblemClick}
-                        onProblemToggleCompletion={handleProblemToggleCompletion}
                     />
                 </Panel>
             </ReactFlow>
@@ -260,14 +247,13 @@ const RoadmapGraphInner: React.FC<RoadmapGraphProps> = ({ patterns, problems = [
     );
 };
 
-const RoadmapGraph: React.FC<RoadmapGraphProps> = ({ patterns, problems, onProblemClick, onProblemToggleCompletion }) => {
+const RoadmapGraph: React.FC<RoadmapGraphProps> = ({ patterns, problems, onProblemClick }) => {
     return (
         <ReactFlowProvider>
             <RoadmapGraphInner
                 patterns={patterns}
                 problems={problems}
                 onProblemClick={onProblemClick}
-                onProblemToggleCompletion={onProblemToggleCompletion}
             />
         </ReactFlowProvider>
     );

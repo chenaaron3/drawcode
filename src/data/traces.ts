@@ -26,8 +26,10 @@ import numbersTrace from './traces/numbers.json';
 import plusEqualsTrace from './traces/plus-equals.json';
 import questNotesTrace from './traces/quest-notes.json';
 import relationalOperatorsIiTrace from './traces/relational-operators-ii.json';
+import sandboxTrace from './traces/sandbox.json';
 import stringConcatenationTrace from './traces/string-concatenation.json';
 import stringsTrace from './traces/strings.json';
+import twoSumTrace from './traces/two-sum.json';
 import whatIsAListTrace from './traces/what-is-a-list.json';
 
 // Create the TRACES object with all imported traces
@@ -60,6 +62,8 @@ export const TRACES: Record<string, TraceData> = {
   "list-methods": listMethodsTrace as unknown as TraceData,
   "growing-a-list-append": growingAListAppendTrace as unknown as TraceData,
   "growing-a-list-plus": growingAListPlusTrace as unknown as TraceData,
+  sandbox: sandboxTrace as unknown as TraceData,
+  "two-sum": twoSumTrace as unknown as TraceData,
 };
 
 // Export available problem IDs from JSON file

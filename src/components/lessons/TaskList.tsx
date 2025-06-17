@@ -13,9 +13,9 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { useLessonStore } from '@/store/lessonStore';
+import { useProgressStore } from '@/store/progressStore';
 import { useTraceStore } from '@/store/traceStore';
 import { trackLessonCompleted } from '@/utils/analytics';
-import { ProgressStorage } from '@/utils/progressStorage';
 
 import type { Lesson } from '@/types/lesson';
 interface TaskListProps {
@@ -36,7 +36,7 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
         currentProblemId,
     } = useTraceStore();
     const { gotoNextLesson } = useLessonNavigation();
-
+    const progressStore = useProgressStore();
     // State to track which task is open (only one at a time)
     const [openTaskId, setOpenTaskId] = useState<string | null>(null);
 
@@ -46,7 +46,7 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
 
     // If the lesson is already completed, finish all tasks. 
     useEffect(() => {
-        if (allTasks.length > 0 && ProgressStorage.isLessonCompleted(currentCourseId, currentModuleId, lesson.id)) {
+        if (allTasks.length > 0 && progressStore.isLessonCompleted(currentCourseId, currentModuleId, lesson.id)) {
             finishAllTasks();
         }
     }, [allTasks, currentCourseId, currentModuleId, lesson.id, finishAllTasks]);
@@ -70,7 +70,7 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
                 setShowCompletionModal(true);
                 // Mark lesson as completed in ProgressStorage
                 if (currentCourseId && currentModuleId) {
-                    ProgressStorage.markLessonCompleted(currentCourseId, currentModuleId, lesson.id);
+                    progressStore.markLessonCompleted(currentCourseId, currentModuleId, lesson.id);
                 }
             } else if (completedTaskCount > 0) {
                 // Just show a toast

@@ -2,8 +2,7 @@ import { Check, ChevronRight, Lock, Play } from 'lucide-react';
 import React, { useState } from 'react';
 
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
-
-import { ProgressStorage } from '../../utils/progressStorage';
+import { useProgressStore } from '@/store/progressStore';
 
 import type { LessonModule, Lesson, LessonCourse } from '@/types/lesson';
 interface LessonSidebarProps {
@@ -24,6 +23,7 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
     onLessonSelect,
 }) => {
     const { getUnlockedLesson } = useLessonNavigation();
+    const progressStore = useProgressStore();
     // State to track which module is expanded (only one at a time)
     // Initialize with the current module if it exists
     const [expandedModuleId, setExpandedModuleId] = useState<string>(
@@ -80,7 +80,7 @@ export const LessonSidebar: React.FC<LessonSidebarProps> = ({
                         >
                             {moduleLessons.map((lesson) => {
                                 const isSelected = currentLesson.id === lesson.id;
-                                const isCompleted = ProgressStorage.isLessonCompleted(currentCourse.id, module.id, lesson.id);
+                                const isCompleted = progressStore.isLessonCompleted(currentCourse.id, module.id, lesson.id);
                                 const isAvailable = isCompleted || lesson.id == getUnlockedLesson()?.id;
 
                                 let icon = null;

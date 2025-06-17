@@ -26,9 +26,9 @@ export const TutorialTrigger: React.FC = () => {
     }, [hasSeenTutorial, isActive, startTutorial]);
 
     // Disable on mobile
-    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-        return null;
-    }
+    // if (typeof window !== 'undefined' && window.innerWidth < 768) {
+    //     return null;
+    // }
     // Hide if not in learn mode
     if (currentTab !== 'learn' && currentTab !== 'playground') {
         return null;

@@ -3,8 +3,8 @@ import { useEffect, useMemo } from 'react';
 import lessonCoursesData from '@/data/lesson-courses.json';
 import lessonModulesData from '@/data/lesson-modules.json';
 import lessonProblemsData from '@/data/lesson-problems.json';
+import { useProgressStore } from '@/store/progressStore';
 import { useTraceStore } from '@/store/traceStore';
-import { ProgressStorage } from '@/utils/progressStorage';
 
 import type { Lesson, LessonCourse, LessonModule } from "@/types/lesson";
 export interface LessonNavigationInfo {
@@ -45,6 +45,7 @@ export function useLessonNavigation(): LessonNavigationInfo &
     ) || null;
   const currentModuleId = currentModule ? currentModule.id : null;
   const currentCourseId = currentCourse.id;
+  const progressStore = useProgressStore();
 
   // Get all lessons in order for the current course
   const orderedLessons = useMemo(() => {
@@ -105,13 +106,13 @@ export function useLessonNavigation(): LessonNavigationInfo &
   let isLessonCompleted = false;
   let markLessonCompleted = () => {};
   if (currentCourseId && currentModuleId && currentLessonId) {
-    isLessonCompleted = ProgressStorage.isLessonCompleted(
+    isLessonCompleted = progressStore.isLessonCompleted(
       currentCourseId,
       currentModuleId,
       currentLessonId,
     );
     markLessonCompleted = () => {
-      ProgressStorage.markLessonCompleted(
+      progressStore.markLessonCompleted(
         currentCourseId,
         currentModuleId,
         currentLessonId,
@@ -122,7 +123,7 @@ export function useLessonNavigation(): LessonNavigationInfo &
   // Save last position on navigation
   useEffect(() => {
     if (currentCourseId && currentModuleId && currentLessonId) {
-      ProgressStorage.saveLastPosition(
+      progressStore.saveLastPosition(
         currentCourseId,
         currentModuleId,
         currentLessonId,
@@ -132,7 +133,7 @@ export function useLessonNavigation(): LessonNavigationInfo &
 
   // Goto default lesson: last position if available, else first lesson of first module of first course
   const gotoDefaultLesson = () => {
-    const lastPosition = ProgressStorage.getLastPosition();
+    const lastPosition = progressStore.getLastPosition();
     // Go to last position
     if (
       lastPosition &&
@@ -151,7 +152,7 @@ export function useLessonNavigation(): LessonNavigationInfo &
     const firstUnlockedLesson = orderedLessons.find((l) => {
       let moduleId = modules.find((m) => m.lessonIds.includes(l.id))?.id;
       if (moduleId !== undefined) {
-        return !ProgressStorage.isLessonCompleted(
+        return !progressStore.isLessonCompleted(
           currentCourseId,
           moduleId,
           l.id,

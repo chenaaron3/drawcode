@@ -1,8 +1,8 @@
 import { Pencil } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+// import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -159,7 +159,7 @@ export default function CodePanel() {
                                     <SyntaxHighlighter
                                         data-testid="code-editor-read"
                                         language="python"
-                                        style={oneLight}
+                                        // style={vscDarkPlus}
                                         customStyle={{
                                             margin: 0,
                                             padding: 0,

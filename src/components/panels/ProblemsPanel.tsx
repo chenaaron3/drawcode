@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, Search, X } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
+import { map } from 'zod';
 
-import { useProgress } from '../../hooks/useProgress';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/input';
+
+import type { title } from 'process';
 
 interface Problem {
     id: string;
@@ -29,7 +31,6 @@ interface ProblemsPanelProps {
     problems: Problem[];
     onClearFilter: () => void;
     onProblemClick: (problemId: string) => void;
-    onProblemToggleCompletion: (problemId: string) => void;
 }
 
 // Simple fuzzy search implementation
@@ -57,10 +58,8 @@ const ProblemsPanel: React.FC<ProblemsPanelProps> = ({
     problems,
     onClearFilter,
     onProblemClick,
-    onProblemToggleCompletion,
 }) => {
     const [searchQuery, setSearchQuery] = useState('');
-    const { isProblemCompleted } = useProgress();
 
     // Get the base problem set (all problems or pattern-filtered problems)
     const baseProblems = useMemo(() => {
@@ -170,7 +169,7 @@ const ProblemsPanel: React.FC<ProblemsPanelProps> = ({
                 <CardContent className="pt-0 flex-1 overflow-y-auto">
                     <div className="space-y-2">
                         {filteredProblems.map((problem) => {
-                            const isCompleted = isProblemCompleted(problem.id);
+                            const isCompleted = false;
                             const difficultyColor =
                                 problem.difficulty === 'Easy' ? 'text-green-600' :
                                     problem.difficulty === 'Medium' ? 'text-yellow-600' :
@@ -184,7 +183,6 @@ const ProblemsPanel: React.FC<ProblemsPanelProps> = ({
                                     onClick={() => onProblemClick(problem.id)}
                                     onContextMenu={(e) => {
                                         e.preventDefault();
-                                        onProblemToggleCompletion(problem.id);
                                     }}
                                     title={`Click to solve • Right-click to mark as ${isCompleted ? 'incomplete' : 'complete'}`}
                                 >

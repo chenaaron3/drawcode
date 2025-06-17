@@ -15,9 +15,7 @@ import type { Problem, ProblemDescription } from '@/types/problem';
 
 // Check if we're coming from a share entrypoint
 const isShareEntrypoint = () => {
-  const urlParams = new URLSearchParams(window.location.search);
   return true;
-  return urlParams.has('code') || urlParams.has('problemId');
 };
 
 export default function App() {

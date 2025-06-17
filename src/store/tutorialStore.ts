@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 import type { TutorialStep } from "@/types/tutorial";
 
@@ -60,7 +60,7 @@ export const useTutorialStore = create<TutorialState>((set, get) => ({
   isActive: false,
   currentStepIndex: 0,
   steps: introTutorial,
-  hasSeenTutorial: localStorage.getItem("pythonquest-tutorial-seen") === "true",
+  hasSeenTutorial: true,
 
   startTutorial: (tutorialSteps: TutorialStep[] = introTutorial) => {
     set({
@@ -91,7 +91,6 @@ export const useTutorialStore = create<TutorialState>((set, get) => ({
       isActive: false,
       hasSeenTutorial: true,
     });
-    localStorage.setItem("pythonquest-tutorial-seen", "true");
   },
 
   completeTutorial: () => {
@@ -99,6 +98,5 @@ export const useTutorialStore = create<TutorialState>((set, get) => ({
       isActive: false,
       hasSeenTutorial: true,
     });
-    localStorage.setItem("pythonquest-tutorial-seen", "true");
   },
 }));
