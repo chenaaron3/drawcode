@@ -122,7 +122,7 @@ export function useCodeInitialization() {
         // Auto-redirect to last uncompleted lesson if available
         gotoDefaultLesson();
       } else if (router.pathname === "/") {
-        // Home page, do nothing
+        // Defer to Demo Panel
       }
       setHasInitialized(true);
     }

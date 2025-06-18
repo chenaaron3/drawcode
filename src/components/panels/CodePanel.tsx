@@ -1,9 +1,7 @@
 import { Pencil } from 'lucide-react';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
-// import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -12,6 +10,7 @@ import Editor from '@monaco-editor/react';
 
 import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
 import { InputsSection } from '../common';
+import { CodeSyntaxHighlighter } from '../common/CodeSyntaxHighlighter';
 import { NavigationControls, Settings } from '../controls';
 import { ProblemDescriptionModal } from '../modals';
 import { ComputationWorkspaceOverlay } from '../overlays';
@@ -87,21 +86,6 @@ export default function CodePanel() {
         }
     }, [hasChanges]);
 
-    // Handle auto-play
-    useEffect(() => {
-        let intervalId: number | null = null;
-
-        if (isPlaying && traceData) {
-            intervalId = window.setInterval(() => {
-                next();
-            }, playSpeed);
-        }
-
-        return () => {
-            if (intervalId) window.clearInterval(intervalId);
-        };
-    }, [isPlaying, playSpeed, traceData, next]);
-
     if (!traceData) {
         return (
             <Card className={cn('flex flex-col')}>
@@ -157,73 +141,18 @@ export default function CodePanel() {
                                         setIsPlaying(false);
                                     }}
                                 >
-                                    <SyntaxHighlighter
-                                        data-testid="code-editor-read"
-                                        language="python"
-                                        // style={vscDarkPlus}
-                                        customStyle={{
-                                            margin: 0,
-                                            padding: 0,
-                                            background: 'transparent',
-                                            fontSize: '0.75rem',
-                                            fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
-                                            height: '100%',
-                                            overflow: 'auto',
-                                            lineHeight: '1.3',
-                                            cursor: 'text',
+                                    <CodeSyntaxHighlighter
+                                        code={currentCode || ''}
+                                        currentLine={currentLine?.line_number}
+                                        onClick={() => {
+                                            setIsReadOnly(false);
+                                            setIsPlaying(false);
                                         }}
-                                        showLineNumbers={true}
-                                        lineNumberStyle={{
-                                            minWidth: '2rem',
-                                            paddingRight: '0.75rem',
-                                            color: '#6b7280',
-                                            fontSize: '0.7rem',
-                                            textAlign: 'right',
-                                            userSelect: 'none',
-                                        }}
-                                        wrapLines={true}
-                                        lineProps={(lineNumber) => {
-                                            const isCurrentLine = currentLine?.line_number === lineNumber;
-                                            return {
-                                                style: {
-                                                    display: 'block',
-                                                    backgroundColor: isCurrentLine ? 'rgb(219 234 254)' : 'transparent',
-                                                    borderLeft: isCurrentLine ? '3px solid rgb(59 130 246)' : '3px solid transparent',
-                                                    fontWeight: isCurrentLine ? '500' : 'normal',
-                                                    padding: '0.25rem 0.75rem',
-                                                    transition: 'all 0.2s ease',
-                                                    lineHeight: '1.3',
-                                                    cursor: 'text',
-                                                },
-                                                'data-line-number': lineNumber,
-                                                'data-is-current': isCurrentLine,
-                                                onClick: () => {
-                                                    setIsReadOnly(false);
-                                                    setIsPlaying(false); // Pause debugger when entering edit mode
-                                                },
-                                            };
-                                        }}
-                                    >
-                                        {currentCode || ''}
-                                    </SyntaxHighlighter>
-
-                                    {/* Computation Workspace Overlay */}
-                                    {!hasChanges && (
-                                        <div
-                                            style={{ position: "absolute", inset: 0, zIndex: 50, cursor: 'text' }}
-                                            tabIndex={0}
-                                            aria-label="Edit code"
-                                            onClick={() => {
-                                                setIsReadOnly(false);
-                                                setIsPlaying(false);
-                                            }}
-                                        >
-                                            <ComputationWorkspaceOverlay />
-                                        </div>
-                                    )}
+                                        showOverlay={!hasChanges}
+                                    />
 
                                     {/* Edit Button Overlay - only visible on hover */}
-                                    <div data-testid="edit-button" className="absolute top-3 right-3 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div data-testid="edit-button" className="absolute top-3 right-3 z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                         <Button
                                             variant="secondary"
                                             size="sm"

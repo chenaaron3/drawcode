@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 import type { TutorialStep } from "@/types/tutorial";
 
@@ -6,15 +7,35 @@ interface TutorialState {
   isActive: boolean;
   currentStepIndex: number;
   steps: TutorialStep[];
-  hasSeenTutorial: boolean;
+  hasSeenTutorial: Record<string, boolean>;
   startTutorial: (tutorialSteps?: TutorialStep[]) => void;
   nextStep: () => void;
   previousStep: () => void;
   skipTutorial: () => void;
+  advertiseTutorial: (page: string) => void;
   completeTutorial: () => void;
 }
 
-const introTutorial: TutorialStep[] = [
+const sandboxTutorial: TutorialStep[] = [
+  {
+    id: "sandbox",
+    title: "Sandbox mode",
+    content:
+      "This is the sandbox mode where you can experiment with your code.",
+    targetSelector: '[data-tutorial="logo"]',
+    position: "right",
+  },
+  {
+    id: "share",
+    title: "Share your code",
+    content:
+      "You can share your code with others by clicking the share button.",
+    targetSelector: '[data-tutorial="settings-button"]',
+    position: "right",
+  },
+];
+
+const lessonTutorial: TutorialStep[] = [
   {
     id: "welcome",
     title: "Welcome to Python Quest! 🎉",
@@ -56,47 +77,78 @@ const introTutorial: TutorialStep[] = [
   },
 ];
 
-export const useTutorialStore = create<TutorialState>((set, get) => ({
-  isActive: false,
-  currentStepIndex: 0,
-  steps: introTutorial,
-  hasSeenTutorial: true,
+const tutorialMapping = {
+  sandbox: sandboxTutorial,
+  lesson: lessonTutorial,
+};
 
-  startTutorial: (tutorialSteps: TutorialStep[] = introTutorial) => {
-    set({
-      isActive: true,
+export const useTutorialStore = create<TutorialState>()(
+  persist(
+    (set, get) => ({
+      isActive: false,
       currentStepIndex: 0,
-      steps: tutorialSteps,
-    });
-  },
+      steps: [],
+      hasSeenTutorial: {},
 
-  nextStep: () => {
-    const { currentStepIndex, steps } = get();
-    if (currentStepIndex < steps.length - 1) {
-      set({ currentStepIndex: currentStepIndex + 1 });
-    } else {
-      get().completeTutorial();
-    }
-  },
+      startTutorial: (tutorialSteps: TutorialStep[] = []) => {
+        set({
+          isActive: true,
+          currentStepIndex: 0,
+          steps: tutorialSteps,
+        });
+      },
 
-  previousStep: () => {
-    const { currentStepIndex } = get();
-    if (currentStepIndex > 0) {
-      set({ currentStepIndex: currentStepIndex - 1 });
-    }
-  },
+      nextStep: () => {
+        const { currentStepIndex, steps } = get();
+        if (currentStepIndex < steps.length - 1) {
+          set({ currentStepIndex: currentStepIndex + 1 });
+        } else {
+          get().completeTutorial();
+        }
+      },
 
-  skipTutorial: () => {
-    set({
-      isActive: false,
-      hasSeenTutorial: true,
-    });
-  },
+      previousStep: () => {
+        const { currentStepIndex } = get();
+        if (currentStepIndex > 0) {
+          set({ currentStepIndex: currentStepIndex - 1 });
+        }
+      },
 
-  completeTutorial: () => {
-    set({
-      isActive: false,
-      hasSeenTutorial: true,
-    });
-  },
-}));
+      skipTutorial: () => {
+        set({
+          isActive: false,
+        });
+      },
+
+      advertiseTutorial: (page: string) => {
+        const { hasSeenTutorial } = get();
+        const tutorialSteps =
+          tutorialMapping[page as keyof typeof tutorialMapping];
+
+        if (tutorialSteps && !hasSeenTutorial[page]) {
+          set({
+            isActive: true,
+            currentStepIndex: 0,
+            steps: tutorialSteps,
+            hasSeenTutorial: {
+              ...hasSeenTutorial,
+              [page]: true,
+            },
+          });
+        }
+      },
+
+      completeTutorial: () => {
+        set({
+          isActive: false,
+        });
+      },
+    }),
+    {
+      name: "tutorial-storage",
+      partialize: (state) => ({
+        hasSeenTutorial: state.hasSeenTutorial,
+      }),
+    },
+  ),
+);

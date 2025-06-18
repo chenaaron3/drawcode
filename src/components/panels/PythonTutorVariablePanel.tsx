@@ -9,7 +9,7 @@ import ReactFlow, {
 import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
 import { edgeTypes } from '../flow-nodes/CustomEdges';
 import { generateFlowData } from '../flow-nodes/generateFlowData';
-import { getPythonTutorLayout } from '../flow-nodes/layoutEngine';
+import { getSmartLayout } from '../flow-nodes/layoutEngine';
 import { nodeTypes } from '../flow-nodes/VariablePanelNodes';
 
 // Custom styles for the React Flow
@@ -19,7 +19,7 @@ const flowStyles = {
 };
 
 // Inner component that has access to React Flow context
-function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger?: number }) {
+export function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger?: number }) {
     const { fitView } = useReactFlow();
 
     // Get current trace data and animation states
@@ -48,7 +48,7 @@ function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger?: numb
 
     // Apply layout to the generated nodes and edges
     const { nodes: layoutedNodes, edges: layoutedEdges } = useMemo(() => {
-        return getPythonTutorLayout(generatedNodes, generatedEdges);
+        return getSmartLayout(generatedNodes, generatedEdges);
     }, [generatedNodes, generatedEdges]);
 
     // State for React Flow
@@ -68,7 +68,7 @@ function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger?: numb
             relationships
         });
 
-        const { nodes: newLayoutedNodes, edges: newLayoutedEdges } = getPythonTutorLayout(
+        const { nodes: newLayoutedNodes, edges: newLayoutedEdges } = getSmartLayout(
             newNodes,
             newEdges
         );

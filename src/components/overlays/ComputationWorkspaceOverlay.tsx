@@ -22,7 +22,21 @@ export default function ComputationWorkspaceOverlay() {
 
         // Find the current line element in the editor
         const lineElement = document.querySelector(`[data-line-number="${currentLine.line_number}"][data-is-current="true"]`);
-        if (!lineElement) return null;
+        if (!lineElement) {
+            // If line element not found, try to find any line with the current line number
+            const fallbackLine = document.querySelector(`[data-line-number="${currentLine.line_number}"]`);
+            if (!fallbackLine) return null;
+            const lineRect = fallbackLine.getBoundingClientRect();
+            const containerRect = fallbackLine.closest('[data-testid="code-editor-read"]')?.getBoundingClientRect();
+            if (!containerRect) return null;
+
+            return {
+                top: lineRect.top - containerRect.top,
+                left: 0,
+                width: containerRect.width,
+                height: lineRect.height
+            };
+        }
 
         const lineRect = lineElement.getBoundingClientRect();
         const containerRect = lineElement.closest('[data-testid="code-editor-read"]')?.getBoundingClientRect();

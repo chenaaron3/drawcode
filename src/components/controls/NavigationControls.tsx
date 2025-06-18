@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs';
 import { MdSkipNext, MdSkipPrevious } from 'react-icons/md';
 
@@ -14,7 +15,9 @@ export function NavigationControls() {
         togglePlay,
         next,
         hasChanges,
-        mode
+        mode,
+        playSpeed,
+        traceData
     } = useTraceStore();
 
     const handlePrev = () => {
@@ -31,6 +34,21 @@ export function NavigationControls() {
         trackPlaybackControl(isPlaying ? 'pause' : 'play');
         togglePlay();
     };
+
+    // Handle auto-play
+    useEffect(() => {
+        let intervalId: number | null = null;
+
+        if (isPlaying && traceData) {
+            intervalId = window.setInterval(() => {
+                next();
+            }, playSpeed);
+        }
+
+        return () => {
+            if (intervalId) window.clearInterval(intervalId);
+        };
+    }, [isPlaying, playSpeed, traceData, next]);
 
     // Hide navigation controls when there are unsaved changes
     if (hasChanges) {

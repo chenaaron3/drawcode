@@ -31,7 +31,7 @@ function AnimatedCopyItem({ copy }: AnimatedCopyItemProps) {
     useEffect(() => {
         // Update target position every 250ms for smooth tracking
         const updateTarget = () => {
-            const targetRect = copy.targetLambda!();
+            const targetRect = copy.targetLambda?.();
             if (targetRect) {
                 animate(left, targetRect.left, {
                     type: "spring",

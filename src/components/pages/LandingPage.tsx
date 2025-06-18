@@ -12,6 +12,8 @@ import variablesImage from '@/assets/variables.png';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
+import { DemoPanel } from '../panels';
+
 export const LandingPage: React.FC = () => {
     const [activeStep, setActiveStep] = useState(1);
     const router = useRouter();
@@ -48,27 +50,50 @@ export const LandingPage: React.FC = () => {
         <div className="w-full h-full overflow-auto bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             {/* Hero Section */}
             <section className="px-6 py-20">
-                <div className="max-w-7xl mx-auto text-center">
-                    <div className="max-w-4xl mx-auto">
-                        <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-                            Master Python Through
-                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                                Visual Adventures
-                            </span>
-                        </h1>
-                        <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                            Learning to code doesn&apos;t have to be frustrating. Watch your Python code come alive with
-                            step-by-step visualizations that make programming concepts crystal clear.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button
-                                size="lg"
-                                onClick={onGetStarted}
-                                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-lg px-8 py-4"
-                            >
-                                Start Learning
-                                <Play className="h-5 w-5 ml-2" />
-                            </Button>
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Left side - Text content */}
+                        <div className="space-y-8">
+                            <div>
+                                <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                                    See Python Code
+                                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                                        Come Alive
+                                    </span>
+                                </h1>
+                                <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
+                                    Unlike other platforms that just run your code, we show you exactly what&apos;s happening inside. Watch variables change, data structures evolve, and logic unfold in real-time.
+                                </p>
+                            </div>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <Button
+                                    size="lg"
+                                    onClick={onGetStarted}
+                                    className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-lg px-8 py-4"
+                                >
+                                    Start Learning
+                                    <Play className="h-5 w-5 ml-2" />
+                                </Button>
+                            </div>
+                            <div className="flex items-center gap-4 text-sm text-gray-500">
+                                <div className="flex items-center gap-2">
+                                    <CheckCircle className="h-5 w-5 text-green-500" />
+                                    <span>Step-by-step visualization</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <CheckCircle className="h-5 w-5 text-green-500" />
+                                    <span>Interactive variables</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <CheckCircle className="h-5 w-5 text-green-500" />
+                                    <span>No setup required</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right side - Interactive Demo */}
+                        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                            <DemoPanel />
                         </div>
                     </div>
                 </div>

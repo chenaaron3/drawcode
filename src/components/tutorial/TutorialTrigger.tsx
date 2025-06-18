@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { useTraceStore } from '@/store/traceStore';
 
 import { useTutorialStore } from '../../store/tutorialStore';
 
@@ -11,23 +10,32 @@ export const TutorialTrigger: React.FC = () => {
     const {
         isActive,
         hasSeenTutorial,
-        startTutorial,
+        advertiseTutorial,
     } = useTutorialStore();
     const router = useRouter();
 
-    // Auto-start tutorial for first-time users
+    // Determine current page for tutorial
+    const getCurrentPage = () => {
+        if (router.pathname === '/lesson') return 'lesson';
+        if (router.pathname === '/sandbox') return 'sandbox';
+        return null;
+    };
+
+    const currentPage = getCurrentPage();
+
+    // Auto-start tutorial for first-time users on this page
     useEffect(() => {
-        if (!hasSeenTutorial && !isActive) {
+        if (currentPage && !hasSeenTutorial[currentPage] && !isActive) {
             // Small delay to ensure the page is fully loaded
             const timer = setTimeout(() => {
-                startTutorial();
+                advertiseTutorial(currentPage);
             }, 1500);
             return () => clearTimeout(timer);
         }
-    }, [hasSeenTutorial, isActive, startTutorial]);
+    }, [currentPage, hasSeenTutorial, isActive, advertiseTutorial]);
 
     // Hide if not in learn mode
-    if (router.pathname !== '/lesson' && router.pathname !== '/sandbox') {
+    if (!currentPage) {
         return null;
     }
 
@@ -35,7 +43,7 @@ export const TutorialTrigger: React.FC = () => {
         variant="ghost"
         size="icon"
         className="text-gray-600 hover:text-gray-900"
-        onClick={() => startTutorial()}
+        onClick={() => advertiseTutorial(currentPage)}
     >
         <HelpCircle className="h-4 w-4" />
     </Button>

@@ -168,7 +168,7 @@ export const TutorialOverlay: React.FC = () => {
 
     return (
         <AnimatePresence mode="wait">
-            <div className="fixed inset-0 z-50 pointer-events-none">
+            <div className="fixed inset-0 z-60 pointer-events-none">
                 {/* Gray overlay with cutout - Top */}
                 <motion.div
                     initial={{ opacity: 0 }}

@@ -8,6 +8,7 @@ import booleanOperatorsNotTrace from './traces/boolean-operators-not.json';
 import booleanOperatorsOrTrace from './traces/boolean-operators-or.json';
 import booleanVariablesTrace from './traces/boolean-variables.json';
 import changingNumbersTrace from './traces/changing-numbers.json';
+import demoTrace from './traces/demo.json';
 import elseIfStatementsTrace from './traces/else-if-statements.json';
 import elseStatementsTrace from './traces/else-statements.json';
 import emptyListsTrace from './traces/empty-lists.json';
@@ -64,6 +65,7 @@ export const TRACES: Record<string, TraceData> = {
   "growing-a-list-plus": growingAListPlusTrace as unknown as TraceData,
   sandbox: sandboxTrace as unknown as TraceData,
   "two-sum": twoSumTrace as unknown as TraceData,
+  demo: demoTrace as unknown as TraceData,
 };
 
 // Export available problem IDs from JSON file
