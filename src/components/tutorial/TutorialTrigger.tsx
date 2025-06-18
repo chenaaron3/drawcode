@@ -11,6 +11,7 @@ export const TutorialTrigger: React.FC = () => {
         isActive,
         hasSeenTutorial,
         advertiseTutorial,
+        invokeTutorial,
     } = useTutorialStore();
     const router = useRouter();
 
@@ -43,7 +44,7 @@ export const TutorialTrigger: React.FC = () => {
         variant="ghost"
         size="icon"
         className="text-gray-600 hover:text-gray-900"
-        onClick={() => advertiseTutorial(currentPage)}
+        onClick={() => invokeTutorial(currentPage)}
     >
         <HelpCircle className="h-4 w-4" />
     </Button>

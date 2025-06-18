@@ -13,6 +13,7 @@ interface TutorialState {
   previousStep: () => void;
   skipTutorial: () => void;
   advertiseTutorial: (page: string) => void;
+  invokeTutorial: (page: string) => void;
   completeTutorial: () => void;
 }
 
@@ -96,6 +97,18 @@ export const useTutorialStore = create<TutorialState>()(
           currentStepIndex: 0,
           steps: tutorialSteps,
         });
+      },
+
+      invokeTutorial: (page: string) => {
+        const tutorialSteps =
+          tutorialMapping[page as keyof typeof tutorialMapping];
+        if (tutorialSteps) {
+          set({
+            isActive: true,
+            currentStepIndex: 0,
+            steps: tutorialSteps,
+          });
+        }
       },
 
       nextStep: () => {
