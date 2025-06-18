@@ -1,6 +1,4 @@
-import {
-    ArrowRight, BookOpen, CheckCircle, Eye, Github, Heart, Play, Users, X, Zap
-} from 'lucide-react';
+import { ArrowRight, BookOpen, CheckCircle, Eye, Play, Users, X, Zap } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -25,22 +23,22 @@ export const LandingPage: React.FC = () => {
     const steps = [
         {
             id: 1,
-            title: "Choose Your Topic",
-            description: "Pick from guided story adventures, coding exercises, or free exploration mode. Start with fundamentals and progress at your own pace.",
+            title: "Choose Your Learning Path",
+            description: "Start with guided story adventures that make coding feel like a game, or dive into focused exercises. We guide you step by step, so you never feel lost or overwhelmed.",
             image: lessonsImage,
             alt: "Learning interface showing lesson selection"
         },
         {
             id: 2,
-            title: "Watch Code Execute",
-            description: "Step through execution line-by-line or expression-by-expression. See variables change, data structures evolve, and logic unfold.",
+            title: "Watch Code Execute Step by Step",
+            description: "See exactly what happens inside your code - line by line, expression by expression. No more guessing or adding print statements everywhere. Watch variables change and logic unfold in real-time.",
             image: programImage,
             alt: "Code editor showing step-by-step execution"
         },
         {
             id: 3,
-            title: "See Data Move in Real Time",
-            description: "Watch variables update instantly as your code runs. Visual feedback makes complex concepts easy to understand.",
+            title: "Understand Data Flow Visually",
+            description: "Watch variables update instantly as your code runs. See data structures evolve, values change, and understand the &apos;why&apos; behind every operation. Visual feedback makes complex concepts crystal clear.",
             image: variablesImage,
             alt: "Variable panel showing real-time data changes"
         }
@@ -99,99 +97,58 @@ export const LandingPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* Features Section */}
+            {/* Pain Points Section */}
             <section className="px-6 py-20 bg-white/50">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                            Why Python Quest?
+                            Struggling with Python? You&apos;re Not Alone
                         </h2>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Learning to code doesn&apos;t have to be frustrating. We make programming visual, interactive, and fun.
+                            Most learners face these common roadblocks. We guide you through each one, step by step.
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {/* Visual Debugging */}
-                        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-blue-50 to-indigo-50">
+                        {/* Pain Point 1: Stuck and Don't Know Why */}
+                        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-red-50 to-pink-50">
                             <CardContent className="p-8">
-                                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
-                                    <Eye className="h-6 w-6 text-white" />
+                                <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center mb-6">
+                                    <X className="h-6 w-6 text-white" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4">Visual Debugging</h3>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-4">&quot;I&apos;m Stuck and Don&apos;t Know Why&quot;</h3>
                                 <p className="text-gray-600 leading-relaxed">
-                                    Watch your code execute step-by-step with beautiful visualizations.
-                                    See variables change, data flow, and algorithm logic in real-time.
+                                    You&apos;ve been staring at your code for hours, adding print statements everywhere,
+                                    but still can&apos;t figure out why it&apos;s not working. Traditional debugging feels like
+                                    shooting in the dark.
                                 </p>
                             </CardContent>
                         </Card>
 
-                        {/* Interactive Learning */}
-                        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-green-50 to-emerald-50">
-                            <CardContent className="p-8">
-                                <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-6">
-                                    <Play className="h-6 w-6 text-white" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4">Interactive Exploration</h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    Edit code, modify inputs, and experiment freely. Learn by doing with
-                                    instant feedback and error-friendly environment.
-                                </p>
-                            </CardContent>
-                        </Card>
-
-                        {/* No Setup Required */}
+                        {/* Pain Point 2: Read But Don't Understand */}
                         <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-orange-50 to-amber-50">
                             <CardContent className="p-8">
                                 <div className="w-12 h-12 bg-orange-600 rounded-xl flex items-center justify-center mb-6">
-                                    <Zap className="h-6 w-6 text-white" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4">Instant Access</h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    No downloads, no setup, no configuration. Run Python in your browser
-                                    with our advanced WebAssembly integration.
-                                </p>
-                            </CardContent>
-                        </Card>
-
-                        {/* Story Adventures */}
-                        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-pink-50 to-rose-50">
-                            <CardContent className="p-8">
-                                <div className="w-12 h-12 bg-pink-600 rounded-xl flex items-center justify-center mb-6">
                                     <BookOpen className="h-6 w-6 text-white" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4">Story Adventures</h3>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-4">&quot;I Read But Don&apos;t Understand&quot;</h3>
                                 <p className="text-gray-600 leading-relaxed">
-                                    Learn through engaging narratives and adventures. Make coding
-                                    feel like a game, not a chore.
+                                    Textbooks and videos explain concepts, but they&apos;re abstract. You understand the
+                                    theory but can&apos;t connect it to real code. You need to see it in action.
                                 </p>
                             </CardContent>
                         </Card>
 
-                        {/* Beginner Friendly */}
-                        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-teal-50 to-cyan-50">
-                            <CardContent className="p-8">
-                                <div className="w-12 h-12 bg-teal-600 rounded-xl flex items-center justify-center mb-6">
-                                    <Users className="h-6 w-6 text-white" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4">Beginner Focused</h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    Designed specifically for learners who find traditional debugging
-                                    overwhelming. Start simple, grow confident across any language.
-                                </p>
-                            </CardContent>
-                        </Card>
-
-                        {/* Completely Free */}
+                        {/* Pain Point 5: Just Copying Without Learning */}
                         <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-purple-50 to-violet-50">
                             <CardContent className="p-8">
                                 <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
-                                    <Heart className="h-6 w-6 text-white" />
+                                    <Users className="h-6 w-6 text-white" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4">Completely Free</h3>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-4">&quot;I&apos;m Just Copying Code&quot;</h3>
                                 <p className="text-gray-600 leading-relaxed">
-                                    Access all features, lessons, and visualizations at no cost. No subscriptions,
-                                    no hidden fees, no premium tiers. Quality programming education for everyone.
+                                    You follow tutorials and get the right output, but you don&apos;t understand why
+                                    it works. You want to learn the &quot;why&quot; behind the &quot;what.&quot;
                                 </p>
                             </CardContent>
                         </Card>
@@ -199,15 +156,15 @@ export const LandingPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* How It Works */}
+            {/* How We Solve This */}
             <section className="px-6 py-20">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                            How Python Quest Works
+                            How We Solve These Problems
                         </h2>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Master programming through our proven visual learning approach
+                            We guide you step by step through every concept, making programming visual and understandable
                         </p>
                     </div>
 
@@ -290,9 +247,9 @@ export const LandingPage: React.FC = () => {
             <section className="px-6 py-20 bg-white">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Python Quest?</h2>
+                        <h2 className="text-4xl font-bold text-gray-900 mb-4">How We Compare to Traditional Learning</h2>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            See how our visual approach compares to traditional learning methods
+                            See how our visual approach solves problems that traditional methods can&apos;t
                         </p>
                     </div>
 
