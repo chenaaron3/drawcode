@@ -79,7 +79,7 @@ useEffect(() => {{
     // Start the lesson
     startLesson(lessonId, content, [
     ]);
-  }}, [lessonId, startLesson]);
+  }}, [lessonId, startLesson, completeTask, currentTask, traceData]);
 }}
 """)
         print(f"Created {hook_path}")

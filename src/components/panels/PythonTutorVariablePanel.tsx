@@ -33,27 +33,9 @@ export function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger
     const delta = current?.delta || undefined;
 
     // Generate nodes and edges from current variables
-    const { nodes: generatedNodes, edges: generatedEdges } = useMemo(() => {
-        const relationships = traceData?.relationships || [];
-        return generateFlowData({
-            var_table,
-            object_table,
-            animatingVariable,
-            isEvaluating,
-            delta,
-            stepIndex,
-            relationships
-        });
-    }, [isEvaluating, object_table, var_table, variables, animatingVariable, delta, stepIndex, traceData]);
-
-    // Apply layout to the generated nodes and edges
-    const { nodes: layoutedNodes, edges: layoutedEdges } = useMemo(() => {
-        return getSmartLayout(generatedNodes, generatedEdges);
-    }, [generatedNodes, generatedEdges]);
-
     // State for React Flow
-    const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
+    const [nodes, setNodes, onNodesChange] = useNodesState([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
     // Update nodes and edges when variables change
     useEffect(() => {
