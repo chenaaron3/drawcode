@@ -73,7 +73,7 @@ export default function DemoPanel() {
             {/* Main Content */}
             <div className="flex-1 min-h-[300px] flex flex-col">
                 {/* Code Panel */}
-                <div className="flex-1 min-h-0 bg-gray-50/50 dark:bg-slate-800/50 border-b border-gray-100/50 dark:border-slate-700/50">
+                <div className="py-3 flex-1 min-h-0 bg-gray-50/50 dark:bg-slate-800/50 border-b border-gray-100/50 dark:border-slate-700/50">
                     <CodeSyntaxHighlighter
                         code={traceData.metadata.code}
                         currentLine={currentLine?.line_number}

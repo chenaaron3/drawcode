@@ -60,7 +60,7 @@ export const LandingPage: React.FC = () => {
                                     </span>
                                 </h1>
                                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                                    Unlike other platforms that just run your code, we show you exactly what&apos;s happening inside. Watch variables change, data structures evolve, and logic unfold in real-time.
+                                    Don&apos;t just mindlessly run code — watch every step unfold. Instantly visualize variables, data structures, and logic in real time.
                                 </p>
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4">
