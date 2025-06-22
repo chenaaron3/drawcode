@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, ChevronRight, Github, Menu, Play, Zap } from 'lucide-react';
+import {
+    ArrowRight, BookOpen, ChevronRight, Github, Menu, Newspaper, Play, Zap
+} from 'lucide-react';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -23,6 +25,12 @@ const navigationModes = [
         icon: Play,
         problemId: 'sandbox',
     },
+    {
+        id: 'blog' as const,
+        label: 'Blog',
+        icon: Newspaper,
+        problemId: null,
+    },
 ] as const;
 
 export const Header: React.FC = () => {
@@ -34,7 +42,9 @@ export const Header: React.FC = () => {
 
     const handleModeChange = (mode: typeof navigationModes[number]) => {
         router.push(`/${mode.id}`);
-        setCurrentProblem(mode.problemId);
+        if (mode.problemId) {
+            setCurrentProblem(mode.problemId);
+        }
         // Close sidebar when switching tabs
         setSidebarOpen(false);
     };

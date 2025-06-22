@@ -20,6 +20,7 @@ export function getAllPosts() {
           title: string;
           date: string;
           author: string;
+          description?: string;
         }),
         content: matterResult.content,
       };
