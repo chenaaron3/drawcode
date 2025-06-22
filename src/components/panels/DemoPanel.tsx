@@ -12,18 +12,11 @@ import { NavigationControls } from '../controls';
 import { PythonTutorVariablePanelInner } from './PythonTutorVariablePanel';
 
 export default function DemoPanel() {
-    const { setMode, setCurrentProblem, setPlaySpeed } = useTraceStore();
     const traceData = useTraceStore(state => state.traceData);
     const currentLine = useTraceStore(selectCurrentLine);
     const stepIndex = useTraceStore(state => state.stepIndex);
     const { terminalOutput } = useTerminalOutput();
     const [lastOutputLength, setLastOutputLength] = React.useState(0);
-
-    useEffect(() => {
-        setMode("step");
-        setCurrentProblem("demo");
-        setPlaySpeed(500);
-    }, []);
 
     // Show toast for new terminal output
     useEffect(() => {

@@ -1,7 +1,7 @@
 import { ArrowRight, BookOpen, CheckCircle, Eye, Play, Users, X, Zap } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Import images
 import lessonsImage from '@/assets/lessons.png';
@@ -9,12 +9,20 @@ import programImage from '@/assets/program.png';
 import variablesImage from '@/assets/variables.png';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { useTraceStore } from '@/store/traceStore';
 
 import { DemoPanel } from '../panels';
 
 export const LandingPage: React.FC = () => {
+    const { setMode, setCurrentProblem, setPlaySpeed } = useTraceStore();
     const [activeStep, setActiveStep] = useState(1);
     const router = useRouter();
+
+    useEffect(() => {
+        setMode("step");
+        setCurrentProblem("demo");
+        setPlaySpeed(500);
+    }, [setMode, setCurrentProblem, setPlaySpeed]);
 
     const onGetStarted = () => {
         router.push('/lesson');

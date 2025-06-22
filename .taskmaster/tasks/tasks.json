@@ -1,0 +1,151 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Set up blog post file structure",
+        "description": "Create the directory structure for blog posts and trace files according to the technical architecture specifications.",
+        "details": "Create the following directory structure:\n- /src/data/blog/ - For storing Markdown blog posts\n- /src/data/traces/ - For storing debugger trace files\n\nEnsure proper file permissions and create README files in each directory explaining their purpose and file format requirements. Set up a sample blog post file with basic Markdown structure to test the file structure.",
+        "testStrategy": "Verify that the directories are created with correct permissions. Ensure README files are present and contain accurate information. Confirm that sample files can be created and accessed from the application code.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Implement blog post Markdown loader",
+        "description": "Create a module to load and parse Markdown blog post files from the /src/data/blog/ directory.",
+        "details": "Implement a module that:\n1. Scans the /src/data/blog/ directory for .md files\n2. Loads the content of each file\n3. Parses frontmatter metadata (title, date, author, etc.)\n4. Returns structured data for each blog post\n\nExample implementation:\n```javascript\nconst fs = require('fs');\nconst path = require('path');\nconst matter = require('gray-matter');\n\nfunction loadBlogPosts() {\n  const blogDir = path.join(process.cwd(), 'src/data/blog');\n  const files = fs.readdirSync(blogDir).filter(file => file.endsWith('.md'));\n  \n  return files.map(file => {\n    const filePath = path.join(blogDir, file);\n    const fileContent = fs.readFileSync(filePath, 'utf8');\n    const { data, content } = matter(fileContent);\n    \n    return {\n      slug: file.replace('.md', ''),\n      title: data.title,\n      date: data.date,\n      content,\n      ...data\n    };\n  });\n}\n```",
+        "testStrategy": "Write unit tests that verify:\n1. All Markdown files are correctly identified and loaded\n2. Frontmatter is properly parsed\n3. The function handles empty directories gracefully\n4. The function handles malformed Markdown files appropriately\n5. Test with sample blog posts to ensure correct data structure is returned",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Create custom Markdown renderer with debugger placeholder support",
+        "description": "Extend a Markdown parser to support custom {{Debugger trace=\"...\"}} syntax for embedding the interactive debugger panel.",
+        "details": "Use a library like remark or markdown-it and extend it with a custom plugin to handle the debugger placeholder:\n\n1. Identify the {{Debugger trace=\"tracefile.json\"}} pattern in Markdown content\n2. Replace it with a component that will render the interactive debugger panel\n3. Extract the trace file path from the placeholder\n\nExample implementation using remark:\n```javascript\nconst unified = require('unified');\nconst remarkParse = require('remark-parse');\nconst remarkRehype = require('remark-rehype');\nconst rehypeReact = require('rehype-react');\nconst visit = require('unist-util-visit');\n\n// Custom plugin for debugger placeholders\nfunction remarkDebugger() {\n  return (tree) => {\n    visit(tree, 'paragraph', (node, index, parent) => {\n      // Check if paragraph contains debugger placeholder\n      if (node.children && node.children[0] && node.children[0].type === 'text') {\n        const text = node.children[0].value;\n        const match = text.match(/{{Debugger trace=\"([^\"]+)\"}}/i);\n        \n        if (match) {\n          const traceFile = match[1];\n          // Replace the node with a debugger component node\n          parent.children[index] = {\n            type: 'debuggerComponent',\n            data: { hName: 'DebuggerPanel', hProperties: { traceFile } }\n          };\n        }\n      }\n    });\n  };\n}\n\n// Process markdown with custom plugin\nfunction renderMarkdown(content) {\n  return unified()\n    .use(remarkParse)\n    .use(remarkDebugger)\n    .use(remarkRehype)\n    .use(rehypeReact, {\n      createElement: React.createElement,\n      components: {\n        DebuggerPanel: props => <DebuggerPanel traceFile={props.traceFile} />\n      }\n    })\n    .processSync(content).result;\n}\n```",
+        "testStrategy": "1. Write unit tests with various Markdown inputs containing the debugger placeholder\n2. Verify that the placeholder is correctly identified and transformed\n3. Test edge cases like malformed placeholders, multiple placeholders, etc.\n4. Ensure the trace file path is correctly extracted and passed to the component\n5. Verify integration with the actual debugger component",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Implement trace file loader",
+        "description": "Create a module to load and parse trace files from the /src/data/traces/ directory for use in the debugger panel.",
+        "details": "Implement a module that:\n1. Takes a trace file name as input\n2. Constructs the full path to the file in /src/data/traces/\n3. Loads and parses the JSON trace file\n4. Returns the structured trace data for the debugger panel\n\nExample implementation:\n```javascript\nconst fs = require('fs');\nconst path = require('path');\n\nfunction loadTraceFile(traceFileName) {\n  try {\n    const tracePath = path.join(process.cwd(), 'src/data/traces', traceFileName);\n    const traceContent = fs.readFileSync(tracePath, 'utf8');\n    return JSON.parse(traceContent);\n  } catch (error) {\n    console.error(`Error loading trace file ${traceFileName}:`, error);\n    return null;\n  }\n}\n```",
+        "testStrategy": "1. Write unit tests that verify trace files are correctly loaded\n2. Test handling of non-existent trace files\n3. Test handling of malformed JSON trace files\n4. Verify the correct path construction for different trace file names\n5. Test with sample trace files to ensure correct data structure is returned",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Develop read-only debugger panel component",
+        "description": "Create a read-only version of the DemoPanel component that can load and display trace files for blog posts.",
+        "details": "Implement a React component that:\n1. Takes a trace file path as a prop\n2. Uses the trace file loader to load the trace data\n3. Renders a read-only debugger interface similar to DemoPanel.tsx\n4. Allows users to step through code execution but not edit the code\n5. Provides controls for stepping forward/backward, restarting, etc.\n\nExample component structure:\n```jsx\nimport React, { useState, useEffect } from 'react';\nimport { loadTraceFile } from '../utils/traceLoader';\n\nconst DebuggerPanel = ({ traceFile }) => {\n  const [traceData, setTraceData] = useState(null);\n  const [currentStep, setCurrentStep] = useState(0);\n  const [error, setError] = useState(null);\n  \n  useEffect(() => {\n    const loadTrace = async () => {\n      try {\n        const data = await loadTraceFile(traceFile);\n        setTraceData(data);\n      } catch (err) {\n        setError(`Failed to load trace: ${err.message}`);\n      }\n    };\n    \n    loadTrace();\n  }, [traceFile]);\n  \n  if (error) return <div className=\"error\">{error}</div>;\n  if (!traceData) return <div className=\"loading\">Loading debugger...</div>;\n  \n  const totalSteps = traceData.steps.length;\n  const currentStepData = traceData.steps[currentStep];\n  \n  const handleStepForward = () => {\n    if (currentStep < totalSteps - 1) {\n      setCurrentStep(currentStep + 1);\n    }\n  };\n  \n  const handleStepBackward = () => {\n    if (currentStep > 0) {\n      setCurrentStep(currentStep - 1);\n    }\n  };\n  \n  const handleRestart = () => {\n    setCurrentStep(0);\n  };\n  \n  return (\n    <div className=\"debugger-panel\">\n      <div className=\"code-display\">\n        <pre>{traceData.code}</pre>\n        {/* Highlight current line based on currentStepData */}\n      </div>\n      \n      <div className=\"variables-display\">\n        {/* Display variables from currentStepData */}\n      </div>\n      \n      <div className=\"controls\">\n        <button onClick={handleRestart}>Restart</button>\n        <button onClick={handleStepBackward} disabled={currentStep === 0}>Back</button>\n        <button onClick={handleStepForward} disabled={currentStep === totalSteps - 1}>Forward</button>\n        <span>{currentStep + 1} / {totalSteps}</span>\n      </div>\n    </div>\n  );\n};\n\nexport default DebuggerPanel;\n```",
+        "testStrategy": "1. Write unit tests for the component using React Testing Library\n2. Test rendering with valid trace data\n3. Test error handling for missing or invalid trace files\n4. Test user interactions (stepping forward/backward, restarting)\n5. Verify that code and variables are correctly displayed for each step\n6. Test that the component is truly read-only (no code editing)",
+        "priority": "high",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Create blog post detail page",
+        "description": "Implement a page component to display a single blog post with its content and embedded debugger panel.",
+        "details": "Create a page component that:\n1. Takes a blog post slug as a parameter\n2. Loads the corresponding blog post using the Markdown loader\n3. Renders the post content using the custom Markdown renderer\n4. Properly displays the embedded debugger panel when the placeholder is encountered\n\nExample implementation:\n```jsx\nimport React from 'react';\nimport { useRouter } from 'next/router';\nimport { loadBlogPost } from '../utils/blogLoader';\nimport { renderMarkdown } from '../utils/markdownRenderer';\n\nexport default function BlogPostPage() {\n  const router = useRouter();\n  const { slug } = router.query;\n  const [post, setPost] = useState(null);\n  const [loading, setLoading] = useState(true);\n  \n  useEffect(() => {\n    if (!slug) return;\n    \n    async function fetchPost() {\n      try {\n        const postData = await loadBlogPost(slug);\n        setPost(postData);\n      } catch (error) {\n        console.error('Failed to load blog post:', error);\n      } finally {\n        setLoading(false);\n      }\n    }\n    \n    fetchPost();\n  }, [slug]);\n  \n  if (loading) return <div>Loading...</div>;\n  if (!post) return <div>Post not found</div>;\n  \n  return (\n    <div className=\"blog-post\">\n      <h1>{post.title}</h1>\n      <div className=\"post-meta\">\n        <time>{new Date(post.date).toLocaleDateString()}</time>\n      </div>\n      <div className=\"post-content\">\n        {renderMarkdown(post.content)}\n      </div>\n    </div>\n  );\n}\n\n// For static site generation\nexport async function getStaticPaths() {\n  const posts = await loadBlogPosts();\n  const paths = posts.map(post => ({\n    params: { slug: post.slug }\n  }));\n  \n  return { paths, fallback: false };\n}\n\nexport async function getStaticProps({ params }) {\n  const post = await loadBlogPost(params.slug);\n  return { props: { post } };\n}\n```",
+        "testStrategy": "1. Write unit tests for the page component\n2. Test rendering with valid blog post data\n3. Test error handling for missing or invalid blog posts\n4. Verify that the Markdown content is correctly rendered\n5. Verify that the debugger panel is correctly embedded when the placeholder is present\n6. Test with various blog post formats and content structures",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          3,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement blog index page",
+        "description": "Create a page that lists all blog posts by title with links to the individual post pages.",
+        "details": "Implement a page component that:\n1. Loads all blog posts using the Markdown loader\n2. Sorts them by date (newest first)\n3. Displays a list of post titles with links to the individual post pages\n\nExample implementation:\n```jsx\nimport React from 'react';\nimport Link from 'next/link';\nimport { loadBlogPosts } from '../utils/blogLoader';\n\nexport default function BlogIndexPage({ posts }) {\n  return (\n    <div className=\"blog-index\">\n      <h1>Blog Posts</h1>\n      <ul className=\"post-list\">\n        {posts.map(post => (\n          <li key={post.slug}>\n            <Link href={`/blog/${post.slug}`}>\n              <a>{post.title}</a>\n            </Link>\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n\n// For static site generation\nexport async function getStaticProps() {\n  const posts = await loadBlogPosts();\n  // Sort posts by date (newest first)\n  posts.sort((a, b) => new Date(b.date) - new Date(a.date));\n  \n  return {\n    props: { posts }\n  };\n}\n```",
+        "testStrategy": "1. Write unit tests for the page component\n2. Test rendering with various numbers of blog posts (0, 1, many)\n3. Verify that posts are correctly sorted by date\n4. Test that links to individual posts are correctly generated\n5. Verify the page layout and styling meets requirements\n6. Test accessibility of the page (keyboard navigation, screen readers)",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Update navigation to include blog link",
+        "description": "Add a link to the blog index page in the main navigation bar.",
+        "details": "Update the main navigation component to include a link to the blog index page:\n\n1. Locate the main navigation component\n2. Add a new navigation item for the blog\n3. Link it to the blog index page\n4. Ensure proper styling and active state handling\n\nExample implementation:\n```jsx\nimport React from 'react';\nimport Link from 'next/link';\nimport { useRouter } from 'next/router';\n\nconst Navigation = () => {\n  const router = useRouter();\n  \n  const isActive = (path) => {\n    return router.pathname === path || router.pathname.startsWith(`${path}/`);\n  };\n  \n  return (\n    <nav className=\"main-navigation\">\n      <ul>\n        <li className={isActive('/') ? 'active' : ''}>\n          <Link href=\"/\">Home</Link>\n        </li>\n        <li className={isActive('/courses') ? 'active' : ''}>\n          <Link href=\"/courses\">Courses</Link>\n        </li>\n        {/* Add blog link */}\n        <li className={isActive('/blog') ? 'active' : ''}>\n          <Link href=\"/blog\">Blog</Link>\n        </li>\n        <li className={isActive('/about') ? 'active' : ''}>\n          <Link href=\"/about\">About</Link>\n        </li>\n      </ul>\n    </nav>\n  );\n};\n\nexport default Navigation;\n```",
+        "testStrategy": "1. Write unit tests for the navigation component\n2. Verify that the blog link is correctly added\n3. Test that the active state is correctly applied when on blog pages\n4. Test that clicking the link navigates to the blog index page\n5. Verify the styling matches the rest of the navigation\n6. Test accessibility of the navigation (keyboard navigation, screen readers)",
+        "priority": "low",
+        "dependencies": [
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Create example blog post with debugger integration",
+        "description": "Create a sample blog post that demonstrates the debugger panel integration for testing and as an example for authors.",
+        "details": "Create a sample blog post in Markdown format that:\n1. Explains a common Python misconception or nuanced concept\n2. Includes standard Markdown formatting (headings, lists, code blocks, etc.)\n3. Embeds a debugger panel using the {{Debugger trace=\"...\"}} syntax\n4. References an existing trace file in /src/data/traces/\n\nExample blog post content:\n```markdown\n---\ntitle: \"Understanding Python Variable References\"\ndate: \"2023-11-09\"\nauthor: \"Python Instructor\"\n---\n\n# Understanding Python Variable References\n\nOne of the most common misconceptions for new Python programmers is how variable assignment and references work. Let's explore this concept in detail.\n\n## The Basics\n\nIn Python, variables are references to objects in memory. When you assign a value to a variable, you're creating a reference to that object, not copying the value itself (in most cases).\n\n```python\na = [1, 2, 3]  # 'a' references a list object\nb = a          # 'b' now references the same list object\nb.append(4)    # modifies the list that both 'a' and 'b' reference\nprint(a)       # Output: [1, 2, 3, 4]\n```\n\nLet's see this in action with our debugger:\n\n{{Debugger trace=\"variable_references.json\"}}\n\nAs you can see in the debugger, when we modify the list through variable 'b', the change is reflected when we access the list through variable 'a' because both variables reference the same object in memory.\n\n## Immutable vs Mutable Types\n\nThis behavior becomes particularly important when dealing with mutable types (like lists, dictionaries, and sets) versus immutable types (like integers, strings, and tuples).\n\nWith immutable types, operations that appear to modify the value actually create new objects:\n\n```python\nx = 5\ny = x\nx = x + 1  # Creates a new integer object (6) and assigns it to x\nprint(y)   # Output: 5 (y still references the original integer object)\n```\n\nUnderstanding this distinction is crucial for writing correct Python code and avoiding unexpected behavior.\n```\n\nAlso create a corresponding trace file (variable_references.json) that demonstrates the concept.",
+        "testStrategy": "1. Verify that the blog post Markdown file is correctly formatted\n2. Test that the debugger placeholder is correctly parsed and rendered\n3. Verify that the trace file is correctly loaded and displayed\n4. Test the blog post in the actual blog system to ensure everything works end-to-end\n5. Verify that the content is educational and clearly explains the concept",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          3,
+          4,
+          5,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Write documentation for blog authors",
+        "description": "Create documentation explaining how to write blog posts with debugger integration, including file formats and placement.",
+        "details": "Create a comprehensive documentation file (e.g., BLOG_AUTHORING.md) that explains:\n\n1. The blog post file format (Markdown with frontmatter)\n2. Where to place blog post files (/src/data/blog/)\n3. How to create and format trace files\n4. Where to place trace files (/src/data/traces/)\n5. How to embed the debugger panel using the {{Debugger trace=\"...\"}} syntax\n6. Best practices for writing educational blog posts\n7. Examples of well-formatted blog posts\n\nExample documentation content:\n```markdown\n# Blog Authoring Guide\n\nThis document explains how to create blog posts with interactive debugger panels for the Python learning platform.\n\n## File Structure\n\n- Blog posts are stored as Markdown files in `/src/data/blog/`\n- Debugger trace files are stored in `/src/data/traces/`\n\n## Blog Post Format\n\nEach blog post should be a Markdown file with YAML frontmatter:\n\n```markdown\n---\ntitle: \"Your Post Title\"\ndate: \"YYYY-MM-DD\"\nauthor: \"Your Name\"\n---\n\n# Your Post Title\n\nContent goes here...\n```\n\n## Embedding a Debugger Panel\n\nTo embed an interactive debugger panel in your blog post, use the following syntax:\n\n```\n{{Debugger trace=\"your_trace_file.json\"}}\n```\n\nThe trace file should be placed in `/src/data/traces/` and referenced by filename only.\n\n## Creating Trace Files\n\nTrace files are JSON files that contain a series of execution steps for the debugger to display. Each trace file should include:\n\n1. The Python code being traced\n2. A series of execution steps\n3. Variable state at each step\n\nYou can generate trace files using the provided trace generation tool:\n\n```\nnpm run generate-trace -- your_python_file.py\n```\n\n## Best Practices\n\n1. Focus on explaining one concept per blog post\n2. Use clear, concise language suitable for Python learners\n3. Include code examples before the debugger panel to provide context\n4. Explain what the reader should look for in the debugger\n5. Keep trace examples simple and focused on the concept being taught\n\n## Examples\n\nSee the example blog post at `/src/data/blog/understanding_variable_references.md` for a well-formatted post with debugger integration.\n```",
+        "testStrategy": "1. Review the documentation for clarity, completeness, and accuracy\n2. Have a test author follow the documentation to create a blog post\n3. Verify that all necessary information is included\n4. Check that the examples are correct and helpful\n5. Ensure the documentation is accessible and easy to understand",
+        "priority": "low",
+        "dependencies": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-06-22T16:44:25.418Z",
+      "updated": "2025-06-22T17:15:05.576Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

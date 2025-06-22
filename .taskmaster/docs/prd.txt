@@ -1,0 +1,58 @@
+<context>
+# Overview
+A static site blog system for python learners, focused on explaining common misconceptions and nuanced concepts. Each post is written in Markdown, can embed a read-only interactive debugger panel (for code traces), and is designed for content marketing and educational outreach. The blog is a supporting feature for a course product that uses a PythonTutor/Thonny-like debugger as its main differentiator.
+
+# Core Features
+- Markdown-based blog posts with support for standard formatting and multiple sections
+- Custom Markdown placeholder to embed a read-only, interactive debugger panel (e.g., {{Debugger trace="tracefile.json"}})
+- Each post supports one debugger panel, which loads a trace from /src/data/traces
+- Simple blog index page listing all posts by title
+- Blog entrypoint in main navigation
+- No comments, tags, or categories
+- No tasks, quizzes, or interactive exercises in blog posts
+
+# User Experience
+- Audience: Students learning Python
+- Blog posts are read-heavy, focused on clear explanations and conceptual understanding
+- Users can step through code in the debugger panel, but cannot edit code
+- Authors write posts in Markdown and specify the trace file to load for the debugger
+- Blog is accessible from the main navigation; index page lists all posts by title
+</context>
+<PRD>
+# Technical Architecture
+- Blog posts stored as Markdown files (e.g., /src/data/blog/*.md)
+- Trace files stored in /src/data/traces
+- Custom Markdown renderer parses {{Debugger trace="..."}} and renders the DemoPanel-like component, loading the specified trace
+- Blog index page dynamically lists all posts by title
+- Navigation bar includes a link to the blog index
+
+# Development Roadmap
+## MVP Requirements
+- Blog post Markdown loader and parser
+- Custom Markdown component for debugger embedding
+- Blog index page (title list)
+- Navigation update to include blog
+- Example post with debugger integration
+
+## Future Enhancements
+- Support for multiple debugger panels per post
+- Blog post summaries/excerpts on index
+- Authoring helpers for trace file management
+
+# Logical Dependency Chain
+1. Set up blog post Markdown loader and file structure
+2. Implement custom Markdown renderer with debugger placeholder
+3. Build blog index page
+4. Add blog link to navigation
+5. Create example post with debugger integration
+
+# Risks and Mitigations
+- Risk: Markdown parser may not support custom placeholders out of the box
+  - Mitigation: Use or extend a Markdown-it or remark plugin for custom syntax
+- Risk: Trace file management for authors
+  - Mitigation: Provide clear documentation and examples
+
+# Appendix
+- Debugger panel should mimic DemoPanel.tsx (read-only, rerunnable, loads trace file)
+- Blog posts should not include lesson/task structure
+</PRD> 
