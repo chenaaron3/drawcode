@@ -7,6 +7,8 @@ description: "A deep dive into how Python handles mutable and immutable types, e
 
 # Mutable vs. Immutable: Why Your Python Lists Change Unexpectedly
 
+{{Debugger problemId="sandbox"}}
+
 One of the most common "gotchas" for Python developers, especially those coming from other languages, is the concept of mutability. Why does changing a list in one part of your code sometimes cause unexpected changes in another? The answer lies in the fundamental difference between mutable and immutable objects.
 
 As explained in a great [Real Python article](https://realpython.com/python-mutable-vs-immutable-types/), the key distinction is that **mutable** objects can be changed after they are created, while **immutable** objects cannot.
@@ -39,9 +41,11 @@ What do you expect the output to be? Because both variables point to the _exact 
 
 Let's see this in action. The interactive debugger below demonstrates how a list's contents can be modified by different methods. Notice how the list object itself is being changed directly.
 
-{{Debugger problemId="list-methods"}}
+{{Debugger problemId="two-sum"}}
 
 ## The Immutable Case: Tuples and Strings
+
+{{Debugger problemId="demo"}}
 
 Now, let's contrast this with an immutable type, like a tuple. If you try to change an immutable object, Python will either raise an error or create a completely new object.
 
