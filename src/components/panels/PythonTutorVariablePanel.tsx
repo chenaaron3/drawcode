@@ -40,6 +40,7 @@ export function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger
     // Update nodes and edges when variables change
     useEffect(() => {
         const relationships = traceData?.relationships || [];
+        console.log("CHANGE");
         const { nodes: newNodes, edges: newEdges } = generateFlowData({
             var_table,
             object_table,

@@ -141,6 +141,7 @@ export function useCodeInitialization() {
   useEffect(() => {
     console.log("currentProblem", currentProblem);
     const traceData = currentProblem ? getTraceData(currentProblem) : null;
+    console.log(traceData);
     if (traceData) {
       setTraceData(traceData);
     }

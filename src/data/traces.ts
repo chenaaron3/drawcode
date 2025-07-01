@@ -1,5 +1,6 @@
 import type { TraceData } from "@/types/trace";
 
+import { BLOG_TRACES } from './blog_traces';
 // Import all trace files manually
 import booleanExpressionsTrace from './traces/boolean-expressions.json';
 import booleanIntroductionTrace from './traces/boolean-introduction.json';
@@ -66,6 +67,7 @@ export const TRACES: Record<string, TraceData> = {
   sandbox: sandboxTrace as unknown as TraceData,
   "two-sum": twoSumTrace as unknown as TraceData,
   demo: demoTrace as unknown as TraceData,
+  ...BLOG_TRACES,
 };
 
 // Export available problem IDs from JSON file

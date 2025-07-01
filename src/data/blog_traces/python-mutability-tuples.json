@@ -1,0 +1,799 @@
+{
+  "metadata": {
+    "code": "my_tuple = (1, 2, 3)\n\n# This will raise a TypeError, because tuples are immutable\n# my_tuple[0] = 100\n\n# To \"change\" a tuple, you must create a new one\nnew_tuple = my_tuple + (4,)\nprint(new_tuple) # Output: (1, 2, 3, 4)\nprint(my_tuple)  # Output: (1, 2, 3) - The original is unchanged\n",
+    "function": null,
+    "inputs": {
+      "kwargs": {}
+    },
+    "stdout": "(1, 2, 3, 4)\n(1, 2, 3)\n",
+    "finalLocals": {
+      "my_tuple": [
+        1,
+        2,
+        3
+      ],
+      "new_tuple": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          5,
+          6
+        ],
+        "type": "Assign",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 1,
+          "col_offset": 0,
+          "end_lineno": 1,
+          "end_col_offset": 20
+        },
+        "focus": "my_tuple = (1, 2, 3)",
+        "targets": [
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              11
+            ],
+            "type": "Name",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 1,
+              "col_offset": 0,
+              "end_lineno": 1,
+              "end_col_offset": 8
+            },
+            "focus": "my_tuple",
+            "id": "my_tuple",
+            "ctx": {
+              "node_id": 11,
+              "children_node_ids": [],
+              "type": "Store",
+              "parent_node_id": 5
+            }
+          }
+        ],
+        "value": {
+          "node_id": 6,
+          "children_node_ids": [
+            11,
+            12,
+            13,
+            15
+          ],
+          "type": "Tuple",
+          "parent_node_id": 1,
+          "location": {
+            "lineno": 1,
+            "col_offset": 11,
+            "end_lineno": 1,
+            "end_col_offset": 20
+          },
+          "focus": "(1, 2, 3)",
+          "elts": [
+            {
+              "node_id": 11,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 1,
+                "col_offset": 12,
+                "end_lineno": 1,
+                "end_col_offset": 13
+              },
+              "focus": "1",
+              "value": 1
+            },
+            {
+              "node_id": 12,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 1,
+                "col_offset": 15,
+                "end_lineno": 1,
+                "end_col_offset": 16
+              },
+              "focus": "2",
+              "value": 2
+            },
+            {
+              "node_id": 13,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 1,
+                "col_offset": 18,
+                "end_lineno": 1,
+                "end_col_offset": 19
+              },
+              "focus": "3",
+              "value": 3
+            }
+          ],
+          "ctx": {
+            "node_id": 15,
+            "children_node_ids": [],
+            "type": "Load",
+            "parent_node_id": 6
+          }
+        }
+      },
+      {
+        "node_id": 2,
+        "children_node_ids": [
+          7,
+          8
+        ],
+        "type": "Assign",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 7,
+          "col_offset": 0,
+          "end_lineno": 7,
+          "end_col_offset": 27
+        },
+        "focus": "new_tuple = my_tuple + (4,)",
+        "targets": [
+          {
+            "node_id": 7,
+            "children_node_ids": [
+              11
+            ],
+            "type": "Name",
+            "parent_node_id": 2,
+            "location": {
+              "lineno": 7,
+              "col_offset": 0,
+              "end_lineno": 7,
+              "end_col_offset": 9
+            },
+            "focus": "new_tuple",
+            "id": "new_tuple",
+            "ctx": {
+              "node_id": 11,
+              "children_node_ids": [],
+              "type": "Store",
+              "parent_node_id": 7
+            }
+          }
+        ],
+        "value": {
+          "node_id": 8,
+          "children_node_ids": [
+            14,
+            15,
+            16
+          ],
+          "type": "BinOp",
+          "parent_node_id": 2,
+          "location": {
+            "lineno": 7,
+            "col_offset": 12,
+            "end_lineno": 7,
+            "end_col_offset": 27
+          },
+          "focus": "my_tuple + (4,)",
+          "left": {
+            "node_id": 14,
+            "children_node_ids": [
+              15
+            ],
+            "type": "Name",
+            "parent_node_id": 8,
+            "location": {
+              "lineno": 7,
+              "col_offset": 12,
+              "end_lineno": 7,
+              "end_col_offset": 20
+            },
+            "focus": "my_tuple",
+            "id": "my_tuple",
+            "ctx": {
+              "node_id": 15,
+              "children_node_ids": [],
+              "type": "Load",
+              "parent_node_id": 14
+            }
+          },
+          "op": {
+            "node_id": 15,
+            "children_node_ids": [],
+            "type": "Add",
+            "parent_node_id": 8
+          },
+          "right": {
+            "node_id": 16,
+            "children_node_ids": [
+              21,
+              15
+            ],
+            "type": "Tuple",
+            "parent_node_id": 8,
+            "location": {
+              "lineno": 7,
+              "col_offset": 23,
+              "end_lineno": 7,
+              "end_col_offset": 27
+            },
+            "focus": "(4,)",
+            "elts": [
+              {
+                "node_id": 21,
+                "children_node_ids": [],
+                "type": "Constant",
+                "parent_node_id": 16,
+                "location": {
+                  "lineno": 7,
+                  "col_offset": 24,
+                  "end_lineno": 7,
+                  "end_col_offset": 25
+                },
+                "focus": "4",
+                "value": 4
+              }
+            ],
+            "ctx": {
+              "node_id": 15,
+              "children_node_ids": [],
+              "type": "Load",
+              "parent_node_id": 16
+            }
+          }
+        }
+      },
+      {
+        "node_id": 3,
+        "children_node_ids": [
+          9
+        ],
+        "type": "Expr",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 8,
+          "col_offset": 0,
+          "end_lineno": 8,
+          "end_col_offset": 16
+        },
+        "focus": "print(new_tuple)",
+        "value": {
+          "node_id": 9,
+          "children_node_ids": [
+            17,
+            18
+          ],
+          "type": "Call",
+          "parent_node_id": 3,
+          "location": {
+            "lineno": 8,
+            "col_offset": 0,
+            "end_lineno": 8,
+            "end_col_offset": 16
+          },
+          "focus": "print(new_tuple)",
+          "func": {
+            "node_id": 17,
+            "children_node_ids": [
+              15
+            ],
+            "type": "Name",
+            "parent_node_id": 9,
+            "location": {
+              "lineno": 8,
+              "col_offset": 0,
+              "end_lineno": 8,
+              "end_col_offset": 5
+            },
+            "focus": "print",
+            "id": "print",
+            "ctx": {
+              "node_id": 15,
+              "children_node_ids": [],
+              "type": "Load",
+              "parent_node_id": 17
+            }
+          },
+          "args": [
+            {
+              "node_id": 18,
+              "children_node_ids": [
+                15
+              ],
+              "type": "Name",
+              "parent_node_id": 9,
+              "location": {
+                "lineno": 8,
+                "col_offset": 6,
+                "end_lineno": 8,
+                "end_col_offset": 15
+              },
+              "focus": "new_tuple",
+              "id": "new_tuple",
+              "ctx": {
+                "node_id": 15,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 18
+              }
+            }
+          ],
+          "keywords": []
+        }
+      },
+      {
+        "node_id": 4,
+        "children_node_ids": [
+          10
+        ],
+        "type": "Expr",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 9,
+          "col_offset": 0,
+          "end_lineno": 9,
+          "end_col_offset": 15
+        },
+        "focus": "print(my_tuple)",
+        "value": {
+          "node_id": 10,
+          "children_node_ids": [
+            19,
+            20
+          ],
+          "type": "Call",
+          "parent_node_id": 4,
+          "location": {
+            "lineno": 9,
+            "col_offset": 0,
+            "end_lineno": 9,
+            "end_col_offset": 15
+          },
+          "focus": "print(my_tuple)",
+          "func": {
+            "node_id": 19,
+            "children_node_ids": [
+              15
+            ],
+            "type": "Name",
+            "parent_node_id": 10,
+            "location": {
+              "lineno": 9,
+              "col_offset": 0,
+              "end_lineno": 9,
+              "end_col_offset": 5
+            },
+            "focus": "print",
+            "id": "print",
+            "ctx": {
+              "node_id": 15,
+              "children_node_ids": [],
+              "type": "Load",
+              "parent_node_id": 19
+            }
+          },
+          "args": [
+            {
+              "node_id": 20,
+              "children_node_ids": [
+                15
+              ],
+              "type": "Name",
+              "parent_node_id": 10,
+              "location": {
+                "lineno": 9,
+                "col_offset": 6,
+                "end_lineno": 9,
+                "end_col_offset": 14
+              },
+              "focus": "my_tuple",
+              "id": "my_tuple",
+              "ctx": {
+                "node_id": 15,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 20
+              }
+            }
+          ],
+          "keywords": []
+        }
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "my_tuple = (1, 2, 3)",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "before_expression",
+          "focus": "(1, 2, 3)",
+          "node_id": 6
+        },
+        {
+          "step": 2,
+          "event": "after_expression",
+          "focus": "(1, 2, 3)",
+          "node_id": 6,
+          "value": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "my_tuple = (1, 2, 3)",
+          "node_id": 1,
+          "locals": {
+            "my_tuple": [
+              1,
+              2,
+              3
+            ]
+          },
+          "object_table": {
+            "4369966336": {
+              "type": "tuple",
+              "value": [
+                1,
+                2,
+                3
+              ],
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "my_tuple": 4369966336
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "my_tuple": [
+          1,
+          2,
+          3
+        ]
+      },
+      "delta": {
+        "my_tuple": {
+          "0": 1,
+          "1": 2,
+          "2": 3
+        }
+      },
+      "object_table": {
+        "4369966336": {
+          "type": "tuple",
+          "value": [
+            1,
+            2,
+            3
+          ],
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "my_tuple": 4369966336
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "new_tuple = my_tuple + (4,)",
+          "node_id": 2
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "my_tuple + (4,)",
+          "node_id": 8
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "my_tuple",
+          "node_id": 14
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "my_tuple",
+          "node_id": 14,
+          "value": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "step": 8,
+          "event": "before_expression",
+          "focus": "(4,)",
+          "node_id": 16
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "(4,)",
+          "node_id": 16,
+          "value": [
+            4
+          ]
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "my_tuple + (4,)",
+          "node_id": 8,
+          "value": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "step": 11,
+          "event": "after_statement",
+          "focus": "new_tuple = my_tuple + (4,)",
+          "node_id": 2,
+          "locals": {
+            "my_tuple": [
+              1,
+              2,
+              3
+            ],
+            "new_tuple": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "object_table": {
+            "4369966336": {
+              "type": "tuple",
+              "value": [
+                1,
+                2,
+                3
+              ],
+              "mutable": false
+            },
+            "4369879488": {
+              "type": "tuple",
+              "value": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "mutable": false
+            }
+          },
+          "var_table": {
+            "my_tuple": 4369966336,
+            "new_tuple": 4369879488
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "my_tuple": [
+          1,
+          2,
+          3
+        ],
+        "new_tuple": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "delta": {
+        "new_tuple": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 4
+        }
+      },
+      "object_table": {
+        "4369966336": {
+          "type": "tuple",
+          "value": [
+            1,
+            2,
+            3
+          ],
+          "mutable": false
+        },
+        "4369879488": {
+          "type": "tuple",
+          "value": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "my_tuple": 4369966336,
+        "new_tuple": 4369879488
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "print(new_tuple)",
+          "node_id": 3
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "print(new_tuple)",
+          "node_id": 9
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "new_tuple",
+          "node_id": 18
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "new_tuple",
+          "node_id": 18,
+          "value": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "print(new_tuple)",
+          "node_id": 9,
+          "stdout": "(1, 2, 3, 4)\n"
+        },
+        {
+          "step": 17,
+          "event": "after_statement",
+          "focus": "print(new_tuple)",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "my_tuple": [
+          1,
+          2,
+          3
+        ],
+        "new_tuple": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4369966336": {
+          "type": "tuple",
+          "value": [
+            1,
+            2,
+            3
+          ],
+          "mutable": false
+        },
+        "4369879488": {
+          "type": "tuple",
+          "value": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "mutable": false
+        }
+      },
+      "var_table": {
+        "my_tuple": 4369966336,
+        "new_tuple": 4369879488
+      },
+      "steps": [
+        {
+          "step": 18,
+          "event": "before_statement",
+          "focus": "print(my_tuple)",
+          "node_id": 4
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "print(my_tuple)",
+          "node_id": 10
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "my_tuple",
+          "node_id": 20
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "my_tuple",
+          "node_id": 20,
+          "value": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "print(my_tuple)",
+          "node_id": 10,
+          "stdout": "(1, 2, 3)\n"
+        },
+        {
+          "step": 23,
+          "event": "after_statement",
+          "focus": "print(my_tuple)",
+          "node_id": 4
+        }
+      ]
+    }
+  ],
+  "result": null
+}

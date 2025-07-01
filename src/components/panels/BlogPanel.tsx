@@ -31,7 +31,7 @@ export default function BlogCodePanel() {
         <div className="flex flex-col h-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm shadow-lg border border-white/20 dark:border-slate-700/50 overflow-hidden">
             {/* Header */}
             <div className="p-5 border-b border-gray-100/50 dark:border-slate-700/50 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-800 dark:to-slate-900">
-                <div className="flex items-center justify-between gap-4">
+                <div className="max-h-64  flex items-center justify-between gap-4">
                     <TerminalOutputContent />
                     <div className='flex gap-2'>
                         <NavigationControls />
@@ -43,16 +43,15 @@ export default function BlogCodePanel() {
             {/* Main Content */}
             <div className="flex-1 min-h-[300px] flex flex-col">
                 {/* Code Panel */}
-                <div className="py-3 flex-1 min-h-0 bg-gray-50/50 dark:bg-slate-800/50 border-b border-gray-100/50 dark:border-slate-700/50">
+                <div className="flex-1 py-3 min-h-0 bg-gray-50/50 dark:bg-slate-800/50 border-b border-gray-100/50 dark:border-slate-700/50">
                     <CodeSyntaxHighlighter
                         code={traceData.metadata.code}
                         currentLine={currentLine?.line_number}
                         showOverlay={true}
                     />
                 </div>
-
                 {/* Variable Panel */}
-                <div className="h-[250px] min-h-0 bg-white/50 dark:bg-slate-900/50">
+                <div className=" flex-1 min-h-0 bg-white/50 dark:bg-slate-900/50">
                     <ReactFlowProvider>
                         <PythonTutorVariablePanelInner resizeTrigger={stepIndex} />
                     </ReactFlowProvider>

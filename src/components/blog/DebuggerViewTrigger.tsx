@@ -15,7 +15,6 @@ export const DebuggerViewTrigger = ({ problemId }: DebuggerViewTriggerProps) => 
     const isInView = useInView(ref, { amount: 0.5 }); // 50% visible
 
     useEffect(() => {
-        console.log("isInView", isInView);
         if (isInView) {
             setCurrentProblem(problemId);
         }
@@ -24,6 +23,7 @@ export const DebuggerViewTrigger = ({ problemId }: DebuggerViewTriggerProps) => 
     // Visible indicator for markdown: a small animated badge
     return (
         <motion.span
+            onClick={() => setCurrentProblem(problemId)}
             ref={ref}
             initial={{ opacity: 0.3, scale: 0.8 }}
             animate={{ opacity: isInView ? 1 : 0.3, scale: isInView ? 1.1 : 0.8 }}
@@ -47,16 +47,8 @@ export const DebuggerViewTrigger = ({ problemId }: DebuggerViewTriggerProps) => 
             }}
             aria-label={`Debugger trigger for problem ${problemId}`}
         >
-            <motion.span
-                initial={{ rotate: 0 }}
-                animate={{ rotate: isInView ? 360 : 0 }}
-                transition={{ repeat: isInView ? Infinity : 0, duration: 1.2, ease: 'linear' }}
-                style={{ display: 'inline-block' }}
-            >
-                🐞
-            </motion.span>
             <span>
-                Debugger: <strong>{problemId}</strong> {isInView ? '(active)' : ''}
+                Play in Debugger
             </span>
         </motion.span>
     );
