@@ -9,6 +9,7 @@ import MainLayout from '@/components/layout/MainLayout';
 import { TutorialOverlay } from '@/components/tutorial';
 import { PageLoadingIndicator } from '@/components/ui/PageLoadingIndicator';
 import { api } from '@/utils/api';
+import { Analytics } from '@vercel/analytics/next';
 
 import type { AppType } from 'next/app';
 import type { Session } from 'next-auth';
@@ -27,6 +28,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <PageLoadingIndicator />
         <MainLayout />
         <TutorialOverlay />
+        <Analytics />
         <div className="flex-1 flex overflow-hidden max-h-full m-4 lg:m-0 lg:pt-16" style={{ height: 'calc(100vh - 4rem)' }}>
           <Component {...pageProps} />
         </div>

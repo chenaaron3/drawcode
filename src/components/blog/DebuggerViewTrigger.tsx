@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
+import { Play } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
 import { useTraceStore } from '@/store/traceStore';
@@ -14,11 +15,11 @@ export const DebuggerViewTrigger = ({ problemId }: DebuggerViewTriggerProps) => 
     const setCurrentProblem = useTraceStore((state) => state.setCurrentProblem);
     const isInView = useInView(ref, { amount: 0.5 }); // 50% visible
 
-    useEffect(() => {
-        if (isInView) {
-            setCurrentProblem(problemId);
-        }
-    }, [isInView, problemId, setCurrentProblem]);
+    // useEffect(() => {
+    //     if (isInView) {
+    //         setCurrentProblem(problemId);
+    //     }
+    // }, [isInView, problemId, setCurrentProblem]);
 
     // Visible indicator for markdown: a small animated badge
     return (
@@ -47,8 +48,8 @@ export const DebuggerViewTrigger = ({ problemId }: DebuggerViewTriggerProps) => 
             }}
             aria-label={`Debugger trigger for problem ${problemId}`}
         >
-            <span>
-                Play in Debugger
+            <span className='flex justify-center items-center gap-2'>
+                <Play className="h-4 w-4" />Show in Debugger
             </span>
         </motion.span>
     );

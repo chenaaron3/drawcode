@@ -40,6 +40,7 @@ def extract_code_blocks(filepath):
 def write_blog_traces_ts(trace_keys):
     output_path = TRACES_DIR / "index.ts"
     with open(output_path, 'w', encoding='utf-8') as f:
+        f.write('/* eslint-disable @typescript-eslint/no-require-imports */')
         f.write('// AUTO-GENERATED FILE. DO NOT EDIT MANUALLY.\n')
         f.write('export const BLOG_TRACES = {\n')
         for trace_name in sorted(trace_keys):
