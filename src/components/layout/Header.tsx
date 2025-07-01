@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
     };
 
     const handleBackToProblems = () => {
-        router.push('/roadmap');
+        router.push('/lessons');
         setCurrentProblem(null);
     };
 

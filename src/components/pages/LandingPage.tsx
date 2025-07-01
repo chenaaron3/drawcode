@@ -47,7 +47,7 @@ export const LandingPage: React.FC = () => {
         {
             id: 3,
             title: "Understand Data Flow Visually",
-            description: "Watch variables update instantly as your code runs. See data structures evolve, values change, and understand the &apos;why&apos; behind every operation. Visual feedback makes complex concepts crystal clear.",
+            description: "Watch variables update instantly as your code runs. See data structures evolve, values change, and understand the 'why' behind every operation. Visual feedback makes complex concepts crystal clear.",
             image: variablesImage,
             alt: "Variable panel showing real-time data changes"
         }
@@ -69,7 +69,7 @@ export const LandingPage: React.FC = () => {
                                     </span>
                                 </h1>
                                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                                    Instantly visualize variables, data structures, and logic in real time. If you're a beginner programmer struggling to learning Python, this app is for you.
+                                    Instantly visualize variables, data structures, and logic in real time. If you&apos;re a beginner struggling to learning Python, this app is for you.
                                 </p>
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4">
