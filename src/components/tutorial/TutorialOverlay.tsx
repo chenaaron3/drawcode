@@ -265,11 +265,9 @@ export const TutorialOverlay: React.FC = () => {
                         left: tooltipPosition.left,
                     }}
                     className="pointer-events-auto max-w-sm min-w-[320px] z-60"
-
                 >
-                    <Card className="shadow-xl border-2 border-blue-200 bg-white">
-
-                        <CardHeader className="pb-3">
+                    <Card className="shadow-xl border-2 border-blue-200 bg-white gap-2">
+                        <CardHeader>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">

@@ -2,10 +2,15 @@ import { motion } from 'framer-motion';
 import {
     ArrowRight, BookOpen, ChevronRight, Github, Menu, Newspaper, Play, Zap
 } from 'lucide-react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import {
+    DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 import { useAppStore } from '@/store/appStore';
 import { useTraceStore } from '@/store/traceStore';
 
@@ -39,6 +44,7 @@ export const Header: React.FC = () => {
     const { setSidebarOpen } = useAppStore();
     const currentProblemId = getCurrentProblemId();
     const currentProblem = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
+    const { data: session } = useSession();
 
     const handleModeChange = (mode: typeof navigationModes[number]) => {
         router.push(`/${mode.id}`);
@@ -61,8 +67,8 @@ export const Header: React.FC = () => {
     const showLessonsButton = isCurrentPath('lesson');
     const isLandingPage = isCurrentPath('');
 
-    const onGetStarted = () => {
-        router.push('/lesson');
+    const onGetStarted = async () => {
+        router.push("/lesson")
     };
 
     return (
@@ -164,6 +170,33 @@ export const Header: React.FC = () => {
                                     );
                                 })}
                             </div>
+                            {/* Profile Avatar Button - rightmost */}
+                            {session?.user?.image && (
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <button className="ml-2 focus:outline-none rounded-full border border-gray-200 hover:ring-2 hover:ring-blue-400 transition-shadow">
+                                            <Avatar>
+                                                <AvatarImage
+                                                    src={session.user.image}
+                                                    alt={session.user.name || 'Profile'}
+                                                />
+                                                <AvatarFallback>
+                                                    {session.user.name?.[0]?.toUpperCase() || 'U'}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                        </button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end">
+                                        <DropdownMenuItem
+                                            onClick={async () => {
+                                                await signOut({ callbackUrl: '/' });
+                                            }}
+                                        >
+                                            Sign out
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            )}
                         </>
                     )}
                 </div>

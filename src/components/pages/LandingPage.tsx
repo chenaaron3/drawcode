@@ -1,4 +1,5 @@
 import { ArrowRight, BookOpen, CheckCircle, Eye, Play, Users, X, Zap } from 'lucide-react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -24,8 +25,8 @@ export const LandingPage: React.FC = () => {
         setPlaySpeed(500);
     }, [setMode, setCurrentProblem, setPlaySpeed]);
 
-    const onGetStarted = () => {
-        router.push('/lesson');
+    const onGetStarted = async () => {
+        router.push('lesson');
     }
 
     const steps = [
@@ -68,7 +69,7 @@ export const LandingPage: React.FC = () => {
                                     </span>
                                 </h1>
                                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                                    Don&apos;t just mindlessly run code — watch every step unfold. Instantly visualize variables, data structures, and logic in real time.
+                                    Instantly visualize variables, data structures, and logic in real time. If you're a beginner programmer struggling to learning Python, this app is for you.
                                 </p>
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4">
@@ -88,7 +89,7 @@ export const LandingPage: React.FC = () => {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-5 w-5 text-green-500" />
-                                    <span>Interactive variables</span>
+                                    <span>Created by Meta Engineer</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-5 w-5 text-green-500" />

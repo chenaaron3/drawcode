@@ -1,4 +1,4 @@
-import { TerminalIcon } from 'lucide-react';
+import { Navigation, Settings, TerminalIcon } from 'lucide-react';
 import React, { useEffect } from 'react';
 import { ReactFlowProvider } from 'reactflow';
 import { toast } from 'sonner';
@@ -8,32 +8,14 @@ import { useTerminalOutput } from '@/hooks/useTerminalOutput';
 import { selectCurrentLine, useTraceStore } from '@/store/traceStore';
 
 import { CodeSyntaxHighlighter } from '../common/CodeSyntaxHighlighter';
-import { NavigationControls } from '../controls';
+import TerminalOutput, { TerminalOutputContent } from '../common/TerminalOutput';
+import { NavigationControls, SettingControls } from '../controls';
 import { PythonTutorVariablePanelInner } from './PythonTutorVariablePanel';
 
-export default function DemoPanel() {
+export default function BlogCodePanel() {
     const traceData = useTraceStore(state => state.traceData);
     const currentLine = useTraceStore(selectCurrentLine);
     const stepIndex = useTraceStore(state => state.stepIndex);
-    const { terminalOutput } = useTerminalOutput();
-    const [lastOutputLength, setLastOutputLength] = React.useState(0);
-
-    // Show toast for new terminal output
-    useEffect(() => {
-        if (terminalOutput.length > lastOutputLength) {
-            // Only show toast for the new output
-            const newOutput = terminalOutput[terminalOutput.length - 1];
-            if (newOutput) {
-                toast.info(`Line ${newOutput.line}: ${newOutput.output}`, {
-                    position: 'top-center',
-                    duration: 3000,
-                    className: 'font-mono text-sm',
-                    icon: <TerminalIcon className="w-4 h-4" />,
-                });
-            }
-            setLastOutputLength(terminalOutput.length);
-        }
-    }, [terminalOutput, lastOutputLength]);
 
     if (!traceData) {
         return (
@@ -46,19 +28,14 @@ export default function DemoPanel() {
     }
 
     return (
-        <div className="flex flex-col h-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 dark:border-slate-700/50 overflow-hidden">
+        <div className="flex flex-col h-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm shadow-lg border border-white/20 dark:border-slate-700/50 overflow-hidden">
             {/* Header */}
             <div className="p-5 border-b border-gray-100/50 dark:border-slate-700/50 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-800 dark:to-slate-900">
-                <div className="flex items-center justify-between">
-                    <div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">Word Guessing Script</h3>
-                        <p className="text-gray-600 dark:text-gray-400 text-sm">Find the secret word by guessing from a list</p>
-                    </div>
-                    <div className="flex flex-col gap-1 justify-center items-center">
-                        <div className="text-xs font-medium animate-color-cycle bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-ping">Try it out</div>
-                        <div className="flex items-center gap-2">
-                            <NavigationControls />
-                        </div>
+                <div className="flex items-center justify-between gap-4">
+                    <TerminalOutputContent />
+                    <div className='flex gap-2'>
+                        <NavigationControls />
+                        <SettingControls />
                     </div>
                 </div>
             </div>

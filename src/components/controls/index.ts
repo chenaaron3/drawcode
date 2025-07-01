@@ -1,2 +1,2 @@
 export { NavigationControls } from "./NavigationControls";
-export { Settings } from "./Settings";
+export { SettingControls } from "./SettingControls";

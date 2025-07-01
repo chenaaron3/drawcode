@@ -1,3 +1,6 @@
+import { Loader2 } from 'lucide-react';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
 import lessonProblemsJson from '@/data/lesson-problems.json';
@@ -10,10 +13,11 @@ import { initGA, trackPageView } from '@/utils/analytics';
 import { Header } from './Header';
 
 import type { ProblemDescription, Problem } from '@/types/problem';
-
 const MainLayout: React.FC = () => {
     const { setProblemsData } = useTraceStore();
     const { isInitializing } = useCodeInitialization();
+    const session = useSession();
+    const router = useRouter();
 
     // Initialize Google Analytics and load problems data
     useEffect(() => {
@@ -52,13 +56,21 @@ const MainLayout: React.FC = () => {
         loadProblemsWithDescriptions();
     }, [setProblemsData]);
 
-    if (isInitializing) {
+    let isAuthorizing = false;
+    // only require sign in on lesson page
+    if (router.pathname === "/lesson") {
+        if (session.status == 'unauthenticated') {
+            isAuthorizing = true;
+            signIn('google');
+        } else if (session.status == 'loading') {
+            isAuthorizing = true;
+        }
+    }
+
+    if (isInitializing || isAuthorizing) {
         return (
-            <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
-                <div className="text-center">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                    <p className="text-muted-foreground">Initializing...</p>
-                </div>
+            <div className="fixed inset-0 z-60 bg-gray-900 bg-opacity-40 flex items-center justify-center">
+                <Loader2 className="h-8 w-8 text-white animate-spin" />
             </div>
         );
     }

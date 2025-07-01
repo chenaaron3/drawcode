@@ -14,7 +14,7 @@ import {
 import { useTraceGeneration } from '@/hooks/useTraceGeneration';
 import { useTraceStore } from '@/store/traceStore';
 
-export function Settings() {
+export function SettingControls() {
     const {
         lineIndex,
         isPlaying,

@@ -2,7 +2,7 @@ import type { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'ne
 import ReactMarkdown from 'react-markdown';
 
 import { DebuggerViewTrigger } from '@/components/blog/DebuggerViewTrigger';
-import DemoPanel from '@/components/panels/DemoPanel';
+import BlogCodePanel from '@/components/panels/BlogPanel';
 import { remarkDebuggerPlugin } from '@/lib/remark-debugger-plugin';
 
 import { markdownComponents } from '../../components/common/markdownComponents';
@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps<{
 
 const PostPage = ({ postData }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
-        <div className="flex h-screen">
+        <div className="flex h-full">
             <main className="w-1/2 overflow-y-auto p-8">
                 <article className="prose max-w-none">
                     <header className="mb-8">
@@ -52,9 +52,9 @@ const PostPage = ({ postData }: InferGetStaticPropsType<typeof getStaticProps>) 
                     </ReactMarkdown>
                 </article>
             </main>
-            <aside className="w-1/2 h-full">
-                <DemoPanel />
-            </aside>
+            <div className="w-1/2 h-full">
+                <BlogCodePanel />
+            </div>
         </div>
     );
 };

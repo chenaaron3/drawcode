@@ -1,7 +1,8 @@
 import '@/styles/globals.css';
 
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider, signIn, useSession } from 'next-auth/react';
 import { Geist } from 'next/font/google';
+import { useRouter } from 'next/router';
 import { Toaster } from 'sonner';
 
 import MainLayout from '@/components/layout/MainLayout';
@@ -11,7 +12,6 @@ import { api } from '@/utils/api';
 
 import type { AppType } from 'next/app';
 import type { Session } from 'next-auth';
-
 const geist = Geist({
   subsets: ["latin"],
 });

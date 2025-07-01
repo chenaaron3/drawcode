@@ -11,7 +11,7 @@ import Editor from '@monaco-editor/react';
 import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
 import { InputsSection } from '../common';
 import { CodeSyntaxHighlighter } from '../common/CodeSyntaxHighlighter';
-import { NavigationControls, Settings } from '../controls';
+import { NavigationControls, SettingControls } from '../controls';
 import { ProblemDescriptionModal } from '../modals';
 import { ComputationWorkspaceOverlay } from '../overlays';
 import { ErrorPanel } from './ErrorPanel';
@@ -102,7 +102,7 @@ export default function CodePanel() {
     return (
         <>
             <TooltipProvider>
-                <Card className="h-full flex flex-col" data-tutorial="code-panel">
+                <Card className="h-full flex flex-col gap-2" data-tutorial="code-panel">
                     <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0">
                         <div className="flex items-center gap-2">
                             <CardTitle className="text-lg">
@@ -114,7 +114,7 @@ export default function CodePanel() {
                         </div>
                         <div className="flex items-center gap-2">
                             <NavigationControls />
-                            <Settings />
+                            <SettingControls />
                         </div>
                     </CardHeader>
                     <CardContent className="flex-1 overflow-hidden flex flex-col">
