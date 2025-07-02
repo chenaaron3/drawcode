@@ -3,6 +3,7 @@ title: "Mutable vs Immutable in Python — Explained Visually"
 date: "2025-07-01"
 author: "Aaron Chen"
 description: "A deep dive into how Python handles mutable and immutable types, explaining why changing a list in one place can affect it elsewhere."
+image: "/python-mutability.png"
 ---
 
 One of the most common "gotchas" for beginner Python programmers is the concept of mutability. Why does changing a list in one part of your code sometimes cause unexpected changes elsewhere? The answer lies in the fundamental difference between mutable and immutable objects.

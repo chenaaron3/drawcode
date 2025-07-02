@@ -68,7 +68,7 @@ export const DebuggerViewTrigger = ({ problemId }: DebuggerViewTriggerProps) => 
             aria-label={`Debugger trigger for problem ${problemId}`}
         >
             <span className='flex justify-center items-center gap-2'>
-                <Play className="h-4 w-4" />Copy to Editor
+                <Play className="h-4 w-4" />{isActive ? 'Active in Editor' : 'Copy to Editor'}
             </span>
         </motion.span>
     );
