@@ -1,6 +1,6 @@
 ---
-title: "Mutable vs. Immutable: Why Your Python Lists Change Unexpectedly"
-date: "2024-07-23"
+title: "Mutable vs Immutable in Python — Explained Visually"
+date: "2025-07-01"
 author: "Aaron Chen"
 description: "A deep dive into how Python handles mutable and immutable types, explaining why changing a list in one place can affect it elsewhere."
 ---
