@@ -21,9 +21,9 @@ interface FlowData {
 
 // Helper to determine node type for object_table entries
 function getNodeType(obj: ObjectTableEntry): string {
-  if (obj.type === "list") return "arrayValue";
+  if (obj.type === "list" || obj.type === "tuple" || obj.type === "set")
+    return "arrayValue";
   if (obj.type === "dict") return "objectValue";
-  if (obj.type === "set") return "setValue";
   // Add more as needed
   return "objectValue";
 }
@@ -88,8 +88,10 @@ export function generateFlowData({
       value: obj.value,
       objectId: objId,
       type: obj.type,
-      mutable: obj.mutable,
+      isCollection: obj.isCollection,
     };
+
+    console.log(nodeType, nodeData);
 
     // Find variable name referencing this objectId (if any)
     const variableEntry = Object.entries(var_table).find(
@@ -103,7 +105,10 @@ export function generateFlowData({
     }
 
     // For arrays/lists, build values array with ObjectDescriptors
-    if (obj.type === "list" && Array.isArray(obj.value)) {
+    if (
+      ["list", "set", "tuple"].includes(obj.type) &&
+      Array.isArray(obj.value)
+    ) {
       nodeData.values = (obj.value as number[])
         .map((childId: number, idx: number) => {
           const childObj = object_table[childId];
@@ -111,10 +116,10 @@ export function generateFlowData({
           const descriptor: ObjectDescriptor = {
             id: childId,
             type: childObj.type,
-            value: childObj.mutable ? undefined : childObj.value,
-            mutable: childObj.mutable,
+            value: childObj.isCollection ? undefined : childObj.value,
+            isCollection: childObj.isCollection,
           };
-          if (childObj.mutable) {
+          if (childObj.isCollection) {
             renderObjectNode(childId);
             edges.push({
               id: `edge-${thisNodeId}-${objectIdToNodeId[childId]}-item-${idx}`,
@@ -151,10 +156,10 @@ export function generateFlowData({
         const descriptor: ObjectDescriptor = {
           id: childId,
           type: childObj.type,
-          value: childObj.mutable ? undefined : childObj.value,
-          mutable: childObj.mutable,
+          value: childObj.isCollection ? undefined : childObj.value,
+          isCollection: childObj.isCollection,
         };
-        if (childObj.mutable) {
+        if (childObj.isCollection) {
           renderObjectNode(childId);
           edges.push({
             id: `edge-${thisNodeId}-${objectIdToNodeId[childId]}-key-${key}`,
@@ -175,39 +180,6 @@ export function generateFlowData({
         return { key, value: descriptor };
       });
     }
-    // For sets, treat like arrays
-    else if (obj.type === "set" && Array.isArray(obj.value)) {
-      nodeData.values = (obj.value as number[])
-        .map((childId: number, idx: number) => {
-          const childObj = object_table[childId];
-          if (!childObj) return null;
-          const descriptor: ObjectDescriptor = {
-            id: childId,
-            type: childObj.type,
-            value: childObj.mutable ? undefined : childObj.value,
-            mutable: childObj.mutable,
-          };
-          if (childObj.mutable) {
-            renderObjectNode(childId);
-            edges.push({
-              id: `edge-${thisNodeId}-${objectIdToNodeId[childId]}-item-${idx}`,
-              source: thisNodeId,
-              sourceHandle: `item-${idx}-handle`,
-              target: objectIdToNodeId[childId]!,
-              type: "smoothstep",
-              zIndex: 1000,
-              markerEnd: {
-                type: MarkerType.ArrowClosed,
-                color: "#64748b",
-                width: 16,
-                height: 16,
-              },
-            });
-          }
-          return descriptor;
-        })
-        .filter(Boolean);
-    }
     // For custom classes, treat as object with fields
     else if (
       obj.value &&
@@ -222,10 +194,10 @@ export function generateFlowData({
           const descriptor: ObjectDescriptor = {
             id: childId,
             type: childObj.type,
-            value: childObj.mutable ? undefined : childObj.value,
-            mutable: childObj.mutable,
+            value: childObj.isCollection ? undefined : childObj.value,
+            isCollection: childObj.isCollection,
           };
-          if (childObj.mutable) {
+          if (childObj.isCollection) {
             renderObjectNode(childId);
             edges.push({
               id: `edge-${thisNodeId}-${objectIdToNodeId[childId]}`,
@@ -281,21 +253,21 @@ export function generateFlowData({
       id: objId,
       type: obj.type,
       value: obj.value,
-      mutable: obj.mutable,
+      isCollection: obj.isCollection,
     };
 
     frameVariables.push({
       name: varName,
       value: descriptor,
       delta: variableDelta,
-      type: obj.mutable ? "reference" : "primitive",
-      objectId: obj.mutable ? objId : undefined,
+      type: obj.isCollection ? "reference" : "primitive",
+      objectId: obj.isCollection ? objId : undefined,
       isAnimating,
       hasChanged,
       isEvaluating: isEvaluatingThisVar,
     });
 
-    if (obj.mutable) {
+    if (obj.isCollection) {
       // Render the object node (if not already rendered)
       renderObjectNode(objId);
       // Edge from variable frame to object node

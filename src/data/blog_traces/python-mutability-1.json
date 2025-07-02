@@ -1,0 +1,882 @@
+{
+  "metadata": {
+    "code": "# Lists are mutable\nmutable_list = [1, 2, 3]\nmutable_list[1] = 4  # This works - we can modify the list\nprint(mutable_list)  # Output: [1, 4, 3]\n\n# Tuples are immutable\nimmutable_tuple = (1, 2, 3)\n# The line below will throw a TypeError\n# immutable_tuple[1] = 4\n",
+    "function": null,
+    "inputs": {
+      "kwargs": {}
+    },
+    "stdout": "[1, 4, 3]\n",
+    "finalLocals": {
+      "mutable_list": [
+        1,
+        4,
+        3
+      ],
+      "immutable_tuple": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "ast": {
+    "node_id": 0,
+    "children_node_ids": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "type": "Module",
+    "body": [
+      {
+        "node_id": 1,
+        "children_node_ids": [
+          5,
+          6
+        ],
+        "type": "Assign",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 2,
+          "col_offset": 0,
+          "end_lineno": 2,
+          "end_col_offset": 24
+        },
+        "focus": "mutable_list = [1, 2, 3]",
+        "targets": [
+          {
+            "node_id": 5,
+            "children_node_ids": [
+              12
+            ],
+            "type": "Name",
+            "parent_node_id": 1,
+            "location": {
+              "lineno": 2,
+              "col_offset": 0,
+              "end_lineno": 2,
+              "end_col_offset": 12
+            },
+            "focus": "mutable_list",
+            "id": "mutable_list",
+            "ctx": {
+              "node_id": 12,
+              "children_node_ids": [],
+              "type": "Store",
+              "parent_node_id": 5
+            }
+          }
+        ],
+        "value": {
+          "node_id": 6,
+          "children_node_ids": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "type": "List",
+          "parent_node_id": 1,
+          "location": {
+            "lineno": 2,
+            "col_offset": 15,
+            "end_lineno": 2,
+            "end_col_offset": 24
+          },
+          "focus": "[1, 2, 3]",
+          "elts": [
+            {
+              "node_id": 13,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 2,
+                "col_offset": 16,
+                "end_lineno": 2,
+                "end_col_offset": 17
+              },
+              "focus": "1",
+              "value": 1
+            },
+            {
+              "node_id": 14,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 2,
+                "col_offset": 19,
+                "end_lineno": 2,
+                "end_col_offset": 20
+              },
+              "focus": "2",
+              "value": 2
+            },
+            {
+              "node_id": 15,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 6,
+              "location": {
+                "lineno": 2,
+                "col_offset": 22,
+                "end_lineno": 2,
+                "end_col_offset": 23
+              },
+              "focus": "3",
+              "value": 3
+            }
+          ],
+          "ctx": {
+            "node_id": 16,
+            "children_node_ids": [],
+            "type": "Load",
+            "parent_node_id": 6
+          }
+        }
+      },
+      {
+        "node_id": 2,
+        "children_node_ids": [
+          7,
+          8
+        ],
+        "type": "Assign",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 3,
+          "col_offset": 0,
+          "end_lineno": 3,
+          "end_col_offset": 19
+        },
+        "focus": "mutable_list[1] = 4",
+        "targets": [
+          {
+            "node_id": 7,
+            "children_node_ids": [
+              17,
+              18,
+              12
+            ],
+            "type": "Subscript",
+            "parent_node_id": 2,
+            "location": {
+              "lineno": 3,
+              "col_offset": 0,
+              "end_lineno": 3,
+              "end_col_offset": 15
+            },
+            "focus": "mutable_list[1]",
+            "value": {
+              "node_id": 17,
+              "children_node_ids": [
+                16
+              ],
+              "type": "Name",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 3,
+                "col_offset": 0,
+                "end_lineno": 3,
+                "end_col_offset": 12
+              },
+              "focus": "mutable_list",
+              "id": "mutable_list",
+              "ctx": {
+                "node_id": 16,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 17
+              }
+            },
+            "slice": {
+              "node_id": 18,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 7,
+              "location": {
+                "lineno": 3,
+                "col_offset": 13,
+                "end_lineno": 3,
+                "end_col_offset": 14
+              },
+              "focus": "1",
+              "value": 1
+            },
+            "ctx": {
+              "node_id": 12,
+              "children_node_ids": [],
+              "type": "Store",
+              "parent_node_id": 7
+            }
+          }
+        ],
+        "value": {
+          "node_id": 8,
+          "children_node_ids": [],
+          "type": "Constant",
+          "parent_node_id": 2,
+          "location": {
+            "lineno": 3,
+            "col_offset": 18,
+            "end_lineno": 3,
+            "end_col_offset": 19
+          },
+          "focus": "4",
+          "value": 4
+        }
+      },
+      {
+        "node_id": 3,
+        "children_node_ids": [
+          9
+        ],
+        "type": "Expr",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 4,
+          "col_offset": 0,
+          "end_lineno": 4,
+          "end_col_offset": 19
+        },
+        "focus": "print(mutable_list)",
+        "value": {
+          "node_id": 9,
+          "children_node_ids": [
+            19,
+            20
+          ],
+          "type": "Call",
+          "parent_node_id": 3,
+          "location": {
+            "lineno": 4,
+            "col_offset": 0,
+            "end_lineno": 4,
+            "end_col_offset": 19
+          },
+          "focus": "print(mutable_list)",
+          "func": {
+            "node_id": 19,
+            "children_node_ids": [
+              16
+            ],
+            "type": "Name",
+            "parent_node_id": 9,
+            "location": {
+              "lineno": 4,
+              "col_offset": 0,
+              "end_lineno": 4,
+              "end_col_offset": 5
+            },
+            "focus": "print",
+            "id": "print",
+            "ctx": {
+              "node_id": 16,
+              "children_node_ids": [],
+              "type": "Load",
+              "parent_node_id": 19
+            }
+          },
+          "args": [
+            {
+              "node_id": 20,
+              "children_node_ids": [
+                16
+              ],
+              "type": "Name",
+              "parent_node_id": 9,
+              "location": {
+                "lineno": 4,
+                "col_offset": 6,
+                "end_lineno": 4,
+                "end_col_offset": 18
+              },
+              "focus": "mutable_list",
+              "id": "mutable_list",
+              "ctx": {
+                "node_id": 16,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 20
+              }
+            }
+          ],
+          "keywords": []
+        }
+      },
+      {
+        "node_id": 4,
+        "children_node_ids": [
+          10,
+          11
+        ],
+        "type": "Assign",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 7,
+          "col_offset": 0,
+          "end_lineno": 7,
+          "end_col_offset": 27
+        },
+        "focus": "immutable_tuple = (1, 2, 3)",
+        "targets": [
+          {
+            "node_id": 10,
+            "children_node_ids": [
+              12
+            ],
+            "type": "Name",
+            "parent_node_id": 4,
+            "location": {
+              "lineno": 7,
+              "col_offset": 0,
+              "end_lineno": 7,
+              "end_col_offset": 15
+            },
+            "focus": "immutable_tuple",
+            "id": "immutable_tuple",
+            "ctx": {
+              "node_id": 12,
+              "children_node_ids": [],
+              "type": "Store",
+              "parent_node_id": 10
+            }
+          }
+        ],
+        "value": {
+          "node_id": 11,
+          "children_node_ids": [
+            21,
+            22,
+            23,
+            16
+          ],
+          "type": "Tuple",
+          "parent_node_id": 4,
+          "location": {
+            "lineno": 7,
+            "col_offset": 18,
+            "end_lineno": 7,
+            "end_col_offset": 27
+          },
+          "focus": "(1, 2, 3)",
+          "elts": [
+            {
+              "node_id": 21,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 11,
+              "location": {
+                "lineno": 7,
+                "col_offset": 19,
+                "end_lineno": 7,
+                "end_col_offset": 20
+              },
+              "focus": "1",
+              "value": 1
+            },
+            {
+              "node_id": 22,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 11,
+              "location": {
+                "lineno": 7,
+                "col_offset": 22,
+                "end_lineno": 7,
+                "end_col_offset": 23
+              },
+              "focus": "2",
+              "value": 2
+            },
+            {
+              "node_id": 23,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 11,
+              "location": {
+                "lineno": 7,
+                "col_offset": 25,
+                "end_lineno": 7,
+                "end_col_offset": 26
+              },
+              "focus": "3",
+              "value": 3
+            }
+          ],
+          "ctx": {
+            "node_id": 16,
+            "children_node_ids": [],
+            "type": "Load",
+            "parent_node_id": 11
+          }
+        }
+      }
+    ],
+    "type_ignores": []
+  },
+  "relationships": [],
+  "trace": [
+    {
+      "line_number": 2,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "mutable_list = [1, 2, 3]",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "before_expression",
+          "focus": "[1, 2, 3]",
+          "node_id": 6
+        },
+        {
+          "step": 2,
+          "event": "after_expression",
+          "focus": "[1, 2, 3]",
+          "node_id": 6,
+          "value": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "mutable_list = [1, 2, 3]",
+          "node_id": 1,
+          "locals": {
+            "mutable_list": [
+              1,
+              2,
+              3
+            ]
+          },
+          "object_table": {
+            "4321779872": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4321779904": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4321779936": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4312699392": {
+              "type": "list",
+              "value": [
+                4321779872,
+                4321779904,
+                4321779936
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "mutable_list": 4312699392
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "mutable_list": [
+          1,
+          2,
+          3
+        ]
+      },
+      "delta": {
+        "mutable_list": {
+          "0": 1,
+          "1": 2,
+          "2": 3
+        }
+      },
+      "object_table": {
+        "4321779872": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4321779904": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4321779936": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4312699392": {
+          "type": "list",
+          "value": [
+            4321779872,
+            4321779904,
+            4321779936
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "mutable_list": 4312699392
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "mutable_list[1] = 4",
+          "node_id": 2
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "mutable_list",
+          "node_id": 17
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "mutable_list",
+          "node_id": 17,
+          "value": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "mutable_list[1] = 4",
+          "node_id": 2,
+          "locals": {
+            "mutable_list": [
+              1,
+              4,
+              3
+            ]
+          },
+          "object_table": {
+            "4321779872": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4321779968": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4321779936": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4312699392": {
+              "type": "list",
+              "value": [
+                4321779872,
+                4321779968,
+                4321779936
+              ],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "mutable_list": [
+          1,
+          4,
+          3
+        ]
+      },
+      "delta": {
+        "mutable_list": {
+          "1": 4
+        }
+      },
+      "object_table": {
+        "4321779872": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4321779968": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4321779936": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4312699392": {
+          "type": "list",
+          "value": [
+            4321779872,
+            4321779968,
+            4321779936
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "mutable_list": 4312699392
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "print(mutable_list)",
+          "node_id": 3
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "print(mutable_list)",
+          "node_id": 9
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "mutable_list",
+          "node_id": 20
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "mutable_list",
+          "node_id": 20,
+          "value": [
+            1,
+            4,
+            3
+          ]
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "print(mutable_list)",
+          "node_id": 9,
+          "stdout": "[1, 4, 3]\n"
+        },
+        {
+          "step": 13,
+          "event": "after_statement",
+          "focus": "print(mutable_list)",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "mutable_list": [
+          1,
+          4,
+          3
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4321779872": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4321779968": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4321779936": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4312699392": {
+          "type": "list",
+          "value": [
+            4321779872,
+            4321779968,
+            4321779936
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "mutable_list": 4312699392
+      },
+      "steps": [
+        {
+          "step": 14,
+          "event": "before_statement",
+          "focus": "immutable_tuple = (1, 2, 3)",
+          "node_id": 4
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "(1, 2, 3)",
+          "node_id": 11
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "(1, 2, 3)",
+          "node_id": 11,
+          "value": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "step": 17,
+          "event": "after_statement",
+          "focus": "immutable_tuple = (1, 2, 3)",
+          "node_id": 4,
+          "locals": {
+            "mutable_list": [
+              1,
+              4,
+              3
+            ],
+            "immutable_tuple": [
+              1,
+              2,
+              3
+            ]
+          },
+          "object_table": {
+            "4321779872": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4321779968": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4321779936": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4312699392": {
+              "type": "list",
+              "value": [
+                4321779872,
+                4321779968,
+                4321779936
+              ],
+              "isCollection": true
+            },
+            "4321779904": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4314264384": {
+              "type": "tuple",
+              "value": [
+                4321779872,
+                4321779904,
+                4321779936
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "mutable_list": 4312699392,
+            "immutable_tuple": 4314264384
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "mutable_list": [
+          1,
+          4,
+          3
+        ],
+        "immutable_tuple": [
+          1,
+          2,
+          3
+        ]
+      },
+      "object_table": {
+        "4321779872": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4321779968": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4321779936": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4312699392": {
+          "type": "list",
+          "value": [
+            4321779872,
+            4321779968,
+            4321779936
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "mutable_list": 4312699392
+      },
+      "delta": {
+        "immutable_tuple": {
+          "0": 1,
+          "1": 2,
+          "2": 3
+        }
+      },
+      "steps": [
+        {
+          "step": 14,
+          "event": "before_statement",
+          "focus": "immutable_tuple = (1, 2, 3)",
+          "node_id": 4
+        }
+      ]
+    }
+  ],
+  "result": null
+}

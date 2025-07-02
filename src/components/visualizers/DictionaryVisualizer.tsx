@@ -196,7 +196,7 @@ function DictionaryEntry({ entryKey, value, delta, arrows }: DictionaryEntryProp
             </div>
             <div className="flex-1 relative flex items-center">
                 {/* Render value (either a handle or primitive) */}
-                {value.value && value.value.mutable
+                {value.value && value.value.isCollection
                     ? renderValue(value, delta, undefined, `key-${entryKey}-handle`)
                     : renderValue(value, delta)}
                 {/* Value popovers */}

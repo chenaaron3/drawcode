@@ -7,7 +7,7 @@ import type { Text, Code } from "mdast";
 const traceIdRegex = /trace-id=([\w-]+)/;
 
 export const remarkDebuggerPlugin = () => {
-  return (tree: Node, file?: { path?: string }) => {
+  return (tree: Node) => {
     visit(
       tree,
       "code",
@@ -20,18 +20,8 @@ export const remarkDebuggerPlugin = () => {
         ) {
           const match = codeNode.meta.match(traceIdRegex);
           if (match) {
-            // Get the blog slug from the file path if available
-            let blogSlug = "";
-            console.log("FILE", file, file?.path);
-            if (file && file.path) {
-              const parts = file.path.split("/");
-              const filename = parts[parts.length - 1];
-              if (filename) {
-                blogSlug = filename.replace(/\.[^.]+$/, ""); // remove extension
-              }
-            }
             const traceId = match[1];
-            const problemId = blogSlug ? `${blogSlug}_${traceId}` : traceId;
+            const problemId = traceId;
             // Replace the code block with a debugger node
             const debuggerNode: Node = {
               type: "debugger",

@@ -7,7 +7,7 @@ import io
 
 from ast_transformer import ASTTransformer, BEFORE_STATEMENT_MARKER, AFTER_STATEMENT_MARKER, BEFORE_EXPRESSION_MARKER, AFTER_EXPRESSION_MARKER
 from relationship_analyzer import RelationshipAnalyzer
-from utils import serialize_value, calculate_delta, TreeNode, Node, ListNode, adjlist_to_graph, list_to_binary_tree, list_to_linked_list, is_mutable
+from utils import serialize_value, calculate_delta, TreeNode, Node, ListNode, adjlist_to_graph, list_to_binary_tree, list_to_linked_list, is_collection
 
 class PythonTracer:
     """Tracer that tracks execution of all statements and expressions"""
@@ -351,7 +351,7 @@ class PythonTracer:
     def _build_object_table(self, variables):
         """
         Recursively build an object table for all referenced objects in variables.
-        Returns: {id(obj): {"type": ..., "value": ..., "mutable": ...}}
+        Returns: {id(obj): {"type": ..., "value": ..., "isCollection": ...}}
         """
         object_table = {}
         visited = set()
@@ -361,10 +361,15 @@ class PythonTracer:
             if obj_id in visited:
                 return
             visited.add(obj_id)
-            mutable = is_mutable(obj)
+            collection = is_collection(obj)
             obj_type = type(obj).__name__
-            if mutable:
+            if collection:
                 if isinstance(obj, list):
+                    value = []
+                    for item in obj:
+                        value.append(id(item))
+                        add_object(item)
+                elif isinstance(obj, tuple):
                     value = []
                     for item in obj:
                         value.append(id(item))
@@ -398,7 +403,7 @@ class PythonTracer:
             object_table[obj_id] = {
                 "type": obj_type,
                 "value": value,
-                "mutable": mutable
+                "isCollection": collection
             }
 
         for name, obj in variables.items():

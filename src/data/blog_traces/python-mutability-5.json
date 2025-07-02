@@ -1,19 +1,18 @@
 {
   "metadata": {
-    "code": "# Create a list and assign it to 'original_list'\noriginal_list = [10, 20, 30]\n\n# Create a new variable that points to the SAME list\naliased_list = original_list\n\n# Modify the list using the new variable\naliased_list.append(40)\n\n# Print the original list\nprint(original_list)\n",
+    "code": "# Create a list and assign it to 'original_list'\noriginal_list = [10, 20, 30]\n\n# Create a NEW list with the same contents\nnew_list = [10, 20, 30]\n\n# Modify the new list\nnew_list.append(40)\n\n# Check the original list\nprint(original_list)  # Output: [10, 20, 30] (unchanged!)\nprint(new_list)       # Output: [10, 20, 30, 40]\n",
     "function": null,
     "inputs": {
       "kwargs": {}
     },
-    "stdout": "[10, 20, 30, 40]\n",
+    "stdout": "[10, 20, 30]\n[10, 20, 30, 40]\n",
     "finalLocals": {
       "original_list": [
         10,
         20,
-        30,
-        40
+        30
       ],
-      "aliased_list": [
+      "new_list": [
         10,
         20,
         30,
@@ -27,15 +26,16 @@
       1,
       2,
       3,
-      4
+      4,
+      5
     ],
     "type": "Module",
     "body": [
       {
         "node_id": 1,
         "children_node_ids": [
-          5,
-          6
+          6,
+          7
         ],
         "type": "Assign",
         "parent_node_id": 0,
@@ -48,9 +48,9 @@
         "focus": "original_list = [10, 20, 30]",
         "targets": [
           {
-            "node_id": 5,
+            "node_id": 6,
             "children_node_ids": [
-              11
+              12
             ],
             "type": "Name",
             "parent_node_id": 1,
@@ -63,20 +63,20 @@
             "focus": "original_list",
             "id": "original_list",
             "ctx": {
-              "node_id": 11,
+              "node_id": 12,
               "children_node_ids": [],
               "type": "Store",
-              "parent_node_id": 5
+              "parent_node_id": 6
             }
           }
         ],
         "value": {
-          "node_id": 6,
+          "node_id": 7,
           "children_node_ids": [
-            12,
             13,
             14,
-            15
+            15,
+            16
           ],
           "type": "List",
           "parent_node_id": 1,
@@ -89,10 +89,10 @@
           "focus": "[10, 20, 30]",
           "elts": [
             {
-              "node_id": 12,
+              "node_id": 13,
               "children_node_ids": [],
               "type": "Constant",
-              "parent_node_id": 6,
+              "parent_node_id": 7,
               "location": {
                 "lineno": 2,
                 "col_offset": 17,
@@ -103,10 +103,10 @@
               "value": 10
             },
             {
-              "node_id": 13,
+              "node_id": 14,
               "children_node_ids": [],
               "type": "Constant",
-              "parent_node_id": 6,
+              "parent_node_id": 7,
               "location": {
                 "lineno": 2,
                 "col_offset": 21,
@@ -117,10 +117,10 @@
               "value": 20
             },
             {
-              "node_id": 14,
+              "node_id": 15,
               "children_node_ids": [],
               "type": "Constant",
-              "parent_node_id": 6,
+              "parent_node_id": 7,
               "location": {
                 "lineno": 2,
                 "col_offset": 25,
@@ -132,18 +132,18 @@
             }
           ],
           "ctx": {
-            "node_id": 15,
+            "node_id": 16,
             "children_node_ids": [],
             "type": "Load",
-            "parent_node_id": 6
+            "parent_node_id": 7
           }
         }
       },
       {
         "node_id": 2,
         "children_node_ids": [
-          7,
-          8
+          8,
+          9
         ],
         "type": "Assign",
         "parent_node_id": 0,
@@ -151,14 +151,14 @@
           "lineno": 5,
           "col_offset": 0,
           "end_lineno": 5,
-          "end_col_offset": 28
+          "end_col_offset": 23
         },
-        "focus": "aliased_list = original_list",
+        "focus": "new_list = [10, 20, 30]",
         "targets": [
           {
-            "node_id": 7,
+            "node_id": 8,
             "children_node_ids": [
-              11
+              12
             ],
             "type": "Name",
             "parent_node_id": 2,
@@ -166,45 +166,91 @@
               "lineno": 5,
               "col_offset": 0,
               "end_lineno": 5,
-              "end_col_offset": 12
+              "end_col_offset": 8
             },
-            "focus": "aliased_list",
-            "id": "aliased_list",
+            "focus": "new_list",
+            "id": "new_list",
             "ctx": {
-              "node_id": 11,
+              "node_id": 12,
               "children_node_ids": [],
               "type": "Store",
-              "parent_node_id": 7
+              "parent_node_id": 8
             }
           }
         ],
         "value": {
-          "node_id": 8,
+          "node_id": 9,
           "children_node_ids": [
-            15
+            16,
+            17,
+            18,
+            16
           ],
-          "type": "Name",
+          "type": "List",
           "parent_node_id": 2,
           "location": {
             "lineno": 5,
-            "col_offset": 15,
+            "col_offset": 11,
             "end_lineno": 5,
-            "end_col_offset": 28
+            "end_col_offset": 23
           },
-          "focus": "original_list",
-          "id": "original_list",
+          "focus": "[10, 20, 30]",
+          "elts": [
+            {
+              "node_id": 16,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 9,
+              "location": {
+                "lineno": 5,
+                "col_offset": 12,
+                "end_lineno": 5,
+                "end_col_offset": 14
+              },
+              "focus": "10",
+              "value": 10
+            },
+            {
+              "node_id": 17,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 9,
+              "location": {
+                "lineno": 5,
+                "col_offset": 16,
+                "end_lineno": 5,
+                "end_col_offset": 18
+              },
+              "focus": "20",
+              "value": 20
+            },
+            {
+              "node_id": 18,
+              "children_node_ids": [],
+              "type": "Constant",
+              "parent_node_id": 9,
+              "location": {
+                "lineno": 5,
+                "col_offset": 20,
+                "end_lineno": 5,
+                "end_col_offset": 22
+              },
+              "focus": "30",
+              "value": 30
+            }
+          ],
           "ctx": {
-            "node_id": 15,
+            "node_id": 16,
             "children_node_ids": [],
             "type": "Load",
-            "parent_node_id": 8
+            "parent_node_id": 9
           }
         }
       },
       {
         "node_id": 3,
         "children_node_ids": [
-          9
+          10
         ],
         "type": "Expr",
         "parent_node_id": 0,
@@ -212,14 +258,14 @@
           "lineno": 8,
           "col_offset": 0,
           "end_lineno": 8,
-          "end_col_offset": 23
+          "end_col_offset": 19
         },
-        "focus": "aliased_list.append(40)",
+        "focus": "new_list.append(40)",
         "value": {
-          "node_id": 9,
+          "node_id": 10,
           "children_node_ids": [
-            16,
-            17
+            19,
+            20
           ],
           "type": "Call",
           "parent_node_id": 3,
@@ -227,65 +273,65 @@
             "lineno": 8,
             "col_offset": 0,
             "end_lineno": 8,
-            "end_col_offset": 23
+            "end_col_offset": 19
           },
-          "focus": "aliased_list.append(40)",
+          "focus": "new_list.append(40)",
           "func": {
-            "node_id": 16,
+            "node_id": 19,
             "children_node_ids": [
-              20,
-              15
+              25,
+              16
             ],
             "type": "Attribute",
-            "parent_node_id": 9,
+            "parent_node_id": 10,
             "location": {
               "lineno": 8,
               "col_offset": 0,
               "end_lineno": 8,
-              "end_col_offset": 19
+              "end_col_offset": 15
             },
-            "focus": "aliased_list.append",
+            "focus": "new_list.append",
             "value": {
-              "node_id": 20,
+              "node_id": 25,
               "children_node_ids": [
-                15
+                16
               ],
               "type": "Name",
-              "parent_node_id": 16,
+              "parent_node_id": 19,
               "location": {
                 "lineno": 8,
                 "col_offset": 0,
                 "end_lineno": 8,
-                "end_col_offset": 12
+                "end_col_offset": 8
               },
-              "focus": "aliased_list",
-              "id": "aliased_list",
+              "focus": "new_list",
+              "id": "new_list",
               "ctx": {
-                "node_id": 15,
+                "node_id": 16,
                 "children_node_ids": [],
                 "type": "Load",
-                "parent_node_id": 20
+                "parent_node_id": 25
               }
             },
             "attr": "append",
             "ctx": {
-              "node_id": 15,
+              "node_id": 16,
               "children_node_ids": [],
               "type": "Load",
-              "parent_node_id": 16
+              "parent_node_id": 19
             }
           },
           "args": [
             {
-              "node_id": 17,
+              "node_id": 20,
               "children_node_ids": [],
               "type": "Constant",
-              "parent_node_id": 9,
+              "parent_node_id": 10,
               "location": {
                 "lineno": 8,
-                "col_offset": 20,
+                "col_offset": 16,
                 "end_lineno": 8,
-                "end_col_offset": 22
+                "end_col_offset": 18
               },
               "focus": "40",
               "value": 40
@@ -297,7 +343,7 @@
       {
         "node_id": 4,
         "children_node_ids": [
-          10
+          11
         ],
         "type": "Expr",
         "parent_node_id": 0,
@@ -309,10 +355,10 @@
         },
         "focus": "print(original_list)",
         "value": {
-          "node_id": 10,
+          "node_id": 11,
           "children_node_ids": [
-            18,
-            19
+            21,
+            22
           ],
           "type": "Call",
           "parent_node_id": 4,
@@ -324,12 +370,12 @@
           },
           "focus": "print(original_list)",
           "func": {
-            "node_id": 18,
+            "node_id": 21,
             "children_node_ids": [
-              15
+              16
             ],
             "type": "Name",
-            "parent_node_id": 10,
+            "parent_node_id": 11,
             "location": {
               "lineno": 11,
               "col_offset": 0,
@@ -339,20 +385,20 @@
             "focus": "print",
             "id": "print",
             "ctx": {
-              "node_id": 15,
+              "node_id": 16,
               "children_node_ids": [],
               "type": "Load",
-              "parent_node_id": 18
+              "parent_node_id": 21
             }
           },
           "args": [
             {
-              "node_id": 19,
+              "node_id": 22,
               "children_node_ids": [
-                15
+                16
               ],
               "type": "Name",
-              "parent_node_id": 10,
+              "parent_node_id": 11,
               "location": {
                 "lineno": 11,
                 "col_offset": 6,
@@ -362,10 +408,88 @@
               "focus": "original_list",
               "id": "original_list",
               "ctx": {
-                "node_id": 15,
+                "node_id": 16,
                 "children_node_ids": [],
                 "type": "Load",
-                "parent_node_id": 19
+                "parent_node_id": 22
+              }
+            }
+          ],
+          "keywords": []
+        }
+      },
+      {
+        "node_id": 5,
+        "children_node_ids": [
+          12
+        ],
+        "type": "Expr",
+        "parent_node_id": 0,
+        "location": {
+          "lineno": 12,
+          "col_offset": 0,
+          "end_lineno": 12,
+          "end_col_offset": 15
+        },
+        "focus": "print(new_list)",
+        "value": {
+          "node_id": 12,
+          "children_node_ids": [
+            23,
+            24
+          ],
+          "type": "Call",
+          "parent_node_id": 5,
+          "location": {
+            "lineno": 12,
+            "col_offset": 0,
+            "end_lineno": 12,
+            "end_col_offset": 15
+          },
+          "focus": "print(new_list)",
+          "func": {
+            "node_id": 23,
+            "children_node_ids": [
+              16
+            ],
+            "type": "Name",
+            "parent_node_id": 12,
+            "location": {
+              "lineno": 12,
+              "col_offset": 0,
+              "end_lineno": 12,
+              "end_col_offset": 5
+            },
+            "focus": "print",
+            "id": "print",
+            "ctx": {
+              "node_id": 16,
+              "children_node_ids": [],
+              "type": "Load",
+              "parent_node_id": 23
+            }
+          },
+          "args": [
+            {
+              "node_id": 24,
+              "children_node_ids": [
+                16
+              ],
+              "type": "Name",
+              "parent_node_id": 12,
+              "location": {
+                "lineno": 12,
+                "col_offset": 6,
+                "end_lineno": 12,
+                "end_col_offset": 14
+              },
+              "focus": "new_list",
+              "id": "new_list",
+              "ctx": {
+                "node_id": 16,
+                "children_node_ids": [],
+                "type": "Load",
+                "parent_node_id": 24
               }
             }
           ],
@@ -394,13 +518,13 @@
           "step": 1,
           "event": "before_expression",
           "focus": "[10, 20, 30]",
-          "node_id": 6
+          "node_id": 7
         },
         {
           "step": 2,
           "event": "after_expression",
           "focus": "[10, 20, 30]",
-          "node_id": 6,
+          "node_id": 7,
           "value": [
             10,
             20,
@@ -420,33 +544,33 @@
             ]
           },
           "object_table": {
-            "4378829248": {
+            "4321780160": {
               "type": "int",
               "value": 10,
-              "mutable": false
+              "isCollection": false
             },
-            "4378829568": {
+            "4321780480": {
               "type": "int",
               "value": 20,
-              "mutable": false
+              "isCollection": false
             },
-            "4378829888": {
+            "4321780800": {
               "type": "int",
               "value": 30,
-              "mutable": false
+              "isCollection": false
             },
-            "4367225472": {
+            "4314683520": {
               "type": "list",
               "value": [
-                4378829248,
-                4378829568,
-                4378829888
+                4321780160,
+                4321780480,
+                4321780800
               ],
-              "mutable": true
+              "isCollection": true
             }
           },
           "var_table": {
-            "original_list": 4367225472
+            "original_list": 4314683520
           }
         }
       ]
@@ -468,52 +592,52 @@
         }
       },
       "object_table": {
-        "4378829248": {
+        "4321780160": {
           "type": "int",
           "value": 10,
-          "mutable": false
+          "isCollection": false
         },
-        "4378829568": {
+        "4321780480": {
           "type": "int",
           "value": 20,
-          "mutable": false
+          "isCollection": false
         },
-        "4378829888": {
+        "4321780800": {
           "type": "int",
           "value": 30,
-          "mutable": false
+          "isCollection": false
         },
-        "4367225472": {
+        "4314683520": {
           "type": "list",
           "value": [
-            4378829248,
-            4378829568,
-            4378829888
+            4321780160,
+            4321780480,
+            4321780800
           ],
-          "mutable": true
+          "isCollection": true
         }
       },
       "var_table": {
-        "original_list": 4367225472
+        "original_list": 4314683520
       },
       "steps": [
         {
           "step": 4,
           "event": "before_statement",
-          "focus": "aliased_list = original_list",
+          "focus": "new_list = [10, 20, 30]",
           "node_id": 2
         },
         {
           "step": 5,
           "event": "before_expression",
-          "focus": "original_list",
-          "node_id": 8
+          "focus": "[10, 20, 30]",
+          "node_id": 9
         },
         {
           "step": 6,
           "event": "after_expression",
-          "focus": "original_list",
-          "node_id": 8,
+          "focus": "[10, 20, 30]",
+          "node_id": 9,
           "value": [
             10,
             20,
@@ -523,7 +647,7 @@
         {
           "step": 7,
           "event": "after_statement",
-          "focus": "aliased_list = original_list",
+          "focus": "new_list = [10, 20, 30]",
           "node_id": 2,
           "locals": {
             "original_list": [
@@ -531,15 +655,50 @@
               20,
               30
             ],
-            "aliased_list": [
+            "new_list": [
               10,
               20,
               30
             ]
           },
+          "object_table": {
+            "4321780160": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4321780480": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4321780800": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4314683520": {
+              "type": "list",
+              "value": [
+                4321780160,
+                4321780480,
+                4321780800
+              ],
+              "isCollection": true
+            },
+            "4314626368": {
+              "type": "list",
+              "value": [
+                4321780160,
+                4321780480,
+                4321780800
+              ],
+              "isCollection": true
+            }
+          },
           "var_table": {
-            "original_list": 4367225472,
-            "aliased_list": 4367225472
+            "original_list": 4314683520,
+            "new_list": 4314626368
           }
         }
       ]
@@ -552,81 +711,89 @@
           20,
           30
         ],
-        "aliased_list": [
+        "new_list": [
           10,
           20,
           30
         ]
       },
       "delta": {
-        "aliased_list": {
+        "new_list": {
           "0": 10,
           "1": 20,
           "2": 30
         }
       },
       "object_table": {
-        "4378829248": {
+        "4321780160": {
           "type": "int",
           "value": 10,
-          "mutable": false
+          "isCollection": false
         },
-        "4378829568": {
+        "4321780480": {
           "type": "int",
           "value": 20,
-          "mutable": false
+          "isCollection": false
         },
-        "4378829888": {
+        "4321780800": {
           "type": "int",
           "value": 30,
-          "mutable": false
+          "isCollection": false
         },
-        "4367225472": {
+        "4314683520": {
           "type": "list",
           "value": [
-            4378829248,
-            4378829568,
-            4378829888
+            4321780160,
+            4321780480,
+            4321780800
           ],
-          "mutable": true
+          "isCollection": true
+        },
+        "4314626368": {
+          "type": "list",
+          "value": [
+            4321780160,
+            4321780480,
+            4321780800
+          ],
+          "isCollection": true
         }
       },
       "var_table": {
-        "original_list": 4367225472,
-        "aliased_list": 4367225472
+        "original_list": 4314683520,
+        "new_list": 4314626368
       },
       "steps": [
         {
           "step": 8,
           "event": "before_statement",
-          "focus": "aliased_list.append(40)",
+          "focus": "new_list.append(40)",
           "node_id": 3
         },
         {
           "step": 9,
           "event": "before_expression",
-          "focus": "aliased_list.append(40)",
-          "node_id": 9
+          "focus": "new_list.append(40)",
+          "node_id": 10
         },
         {
           "step": 10,
           "event": "before_expression",
-          "focus": "aliased_list.append",
-          "node_id": 16
+          "focus": "new_list.append",
+          "node_id": 19
         },
         {
           "step": 11,
           "event": "after_expression",
-          "focus": "aliased_list.append(40)",
-          "node_id": 9,
+          "focus": "new_list.append(40)",
+          "node_id": 10,
           "locals": {
             "original_list": [
               10,
               20,
-              30,
-              40
+              30
             ],
-            "aliased_list": [
+            "new_list": [
               10,
               20,
               30,
@@ -634,51 +801,59 @@
             ]
           },
           "object_table": {
-            "4378829248": {
+            "4321780160": {
               "type": "int",
               "value": 10,
-              "mutable": false
+              "isCollection": false
             },
-            "4378829568": {
+            "4321780480": {
               "type": "int",
               "value": 20,
-              "mutable": false
+              "isCollection": false
             },
-            "4378829888": {
+            "4321780800": {
               "type": "int",
               "value": 30,
-              "mutable": false
+              "isCollection": false
             },
-            "4378830208": {
-              "type": "int",
-              "value": 40,
-              "mutable": false
-            },
-            "4367225472": {
+            "4314683520": {
               "type": "list",
               "value": [
-                4378829248,
-                4378829568,
-                4378829888,
-                4378830208
+                4321780160,
+                4321780480,
+                4321780800
               ],
-              "mutable": true
+              "isCollection": true
+            },
+            "4321781120": {
+              "type": "int",
+              "value": 40,
+              "isCollection": false
+            },
+            "4314626368": {
+              "type": "list",
+              "value": [
+                4321780160,
+                4321780480,
+                4321780800,
+                4321781120
+              ],
+              "isCollection": true
             }
           }
         },
         {
           "step": 12,
           "event": "after_statement",
-          "focus": "aliased_list.append(40)",
+          "focus": "new_list.append(40)",
           "node_id": 3,
           "locals": {
             "original_list": [
               10,
               20,
-              30,
-              40
+              30
             ],
-            "aliased_list": [
+            "new_list": [
               10,
               20,
               30,
@@ -686,35 +861,44 @@
             ]
           },
           "object_table": {
-            "4378829248": {
+            "4321780160": {
               "type": "int",
               "value": 10,
-              "mutable": false
+              "isCollection": false
             },
-            "4378829568": {
+            "4321780480": {
               "type": "int",
               "value": 20,
-              "mutable": false
+              "isCollection": false
             },
-            "4378829888": {
+            "4321780800": {
               "type": "int",
               "value": 30,
-              "mutable": false
+              "isCollection": false
             },
-            "4378830208": {
-              "type": "int",
-              "value": 40,
-              "mutable": false
-            },
-            "4367225472": {
+            "4314683520": {
               "type": "list",
               "value": [
-                4378829248,
-                4378829568,
-                4378829888,
-                4378830208
+                4321780160,
+                4321780480,
+                4321780800
               ],
-              "mutable": true
+              "isCollection": true
+            },
+            "4321781120": {
+              "type": "int",
+              "value": 40,
+              "isCollection": false
+            },
+            "4314626368": {
+              "type": "list",
+              "value": [
+                4321780160,
+                4321780480,
+                4321780800,
+                4321781120
+              ],
+              "isCollection": true
             }
           }
         }
@@ -726,10 +910,9 @@
         "original_list": [
           10,
           20,
-          30,
-          40
+          30
         ],
-        "aliased_list": [
+        "new_list": [
           10,
           20,
           30,
@@ -737,48 +920,54 @@
         ]
       },
       "delta": {
-        "original_list": {
-          "3": 40
-        },
-        "aliased_list": {
+        "new_list": {
           "3": 40
         }
       },
       "object_table": {
-        "4378829248": {
+        "4321780160": {
           "type": "int",
           "value": 10,
-          "mutable": false
+          "isCollection": false
         },
-        "4378829568": {
+        "4321780480": {
           "type": "int",
           "value": 20,
-          "mutable": false
+          "isCollection": false
         },
-        "4378829888": {
+        "4321780800": {
           "type": "int",
           "value": 30,
-          "mutable": false
+          "isCollection": false
         },
-        "4378830208": {
-          "type": "int",
-          "value": 40,
-          "mutable": false
-        },
-        "4367225472": {
+        "4314683520": {
           "type": "list",
           "value": [
-            4378829248,
-            4378829568,
-            4378829888,
-            4378830208
+            4321780160,
+            4321780480,
+            4321780800
           ],
-          "mutable": true
+          "isCollection": true
+        },
+        "4321781120": {
+          "type": "int",
+          "value": 40,
+          "isCollection": false
+        },
+        "4314626368": {
+          "type": "list",
+          "value": [
+            4321780160,
+            4321780480,
+            4321780800,
+            4321781120
+          ],
+          "isCollection": true
         }
       },
       "var_table": {
-        "original_list": 4367225472,
-        "aliased_list": 4367225472
+        "original_list": 4314683520,
+        "new_list": 4314626368
       },
       "steps": [
         {
@@ -791,19 +980,125 @@
           "step": 14,
           "event": "before_expression",
           "focus": "print(original_list)",
-          "node_id": 10
+          "node_id": 11
         },
         {
           "step": 15,
           "event": "before_expression",
           "focus": "original_list",
-          "node_id": 19
+          "node_id": 22
         },
         {
           "step": 16,
           "event": "after_expression",
           "focus": "original_list",
-          "node_id": 19,
+          "node_id": 22,
+          "value": [
+            10,
+            20,
+            30
+          ]
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "print(original_list)",
+          "node_id": 11,
+          "stdout": "[10, 20, 30]\n"
+        },
+        {
+          "step": 18,
+          "event": "after_statement",
+          "focus": "print(original_list)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "original_list": [
+          10,
+          20,
+          30
+        ],
+        "new_list": [
+          10,
+          20,
+          30,
+          40
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4321780160": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4321780480": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4321780800": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4314683520": {
+          "type": "list",
+          "value": [
+            4321780160,
+            4321780480,
+            4321780800
+          ],
+          "isCollection": true
+        },
+        "4321781120": {
+          "type": "int",
+          "value": 40,
+          "isCollection": false
+        },
+        "4314626368": {
+          "type": "list",
+          "value": [
+            4321780160,
+            4321780480,
+            4321780800,
+            4321781120
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "original_list": 4314683520,
+        "new_list": 4314626368
+      },
+      "steps": [
+        {
+          "step": 19,
+          "event": "before_statement",
+          "focus": "print(new_list)",
+          "node_id": 5
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "print(new_list)",
+          "node_id": 12
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "new_list",
+          "node_id": 24
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "new_list",
+          "node_id": 24,
           "value": [
             10,
             20,
@@ -812,17 +1107,17 @@
           ]
         },
         {
-          "step": 17,
+          "step": 23,
           "event": "after_expression",
-          "focus": "print(original_list)",
-          "node_id": 10,
+          "focus": "print(new_list)",
+          "node_id": 12,
           "stdout": "[10, 20, 30, 40]\n"
         },
         {
-          "step": 18,
+          "step": 24,
           "event": "after_statement",
-          "focus": "print(original_list)",
-          "node_id": 4
+          "focus": "print(new_list)",
+          "node_id": 5
         }
       ]
     }

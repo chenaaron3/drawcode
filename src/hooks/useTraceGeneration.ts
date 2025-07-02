@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { toast } from "sonner";
+import { useState } from 'react';
+import { toast } from 'sonner';
 
-import { useTraceStore } from "@/store/traceStore";
+import { useTraceStore } from '@/store/traceStore';
 
-import { usePyodide } from "./usePyodide";
+import { usePyodide } from './usePyodide';
 
 import type { ManualRelationship } from "@/types/trace";
 
@@ -27,7 +27,6 @@ export function useTraceGeneration() {
     if (!currentProblemId) return false;
 
     const problemData = getCurrentProblemData(currentProblemId);
-    if (!problemData) return false;
 
     // Get current code from store (could be edited) - use currentCode from store instead of traceData.metadata.code
     const codeToExecute = currentCode || traceData?.metadata.code;
@@ -44,11 +43,11 @@ export function useTraceGeneration() {
 
       const newTraceData = await generateTrace(
         codeToExecute,
-        problemData.entrypoint,
+        problemData?.entrypoint ?? "",
         currentInputs,
-        problemData.inputs, // Pass original inputs for type inference
-        problemData.special_inputs, // Pass the full problem data including special_inputs
-        problemData.manualRelationships as ManualRelationship[] // Pass manual relationships if they exist
+        problemData?.inputs ?? {}, // Pass original inputs for type inference
+        problemData?.special_inputs ?? [], // Pass the full problem data including special_inputs
+        (problemData?.manualRelationships as ManualRelationship[]) ?? [], // Pass manual relationships if they exist
       );
 
       if (newTraceData.error) {
@@ -70,7 +69,7 @@ export function useTraceGeneration() {
       }
     } catch (err) {
       setGeneralError(
-        err instanceof Error ? err.message : "Failed to generate trace"
+        err instanceof Error ? err.message : "Failed to generate trace",
       );
       return false;
     } finally {

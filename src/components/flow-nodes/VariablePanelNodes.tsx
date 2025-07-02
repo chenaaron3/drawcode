@@ -86,7 +86,7 @@ interface VariablesFrameNodeData {
     label: string;
     variables: Array<{
         name: string;
-        value: any;
+        value: ObjectDescriptor;
         delta?: any;
         type: 'primitive' | 'complex';
         complexType?: 'array' | 'object';
@@ -139,7 +139,7 @@ export function VariablesFrameNode({ data }: { data: VariablesFrameNodeData }) {
                             </span>
                             {/* Variable value or pointer */}
                             <div className="flex items-center relative">
-                                {variable.value && variable.value.mutable
+                                {variable.value && variable.value.isCollection
                                     ? renderValue(variable.value, variable.delta, { variableName: variable.name }, `${variable.name}-handle`)
                                     : renderValue(variable.value, variable.delta, { variableName: variable.name })}
                             </div>

@@ -1,4 +1,4 @@
-import { Pencil } from 'lucide-react';
+import { Braces, Code, FileCode, Pencil, Terminal } from 'lucide-react';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 
@@ -26,10 +26,7 @@ type EditorMouseTarget = {
 export default function CodePanel() {
     const {
         traceData,
-        isPlaying,
-        playSpeed,
         setIsPlaying,
-        next,
         setInputOverride,
         getInputOverrides,
         currentCode,
@@ -105,8 +102,9 @@ export default function CodePanel() {
                 <Card className="h-full flex flex-col gap-2" data-tutorial="code-panel">
                     <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0">
                         <div className="flex items-center gap-2">
-                            <CardTitle className="text-lg">
-                                {router.pathname === "/lesson" ? "Program" : (problemData?.title ?? "Code")}
+                            <CardTitle className="text-md flex gap-2 items-center">
+                                <Code className="w-4 h-4" />
+                                {router.pathname === "/lesson" ? "Program" : (problemData?.title ?? "Program")}
                             </CardTitle>
                             {problemId && problemData?.details && (
                                 <ProblemDescriptionModal problemId={problemId} />
@@ -136,7 +134,6 @@ export default function CodePanel() {
                                     className="relative group h-full"
                                     onClick={(e) => {
                                         lastMouseClickRef.current = { x: e.clientX, y: e.clientY };
-                                        console.log('lastMouseClickRef', lastMouseClickRef.current);
                                         setIsReadOnly(false);
                                         setIsPlaying(false);
                                     }}

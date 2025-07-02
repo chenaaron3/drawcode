@@ -4,7 +4,6 @@ import { Handle, Position } from 'reactflow';
 import { PrimitiveBox } from './PrimitiveBox';
 
 import type { ObjectDescriptor } from '@/types/ObjectDescriptor';
-
 interface RenderContext {
     variableName?: string;
 }
@@ -16,7 +15,7 @@ export function renderValue(
     handleId?: string
 ) {
     if (!obj) return null;
-    if (obj.mutable) {
+    if (obj.isCollection) {
         // Use similar styling as PrimitiveBox, but only show the handle dot
         const containerClasses = clsx(
             "border rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 min-w-[50px] lg:min-w-[60px] flex items-center justify-center transition-all duration-200 shadow-sm bg-white relative",

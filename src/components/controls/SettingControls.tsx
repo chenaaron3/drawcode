@@ -46,8 +46,7 @@ export function SettingControls() {
 
     // Handle update (generate new trace)
     const handleUpdate = async () => {
-        if (!problemData || !currentCode) return;
-
+        if (!currentCode) return;
         await generateTraceFromState();
     };
 

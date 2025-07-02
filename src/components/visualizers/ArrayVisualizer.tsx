@@ -188,7 +188,7 @@ function ArrayItem({ item, index, delta, arrows }: ArrayItemProps) {
             {/* Value with popovers */}
             <div className="transition-all h-full duration-200 relative flex items-center">
                 {/* Render value (either a handle or primitive) */}
-                {item && item.mutable
+                {item && item.isCollection
                     ? renderValue(item, delta, undefined, `item-${index}-handle`)
                     : renderValue(item, delta)}
                 {/* Value index popovers */}

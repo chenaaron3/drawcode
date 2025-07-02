@@ -69,7 +69,7 @@ export const LandingPage: React.FC = () => {
                                     </span>
                                 </h1>
                                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                                    Instantly visualize variables, data structures, and logic in real time. If you&apos;re a beginner struggling to learning Python, this app is for you.
+                                    Instantly visualize variables, data structures, and logic in real time. If you&apos;re a beginner struggling to learn Python, this app is for you.
                                 </p>
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4">

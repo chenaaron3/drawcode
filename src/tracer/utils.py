@@ -7,9 +7,9 @@ These are pure functions that can be used across different modules.
 
 # Helper to detect mutability for pointer-aware tracing
 
-def is_mutable(obj):
+def is_collection(obj):
     """Return True if the object is mutable (list, dict, set, or custom class), False otherwise."""
-    return isinstance(obj, (list, dict, set)) or hasattr(obj, "__dict__")
+    return isinstance(obj, (list, dict, set, tuple)) or hasattr(obj, "__dict__")
 
 def format_object_nicely(val):
     """Format Python objects in a user-friendly way"""

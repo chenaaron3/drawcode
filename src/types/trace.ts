@@ -52,8 +52,8 @@ export type TraceStep = {
 };
 
 export type ObjectTableEntry = {
-  type: "list" | "dict" | "set" | "int" | "float" | "str" | "bool";
-  mutable: boolean;
+  type: "list" | "dict" | "set" | "tuple" | "int" | "float" | "str" | "bool";
+  isCollection: boolean;
   value: any;
 };
 
