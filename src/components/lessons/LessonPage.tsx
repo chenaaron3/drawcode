@@ -3,8 +3,6 @@ import { Panel, PanelGroup } from 'react-resizable-panels';
 
 import { ResizeHandle } from '../common';
 import { TraceVisualizer } from '../layout';
-import CodePanel from '../panels/CodePanel';
-import ExecutionPanel from '../panels/ExecutionPanel';
 import LessonContent from './LessonContent';
 
 import type { Lesson, LessonCourse, LessonModule } from '../../types/lesson';
@@ -24,7 +22,6 @@ function useIsMobile() {
 const TABS = [
     { key: 'lesson', label: 'Lesson' },
     { key: 'code', label: 'Code' },
-    { key: 'output', label: 'Output' },
 ] as const;
 type TabKey = typeof TABS[number]['key'];
 
@@ -51,10 +48,7 @@ const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourse, currentM
             );
         }
         if (activeTab === 'code') {
-            return <CodePanel />;
-        }
-        if (activeTab === 'output') {
-            return <ExecutionPanel />;
+            return <TraceVisualizer stacked />;
         }
         return null;
     };
@@ -62,21 +56,11 @@ const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourse, currentM
     return (
         <div className="h-full w-full p-0 md:p-6 relative overflow-hidden">
             {isMobile ? (
-                <>
-                    <div
-                        className="absolute left-0 right-0"
-                        style={{
-                            top: 0,
-                            bottom: '4rem', // leave space for tab bar
-                            height: 'calc(100vh - 4rem - 4rem)', // header + tab bar
-                            marginTop: '4rem', // header height
-                            overflowY: 'auto',
-                            WebkitOverflowScrolling: 'touch',
-                        }}
-                    >
+                <div className="flex flex-col h-full">
+                    <div className="h-full overflow-y-auto">
                         {renderMobilePanel()}
                     </div>
-                    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 flex justify-around items-center h-16 md:hidden">
+                    <nav className=" bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 flex justify-around items-center h-12 md:hidden">
                         {TABS.map(tab => (
                             <button
                                 key={tab.key}
@@ -87,7 +71,7 @@ const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourse, currentM
                             </button>
                         ))}
                     </nav>
-                </>
+                </div>
             ) : (
                 <div className="group/lesson h-full">
                     <PanelGroup direction="horizontal" className="h-full">

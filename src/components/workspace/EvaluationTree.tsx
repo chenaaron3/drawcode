@@ -15,7 +15,7 @@ export function EvaluationTree({ evaluationTree, animatingVariable, currentLocal
 
     if (overlayMode) {
         return (
-            <div className="whitespace-pre-wrap">
+            <div className="whitespace-pre overflow-x-auto">
                 <EvaluationNodeRenderer
                     node={evaluationTree}
                     animatingVariable={animatingVariable}
@@ -27,7 +27,7 @@ export function EvaluationTree({ evaluationTree, animatingVariable, currentLocal
 
     return (
         <div className="font-mono text-sm lg:text-lg bg-slate-50 p-3 lg:p-4 rounded-lg border relative">
-            <div className="whitespace-pre-wrap">
+            <div className="whitespace-pre overflow-x-auto">
                 <EvaluationNodeRenderer
                     node={evaluationTree}
                     animatingVariable={animatingVariable}

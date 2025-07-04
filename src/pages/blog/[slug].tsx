@@ -6,6 +6,7 @@ import { Panel, PanelGroup } from 'react-resizable-panels';
 import { DebuggerViewTrigger } from '@/components/blog/DebuggerViewTrigger';
 import { ResizeHandle } from '@/components/common';
 import { TraceVisualizer } from '@/components/layout';
+import { CodePanel, ExecutionPanel } from '@/components/panels';
 import { Card, CardContent } from '@/components/ui';
 import { BLOG_TRACES } from '@/data/blog_traces';
 import { remarkDebuggerPlugin } from '@/lib/remark-debugger-plugin';
@@ -51,8 +52,7 @@ const PostPage = ({ postData }: InferGetStaticPropsType<typeof getStaticProps>) 
     return (
         <div className="flex h-full p-0 md:p-6">
             <PanelGroup direction="horizontal" className="h-full">
-                {/* Left: Lesson Content (1/3) */}
-                <Panel defaultSize={33.33} minSize={25}>
+                <Panel defaultSize={50} minSize={25}>
                     <Card className="h-full flex flex-col">
                         <CardContent className="flex-1 overflow-y-auto">
                             <header className="mb-4">
@@ -74,11 +74,21 @@ const PostPage = ({ postData }: InferGetStaticPropsType<typeof getStaticProps>) 
                     </Card>
                 </Panel>
                 <ResizeHandle direction="horizontal" />
-                {/* Right: TraceVisualizer (2/3, split 50/50 internally) */}
-                <Panel defaultSize={66.67} minSize={50}>
-                    <div className="h-full overflow-visible">
-                        <TraceVisualizer />
-                    </div>
+                <Panel defaultSize={50} minSize={25}>
+                    {/* Right: TraceVisualizer (2/3, split 50/50 internally) */}
+                    <PanelGroup direction="vertical">
+                        <Panel defaultSize={50} minSize={25}>
+                            <div className="h-full overflow-visible">
+                                <ExecutionPanel />
+                            </div>
+                        </Panel>
+                        <ResizeHandle direction="vertical" />
+                        <Panel defaultSize={50} minSize={25}>
+                            <div className="h-full overflow-visible">
+                                <CodePanel />
+                            </div>
+                        </Panel>
+                    </PanelGroup>
                 </Panel>
             </PanelGroup>
         </div>

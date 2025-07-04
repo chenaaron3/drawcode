@@ -144,6 +144,11 @@ export function markdownComponents(lessonData?: any) {
                 {children}
             </td>
         ),
+        ul: ({ children }: ChildrenOnly) => (
+            <ul className="list-disc list-inside text-sm md:text-base text-slate-700 mb-4 dark:text-slate-300">
+                {children}
+            </ul>
+        ),
         p: ({ children }: ChildrenOnly) => (
             <p className="text-sm md:text-base text-slate-700 mb-4 dark:text-slate-300">
                 {children}

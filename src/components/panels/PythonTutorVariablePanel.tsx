@@ -91,7 +91,7 @@ export function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger
         return (
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
                 <motion.div
-                    className="text-center p-8 rounded-xl bg-white shadow-lg border-2 border-slate-200"
+                    className="text-center p-8 lg:rounded-xl bg-white shadow-lg border-2 border-slate-200"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4 }}
@@ -155,7 +155,7 @@ export function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger
 export function PythonTutorVariablePanel({ resizeTrigger }: { resizeTrigger?: number } = {}) {
     return (
         <motion.div
-            className="w-full h-full bg-card text-card-foreground rounded-xl border shadow-sm overflow-hidden"
+            className="w-full h-full bg-card text-card-foreground lg:rounded-xl border shadow-sm overflow-hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}

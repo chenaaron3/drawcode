@@ -16,7 +16,7 @@ export const ResizeHandle: React.FC<ResizeHandleProps> = ({
                 group relative flex items-center justify-center
                 ${direction === 'horizontal'
                     ? 'w-2 cursor-col-resize'
-                    : 'h-2 cursor-row-resize'
+                    : 'lg:h-2 cursor-row-resize'
                 }
                 bg-transparent hover:bg-primary/20 hover:rounded-md 
                 transition-all duration-200 ease-out

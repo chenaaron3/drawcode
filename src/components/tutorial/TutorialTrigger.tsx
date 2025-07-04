@@ -43,7 +43,7 @@ export const TutorialTrigger: React.FC = () => {
     return <Button
         variant="ghost"
         size="icon"
-        className="text-gray-600 hover:text-gray-900"
+        className="text-gray-600 hover:text-gray-900 hidden lg:inline-flex"
         onClick={() => invokeTutorial(currentPage)}
     >
         <HelpCircle className="h-4 w-4" />

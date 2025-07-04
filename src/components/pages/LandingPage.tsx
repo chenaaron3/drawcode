@@ -56,7 +56,7 @@ export const LandingPage: React.FC = () => {
     return (
         <div className="w-full h-full overflow-auto bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             {/* Hero Section */}
-            <section className="px-6 py-20">
+            <section className="px-3 py-14 lg:px-6 lg:py-20">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         {/* Left side - Text content */}
@@ -69,7 +69,7 @@ export const LandingPage: React.FC = () => {
                                     </span>
                                 </h1>
                                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
-                                    Instantly visualize variables, data structures, and logic in real time. If you&apos;re a beginner struggling to learn Python, this app is for you.
+                                    Watch your program execute step-by-step. If you&apos;re a visual learner, this app is for you.
                                 </p>
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4">
@@ -85,7 +85,7 @@ export const LandingPage: React.FC = () => {
                             <div className="flex items-center gap-4 text-sm text-gray-500">
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-5 w-5 text-green-500" />
-                                    <span>Step-by-step visualization</span>
+                                    <span>Animated visualization</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-5 w-5 text-green-500" />
@@ -263,13 +263,12 @@ export const LandingPage: React.FC = () => {
                     </div>
 
                     <div className="grid lg:grid-cols-4 gap-8">
-                        {/* Python Quest Column */}
                         <div className="lg:col-span-1">
                             <div className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl p-6 text-white text-center mb-6">
                                 <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                                     <Zap className="h-8 w-8 text-white" />
                                 </div>
-                                <h3 className="text-2xl font-bold mb-2">Python Quest</h3>
+                                <h3 className="text-2xl font-bold mb-2">CodeViz</h3>
                                 <p className="text-blue-100">Visual Learning Platform</p>
                             </div>
                         </div>
@@ -280,7 +279,7 @@ export const LandingPage: React.FC = () => {
                                 {/* Header Row */}
                                 <div className="grid grid-cols-4 bg-gray-100 text-sm font-semibold text-gray-700">
                                     <div className="p-4">Feature</div>
-                                    <div className="p-4 text-center">Python Quest</div>
+                                    <div className="p-4 text-center">CodeViz</div>
                                     <div className="p-4 text-center">Textbooks</div>
                                     <div className="p-4 text-center">Video Tutorials</div>
                                 </div>
@@ -421,8 +420,8 @@ export const LandingPage: React.FC = () => {
                             <Zap className="h-5 w-5 text-white" />
                         </div>
                         <div>
-                            <h1 className="text-xl font-bold">Python Quest</h1>
-                            <p className="text-sm text-gray-400">Learn Python Through Adventure</p>
+                            <h1 className="text-xl font-bold">CodeViz</h1>
+                            <p className="text-sm text-gray-400">Learn Python Visually</p>
                         </div>
                     </div>
                     <p className="text-gray-400 mb-4">

@@ -69,7 +69,7 @@ export function CodeSyntaxHighlighter({
 
             {showOverlay && (
                 <div
-                    style={{ position: "absolute", inset: 0, zIndex: 50, cursor: 'text' }}
+                    style={{ position: "absolute", inset: 0, zIndex: 50, cursor: 'text', pointerEvents: 'none' }}
                     tabIndex={0}
                     aria-label="View code"
                     onClick={onClick}

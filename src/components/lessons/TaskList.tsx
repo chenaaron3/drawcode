@@ -99,10 +99,10 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
     }
 
     return (
-        <div className="mt-6 border-t pt-6">
+        <div className="mt-6 border-t pt-6 text-base">
             {/* Progress Header */}
             <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold flex items-center gap-2">
+                <h3 className="text-base md:text-lg font-semibold flex items-center gap-2">
                     <ClipboardCheck className="h-5 w-5 text-blue-600" />
                     Your Task
                 </h3>
@@ -158,7 +158,7 @@ const TaskList: React.FC<TaskListProps> = ({ lesson, currentCourseId, currentMod
                                     } ${isOpen ? 'rotate-180' : ''}`} />
                             </CollapsibleTrigger>
                             <CollapsibleContent>
-                                <div className={`p-4 rounded-b-lg border border-t-0 ${isCompleted
+                                <div className={`p-2 lg:p-4 rounded-b-lg border border-t-0 ${isCompleted
                                     ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-700'
                                     : isCurrent
                                         ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700'

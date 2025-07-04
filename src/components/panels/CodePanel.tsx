@@ -100,9 +100,9 @@ export default function CodePanel() {
         <>
             <TooltipProvider>
                 <Card className="h-full flex flex-col gap-2" data-tutorial="code-panel">
-                    <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 pb-3 flex-shrink-0">
+                    <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 lg:pb-3 flex-shrink-0">
                         <div className="flex items-center gap-2">
-                            <CardTitle className="text-md flex gap-2 items-center">
+                            <CardTitle className="hidden lg:visible text-md lg:flex gap-2 items-center">
                                 <Code className="w-4 h-4" />
                                 {router.pathname === "/lesson" ? "Program" : (problemData?.title ?? "Program")}
                             </CardTitle>

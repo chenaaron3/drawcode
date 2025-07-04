@@ -26,8 +26,8 @@ if __name__ == '__main__':
     try:
         with open(os.path.join(PROBLEM_DIR, "problems.json"), "r") as f:
             problems = json.load(f)['problems']
-            # all_problems.extend(problems)
-            # print(f"Loaded {len(problems)} problems from problems.json")
+            all_problems.extend(problems)
+            print(f"Loaded {len(problems)} problems from problems.json")
     except FileNotFoundError:
         print("problems.json not found")
     

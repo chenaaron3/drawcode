@@ -29,7 +29,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <MainLayout />
         <TutorialOverlay />
         <Analytics />
-        <div className="flex-1 flex overflow-hidden max-h-full m-4 lg:m-0 lg:pt-16" style={{ height: 'calc(100vh - 4rem)' }}>
+        <div className="flex-1 flex overflow-hidden max-h-full h-full">
           <Component {...pageProps} />
         </div>
       </div>

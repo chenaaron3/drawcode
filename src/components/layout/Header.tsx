@@ -72,16 +72,16 @@ export const Header: React.FC = () => {
     };
 
     return (
-        <header className="fixed top-0 left-0 right-0 h-12 md:h-16 bg-white border-b border-gray-200 px-3 md:px-6 flex-shrink-0 z-40">
+        <header className="top-0 left-0 right-0 h-12 md:h-16 bg-white border-b border-gray-200 px-3 md:px-6 flex-shrink-0 z-40">
             <div className="flex items-center justify-between h-full">
                 {/* Logo and Title */}
                 <div className="flex items-center gap-3 md:gap-6" data-tutorial="logo" >
                     <div className="cursor-pointer  flex items-center gap-2 md:gap-3" onClick={() => router.push('/')}>
-                        <div className="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
+                        <div className="visible w-7 h-7 md:w-8 md:h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
                             <Zap className="h-5 w-5 text-white" />
                         </div>
-                        <h1 className="text-base md:text-xl font-bold text-gray-900">
-                            Python Quest
+                        <h1 className="hidden lg:visible text-base md:text-xl font-bold text-gray-900">
+                            CodeViz
                         </h1>
                     </div>
                     {/* Lessons button - only show if enabled and in learn mode */}
@@ -104,22 +104,6 @@ export const Header: React.FC = () => {
                         </>
                     )}
                 </div>
-
-                {/* Breadcrumb Navigation - only show in practice mode with selected problem (not sandbox) */}
-                {isCurrentPath('roadmap') && currentProblem && currentProblemId !== 'sandbox' && (
-                    <div className="flex items-center gap-2 text-sm">
-                        <button
-                            onClick={handleBackToProblems}
-                            className="text-blue-600 hover:text-blue-800 transition-colors font-medium"
-                        >
-                            Problems
-                        </button>
-                        <ChevronRight className="h-4 w-4 text-gray-400" />
-                        <span className="text-gray-900 font-medium truncate max-w-[200px]">
-                            {currentProblem.title}
-                        </span>
-                    </div>
-                )}
 
                 {/* Navigation - Different content based on landing page */}
                 <div className="flex items-center gap-2 md:gap-4">
