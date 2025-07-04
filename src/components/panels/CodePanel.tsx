@@ -38,7 +38,8 @@ export default function CodePanel() {
     } = useTraceStore();
     const router = useRouter();
     const currentLine = useTraceStore(selectCurrentLine);
-    const [isReadOnly, setIsReadOnly] = useState(true);
+    const isEditing = useTraceStore(s => s.isEditing);
+    const setIsEditing = useTraceStore(s => s.setIsEditing);
     const problemId = getCurrentProblemId();
     const problemData = problemId ? getCurrentProblemData(problemId) : null;
     const lastMouseClickRef = useRef<{ x: number; y: number } | null>(null);
@@ -63,9 +64,9 @@ export default function CodePanel() {
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as Element;
-            // Check if click is outside the Monaco editor
-            if (isReadOnly === false && !target.closest('.monaco-editor')) {
-                setIsReadOnly(true);
+            // Check if click is outside the entire code panel
+            if (isEditing && !target.closest('#code-panel')) {
+                setIsEditing(false);
             }
         };
 
@@ -73,7 +74,7 @@ export default function CodePanel() {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [isReadOnly]);
+    }, [isEditing]);
 
     if (!traceData) {
         return (
@@ -91,7 +92,7 @@ export default function CodePanel() {
     return (
         <>
             <TooltipProvider>
-                <Card className="h-full flex flex-col gap-2" data-tutorial="code-panel">
+                <Card id="code-panel" className="h-full flex flex-col gap-2" data-tutorial="code-panel">
                     <CardHeader className="relative flex-col flex lg:flex-row items-center justify-between space-y-0 lg:pb-3 flex-shrink-0">
                         <div className="flex items-center gap-2">
                             <CardTitle className="hidden lg:visible text-md lg:flex gap-2 items-center">
@@ -121,12 +122,12 @@ export default function CodePanel() {
                         )}
 
                         <div className="rounded-md overflow-hidden bg-muted/30 flex-1 relative">
-                            {isReadOnly ? (
+                            {!isEditing ? (
                                 <div
                                     className="relative group h-full"
                                     onClick={(e) => {
                                         lastMouseClickRef.current = { x: e.clientX, y: e.clientY };
-                                        setIsReadOnly(false);
+                                        setIsEditing(true);
                                         setIsPlaying(false);
                                     }}
                                 >
@@ -134,7 +135,7 @@ export default function CodePanel() {
                                         code={currentCode || ''}
                                         currentLine={currentLine?.line_number}
                                         onClick={() => {
-                                            setIsReadOnly(false);
+                                            setIsEditing(true);
                                             setIsPlaying(false);
                                         }}
                                         showOverlay={!hasChanges}
@@ -146,7 +147,7 @@ export default function CodePanel() {
                                             variant="secondary"
                                             size="sm"
                                             onClick={() => {
-                                                setIsReadOnly(false);
+                                                setIsEditing(true);
                                                 setIsPlaying(false);
                                             }}
                                             className="shadow-sm"

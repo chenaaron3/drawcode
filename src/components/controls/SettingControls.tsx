@@ -33,6 +33,7 @@ export function SettingControls() {
 
     const { generateTraceFromState, isGenerating } = useTraceGeneration();
 
+    const setIsEditing = useTraceStore(s => s.setIsEditing);
     const currentProblemId = getCurrentProblemId();
     const problemData = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
 
@@ -42,12 +43,14 @@ export function SettingControls() {
     const handleReset = () => {
         resetToOriginal();
         clearError();
+        setIsEditing(false);
     };
 
     // Handle update (generate new trace)
     const handleUpdate = async () => {
         if (!currentCode) return;
         await generateTraceFromState();
+        setIsEditing(false);
     };
 
     // Handle sharing link - either problem ID or code depending on mode

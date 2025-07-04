@@ -57,6 +57,7 @@ interface TraceState {
   currentCode: string | null; // Currently edited code
   originalInputs: Record<string, any>; // Original inputs from trace data
   hasChanges: boolean; // Whether there are unsaved changes
+  isEditing: boolean; // Whether the user is editing the code
 
   // Error state
   currentError: {
@@ -117,6 +118,7 @@ interface TraceActions {
   setCurrentCode: (code: string) => void;
   resetToOriginal: () => void;
   updateHasChanges: () => void;
+  setIsEditing: (isEditing: boolean) => void;
   getOriginalInputs: () => Record<string, any>;
   getCurrentInputs: () => Record<string, any>;
 }
@@ -140,6 +142,7 @@ const initialState: TraceState = {
   currentCode: null,
   originalInputs: {},
   hasChanges: false,
+  isEditing: false,
   currentError: null,
   problemsData: [],
 };
@@ -449,6 +452,11 @@ export const useTraceStore = create<TraceStore>()(
         const inputsChanged =
           JSON.stringify(state.inputOverrides) !== JSON.stringify({});
         state.hasChanges = codeChanged || inputsChanged;
+      }),
+
+    setIsEditing: (isEditing) =>
+      set((state) => {
+        state.isEditing = isEditing;
       }),
 
     getOriginalInputs: () => {

@@ -1,6 +1,8 @@
-import { LayoutGroup } from 'framer-motion';
+import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { useCallback, useState } from 'react';
 import { Panel, PanelGroup } from 'react-resizable-panels';
+
+import { useTraceStore } from '@/store/traceStore';
 
 import { ResizeHandle, TerminalOutput } from '../common';
 import { CodePanel, PythonTutorVariablePanel } from '../panels';
@@ -12,6 +14,7 @@ interface TraceVisualizerProps {
 export default function TraceVisualizer({ stacked = false }: TraceVisualizerProps) {
     // Internal resize trigger state
     const [internalResizeTrigger, setInternalResizeTrigger] = useState(0);
+    const isEditing = useTraceStore(s => s.isEditing);
 
     // Callback to handle layout changes (when panels are resized)
     const handleLayoutChange = useCallback(() => {
@@ -24,23 +27,54 @@ export default function TraceVisualizer({ stacked = false }: TraceVisualizerProp
                 <div className="h-full overflow-visible">
                     <div className="group/normal h-full">
                         <PanelGroup direction="vertical" className="h-full" onLayout={handleLayoutChange}>
-                            <Panel defaultSize={10} minSize={10} maxSize={40}>
-                                <div className="h-full">
-                                    <TerminalOutput />
-                                </div>
-                            </Panel>
+                            <AnimatePresence initial={false}>
+                                {!isEditing && (
+                                    <Panel defaultSize={10} minSize={10} maxSize={40} key="terminal-panel">
+                                        <motion.div
+                                            className='h-full overflow-hidden'
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.18, ease: 'easeInOut' }}
+                                            key="terminal-motion"
+                                        >
+                                            <div className="h-full">
+                                                <TerminalOutput />
+                                            </div>
+                                        </motion.div>
+                                    </Panel>
+                                )}
+                            </AnimatePresence>
                             <ResizeHandle direction="vertical" />
                             <Panel defaultSize={50} minSize={25}>
-                                <div className="h-full overflow-visible">
+                                <motion.div
+                                    layout
+                                    initial={false}
+                                    transition={{ duration: 0.18, ease: 'easeInOut' }}
+                                    style={{ height: '100%', overflow: 'visible', display: 'flex', flexDirection: 'column' }}
+                                >
                                     <CodePanel />
-                                </div>
+                                </motion.div>
                             </Panel>
                             <ResizeHandle direction="vertical" />
-                            <Panel defaultSize={35} minSize={25}>
-                                <div data-tutorial="variables-panel" className="h-full w-full overflow-y-hidden">
-                                    <PythonTutorVariablePanel resizeTrigger={internalResizeTrigger} />
-                                </div>
-                            </Panel>
+                            <AnimatePresence initial={false}>
+                                {!isEditing && (
+                                    <Panel defaultSize={35} minSize={25} key="variables-panel">
+                                        <motion.div
+                                            className='h-full overflow-hidden'
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.18, ease: 'easeInOut' }}
+                                            key="variable-motion"
+                                        >
+                                            <div data-tutorial="variables-panel" className="h-full w-full overflow-y-hidden">
+                                                <PythonTutorVariablePanel resizeTrigger={internalResizeTrigger} />
+                                            </div>
+                                        </motion.div>
+                                    </Panel>
+                                )}
+                            </AnimatePresence>
                         </PanelGroup>
                     </div>
                 </div>
