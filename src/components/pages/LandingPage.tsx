@@ -268,7 +268,7 @@ export const LandingPage: React.FC = () => {
                                 <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                                     <Zap className="h-8 w-8 text-white" />
                                 </div>
-                                <h3 className="text-2xl font-bold mb-2">CodeViz</h3>
+                                <h3 className="text-2xl font-bold mb-2">PyViz</h3>
                                 <p className="text-blue-100">Visual Learning Platform</p>
                             </div>
                         </div>
@@ -279,7 +279,7 @@ export const LandingPage: React.FC = () => {
                                 {/* Header Row */}
                                 <div className="grid grid-cols-4 bg-gray-100 text-sm font-semibold text-gray-700">
                                     <div className="p-4">Feature</div>
-                                    <div className="p-4 text-center">CodeViz</div>
+                                    <div className="p-4 text-center">PyViz</div>
                                     <div className="p-4 text-center">Textbooks</div>
                                     <div className="p-4 text-center">Video Tutorials</div>
                                 </div>
@@ -420,7 +420,7 @@ export const LandingPage: React.FC = () => {
                             <Zap className="h-5 w-5 text-white" />
                         </div>
                         <div>
-                            <h1 className="text-xl font-bold">CodeViz</h1>
+                            <h1 className="text-xl font-bold">PyViz</h1>
                             <p className="text-sm text-gray-400">Learn Python Visually</p>
                         </div>
                     </div>
