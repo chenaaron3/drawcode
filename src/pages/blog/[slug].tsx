@@ -45,20 +45,9 @@ type TabKey = typeof TABS[number]['key'];
 const PostPage = ({ postData }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const setMode = useTraceStore(s => s.setMode);
     const setCurrentProblem = useTraceStore(s => s.setCurrentProblem);
+    const currentProblem = useTraceStore(s => s.currentProblemId);
     const isMobile = useIsMobile();
     const [activeTab, setActiveTab] = useState<TabKey>('blog');
-
-    // Panel content for mobile
-    const renderMobilePanel = () => {
-        if (activeTab === 'blog') {
-            return <BlogContent postData={postData} />;
-        }
-        if (activeTab === 'code') {
-            return <TraceVisualizer stacked />;
-        }
-        return null;
-    };
-
 
     useEffect(() => {
         const firstProblem = postData.traces[0];
@@ -66,14 +55,42 @@ const PostPage = ({ postData }: InferGetStaticPropsType<typeof getStaticProps>) 
             setCurrentProblem(firstProblem)
         }
         setMode('step');
-    });
+    }, []);
+
+    useEffect(() => {
+        // If we assign a different problem, lets switch tabs
+        if (currentProblem != postData.traces[0]) {
+            setActiveTab('code');
+        }
+    }, [currentProblem])
 
     if (isMobile) {
         return (
             <div className="h-full w-full p-0 md:p-6 relative overflow-hidden">
                 <div className="flex flex-col h-full">
                     <div className="h-full overflow-y-auto">
-                        {renderMobilePanel()}
+                        <div
+                            className={
+                                (activeTab === 'blog'
+                                    ? 'transition-opacity duration-300 opacity-100 relative'
+                                    : 'transition-opacity duration-300 opacity-0 pointer-events-none absolute inset-0') +
+                                ' w-full h-full'
+                            }
+                            aria-hidden={activeTab !== 'blog'}
+                        >
+                            <BlogContent postData={postData} />
+                        </div>
+                        <div
+                            className={
+                                (activeTab === 'code'
+                                    ? 'transition-opacity duration-300 opacity-100 relative'
+                                    : 'transition-opacity duration-300 opacity-0 pointer-events-none absolute inset-0') +
+                                ' w-full h-full'
+                            }
+                            aria-hidden={activeTab !== 'code'}
+                        >
+                            <TraceVisualizer stacked />
+                        </div>
                     </div>
                     <nav className="bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 flex justify-around items-center h-12 md:hidden">
                         {TABS.map(tab => (
@@ -107,7 +124,7 @@ const PostPage = ({ postData }: InferGetStaticPropsType<typeof getStaticProps>) 
 };
 
 function BlogContent({ postData }: { postData: ReturnType<typeof getPostData> }) {
-    return <Card className="h-full flex flex-col">
+    return <Card className="h-full flex flex-col lg:py-0">
         <CardContent className="p-3 flex-1 overflow-y-auto">
             <header className="mb-4">
                 <h1 className="text-2xl font-bold">{postData.title}</h1>

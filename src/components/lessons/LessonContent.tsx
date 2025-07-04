@@ -64,8 +64,8 @@ const LessonContent: React.FC<LessonContentProps> = ({
     }
 
     return (
-        <Card className="h-full flex flex-col">
-            <CardContent className="flex-1 overflow-y-auto p-3 lg:py-0">
+        <Card className="h-full flex flex-col lg:py-0">
+            <CardContent className="flex-1 overflow-y-auto p-3">
                 <div>
                     {error && (
                         <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">

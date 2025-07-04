@@ -16,7 +16,9 @@ function useIsMobile() {
 
 const DebuggerPage: React.FC = () => {
     const isMobile = useIsMobile();
-    return <TraceVisualizer stacked={isMobile} />
+    return <div className="w-full h-full p-0 md:p-6">
+        <TraceVisualizer stacked={isMobile} />
+    </div>
 };
 
 export default DebuggerPage; 

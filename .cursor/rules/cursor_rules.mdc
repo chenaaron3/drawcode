@@ -3,7 +3,6 @@ description: Guidelines for creating and maintaining Cursor rules to ensure cons
 globs: .cursor/rules/*.mdc
 alwaysApply: true
 ---
-
 - **Required Rule Structure:**
   ```markdown
   ---
@@ -50,4 +49,13 @@ alwaysApply: true
   - Keep descriptions concise
   - Include both DO and DON'T examples
   - Reference actual code over theoretical examples
-  - Use consistent formatting across rules 
+  - Use consistent formatting across rules
+
+- **Direct Code Changes**
+  - When the user requests a code change, the agent should implement the change directly.
+  - Do not ask the user for permission or confirmation before making the change.
+  - Example:
+    ```
+    // ✅ DO: Make the code edit immediately
+    // ❌ DON'T: Ask the user if you should make the change
+    ``` 

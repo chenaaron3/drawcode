@@ -13,7 +13,6 @@ import { InputsSection } from '../common';
 import { CodeSyntaxHighlighter } from '../common/CodeSyntaxHighlighter';
 import { NavigationControls, SettingControls } from '../controls';
 import { ProblemDescriptionModal } from '../modals';
-import { ComputationWorkspaceOverlay } from '../overlays';
 import { ErrorPanel } from './ErrorPanel';
 
 // Type for Monaco editor mouse target

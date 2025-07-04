@@ -1,7 +1,7 @@
 import 'reactflow/dist/style.css';
 
 import { motion } from 'framer-motion';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import ReactFlow, {
     Background, BackgroundVariant, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow
 } from 'reactflow';
@@ -31,6 +31,7 @@ export function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger
     const object_table = current?.object_table || {};
     const var_table = current?.var_table || {};
     const delta = current?.delta || undefined;
+    const relationships = traceData?.relationships || [];
 
     // Generate nodes and edges from current variables
     // State for React Flow
@@ -39,8 +40,6 @@ export function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger
 
     // Update nodes and edges when variables change
     useEffect(() => {
-        const relationships = traceData?.relationships || [];
-        console.log("CHANGE");
         const { nodes: newNodes, edges: newEdges } = generateFlowData({
             var_table,
             object_table,
@@ -58,7 +57,8 @@ export function PythonTutorVariablePanelInner({ resizeTrigger }: { resizeTrigger
 
         setNodes(newLayoutedNodes);
         setEdges(newLayoutedEdges);
-    }, [variables, animatingVariable, isEvaluating, delta, stepIndex, traceData, setNodes, setEdges]);
+        // Omit var_table and object_table, otherwise they will cause infinite re-renders
+    }, [animatingVariable, isEvaluating, delta, stepIndex, relationships, setNodes, setEdges]);
 
     // Fit view when nodes change
     useEffect(() => {

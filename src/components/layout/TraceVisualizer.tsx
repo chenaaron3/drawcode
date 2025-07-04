@@ -25,7 +25,9 @@ export default function TraceVisualizer({ stacked = false }: TraceVisualizerProp
                     <div className="group/normal h-full">
                         <PanelGroup direction="vertical" className="h-full" onLayout={handleLayoutChange}>
                             <Panel defaultSize={10} minSize={10} maxSize={40}>
-                                <TerminalOutput />
+                                <div className="h-full">
+                                    <TerminalOutput />
+                                </div>
                             </Panel>
                             <ResizeHandle direction="vertical" />
                             <Panel defaultSize={50} minSize={25}>

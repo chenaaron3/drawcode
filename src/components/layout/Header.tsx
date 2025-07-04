@@ -80,7 +80,7 @@ export const Header: React.FC = () => {
                         <div className="visible w-7 h-7 md:w-8 md:h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg">
                             <Zap className="h-5 w-5 text-white" />
                         </div>
-                        <h1 className="hidden lg:visible text-base md:text-xl font-bold text-gray-900">
+                        <h1 className="hidden lg:inline text-base md:text-xl font-bold text-gray-900">
                             CodeViz
                         </h1>
                     </div>
@@ -123,7 +123,10 @@ export const Header: React.FC = () => {
                     ) : (
                         <>
                             <TutorialTrigger />
-                            <div className="flex bg-gray-100 rounded-lg p-1 relative" data-tutorial="navigation-tabs">
+                            <div
+                                className="absolute left-1/2 -translate-x-1/2 flex bg-gray-100 rounded-lg p-1 lg:relative lg:left-0 lg:translate-x-0"
+                                data-tutorial="navigation-tabs"
+                            >
                                 {navigationModes.map((mode) => {
                                     const Icon = mode.icon;
                                     const isActive = isCurrentPath(mode.id);
