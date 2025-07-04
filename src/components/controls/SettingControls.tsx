@@ -92,7 +92,7 @@ export function SettingControls() {
     if (hasChanges) {
         return (
             <div className="flex items-center gap-2">
-                {!isGenerating && <div className="flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded px-3 py-1.5">
+                {!isGenerating && <div className="hidden lg:visible lg:flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded px-3 py-1.5">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <span className="text-sm text-yellow-800 font-medium">
                         Unsaved changes
@@ -122,7 +122,7 @@ export function SettingControls() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" data-tutorial="settings-button" data-testid="settings-button">
+                <Button className="absolute right-2 lg:relative lg:right-0" variant="outline" size="sm" data-tutorial="settings-button" data-testid="settings-button">
                     <SettingsIcon className="h-4 w-4" />
                 </Button>
             </DropdownMenuTrigger>

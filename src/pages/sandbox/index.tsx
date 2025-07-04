@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import { TraceVisualizer } from '@/components/layout';
-import CodePanel from '@/components/panels/CodePanel';
-import ExecutionPanel from '@/components/panels/ExecutionPanel';
 
 // Simple hook for mobile detection (tailwind md breakpoint ~768px)
 function useIsMobile() {

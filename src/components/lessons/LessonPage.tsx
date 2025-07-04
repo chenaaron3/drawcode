@@ -1,23 +1,13 @@
 import React, { useState } from 'react';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 
+import { useIsMobile } from '@/hooks/useIsMobile';
+
 import { ResizeHandle } from '../common';
 import { TraceVisualizer } from '../layout';
 import LessonContent from './LessonContent';
 
 import type { Lesson, LessonCourse, LessonModule } from '../../types/lesson';
-
-// Simple hook for mobile detection (tailwind md breakpoint ~768px)
-function useIsMobile() {
-    const [isMobile, setIsMobile] = React.useState(false);
-    React.useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < 768);
-        check();
-        window.addEventListener('resize', check);
-        return () => window.removeEventListener('resize', check);
-    }, []);
-    return isMobile;
-}
 
 const TABS = [
     { key: 'lesson', label: 'Lesson' },
@@ -60,7 +50,7 @@ const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourse, currentM
                     <div className="h-full overflow-y-auto">
                         {renderMobilePanel()}
                     </div>
-                    <nav className=" bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 flex justify-around items-center h-12 md:hidden">
+                    <nav className="bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 flex justify-around items-center h-12 md:hidden">
                         {TABS.map(tab => (
                             <button
                                 key={tab.key}

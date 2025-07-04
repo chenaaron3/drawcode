@@ -33,7 +33,7 @@ export const TerminalOutputContent: React.FC = () => {
             className="h-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 p-3 rounded-md font-mono text-xs overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-600 scrollbar-track-transparent"
         >
             {terminalOutput.length === 0 ? (
-                <div className="text-muted-foreground text-center">
+                <div className="text-muted-foreground text-center flex justify-center items-center h-full">
                     No console output yet...
                 </div>
             ) : (

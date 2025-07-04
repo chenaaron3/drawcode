@@ -75,10 +75,9 @@ function AnimatedCopyItem({ copy }: AnimatedCopyItemProps) {
     }, [copy.targetLambda, left, top, width, height]);
 
     if (copy.targetLambda) {
-
         return (
             <motion.div
-                className="fixed pointer-events-none z-[10000] inline-flex px-1 py-0.5 rounded font-mono text-sm bg-purple-200 text-purple-800 items-center justify-center whitespace-nowrap"
+                className="fixed pointer-events-none z-[10000] inline-flex px-1 py-0.5 rounded-xl font-mono text-sm bg-purple-200 text-purple-800 items-center justify-center whitespace-nowrap"
                 style={{
                     left,
                     top,
