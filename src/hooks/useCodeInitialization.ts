@@ -34,7 +34,6 @@ export function useCodeInitialization() {
   const { isLoading: isPyodideLoading, generateTrace } = usePyodide();
   const [hasInitialized, setHasInitialized] = useState(false);
   const currentProblem = getCurrentProblemId();
-  const { gotoDefaultLesson } = useLessonNavigation();
 
   // When the page loads, check if there is code or problemId in the URL
   useEffect(() => {
@@ -119,8 +118,7 @@ export function useCodeInitialization() {
         // No problem selected - default to two-sum
         setCurrentProblem("sandbox");
       } else if (router.pathname === "/lesson") {
-        // Auto-redirect to last uncompleted lesson if available
-        gotoDefaultLesson();
+        // Let the user select a lesson
       } else if (router.pathname === "/") {
         // Defer to Demo Panel
       }

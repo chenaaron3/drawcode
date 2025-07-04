@@ -6,6 +6,7 @@ import { Panel, PanelGroup } from 'react-resizable-panels';
 import { DebuggerViewTrigger } from '@/components/blog/DebuggerViewTrigger';
 import { ResizeHandle } from '@/components/common';
 import { TraceVisualizer } from '@/components/layout';
+import { SeoHead } from '@/components/SeoHead';
 import { Card, CardContent } from '@/components/ui';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { remarkDebuggerPlugin } from '@/lib/remark-debugger-plugin';
@@ -66,45 +67,52 @@ const PostPage = ({ postData }: InferGetStaticPropsType<typeof getStaticProps>) 
 
     if (isMobile) {
         return (
-            <div className="h-full w-full p-0 md:p-6 relative overflow-hidden">
-                <div className="flex flex-col h-full">
-                    <div className="h-full overflow-y-auto">
-                        <div
-                            className={
-                                (activeTab === 'blog'
-                                    ? 'transition-opacity duration-300 opacity-100 relative'
-                                    : 'transition-opacity duration-300 opacity-0 pointer-events-none absolute inset-0') +
-                                ' w-full h-full'
-                            }
-                            aria-hidden={activeTab !== 'blog'}
-                        >
-                            <BlogContent postData={postData} />
-                        </div>
-                        <div
-                            className={
-                                (activeTab === 'code'
-                                    ? 'transition-opacity duration-300 opacity-100 relative'
-                                    : 'transition-opacity duration-300 opacity-0 pointer-events-none absolute inset-0') +
-                                ' w-full h-full'
-                            }
-                            aria-hidden={activeTab !== 'code'}
-                        >
-                            <TraceVisualizer stacked />
-                        </div>
-                    </div>
-                    <nav className="bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 flex justify-around items-center h-12 md:hidden">
-                        {TABS.map(tab => (
-                            <button
-                                key={tab.key}
-                                className={`flex-1 h-full flex flex-col items-center justify-center text-xs font-medium transition-colors ${activeTab === tab.key ? 'text-blue-600' : 'text-slate-500'}`}
-                                onClick={() => setActiveTab(tab.key)}
+            <>
+                <SeoHead
+                    title={postData.title}
+                    description={postData.description}
+                    url={`/blog/${postData.slug}`}
+                />
+                <div className="h-full w-full p-0 md:p-6 relative overflow-hidden">
+                    <div className="flex flex-col h-full">
+                        <div className="h-full overflow-y-auto">
+                            <div
+                                className={
+                                    (activeTab === 'blog'
+                                        ? 'transition-opacity duration-300 opacity-100 relative'
+                                        : 'transition-opacity duration-300 opacity-0 pointer-events-none absolute inset-0') +
+                                    ' w-full h-full'
+                                }
+                                aria-hidden={activeTab !== 'blog'}
                             >
-                                {tab.label}
-                            </button>
-                        ))}
-                    </nav>
+                                <BlogContent postData={postData} />
+                            </div>
+                            <div
+                                className={
+                                    (activeTab === 'code'
+                                        ? 'transition-opacity duration-300 opacity-100 relative'
+                                        : 'transition-opacity duration-300 opacity-0 pointer-events-none absolute inset-0') +
+                                    ' w-full h-full'
+                                }
+                                aria-hidden={activeTab !== 'code'}
+                            >
+                                <TraceVisualizer stacked />
+                            </div>
+                        </div>
+                        <nav className="bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 flex justify-around items-center h-12 md:hidden">
+                            {TABS.map(tab => (
+                                <button
+                                    key={tab.key}
+                                    className={`flex-1 h-full flex flex-col items-center justify-center text-xs font-medium transition-colors ${activeTab === tab.key ? 'text-blue-600' : 'text-slate-500'}`}
+                                    onClick={() => setActiveTab(tab.key)}
+                                >
+                                    {tab.label}
+                                </button>
+                            ))}
+                        </nav>
+                    </div>
                 </div>
-            </div>
+            </>
         );
     }
 

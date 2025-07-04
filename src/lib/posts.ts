@@ -61,7 +61,12 @@ export function getPostData(slug: string) {
 
   return {
     slug,
-    ...(matterResult.data as { title: string; date: string; author: string }),
+    ...(matterResult.data as {
+      title: string;
+      date: string;
+      author: string;
+      description: string;
+    }),
     content: matterResult.content,
     traces,
   };

@@ -55,16 +55,18 @@ export const Header: React.FC = () => {
         setSidebarOpen(false);
     };
 
-    const handleBackToProblems = () => {
-        router.push('/lessons');
-        setCurrentProblem(null);
-    };
-
     const isCurrentPath = (path: string) => {
         const firstComponent = router.pathname.split('/')[1] || '';
         return firstComponent === path;
     };
-    const showLessonsButton = isCurrentPath('lesson');
+
+    // Only show the Lessons button on lesson detail pages
+    const showLessonsButton =
+        router.pathname === '/lesson/[course]/[module]/[lesson]' &&
+        !!router.query.course &&
+        !!router.query.module &&
+        !!router.query.lesson;
+
     const isLandingPage = isCurrentPath('');
 
     const onGetStarted = async () => {

@@ -1,12 +1,15 @@
+import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
 
 import lessonCoursesData from '@/data/lesson-courses.json';
 import lessonModulesData from '@/data/lesson-modules.json';
 import lessonProblemsData from '@/data/lesson-problems.json';
+import { getCourseById, getLessonById } from '@/lib/lessons';
 import { useProgressStore } from '@/store/progressStore';
 import { useTraceStore } from '@/store/traceStore';
 
 import type { Lesson, LessonCourse, LessonModule } from "@/types/lesson";
+
 export interface LessonNavigationInfo {
   currentLesson: Lesson | null;
   currentModule: LessonModule | null;
@@ -31,27 +34,60 @@ export interface LessonNavigationActions {
 
 export function useLessonNavigation(): LessonNavigationInfo &
   LessonNavigationActions {
-  const { setCurrentProblem, getCurrentProblemId } = useTraceStore();
-  const courses = lessonCoursesData;
-  // Default to the first course (intro-to-python)
-  const currentCourse = courses[0]!;
-  // Filter modules and lessons for the current course
-  let modules = lessonModulesData as LessonModule[];
-  modules = modules.filter((m) => currentCourse.moduleIds.includes(m.id));
-  const currentLessonId = getCurrentProblemId();
-  const currentModule =
-    modules.find((module) =>
-      module.lessonIds.includes(currentLessonId ?? ""),
-    ) || null;
-  const currentModuleId = currentModule ? currentModule.id : null;
-  const currentCourseId = currentCourse.id;
+  const router = useRouter();
   const progressStore = useProgressStore();
+  const { setCurrentProblem } = useTraceStore();
+
+  // Extract current course/module/lesson from the router path
+  const courseId = router.query.course as string;
+  const moduleId = router.query.module as string;
+  const lessonId = router.query.lesson as string;
+
+  // Get current lesson context
+  const currentInfo = lessonId ? getLessonById(lessonId) : undefined;
+
+  // Compute navigation info (next/previous lesson) based on current context
+  let navigationInfo = {
+    nextLesson: undefined as Lesson | undefined,
+    previousLesson: undefined as Lesson | undefined,
+  };
+  if (currentInfo) {
+    const { course, lesson } = currentInfo;
+    // Flatten all lessons in the course in order
+    const allLessons = course.modules.flatMap((m) => m.lessons);
+    const idx = allLessons.findIndex((l) => l.id === lesson.id);
+    navigationInfo.previousLesson = idx > 0 ? allLessons[idx - 1] : undefined;
+    navigationInfo.nextLesson =
+      idx >= 0 && idx < allLessons.length - 1 ? allLessons[idx + 1] : undefined;
+  }
+
+  // Route-based navigation for next/previous lesson
+  let gotoNextLesson = () => {
+    if (navigationInfo.nextLesson) {
+      const info = getLessonById(navigationInfo.nextLesson.id);
+      if (info) {
+        router.push(
+          `/lesson/${info.course.id}/${info.module.id}/${info.lesson.id}`,
+        );
+      }
+    }
+  };
+  let gotoPreviousLesson = () => {
+    if (navigationInfo.previousLesson) {
+      const info = getLessonById(navigationInfo.previousLesson.id);
+      if (info) {
+        router.push(
+          `/lesson/${info.course.id}/${info.module.id}/${info.lesson.id}`,
+        );
+      }
+    }
+  };
 
   // Get all lessons in order for the current course
   const orderedLessons = useMemo(() => {
-    if (!currentCourseId) return [];
+    if (!courseId) return [];
     const courses = lessonCoursesData as LessonCourse[];
-    const course = courses.find((c) => c.id === currentCourseId);
+    const course = courses.find((c) => c.id === courseId);
     if (!course) return [];
     let modules = lessonModulesData as LessonModule[];
     modules = modules.filter((m) => course.moduleIds.includes(m.id));
@@ -62,11 +98,11 @@ export function useLessonNavigation(): LessonNavigationInfo &
         ),
       )
       .filter(Boolean) as Lesson[];
-  }, [currentModuleId]);
+  }, [courseId]);
 
   // Get navigation info
-  const navigationInfo = useMemo(() => {
-    if (!currentLessonId) {
+  const navigationInfoMemo = useMemo(() => {
+    if (!lessonId) {
       return {
         currentLesson: null,
         currentModule: null,
@@ -81,17 +117,15 @@ export function useLessonNavigation(): LessonNavigationInfo &
       };
     }
 
-    const currentIndex = orderedLessons.findIndex(
-      (l) => l.id === currentLessonId,
-    );
+    const currentIndex = orderedLessons.findIndex((l) => l.id === lessonId);
 
     return {
       currentLesson: orderedLessons[currentIndex] ?? null,
-      currentModule: currentModule,
-      currentCourse: currentCourse,
-      currentCourseId: currentCourseId,
-      currentModuleId: currentModuleId,
-      currentLessonId: currentLessonId,
+      currentModule: currentInfo?.module,
+      currentCourse: currentInfo?.course,
+      currentCourseId: courseId,
+      currentModuleId: moduleId,
+      currentLessonId: lessonId,
       previousLesson:
         currentIndex > 0 ? orderedLessons[currentIndex - 1] : null,
       nextLesson:
@@ -101,62 +135,55 @@ export function useLessonNavigation(): LessonNavigationInfo &
       currentIndex,
       totalLessons: orderedLessons.length,
     };
-  }, [currentLessonId, orderedLessons]);
+  }, [lessonId, orderedLessons, currentInfo, courseId, moduleId]);
 
+  // Mark lesson completed
   let isLessonCompleted = false;
   let markLessonCompleted = () => {};
-  if (currentCourseId && currentModuleId && currentLessonId) {
+  if (courseId && moduleId && lessonId) {
     isLessonCompleted = progressStore.isLessonCompleted(
-      currentCourseId,
-      currentModuleId,
-      currentLessonId,
+      courseId,
+      moduleId,
+      lessonId,
     );
     markLessonCompleted = () => {
-      progressStore.markLessonCompleted(
-        currentCourseId,
-        currentModuleId,
-        currentLessonId,
-      );
+      progressStore.markLessonCompleted(courseId, moduleId, lessonId);
     };
   }
 
   // Save last position on navigation
   useEffect(() => {
-    if (currentCourseId && currentModuleId && currentLessonId) {
-      progressStore.saveLastPosition(
-        currentCourseId,
-        currentModuleId,
-        currentLessonId,
-      );
+    if (courseId && moduleId && lessonId) {
+      progressStore.saveLastPosition(courseId, moduleId, lessonId);
     }
-  }, [currentCourseId, currentModuleId, currentLessonId]);
+  }, [courseId, moduleId, lessonId]);
 
   // Goto default lesson: last position if available, else first lesson of first module of first course
-  const gotoDefaultLesson = () => {
+  function gotoDefaultLesson() {
     const lastPosition = progressStore.getLastPosition();
-    // Go to last position
-    if (
-      lastPosition &&
-      lastPosition.lessonId &&
-      orderedLessons.find((l) => l.id === lastPosition.lessonId)
-    ) {
-      setCurrentProblem(lastPosition.lessonId);
+    if (lastPosition) {
+      router.push(
+        `/lesson/${lastPosition.courseId}/${lastPosition.moduleId}/${lastPosition.lessonId}`,
+      );
       return;
     }
-    // Or go to first lesson of first module of first course if new user
-    setCurrentProblem(orderedLessons[0]?.id ?? null);
-  };
+    const course = getCourseById(courseId);
+    if (!course || !course.modules.length) return;
+    const module = course.modules[0];
+    if (!module || !module.lessons.length) return;
+    const lesson = module.lessons[0];
+    if (!lesson) return;
+    router.push(`/lesson/${course.id}/${module.id}/${lesson.id}`);
+  }
 
   let getUnlockedLesson = () => {
     // Find the first lesson that is not completed
     const firstUnlockedLesson = orderedLessons.find((l) => {
-      let moduleId = modules.find((m) => m.lessonIds.includes(l.id))?.id;
+      let moduleId = lessonModulesData.find((m) =>
+        m.lessonIds.includes(l.id),
+      )?.id;
       if (moduleId !== undefined) {
-        return !progressStore.isLessonCompleted(
-          currentCourseId,
-          moduleId,
-          l.id,
-        );
+        return !progressStore.isLessonCompleted(courseId, moduleId, l.id);
       }
     });
     if (firstUnlockedLesson) {
@@ -165,20 +192,9 @@ export function useLessonNavigation(): LessonNavigationInfo &
     return null;
   };
 
-  let gotoNextLesson = () => {
-    if (navigationInfo.nextLesson) {
-      setCurrentProblem(navigationInfo.nextLesson.id);
-    }
-  };
-  let gotoPreviousLesson = () => {
-    if (navigationInfo.previousLesson) {
-      setCurrentProblem(navigationInfo.previousLesson.id);
-    }
-  };
-
   // @ts-expect-error idk
   return {
-    ...navigationInfo,
+    ...navigationInfoMemo,
     isLessonCompleted,
     markLessonCompleted,
     gotoNextLesson,

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useTraceStore } from '@/store/traceStore';
 
 import { ResizeHandle } from '../common';
 import { TraceVisualizer } from '../layout';
 import LessonContent from './LessonContent';
 
 import type { Lesson, LessonCourse, LessonModule } from '../../types/lesson';
-
 const TABS = [
     { key: 'lesson', label: 'Lesson' },
     { key: 'code', label: 'Code' },
@@ -24,6 +24,14 @@ interface LessonPageProps {
 const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourse, currentModule }) => {
     const isMobile = useIsMobile();
     const [activeTab, setActiveTab] = useState<TabKey>('lesson');
+    const { setCurrentProblem } = useTraceStore();
+
+    // Update the current problem
+    useEffect(() => {
+        if (lesson) {
+            setCurrentProblem(lesson.id);
+        }
+    }, [lesson]);
 
     // Panel content for mobile
     const renderMobilePanel = () => {
