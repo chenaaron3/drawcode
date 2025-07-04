@@ -33,30 +33,44 @@ const LessonPage: React.FC<LessonPageProps> = ({ lesson, currentCourse, currentM
         }
     }, [lesson]);
 
-    // Panel content for mobile
-    const renderMobilePanel = () => {
-        if (activeTab === 'lesson') {
-            return lesson && (
-                <LessonContent
-                    key={lesson.id}
-                    lesson={lesson}
-                    currentCourseId={currentCourse.id}
-                    currentModuleId={currentModule.id}
-                />
-            );
-        }
-        if (activeTab === 'code') {
-            return <TraceVisualizer stacked />;
-        }
-        return null;
-    };
+    if (!lesson) {
+        return <div>Lesson not found</div>;
+    }
 
     return (
         <div className="h-full w-full p-0 md:p-6 relative overflow-hidden">
             {isMobile ? (
                 <div className="flex flex-col h-full">
                     <div className="h-full overflow-y-auto">
-                        {renderMobilePanel()}
+                        <div className="h-full overflow-y-auto">
+                            <div
+                                className={
+                                    (activeTab === 'lesson'
+                                        ? 'transition-opacity duration-300 opacity-100 relative'
+                                        : 'transition-opacity duration-300 opacity-0 pointer-events-none absolute inset-0') +
+                                    ' w-full h-full'
+                                }
+                                aria-hidden={activeTab !== 'lesson'}
+                            >
+                                <LessonContent
+                                    key={lesson.id}
+                                    lesson={lesson}
+                                    currentCourseId={currentCourse.id}
+                                    currentModuleId={currentModule.id}
+                                />
+                            </div>
+                            <div
+                                className={
+                                    (activeTab === 'code'
+                                        ? 'transition-opacity duration-300 opacity-100 relative'
+                                        : 'transition-opacity duration-300 opacity-0 pointer-events-none absolute inset-0') +
+                                    ' w-full h-full'
+                                }
+                                aria-hidden={activeTab !== 'code'}
+                            >
+                                <TraceVisualizer stacked />
+                            </div>
+                        </div>
                     </div>
                     <nav className="bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 flex justify-around items-center h-12 md:hidden">
                         {TABS.map(tab => (

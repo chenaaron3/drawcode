@@ -155,9 +155,9 @@ export const useProgressStore = create<ProgressState>()(
       },
 
       isLessonCompleted: (courseId, moduleId, lessonId) => {
-        if (process.env.NODE_ENV === "development") {
-          return true;
-        }
+        // if (process.env.NODE_ENV === "development") {
+        //   return true;
+        // }
         const state = get();
         return !!state.coursesProgress.courses[courseId]?.modules[moduleId]
           ?.lessons[lessonId]?.isComplete;

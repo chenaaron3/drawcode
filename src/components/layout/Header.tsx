@@ -78,7 +78,7 @@ export const Header: React.FC = () => {
             <Sheet>
                 <SheetTrigger asChild>
                     <Button variant="ghost" size="icon" className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <Menu className="h-6 w-6 text-gray-700" />
+                        <Menu className="h-8 w-8 text-gray-700" />
                         <span className="sr-only">Open menu</span>
                     </Button>
                 </SheetTrigger>
@@ -144,7 +144,7 @@ export const Header: React.FC = () => {
     }
 
     const DesktopMenu = () => {
-        return <>
+        return <div className="flex items-center gap-2">
             <TutorialTrigger />
             <div
                 className="absolute left-1/2 -translate-x-1/2 flex bg-gray-100 rounded-lg p-1 lg:relative lg:left-0 lg:translate-x-0"
@@ -214,7 +214,7 @@ export const Header: React.FC = () => {
                     Sign in
                 </Button>
             )}
-        </>;
+        </div>;
     }
 
     let navigation = <></>;
