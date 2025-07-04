@@ -69,15 +69,15 @@ export function getLessonById(lessonId: string):
     }
   | undefined {
   // Find the module containing this lesson
-  const module = Object.values(modulesMap).find((m) =>
+  const mod = Object.values(modulesMap).find((m) =>
     m.lessonIds.includes(lessonId),
   );
-  if (!module) return undefined;
+  if (!mod) return undefined;
   const course = Object.values(coursesMap).find((c) =>
-    c.moduleIds.includes(module.id),
+    c.moduleIds.includes(mod.id),
   );
   if (!course) return undefined;
   const lesson = problemsMap[lessonId];
   if (!lesson) return undefined;
-  return { lesson, module, course };
+  return { lesson, module: mod, course };
 }

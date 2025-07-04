@@ -169,11 +169,11 @@ export function useLessonNavigation(): LessonNavigationInfo &
     }
     const course = getCourseById(courseId);
     if (!course || !course.modules.length) return;
-    const module = course.modules[0];
-    if (!module || !module.lessons.length) return;
-    const lesson = module.lessons[0];
+    const mod = course.modules[0];
+    if (!mod || !mod.lessons.length) return;
+    const lesson = mod.lessons[0];
     if (!lesson) return;
-    router.push(`/lesson/${course.id}/${module.id}/${lesson.id}`);
+    router.push(`/lesson/${course.id}/${mod.id}/${lesson.id}`);
   }
 
   let getUnlockedLesson = () => {

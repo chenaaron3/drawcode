@@ -23,12 +23,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const courses = getAllCourses();
     const paths: { params: { course: string; module: string; lesson: string } }[] = [];
     for (const course of courses) {
-        for (const module of course.modules) {
-            for (const lesson of module.lessons) {
+        for (const mod of course.modules) {
+            for (const lesson of mod.lessons) {
                 paths.push({
                     params: {
                         course: course.id,
-                        module: module.id,
+                        module: mod.id,
                         lesson: lesson.id,
                     },
                 });
