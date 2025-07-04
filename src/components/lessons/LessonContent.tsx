@@ -1,4 +1,4 @@
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Menu } from 'lucide-react';
 import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -10,10 +10,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { getLessonHook, hasLessonHook } from '@/lessons';
+import { useAppStore } from '@/store/appStore';
 import { useLessonStore } from '@/store/lessonStore';
 
 import type { Lesson } from '@/types/lesson';
-
 interface LessonContentProps {
     currentCourseId: string;
     currentModuleId: string;
@@ -27,6 +27,7 @@ const LessonContent: React.FC<LessonContentProps> = ({
 }) => {
     // Navigation logic
     const navigationInfo = useLessonNavigation();
+    const { setSidebarOpen } = useAppStore();
 
     // Get lesson state from store
     const {
@@ -66,6 +67,16 @@ const LessonContent: React.FC<LessonContentProps> = ({
     return (
         <Card className="h-full flex flex-col lg:py-0">
             <CardContent className="flex-1 overflow-y-auto p-3">
+                <button
+                    onClick={() => setSidebarOpen(true)}
+                    className="pb-2 lg:py-4 cursor-pointer flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
+                >
+                    <span className="hidden md:inline">
+                        <Menu className="h-4 w-4" />
+                    </span>
+                    See Lessons
+                </button>
+
                 <div>
                     {error && (
                         <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">

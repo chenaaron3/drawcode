@@ -75,13 +75,6 @@ export default function CodePanel() {
         };
     }, [isReadOnly]);
 
-    // Exit edit mode when changes are reset or trace is updated
-    useEffect(() => {
-        if (!hasChanges) {
-            setIsReadOnly(true);
-        }
-    }, [hasChanges]);
-
     if (!traceData) {
         return (
             <Card className={cn('flex flex-col')}>

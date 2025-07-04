@@ -113,7 +113,7 @@ export function SettingControls() {
                     disabled={isGenerating}
                     data-testid="compile-button"
                 >
-                    {isGenerating ? "Updating..." : 'Update'}
+                    {isGenerating ? "Saving..." : 'Save'}
                 </Button>
             </div >
         );

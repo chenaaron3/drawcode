@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 import { useTutorialStore } from '../../store/tutorialStore';
 
@@ -14,6 +15,7 @@ export const TutorialTrigger: React.FC = () => {
         invokeTutorial,
     } = useTutorialStore();
     const router = useRouter();
+    const isMobile = useIsMobile();
 
     // Determine current page for tutorial
     const getCurrentPage = () => {
@@ -26,6 +28,9 @@ export const TutorialTrigger: React.FC = () => {
 
     // Auto-start tutorial for first-time users on this page
     useEffect(() => {
+        // Do not show tutorial on mobile
+        if (isMobile) return;
+        // If the user has not seen the current page
         if (currentPage && !hasSeenTutorial[currentPage] && !isActive) {
             // Small delay to ensure the page is fully loaded
             const timer = setTimeout(() => {
