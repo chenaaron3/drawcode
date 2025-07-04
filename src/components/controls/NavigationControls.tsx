@@ -19,6 +19,7 @@ export function NavigationControls() {
         playSpeed,
         traceData
     } = useTraceStore();
+    const setIsEditing = useTraceStore(s => s.setIsEditing);
 
     const handlePrev = () => {
         trackNavigationStep('prev', mode);
@@ -57,7 +58,7 @@ export function NavigationControls() {
 
     // Essential Navigation Controls only
     return (
-        <div className="flex items-center gap-1" data-tutorial="step-controls">
+        <div className="flex items-center gap-1" data-tutorial="step-controls" onClick={() => setIsEditing(false)}>
             <Button
                 variant="outline"
                 size="sm"
