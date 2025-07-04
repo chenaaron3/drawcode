@@ -83,7 +83,7 @@ export const Header: React.FC = () => {
                             <Zap className="h-5 w-5 text-white" />
                         </div>
                         <h1 className="hidden lg:inline text-base md:text-xl font-bold text-gray-900">
-                            CodeViz
+                            PyViz
                         </h1>
                     </div>
                     {/* Lessons button - only show if enabled and in learn mode */}
