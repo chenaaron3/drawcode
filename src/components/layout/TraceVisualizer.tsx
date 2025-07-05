@@ -36,16 +36,7 @@ export default function TraceVisualizer({ stacked = false }: TraceVisualizerProp
                             )}
                             <ResizeHandle direction="vertical" />
                             <Panel defaultSize={50} minSize={25}>
-                                <motion.div
-                                    key="codepanel-motion"
-                                    animate={{ height: '100%' }}
-                                    transition={{ duration: 0.22, ease: 'easeInOut' }}
-                                    style={{ overflow: 'hidden' }}
-                                >
-                                    <div className="h-full overflow-visible" style={{ display: 'flex', flexDirection: 'column' }}>
-                                        <CodePanel />
-                                    </div>
-                                </motion.div>
+                                <CodePanel />
                             </Panel>
                             <ResizeHandle direction="vertical" />
                             {!isEditing && (
