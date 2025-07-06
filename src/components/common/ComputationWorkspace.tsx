@@ -95,6 +95,7 @@ export default function ComputationWorkspace({ overlayMode = false }: Computatio
                 }
 
                 // Handle variable animation for after_expression steps
+                // Moves from code to variable panel
                 if (currentStep.event === 'after_expression' && current?.locals &&
                     Object.prototype.hasOwnProperty.call(current.locals, currentStep.focus)) {
                     setTimeout(() => {
@@ -122,7 +123,7 @@ export default function ComputationWorkspace({ overlayMode = false }: Computatio
             if (isAssign && stepIndex === 0) {
                 // Update the copy to animate to the target
                 setAnimatedCopies(pendingAssignmentCopies);
-                // Remove after animation
+                // Remove animated copies after some time
                 setTimeout(() => {
                     setAnimatedCopies([]);
                 }, 600);

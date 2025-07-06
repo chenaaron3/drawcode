@@ -23,7 +23,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <div className={`${geist.className} w-screen h-screen max-w-full max-h-screen overflow-hidden bg-gray-50 flex flex-col`}>
+      <div className={`${geist.className} w-[100dvw] h-[100dvh] max-w-full max-h-screen overflow-hidden bg-gray-50 flex flex-col`}>
         <Toaster richColors />
         <PageLoadingIndicator />
         <MainLayout />
