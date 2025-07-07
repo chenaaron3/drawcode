@@ -20,6 +20,7 @@ export function NavigationControls() {
         traceData
     } = useTraceStore();
     const setIsEditing = useTraceStore(s => s.setIsEditing);
+    const isEditing = useTraceStore(s => s.isEditing);
 
     const handlePrev = () => {
         trackNavigationStep('prev', mode);
@@ -50,6 +51,34 @@ export function NavigationControls() {
             if (intervalId) window.clearInterval(intervalId);
         };
     }, [isPlaying, playSpeed, traceData, next]);
+
+    // Keyboard shortcuts: left (prev), right (next), space (play/pause)
+    useEffect(() => {
+        if (isEditing) return; // Only listen when not editing
+        const handleKeyDown = (e: KeyboardEvent) => {
+            switch (e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    handlePrev();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    handleNext();
+                    break;
+                case ' ':
+                case 'Spacebar': // for older browsers
+                    e.preventDefault();
+                    handleTogglePlay();
+                    break;
+                default:
+                    break;
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isEditing, handlePrev, handleNext, handleTogglePlay]);
 
     // Hide navigation controls when there are unsaved changes
     if (hasChanges) {

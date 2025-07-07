@@ -1,5 +1,5 @@
 import { SettingsIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MdRefresh, MdShare } from 'react-icons/md';
 import { toast } from 'sonner';
 
@@ -34,10 +34,26 @@ export function SettingControls() {
     const { generateTraceFromState, isGenerating } = useTraceGeneration();
 
     const setIsEditing = useTraceStore(s => s.setIsEditing);
+    const isEditing = useTraceStore(s => s.isEditing);
     const currentProblemId = getCurrentProblemId();
     const problemData = currentProblemId ? getCurrentProblemData(currentProblemId) : null;
 
     const [shareLoading, setShareLoading] = useState(false);
+
+    // Keyboard shortcut: 'r' for reset
+    useEffect(() => {
+        if (isEditing) return;
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.key === 'r' || e.key === 'R') && !isPlaying && lineIndex !== 0) {
+                e.preventDefault();
+                reset();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isEditing, isPlaying, lineIndex]);
 
     // Handle reset to original
     const handleReset = () => {
