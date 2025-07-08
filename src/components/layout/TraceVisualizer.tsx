@@ -28,19 +28,19 @@ export default function TraceVisualizer({ stacked = false }: TraceVisualizerProp
                     <div className="group/normal h-full">
                         <PanelGroup direction="vertical" className="h-full" onLayout={handleLayoutChange}>
                             {!isEditing && (
-                                <Panel defaultSize={10} minSize={10} maxSize={40} key="terminal-panel">
+                                <Panel defaultSize={15} minSize={10} maxSize={40} key="terminal-panel">
                                     <div className="h-full">
                                         <TerminalOutput />
                                     </div>
                                 </Panel>
                             )}
                             <ResizeHandle direction="vertical" />
-                            <Panel defaultSize={50} minSize={25}>
+                            <Panel defaultSize={40} minSize={25}>
                                 <CodePanel />
                             </Panel>
                             <ResizeHandle direction="vertical" />
                             {!isEditing && (
-                                <Panel defaultSize={35} minSize={25} key="variables-panel">
+                                <Panel defaultSize={45} minSize={25} key="variables-panel">
                                     <div
                                         className='h-full w-full overflow-y-auto'
                                     >
