@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-    AbsoluteFill, CalculateMetadataFunction, cancelRender, continueRender, delayRender,
-    getStaticFiles, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame,
-    useVideoConfig, watchStaticFile
+    AbsoluteFill, cancelRender, continueRender, delayRender, getStaticFiles, OffthreadVideo,
+    Sequence, staticFile, useCurrentFrame, useVideoConfig, watchStaticFile
 } from 'remotion';
 import { z } from 'zod';
 
-import { Caption, createTikTokStyleCaptions } from '@remotion/captions';
+import { createTikTokStyleCaptions } from '@remotion/captions';
 import { getVideoMetadata } from '@remotion/media-utils';
 
 import introConfigJson from '../intro.json';
@@ -18,6 +17,8 @@ import MainVideoOverlay from './MainVideoOverlay';
 import { NoCaptionFile } from './NoCaptionFile';
 import VisualOverlay from './VisualOverlay';
 
+import type { Caption } from '@remotion/captions';
+import type { CalculateMetadataFunction } from 'remotion';
 type IntroConfig = Record<string, { title: string; image: string; hideIntroOnWord?: string; hideVisualOnWord?: string; visual?: string }>;
 const introConfig: IntroConfig = introConfigJson;
 
@@ -121,11 +122,11 @@ export const CaptionedVideo: React.FC<{
     if (captions.length > 0) {
       // Find the first occurrence of targetWord (case-insensitive)
       for (let i = 0; i < captions.length - 1; i++) {
-        const word = captions[i].text.toLowerCase();
+        const word = captions[i]!.text.toLowerCase();
         if (word.includes(lowerTarget)) {
           // Found the word, calculate average of endMs of found and startMs of next
-          const foundEnd = captions[i].endMs;
-          const nextStart = captions[i + 1].startMs;
+          const foundEnd = captions[i]!.endMs;
+          const nextStart = captions[i + 1]!.startMs;
           const avgMs = Math.round((foundEnd + nextStart) / 2);
           return Math.max(1, Math.floor((avgMs / 1000) * fps));
         }
