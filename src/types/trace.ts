@@ -36,6 +36,7 @@ export type Locals = Record<string, any>;
 
 // Step types for expression-level tracing
 export type TraceStep = {
+  ast?: AST;
   step: number;
   event:
     | "before_statement"

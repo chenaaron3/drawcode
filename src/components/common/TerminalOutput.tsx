@@ -18,7 +18,6 @@ export const TerminalOutputContent: React.FC = () => {
             scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
         }
     }, [terminalOutput]);
-
     // Handle scroll events to show/hide fade indicator
     const handleScroll = () => {
         if (scrollContainerRef.current) {

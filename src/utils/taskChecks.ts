@@ -1,23 +1,23 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
-import useTerminalOutput from "@/hooks/useTerminalOutput";
-import { useTraceStore } from "@/store/traceStore";
+import useTerminalOutput from '@/hooks/useTerminalOutput';
+import { useTraceStore } from '@/store/traceStore';
 
 export function useTerminalContainsAll(strs: string[]): boolean {
   const { terminalOutput } = useTerminalOutput();
   return useMemo(
     () =>
       strs.every((str) =>
-        terminalOutput.some((item) => item.output.includes(str))
+        terminalOutput.some((item) => item.output.includes(str)),
       ),
-    [terminalOutput, strs]
+    [terminalOutput, strs],
   );
 }
 
 // Hook that checks if the user clicked to the end of the code
 export function useTraceFinished(): boolean {
-  const { hasNext } = useTraceStore();
-  return !hasNext();
+  const { hasNext, stepIndex, lineIndex } = useTraceStore();
+  return !hasNext() && stepIndex + lineIndex > 0;
 }
 
 // Hook that checks if local variables are defined, optionally with a value

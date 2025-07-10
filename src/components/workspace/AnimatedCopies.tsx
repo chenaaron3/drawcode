@@ -148,6 +148,12 @@ interface AnimatedCopiesProps {
 }
 
 export function AnimatedCopies({ animatedCopies }: AnimatedCopiesProps) {
+    // Play swoosh when mounted
+    useEffect(() => {
+        const audio = new Audio("/audio/pop.wav");
+        audio.volume = 0.3;
+        audio.play();
+    }, []);
     return createPortal(
         <AnimatePresence>
             {animatedCopies.map(copy => {

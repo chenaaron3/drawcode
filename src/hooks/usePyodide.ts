@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import astTransformerCode from '@/tracer/ast_transformer.py';
 import pythonTracerCode from '@/tracer/python_tracer.py';
 import relationshipAnalyzerCode from '@/tracer/relationship_analyzer.py';
-// Import Python tracer files as raw text
 import utilsCode from '@/tracer/utils.py';
 
 import { usePyodideScript } from './usePyodideInstance';

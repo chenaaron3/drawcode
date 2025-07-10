@@ -89,7 +89,7 @@ export const LandingPage: React.FC = () => {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-5 w-5 text-green-500" />
-                                    <span>Created by Meta Engineer</span>
+                                    <span>Beginner Friendly</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <CheckCircle className="h-5 w-5 text-green-500" />

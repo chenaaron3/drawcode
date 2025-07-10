@@ -3,13 +3,11 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from 'remo
 
 import { makeTransform, scale, translateY } from '@remotion/animation-utils';
 import { TikTokPage } from '@remotion/captions';
-import { fitText } from '@remotion/layout-utils';
 
 import { TheBoldFont } from '../load-font';
 
 const fontFamily = TheBoldFont;
 
-const DESIRED_FONT_SIZE = 120;
 const HIGHLIGHT_COLOR = "#39E508";
 
 export const Page: React.FC<{
@@ -20,14 +18,14 @@ export const Page: React.FC<{
   const { width, fps } = useVideoConfig();
   const timeInMs = (frame / fps) * 1000;
 
-  const fontSize = 100;
+  const fontSize = 80;
 
   return (
     <AbsoluteFill
       style={{
         position: "absolute",
         left: "50%",
-        top: "70%",
+        top: "75%",
         transform: "translate(-50%, 0%)",
         width: "100%",
         display: "flex",
@@ -47,7 +45,7 @@ export const Page: React.FC<{
           ]),
           fontFamily,
           textTransform: "uppercase",
-          maxWidth: width * 0.75, // 75% of video width
+          maxWidth: width * 0.65, // 75% of video width
           whiteSpace: "normal",
           wordBreak: "break-word",
           textAlign: "center",

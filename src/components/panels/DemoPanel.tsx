@@ -15,12 +15,11 @@ export default function DemoPanel() {
     const traceData = useTraceStore(state => state.traceData);
     const currentLine = useTraceStore(selectCurrentLine);
     const stepIndex = useTraceStore(state => state.stepIndex);
-    const { terminalOutput } = useTerminalOutput();
-    const [lastOutputLength, setLastOutputLength] = React.useState(0);
+    const { terminalOutput, hasOutputChanged } = useTerminalOutput();
 
     // Show toast for new terminal output
     useEffect(() => {
-        if (terminalOutput.length > lastOutputLength) {
+        if (hasOutputChanged) {
             // Only show toast for the new output
             const newOutput = terminalOutput[terminalOutput.length - 1];
             if (newOutput) {
@@ -31,9 +30,8 @@ export default function DemoPanel() {
                     icon: <TerminalIcon className="w-4 h-4" />,
                 });
             }
-            setLastOutputLength(terminalOutput.length);
         }
-    }, [terminalOutput, lastOutputLength]);
+    }, [terminalOutput, hasOutputChanged]);
 
     if (!traceData) {
         return (

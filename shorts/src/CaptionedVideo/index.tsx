@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
     AbsoluteFill, CalculateMetadataFunction, cancelRender, continueRender, delayRender,
-    getStaticFiles, interpolate, OffthreadVideo, Sequence, useCurrentFrame, useVideoConfig,
-    watchStaticFile
+    getStaticFiles, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame,
+    useVideoConfig, watchStaticFile
 } from 'remotion';
 import { z } from 'zod';
 
@@ -12,11 +12,13 @@ import { getVideoMetadata } from '@remotion/media-utils';
 import introConfigJson from '../intro.json';
 import { loadFont } from '../load-font';
 import AnimatedBackground from './AnimatedBackground';
-import AnimatedIntro from './AnimatedIntro';
+import CaptionsOverlay from './CaptionsOverlay';
+import IntroOverlay from './IntroOverlay';
+import MainVideoOverlay from './MainVideoOverlay';
 import { NoCaptionFile } from './NoCaptionFile';
-import SubtitlePage from './SubtitlePage';
+import VisualOverlay from './VisualOverlay';
 
-type IntroConfig = Record<string, { title: string; image: string; hideIntroOnWord?: string }>;
+type IntroConfig = Record<string, { title: string; image: string; hideIntroOnWord?: string; hideVisualOnWord?: string; visual?: string }>;
 const introConfig: IntroConfig = introConfigJson;
 
 export type SubtitleProp = {
@@ -59,7 +61,7 @@ export const CaptionedVideo: React.FC<{
   src: string;
 }> = ({ src }) => {
   const [subtitles, setSubtitles] = useState<Caption[]>([]);
-  const [intro, setIntro] = useState<{ title: string; image: string; hideIntroOnWord?: string } | null>(null);
+  const [intro, setIntro] = useState<{ title: string; image: string; hideIntroOnWord?: string; hideVisualOnWord?: string; visual?: string } | null>(null);
   const [handle] = useState(() => delayRender());
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame();
@@ -115,7 +117,7 @@ export const CaptionedVideo: React.FC<{
     }
     const targetWord = intro.hideIntroOnWord.toLowerCase();
     const lowerTarget = targetWord.toLowerCase();
-    const captions = subtitles.filter(c => c.text.toLowerCase().includes(lowerTarget));
+    const captions = subtitles;
     if (captions.length > 0) {
       // Find the first occurrence of targetWord (case-insensitive)
       for (let i = 0; i < captions.length - 1; i++) {
@@ -132,89 +134,108 @@ export const CaptionedVideo: React.FC<{
     return INTRO_DEFAULT_DURATION_FRAMES;
   }, [intro, subtitles, fps]);
 
-  // Crossfade logic
-  const transitionDuration = 20;
-  const fadeStart = introDurationInFrames;
-  const fadeEnd = introDurationInFrames + transitionDuration;
-  const introFade = frame < fadeStart
-    ? 1
-    : frame >= fadeEnd
-      ? 0
-      : interpolate(frame, [fadeStart, fadeEnd], [1, 0]);
-  const videoFade = frame < fadeStart
-    ? 0
-    : frame >= fadeEnd
-      ? 1
-      : interpolate(frame, [fadeStart, fadeEnd], [0, 1]);
+  // Calculate visual duration based on first occurrence of hideVisualOnWord
+  const visualDurationInFrames = useMemo(() => {
+    if (!intro || !intro.hideVisualOnWord || !subtitles.length) {
+      return 0;
+    }
+    const targetWord = intro.hideVisualOnWord.toLowerCase();
+    const lowerTarget = targetWord.toLowerCase();
+    const captions = subtitles;
+    if (captions.length > 0) {
+      for (let i = 0; i < captions.length - 1; i++) {
+        const word = captions[i].text.toLowerCase();
+        if (word.includes(lowerTarget)) {
+          const foundEnd = captions[i].endMs;
+          const nextStart = captions[i + 1].startMs;
+          const avgMs = Math.round((foundEnd + nextStart) / 2);
+          return Math.max(1, Math.floor((avgMs / 1000) * fps));
+        }
+      }
+    }
+    return 0;
+  }, [intro, subtitles, fps]);
 
-  // Calculate the frame after which to start showing captions
+  // Frame boundaries for overlays
+  const transitionDuration = 20;
+  const introStart = 0;
+  const introEnd = introDurationInFrames;
+  const visualStart = introEnd;
+  const visualEnd = visualDurationInFrames > introEnd ? visualDurationInFrames : introEnd;
+  const mainStart = visualEnd;
+
+  // Calculate the frame after which to start showing captions (after intro)
   const captionsStartFrame = useMemo(() => {
-    if (!intro || !intro.hideIntroOnWord || !pages.length) {
+    if (!intro || !intro.hideIntroOnWord || !subtitles.length) {
       return 0;
     }
     const targetWord = intro.hideIntroOnWord.toLowerCase();
-    // Use regex for whole word match, case-insensitive
     const wordRegex = new RegExp(`\\b${targetWord}\\b`, 'i');
-    for (let i = 0; i < pages.length; i++) {
-      if (wordRegex.test(pages[i].text)) {
-        // Hide up to and including this caption, so start after its end
-        const nextPage = pages[i + 1];
-        // Calculate endMs for this page
-        const tokens = pages[i].tokens;
-        const pageEndMs = tokens && tokens.length > 0
-          ? Math.max(...tokens.map(t => t.toMs))
-          : pages[i].startMs;
-        // If next page exists, start at its startMs; otherwise, after this page's end
-        const startMs = nextPage ? nextPage.startMs : pageEndMs;
+    for (let i = 0; i < subtitles.length; i++) {
+      if (wordRegex.test(subtitles[i].text)) {
+        const nextSubtitle = subtitles[i + 1];
+        const subtitleEndMs = subtitles[i].endMs;
+        const startMs = nextSubtitle ? nextSubtitle.startMs : subtitleEndMs;
         return Math.floor((startMs / 1000) * fps);
       }
     }
-    return 0; // If not found, show all captions
-  }, [intro, pages, fps]);
+    return 0;
+  }, [intro, subtitles, fps]);
+
+  // Visual video src
+  const visualSrc = staticFile(intro?.visual ?? '');
 
   return (
     <AbsoluteFill style={{ backgroundColor: "white" }}>
       <AnimatedBackground />
+      {/* Audio from src plays throughout */}
+      <OffthreadVideo
+        src={src}
+        style={{ display: 'none' }}
+        playbackRate={1}
+        muted={false}
+      />
+      {/* 1. Intro overlay */}
       {intro && (
-        <Sequence from={0} durationInFrames={introDurationInFrames}>
-          <AnimatedIntro title={intro.title} image={intro.image} fadeOut={introFade} />
+        <Sequence from={introStart} durationInFrames={introEnd - introStart + transitionDuration}>
+          <IntroOverlay
+            frame={frame}
+            startFrame={introStart}
+            endFrame={introEnd}
+            transition={transitionDuration}
+            title={intro.title}
+            image={intro.image}
+          />
         </Sequence>
       )}
-      <AbsoluteFill style={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
-        <OffthreadVideo
-          style={{
-            width: "70%",
-            height: "auto", objectFit: "cover", objectPosition: "center", borderRadius: 50, opacity: videoFade, transition: 'opacity 0.3s',
-            transform: "translateY(40%)"
-          }}
+      {/* 2. Visual overlay */}
+      {visualEnd > visualStart && (
+        <Sequence from={visualStart} durationInFrames={visualEnd - visualStart + transitionDuration}>
+          <VisualOverlay
+            src={visualSrc}
+            frame={frame}
+            startFrame={visualStart}
+            endFrame={visualEnd}
+            transition={transitionDuration}
+          />
+        </Sequence>
+      )}
+      {/* 3. Main video overlay */}
+      <Sequence from={mainStart} durationInFrames={Infinity}>
+        <MainVideoOverlay
           src={src}
+          frame={frame}
+          startFrame={mainStart}
+          transition={transitionDuration}
         />
-      </AbsoluteFill>
-      {pages.map((page, index) => {
-        const nextPage = pages[index + 1] ?? null;
-        const subtitleStartFrame = (page.startMs / 1000) * fps;
-        const subtitleEndFrame = Math.min(
-          nextPage ? (nextPage.startMs / 1000) * fps : Infinity,
-          subtitleStartFrame + SWITCH_CAPTIONS_EVERY_MS,
-        );
-        const durationInFrames = subtitleEndFrame - subtitleStartFrame;
-        if (durationInFrames <= 0) {
-          return null;
-        }
-        // Only show captions after the calculated start frame
-        if (subtitleStartFrame < captionsStartFrame) {
-          return null;
-        }
-        return (
-          <Sequence
-            key={index}
-            from={subtitleStartFrame}
-            durationInFrames={durationInFrames}
-          >
-            <SubtitlePage key={index} page={page} />;
-          </Sequence>
-        );
-      })}
+      </Sequence>
+      {/* Captions visible after intro */}
+      <CaptionsOverlay
+        pages={pages}
+        fps={fps}
+        captionsStartFrame={captionsStartFrame}
+        SWITCH_CAPTIONS_EVERY_MS={SWITCH_CAPTIONS_EVERY_MS}
+      />
       {getFileExists(subtitlesFile) ? null : <NoCaptionFile />}
     </AbsoluteFill>
   );

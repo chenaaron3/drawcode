@@ -1,3 +1,4 @@
+import { trace } from 'console';
 import { useEffect } from 'react';
 
 import { useLessonStore } from '@/store/lessonStore';
@@ -24,6 +25,7 @@ export function useHelloWorld(lessonId: string) {
 
   // Check if the user stepped
   useEffect(() => {
+    console.log(currentTask, traceFinished);
     if (currentTask?.id === "run-program") {
       if (traceFinished) {
         completeTask();

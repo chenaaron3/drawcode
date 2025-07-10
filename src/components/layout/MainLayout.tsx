@@ -7,6 +7,7 @@ import lessonProblemsJson from '@/data/lesson-problems.json';
 import problemDescriptionsData from '@/data/problem-descriptions.json';
 import problemsJson from '@/data/problems.json';
 import { useCodeInitialization } from '@/hooks/useCodeInitialization';
+import { useSoundEffects } from '@/hooks/useSoundEffects';
 import { useTraceStore } from '@/store/traceStore';
 import { initGA, trackPageView } from '@/utils/analytics';
 
@@ -14,6 +15,7 @@ import { Header } from './Header';
 
 import type { ProblemDescription, Problem } from '@/types/problem';
 const MainLayout: React.FC = () => {
+    useSoundEffects();
     const { setProblemsData } = useTraceStore();
     const { isInitializing } = useCodeInitialization();
     const session = useSession();

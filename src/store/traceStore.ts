@@ -36,7 +36,7 @@ function buildNodeLookup(ast: AST): Map<number, AST> {
 interface TraceState {
   // Data
   traceData: TraceData | null;
-  lineIndex: number;
+  lineIndex: number; // The line within the code
   maxLine: number;
   stepIndex: number; // Index within the current line's steps
   isPlaying: boolean;

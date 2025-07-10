@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 
 import { useTraceStore } from '@/store/traceStore';
 
@@ -10,16 +10,20 @@ export interface TerminalOutputItem {
 export interface UseTerminalOutputResult {
   terminalOutput: TerminalOutputItem[];
   hasTerminalOutput: boolean;
+  hasOutputChanged: boolean;
 }
 
 export const useTerminalOutput = (): UseTerminalOutputResult => {
   const { traceData, lineIndex, stepIndex } = useTraceStore();
+  const prevLengthRef = useRef<number | null>(null);
 
   const result = useMemo(() => {
     if (!traceData) {
+      prevLengthRef.current = null;
       return {
         terminalOutput: [],
         hasTerminalOutput: false,
+        hasOutputChanged: false,
       };
     }
 
@@ -52,9 +56,20 @@ export const useTerminalOutput = (): UseTerminalOutputResult => {
       }
     }
 
+    let hasChanged = false;
+    const currentLength = outputs.length;
+    if (
+      prevLengthRef.current !== null &&
+      currentLength > prevLengthRef.current
+    ) {
+      hasChanged = true;
+    }
+    prevLengthRef.current = currentLength;
+
     return {
       terminalOutput: outputs,
       hasTerminalOutput: outputs.length > 0,
+      hasOutputChanged: hasChanged,
     };
   }, [traceData, lineIndex, stepIndex]);
 

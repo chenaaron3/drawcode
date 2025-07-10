@@ -64,7 +64,7 @@ export function useTraceGeneration() {
         return false;
       } else {
         setTraceData(newTraceData);
-        toast.success("Ready to go! 🚀");
+        // toast.success("Ready to go! 🚀");
         return true;
       }
     } catch (err) {
