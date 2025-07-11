@@ -3,8 +3,8 @@ import json
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_path = os.path.normpath(os.path.join(script_dir, '../public/video.mp4'))
-output_path = os.path.normpath(os.path.join(script_dir, '../public/video.json'))
+input_path = os.path.normpath(os.path.join(script_dir, '../public/captions/video.mov'))
+output_path = os.path.normpath(os.path.join(script_dir, '../public/captions/video.json'))
 
 model = whisper.load_model("turbo")
 result = model.transcribe(input_path, word_timestamps=True)

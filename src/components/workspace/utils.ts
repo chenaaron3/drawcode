@@ -22,7 +22,7 @@ export function getNodeTextLength(node: EvaluationNode): number {
 export function replaceNodeValueInTree(
   tree: EvaluationNode,
   targetNodeId: number,
-  value: any
+  value: any,
 ): EvaluationNode {
   if (tree.nodeId === targetNodeId) {
     return {
@@ -38,7 +38,7 @@ export function replaceNodeValueInTree(
     children: tree.children.map((child) =>
       typeof child === "string"
         ? child
-        : replaceNodeValueInTree(child, targetNodeId, value)
+        : replaceNodeValueInTree(child, targetNodeId, value),
     ),
   };
 }
@@ -46,13 +46,13 @@ export function replaceNodeValueInTree(
 export function highlightNodeInTree(
   tree: EvaluationNode,
   targetNodeId: number,
-  highlight: boolean
+  highlight: boolean,
 ): EvaluationNode {
   const clearAllHighlights = (node: EvaluationNode): EvaluationNode => ({
     ...node,
     isHighlighted: false,
     children: node.children.map((child) =>
-      typeof child === "string" ? child : clearAllHighlights(child)
+      typeof child === "string" ? child : clearAllHighlights(child),
     ),
   });
 
@@ -65,7 +65,7 @@ export function highlightNodeInTree(
       ...node,
       isHighlighted: node.nodeId === targetNodeId,
       children: node.children.map((child) =>
-        typeof child === "string" ? child : setHighlight(child)
+        typeof child === "string" ? child : setHighlight(child),
       ),
     });
     newTree = setHighlight(newTree);

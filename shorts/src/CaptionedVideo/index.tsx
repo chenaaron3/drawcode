@@ -8,14 +8,14 @@ import { z } from 'zod';
 import { createTikTokStyleCaptions } from '@remotion/captions';
 import { getVideoMetadata } from '@remotion/media-utils';
 
+import AnimatedBackground from '../Components/AnimatedBackground';
+import CaptionsOverlay from '../Components/CaptionsOverlay';
+import IntroOverlay from '../Components/IntroOverlay';
+import MainVideoOverlay from '../Components/MainVideoOverlay';
+import { NoCaptionFile } from '../Components/NoCaptionFile';
+import VisualOverlay from '../Components/VisualOverlay';
 import introConfigJson from '../intro.json';
 import { loadFont } from '../load-font';
-import AnimatedBackground from './AnimatedBackground';
-import CaptionsOverlay from './CaptionsOverlay';
-import IntroOverlay from './IntroOverlay';
-import MainVideoOverlay from './MainVideoOverlay';
-import { NoCaptionFile } from './NoCaptionFile';
-import VisualOverlay from './VisualOverlay';
 
 import type { Caption } from '@remotion/captions';
 import type { CalculateMetadataFunction } from 'remotion';
@@ -228,6 +228,7 @@ export const CaptionedVideo: React.FC<{
           frame={frame}
           startFrame={mainStart}
           transition={transitionDuration}
+          trim={true}
         />
       </Sequence>
       {/* Captions visible after intro */}

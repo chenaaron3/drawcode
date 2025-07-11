@@ -24,7 +24,7 @@ export function useSoundEffects() {
       audioRef.current = new Audio("/audio/tap.wav");
     }
     // Set volume to 30% before playing
-    audioRef.current.volume = 0.3;
+    audioRef.current.volume = 0.1;
     // Always reset to start for rapid playback
     audioRef.current.currentTime = 0;
     audioRef.current.play();

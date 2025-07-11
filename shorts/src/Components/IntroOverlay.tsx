@@ -8,7 +8,7 @@ const IntroOverlay: React.FC<{
     endFrame: number;
     transition: number;
     title: string;
-    image: string;
+    image?: string;
 }> = ({ frame, startFrame, endFrame, transition, title, image }) => {
     let fade = 1;
     if (frame >= endFrame) {

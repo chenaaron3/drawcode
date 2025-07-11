@@ -109,7 +109,7 @@ function applyCustomPositioning(nodes: Node[]): Node[] {
   const frameStartY = 50;
 
   // Values column - start at same Y as frame with minimal X offset
-  const valueStartX = 400;
+  const valueStartX = 300;
   const minValueSpacing = 120; // Minimum vertical spacing between value nodes
 
   // Track used Y positions to avoid overlaps

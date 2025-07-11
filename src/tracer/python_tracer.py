@@ -129,6 +129,9 @@ class PythonTracer:
         node = self.transformer.get_node(node_id)
         if node is None:
             return value
+        # We dont' want to replace the whole formatted string with a sub value
+        if isinstance(node, ast.FormattedValue):
+            return value
         # Skip recording if the value is callable (e.g., x.append in x.append(2))
         if callable(value):
             return value

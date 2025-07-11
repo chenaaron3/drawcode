@@ -3,9 +3,7 @@ import {
     AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame, useVideoConfig
 } from 'remotion';
 
-import AnimatedBackground from './AnimatedBackground';
-
-export const AnimatedIntro: React.FC<{ title: string; image: string; fadeOut?: number }> = ({ title, image, fadeOut = 1 }) => {
+export const AnimatedIntro: React.FC<{ title: string; image?: string; fadeOut?: number }> = ({ title, image, fadeOut = 1 }) => {
     const frame = useCurrentFrame();
     const { width, height, fps } = useVideoConfig();
 
@@ -41,8 +39,6 @@ export const AnimatedIntro: React.FC<{ title: string; image: string; fadeOut?: n
                 transition: 'opacity 0.3s',
             }}
         >
-            {/* Shared animated background */}
-            <AnimatedBackground />
             {/* Play audio only while typewriter is active */}
             {frame < typewriterDurationFrames && (
                 <Audio src={staticFile('keyboard.mp3')} />
@@ -53,7 +49,7 @@ export const AnimatedIntro: React.FC<{ title: string; image: string; fadeOut?: n
                     position: 'absolute',
                     width: '60%',
                     left: '50%',
-                    top: '20%', // near the top
+                    top: '12%', // near the top
                     transform: 'translate(-50%, 0)',
                     zIndex: 3,
                     display: 'flex',
@@ -70,7 +66,7 @@ export const AnimatedIntro: React.FC<{ title: string; image: string; fadeOut?: n
                         padding: '32px 48px',
                         minWidth: 320,
                         color: '#fff',
-                        fontSize: 90,
+                        fontSize: 60,
                         fontWeight: 700,
                         textAlign: 'center',
                         textShadow: '0 4px 32px #0008, 0 2px 8px #7b2ff2',
@@ -99,7 +95,7 @@ export const AnimatedIntro: React.FC<{ title: string; image: string; fadeOut?: n
                     pointerEvents: 'none',
                 }}
             >
-                <img
+                {image && <img
                     src={staticFile(image)}
                     alt="Intro"
                     style={{
@@ -109,7 +105,7 @@ export const AnimatedIntro: React.FC<{ title: string; image: string; fadeOut?: n
                         boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
                         display: 'block',
                     }}
-                />
+                />}
             </div>
         </AbsoluteFill>
     );

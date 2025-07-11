@@ -25,7 +25,7 @@ export const Page: React.FC<{
       style={{
         position: "absolute",
         left: "50%",
-        top: "75%",
+        top: "50%",
         transform: "translate(-50%, 0%)",
         width: "100%",
         display: "flex",

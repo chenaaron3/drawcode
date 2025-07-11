@@ -63,7 +63,7 @@ function AnimatedCopyItem({ copy }: AnimatedCopyItemProps) {
         // Start tracking after a brief delay
         const timeoutId = setTimeout(() => {
             updateTarget(); // Initial update
-            intervalRef.current = setInterval(updateTarget, 250);
+            intervalRef.current = setInterval(updateTarget, 50);
         }, 100);
 
         return () => {
