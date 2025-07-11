@@ -60,7 +60,7 @@ export function useSoundEffects() {
         audio.play();
       } else {
         const audio = new Audio("/audio/nope.mp3");
-        audio.volume = 0.5;
+        audio.volume = 1;
         audio.play();
       }
     }

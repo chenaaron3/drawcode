@@ -47,10 +47,10 @@ export const useTerminalOutput = (): UseTerminalOutputResult => {
         const step = traceLine.steps[stepIdx]!;
 
         // If this step has stdout output, add it to our outputs
-        if (step.stdout && step.stdout.trim()) {
+        if (step.stdout && step.stdout.replace(/[\r\n]+$/, "")) {
           outputs.push({
             line: traceLine.line_number,
-            output: step.stdout.trim(),
+            output: step.stdout.replace(/[\r\n]+$/, ""),
           });
         }
       }
