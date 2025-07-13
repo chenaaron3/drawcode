@@ -7,8 +7,19 @@
         "nums": "[3, 4, 5, 1, 2]"
       }
     },
-    "stdout": "<ast.Name object at 0x10474a090>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "nums": [
+        3,
+        4,
+        5,
+        1,
+        2
+      ],
+      "left": 3,
+      "right": 3,
+      "mid": 3
+    }
   },
   "ast": {
     "node_id": 0,
@@ -977,6 +988,1711 @@
       "node_id": 37
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def findMin(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid\n    return nums[left]",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def findMin(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid\n    return nums[left]",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      },
+      "delta": {
+        "nums": {
+          "0": 3,
+          "1": 4,
+          "2": 5,
+          "3": 1,
+          "4": 2
+        }
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337581120
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "left, right = 0, len(nums) - 1",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "0, len(nums) - 1",
+          "node_id": 8
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "len(nums) - 1",
+          "node_id": 17
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "len(nums)",
+          "node_id": 29
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 43
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 43,
+          "value": [
+            3,
+            4,
+            5,
+            1,
+            2
+          ]
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "len(nums)",
+          "node_id": 29,
+          "value": 5
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "len(nums) - 1",
+          "node_id": 17,
+          "value": 4
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "0, len(nums) - 1",
+          "node_id": 8,
+          "value": [
+            0,
+            4
+          ]
+        },
+        {
+          "step": 11,
+          "event": "after_statement",
+          "focus": "left, right = 0, len(nums) - 1",
+          "node_id": 3,
+          "locals": {
+            "nums": [
+              3,
+              4,
+              5,
+              1,
+              2
+            ],
+            "left": 0,
+            "right": 4
+          },
+          "object_table": {
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337581120": {
+              "type": "list",
+              "value": [
+                4318748896,
+                4318748928,
+                4318748960,
+                4318748832,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "nums": 4337581120,
+            "left": 4318748800,
+            "right": 4318748928
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 0,
+        "right": 4
+      },
+      "delta": {
+        "left": 0,
+        "right": 4
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748800,
+        "right": 4318748928
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "while left < right:\n        mid = (left + right) // 2\n        if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid",
+          "node_id": 4
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "left < right",
+          "node_id": 9
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "left",
+          "node_id": 19
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "left",
+          "node_id": 19,
+          "value": 0
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "right",
+          "node_id": 21
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "right",
+          "node_id": 21,
+          "value": 4
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "left < right",
+          "node_id": 9,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 0,
+        "right": 4
+      },
+      "delta": null,
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748800,
+        "right": 4318748928
+      },
+      "steps": [
+        {
+          "step": 19,
+          "event": "before_statement",
+          "focus": "mid = (left + right) // 2",
+          "node_id": 10
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "(left + right) // 2",
+          "node_id": 23
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "left + right",
+          "node_id": 32
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "left",
+          "node_id": 44
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "left",
+          "node_id": 44,
+          "value": 0
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "right",
+          "node_id": 46
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "right",
+          "node_id": 46,
+          "value": 4
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "left + right",
+          "node_id": 32,
+          "value": 4
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "(left + right) // 2",
+          "node_id": 23,
+          "value": 2
+        },
+        {
+          "step": 28,
+          "event": "after_statement",
+          "focus": "mid = (left + right) // 2",
+          "node_id": 10,
+          "locals": {
+            "nums": [
+              3,
+              4,
+              5,
+              1,
+              2
+            ],
+            "left": 0,
+            "right": 4,
+            "mid": 2
+          },
+          "var_table": {
+            "nums": 4337581120,
+            "left": 4318748800,
+            "right": 4318748928,
+            "mid": 4318748864
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 0,
+        "right": 4,
+        "mid": 2
+      },
+      "delta": {
+        "mid": 2
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748800,
+        "right": 4318748928,
+        "mid": 4318748864
+      },
+      "steps": [
+        {
+          "step": 29,
+          "event": "before_statement",
+          "focus": "if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid",
+          "node_id": 11
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "nums[mid] > nums[right]",
+          "node_id": 24
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "nums[mid]",
+          "node_id": 35
+        },
+        {
+          "step": 32,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 47
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 47,
+          "value": [
+            3,
+            4,
+            5,
+            1,
+            2
+          ]
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 48
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 48,
+          "value": 2
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "nums[mid]",
+          "node_id": 35,
+          "value": 5
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "nums[right]",
+          "node_id": 37
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 49
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 49,
+          "value": [
+            3,
+            4,
+            5,
+            1,
+            2
+          ]
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "right",
+          "node_id": 50
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "right",
+          "node_id": 50,
+          "value": 4
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "nums[right]",
+          "node_id": 37,
+          "value": 2
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "nums[mid] > nums[right]",
+          "node_id": 24,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 0,
+        "right": 4,
+        "mid": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748800,
+        "right": 4318748928,
+        "mid": 4318748864
+      },
+      "steps": [
+        {
+          "step": 44,
+          "event": "before_statement",
+          "focus": "left = mid + 1",
+          "node_id": 25
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "mid + 1",
+          "node_id": 39
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 51
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 51,
+          "value": 2
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "mid + 1",
+          "node_id": 39,
+          "value": 3
+        },
+        {
+          "step": 49,
+          "event": "after_statement",
+          "focus": "left = mid + 1",
+          "node_id": 25,
+          "locals": {
+            "nums": [
+              3,
+              4,
+              5,
+              1,
+              2
+            ],
+            "left": 3,
+            "right": 4,
+            "mid": 2
+          },
+          "object_table": {
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337581120": {
+              "type": "list",
+              "value": [
+                4318748896,
+                4318748928,
+                4318748960,
+                4318748832,
+                4318748864
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "nums": 4337581120,
+            "left": 4318748896,
+            "right": 4318748928,
+            "mid": 4318748864
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 3,
+        "right": 4,
+        "mid": 2
+      },
+      "delta": {
+        "left": 3
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748896,
+        "right": 4318748928,
+        "mid": 4318748864
+      },
+      "steps": [
+        {
+          "step": 50,
+          "event": "after_statement",
+          "focus": "if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid",
+          "node_id": 11
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 3,
+        "right": 4,
+        "mid": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748896,
+        "right": 4318748928,
+        "mid": 4318748864
+      },
+      "steps": [
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "left < right",
+          "node_id": 9
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "left",
+          "node_id": 19
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "left",
+          "node_id": 19,
+          "value": 3
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "right",
+          "node_id": 21
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "right",
+          "node_id": 21,
+          "value": 4
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "left < right",
+          "node_id": 9,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 3,
+        "right": 4,
+        "mid": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748896,
+        "right": 4318748928,
+        "mid": 4318748864
+      },
+      "steps": [
+        {
+          "step": 57,
+          "event": "before_statement",
+          "focus": "mid = (left + right) // 2",
+          "node_id": 10
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "(left + right) // 2",
+          "node_id": 23
+        },
+        {
+          "step": 59,
+          "event": "before_expression",
+          "focus": "left + right",
+          "node_id": 32
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "left",
+          "node_id": 44
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "left",
+          "node_id": 44,
+          "value": 3
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "right",
+          "node_id": 46
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "right",
+          "node_id": 46,
+          "value": 4
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "left + right",
+          "node_id": 32,
+          "value": 7
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "(left + right) // 2",
+          "node_id": 23,
+          "value": 3
+        },
+        {
+          "step": 66,
+          "event": "after_statement",
+          "focus": "mid = (left + right) // 2",
+          "node_id": 10,
+          "locals": {
+            "nums": [
+              3,
+              4,
+              5,
+              1,
+              2
+            ],
+            "left": 3,
+            "right": 4,
+            "mid": 3
+          },
+          "var_table": {
+            "nums": 4337581120,
+            "left": 4318748896,
+            "right": 4318748928,
+            "mid": 4318748896
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 3,
+        "right": 4,
+        "mid": 3
+      },
+      "delta": {
+        "mid": 3
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748896,
+        "right": 4318748928,
+        "mid": 4318748896
+      },
+      "steps": [
+        {
+          "step": 67,
+          "event": "before_statement",
+          "focus": "if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid",
+          "node_id": 11
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "nums[mid] > nums[right]",
+          "node_id": 24
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "nums[mid]",
+          "node_id": 35
+        },
+        {
+          "step": 70,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 47
+        },
+        {
+          "step": 71,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 47,
+          "value": [
+            3,
+            4,
+            5,
+            1,
+            2
+          ]
+        },
+        {
+          "step": 72,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 48
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 48,
+          "value": 3
+        },
+        {
+          "step": 74,
+          "event": "after_expression",
+          "focus": "nums[mid]",
+          "node_id": 35,
+          "value": 1
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "nums[right]",
+          "node_id": 37
+        },
+        {
+          "step": 76,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 49
+        },
+        {
+          "step": 77,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 49,
+          "value": [
+            3,
+            4,
+            5,
+            1,
+            2
+          ]
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "right",
+          "node_id": 50
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "right",
+          "node_id": 50,
+          "value": 4
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "nums[right]",
+          "node_id": 37,
+          "value": 2
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "nums[mid] > nums[right]",
+          "node_id": 24,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 3,
+        "right": 4,
+        "mid": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748896,
+        "right": 4318748928,
+        "mid": 4318748896
+      },
+      "steps": [
+        {
+          "step": 82,
+          "event": "before_statement",
+          "focus": "right = mid",
+          "node_id": 26
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "mid",
+          "node_id": 41
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "mid",
+          "node_id": 41,
+          "value": 3
+        },
+        {
+          "step": 85,
+          "event": "after_statement",
+          "focus": "right = mid",
+          "node_id": 26,
+          "locals": {
+            "nums": [
+              3,
+              4,
+              5,
+              1,
+              2
+            ],
+            "left": 3,
+            "right": 3,
+            "mid": 3
+          },
+          "var_table": {
+            "nums": 4337581120,
+            "left": 4318748896,
+            "right": 4318748896,
+            "mid": 4318748896
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 3,
+        "right": 3,
+        "mid": 3
+      },
+      "delta": {
+        "right": 3
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748896,
+        "right": 4318748896,
+        "mid": 4318748896
+      },
+      "steps": [
+        {
+          "step": 86,
+          "event": "after_statement",
+          "focus": "if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid",
+          "node_id": 11
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 3,
+        "right": 3,
+        "mid": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748896,
+        "right": 4318748896,
+        "mid": 4318748896
+      },
+      "steps": [
+        {
+          "step": 87,
+          "event": "before_expression",
+          "focus": "left < right",
+          "node_id": 9
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "left",
+          "node_id": 19
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "left",
+          "node_id": 19,
+          "value": 3
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "right",
+          "node_id": 21
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "right",
+          "node_id": 21,
+          "value": 3
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "left < right",
+          "node_id": 9,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 93,
+          "event": "after_statement",
+          "focus": "while left < right:\n        mid = (left + right) // 2\n        if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "left": 3,
+        "right": 3,
+        "mid": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337581120": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748928,
+            4318748960,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337581120,
+        "left": 4318748896,
+        "right": 4318748896,
+        "mid": 4318748896
+      },
+      "steps": [
+        {
+          "step": 94,
+          "event": "before_statement",
+          "focus": "return nums[left]",
+          "node_id": 5
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "nums[left]",
+          "node_id": 12
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 27
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 27,
+          "value": [
+            3,
+            4,
+            5,
+            1,
+            2
+          ]
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "left",
+          "node_id": 28
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "left",
+          "node_id": 28,
+          "value": 3
+        },
+        {
+          "step": 100,
+          "event": "after_expression",
+          "focus": "nums[left]",
+          "node_id": 12,
+          "value": 1
+        }
+      ]
+    }
+  ],
+  "result": 1
 }

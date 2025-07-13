@@ -7,8 +7,24 @@
         "n": "10"
       }
     },
-    "stdout": "<ast.Name object at 0x1046d2ed0>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "n": 10,
+      "is_prime": [
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false
+      ],
+      "i": 3,
+      "j": 9
+    }
   },
   "ast": {
     "node_id": 0,
@@ -1166,6 +1182,2442 @@
       "node_id": 55
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def countPrimes(n):\n    if n <= 2:\n        return 0\n    \n    is_prime = [True] * n\n    is_prime[0] = is_prime[1] = False\n    \n    for i in range(2, int(n ** 0.5) + 1):\n        if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False\n    \n    return sum(is_prime)",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def countPrimes(n):\n    if n <= 2:\n        return 0\n    \n    is_prime = [True] * n\n    is_prime[0] = is_prime[1] = False\n    \n    for i in range(2, int(n ** 0.5) + 1):\n        if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False\n    \n    return sum(is_prime)",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "n": 10
+      },
+      "delta": {
+        "n": 10
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if n <= 2:\n        return 0",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "n <= 2",
+          "node_id": 9
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 20
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 20,
+          "value": 10
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "n <= 2",
+          "node_id": 9,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "if n <= 2:\n        return 0",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "n": 10
+      },
+      "delta": null,
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "is_prime = [True] * n",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "[True] * n",
+          "node_id": 12
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "[True]",
+          "node_id": 25
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "[True]",
+          "node_id": 25,
+          "value": [
+            true
+          ]
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 27
+        },
+        {
+          "step": 13,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 27,
+          "value": 10
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "[True] * n",
+          "node_id": 12,
+          "value": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "step": 15,
+          "event": "after_statement",
+          "focus": "is_prime = [True] * n",
+          "node_id": 4,
+          "locals": {
+            "n": 10,
+            "is_prime": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ]
+          },
+          "object_table": {
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4318512624": {
+              "type": "bool",
+              "value": true,
+              "isCollection": false
+            },
+            "4342928448": {
+              "type": "list",
+              "value": [
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "n": 4318749120,
+            "is_prime": 4342928448
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "delta": {
+        "is_prime": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true,
+          "8": true,
+          "9": true
+        }
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448
+      },
+      "steps": [
+        {
+          "step": 16,
+          "event": "before_statement",
+          "focus": "is_prime[0] = is_prime[1] = False",
+          "node_id": 5
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "is_prime",
+          "node_id": 28
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "is_prime",
+          "node_id": 28,
+          "value": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "is_prime",
+          "node_id": 30,
+          "locals": {
+            "n": 10,
+            "is_prime": [
+              false,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ]
+          },
+          "object_table": {
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4318512656": {
+              "type": "bool",
+              "value": false,
+              "isCollection": false
+            },
+            "4318512624": {
+              "type": "bool",
+              "value": true,
+              "isCollection": false
+            },
+            "4342928448": {
+              "type": "list",
+              "value": [
+                4318512656,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624
+              ],
+              "isCollection": true
+            }
+          }
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "is_prime",
+          "node_id": 30,
+          "locals": {
+            "n": 10,
+            "is_prime": [
+              false,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ]
+          },
+          "object_table": {
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4318512656": {
+              "type": "bool",
+              "value": false,
+              "isCollection": false
+            },
+            "4318512624": {
+              "type": "bool",
+              "value": true,
+              "isCollection": false
+            },
+            "4342928448": {
+              "type": "list",
+              "value": [
+                4318512656,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624
+              ],
+              "isCollection": true
+            }
+          },
+          "value": [
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "step": 21,
+          "event": "after_statement",
+          "focus": "is_prime[0] = is_prime[1] = False",
+          "node_id": 5,
+          "locals": {
+            "n": 10,
+            "is_prime": [
+              false,
+              false,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ]
+          },
+          "object_table": {
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4318512656": {
+              "type": "bool",
+              "value": false,
+              "isCollection": false
+            },
+            "4318512624": {
+              "type": "bool",
+              "value": true,
+              "isCollection": false
+            },
+            "4342928448": {
+              "type": "list",
+              "value": [
+                4318512656,
+                4318512656,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624
+              ],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "delta": {
+        "is_prime": {
+          "0": false,
+          "1": false
+        }
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448
+      },
+      "steps": [
+        {
+          "step": 22,
+          "event": "before_statement",
+          "focus": "for i in range(2, int(n ** 0.5) + 1):\n        if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 6
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "range(2, int(n ** 0.5) + 1)",
+          "node_id": 17
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "int(n ** 0.5) + 1",
+          "node_id": 34
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "int(n ** 0.5)",
+          "node_id": 41
+        },
+        {
+          "step": 26,
+          "event": "before_expression",
+          "focus": "n ** 0.5",
+          "node_id": 50
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 57
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 57,
+          "value": 10
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "n ** 0.5",
+          "node_id": 50,
+          "value": 3.1622776601683795
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "int(n ** 0.5)",
+          "node_id": 41,
+          "value": 3
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "int(n ** 0.5) + 1",
+          "node_id": 34,
+          "value": 4
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "range(2, int(n ** 0.5) + 1)",
+          "node_id": 17,
+          "value": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "i": 2
+      },
+      "delta": {
+        "i": 2
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748864
+      },
+      "steps": [
+        {
+          "step": 33,
+          "event": "before_statement",
+          "focus": "if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 18
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "is_prime[i]",
+          "node_id": 35
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "is_prime",
+          "node_id": 44
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "is_prime",
+          "node_id": 44,
+          "value": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 45
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 45,
+          "value": 2
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "is_prime[i]",
+          "node_id": 35,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "i": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748864
+      },
+      "steps": [
+        {
+          "step": 40,
+          "event": "before_statement",
+          "focus": "for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 36
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "range(i * i, n, i)",
+          "node_id": 47
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "i * i",
+          "node_id": 52
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 60
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 60,
+          "value": 2
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 61
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 61,
+          "value": 2
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "i * i",
+          "node_id": 52,
+          "value": 4
+        },
+        {
+          "step": 48,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 53
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 53,
+          "value": 10
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 54
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 54,
+          "value": 2
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "range(i * i, n, i)",
+          "node_id": 47,
+          "value": [
+            4,
+            6,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "i": 2,
+        "j": 4
+      },
+      "delta": {
+        "j": 4
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748864,
+        "j": 4318748928
+      },
+      "steps": [
+        {
+          "step": 53,
+          "event": "before_statement",
+          "focus": "is_prime[j] = False",
+          "node_id": 48
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "is_prime",
+          "node_id": 62
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "is_prime",
+          "node_id": 62,
+          "value": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 63
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 63,
+          "value": 4
+        },
+        {
+          "step": 58,
+          "event": "after_statement",
+          "focus": "is_prime[j] = False",
+          "node_id": 48,
+          "locals": {
+            "n": 10,
+            "is_prime": [
+              false,
+              false,
+              true,
+              true,
+              false,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "i": 2,
+            "j": 4
+          },
+          "object_table": {
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4318512656": {
+              "type": "bool",
+              "value": false,
+              "isCollection": false
+            },
+            "4318512624": {
+              "type": "bool",
+              "value": true,
+              "isCollection": false
+            },
+            "4342928448": {
+              "type": "list",
+              "value": [
+                4318512656,
+                4318512656,
+                4318512624,
+                4318512624,
+                4318512656,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624,
+                4318512624
+              ],
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "i": 2,
+        "j": 6
+      },
+      "delta": {
+        "is_prime": {
+          "4": false
+        },
+        "j": 6
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748864,
+        "j": 4318748992
+      },
+      "steps": [
+        {
+          "step": 59,
+          "event": "before_statement",
+          "focus": "is_prime[j] = False",
+          "node_id": 48
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "is_prime",
+          "node_id": 62
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "is_prime",
+          "node_id": 62,
+          "value": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 63
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 63,
+          "value": 6
+        },
+        {
+          "step": 64,
+          "event": "after_statement",
+          "focus": "is_prime[j] = False",
+          "node_id": 48,
+          "locals": {
+            "n": 10,
+            "is_prime": [
+              false,
+              false,
+              true,
+              true,
+              false,
+              true,
+              false,
+              true,
+              true,
+              true
+            ],
+            "i": 2,
+            "j": 6
+          },
+          "object_table": {
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4318512656": {
+              "type": "bool",
+              "value": false,
+              "isCollection": false
+            },
+            "4318512624": {
+              "type": "bool",
+              "value": true,
+              "isCollection": false
+            },
+            "4342928448": {
+              "type": "list",
+              "value": [
+                4318512656,
+                4318512656,
+                4318512624,
+                4318512624,
+                4318512656,
+                4318512624,
+                4318512656,
+                4318512624,
+                4318512624,
+                4318512624
+              ],
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748992": {
+              "type": "int",
+              "value": 6,
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "i": 2,
+        "j": 8
+      },
+      "delta": {
+        "is_prime": {
+          "6": false
+        },
+        "j": 8
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318749056": {
+          "type": "int",
+          "value": 8,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748864,
+        "j": 4318749056
+      },
+      "steps": [
+        {
+          "step": 65,
+          "event": "before_statement",
+          "focus": "is_prime[j] = False",
+          "node_id": 48
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "is_prime",
+          "node_id": 62
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "is_prime",
+          "node_id": 62,
+          "value": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 63
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 63,
+          "value": 8
+        },
+        {
+          "step": 70,
+          "event": "after_statement",
+          "focus": "is_prime[j] = False",
+          "node_id": 48,
+          "locals": {
+            "n": 10,
+            "is_prime": [
+              false,
+              false,
+              true,
+              true,
+              false,
+              true,
+              false,
+              true,
+              false,
+              true
+            ],
+            "i": 2,
+            "j": 8
+          },
+          "object_table": {
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4318512656": {
+              "type": "bool",
+              "value": false,
+              "isCollection": false
+            },
+            "4318512624": {
+              "type": "bool",
+              "value": true,
+              "isCollection": false
+            },
+            "4342928448": {
+              "type": "list",
+              "value": [
+                4318512656,
+                4318512656,
+                4318512624,
+                4318512624,
+                4318512656,
+                4318512624,
+                4318512656,
+                4318512624,
+                4318512656,
+                4318512624
+              ],
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318749056": {
+              "type": "int",
+              "value": 8,
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "i": 2,
+        "j": 8
+      },
+      "delta": {
+        "is_prime": {
+          "8": false
+        }
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318749056": {
+          "type": "int",
+          "value": 8,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748864,
+        "j": 4318749056
+      },
+      "steps": [
+        {
+          "step": 71,
+          "event": "after_statement",
+          "focus": "for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 36
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "i": 2,
+        "j": 8
+      },
+      "delta": null,
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318749056": {
+          "type": "int",
+          "value": 8,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748864,
+        "j": 4318749056
+      },
+      "steps": [
+        {
+          "step": 72,
+          "event": "after_statement",
+          "focus": "if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "i": 3,
+        "j": 8
+      },
+      "delta": {
+        "i": 3
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318749056": {
+          "type": "int",
+          "value": 8,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748896,
+        "j": 4318749056
+      },
+      "steps": [
+        {
+          "step": 73,
+          "event": "before_statement",
+          "focus": "if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 18
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "is_prime[i]",
+          "node_id": 35
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "is_prime",
+          "node_id": 44
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "is_prime",
+          "node_id": 44,
+          "value": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true
+          ]
+        },
+        {
+          "step": 77,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 45
+        },
+        {
+          "step": 78,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 45,
+          "value": 3
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "is_prime[i]",
+          "node_id": 35,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "i": 3,
+        "j": 8
+      },
+      "delta": null,
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318749056": {
+          "type": "int",
+          "value": 8,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748896,
+        "j": 4318749056
+      },
+      "steps": [
+        {
+          "step": 80,
+          "event": "before_statement",
+          "focus": "for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 36
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "range(i * i, n, i)",
+          "node_id": 47
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "i * i",
+          "node_id": 52
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 60
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 60,
+          "value": 3
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 61
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 61,
+          "value": 3
+        },
+        {
+          "step": 87,
+          "event": "after_expression",
+          "focus": "i * i",
+          "node_id": 52,
+          "value": 9
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 53
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 53,
+          "value": 10
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 54
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 54,
+          "value": 3
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "range(i * i, n, i)",
+          "node_id": 47,
+          "value": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "i": 3,
+        "j": 9
+      },
+      "delta": {
+        "j": 9
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748896,
+        "j": 4318749088
+      },
+      "steps": [
+        {
+          "step": 93,
+          "event": "before_statement",
+          "focus": "is_prime[j] = False",
+          "node_id": 48
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "is_prime",
+          "node_id": 62
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "is_prime",
+          "node_id": 62,
+          "value": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true
+          ]
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "j",
+          "node_id": 63
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "j",
+          "node_id": 63,
+          "value": 9
+        },
+        {
+          "step": 98,
+          "event": "after_statement",
+          "focus": "is_prime[j] = False",
+          "node_id": 48,
+          "locals": {
+            "n": 10,
+            "is_prime": [
+              false,
+              false,
+              true,
+              true,
+              false,
+              true,
+              false,
+              true,
+              false,
+              false
+            ],
+            "i": 3,
+            "j": 9
+          },
+          "object_table": {
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4318512656": {
+              "type": "bool",
+              "value": false,
+              "isCollection": false
+            },
+            "4318512624": {
+              "type": "bool",
+              "value": true,
+              "isCollection": false
+            },
+            "4342928448": {
+              "type": "list",
+              "value": [
+                4318512656,
+                4318512656,
+                4318512624,
+                4318512624,
+                4318512656,
+                4318512624,
+                4318512656,
+                4318512624,
+                4318512656,
+                4318512656
+              ],
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false
+        ],
+        "i": 3,
+        "j": 9
+      },
+      "delta": {
+        "is_prime": {
+          "9": false
+        }
+      },
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512656
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748896,
+        "j": 4318749088
+      },
+      "steps": [
+        {
+          "step": 99,
+          "event": "after_statement",
+          "focus": "for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 36
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false
+        ],
+        "i": 3,
+        "j": 9
+      },
+      "delta": null,
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512656
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748896,
+        "j": 4318749088
+      },
+      "steps": [
+        {
+          "step": 100,
+          "event": "after_statement",
+          "focus": "if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false
+        ],
+        "i": 3,
+        "j": 9
+      },
+      "delta": null,
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512656
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748896,
+        "j": 4318749088
+      },
+      "steps": [
+        {
+          "step": 101,
+          "event": "after_statement",
+          "focus": "for i in range(2, int(n ** 0.5) + 1):\n        if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "n": 10,
+        "is_prime": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false
+        ],
+        "i": 3,
+        "j": 9
+      },
+      "delta": null,
+      "object_table": {
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4318512656": {
+          "type": "bool",
+          "value": false,
+          "isCollection": false
+        },
+        "4318512624": {
+          "type": "bool",
+          "value": true,
+          "isCollection": false
+        },
+        "4342928448": {
+          "type": "list",
+          "value": [
+            4318512656,
+            4318512656,
+            4318512624,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512624,
+            4318512656,
+            4318512656
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318749120,
+        "is_prime": 4342928448,
+        "i": 4318748896,
+        "j": 4318749088
+      },
+      "steps": [
+        {
+          "step": 102,
+          "event": "before_statement",
+          "focus": "return sum(is_prime)",
+          "node_id": 7
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "sum(is_prime)",
+          "node_id": 19
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "is_prime",
+          "node_id": 38
+        },
+        {
+          "step": 105,
+          "event": "after_expression",
+          "focus": "is_prime",
+          "node_id": 38,
+          "value": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false
+          ]
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "sum(is_prime)",
+          "node_id": 19,
+          "value": 4
+        }
+      ]
+    }
+  ],
+  "result": 4
 }

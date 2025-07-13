@@ -8,8 +8,23 @@
         "k": "2"
       }
     },
-    "stdout": "<ast.Name object at 0x10488ebd0>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "nums": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "k": 2,
+      "count": {
+        "1": 3,
+        "2": 2,
+        "3": 1
+      }
+    }
   },
   "ast": {
     "node_id": 0,
@@ -477,6 +492,528 @@
     "type_ignores": []
   },
   "relationships": [],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "import heapq",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "import heapq",
+          "node_id": 1,
+          "locals": {
+            "heapq": "<module 'heapq' from '/opt/homebrew/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/heapq.py'>"
+          },
+          "object_table": {
+            "4312276384": {
+              "type": "module",
+              "value": {},
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "heapq": 4312276384
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "heapq": "<module 'heapq' from '/opt/homebrew/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/heapq.py'>"
+      },
+      "delta": {
+        "heapq": "<module 'heapq' from '/opt/homebrew/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/heapq.py'>"
+      },
+      "object_table": {
+        "4312276384": {
+          "type": "module",
+          "value": {},
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "heapq": 4312276384
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "from collections import Counter",
+          "node_id": 2
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "from collections import Counter",
+          "node_id": 2
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "heapq": "<module 'heapq' from '/opt/homebrew/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/heapq.py'>"
+      },
+      "delta": null,
+      "object_table": {
+        "4312276384": {
+          "type": "module",
+          "value": {},
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "heapq": 4312276384
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "def topKFrequent(nums, k):\n    count = Counter(nums)\n    return [item for item, _ in count.most_common(k)]",
+          "node_id": 3
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "def topKFrequent(nums, k):\n    count = Counter(nums)\n    return [item for item, _ in count.most_common(k)]",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "delta": {
+        "nums": {
+          "0": 1,
+          "1": 1,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 3
+        },
+        "k": 2
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337570496": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748832,
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748896
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337570496,
+        "k": 4318748864
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "count = Counter(nums)",
+          "node_id": 7
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "Counter(nums)",
+          "node_id": 12
+        },
+        {
+          "step": 8,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 16
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 16,
+          "value": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "Counter(nums)",
+          "node_id": 12,
+          "value": {
+            "1": 3,
+            "2": 2,
+            "3": 1
+          }
+        },
+        {
+          "step": 11,
+          "event": "after_statement",
+          "focus": "count = Counter(nums)",
+          "node_id": 7,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            }
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337570496": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748832,
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748896
+              ],
+              "isCollection": true
+            },
+            "4337640672": {
+              "type": "Counter",
+              "value": {
+                "1": 4318748896,
+                "2": 4318748864,
+                "3": 4318748832
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "nums": 4337570496,
+            "k": 4318748864,
+            "count": 4337640672
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 2,
+        "count": {
+          "1": 3,
+          "2": 2,
+          "3": 1
+        }
+      },
+      "delta": {
+        "count": {
+          "1": 3,
+          "2": 2,
+          "3": 1
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337570496": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748832,
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748896
+          ],
+          "isCollection": true
+        },
+        "4337640672": {
+          "type": "Counter",
+          "value": {
+            "1": 4318748896,
+            "2": 4318748864,
+            "3": 4318748832
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337570496,
+        "k": 4318748864,
+        "count": 4337640672
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "return [item for item, _ in count.most_common(k)]",
+          "node_id": 8
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "[item for item, _ in count.most_common(k)]",
+          "node_id": 13
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "count.most_common(k)",
+          "node_id": 21
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "count.most_common",
+          "node_id": 24
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "k",
+          "node_id": 25
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "k",
+          "node_id": 25,
+          "value": 2
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "count.most_common(k)",
+          "node_id": 21,
+          "value": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "item",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            },
+            "item": 1
+          },
+          "var_table": {
+            "nums": 4337570496,
+            "k": 4318748864,
+            "count": 4337640672,
+            "item": 4318748832
+          }
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "item",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            },
+            "item": 1
+          },
+          "var_table": {
+            "nums": 4337570496,
+            "k": 4318748864,
+            "count": 4337640672,
+            "item": 4318748832
+          },
+          "value": 1
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "item",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            },
+            "item": 2
+          },
+          "var_table": {
+            "nums": 4337570496,
+            "k": 4318748864,
+            "count": 4337640672,
+            "item": 4318748864
+          }
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "item",
+          "node_id": 17,
+          "locals": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2,
+            "count": {
+              "1": 3,
+              "2": 2,
+              "3": 1
+            },
+            "item": 2
+          },
+          "var_table": {
+            "nums": 4337570496,
+            "k": 4318748864,
+            "count": 4337640672,
+            "item": 4318748864
+          },
+          "value": 2
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "[item for item, _ in count.most_common(k)]",
+          "node_id": 13,
+          "value": [
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "result": [
+    1,
+    2
+  ]
 }

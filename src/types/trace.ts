@@ -46,6 +46,7 @@ export type TraceStep = {
   focus: string;
   node_id: number;
   value?: any;
+  test?: boolean;
   locals?: Locals;
   object_table?: ObjectTable;
   var_table?: VarTable;

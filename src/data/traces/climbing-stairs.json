@@ -7,8 +7,14 @@
         "n": "3"
       }
     },
-    "stdout": "<ast.Name object at 0x104269e90>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "n": 3,
+      "prev2": 2,
+      "prev1": 3,
+      "i": 3,
+      "curr": 3
+    }
   },
   "ast": {
     "node_id": 0,
@@ -790,6 +796,558 @@
     "type_ignores": []
   },
   "relationships": [],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def climbStairs(n):\n    if n <= 2:\n        return n\n    \n    prev2, prev1 = 1, 2\n    \n    for i in range(3, n + 1):\n        curr = prev1 + prev2\n        prev2, prev1 = prev1, curr\n    \n    return prev1",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def climbStairs(n):\n    if n <= 2:\n        return n\n    \n    prev2, prev1 = 1, 2\n    \n    for i in range(3, n + 1):\n        curr = prev1 + prev2\n        prev2, prev1 = prev1, curr\n    \n    return prev1",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "n": 3
+      },
+      "delta": {
+        "n": 3
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748896
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if n <= 2:\n        return n",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "n <= 2",
+          "node_id": 8
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 17
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 17,
+          "value": 3
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "n <= 2",
+          "node_id": 8,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "if n <= 2:\n        return n",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "n": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748896
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "prev2, prev1 = 1, 2",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "1, 2",
+          "node_id": 11
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "1, 2",
+          "node_id": 11,
+          "value": [
+            1,
+            2
+          ]
+        },
+        {
+          "step": 11,
+          "event": "after_statement",
+          "focus": "prev2, prev1 = 1, 2",
+          "node_id": 4,
+          "locals": {
+            "n": 3,
+            "prev2": 1,
+            "prev1": 2
+          },
+          "object_table": {
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "n": 4318748896,
+            "prev2": 4318748832,
+            "prev1": 4318748864
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "n": 3,
+        "prev2": 1,
+        "prev1": 2
+      },
+      "delta": {
+        "prev2": 1,
+        "prev1": 2
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748896,
+        "prev2": 4318748832,
+        "prev1": 4318748864
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "for i in range(3, n + 1):\n        curr = prev1 + prev2\n        prev2, prev1 = prev1, curr",
+          "node_id": 5
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "range(3, n + 1)",
+          "node_id": 13
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "n + 1",
+          "node_id": 29
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 34
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 34,
+          "value": 3
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "n + 1",
+          "node_id": 29,
+          "value": 4
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "range(3, n + 1)",
+          "node_id": 13,
+          "value": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "n": 3,
+        "prev2": 1,
+        "prev1": 2,
+        "i": 3
+      },
+      "delta": {
+        "i": 3
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748896,
+        "prev2": 4318748832,
+        "prev1": 4318748864,
+        "i": 4318748896
+      },
+      "steps": [
+        {
+          "step": 19,
+          "event": "before_statement",
+          "focus": "curr = prev1 + prev2",
+          "node_id": 14
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "prev1 + prev2",
+          "node_id": 31
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "prev1",
+          "node_id": 37
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "prev1",
+          "node_id": 37,
+          "value": 2
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "prev2",
+          "node_id": 38
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "prev2",
+          "node_id": 38,
+          "value": 1
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "prev1 + prev2",
+          "node_id": 31,
+          "value": 3
+        },
+        {
+          "step": 26,
+          "event": "after_statement",
+          "focus": "curr = prev1 + prev2",
+          "node_id": 14,
+          "locals": {
+            "n": 3,
+            "prev2": 1,
+            "prev1": 2,
+            "i": 3,
+            "curr": 3
+          },
+          "var_table": {
+            "n": 4318748896,
+            "prev2": 4318748832,
+            "prev1": 4318748864,
+            "i": 4318748896,
+            "curr": 4318748896
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "n": 3,
+        "prev2": 1,
+        "prev1": 2,
+        "i": 3,
+        "curr": 3
+      },
+      "delta": {
+        "curr": 3
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748896,
+        "prev2": 4318748832,
+        "prev1": 4318748864,
+        "i": 4318748896,
+        "curr": 4318748896
+      },
+      "steps": [
+        {
+          "step": 27,
+          "event": "before_statement",
+          "focus": "prev2, prev1 = prev1, curr",
+          "node_id": 15
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "prev1, curr",
+          "node_id": 33
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "prev1",
+          "node_id": 41
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "prev1",
+          "node_id": 41,
+          "value": 2
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "curr",
+          "node_id": 42
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "curr",
+          "node_id": 42,
+          "value": 3
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "prev1, curr",
+          "node_id": 33,
+          "value": [
+            2,
+            3
+          ]
+        },
+        {
+          "step": 34,
+          "event": "after_statement",
+          "focus": "prev2, prev1 = prev1, curr",
+          "node_id": 15,
+          "locals": {
+            "n": 3,
+            "prev2": 2,
+            "prev1": 3,
+            "i": 3,
+            "curr": 3
+          },
+          "object_table": {
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "n": 4318748896,
+            "prev2": 4318748864,
+            "prev1": 4318748896,
+            "i": 4318748896,
+            "curr": 4318748896
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "n": 3,
+        "prev2": 2,
+        "prev1": 3,
+        "i": 3,
+        "curr": 3
+      },
+      "delta": {
+        "prev2": 2,
+        "prev1": 3
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748896,
+        "prev2": 4318748864,
+        "prev1": 4318748896,
+        "i": 4318748896,
+        "curr": 4318748896
+      },
+      "steps": [
+        {
+          "step": 35,
+          "event": "after_statement",
+          "focus": "for i in range(3, n + 1):\n        curr = prev1 + prev2\n        prev2, prev1 = prev1, curr",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "n": 3,
+        "prev2": 2,
+        "prev1": 3,
+        "i": 3,
+        "curr": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748896,
+        "prev2": 4318748864,
+        "prev1": 4318748896,
+        "i": 4318748896,
+        "curr": 4318748896
+      },
+      "steps": [
+        {
+          "step": 36,
+          "event": "before_statement",
+          "focus": "return prev1",
+          "node_id": 6
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "prev1",
+          "node_id": 16
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "prev1",
+          "node_id": 16,
+          "value": 3
+        }
+      ]
+    }
+  ],
+  "result": 3
 }

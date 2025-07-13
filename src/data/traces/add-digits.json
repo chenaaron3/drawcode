@@ -7,8 +7,10 @@
         "num": "38"
       }
     },
-    "stdout": "<ast.Name object at 0x10460d690>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "num": 38
+    }
   },
   "ast": {
     "node_id": 0,
@@ -330,6 +332,165 @@
     "type_ignores": []
   },
   "relationships": [],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def addDigits(num):\n    if num == 0:\n        return 0\n    return 1 + (num - 1) % 9",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def addDigits(num):\n    if num == 0:\n        return 0\n    return 1 + (num - 1) % 9",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "num": 38
+      },
+      "delta": {
+        "num": 38
+      },
+      "object_table": {
+        "4318750016": {
+          "type": "int",
+          "value": 38,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "num": 4318750016
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if num == 0:\n        return 0",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "num == 0",
+          "node_id": 6
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 9
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 9,
+          "value": 38
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "num == 0",
+          "node_id": 6,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "if num == 0:\n        return 0",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "num": 38
+      },
+      "delta": null,
+      "object_table": {
+        "4318750016": {
+          "type": "int",
+          "value": 38,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "num": 4318750016
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "return 1 + (num - 1) % 9",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "1 + (num - 1) % 9",
+          "node_id": 8
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "(num - 1) % 9",
+          "node_id": 15
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "num - 1",
+          "node_id": 17
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 20
+        },
+        {
+          "step": 13,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 20,
+          "value": 38
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "num - 1",
+          "node_id": 17,
+          "value": 37
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "(num - 1) % 9",
+          "node_id": 15,
+          "value": 1
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "1 + (num - 1) % 9",
+          "node_id": 8,
+          "value": 2
+        }
+      ]
+    }
+  ],
+  "result": 2
 }

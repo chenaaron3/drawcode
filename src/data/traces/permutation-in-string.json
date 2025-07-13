@@ -8,8 +8,22 @@
         "s2": "'eidbaooo'"
       }
     },
-    "stdout": "<ast.Name object at 0x10449b710>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "s1": "ab",
+      "s2": "eidbaooo",
+      "s1_count": {
+        "a": 1,
+        "b": 1
+      },
+      "window_size": 2,
+      "window_count": {
+        "b": 1,
+        "a": 1
+      },
+      "i": 4,
+      "left_char": "d"
+    }
   },
   "ast": {
     "node_id": 0,
@@ -1795,6 +1809,4301 @@
       "node_id": 79
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def checkInclusion(s1, s2):\n    from collections import Counter\n    \n    if len(s1) > len(s2):\n        return False\n    \n    s1_count = Counter(s1)\n    window_size = len(s1)\n    \n    # Initialize sliding window\n    window_count = Counter(s2[:window_size])\n    \n    if window_count == s1_count:\n        return True\n    \n    # Slide the window\n    for i in range(window_size, len(s2)):\n        # Add new character\n        window_count[s2[i]] += 1\n        \n        # Remove old character\n        left_char = s2[i - window_size]\n        window_count[left_char] -= 1\n        if window_count[left_char] == 0:\n            del window_count[left_char]\n        \n        if window_count == s1_count:\n            return True\n    \n    return False",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def checkInclusion(s1, s2):\n    from collections import Counter\n    \n    if len(s1) > len(s2):\n        return False\n    \n    s1_count = Counter(s1)\n    window_size = len(s1)\n    \n    # Initialize sliding window\n    window_count = Counter(s2[:window_size])\n    \n    if window_count == s1_count:\n        return True\n    \n    # Slide the window\n    for i in range(window_size, len(s2)):\n        # Add new character\n        window_count[s2[i]] += 1\n        \n        # Remove old character\n        left_char = s2[i - window_size]\n        window_count[left_char] -= 1\n        if window_count[left_char] == 0:\n            del window_count[left_char]\n        \n        if window_count == s1_count:\n            return True\n    \n    return False",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo"
+      },
+      "delta": {
+        "s1": "ab",
+        "s2": "eidbaooo"
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "from collections import Counter",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "from collections import Counter",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "if len(s1) > len(s2):\n        return False",
+          "node_id": 4
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "len(s1) > len(s2)",
+          "node_id": 14
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "len(s1)",
+          "node_id": 32
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "s1",
+          "node_id": 63
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "s1",
+          "node_id": 63,
+          "value": "ab"
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "len(s1)",
+          "node_id": 32,
+          "value": 2
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "len(s2)",
+          "node_id": 34
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "s2",
+          "node_id": 65
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "s2",
+          "node_id": 65,
+          "value": "eidbaooo"
+        },
+        {
+          "step": 13,
+          "event": "after_expression",
+          "focus": "len(s2)",
+          "node_id": 34,
+          "value": 8
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "len(s1) > len(s2)",
+          "node_id": 14,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 15,
+          "event": "after_statement",
+          "focus": "if len(s1) > len(s2):\n        return False",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600
+      },
+      "steps": [
+        {
+          "step": 16,
+          "event": "before_statement",
+          "focus": "s1_count = Counter(s1)",
+          "node_id": 5
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "Counter(s1)",
+          "node_id": 17
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "s1",
+          "node_id": 38
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "s1",
+          "node_id": 38,
+          "value": "ab"
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "Counter(s1)",
+          "node_id": 17,
+          "value": {
+            "a": 1,
+            "b": 1
+          }
+        },
+        {
+          "step": 21,
+          "event": "after_statement",
+          "focus": "s1_count = Counter(s1)",
+          "node_id": 5,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            }
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "s1": 4337539120,
+            "s2": 4337735600,
+            "s1_count": 4337645872
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        }
+      },
+      "delta": {
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        }
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872
+      },
+      "steps": [
+        {
+          "step": 22,
+          "event": "before_statement",
+          "focus": "window_size = len(s1)",
+          "node_id": 6
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "len(s1)",
+          "node_id": 19
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "s1",
+          "node_id": 40
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "s1",
+          "node_id": 40,
+          "value": "ab"
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "len(s1)",
+          "node_id": 19,
+          "value": 2
+        },
+        {
+          "step": 27,
+          "event": "after_statement",
+          "focus": "window_size = len(s1)",
+          "node_id": 6,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "s1": 4337539120,
+            "s2": 4337735600,
+            "s1_count": 4337645872,
+            "window_size": 4318748864
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2
+      },
+      "delta": {
+        "window_size": 2
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864
+      },
+      "steps": [
+        {
+          "step": 28,
+          "event": "before_statement",
+          "focus": "window_count = Counter(s2[:window_size])",
+          "node_id": 7
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "Counter(s2[:window_size])",
+          "node_id": 21
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "s2[:window_size]",
+          "node_id": 42
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "s2",
+          "node_id": 67
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "s2",
+          "node_id": 67,
+          "value": "eidbaooo"
+        },
+        {
+          "step": 33,
+          "event": "before_expression",
+          "focus": ":window_size",
+          "node_id": 68
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "window_size",
+          "node_id": 83
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "window_size",
+          "node_id": 83,
+          "value": 2
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": ":window_size",
+          "node_id": 68,
+          "value": "slice(None, 2, None)"
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "s2[:window_size]",
+          "node_id": 42,
+          "value": "ei"
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "Counter(s2[:window_size])",
+          "node_id": 21,
+          "value": {
+            "e": 1,
+            "i": 1
+          }
+        },
+        {
+          "step": 39,
+          "event": "after_statement",
+          "focus": "window_count = Counter(s2[:window_size])",
+          "node_id": 7,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "e": 1,
+              "i": 1
+            }
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "e": 4318748832,
+                "i": 4318748832
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "s1": 4337539120,
+            "s2": 4337735600,
+            "s1_count": 4337645872,
+            "window_size": 4318748864,
+            "window_count": 4337644352
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "e": 1,
+          "i": 1
+        }
+      },
+      "delta": {
+        "window_count": {
+          "e": 1,
+          "i": 1
+        }
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "e": 4318748832,
+            "i": 4318748832
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352
+      },
+      "steps": [
+        {
+          "step": 40,
+          "event": "before_statement",
+          "focus": "if window_count == s1_count:\n        return True",
+          "node_id": 8
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "window_count == s1_count",
+          "node_id": 22
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 43
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 43,
+          "value": {
+            "e": 1,
+            "i": 1
+          }
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "s1_count",
+          "node_id": 45
+        },
+        {
+          "step": 45,
+          "event": "after_expression",
+          "focus": "s1_count",
+          "node_id": 45,
+          "value": {
+            "a": 1,
+            "b": 1
+          }
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "window_count == s1_count",
+          "node_id": 22,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 47,
+          "event": "after_statement",
+          "focus": "if window_count == s1_count:\n        return True",
+          "node_id": 8
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "e": 1,
+          "i": 1
+        }
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "e": 4318748832,
+            "i": 4318748832
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352
+      },
+      "steps": [
+        {
+          "step": 48,
+          "event": "before_statement",
+          "focus": "for i in range(window_size, len(s2)):\n        # Add new character\n        window_count[s2[i]] += 1\n        \n        # Remove old character\n        left_char = s2[i - window_size]\n        window_count[left_char] -= 1\n        if window_count[left_char] == 0:\n            del window_count[left_char]\n        \n        if window_count == s1_count:\n            return True",
+          "node_id": 9
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "range(window_size, len(s2))",
+          "node_id": 25
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "window_size",
+          "node_id": 48
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "window_size",
+          "node_id": 48,
+          "value": 2
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "len(s2)",
+          "node_id": 49
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "s2",
+          "node_id": 70
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "s2",
+          "node_id": 70,
+          "value": "eidbaooo"
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "len(s2)",
+          "node_id": 49,
+          "value": 8
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "range(window_size, len(s2))",
+          "node_id": 25,
+          "value": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 19,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "e": 1,
+          "i": 1
+        },
+        "i": 2
+      },
+      "delta": {
+        "i": 2
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "e": 4318748832,
+            "i": 4318748832
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748864
+      },
+      "steps": [
+        {
+          "step": 57,
+          "event": "before_statement",
+          "focus": "window_count[s2[i]] += 1",
+          "node_id": 26
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 71
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 71,
+          "value": {
+            "e": 1,
+            "i": 1
+          }
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "s2[i]",
+          "node_id": 72
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "s2[i]",
+          "node_id": 72,
+          "value": "d"
+        },
+        {
+          "step": 62,
+          "event": "after_statement",
+          "focus": "window_count[s2[i]] += 1",
+          "node_id": 26,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "e": 1,
+              "i": 1,
+              "d": 1
+            },
+            "i": 2
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "e": 4318748832,
+                "i": 4318748832,
+                "d": 4318748832
+              },
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 22,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "e": 1,
+          "i": 1,
+          "d": 1
+        },
+        "i": 2
+      },
+      "delta": {
+        "window_count": {
+          "d": 1
+        }
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "e": 4318748832,
+            "i": 4318748832,
+            "d": 4318748832
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748864
+      },
+      "steps": [
+        {
+          "step": 63,
+          "event": "before_statement",
+          "focus": "left_char = s2[i - window_size]",
+          "node_id": 27
+        },
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "s2[i - window_size]",
+          "node_id": 54
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "s2",
+          "node_id": 73
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "s2",
+          "node_id": 73,
+          "value": "eidbaooo"
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "i - window_size",
+          "node_id": 74
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 86
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 86,
+          "value": 2
+        },
+        {
+          "step": 70,
+          "event": "before_expression",
+          "focus": "window_size",
+          "node_id": 87
+        },
+        {
+          "step": 71,
+          "event": "after_expression",
+          "focus": "window_size",
+          "node_id": 87,
+          "value": 2
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "i - window_size",
+          "node_id": 74,
+          "value": 0
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "s2[i - window_size]",
+          "node_id": 54,
+          "value": "e"
+        },
+        {
+          "step": 74,
+          "event": "after_statement",
+          "focus": "left_char = s2[i - window_size]",
+          "node_id": 27,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "e": 1,
+              "i": 1,
+              "d": 1
+            },
+            "i": 2,
+            "left_char": "e"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "e": 4318748832,
+                "i": 4318748832,
+                "d": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "s1": 4337539120,
+            "s2": 4337735600,
+            "s1_count": 4337645872,
+            "window_size": 4318748864,
+            "window_count": 4337644352,
+            "i": 4318748864,
+            "left_char": 4318813592
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "e": 1,
+          "i": 1,
+          "d": 1
+        },
+        "i": 2,
+        "left_char": "e"
+      },
+      "delta": {
+        "left_char": "e"
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "e": 4318748832,
+            "i": 4318748832,
+            "d": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748864,
+        "left_char": 4318813592
+      },
+      "steps": [
+        {
+          "step": 75,
+          "event": "before_statement",
+          "focus": "window_count[left_char] -= 1",
+          "node_id": 28
+        },
+        {
+          "step": 76,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 75
+        },
+        {
+          "step": 77,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 75,
+          "value": {
+            "e": 1,
+            "i": 1,
+            "d": 1
+          }
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "left_char",
+          "node_id": 76
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "left_char",
+          "node_id": 76,
+          "value": "e"
+        },
+        {
+          "step": 80,
+          "event": "after_statement",
+          "focus": "window_count[left_char] -= 1",
+          "node_id": 28,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "e": 0,
+              "i": 1,
+              "d": 1
+            },
+            "i": 2,
+            "left_char": "e"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "e": 4318748800,
+                "i": 4318748832,
+                "d": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "e": 0,
+          "i": 1,
+          "d": 1
+        },
+        "i": 2,
+        "left_char": "e"
+      },
+      "delta": {
+        "window_count": {
+          "e": 0
+        }
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "e": 4318748800,
+            "i": 4318748832,
+            "d": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748864,
+        "left_char": 4318813592
+      },
+      "steps": [
+        {
+          "step": 81,
+          "event": "before_statement",
+          "focus": "if window_count[left_char] == 0:\n            del window_count[left_char]",
+          "node_id": 29
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "window_count[left_char] == 0",
+          "node_id": 58
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "window_count[left_char]",
+          "node_id": 77
+        },
+        {
+          "step": 84,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 88
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 88,
+          "value": {
+            "e": 0,
+            "i": 1,
+            "d": 1
+          }
+        },
+        {
+          "step": 86,
+          "event": "before_expression",
+          "focus": "left_char",
+          "node_id": 89
+        },
+        {
+          "step": 87,
+          "event": "after_expression",
+          "focus": "left_char",
+          "node_id": 89,
+          "value": "e"
+        },
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "window_count[left_char]",
+          "node_id": 77,
+          "value": 0
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "window_count[left_char] == 0",
+          "node_id": 58,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 25,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "e": 0,
+          "i": 1,
+          "d": 1
+        },
+        "i": 2,
+        "left_char": "e"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "e": 4318748800,
+            "i": 4318748832,
+            "d": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748864,
+        "left_char": 4318813592
+      },
+      "steps": [
+        {
+          "step": 90,
+          "event": "before_statement",
+          "focus": "del window_count[left_char]",
+          "node_id": 59
+        },
+        {
+          "step": 91,
+          "event": "after_statement",
+          "focus": "del window_count[left_char]",
+          "node_id": 59,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "i": 1,
+              "d": 1
+            },
+            "i": 2,
+            "left_char": "e"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "i": 4318748832,
+                "d": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "i": 1,
+          "d": 1
+        },
+        "i": 2,
+        "left_char": "e"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "i": 4318748832,
+            "d": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748864,
+        "left_char": 4318813592
+      },
+      "steps": [
+        {
+          "step": 92,
+          "event": "after_statement",
+          "focus": "if window_count[left_char] == 0:\n            del window_count[left_char]",
+          "node_id": 29
+        }
+      ]
+    },
+    {
+      "line_number": 27,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "i": 1,
+          "d": 1
+        },
+        "i": 2,
+        "left_char": "e"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "i": 4318748832,
+            "d": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748864,
+        "left_char": 4318813592
+      },
+      "steps": [
+        {
+          "step": 93,
+          "event": "before_statement",
+          "focus": "if window_count == s1_count:\n            return True",
+          "node_id": 30
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "window_count == s1_count",
+          "node_id": 60
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 80
+        },
+        {
+          "step": 96,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 80,
+          "value": {
+            "i": 1,
+            "d": 1
+          }
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "s1_count",
+          "node_id": 81
+        },
+        {
+          "step": 98,
+          "event": "after_expression",
+          "focus": "s1_count",
+          "node_id": 81,
+          "value": {
+            "a": 1,
+            "b": 1
+          }
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "window_count == s1_count",
+          "node_id": 60,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 100,
+          "event": "after_statement",
+          "focus": "if window_count == s1_count:\n            return True",
+          "node_id": 30
+        }
+      ]
+    },
+    {
+      "line_number": 19,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "i": 1,
+          "d": 1
+        },
+        "i": 3,
+        "left_char": "e"
+      },
+      "delta": {
+        "i": 3
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "i": 4318748832,
+            "d": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748896,
+        "left_char": 4318813592
+      },
+      "steps": [
+        {
+          "step": 101,
+          "event": "before_statement",
+          "focus": "window_count[s2[i]] += 1",
+          "node_id": 26
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 71
+        },
+        {
+          "step": 103,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 71,
+          "value": {
+            "i": 1,
+            "d": 1
+          }
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "s2[i]",
+          "node_id": 72
+        },
+        {
+          "step": 105,
+          "event": "after_expression",
+          "focus": "s2[i]",
+          "node_id": 72,
+          "value": "b"
+        },
+        {
+          "step": 106,
+          "event": "after_statement",
+          "focus": "window_count[s2[i]] += 1",
+          "node_id": 26,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "i": 1,
+              "d": 1,
+              "b": 1
+            },
+            "i": 3,
+            "left_char": "e"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "i": 4318748832,
+                "d": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 22,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "i": 1,
+          "d": 1,
+          "b": 1
+        },
+        "i": 3,
+        "left_char": "e"
+      },
+      "delta": {
+        "window_count": {
+          "b": 1
+        }
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "i": 4318748832,
+            "d": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748896,
+        "left_char": 4318813592
+      },
+      "steps": [
+        {
+          "step": 107,
+          "event": "before_statement",
+          "focus": "left_char = s2[i - window_size]",
+          "node_id": 27
+        },
+        {
+          "step": 108,
+          "event": "before_expression",
+          "focus": "s2[i - window_size]",
+          "node_id": 54
+        },
+        {
+          "step": 109,
+          "event": "before_expression",
+          "focus": "s2",
+          "node_id": 73
+        },
+        {
+          "step": 110,
+          "event": "after_expression",
+          "focus": "s2",
+          "node_id": 73,
+          "value": "eidbaooo"
+        },
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "i - window_size",
+          "node_id": 74
+        },
+        {
+          "step": 112,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 86
+        },
+        {
+          "step": 113,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 86,
+          "value": 3
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "window_size",
+          "node_id": 87
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "window_size",
+          "node_id": 87,
+          "value": 2
+        },
+        {
+          "step": 116,
+          "event": "after_expression",
+          "focus": "i - window_size",
+          "node_id": 74,
+          "value": 1
+        },
+        {
+          "step": 117,
+          "event": "after_expression",
+          "focus": "s2[i - window_size]",
+          "node_id": 54,
+          "value": "i"
+        },
+        {
+          "step": 118,
+          "event": "after_statement",
+          "focus": "left_char = s2[i - window_size]",
+          "node_id": 27,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "i": 1,
+              "d": 1,
+              "b": 1
+            },
+            "i": 3,
+            "left_char": "i"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "i": 4318748832,
+                "d": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318813784": {
+              "type": "str",
+              "value": "i",
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "s1": 4337539120,
+            "s2": 4337735600,
+            "s1_count": 4337645872,
+            "window_size": 4318748864,
+            "window_count": 4337644352,
+            "i": 4318748896,
+            "left_char": 4318813784
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "i": 1,
+          "d": 1,
+          "b": 1
+        },
+        "i": 3,
+        "left_char": "i"
+      },
+      "delta": {
+        "left_char": "i"
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "i": 4318748832,
+            "d": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318813784": {
+          "type": "str",
+          "value": "i",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748896,
+        "left_char": 4318813784
+      },
+      "steps": [
+        {
+          "step": 119,
+          "event": "before_statement",
+          "focus": "window_count[left_char] -= 1",
+          "node_id": 28
+        },
+        {
+          "step": 120,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 75
+        },
+        {
+          "step": 121,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 75,
+          "value": {
+            "i": 1,
+            "d": 1,
+            "b": 1
+          }
+        },
+        {
+          "step": 122,
+          "event": "before_expression",
+          "focus": "left_char",
+          "node_id": 76
+        },
+        {
+          "step": 123,
+          "event": "after_expression",
+          "focus": "left_char",
+          "node_id": 76,
+          "value": "i"
+        },
+        {
+          "step": 124,
+          "event": "after_statement",
+          "focus": "window_count[left_char] -= 1",
+          "node_id": 28,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "i": 0,
+              "d": 1,
+              "b": 1
+            },
+            "i": 3,
+            "left_char": "i"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "i": 4318748800,
+                "d": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318813784": {
+              "type": "str",
+              "value": "i",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "i": 0,
+          "d": 1,
+          "b": 1
+        },
+        "i": 3,
+        "left_char": "i"
+      },
+      "delta": {
+        "window_count": {
+          "i": 0
+        }
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "i": 4318748800,
+            "d": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318813784": {
+          "type": "str",
+          "value": "i",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748896,
+        "left_char": 4318813784
+      },
+      "steps": [
+        {
+          "step": 125,
+          "event": "before_statement",
+          "focus": "if window_count[left_char] == 0:\n            del window_count[left_char]",
+          "node_id": 29
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "window_count[left_char] == 0",
+          "node_id": 58
+        },
+        {
+          "step": 127,
+          "event": "before_expression",
+          "focus": "window_count[left_char]",
+          "node_id": 77
+        },
+        {
+          "step": 128,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 88
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 88,
+          "value": {
+            "i": 0,
+            "d": 1,
+            "b": 1
+          }
+        },
+        {
+          "step": 130,
+          "event": "before_expression",
+          "focus": "left_char",
+          "node_id": 89
+        },
+        {
+          "step": 131,
+          "event": "after_expression",
+          "focus": "left_char",
+          "node_id": 89,
+          "value": "i"
+        },
+        {
+          "step": 132,
+          "event": "after_expression",
+          "focus": "window_count[left_char]",
+          "node_id": 77,
+          "value": 0
+        },
+        {
+          "step": 133,
+          "event": "after_expression",
+          "focus": "window_count[left_char] == 0",
+          "node_id": 58,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 25,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "i": 0,
+          "d": 1,
+          "b": 1
+        },
+        "i": 3,
+        "left_char": "i"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "i": 4318748800,
+            "d": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318813784": {
+          "type": "str",
+          "value": "i",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748896,
+        "left_char": 4318813784
+      },
+      "steps": [
+        {
+          "step": 134,
+          "event": "before_statement",
+          "focus": "del window_count[left_char]",
+          "node_id": 59
+        },
+        {
+          "step": 135,
+          "event": "after_statement",
+          "focus": "del window_count[left_char]",
+          "node_id": 59,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "d": 1,
+              "b": 1
+            },
+            "i": 3,
+            "left_char": "i"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "d": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318813784": {
+              "type": "str",
+              "value": "i",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "d": 1,
+          "b": 1
+        },
+        "i": 3,
+        "left_char": "i"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "d": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318813784": {
+          "type": "str",
+          "value": "i",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748896,
+        "left_char": 4318813784
+      },
+      "steps": [
+        {
+          "step": 136,
+          "event": "after_statement",
+          "focus": "if window_count[left_char] == 0:\n            del window_count[left_char]",
+          "node_id": 29
+        }
+      ]
+    },
+    {
+      "line_number": 27,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "d": 1,
+          "b": 1
+        },
+        "i": 3,
+        "left_char": "i"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "d": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318813784": {
+          "type": "str",
+          "value": "i",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748896,
+        "left_char": 4318813784
+      },
+      "steps": [
+        {
+          "step": 137,
+          "event": "before_statement",
+          "focus": "if window_count == s1_count:\n            return True",
+          "node_id": 30
+        },
+        {
+          "step": 138,
+          "event": "before_expression",
+          "focus": "window_count == s1_count",
+          "node_id": 60
+        },
+        {
+          "step": 139,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 80
+        },
+        {
+          "step": 140,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 80,
+          "value": {
+            "d": 1,
+            "b": 1
+          }
+        },
+        {
+          "step": 141,
+          "event": "before_expression",
+          "focus": "s1_count",
+          "node_id": 81
+        },
+        {
+          "step": 142,
+          "event": "after_expression",
+          "focus": "s1_count",
+          "node_id": 81,
+          "value": {
+            "a": 1,
+            "b": 1
+          }
+        },
+        {
+          "step": 143,
+          "event": "after_expression",
+          "focus": "window_count == s1_count",
+          "node_id": 60,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 144,
+          "event": "after_statement",
+          "focus": "if window_count == s1_count:\n            return True",
+          "node_id": 30
+        }
+      ]
+    },
+    {
+      "line_number": 19,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "d": 1,
+          "b": 1
+        },
+        "i": 4,
+        "left_char": "i"
+      },
+      "delta": {
+        "i": 4
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "d": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318813784": {
+          "type": "str",
+          "value": "i",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748928,
+        "left_char": 4318813784
+      },
+      "steps": [
+        {
+          "step": 145,
+          "event": "before_statement",
+          "focus": "window_count[s2[i]] += 1",
+          "node_id": 26
+        },
+        {
+          "step": 146,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 71
+        },
+        {
+          "step": 147,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 71,
+          "value": {
+            "d": 1,
+            "b": 1
+          }
+        },
+        {
+          "step": 148,
+          "event": "before_expression",
+          "focus": "s2[i]",
+          "node_id": 72
+        },
+        {
+          "step": 149,
+          "event": "after_expression",
+          "focus": "s2[i]",
+          "node_id": 72,
+          "value": "a"
+        },
+        {
+          "step": 150,
+          "event": "after_statement",
+          "focus": "window_count[s2[i]] += 1",
+          "node_id": 26,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "d": 1,
+              "b": 1,
+              "a": 1
+            },
+            "i": 4,
+            "left_char": "i"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "d": 4318748832,
+                "b": 4318748832,
+                "a": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4318813784": {
+              "type": "str",
+              "value": "i",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 22,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "d": 1,
+          "b": 1,
+          "a": 1
+        },
+        "i": 4,
+        "left_char": "i"
+      },
+      "delta": {
+        "window_count": {
+          "a": 1
+        }
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "d": 4318748832,
+            "b": 4318748832,
+            "a": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318813784": {
+          "type": "str",
+          "value": "i",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748928,
+        "left_char": 4318813784
+      },
+      "steps": [
+        {
+          "step": 151,
+          "event": "before_statement",
+          "focus": "left_char = s2[i - window_size]",
+          "node_id": 27
+        },
+        {
+          "step": 152,
+          "event": "before_expression",
+          "focus": "s2[i - window_size]",
+          "node_id": 54
+        },
+        {
+          "step": 153,
+          "event": "before_expression",
+          "focus": "s2",
+          "node_id": 73
+        },
+        {
+          "step": 154,
+          "event": "after_expression",
+          "focus": "s2",
+          "node_id": 73,
+          "value": "eidbaooo"
+        },
+        {
+          "step": 155,
+          "event": "before_expression",
+          "focus": "i - window_size",
+          "node_id": 74
+        },
+        {
+          "step": 156,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 86
+        },
+        {
+          "step": 157,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 86,
+          "value": 4
+        },
+        {
+          "step": 158,
+          "event": "before_expression",
+          "focus": "window_size",
+          "node_id": 87
+        },
+        {
+          "step": 159,
+          "event": "after_expression",
+          "focus": "window_size",
+          "node_id": 87,
+          "value": 2
+        },
+        {
+          "step": 160,
+          "event": "after_expression",
+          "focus": "i - window_size",
+          "node_id": 74,
+          "value": 2
+        },
+        {
+          "step": 161,
+          "event": "after_expression",
+          "focus": "s2[i - window_size]",
+          "node_id": 54,
+          "value": "d"
+        },
+        {
+          "step": 162,
+          "event": "after_statement",
+          "focus": "left_char = s2[i - window_size]",
+          "node_id": 27,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "d": 1,
+              "b": 1,
+              "a": 1
+            },
+            "i": 4,
+            "left_char": "d"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "d": 4318748832,
+                "b": 4318748832,
+                "a": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4318813544": {
+              "type": "str",
+              "value": "d",
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "s1": 4337539120,
+            "s2": 4337735600,
+            "s1_count": 4337645872,
+            "window_size": 4318748864,
+            "window_count": 4337644352,
+            "i": 4318748928,
+            "left_char": 4318813544
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "d": 1,
+          "b": 1,
+          "a": 1
+        },
+        "i": 4,
+        "left_char": "d"
+      },
+      "delta": {
+        "left_char": "d"
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "d": 4318748832,
+            "b": 4318748832,
+            "a": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748928,
+        "left_char": 4318813544
+      },
+      "steps": [
+        {
+          "step": 163,
+          "event": "before_statement",
+          "focus": "window_count[left_char] -= 1",
+          "node_id": 28
+        },
+        {
+          "step": 164,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 75
+        },
+        {
+          "step": 165,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 75,
+          "value": {
+            "d": 1,
+            "b": 1,
+            "a": 1
+          }
+        },
+        {
+          "step": 166,
+          "event": "before_expression",
+          "focus": "left_char",
+          "node_id": 76
+        },
+        {
+          "step": 167,
+          "event": "after_expression",
+          "focus": "left_char",
+          "node_id": 76,
+          "value": "d"
+        },
+        {
+          "step": 168,
+          "event": "after_statement",
+          "focus": "window_count[left_char] -= 1",
+          "node_id": 28,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "d": 0,
+              "b": 1,
+              "a": 1
+            },
+            "i": 4,
+            "left_char": "d"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "d": 4318748800,
+                "b": 4318748832,
+                "a": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4318813544": {
+              "type": "str",
+              "value": "d",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "d": 0,
+          "b": 1,
+          "a": 1
+        },
+        "i": 4,
+        "left_char": "d"
+      },
+      "delta": {
+        "window_count": {
+          "d": 0
+        }
+      },
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "d": 4318748800,
+            "b": 4318748832,
+            "a": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748928,
+        "left_char": 4318813544
+      },
+      "steps": [
+        {
+          "step": 169,
+          "event": "before_statement",
+          "focus": "if window_count[left_char] == 0:\n            del window_count[left_char]",
+          "node_id": 29
+        },
+        {
+          "step": 170,
+          "event": "before_expression",
+          "focus": "window_count[left_char] == 0",
+          "node_id": 58
+        },
+        {
+          "step": 171,
+          "event": "before_expression",
+          "focus": "window_count[left_char]",
+          "node_id": 77
+        },
+        {
+          "step": 172,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 88
+        },
+        {
+          "step": 173,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 88,
+          "value": {
+            "d": 0,
+            "b": 1,
+            "a": 1
+          }
+        },
+        {
+          "step": 174,
+          "event": "before_expression",
+          "focus": "left_char",
+          "node_id": 89
+        },
+        {
+          "step": 175,
+          "event": "after_expression",
+          "focus": "left_char",
+          "node_id": 89,
+          "value": "d"
+        },
+        {
+          "step": 176,
+          "event": "after_expression",
+          "focus": "window_count[left_char]",
+          "node_id": 77,
+          "value": 0
+        },
+        {
+          "step": 177,
+          "event": "after_expression",
+          "focus": "window_count[left_char] == 0",
+          "node_id": 58,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 25,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "d": 0,
+          "b": 1,
+          "a": 1
+        },
+        "i": 4,
+        "left_char": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "d": 4318748800,
+            "b": 4318748832,
+            "a": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748928,
+        "left_char": 4318813544
+      },
+      "steps": [
+        {
+          "step": 178,
+          "event": "before_statement",
+          "focus": "del window_count[left_char]",
+          "node_id": 59
+        },
+        {
+          "step": 179,
+          "event": "after_statement",
+          "focus": "del window_count[left_char]",
+          "node_id": 59,
+          "locals": {
+            "s1": "ab",
+            "s2": "eidbaooo",
+            "s1_count": {
+              "a": 1,
+              "b": 1
+            },
+            "window_size": 2,
+            "window_count": {
+              "b": 1,
+              "a": 1
+            },
+            "i": 4,
+            "left_char": "d"
+          },
+          "object_table": {
+            "4337539120": {
+              "type": "str",
+              "value": "ab",
+              "isCollection": false
+            },
+            "4337735600": {
+              "type": "str",
+              "value": "eidbaooo",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337645872": {
+              "type": "Counter",
+              "value": {
+                "a": 4318748832,
+                "b": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337644352": {
+              "type": "Counter",
+              "value": {
+                "b": 4318748832,
+                "a": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4318813544": {
+              "type": "str",
+              "value": "d",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "b": 1,
+          "a": 1
+        },
+        "i": 4,
+        "left_char": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "b": 4318748832,
+            "a": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748928,
+        "left_char": 4318813544
+      },
+      "steps": [
+        {
+          "step": 180,
+          "event": "after_statement",
+          "focus": "if window_count[left_char] == 0:\n            del window_count[left_char]",
+          "node_id": 29
+        }
+      ]
+    },
+    {
+      "line_number": 27,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "b": 1,
+          "a": 1
+        },
+        "i": 4,
+        "left_char": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "b": 4318748832,
+            "a": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748928,
+        "left_char": 4318813544
+      },
+      "steps": [
+        {
+          "step": 181,
+          "event": "before_statement",
+          "focus": "if window_count == s1_count:\n            return True",
+          "node_id": 30
+        },
+        {
+          "step": 182,
+          "event": "before_expression",
+          "focus": "window_count == s1_count",
+          "node_id": 60
+        },
+        {
+          "step": 183,
+          "event": "before_expression",
+          "focus": "window_count",
+          "node_id": 80
+        },
+        {
+          "step": 184,
+          "event": "after_expression",
+          "focus": "window_count",
+          "node_id": 80,
+          "value": {
+            "b": 1,
+            "a": 1
+          }
+        },
+        {
+          "step": 185,
+          "event": "before_expression",
+          "focus": "s1_count",
+          "node_id": 81
+        },
+        {
+          "step": 186,
+          "event": "after_expression",
+          "focus": "s1_count",
+          "node_id": 81,
+          "value": {
+            "a": 1,
+            "b": 1
+          }
+        },
+        {
+          "step": 187,
+          "event": "after_expression",
+          "focus": "window_count == s1_count",
+          "node_id": 60,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 28,
+      "locals": {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "s1_count": {
+          "a": 1,
+          "b": 1
+        },
+        "window_size": 2,
+        "window_count": {
+          "b": 1,
+          "a": 1
+        },
+        "i": 4,
+        "left_char": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337539120": {
+          "type": "str",
+          "value": "ab",
+          "isCollection": false
+        },
+        "4337735600": {
+          "type": "str",
+          "value": "eidbaooo",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337645872": {
+          "type": "Counter",
+          "value": {
+            "a": 4318748832,
+            "b": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337644352": {
+          "type": "Counter",
+          "value": {
+            "b": 4318748832,
+            "a": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s1": 4337539120,
+        "s2": 4337735600,
+        "s1_count": 4337645872,
+        "window_size": 4318748864,
+        "window_count": 4337644352,
+        "i": 4318748928,
+        "left_char": 4318813544
+      },
+      "steps": [
+        {
+          "step": 188,
+          "event": "before_statement",
+          "focus": "return True",
+          "node_id": 61
+        }
+      ]
+    }
+  ],
+  "result": true
 }

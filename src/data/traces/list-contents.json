@@ -5,8 +5,16 @@
     "inputs": {
       "kwargs": {}
     },
-    "stdout": "<ast.List object at 0x104d40650>\nError executing code: 'List' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "ints_and_strings": [
+        1,
+        2,
+        3,
+        "four",
+        "five"
+      ]
+    }
   },
   "ast": {
     "node_id": 0,
@@ -157,6 +165,128 @@
     "type_ignores": []
   },
   "relationships": [],
-  "trace": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "ints_and_strings = [1, 2, 3, \"four\", \"five\"]",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "before_expression",
+          "focus": "[1, 2, 3, \"four\", \"five\"]",
+          "node_id": 3
+        },
+        {
+          "step": 2,
+          "event": "after_expression",
+          "focus": "[1, 2, 3, \"four\", \"five\"]",
+          "node_id": 3,
+          "value": [
+            1,
+            2,
+            3,
+            "four",
+            "five"
+          ]
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "ints_and_strings = [1, 2, 3, \"four\", \"five\"]",
+          "node_id": 1,
+          "locals": {
+            "ints_and_strings": [
+              1,
+              2,
+              3,
+              "four",
+              "five"
+            ]
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4341226816": {
+              "type": "str",
+              "value": "four",
+              "isCollection": false
+            },
+            "4341222976": {
+              "type": "str",
+              "value": "five",
+              "isCollection": false
+            },
+            "4338035456": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748896,
+                4341226816,
+                4341222976
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "ints_and_strings": 4338035456
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 1,
+      "locals": {
+        "ints_and_strings": [
+          1,
+          2,
+          3,
+          "four",
+          "five"
+        ]
+      },
+      "object_table": {},
+      "var_table": {},
+      "delta": {
+        "ints_and_strings": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": "four",
+          "4": "five"
+        }
+      },
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "ints_and_strings = [1, 2, 3, \"four\", \"five\"]",
+          "node_id": 1
+        }
+      ]
+    }
+  ],
   "result": null
 }

@@ -7,8 +7,10 @@
         "root": "[3, 9, 20, None, None, 15, 7]"
       }
     },
-    "stdout": "<ast.Name object at 0x1044b5d10>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "root": "TreeNode(3)"
+    }
   },
   "ast": {
     "node_id": 0,
@@ -2786,6 +2788,4590 @@
       "node_id": 122
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def maxDepth(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return 0\n    \n    return 1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def maxDepth(root):\n    def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root\n    \n    if isinstance(root, list):\n        root = build_tree(root)\n    \n    if not root:\n        return 0\n    \n    return 1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": "TreeNode(3)"
+      },
+      "delta": {
+        "root": "TreeNode(3)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337261168": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337262688,
+            "right": 4337262080,
+            "val": 4318749440
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337263600,
+            "right": 4337261168,
+            "val": 4318748896
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263296
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": "TreeNode(3)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337261168": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337262688,
+            "right": 4337262080,
+            "val": 4318749440
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337263600,
+            "right": 4337261168,
+            "val": 4318748896
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263296
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 8,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 10,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": "TreeNode(3)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337261168": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337262688,
+            "right": 4337262080,
+            "val": 4318749440
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337263600,
+            "right": 4337261168,
+            "val": 4318748896
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263296
+      },
+      "steps": [
+        {
+          "step": 11,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 16,
+          "event": "after_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(3)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337261168": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337262688,
+            "right": 4337262080,
+            "val": 4318749440
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337263600,
+            "right": 4337261168,
+            "val": 4318748896
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263296
+      },
+      "steps": [
+        {
+          "step": 17,
+          "event": "before_statement",
+          "focus": "return 1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 6
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "root.left",
+          "node_id": 98
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 125
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 125,
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "root.left",
+          "node_id": 98,
+          "value": "TreeNode(9)"
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": "TreeNode(9)"
+      },
+      "delta": {
+        "root": "TreeNode(9)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263600
+      },
+      "steps": [
+        {
+          "step": 25,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 26,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": "TreeNode(9)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263600
+      },
+      "steps": [
+        {
+          "step": 27,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": "TreeNode(9)"
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 33,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": "TreeNode(9)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263600
+      },
+      "steps": [
+        {
+          "step": 34,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": "TreeNode(9)"
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 39,
+          "event": "after_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(9)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263600
+      },
+      "steps": [
+        {
+          "step": 40,
+          "event": "before_statement",
+          "focus": "return 1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 6
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "root.left",
+          "node_id": 98
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 125
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 125,
+          "value": "TreeNode(9)"
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "root.left",
+          "node_id": 98,
+          "value": null
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 48,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 49,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 50,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": null
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 56,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 57,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 58,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 59,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 60,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": null
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 62,
+          "event": "before_statement",
+          "focus": "return 0",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(9)"
+      },
+      "delta": {
+        "root": "TreeNode(9)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263600
+      },
+      "steps": [
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74,
+          "value": 0
+        },
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "root.right",
+          "node_id": 100
+        },
+        {
+          "step": 66,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 126
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 126,
+          "value": "TreeNode(9)"
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "root.right",
+          "node_id": 100,
+          "value": null
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 69,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 70,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 71,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 72,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 73,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 74,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": null
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 77,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 78,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": null
+        },
+        {
+          "step": 82,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 83,
+          "event": "before_statement",
+          "focus": "return 0",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(9)"
+      },
+      "delta": {
+        "root": "TreeNode(9)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749088": {
+          "type": "int",
+          "value": 9,
+          "isCollection": false
+        },
+        "4337263600": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749088
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337263600
+      },
+      "steps": [
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75,
+          "value": 0
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19,
+          "value": 1
+        },
+        {
+          "step": 87,
+          "event": "after_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74,
+          "locals": {
+            "root": "TreeNode(3)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            },
+            "4337263600": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749088
+              },
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337263600,
+                "right": 4337261168,
+                "val": 4318748896
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337263296
+          },
+          "value": 1
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75,
+          "locals": {
+            "root": "TreeNode(3)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            },
+            "4337263600": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749088
+              },
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337263600,
+                "right": 4337261168,
+                "val": 4318748896
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337263296
+          }
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "root.right",
+          "node_id": 100,
+          "locals": {
+            "root": "TreeNode(3)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            },
+            "4337263600": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749088
+              },
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337263600,
+                "right": 4337261168,
+                "val": 4318748896
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337263296
+          }
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 126,
+          "locals": {
+            "root": "TreeNode(3)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            },
+            "4337263600": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749088
+              },
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337263600,
+                "right": 4337261168,
+                "val": 4318748896
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337263296
+          }
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 126,
+          "locals": {
+            "root": "TreeNode(3)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            },
+            "4337263600": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749088
+              },
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337263600,
+                "right": 4337261168,
+                "val": 4318748896
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337263296
+          },
+          "value": "TreeNode(3)"
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "root.right",
+          "node_id": 100,
+          "locals": {
+            "root": "TreeNode(3)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            },
+            "4337263600": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749088
+              },
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337263600,
+                "right": 4337261168,
+                "val": 4318748896
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337263296
+          },
+          "value": "TreeNode(20)"
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": "TreeNode(20)"
+      },
+      "delta": {
+        "root": "TreeNode(20)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337261168": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337262688,
+            "right": 4337262080,
+            "val": 4318749440
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337261168
+      },
+      "steps": [
+        {
+          "step": 93,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 94,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": "TreeNode(20)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337261168": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337262688,
+            "right": 4337262080,
+            "val": 4318749440
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337261168
+      },
+      "steps": [
+        {
+          "step": 95,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 98,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": "TreeNode(20)"
+        },
+        {
+          "step": 99,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 100,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 101,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": "TreeNode(20)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337261168": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337262688,
+            "right": 4337262080,
+            "val": 4318749440
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337261168
+      },
+      "steps": [
+        {
+          "step": 102,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 105,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": "TreeNode(20)"
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 107,
+          "event": "after_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(20)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337261168": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4337262688,
+            "right": 4337262080,
+            "val": 4318749440
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337261168
+      },
+      "steps": [
+        {
+          "step": 108,
+          "event": "before_statement",
+          "focus": "return 1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 6
+        },
+        {
+          "step": 109,
+          "event": "before_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46
+        },
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74
+        },
+        {
+          "step": 112,
+          "event": "before_expression",
+          "focus": "root.left",
+          "node_id": 98
+        },
+        {
+          "step": 113,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 125
+        },
+        {
+          "step": 114,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 125,
+          "value": "TreeNode(20)"
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "root.left",
+          "node_id": 98,
+          "value": "TreeNode(15)"
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": "TreeNode(15)"
+      },
+      "delta": {
+        "root": "TreeNode(15)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262688
+      },
+      "steps": [
+        {
+          "step": 116,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 117,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": "TreeNode(15)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262688
+      },
+      "steps": [
+        {
+          "step": 118,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 119,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 120,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 121,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": "TreeNode(15)"
+        },
+        {
+          "step": 122,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 123,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 124,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": "TreeNode(15)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262688
+      },
+      "steps": [
+        {
+          "step": 125,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 127,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 128,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": "TreeNode(15)"
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 130,
+          "event": "after_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(15)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262688
+      },
+      "steps": [
+        {
+          "step": 131,
+          "event": "before_statement",
+          "focus": "return 1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 6
+        },
+        {
+          "step": 132,
+          "event": "before_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46
+        },
+        {
+          "step": 134,
+          "event": "before_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74
+        },
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "root.left",
+          "node_id": 98
+        },
+        {
+          "step": 136,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 125
+        },
+        {
+          "step": 137,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 125,
+          "value": "TreeNode(15)"
+        },
+        {
+          "step": 138,
+          "event": "after_expression",
+          "focus": "root.left",
+          "node_id": 98,
+          "value": null
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 139,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 140,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 141,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 142,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 143,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 144,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": null
+        },
+        {
+          "step": 145,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 146,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 147,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 148,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 149,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 150,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 151,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": null
+        },
+        {
+          "step": 152,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 153,
+          "event": "before_statement",
+          "focus": "return 0",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(15)"
+      },
+      "delta": {
+        "root": "TreeNode(15)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262688
+      },
+      "steps": [
+        {
+          "step": 154,
+          "event": "after_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74,
+          "value": 0
+        },
+        {
+          "step": 155,
+          "event": "before_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75
+        },
+        {
+          "step": 156,
+          "event": "before_expression",
+          "focus": "root.right",
+          "node_id": 100
+        },
+        {
+          "step": 157,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 126
+        },
+        {
+          "step": 158,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 126,
+          "value": "TreeNode(15)"
+        },
+        {
+          "step": 159,
+          "event": "after_expression",
+          "focus": "root.right",
+          "node_id": 100,
+          "value": null
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 160,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 161,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 162,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 163,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 164,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 165,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": null
+        },
+        {
+          "step": 166,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 167,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 168,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 169,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 170,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 171,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 172,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": null
+        },
+        {
+          "step": 173,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 174,
+          "event": "before_statement",
+          "focus": "return 0",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(15)"
+      },
+      "delta": {
+        "root": "TreeNode(15)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749280
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262688
+      },
+      "steps": [
+        {
+          "step": 175,
+          "event": "after_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75,
+          "value": 0
+        },
+        {
+          "step": 176,
+          "event": "after_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 177,
+          "event": "after_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19,
+          "value": 1
+        },
+        {
+          "step": 178,
+          "event": "after_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74,
+          "locals": {
+            "root": "TreeNode(20)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337261168
+          },
+          "value": 1
+        },
+        {
+          "step": 179,
+          "event": "before_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75,
+          "locals": {
+            "root": "TreeNode(20)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337261168
+          }
+        },
+        {
+          "step": 180,
+          "event": "before_expression",
+          "focus": "root.right",
+          "node_id": 100,
+          "locals": {
+            "root": "TreeNode(20)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337261168
+          }
+        },
+        {
+          "step": 181,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 126,
+          "locals": {
+            "root": "TreeNode(20)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337261168
+          }
+        },
+        {
+          "step": 182,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 126,
+          "locals": {
+            "root": "TreeNode(20)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337261168
+          },
+          "value": "TreeNode(20)"
+        },
+        {
+          "step": 183,
+          "event": "after_expression",
+          "focus": "root.right",
+          "node_id": 100,
+          "locals": {
+            "root": "TreeNode(20)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337261168
+          },
+          "value": "TreeNode(7)"
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": "TreeNode(7)"
+      },
+      "delta": {
+        "root": "TreeNode(7)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262080
+      },
+      "steps": [
+        {
+          "step": 184,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 185,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": "TreeNode(7)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262080
+      },
+      "steps": [
+        {
+          "step": 186,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 187,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 188,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 189,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": "TreeNode(7)"
+        },
+        {
+          "step": 190,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 191,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 192,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": "TreeNode(7)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262080
+      },
+      "steps": [
+        {
+          "step": 193,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 194,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 195,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 196,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": "TreeNode(7)"
+        },
+        {
+          "step": 197,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 198,
+          "event": "after_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(7)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262080
+      },
+      "steps": [
+        {
+          "step": 199,
+          "event": "before_statement",
+          "focus": "return 1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 6
+        },
+        {
+          "step": 200,
+          "event": "before_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19
+        },
+        {
+          "step": 201,
+          "event": "before_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46
+        },
+        {
+          "step": 202,
+          "event": "before_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74
+        },
+        {
+          "step": 203,
+          "event": "before_expression",
+          "focus": "root.left",
+          "node_id": 98
+        },
+        {
+          "step": 204,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 125
+        },
+        {
+          "step": 205,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 125,
+          "value": "TreeNode(7)"
+        },
+        {
+          "step": 206,
+          "event": "after_expression",
+          "focus": "root.left",
+          "node_id": 98,
+          "value": null
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 207,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 208,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 209,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 210,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 211,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 212,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": null
+        },
+        {
+          "step": 213,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 214,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 215,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 216,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 217,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 218,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 219,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": null
+        },
+        {
+          "step": 220,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 221,
+          "event": "before_statement",
+          "focus": "return 0",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(7)"
+      },
+      "delta": {
+        "root": "TreeNode(7)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262080
+      },
+      "steps": [
+        {
+          "step": 222,
+          "event": "after_expression",
+          "focus": "maxDepth(root.left)",
+          "node_id": 74,
+          "value": 0
+        },
+        {
+          "step": 223,
+          "event": "before_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75
+        },
+        {
+          "step": 224,
+          "event": "before_expression",
+          "focus": "root.right",
+          "node_id": 100
+        },
+        {
+          "step": 225,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 126
+        },
+        {
+          "step": 226,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 126,
+          "value": "TreeNode(7)"
+        },
+        {
+          "step": 227,
+          "event": "after_expression",
+          "focus": "root.right",
+          "node_id": 100,
+          "value": null
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 228,
+          "event": "before_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        },
+        {
+          "step": 229,
+          "event": "after_statement",
+          "focus": "def build_tree(arr):\n        if not arr or arr[0] is None:\n            return None\n        root = TreeNode(arr[0])\n        queue = [root]\n        i = 1\n        while queue and i < len(arr):\n            node = queue.pop(0)\n            if i < len(arr) and arr[i] is not None:\n                node.left = TreeNode(arr[i])\n                queue.append(node.left)\n            i += 1\n            if i < len(arr) and arr[i] is not None:\n                node.right = TreeNode(arr[i])\n                queue.append(node.right)\n            i += 1\n        return root",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 20,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 230,
+          "event": "before_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        },
+        {
+          "step": 231,
+          "event": "before_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15
+        },
+        {
+          "step": 232,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 37
+        },
+        {
+          "step": 233,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 37,
+          "value": null
+        },
+        {
+          "step": 234,
+          "event": "before_expression",
+          "focus": "list",
+          "node_id": 38
+        },
+        {
+          "step": 235,
+          "event": "after_expression",
+          "focus": "isinstance(root, list)",
+          "node_id": 15,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 236,
+          "event": "after_statement",
+          "focus": "if isinstance(root, list):\n        root = build_tree(root)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 237,
+          "event": "before_statement",
+          "focus": "if not root:\n        return 0",
+          "node_id": 5
+        },
+        {
+          "step": 238,
+          "event": "before_expression",
+          "focus": "not root",
+          "node_id": 17
+        },
+        {
+          "step": 239,
+          "event": "before_expression",
+          "focus": "root",
+          "node_id": 42
+        },
+        {
+          "step": 240,
+          "event": "after_expression",
+          "focus": "root",
+          "node_id": 42,
+          "value": null
+        },
+        {
+          "step": 241,
+          "event": "after_expression",
+          "focus": "not root",
+          "node_id": 17,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 24,
+      "locals": {
+        "root": null
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "root": 4318602040
+      },
+      "steps": [
+        {
+          "step": 242,
+          "event": "before_statement",
+          "focus": "return 0",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(7)"
+      },
+      "delta": {
+        "root": "TreeNode(7)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262080
+      },
+      "steps": [
+        {
+          "step": 243,
+          "event": "after_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75,
+          "value": 0
+        },
+        {
+          "step": 244,
+          "event": "after_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 245,
+          "event": "after_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19,
+          "value": 1
+        },
+        {
+          "step": 246,
+          "event": "after_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75,
+          "locals": {
+            "root": "TreeNode(20)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337261168
+          },
+          "value": 1
+        },
+        {
+          "step": 247,
+          "event": "after_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46,
+          "locals": {
+            "root": "TreeNode(20)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337261168
+          },
+          "value": 1
+        },
+        {
+          "step": 248,
+          "event": "after_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19,
+          "locals": {
+            "root": "TreeNode(20)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337261168
+          },
+          "value": 2
+        },
+        {
+          "step": 249,
+          "event": "after_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75,
+          "locals": {
+            "root": "TreeNode(3)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            },
+            "4337263600": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749088
+              },
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337263600,
+                "right": 4337261168,
+                "val": 4318748896
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337263296
+          },
+          "value": 2
+        },
+        {
+          "step": 250,
+          "event": "after_expression",
+          "focus": "max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 46,
+          "locals": {
+            "root": "TreeNode(3)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            },
+            "4337263600": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749088
+              },
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337263600,
+                "right": 4337261168,
+                "val": 4318748896
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337263296
+          },
+          "value": 2
+        },
+        {
+          "step": 251,
+          "event": "after_expression",
+          "focus": "1 + max(maxDepth(root.left), maxDepth(root.right))",
+          "node_id": 19,
+          "locals": {
+            "root": "TreeNode(3)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318749088": {
+              "type": "int",
+              "value": 9,
+              "isCollection": false
+            },
+            "4337263600": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749088
+              },
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749280
+              },
+              "isCollection": true
+            },
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4337262080": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4318602040,
+                "right": 4318602040,
+                "val": 4318749024
+              },
+              "isCollection": true
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337261168": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337262688,
+                "right": 4337262080,
+                "val": 4318749440
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "TreeNode",
+              "value": {
+                "left": 4337263600,
+                "right": 4337261168,
+                "val": 4318748896
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "root": 4337263296
+          },
+          "value": 3
+        }
+      ]
+    },
+    {
+      "line_number": 26,
+      "locals": {
+        "root": "TreeNode(3)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4337262080": {
+          "type": "TreeNode",
+          "value": {
+            "left": 4318602040,
+            "right": 4318602040,
+            "val": 4318749024
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "root": 4337262080
+      },
+      "delta": {
+        "root": "TreeNode(3)"
+      },
+      "steps": [
+        {
+          "step": 243,
+          "event": "after_expression",
+          "focus": "maxDepth(root.right)",
+          "node_id": 75,
+          "value": 0
+        }
+      ]
+    }
+  ],
+  "result": 3
 }

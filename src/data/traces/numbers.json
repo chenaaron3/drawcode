@@ -5,8 +5,11 @@
     "inputs": {
       "kwargs": {}
     },
-    "stdout": "<ast.Name object at 0x104d38cd0>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "Health: 100\nDamage: 25.5\n",
+    "finalLocals": {
+      "health": 100,
+      "damage": 25.5
+    }
   },
   "ast": {
     "node_id": 0,
@@ -316,6 +319,226 @@
     "type_ignores": []
   },
   "relationships": [],
-  "trace": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "health = 100",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "health = 100",
+          "node_id": 1,
+          "locals": {
+            "health": 100
+          },
+          "object_table": {
+            "4318752000": {
+              "type": "int",
+              "value": 100,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "health": 4318752000
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "health": 100
+      },
+      "delta": {
+        "health": 100
+      },
+      "object_table": {
+        "4318752000": {
+          "type": "int",
+          "value": 100,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "health": 4318752000
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "damage = 25.5",
+          "node_id": 2
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "damage = 25.5",
+          "node_id": 2,
+          "locals": {
+            "health": 100,
+            "damage": 25.5
+          },
+          "object_table": {
+            "4318752000": {
+              "type": "int",
+              "value": 100,
+              "isCollection": false
+            },
+            "4406529072": {
+              "type": "float",
+              "value": 25.5,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "health": 4318752000,
+            "damage": 4406529072
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "health": 100,
+        "damage": 25.5
+      },
+      "delta": {
+        "damage": 25.5
+      },
+      "object_table": {
+        "4318752000": {
+          "type": "int",
+          "value": 100,
+          "isCollection": false
+        },
+        "4406529072": {
+          "type": "float",
+          "value": 25.5,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "health": 4318752000,
+        "damage": 4406529072
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "print('Health:', health)",
+          "node_id": 3
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "print('Health:', health)",
+          "node_id": 9
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "health",
+          "node_id": 14
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "health",
+          "node_id": 14,
+          "value": 100
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "print('Health:', health)",
+          "node_id": 9,
+          "value": null,
+          "stdout": "Health: 100\n"
+        },
+        {
+          "step": 9,
+          "event": "after_statement",
+          "focus": "print('Health:', health)",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "health": 100,
+        "damage": 25.5
+      },
+      "delta": null,
+      "object_table": {
+        "4318752000": {
+          "type": "int",
+          "value": 100,
+          "isCollection": false
+        },
+        "4406529072": {
+          "type": "float",
+          "value": 25.5,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "health": 4318752000,
+        "damage": 4406529072
+      },
+      "steps": [
+        {
+          "step": 10,
+          "event": "before_statement",
+          "focus": "print('Damage:', damage)",
+          "node_id": 4
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "print('Damage:', damage)",
+          "node_id": 10
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "damage",
+          "node_id": 17
+        },
+        {
+          "step": 13,
+          "event": "after_expression",
+          "focus": "damage",
+          "node_id": 17,
+          "value": 25.5
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "print('Damage:', damage)",
+          "node_id": 10,
+          "value": null,
+          "stdout": "Damage: 25.5\n"
+        },
+        {
+          "step": 15,
+          "event": "after_statement",
+          "focus": "print('Damage:', damage)",
+          "node_id": 4
+        }
+      ]
+    }
+  ],
   "result": null
 }

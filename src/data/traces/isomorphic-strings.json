@@ -8,8 +8,22 @@
         "t": "'add'"
       }
     },
-    "stdout": "<ast.Name object at 0x1046598d0>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "s": "egg",
+      "t": "add",
+      "s_to_t": {
+        "e": "a",
+        "g": "d"
+      },
+      "t_to_s": {
+        "a": "e",
+        "d": "g"
+      },
+      "i": 2,
+      "char_s": "g",
+      "char_t": "d"
+    }
   },
   "ast": {
     "node_id": 0,
@@ -1605,6 +1619,3547 @@
       "node_id": 70
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def isIsomorphic(s, t):\n    if len(s) != len(t):\n        return False\n    \n    s_to_t = {}\n    t_to_s = {}\n    \n    for i in range(len(s)):\n        char_s, char_t = s[i], t[i]\n        \n        if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t\n        \n        if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s\n    \n    return True",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def isIsomorphic(s, t):\n    if len(s) != len(t):\n        return False\n    \n    s_to_t = {}\n    t_to_s = {}\n    \n    for i in range(len(s)):\n        char_s, char_t = s[i], t[i]\n        \n        if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t\n        \n        if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s\n    \n    return True",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "s": "egg",
+        "t": "add"
+      },
+      "delta": {
+        "s": "egg",
+        "t": "add"
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if len(s) != len(t):\n        return False",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "len(s) != len(t)",
+          "node_id": 10
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "len(s)",
+          "node_id": 22
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 38
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 38,
+          "value": "egg"
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "len(s)",
+          "node_id": 22,
+          "value": 3
+        },
+        {
+          "step": 8,
+          "event": "before_expression",
+          "focus": "len(t)",
+          "node_id": 24
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "t",
+          "node_id": 40
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "t",
+          "node_id": 40,
+          "value": "add"
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "len(t)",
+          "node_id": 24,
+          "value": 3
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "len(s) != len(t)",
+          "node_id": 10,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 13,
+          "event": "after_statement",
+          "focus": "if len(s) != len(t):\n        return False",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "egg",
+        "t": "add"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440
+      },
+      "steps": [
+        {
+          "step": 14,
+          "event": "before_statement",
+          "focus": "s_to_t = {}",
+          "node_id": 4
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "{}",
+          "node_id": 13
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "{}",
+          "node_id": 13,
+          "value": {}
+        },
+        {
+          "step": 17,
+          "event": "after_statement",
+          "focus": "s_to_t = {}",
+          "node_id": 4,
+          "locals": {
+            "s": "egg",
+            "t": "add",
+            "s_to_t": {}
+          },
+          "object_table": {
+            "4337537392": {
+              "type": "str",
+              "value": "egg",
+              "isCollection": false
+            },
+            "4337537440": {
+              "type": "str",
+              "value": "add",
+              "isCollection": false
+            },
+            "4339701696": {
+              "type": "dict",
+              "value": {},
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "s": 4337537392,
+            "t": 4337537440,
+            "s_to_t": 4339701696
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {}
+      },
+      "delta": {
+        "s_to_t": {}
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696
+      },
+      "steps": [
+        {
+          "step": 18,
+          "event": "before_statement",
+          "focus": "t_to_s = {}",
+          "node_id": 5
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "{}",
+          "node_id": 15
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "{}",
+          "node_id": 15,
+          "value": {}
+        },
+        {
+          "step": 21,
+          "event": "after_statement",
+          "focus": "t_to_s = {}",
+          "node_id": 5,
+          "locals": {
+            "s": "egg",
+            "t": "add",
+            "s_to_t": {},
+            "t_to_s": {}
+          },
+          "object_table": {
+            "4337537392": {
+              "type": "str",
+              "value": "egg",
+              "isCollection": false
+            },
+            "4337537440": {
+              "type": "str",
+              "value": "add",
+              "isCollection": false
+            },
+            "4339701696": {
+              "type": "dict",
+              "value": {},
+              "isCollection": true
+            },
+            "4339696256": {
+              "type": "dict",
+              "value": {},
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "s": 4337537392,
+            "t": 4337537440,
+            "s_to_t": 4339701696,
+            "t_to_s": 4339696256
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {},
+        "t_to_s": {}
+      },
+      "delta": {
+        "t_to_s": {}
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256
+      },
+      "steps": [
+        {
+          "step": 22,
+          "event": "before_statement",
+          "focus": "for i in range(len(s)):\n        char_s, char_t = s[i], t[i]\n        \n        if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t\n        \n        if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s",
+          "node_id": 6
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "range(len(s))",
+          "node_id": 17
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "len(s)",
+          "node_id": 28
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 43
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 43,
+          "value": "egg"
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "len(s)",
+          "node_id": 28,
+          "value": 3
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "range(len(s))",
+          "node_id": 17,
+          "value": [
+            0,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {},
+        "t_to_s": {},
+        "i": 0
+      },
+      "delta": {
+        "i": 0
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748800
+      },
+      "steps": [
+        {
+          "step": 29,
+          "event": "before_statement",
+          "focus": "char_s, char_t = s[i], t[i]",
+          "node_id": 18
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "s[i], t[i]",
+          "node_id": 30
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "s[i]",
+          "node_id": 46
+        },
+        {
+          "step": 32,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 61
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 61,
+          "value": "egg"
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 62
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 62,
+          "value": 0
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "s[i]",
+          "node_id": 46,
+          "value": "e"
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "t[i]",
+          "node_id": 47
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "t",
+          "node_id": 63
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "t",
+          "node_id": 63,
+          "value": "add"
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 64
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 64,
+          "value": 0
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "t[i]",
+          "node_id": 47,
+          "value": "a"
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "s[i], t[i]",
+          "node_id": 30,
+          "value": [
+            "e",
+            "a"
+          ]
+        },
+        {
+          "step": 44,
+          "event": "after_statement",
+          "focus": "char_s, char_t = s[i], t[i]",
+          "node_id": 18,
+          "locals": {
+            "s": "egg",
+            "t": "add",
+            "s_to_t": {},
+            "t_to_s": {},
+            "i": 0,
+            "char_s": "e",
+            "char_t": "a"
+          },
+          "object_table": {
+            "4337537392": {
+              "type": "str",
+              "value": "egg",
+              "isCollection": false
+            },
+            "4337537440": {
+              "type": "str",
+              "value": "add",
+              "isCollection": false
+            },
+            "4339701696": {
+              "type": "dict",
+              "value": {},
+              "isCollection": true
+            },
+            "4339696256": {
+              "type": "dict",
+              "value": {},
+              "isCollection": true
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "s": 4337537392,
+            "t": 4337537440,
+            "s_to_t": 4339701696,
+            "t_to_s": 4339696256,
+            "i": 4318748800,
+            "char_s": 4318813592,
+            "char_t": 4318813400
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {},
+        "t_to_s": {},
+        "i": 0,
+        "char_s": "e",
+        "char_t": "a"
+      },
+      "delta": {
+        "char_s": "e",
+        "char_t": "a"
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748800,
+        "char_s": 4318813592,
+        "char_t": 4318813400
+      },
+      "steps": [
+        {
+          "step": 45,
+          "event": "before_statement",
+          "focus": "if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t",
+          "node_id": 19
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "char_s in s_to_t",
+          "node_id": 31
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "char_s",
+          "node_id": 48
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "char_s",
+          "node_id": 48,
+          "value": "e"
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "s_to_t",
+          "node_id": 50
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "s_to_t",
+          "node_id": 50,
+          "value": {}
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "char_s in s_to_t",
+          "node_id": 31,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {},
+        "t_to_s": {},
+        "i": 0,
+        "char_s": "e",
+        "char_t": "a"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748800,
+        "char_s": 4318813592,
+        "char_t": 4318813400
+      },
+      "steps": [
+        {
+          "step": 52,
+          "event": "before_statement",
+          "focus": "s_to_t[char_s] = char_t",
+          "node_id": 33
+        },
+        {
+          "step": 53,
+          "event": "before_expression",
+          "focus": "char_t",
+          "node_id": 54
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "char_t",
+          "node_id": 54,
+          "value": "a"
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": "s_to_t",
+          "node_id": 68
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "s_to_t",
+          "node_id": 68,
+          "value": {}
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "char_s",
+          "node_id": 69
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "char_s",
+          "node_id": 69,
+          "value": "e"
+        },
+        {
+          "step": 59,
+          "event": "after_statement",
+          "focus": "s_to_t[char_s] = char_t",
+          "node_id": 33,
+          "locals": {
+            "s": "egg",
+            "t": "add",
+            "s_to_t": {
+              "e": "a"
+            },
+            "t_to_s": {},
+            "i": 0,
+            "char_s": "e",
+            "char_t": "a"
+          },
+          "object_table": {
+            "4337537392": {
+              "type": "str",
+              "value": "egg",
+              "isCollection": false
+            },
+            "4337537440": {
+              "type": "str",
+              "value": "add",
+              "isCollection": false
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            },
+            "4339701696": {
+              "type": "dict",
+              "value": {
+                "e": 4318813400
+              },
+              "isCollection": true
+            },
+            "4339696256": {
+              "type": "dict",
+              "value": {},
+              "isCollection": true
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a"
+        },
+        "t_to_s": {},
+        "i": 0,
+        "char_s": "e",
+        "char_t": "a"
+      },
+      "delta": {
+        "s_to_t": {
+          "e": "a"
+        }
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400
+          },
+          "isCollection": true
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748800,
+        "char_s": 4318813592,
+        "char_t": 4318813400
+      },
+      "steps": [
+        {
+          "step": 60,
+          "event": "after_statement",
+          "focus": "if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a"
+        },
+        "t_to_s": {},
+        "i": 0,
+        "char_s": "e",
+        "char_t": "a"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400
+          },
+          "isCollection": true
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748800,
+        "char_s": 4318813592,
+        "char_t": 4318813400
+      },
+      "steps": [
+        {
+          "step": 61,
+          "event": "before_statement",
+          "focus": "if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s",
+          "node_id": 20
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "char_t in t_to_s",
+          "node_id": 34
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "char_t",
+          "node_id": 55
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "char_t",
+          "node_id": 55,
+          "value": "a"
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "t_to_s",
+          "node_id": 56
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "t_to_s",
+          "node_id": 56,
+          "value": {}
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "char_t in t_to_s",
+          "node_id": 34,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 21,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a"
+        },
+        "t_to_s": {},
+        "i": 0,
+        "char_s": "e",
+        "char_t": "a"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400
+          },
+          "isCollection": true
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748800,
+        "char_s": 4318813592,
+        "char_t": 4318813400
+      },
+      "steps": [
+        {
+          "step": 68,
+          "event": "before_statement",
+          "focus": "t_to_s[char_t] = char_s",
+          "node_id": 36
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "char_s",
+          "node_id": 60
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "char_s",
+          "node_id": 60,
+          "value": "e"
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "t_to_s",
+          "node_id": 73
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "t_to_s",
+          "node_id": 73,
+          "value": {}
+        },
+        {
+          "step": 73,
+          "event": "before_expression",
+          "focus": "char_t",
+          "node_id": 74
+        },
+        {
+          "step": 74,
+          "event": "after_expression",
+          "focus": "char_t",
+          "node_id": 74,
+          "value": "a"
+        },
+        {
+          "step": 75,
+          "event": "after_statement",
+          "focus": "t_to_s[char_t] = char_s",
+          "node_id": 36,
+          "locals": {
+            "s": "egg",
+            "t": "add",
+            "s_to_t": {
+              "e": "a"
+            },
+            "t_to_s": {
+              "a": "e"
+            },
+            "i": 0,
+            "char_s": "e",
+            "char_t": "a"
+          },
+          "object_table": {
+            "4337537392": {
+              "type": "str",
+              "value": "egg",
+              "isCollection": false
+            },
+            "4337537440": {
+              "type": "str",
+              "value": "add",
+              "isCollection": false
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            },
+            "4339701696": {
+              "type": "dict",
+              "value": {
+                "e": 4318813400
+              },
+              "isCollection": true
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            },
+            "4339696256": {
+              "type": "dict",
+              "value": {
+                "a": 4318813592
+              },
+              "isCollection": true
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a"
+        },
+        "t_to_s": {
+          "a": "e"
+        },
+        "i": 0,
+        "char_s": "e",
+        "char_t": "a"
+      },
+      "delta": {
+        "t_to_s": {
+          "a": "e"
+        }
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748800,
+        "char_s": 4318813592,
+        "char_t": 4318813400
+      },
+      "steps": [
+        {
+          "step": 76,
+          "event": "after_statement",
+          "focus": "if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s",
+          "node_id": 20
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a"
+        },
+        "t_to_s": {
+          "a": "e"
+        },
+        "i": 1,
+        "char_s": "e",
+        "char_t": "a"
+      },
+      "delta": {
+        "i": 1
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748832,
+        "char_s": 4318813592,
+        "char_t": 4318813400
+      },
+      "steps": [
+        {
+          "step": 77,
+          "event": "before_statement",
+          "focus": "char_s, char_t = s[i], t[i]",
+          "node_id": 18
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "s[i], t[i]",
+          "node_id": 30
+        },
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "s[i]",
+          "node_id": 46
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 61
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 61,
+          "value": "egg"
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 62
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 62,
+          "value": 1
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "s[i]",
+          "node_id": 46,
+          "value": "g"
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "t[i]",
+          "node_id": 47
+        },
+        {
+          "step": 86,
+          "event": "before_expression",
+          "focus": "t",
+          "node_id": 63
+        },
+        {
+          "step": 87,
+          "event": "after_expression",
+          "focus": "t",
+          "node_id": 63,
+          "value": "add"
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 64
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 64,
+          "value": 1
+        },
+        {
+          "step": 90,
+          "event": "after_expression",
+          "focus": "t[i]",
+          "node_id": 47,
+          "value": "d"
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "s[i], t[i]",
+          "node_id": 30,
+          "value": [
+            "g",
+            "d"
+          ]
+        },
+        {
+          "step": 92,
+          "event": "after_statement",
+          "focus": "char_s, char_t = s[i], t[i]",
+          "node_id": 18,
+          "locals": {
+            "s": "egg",
+            "t": "add",
+            "s_to_t": {
+              "e": "a"
+            },
+            "t_to_s": {
+              "a": "e"
+            },
+            "i": 1,
+            "char_s": "g",
+            "char_t": "d"
+          },
+          "object_table": {
+            "4337537392": {
+              "type": "str",
+              "value": "egg",
+              "isCollection": false
+            },
+            "4337537440": {
+              "type": "str",
+              "value": "add",
+              "isCollection": false
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            },
+            "4339701696": {
+              "type": "dict",
+              "value": {
+                "e": 4318813400
+              },
+              "isCollection": true
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            },
+            "4339696256": {
+              "type": "dict",
+              "value": {
+                "a": 4318813592
+              },
+              "isCollection": true
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318813688": {
+              "type": "str",
+              "value": "g",
+              "isCollection": false
+            },
+            "4318813544": {
+              "type": "str",
+              "value": "d",
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "s": 4337537392,
+            "t": 4337537440,
+            "s_to_t": 4339701696,
+            "t_to_s": 4339696256,
+            "i": 4318748832,
+            "char_s": 4318813688,
+            "char_t": 4318813544
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a"
+        },
+        "t_to_s": {
+          "a": "e"
+        },
+        "i": 1,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": {
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748832,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 93,
+          "event": "before_statement",
+          "focus": "if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t",
+          "node_id": 19
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "char_s in s_to_t",
+          "node_id": 31
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "char_s",
+          "node_id": 48
+        },
+        {
+          "step": 96,
+          "event": "after_expression",
+          "focus": "char_s",
+          "node_id": 48,
+          "value": "g"
+        },
+        {
+          "step": 97,
+          "event": "before_expression",
+          "focus": "s_to_t",
+          "node_id": 50
+        },
+        {
+          "step": 98,
+          "event": "after_expression",
+          "focus": "s_to_t",
+          "node_id": 50,
+          "value": {
+            "e": "a"
+          }
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "char_s in s_to_t",
+          "node_id": 31,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a"
+        },
+        "t_to_s": {
+          "a": "e"
+        },
+        "i": 1,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748832,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 100,
+          "event": "before_statement",
+          "focus": "s_to_t[char_s] = char_t",
+          "node_id": 33
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "char_t",
+          "node_id": 54
+        },
+        {
+          "step": 102,
+          "event": "after_expression",
+          "focus": "char_t",
+          "node_id": 54,
+          "value": "d"
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "s_to_t",
+          "node_id": 68
+        },
+        {
+          "step": 104,
+          "event": "after_expression",
+          "focus": "s_to_t",
+          "node_id": 68,
+          "value": {
+            "e": "a"
+          }
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "char_s",
+          "node_id": 69
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "char_s",
+          "node_id": 69,
+          "value": "g"
+        },
+        {
+          "step": 107,
+          "event": "after_statement",
+          "focus": "s_to_t[char_s] = char_t",
+          "node_id": 33,
+          "locals": {
+            "s": "egg",
+            "t": "add",
+            "s_to_t": {
+              "e": "a",
+              "g": "d"
+            },
+            "t_to_s": {
+              "a": "e"
+            },
+            "i": 1,
+            "char_s": "g",
+            "char_t": "d"
+          },
+          "object_table": {
+            "4337537392": {
+              "type": "str",
+              "value": "egg",
+              "isCollection": false
+            },
+            "4337537440": {
+              "type": "str",
+              "value": "add",
+              "isCollection": false
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            },
+            "4318813544": {
+              "type": "str",
+              "value": "d",
+              "isCollection": false
+            },
+            "4339701696": {
+              "type": "dict",
+              "value": {
+                "e": 4318813400,
+                "g": 4318813544
+              },
+              "isCollection": true
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            },
+            "4339696256": {
+              "type": "dict",
+              "value": {
+                "a": 4318813592
+              },
+              "isCollection": true
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318813688": {
+              "type": "str",
+              "value": "g",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e"
+        },
+        "i": 1,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": {
+        "s_to_t": {
+          "g": "d"
+        }
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748832,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 108,
+          "event": "after_statement",
+          "focus": "if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e"
+        },
+        "i": 1,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748832,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 109,
+          "event": "before_statement",
+          "focus": "if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s",
+          "node_id": 20
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "char_t in t_to_s",
+          "node_id": 34
+        },
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "char_t",
+          "node_id": 55
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "char_t",
+          "node_id": 55,
+          "value": "d"
+        },
+        {
+          "step": 113,
+          "event": "before_expression",
+          "focus": "t_to_s",
+          "node_id": 56
+        },
+        {
+          "step": 114,
+          "event": "after_expression",
+          "focus": "t_to_s",
+          "node_id": 56,
+          "value": {
+            "a": "e"
+          }
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "char_t in t_to_s",
+          "node_id": 34,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 21,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e"
+        },
+        "i": 1,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748832,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 116,
+          "event": "before_statement",
+          "focus": "t_to_s[char_t] = char_s",
+          "node_id": 36
+        },
+        {
+          "step": 117,
+          "event": "before_expression",
+          "focus": "char_s",
+          "node_id": 60
+        },
+        {
+          "step": 118,
+          "event": "after_expression",
+          "focus": "char_s",
+          "node_id": 60,
+          "value": "g"
+        },
+        {
+          "step": 119,
+          "event": "before_expression",
+          "focus": "t_to_s",
+          "node_id": 73
+        },
+        {
+          "step": 120,
+          "event": "after_expression",
+          "focus": "t_to_s",
+          "node_id": 73,
+          "value": {
+            "a": "e"
+          }
+        },
+        {
+          "step": 121,
+          "event": "before_expression",
+          "focus": "char_t",
+          "node_id": 74
+        },
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "char_t",
+          "node_id": 74,
+          "value": "d"
+        },
+        {
+          "step": 123,
+          "event": "after_statement",
+          "focus": "t_to_s[char_t] = char_s",
+          "node_id": 36,
+          "locals": {
+            "s": "egg",
+            "t": "add",
+            "s_to_t": {
+              "e": "a",
+              "g": "d"
+            },
+            "t_to_s": {
+              "a": "e",
+              "d": "g"
+            },
+            "i": 1,
+            "char_s": "g",
+            "char_t": "d"
+          },
+          "object_table": {
+            "4337537392": {
+              "type": "str",
+              "value": "egg",
+              "isCollection": false
+            },
+            "4337537440": {
+              "type": "str",
+              "value": "add",
+              "isCollection": false
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            },
+            "4318813544": {
+              "type": "str",
+              "value": "d",
+              "isCollection": false
+            },
+            "4339701696": {
+              "type": "dict",
+              "value": {
+                "e": 4318813400,
+                "g": 4318813544
+              },
+              "isCollection": true
+            },
+            "4318813592": {
+              "type": "str",
+              "value": "e",
+              "isCollection": false
+            },
+            "4318813688": {
+              "type": "str",
+              "value": "g",
+              "isCollection": false
+            },
+            "4339696256": {
+              "type": "dict",
+              "value": {
+                "a": 4318813592,
+                "d": 4318813688
+              },
+              "isCollection": true
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 1,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": {
+        "t_to_s": {
+          "d": "g"
+        }
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748832,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 124,
+          "event": "after_statement",
+          "focus": "if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s",
+          "node_id": 20
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 2,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": {
+        "i": 2
+      },
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748864,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 125,
+          "event": "before_statement",
+          "focus": "char_s, char_t = s[i], t[i]",
+          "node_id": 18
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "s[i], t[i]",
+          "node_id": 30
+        },
+        {
+          "step": 127,
+          "event": "before_expression",
+          "focus": "s[i]",
+          "node_id": 46
+        },
+        {
+          "step": 128,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 61
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 61,
+          "value": "egg"
+        },
+        {
+          "step": 130,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 62
+        },
+        {
+          "step": 131,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 62,
+          "value": 2
+        },
+        {
+          "step": 132,
+          "event": "after_expression",
+          "focus": "s[i]",
+          "node_id": 46,
+          "value": "g"
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "t[i]",
+          "node_id": 47
+        },
+        {
+          "step": 134,
+          "event": "before_expression",
+          "focus": "t",
+          "node_id": 63
+        },
+        {
+          "step": 135,
+          "event": "after_expression",
+          "focus": "t",
+          "node_id": 63,
+          "value": "add"
+        },
+        {
+          "step": 136,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 64
+        },
+        {
+          "step": 137,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 64,
+          "value": 2
+        },
+        {
+          "step": 138,
+          "event": "after_expression",
+          "focus": "t[i]",
+          "node_id": 47,
+          "value": "d"
+        },
+        {
+          "step": 139,
+          "event": "after_expression",
+          "focus": "s[i], t[i]",
+          "node_id": 30,
+          "value": [
+            "g",
+            "d"
+          ]
+        },
+        {
+          "step": 140,
+          "event": "after_statement",
+          "focus": "char_s, char_t = s[i], t[i]",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 2,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748864,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 141,
+          "event": "before_statement",
+          "focus": "if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t",
+          "node_id": 19
+        },
+        {
+          "step": 142,
+          "event": "before_expression",
+          "focus": "char_s in s_to_t",
+          "node_id": 31
+        },
+        {
+          "step": 143,
+          "event": "before_expression",
+          "focus": "char_s",
+          "node_id": 48
+        },
+        {
+          "step": 144,
+          "event": "after_expression",
+          "focus": "char_s",
+          "node_id": 48,
+          "value": "g"
+        },
+        {
+          "step": 145,
+          "event": "before_expression",
+          "focus": "s_to_t",
+          "node_id": 50
+        },
+        {
+          "step": 146,
+          "event": "after_expression",
+          "focus": "s_to_t",
+          "node_id": 50,
+          "value": {
+            "e": "a",
+            "g": "d"
+          }
+        },
+        {
+          "step": 147,
+          "event": "after_expression",
+          "focus": "char_s in s_to_t",
+          "node_id": 31,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 2,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748864,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 148,
+          "event": "before_statement",
+          "focus": "if s_to_t[char_s] != char_t:\n                return False",
+          "node_id": 32
+        },
+        {
+          "step": 149,
+          "event": "before_expression",
+          "focus": "s_to_t[char_s] != char_t",
+          "node_id": 51
+        },
+        {
+          "step": 150,
+          "event": "before_expression",
+          "focus": "s_to_t[char_s]",
+          "node_id": 65
+        },
+        {
+          "step": 151,
+          "event": "before_expression",
+          "focus": "s_to_t",
+          "node_id": 75
+        },
+        {
+          "step": 152,
+          "event": "after_expression",
+          "focus": "s_to_t",
+          "node_id": 75,
+          "value": {
+            "e": "a",
+            "g": "d"
+          }
+        },
+        {
+          "step": 153,
+          "event": "before_expression",
+          "focus": "char_s",
+          "node_id": 76
+        },
+        {
+          "step": 154,
+          "event": "after_expression",
+          "focus": "char_s",
+          "node_id": 76,
+          "value": "g"
+        },
+        {
+          "step": 155,
+          "event": "after_expression",
+          "focus": "s_to_t[char_s]",
+          "node_id": 65,
+          "value": "d"
+        },
+        {
+          "step": 156,
+          "event": "before_expression",
+          "focus": "char_t",
+          "node_id": 66
+        },
+        {
+          "step": 157,
+          "event": "after_expression",
+          "focus": "char_t",
+          "node_id": 66,
+          "value": "d"
+        },
+        {
+          "step": 158,
+          "event": "after_expression",
+          "focus": "s_to_t[char_s] != char_t",
+          "node_id": 51,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 159,
+          "event": "after_statement",
+          "focus": "if s_to_t[char_s] != char_t:\n                return False",
+          "node_id": 32
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 2,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748864,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 160,
+          "event": "after_statement",
+          "focus": "if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 2,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748864,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 161,
+          "event": "before_statement",
+          "focus": "if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s",
+          "node_id": 20
+        },
+        {
+          "step": 162,
+          "event": "before_expression",
+          "focus": "char_t in t_to_s",
+          "node_id": 34
+        },
+        {
+          "step": 163,
+          "event": "before_expression",
+          "focus": "char_t",
+          "node_id": 55
+        },
+        {
+          "step": 164,
+          "event": "after_expression",
+          "focus": "char_t",
+          "node_id": 55,
+          "value": "d"
+        },
+        {
+          "step": 165,
+          "event": "before_expression",
+          "focus": "t_to_s",
+          "node_id": 56
+        },
+        {
+          "step": 166,
+          "event": "after_expression",
+          "focus": "t_to_s",
+          "node_id": 56,
+          "value": {
+            "a": "e",
+            "d": "g"
+          }
+        },
+        {
+          "step": 167,
+          "event": "after_expression",
+          "focus": "char_t in t_to_s",
+          "node_id": 34,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 18,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 2,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748864,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 168,
+          "event": "before_statement",
+          "focus": "if t_to_s[char_t] != char_s:\n                return False",
+          "node_id": 35
+        },
+        {
+          "step": 169,
+          "event": "before_expression",
+          "focus": "t_to_s[char_t] != char_s",
+          "node_id": 57
+        },
+        {
+          "step": 170,
+          "event": "before_expression",
+          "focus": "t_to_s[char_t]",
+          "node_id": 70
+        },
+        {
+          "step": 171,
+          "event": "before_expression",
+          "focus": "t_to_s",
+          "node_id": 77
+        },
+        {
+          "step": 172,
+          "event": "after_expression",
+          "focus": "t_to_s",
+          "node_id": 77,
+          "value": {
+            "a": "e",
+            "d": "g"
+          }
+        },
+        {
+          "step": 173,
+          "event": "before_expression",
+          "focus": "char_t",
+          "node_id": 78
+        },
+        {
+          "step": 174,
+          "event": "after_expression",
+          "focus": "char_t",
+          "node_id": 78,
+          "value": "d"
+        },
+        {
+          "step": 175,
+          "event": "after_expression",
+          "focus": "t_to_s[char_t]",
+          "node_id": 70,
+          "value": "g"
+        },
+        {
+          "step": 176,
+          "event": "before_expression",
+          "focus": "char_s",
+          "node_id": 71
+        },
+        {
+          "step": 177,
+          "event": "after_expression",
+          "focus": "char_s",
+          "node_id": 71,
+          "value": "g"
+        },
+        {
+          "step": 178,
+          "event": "after_expression",
+          "focus": "t_to_s[char_t] != char_s",
+          "node_id": 57,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 179,
+          "event": "after_statement",
+          "focus": "if t_to_s[char_t] != char_s:\n                return False",
+          "node_id": 35
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 2,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748864,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 180,
+          "event": "after_statement",
+          "focus": "if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s",
+          "node_id": 20
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 2,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748864,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 181,
+          "event": "after_statement",
+          "focus": "for i in range(len(s)):\n        char_s, char_t = s[i], t[i]\n        \n        if char_s in s_to_t:\n            if s_to_t[char_s] != char_t:\n                return False\n        else:\n            s_to_t[char_s] = char_t\n        \n        if char_t in t_to_s:\n            if t_to_s[char_t] != char_s:\n                return False\n        else:\n            t_to_s[char_t] = char_s",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 23,
+      "locals": {
+        "s": "egg",
+        "t": "add",
+        "s_to_t": {
+          "e": "a",
+          "g": "d"
+        },
+        "t_to_s": {
+          "a": "e",
+          "d": "g"
+        },
+        "i": 2,
+        "char_s": "g",
+        "char_t": "d"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537392": {
+          "type": "str",
+          "value": "egg",
+          "isCollection": false
+        },
+        "4337537440": {
+          "type": "str",
+          "value": "add",
+          "isCollection": false
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        },
+        "4318813544": {
+          "type": "str",
+          "value": "d",
+          "isCollection": false
+        },
+        "4339701696": {
+          "type": "dict",
+          "value": {
+            "e": 4318813400,
+            "g": 4318813544
+          },
+          "isCollection": true
+        },
+        "4318813592": {
+          "type": "str",
+          "value": "e",
+          "isCollection": false
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        },
+        "4339696256": {
+          "type": "dict",
+          "value": {
+            "a": 4318813592,
+            "d": 4318813688
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537392,
+        "t": 4337537440,
+        "s_to_t": 4339701696,
+        "t_to_s": 4339696256,
+        "i": 4318748864,
+        "char_s": 4318813688,
+        "char_t": 4318813544
+      },
+      "steps": [
+        {
+          "step": 182,
+          "event": "before_statement",
+          "focus": "return True",
+          "node_id": 7
+        }
+      ]
+    }
+  ],
+  "result": true
 }

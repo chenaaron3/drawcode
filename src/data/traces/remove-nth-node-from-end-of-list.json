@@ -8,8 +8,14 @@
         "n": "2"
       }
     },
-    "stdout": "<ast.Call object at 0x10491bf90>\nError executing code: 'Call' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "head": "ListNode(1)",
+      "n": 2,
+      "dummy": "ListNode(0)",
+      "fast": "ListNode(5)",
+      "slow": "ListNode(3)"
+    }
   },
   "ast": {
     "node_id": 0,
@@ -973,6 +979,3034 @@
     "type_ignores": []
   },
   "relationships": [],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def removeNthFromEnd(head, n):\n    dummy = ListNode(0)\n    dummy.next = head\n    fast = slow = dummy\n    for _ in range(n):\n        fast = fast.next\n    while fast.next:\n        fast = fast.next\n        slow = slow.next\n    slow.next = slow.next.next\n    return dummy.next",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def removeNthFromEnd(head, n):\n    dummy = ListNode(0)\n    dummy.next = head\n    fast = slow = dummy\n    for _ in range(n):\n        fast = fast.next\n    while fast.next:\n        fast = fast.next\n        slow = slow.next\n    slow.next = slow.next.next\n    return dummy.next",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2
+      },
+      "delta": {
+        "head": "ListNode(1)",
+        "n": 2
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "dummy = ListNode(0)",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "ListNode(0)",
+          "node_id": 13
+        },
+        {
+          "step": 4,
+          "event": "after_expression",
+          "focus": "ListNode(0)",
+          "node_id": 13,
+          "value": "ListNode(0)"
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "dummy = ListNode(0)",
+          "node_id": 3,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)"
+          },
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "ListNode",
+              "value": {
+                "next": 4318602040,
+                "val": 4318748960
+              },
+              "isCollection": true
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337262688,
+                "val": 4318748928
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337715152": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337263296,
+                "val": 4318748896
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337714832": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337715152,
+                "val": 4318748864
+              },
+              "isCollection": true
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337456464": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337714832,
+                "val": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4337319184": {
+              "type": "ListNode",
+              "value": {
+                "next": 4318602040,
+                "val": 4318748800
+              },
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)"
+      },
+      "delta": {
+        "dummy": "ListNode(0)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "dummy.next = head",
+          "node_id": 4
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "head",
+          "node_id": 15
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "head",
+          "node_id": 15,
+          "value": "ListNode(1)"
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "dummy",
+          "node_id": 31
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "dummy",
+          "node_id": 31,
+          "value": "ListNode(0)"
+        },
+        {
+          "step": 11,
+          "event": "after_statement",
+          "focus": "dummy.next = head",
+          "node_id": 4,
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "ListNode",
+              "value": {
+                "next": 4318602040,
+                "val": 4318748960
+              },
+              "isCollection": true
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4337263296": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337262688,
+                "val": 4318748928
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337715152": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337263296,
+                "val": 4318748896
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337714832": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337715152,
+                "val": 4318748864
+              },
+              "isCollection": true
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337456464": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337714832,
+                "val": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4337319184": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337456464,
+                "val": 4318748800
+              },
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "fast = slow = dummy",
+          "node_id": 5
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "dummy",
+          "node_id": 18
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "dummy",
+          "node_id": 18,
+          "value": "ListNode(0)"
+        },
+        {
+          "step": 15,
+          "event": "after_statement",
+          "focus": "fast = slow = dummy",
+          "node_id": 5,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)",
+            "fast": "ListNode(0)",
+            "slow": "ListNode(0)"
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184,
+            "fast": 4337319184,
+            "slow": 4337319184
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(0)",
+        "slow": "ListNode(0)"
+      },
+      "delta": {
+        "fast": "ListNode(0)",
+        "slow": "ListNode(0)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337319184,
+        "slow": 4337319184
+      },
+      "steps": [
+        {
+          "step": 16,
+          "event": "before_statement",
+          "focus": "for _ in range(n):\n        fast = fast.next",
+          "node_id": 6
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "range(n)",
+          "node_id": 20
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 34
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 34,
+          "value": 2
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "range(n)",
+          "node_id": 20,
+          "value": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(0)",
+        "slow": "ListNode(0)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337319184,
+        "slow": 4337319184
+      },
+      "steps": [
+        {
+          "step": 21,
+          "event": "before_statement",
+          "focus": "fast = fast.next",
+          "node_id": 21
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "fast.next",
+          "node_id": 36
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "fast",
+          "node_id": 45
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "fast",
+          "node_id": 45,
+          "value": "ListNode(0)"
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "fast.next",
+          "node_id": 36,
+          "value": "ListNode(1)"
+        },
+        {
+          "step": 26,
+          "event": "after_statement",
+          "focus": "fast = fast.next",
+          "node_id": 21,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)",
+            "fast": "ListNode(1)",
+            "slow": "ListNode(0)"
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184,
+            "fast": 4337456464,
+            "slow": 4337319184
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(1)",
+        "slow": "ListNode(0)"
+      },
+      "delta": {
+        "fast": "ListNode(1)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337456464,
+        "slow": 4337319184
+      },
+      "steps": [
+        {
+          "step": 27,
+          "event": "before_statement",
+          "focus": "fast = fast.next",
+          "node_id": 21
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "fast.next",
+          "node_id": 36
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "fast",
+          "node_id": 45
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "fast",
+          "node_id": 45,
+          "value": "ListNode(1)"
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "fast.next",
+          "node_id": 36,
+          "value": "ListNode(2)"
+        },
+        {
+          "step": 32,
+          "event": "after_statement",
+          "focus": "fast = fast.next",
+          "node_id": 21,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)",
+            "fast": "ListNode(2)",
+            "slow": "ListNode(0)"
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184,
+            "fast": 4337714832,
+            "slow": 4337319184
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(2)",
+        "slow": "ListNode(0)"
+      },
+      "delta": {
+        "fast": "ListNode(2)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337714832,
+        "slow": 4337319184
+      },
+      "steps": [
+        {
+          "step": 33,
+          "event": "after_statement",
+          "focus": "for _ in range(n):\n        fast = fast.next",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(2)",
+        "slow": "ListNode(0)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337714832,
+        "slow": 4337319184
+      },
+      "steps": [
+        {
+          "step": 34,
+          "event": "before_statement",
+          "focus": "while fast.next:\n        fast = fast.next\n        slow = slow.next",
+          "node_id": 7
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "fast.next",
+          "node_id": 22
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "fast",
+          "node_id": 37
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "fast",
+          "node_id": 37,
+          "value": "ListNode(2)"
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "fast.next",
+          "node_id": 22,
+          "value": "ListNode(3)",
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(2)",
+        "slow": "ListNode(0)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337714832,
+        "slow": 4337319184
+      },
+      "steps": [
+        {
+          "step": 39,
+          "event": "before_statement",
+          "focus": "fast = fast.next",
+          "node_id": 23
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "fast.next",
+          "node_id": 39
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "fast",
+          "node_id": 46
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "fast",
+          "node_id": 46,
+          "value": "ListNode(2)"
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "fast.next",
+          "node_id": 39,
+          "value": "ListNode(3)"
+        },
+        {
+          "step": 44,
+          "event": "after_statement",
+          "focus": "fast = fast.next",
+          "node_id": 23,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)",
+            "fast": "ListNode(3)",
+            "slow": "ListNode(0)"
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184,
+            "fast": 4337715152,
+            "slow": 4337319184
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(3)",
+        "slow": "ListNode(0)"
+      },
+      "delta": {
+        "fast": "ListNode(3)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337715152,
+        "slow": 4337319184
+      },
+      "steps": [
+        {
+          "step": 45,
+          "event": "before_statement",
+          "focus": "slow = slow.next",
+          "node_id": 24
+        },
+        {
+          "step": 46,
+          "event": "before_expression",
+          "focus": "slow.next",
+          "node_id": 41
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "slow",
+          "node_id": 47
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "slow",
+          "node_id": 47,
+          "value": "ListNode(0)"
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "slow.next",
+          "node_id": 41,
+          "value": "ListNode(1)"
+        },
+        {
+          "step": 50,
+          "event": "after_statement",
+          "focus": "slow = slow.next",
+          "node_id": 24,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)",
+            "fast": "ListNode(3)",
+            "slow": "ListNode(1)"
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184,
+            "fast": 4337715152,
+            "slow": 4337456464
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(3)",
+        "slow": "ListNode(1)"
+      },
+      "delta": {
+        "slow": "ListNode(1)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337715152,
+        "slow": 4337456464
+      },
+      "steps": [
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "fast.next",
+          "node_id": 22
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "fast",
+          "node_id": 37
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "fast",
+          "node_id": 37,
+          "value": "ListNode(3)"
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "fast.next",
+          "node_id": 22,
+          "value": "ListNode(4)",
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(3)",
+        "slow": "ListNode(1)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337715152,
+        "slow": 4337456464
+      },
+      "steps": [
+        {
+          "step": 55,
+          "event": "before_statement",
+          "focus": "fast = fast.next",
+          "node_id": 23
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "fast.next",
+          "node_id": 39
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "fast",
+          "node_id": 46
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "fast",
+          "node_id": 46,
+          "value": "ListNode(3)"
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "fast.next",
+          "node_id": 39,
+          "value": "ListNode(4)"
+        },
+        {
+          "step": 60,
+          "event": "after_statement",
+          "focus": "fast = fast.next",
+          "node_id": 23,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)",
+            "fast": "ListNode(4)",
+            "slow": "ListNode(1)"
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184,
+            "fast": 4337263296,
+            "slow": 4337456464
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(4)",
+        "slow": "ListNode(1)"
+      },
+      "delta": {
+        "fast": "ListNode(4)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337263296,
+        "slow": 4337456464
+      },
+      "steps": [
+        {
+          "step": 61,
+          "event": "before_statement",
+          "focus": "slow = slow.next",
+          "node_id": 24
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "slow.next",
+          "node_id": 41
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "slow",
+          "node_id": 47
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "slow",
+          "node_id": 47,
+          "value": "ListNode(1)"
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "slow.next",
+          "node_id": 41,
+          "value": "ListNode(2)"
+        },
+        {
+          "step": 66,
+          "event": "after_statement",
+          "focus": "slow = slow.next",
+          "node_id": 24,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)",
+            "fast": "ListNode(4)",
+            "slow": "ListNode(2)"
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184,
+            "fast": 4337263296,
+            "slow": 4337714832
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(4)",
+        "slow": "ListNode(2)"
+      },
+      "delta": {
+        "slow": "ListNode(2)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337263296,
+        "slow": 4337714832
+      },
+      "steps": [
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "fast.next",
+          "node_id": 22
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "fast",
+          "node_id": 37
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "fast",
+          "node_id": 37,
+          "value": "ListNode(4)"
+        },
+        {
+          "step": 70,
+          "event": "after_expression",
+          "focus": "fast.next",
+          "node_id": 22,
+          "value": "ListNode(5)",
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(4)",
+        "slow": "ListNode(2)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337263296,
+        "slow": 4337714832
+      },
+      "steps": [
+        {
+          "step": 71,
+          "event": "before_statement",
+          "focus": "fast = fast.next",
+          "node_id": 23
+        },
+        {
+          "step": 72,
+          "event": "before_expression",
+          "focus": "fast.next",
+          "node_id": 39
+        },
+        {
+          "step": 73,
+          "event": "before_expression",
+          "focus": "fast",
+          "node_id": 46
+        },
+        {
+          "step": 74,
+          "event": "after_expression",
+          "focus": "fast",
+          "node_id": 46,
+          "value": "ListNode(4)"
+        },
+        {
+          "step": 75,
+          "event": "after_expression",
+          "focus": "fast.next",
+          "node_id": 39,
+          "value": "ListNode(5)"
+        },
+        {
+          "step": 76,
+          "event": "after_statement",
+          "focus": "fast = fast.next",
+          "node_id": 23,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)",
+            "fast": "ListNode(5)",
+            "slow": "ListNode(2)"
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184,
+            "fast": 4337262688,
+            "slow": 4337714832
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(5)",
+        "slow": "ListNode(2)"
+      },
+      "delta": {
+        "fast": "ListNode(5)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337262688,
+        "slow": 4337714832
+      },
+      "steps": [
+        {
+          "step": 77,
+          "event": "before_statement",
+          "focus": "slow = slow.next",
+          "node_id": 24
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "slow.next",
+          "node_id": 41
+        },
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "slow",
+          "node_id": 47
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "slow",
+          "node_id": 47,
+          "value": "ListNode(2)"
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "slow.next",
+          "node_id": 41,
+          "value": "ListNode(3)"
+        },
+        {
+          "step": 82,
+          "event": "after_statement",
+          "focus": "slow = slow.next",
+          "node_id": 24,
+          "locals": {
+            "head": "ListNode(1)",
+            "n": 2,
+            "dummy": "ListNode(0)",
+            "fast": "ListNode(5)",
+            "slow": "ListNode(3)"
+          },
+          "var_table": {
+            "head": 4337456464,
+            "n": 4318748864,
+            "dummy": 4337319184,
+            "fast": 4337262688,
+            "slow": 4337715152
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(5)",
+        "slow": "ListNode(3)"
+      },
+      "delta": {
+        "slow": "ListNode(3)"
+      },
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337262688,
+        "slow": 4337715152
+      },
+      "steps": [
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "fast.next",
+          "node_id": 22
+        },
+        {
+          "step": 84,
+          "event": "before_expression",
+          "focus": "fast",
+          "node_id": 37
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "fast",
+          "node_id": 37,
+          "value": "ListNode(5)"
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "fast.next",
+          "node_id": 22,
+          "value": null,
+          "test": false
+        },
+        {
+          "step": 87,
+          "event": "after_statement",
+          "focus": "while fast.next:\n        fast = fast.next\n        slow = slow.next",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(5)",
+        "slow": "ListNode(3)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337263296": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748928
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337263296,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337262688,
+        "slow": 4337715152
+      },
+      "steps": [
+        {
+          "step": 88,
+          "event": "before_statement",
+          "focus": "slow.next = slow.next.next",
+          "node_id": 8
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "slow.next.next",
+          "node_id": 26
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "slow.next",
+          "node_id": 43
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "slow",
+          "node_id": 48
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "slow",
+          "node_id": 48,
+          "value": "ListNode(3)"
+        },
+        {
+          "step": 93,
+          "event": "after_expression",
+          "focus": "slow.next",
+          "node_id": 43,
+          "value": "ListNode(4)"
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "slow.next.next",
+          "node_id": 26,
+          "value": "ListNode(5)"
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "slow",
+          "node_id": 42
+        },
+        {
+          "step": 96,
+          "event": "after_expression",
+          "focus": "slow",
+          "node_id": 42,
+          "value": "ListNode(3)"
+        },
+        {
+          "step": 97,
+          "event": "after_statement",
+          "focus": "slow.next = slow.next.next",
+          "node_id": 8,
+          "object_table": {
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4337262688": {
+              "type": "ListNode",
+              "value": {
+                "next": 4318602040,
+                "val": 4318748960
+              },
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4337715152": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337262688,
+                "val": 4318748896
+              },
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337714832": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337715152,
+                "val": 4318748864
+              },
+              "isCollection": true
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337456464": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337714832,
+                "val": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4337319184": {
+              "type": "ListNode",
+              "value": {
+                "next": 4337456464,
+                "val": 4318748800
+              },
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "head": "ListNode(1)",
+        "n": 2,
+        "dummy": "ListNode(0)",
+        "fast": "ListNode(5)",
+        "slow": "ListNode(3)"
+      },
+      "delta": null,
+      "object_table": {
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4337262688": {
+          "type": "ListNode",
+          "value": {
+            "next": 4318602040,
+            "val": 4318748960
+          },
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4337715152": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337262688,
+            "val": 4318748896
+          },
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337714832": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337715152,
+            "val": 4318748864
+          },
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337456464": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337714832,
+            "val": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337319184": {
+          "type": "ListNode",
+          "value": {
+            "next": 4337456464,
+            "val": 4318748800
+          },
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "head": 4337456464,
+        "n": 4318748864,
+        "dummy": 4337319184,
+        "fast": 4337262688,
+        "slow": 4337715152
+      },
+      "steps": [
+        {
+          "step": 98,
+          "event": "before_statement",
+          "focus": "return dummy.next",
+          "node_id": 9
+        },
+        {
+          "step": 99,
+          "event": "before_expression",
+          "focus": "dummy.next",
+          "node_id": 27
+        },
+        {
+          "step": 100,
+          "event": "before_expression",
+          "focus": "dummy",
+          "node_id": 44
+        },
+        {
+          "step": 101,
+          "event": "after_expression",
+          "focus": "dummy",
+          "node_id": 44,
+          "value": "ListNode(0)"
+        },
+        {
+          "step": 102,
+          "event": "after_expression",
+          "focus": "dummy.next",
+          "node_id": 27,
+          "value": "ListNode(1)"
+        }
+      ]
+    }
+  ],
+  "result": "ListNode(1)"
 }

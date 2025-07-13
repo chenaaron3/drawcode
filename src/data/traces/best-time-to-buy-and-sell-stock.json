@@ -7,8 +7,20 @@
         "prices": "[7, 1, 5, 3, 6, 4]"
       }
     },
-    "stdout": "<ast.Call object at 0x104501d10>\nError executing code: 'Call' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "prices": [
+        7,
+        1,
+        5,
+        3,
+        6,
+        4
+      ],
+      "min_price": 1,
+      "max_profit": 5,
+      "price": 4
+    }
   },
   "ast": {
     "node_id": 0,
@@ -726,6 +738,3150 @@
       "node_id": 5
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def maxProfit(prices):\n    min_price = float('inf')\n    max_profit = 0\n    \n    for price in prices:\n        if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price\n    \n    return max_profit",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def maxProfit(prices):\n    min_price = float('inf')\n    max_profit = 0\n    \n    for price in prices:\n        if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price\n    \n    return max_profit",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ]
+      },
+      "delta": {
+        "prices": {
+          "0": 7,
+          "1": 1,
+          "2": 5,
+          "3": 3,
+          "4": 6,
+          "5": 4
+        }
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "min_price = float('inf')",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "float('inf')",
+          "node_id": 9
+        },
+        {
+          "step": 4,
+          "event": "after_expression",
+          "focus": "float('inf')",
+          "node_id": 9,
+          "value": "Infinity"
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "min_price = float('inf')",
+          "node_id": 3,
+          "locals": {
+            "prices": [
+              7,
+              1,
+              5,
+              3,
+              6,
+              4
+            ],
+            "min_price": "Infinity"
+          },
+          "object_table": {
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748992": {
+              "type": "int",
+              "value": 6,
+              "isCollection": false
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4337712192": {
+              "type": "list",
+              "value": [
+                4318749024,
+                4318748832,
+                4318748960,
+                4318748896,
+                4318748992,
+                4318748928
+              ],
+              "isCollection": true
+            },
+            "4335860528": {
+              "type": "float",
+              "value": "Infinity",
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "prices": 4337712192,
+            "min_price": 4335860528
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": "Infinity"
+      },
+      "delta": {
+        "min_price": "Infinity"
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4335860528": {
+          "type": "float",
+          "value": "Infinity",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4335860528
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "max_profit = 0",
+          "node_id": 4
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "max_profit = 0",
+          "node_id": 4,
+          "locals": {
+            "prices": [
+              7,
+              1,
+              5,
+              3,
+              6,
+              4
+            ],
+            "min_price": "Infinity",
+            "max_profit": 0
+          },
+          "object_table": {
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748992": {
+              "type": "int",
+              "value": 6,
+              "isCollection": false
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4337712192": {
+              "type": "list",
+              "value": [
+                4318749024,
+                4318748832,
+                4318748960,
+                4318748896,
+                4318748992,
+                4318748928
+              ],
+              "isCollection": true
+            },
+            "4335860528": {
+              "type": "float",
+              "value": "Infinity",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "prices": 4337712192,
+            "min_price": 4335860528,
+            "max_profit": 4318748800
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": "Infinity",
+        "max_profit": 0
+      },
+      "delta": {
+        "max_profit": 0
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4335860528": {
+          "type": "float",
+          "value": "Infinity",
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4335860528,
+        "max_profit": 4318748800
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "for price in prices:\n        if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 5
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "prices",
+          "node_id": 13
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "prices",
+          "node_id": 13,
+          "value": [
+            7,
+            1,
+            5,
+            3,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": "Infinity",
+        "max_profit": 0,
+        "price": 7
+      },
+      "delta": {
+        "price": 7
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4335860528": {
+          "type": "float",
+          "value": "Infinity",
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4335860528,
+        "max_profit": 4318748800,
+        "price": 4318749024
+      },
+      "steps": [
+        {
+          "step": 11,
+          "event": "before_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "price < min_price",
+          "node_id": 20
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 23
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 23,
+          "value": 7
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 25
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 25,
+          "value": "Infinity"
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "price < min_price",
+          "node_id": 20,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": "Infinity",
+        "max_profit": 0,
+        "price": 7
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4335860528": {
+          "type": "float",
+          "value": "Infinity",
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4335860528,
+        "max_profit": 4318748800,
+        "price": 4318749024
+      },
+      "steps": [
+        {
+          "step": 18,
+          "event": "before_statement",
+          "focus": "min_price = price",
+          "node_id": 21
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 27
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 27,
+          "value": 7
+        },
+        {
+          "step": 21,
+          "event": "after_statement",
+          "focus": "min_price = price",
+          "node_id": 21,
+          "locals": {
+            "prices": [
+              7,
+              1,
+              5,
+              3,
+              6,
+              4
+            ],
+            "min_price": 7,
+            "max_profit": 0,
+            "price": 7
+          },
+          "object_table": {
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748992": {
+              "type": "int",
+              "value": 6,
+              "isCollection": false
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4337712192": {
+              "type": "list",
+              "value": [
+                4318749024,
+                4318748832,
+                4318748960,
+                4318748896,
+                4318748992,
+                4318748928
+              ],
+              "isCollection": true
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "prices": 4337712192,
+            "min_price": 4318749024,
+            "max_profit": 4318748800,
+            "price": 4318749024
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 7,
+        "max_profit": 0,
+        "price": 7
+      },
+      "delta": {
+        "min_price": 7
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318749024,
+        "max_profit": 4318748800,
+        "price": 4318749024
+      },
+      "steps": [
+        {
+          "step": 22,
+          "event": "after_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 7,
+        "max_profit": 0,
+        "price": 1
+      },
+      "delta": {
+        "price": 1
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318749024,
+        "max_profit": 4318748800,
+        "price": 4318748832
+      },
+      "steps": [
+        {
+          "step": 23,
+          "event": "before_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "price < min_price",
+          "node_id": 20
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 23
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 23,
+          "value": 1
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 25
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 25,
+          "value": 7
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "price < min_price",
+          "node_id": 20,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 7,
+        "max_profit": 0,
+        "price": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318749024,
+        "max_profit": 4318748800,
+        "price": 4318748832
+      },
+      "steps": [
+        {
+          "step": 30,
+          "event": "before_statement",
+          "focus": "min_price = price",
+          "node_id": 21
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 27
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 27,
+          "value": 1
+        },
+        {
+          "step": 33,
+          "event": "after_statement",
+          "focus": "min_price = price",
+          "node_id": 21,
+          "locals": {
+            "prices": [
+              7,
+              1,
+              5,
+              3,
+              6,
+              4
+            ],
+            "min_price": 1,
+            "max_profit": 0,
+            "price": 1
+          },
+          "var_table": {
+            "prices": 4337712192,
+            "min_price": 4318748832,
+            "max_profit": 4318748800,
+            "price": 4318748832
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 0,
+        "price": 1
+      },
+      "delta": {
+        "min_price": 1
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748800,
+        "price": 4318748832
+      },
+      "steps": [
+        {
+          "step": 34,
+          "event": "after_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 0,
+        "price": 5
+      },
+      "delta": {
+        "price": 5
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748800,
+        "price": 4318748960
+      },
+      "steps": [
+        {
+          "step": 35,
+          "event": "before_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "price < min_price",
+          "node_id": 20
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 23
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 23,
+          "value": 5
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 25
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 25,
+          "value": 1
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "price < min_price",
+          "node_id": 20,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 0,
+        "price": 5
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748800,
+        "price": 4318748960
+      },
+      "steps": [
+        {
+          "step": 42,
+          "event": "before_statement",
+          "focus": "elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 22
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "price - min_price > max_profit",
+          "node_id": 28
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "price - min_price",
+          "node_id": 30
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 35
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 35,
+          "value": 5
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 37
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 37,
+          "value": 1
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "price - min_price",
+          "node_id": 30,
+          "value": 4
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "max_profit",
+          "node_id": 32
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "max_profit",
+          "node_id": 32,
+          "value": 0
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "price - min_price > max_profit",
+          "node_id": 28,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 0,
+        "price": 5
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748800,
+        "price": 4318748960
+      },
+      "steps": [
+        {
+          "step": 53,
+          "event": "before_statement",
+          "focus": "max_profit = price - min_price",
+          "node_id": 29
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "price - min_price",
+          "node_id": 34
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 38
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 38,
+          "value": 5
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 39
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 39,
+          "value": 1
+        },
+        {
+          "step": 59,
+          "event": "after_expression",
+          "focus": "price - min_price",
+          "node_id": 34,
+          "value": 4
+        },
+        {
+          "step": 60,
+          "event": "after_statement",
+          "focus": "max_profit = price - min_price",
+          "node_id": 29,
+          "locals": {
+            "prices": [
+              7,
+              1,
+              5,
+              3,
+              6,
+              4
+            ],
+            "min_price": 1,
+            "max_profit": 4,
+            "price": 5
+          },
+          "object_table": {
+            "4318749024": {
+              "type": "int",
+              "value": 7,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748992": {
+              "type": "int",
+              "value": 6,
+              "isCollection": false
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            },
+            "4337712192": {
+              "type": "list",
+              "value": [
+                4318749024,
+                4318748832,
+                4318748960,
+                4318748896,
+                4318748992,
+                4318748928
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "prices": 4337712192,
+            "min_price": 4318748832,
+            "max_profit": 4318748928,
+            "price": 4318748960
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 4,
+        "price": 5
+      },
+      "delta": {
+        "max_profit": 4
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748928,
+        "price": 4318748960
+      },
+      "steps": [
+        {
+          "step": 61,
+          "event": "after_statement",
+          "focus": "elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 22
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 4,
+        "price": 5
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748928,
+        "price": 4318748960
+      },
+      "steps": [
+        {
+          "step": 62,
+          "event": "after_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 4,
+        "price": 3
+      },
+      "delta": {
+        "price": 3
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748928,
+        "price": 4318748896
+      },
+      "steps": [
+        {
+          "step": 63,
+          "event": "before_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        },
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "price < min_price",
+          "node_id": 20
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 23
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 23,
+          "value": 3
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 25
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 25,
+          "value": 1
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "price < min_price",
+          "node_id": 20,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 4,
+        "price": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748928,
+        "price": 4318748896
+      },
+      "steps": [
+        {
+          "step": 70,
+          "event": "before_statement",
+          "focus": "elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 22
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "price - min_price > max_profit",
+          "node_id": 28
+        },
+        {
+          "step": 72,
+          "event": "before_expression",
+          "focus": "price - min_price",
+          "node_id": 30
+        },
+        {
+          "step": 73,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 35
+        },
+        {
+          "step": 74,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 35,
+          "value": 3
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 37
+        },
+        {
+          "step": 76,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 37,
+          "value": 1
+        },
+        {
+          "step": 77,
+          "event": "after_expression",
+          "focus": "price - min_price",
+          "node_id": 30,
+          "value": 2
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "max_profit",
+          "node_id": 32
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "max_profit",
+          "node_id": 32,
+          "value": 4
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "price - min_price > max_profit",
+          "node_id": 28,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 81,
+          "event": "after_statement",
+          "focus": "elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 22
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 4,
+        "price": 3
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748928,
+        "price": 4318748896
+      },
+      "steps": [
+        {
+          "step": 82,
+          "event": "after_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 4,
+        "price": 6
+      },
+      "delta": {
+        "price": 6
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748928,
+        "price": 4318748992
+      },
+      "steps": [
+        {
+          "step": 83,
+          "event": "before_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        },
+        {
+          "step": 84,
+          "event": "before_expression",
+          "focus": "price < min_price",
+          "node_id": 20
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 23
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 23,
+          "value": 6
+        },
+        {
+          "step": 87,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 25
+        },
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 25,
+          "value": 1
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "price < min_price",
+          "node_id": 20,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 4,
+        "price": 6
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748928,
+        "price": 4318748992
+      },
+      "steps": [
+        {
+          "step": 90,
+          "event": "before_statement",
+          "focus": "elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 22
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "price - min_price > max_profit",
+          "node_id": 28
+        },
+        {
+          "step": 92,
+          "event": "before_expression",
+          "focus": "price - min_price",
+          "node_id": 30
+        },
+        {
+          "step": 93,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 35
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 35,
+          "value": 6
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 37
+        },
+        {
+          "step": 96,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 37,
+          "value": 1
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "price - min_price",
+          "node_id": 30,
+          "value": 5
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "max_profit",
+          "node_id": 32
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "max_profit",
+          "node_id": 32,
+          "value": 4
+        },
+        {
+          "step": 100,
+          "event": "after_expression",
+          "focus": "price - min_price > max_profit",
+          "node_id": 28,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 4,
+        "price": 6
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748928,
+        "price": 4318748992
+      },
+      "steps": [
+        {
+          "step": 101,
+          "event": "before_statement",
+          "focus": "max_profit = price - min_price",
+          "node_id": 29
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "price - min_price",
+          "node_id": 34
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 38
+        },
+        {
+          "step": 104,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 38,
+          "value": 6
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 39
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 39,
+          "value": 1
+        },
+        {
+          "step": 107,
+          "event": "after_expression",
+          "focus": "price - min_price",
+          "node_id": 34,
+          "value": 5
+        },
+        {
+          "step": 108,
+          "event": "after_statement",
+          "focus": "max_profit = price - min_price",
+          "node_id": 29,
+          "locals": {
+            "prices": [
+              7,
+              1,
+              5,
+              3,
+              6,
+              4
+            ],
+            "min_price": 1,
+            "max_profit": 5,
+            "price": 6
+          },
+          "var_table": {
+            "prices": 4337712192,
+            "min_price": 4318748832,
+            "max_profit": 4318748960,
+            "price": 4318748992
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 5,
+        "price": 6
+      },
+      "delta": {
+        "max_profit": 5
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748960,
+        "price": 4318748992
+      },
+      "steps": [
+        {
+          "step": 109,
+          "event": "after_statement",
+          "focus": "elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 22
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 5,
+        "price": 6
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748960,
+        "price": 4318748992
+      },
+      "steps": [
+        {
+          "step": 110,
+          "event": "after_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 5,
+        "price": 4
+      },
+      "delta": {
+        "price": 4
+      },
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748960,
+        "price": 4318748928
+      },
+      "steps": [
+        {
+          "step": 111,
+          "event": "before_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        },
+        {
+          "step": 112,
+          "event": "before_expression",
+          "focus": "price < min_price",
+          "node_id": 20
+        },
+        {
+          "step": 113,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 23
+        },
+        {
+          "step": 114,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 23,
+          "value": 4
+        },
+        {
+          "step": 115,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 25
+        },
+        {
+          "step": 116,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 25,
+          "value": 1
+        },
+        {
+          "step": 117,
+          "event": "after_expression",
+          "focus": "price < min_price",
+          "node_id": 20,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 5,
+        "price": 4
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748960,
+        "price": 4318748928
+      },
+      "steps": [
+        {
+          "step": 118,
+          "event": "before_statement",
+          "focus": "elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 22
+        },
+        {
+          "step": 119,
+          "event": "before_expression",
+          "focus": "price - min_price > max_profit",
+          "node_id": 28
+        },
+        {
+          "step": 120,
+          "event": "before_expression",
+          "focus": "price - min_price",
+          "node_id": 30
+        },
+        {
+          "step": 121,
+          "event": "before_expression",
+          "focus": "price",
+          "node_id": 35
+        },
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "price",
+          "node_id": 35,
+          "value": 4
+        },
+        {
+          "step": 123,
+          "event": "before_expression",
+          "focus": "min_price",
+          "node_id": 37
+        },
+        {
+          "step": 124,
+          "event": "after_expression",
+          "focus": "min_price",
+          "node_id": 37,
+          "value": 1
+        },
+        {
+          "step": 125,
+          "event": "after_expression",
+          "focus": "price - min_price",
+          "node_id": 30,
+          "value": 3
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "max_profit",
+          "node_id": 32
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "max_profit",
+          "node_id": 32,
+          "value": 5
+        },
+        {
+          "step": 128,
+          "event": "after_expression",
+          "focus": "price - min_price > max_profit",
+          "node_id": 28,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 129,
+          "event": "after_statement",
+          "focus": "elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 22
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 5,
+        "price": 4
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748960,
+        "price": 4318748928
+      },
+      "steps": [
+        {
+          "step": 130,
+          "event": "after_statement",
+          "focus": "if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 14
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 5,
+        "price": 4
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748960,
+        "price": 4318748928
+      },
+      "steps": [
+        {
+          "step": 131,
+          "event": "after_statement",
+          "focus": "for price in prices:\n        if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ],
+        "min_price": 1,
+        "max_profit": 5,
+        "price": 4
+      },
+      "delta": null,
+      "object_table": {
+        "4318749024": {
+          "type": "int",
+          "value": 7,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        },
+        "4337712192": {
+          "type": "list",
+          "value": [
+            4318749024,
+            4318748832,
+            4318748960,
+            4318748896,
+            4318748992,
+            4318748928
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "prices": 4337712192,
+        "min_price": 4318748832,
+        "max_profit": 4318748960,
+        "price": 4318748928
+      },
+      "steps": [
+        {
+          "step": 132,
+          "event": "before_statement",
+          "focus": "return max_profit",
+          "node_id": 6
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "max_profit",
+          "node_id": 15
+        },
+        {
+          "step": 134,
+          "event": "after_expression",
+          "focus": "max_profit",
+          "node_id": 15,
+          "value": 5
+        }
+      ]
+    }
+  ],
+  "result": 5
 }

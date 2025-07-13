@@ -5,8 +5,16 @@
     "inputs": {
       "kwargs": {}
     },
-    "stdout": "<ast.List object at 0x104195fd0>\nError executing code: 'List' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "banana is wrong. Try again.\ngrape is wrong. Try again.\nYou got it!\n",
+    "finalLocals": {
+      "secret": "apple",
+      "guesses": [
+        "banana",
+        "grape",
+        "apple"
+      ],
+      "guess": "apple"
+    }
   },
   "ast": {
     "node_id": 0,
@@ -556,6 +564,972 @@
       "node_id": 3
     }
   ],
-  "trace": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "secret = \"apple\"",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "secret = \"apple\"",
+          "node_id": 1,
+          "locals": {
+            "secret": "apple"
+          },
+          "object_table": {
+            "4337544688": {
+              "type": "str",
+              "value": "apple",
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "secret": 4337544688
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "secret": "apple"
+      },
+      "delta": {
+        "secret": "apple"
+      },
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "secret": 4337544688
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "guesses = [\"banana\", \"grape\", \"apple\"]",
+          "node_id": 2
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "[\"banana\", \"grape\", \"apple\"]",
+          "node_id": 7
+        },
+        {
+          "step": 4,
+          "event": "after_expression",
+          "focus": "[\"banana\", \"grape\", \"apple\"]",
+          "node_id": 7,
+          "value": [
+            "banana",
+            "grape",
+            "apple"
+          ]
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "guesses = [\"banana\", \"grape\", \"apple\"]",
+          "node_id": 2,
+          "locals": {
+            "secret": "apple",
+            "guesses": [
+              "banana",
+              "grape",
+              "apple"
+            ]
+          },
+          "object_table": {
+            "4337544688": {
+              "type": "str",
+              "value": "apple",
+              "isCollection": false
+            },
+            "4337544880": {
+              "type": "str",
+              "value": "banana",
+              "isCollection": false
+            },
+            "4337544976": {
+              "type": "str",
+              "value": "grape",
+              "isCollection": false
+            },
+            "4337480896": {
+              "type": "list",
+              "value": [
+                4337544880,
+                4337544976,
+                4337544688
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "secret": 4337544688,
+            "guesses": 4337480896
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ]
+      },
+      "delta": {
+        "guesses": {
+          "0": "banana",
+          "1": "grape",
+          "2": "apple"
+        }
+      },
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "for guess in guesses:\n    if guess == secret:\n        print(\"You got it!\")\n        break\n    else:\n        print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 3
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "guesses",
+          "node_id": 9
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "guesses",
+          "node_id": 9,
+          "value": [
+            "banana",
+            "grape",
+            "apple"
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "banana"
+      },
+      "delta": {
+        "guess": "banana"
+      },
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544880
+      },
+      "steps": [
+        {
+          "step": 9,
+          "event": "before_statement",
+          "focus": "if guess == secret:\n        print(\"You got it!\")\n        break\n    else:\n        print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 10
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "guess == secret",
+          "node_id": 16
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "guess",
+          "node_id": 20
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "guess",
+          "node_id": 20,
+          "value": "banana"
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "secret",
+          "node_id": 22
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "secret",
+          "node_id": 22,
+          "value": "apple"
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "guess == secret",
+          "node_id": 16,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "banana"
+      },
+      "delta": null,
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544880
+      },
+      "steps": [
+        {
+          "step": 16,
+          "event": "before_statement",
+          "focus": "print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 19
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 24
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "f\"{guess} is wrong. Try again.\"",
+          "node_id": 28
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "{guess}",
+          "node_id": 29
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "guess",
+          "node_id": 31
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "guess",
+          "node_id": 31,
+          "value": "banana"
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "f\"{guess} is wrong. Try again.\"",
+          "node_id": 28,
+          "value": "banana is wrong. Try again."
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 24,
+          "value": null,
+          "stdout": "banana is wrong. Try again.\n"
+        },
+        {
+          "step": 24,
+          "event": "after_statement",
+          "focus": "print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "banana"
+      },
+      "delta": null,
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544880
+      },
+      "steps": [
+        {
+          "step": 25,
+          "event": "after_statement",
+          "focus": "if guess == secret:\n        print(\"You got it!\")\n        break\n    else:\n        print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 10
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "grape"
+      },
+      "delta": {
+        "guess": "grape"
+      },
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544976
+      },
+      "steps": [
+        {
+          "step": 26,
+          "event": "before_statement",
+          "focus": "if guess == secret:\n        print(\"You got it!\")\n        break\n    else:\n        print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 10
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "guess == secret",
+          "node_id": 16
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "guess",
+          "node_id": 20
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "guess",
+          "node_id": 20,
+          "value": "grape"
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "secret",
+          "node_id": 22
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "secret",
+          "node_id": 22,
+          "value": "apple"
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "guess == secret",
+          "node_id": 16,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "grape"
+      },
+      "delta": null,
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544976
+      },
+      "steps": [
+        {
+          "step": 33,
+          "event": "before_statement",
+          "focus": "print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 19
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 24
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "f\"{guess} is wrong. Try again.\"",
+          "node_id": 28
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "{guess}",
+          "node_id": 29
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "guess",
+          "node_id": 31
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "guess",
+          "node_id": 31,
+          "value": "grape"
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "f\"{guess} is wrong. Try again.\"",
+          "node_id": 28,
+          "value": "grape is wrong. Try again."
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 24,
+          "value": null,
+          "stdout": "grape is wrong. Try again.\n"
+        },
+        {
+          "step": 41,
+          "event": "after_statement",
+          "focus": "print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "grape"
+      },
+      "delta": null,
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544976
+      },
+      "steps": [
+        {
+          "step": 42,
+          "event": "after_statement",
+          "focus": "if guess == secret:\n        print(\"You got it!\")\n        break\n    else:\n        print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 10
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "apple"
+      },
+      "delta": {
+        "guess": "apple"
+      },
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544688
+      },
+      "steps": [
+        {
+          "step": 43,
+          "event": "before_statement",
+          "focus": "if guess == secret:\n        print(\"You got it!\")\n        break\n    else:\n        print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 10
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "guess == secret",
+          "node_id": 16
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "guess",
+          "node_id": 20
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "guess",
+          "node_id": 20,
+          "value": "apple"
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "secret",
+          "node_id": 22
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "secret",
+          "node_id": 22,
+          "value": "apple"
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "guess == secret",
+          "node_id": 16,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "apple"
+      },
+      "delta": null,
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544688
+      },
+      "steps": [
+        {
+          "step": 50,
+          "event": "before_statement",
+          "focus": "print(\"You got it!\")",
+          "node_id": 17
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "print(\"You got it!\")",
+          "node_id": 23
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "print(\"You got it!\")",
+          "node_id": 23,
+          "value": null,
+          "stdout": "You got it!\n"
+        },
+        {
+          "step": 53,
+          "event": "after_statement",
+          "focus": "print(\"You got it!\")",
+          "node_id": 17
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "apple"
+      },
+      "delta": null,
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544688
+      },
+      "steps": [
+        {
+          "step": 54,
+          "event": "before_statement",
+          "focus": "break",
+          "node_id": 18
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "secret": "apple",
+        "guesses": [
+          "banana",
+          "grape",
+          "apple"
+        ],
+        "guess": "apple"
+      },
+      "delta": null,
+      "object_table": {
+        "4337544688": {
+          "type": "str",
+          "value": "apple",
+          "isCollection": false
+        },
+        "4337544880": {
+          "type": "str",
+          "value": "banana",
+          "isCollection": false
+        },
+        "4337544976": {
+          "type": "str",
+          "value": "grape",
+          "isCollection": false
+        },
+        "4337480896": {
+          "type": "list",
+          "value": [
+            4337544880,
+            4337544976,
+            4337544688
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "secret": 4337544688,
+        "guesses": 4337480896,
+        "guess": 4337544688
+      },
+      "steps": [
+        {
+          "step": 55,
+          "event": "after_statement",
+          "focus": "for guess in guesses:\n    if guess == secret:\n        print(\"You got it!\")\n        break\n    else:\n        print(f\"{guess} is wrong. Try again.\")",
+          "node_id": 3
+        }
+      ]
+    }
+  ],
   "result": null
 }

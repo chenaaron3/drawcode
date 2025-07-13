@@ -7,8 +7,36 @@
         "intervals": "[[0, 30], [5, 10], [15, 20]]"
       }
     },
-    "stdout": "<ast.Name object at 0x1049de4d0>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "intervals": [
+        [
+          0,
+          30
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          15,
+          20
+        ]
+      ],
+      "starts": [
+        0,
+        5,
+        15
+      ],
+      "ends": [
+        10,
+        20,
+        30
+      ],
+      "s": 3,
+      "e": 1,
+      "rooms": 2
+    }
   },
   "ast": {
     "node_id": 0,
@@ -1294,6 +1322,5601 @@
       "node_id": 47
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def minMeetingRooms(intervals):\n    if not intervals:\n        return 0\n    starts = sorted(i[0] for i in intervals)\n    ends = sorted(i[1] for i in intervals)\n    s = e = rooms = 0\n    while s < len(intervals):\n        if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1\n    return rooms",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def minMeetingRooms(intervals):\n    if not intervals:\n        return 0\n    starts = sorted(i[0] for i in intervals)\n    ends = sorted(i[1] for i in intervals)\n    s = e = rooms = 0\n    while s < len(intervals):\n        if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1\n    return rooms",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ]
+      },
+      "delta": {
+        "intervals": {
+          "0": {
+            "0": 0,
+            "1": 30
+          },
+          "1": {
+            "0": 5,
+            "1": 10
+          },
+          "2": {
+            "0": 15,
+            "1": 20
+          }
+        }
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if not intervals:\n        return 0",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "not intervals",
+          "node_id": 10
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 24
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 24,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "not intervals",
+          "node_id": 10,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "if not intervals:\n        return 0",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "starts = sorted(i[0] for i in intervals)",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "sorted(i[0] for i in intervals)",
+          "node_id": 13
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "(i[0] for i in intervals)",
+          "node_id": 28
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 60
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 60,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 13,
+          "event": "after_expression",
+          "focus": "(i[0] for i in intervals)",
+          "node_id": 28,
+          "value": "<generator object minMeetingRooms.<locals>.<genexpr> at 0x1028dcd40>"
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "i[0]",
+          "node_id": 40,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337577024
+          }
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 57,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337577024
+          }
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 57,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337577024
+          },
+          "value": [
+            0,
+            30
+          ]
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "i[0]",
+          "node_id": 40,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337577024
+          },
+          "value": 0
+        },
+        {
+          "step": 18,
+          "event": "before_expression",
+          "focus": "i[0]",
+          "node_id": 40,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337576960
+          }
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 57,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337576960
+          }
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 57,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337576960
+          },
+          "value": [
+            5,
+            10
+          ]
+        },
+        {
+          "step": 21,
+          "event": "after_expression",
+          "focus": "i[0]",
+          "node_id": 40,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337576960
+          },
+          "value": 5
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "i[0]",
+          "node_id": 40,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337576896
+          }
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 57,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337576896
+          }
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 57,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337576896
+          },
+          "value": [
+            15,
+            20
+          ]
+        },
+        {
+          "step": 25,
+          "event": "after_expression",
+          "focus": "i[0]",
+          "node_id": 40,
+          "locals": {
+            ".0": "list_iterator#8be0",
+            "i": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4346645472": {
+              "type": "list_iterator",
+              "value": "list_iterator#8be0",
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4346645472,
+            "i": 4337576896
+          },
+          "value": 15
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "sorted(i[0] for i in intervals)",
+          "node_id": 13,
+          "value": [
+            0,
+            5,
+            15
+          ]
+        },
+        {
+          "step": 27,
+          "event": "after_statement",
+          "focus": "starts = sorted(i[0] for i in intervals)",
+          "node_id": 4,
+          "locals": {
+            "intervals": [
+              [
+                0,
+                30
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                15,
+                20
+              ]
+            ],
+            "starts": [
+              0,
+              5,
+              15
+            ]
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            },
+            "4337577088": {
+              "type": "list",
+              "value": [
+                4337577024,
+                4337576960,
+                4337576896
+              ],
+              "isCollection": true
+            },
+            "4343271424": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748960,
+                4318749280
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "intervals": 4337577088,
+            "starts": 4343271424
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ]
+      },
+      "delta": {
+        "starts": {
+          "0": 0,
+          "1": 5,
+          "2": 15
+        }
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424
+      },
+      "steps": [
+        {
+          "step": 28,
+          "event": "before_statement",
+          "focus": "ends = sorted(i[1] for i in intervals)",
+          "node_id": 5
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "sorted(i[1] for i in intervals)",
+          "node_id": 15
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "(i[1] for i in intervals)",
+          "node_id": 30
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 64
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 64,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "(i[1] for i in intervals)",
+          "node_id": 30,
+          "value": "<generator object minMeetingRooms.<locals>.<genexpr> at 0x1028dc640>"
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "i[1]",
+          "node_id": 42,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337577024
+          }
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 61,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337577024
+          }
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 61,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337577024
+          },
+          "value": [
+            0,
+            30
+          ]
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "i[1]",
+          "node_id": 42,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337577024
+          },
+          "value": 30
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "i[1]",
+          "node_id": 42,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337576960
+          }
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 61,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337576960
+          }
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 61,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337576960
+          },
+          "value": [
+            5,
+            10
+          ]
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "i[1]",
+          "node_id": 42,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337576960
+          },
+          "value": 10
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "i[1]",
+          "node_id": 42,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337576896
+          }
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 61,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337576896
+          }
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 61,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337576896
+          },
+          "value": [
+            15,
+            20
+          ]
+        },
+        {
+          "step": 45,
+          "event": "after_expression",
+          "focus": "i[1]",
+          "node_id": 42,
+          "locals": {
+            ".0": "list_iterator#42b0",
+            "i": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4344332976": {
+              "type": "list_iterator",
+              "value": "list_iterator#42b0",
+              "isCollection": false
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            ".0": 4344332976,
+            "i": 4337576896
+          },
+          "value": 20
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "sorted(i[1] for i in intervals)",
+          "node_id": 15,
+          "value": [
+            10,
+            20,
+            30
+          ]
+        },
+        {
+          "step": 47,
+          "event": "after_statement",
+          "focus": "ends = sorted(i[1] for i in intervals)",
+          "node_id": 5,
+          "locals": {
+            "intervals": [
+              [
+                0,
+                30
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                15,
+                20
+              ]
+            ],
+            "starts": [
+              0,
+              5,
+              15
+            ],
+            "ends": [
+              10,
+              20,
+              30
+            ]
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            },
+            "4337577088": {
+              "type": "list",
+              "value": [
+                4337577024,
+                4337576960,
+                4337576896
+              ],
+              "isCollection": true
+            },
+            "4343271424": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748960,
+                4318749280
+              ],
+              "isCollection": true
+            },
+            "4344494336": {
+              "type": "list",
+              "value": [
+                4318749120,
+                4318749440,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "intervals": 4337577088,
+            "starts": 4343271424,
+            "ends": 4344494336
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ]
+      },
+      "delta": {
+        "ends": {
+          "0": 10,
+          "1": 20,
+          "2": 30
+        }
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336
+      },
+      "steps": [
+        {
+          "step": 48,
+          "event": "before_statement",
+          "focus": "s = e = rooms = 0",
+          "node_id": 6
+        },
+        {
+          "step": 49,
+          "event": "after_statement",
+          "focus": "s = e = rooms = 0",
+          "node_id": 6,
+          "locals": {
+            "intervals": [
+              [
+                0,
+                30
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                15,
+                20
+              ]
+            ],
+            "starts": [
+              0,
+              5,
+              15
+            ],
+            "ends": [
+              10,
+              20,
+              30
+            ],
+            "s": 0,
+            "e": 0,
+            "rooms": 0
+          },
+          "var_table": {
+            "intervals": 4337577088,
+            "starts": 4343271424,
+            "ends": 4344494336,
+            "s": 4318748800,
+            "e": 4318748800,
+            "rooms": 4318748800
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 0,
+        "e": 0,
+        "rooms": 0
+      },
+      "delta": {
+        "s": 0,
+        "e": 0,
+        "rooms": 0
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748800,
+        "e": 4318748800,
+        "rooms": 4318748800
+      },
+      "steps": [
+        {
+          "step": 50,
+          "event": "before_statement",
+          "focus": "while s < len(intervals):\n        if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1",
+          "node_id": 7
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "s < len(intervals)",
+          "node_id": 20
+        },
+        {
+          "step": 52,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 31
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 31,
+          "value": 0
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "len(intervals)",
+          "node_id": 33
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 45
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 45,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "len(intervals)",
+          "node_id": 33,
+          "value": 3
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "s < len(intervals)",
+          "node_id": 20,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 0,
+        "e": 0,
+        "rooms": 0
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748800,
+        "e": 4318748800,
+        "rooms": 4318748800
+      },
+      "steps": [
+        {
+          "step": 59,
+          "event": "before_statement",
+          "focus": "if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1",
+          "node_id": 21
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "starts[s] < ends[e]",
+          "node_id": 34
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "starts[s]",
+          "node_id": 46
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "starts",
+          "node_id": 65
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "starts",
+          "node_id": 65,
+          "value": [
+            0,
+            5,
+            15
+          ]
+        },
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 66
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 66,
+          "value": 0
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "starts[s]",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 67,
+          "event": "before_expression",
+          "focus": "ends[e]",
+          "node_id": 47
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "ends",
+          "node_id": 67
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "ends",
+          "node_id": 67,
+          "value": [
+            10,
+            20,
+            30
+          ]
+        },
+        {
+          "step": 70,
+          "event": "before_expression",
+          "focus": "e",
+          "node_id": 68
+        },
+        {
+          "step": 71,
+          "event": "after_expression",
+          "focus": "e",
+          "node_id": 68,
+          "value": 0
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "ends[e]",
+          "node_id": 47,
+          "value": 10
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "starts[s] < ends[e]",
+          "node_id": 34,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 0,
+        "e": 0,
+        "rooms": 0
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748800,
+        "e": 4318748800,
+        "rooms": 4318748800
+      },
+      "steps": [
+        {
+          "step": 74,
+          "event": "before_statement",
+          "focus": "rooms += 1",
+          "node_id": 35
+        },
+        {
+          "step": 75,
+          "event": "after_statement",
+          "focus": "rooms += 1",
+          "node_id": 35,
+          "locals": {
+            "intervals": [
+              [
+                0,
+                30
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                15,
+                20
+              ]
+            ],
+            "starts": [
+              0,
+              5,
+              15
+            ],
+            "ends": [
+              10,
+              20,
+              30
+            ],
+            "s": 0,
+            "e": 0,
+            "rooms": 1
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            },
+            "4337577088": {
+              "type": "list",
+              "value": [
+                4337577024,
+                4337576960,
+                4337576896
+              ],
+              "isCollection": true
+            },
+            "4343271424": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748960,
+                4318749280
+              ],
+              "isCollection": true
+            },
+            "4344494336": {
+              "type": "list",
+              "value": [
+                4318749120,
+                4318749440,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "intervals": 4337577088,
+            "starts": 4343271424,
+            "ends": 4344494336,
+            "s": 4318748800,
+            "e": 4318748800,
+            "rooms": 4318748832
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 0,
+        "e": 0,
+        "rooms": 1
+      },
+      "delta": {
+        "rooms": 1
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748800,
+        "e": 4318748800,
+        "rooms": 4318748832
+      },
+      "steps": [
+        {
+          "step": 76,
+          "event": "before_statement",
+          "focus": "s += 1",
+          "node_id": 36
+        },
+        {
+          "step": 77,
+          "event": "after_statement",
+          "focus": "s += 1",
+          "node_id": 36,
+          "locals": {
+            "intervals": [
+              [
+                0,
+                30
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                15,
+                20
+              ]
+            ],
+            "starts": [
+              0,
+              5,
+              15
+            ],
+            "ends": [
+              10,
+              20,
+              30
+            ],
+            "s": 1,
+            "e": 0,
+            "rooms": 1
+          },
+          "var_table": {
+            "intervals": 4337577088,
+            "starts": 4343271424,
+            "ends": 4344494336,
+            "s": 4318748832,
+            "e": 4318748800,
+            "rooms": 4318748832
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 1,
+        "e": 0,
+        "rooms": 1
+      },
+      "delta": {
+        "s": 1
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748832,
+        "e": 4318748800,
+        "rooms": 4318748832
+      },
+      "steps": [
+        {
+          "step": 78,
+          "event": "after_statement",
+          "focus": "if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 1,
+        "e": 0,
+        "rooms": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748832,
+        "e": 4318748800,
+        "rooms": 4318748832
+      },
+      "steps": [
+        {
+          "step": 79,
+          "event": "before_expression",
+          "focus": "s < len(intervals)",
+          "node_id": 20
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 31
+        },
+        {
+          "step": 81,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "len(intervals)",
+          "node_id": 33
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 45
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 45,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 85,
+          "event": "after_expression",
+          "focus": "len(intervals)",
+          "node_id": 33,
+          "value": 3
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "s < len(intervals)",
+          "node_id": 20,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 1,
+        "e": 0,
+        "rooms": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748832,
+        "e": 4318748800,
+        "rooms": 4318748832
+      },
+      "steps": [
+        {
+          "step": 87,
+          "event": "before_statement",
+          "focus": "if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1",
+          "node_id": 21
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "starts[s] < ends[e]",
+          "node_id": 34
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "starts[s]",
+          "node_id": 46
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "starts",
+          "node_id": 65
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "starts",
+          "node_id": 65,
+          "value": [
+            0,
+            5,
+            15
+          ]
+        },
+        {
+          "step": 92,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 66
+        },
+        {
+          "step": 93,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 66,
+          "value": 1
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "starts[s]",
+          "node_id": 46,
+          "value": 5
+        },
+        {
+          "step": 95,
+          "event": "before_expression",
+          "focus": "ends[e]",
+          "node_id": 47
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "ends",
+          "node_id": 67
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "ends",
+          "node_id": 67,
+          "value": [
+            10,
+            20,
+            30
+          ]
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "e",
+          "node_id": 68
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "e",
+          "node_id": 68,
+          "value": 0
+        },
+        {
+          "step": 100,
+          "event": "after_expression",
+          "focus": "ends[e]",
+          "node_id": 47,
+          "value": 10
+        },
+        {
+          "step": 101,
+          "event": "after_expression",
+          "focus": "starts[s] < ends[e]",
+          "node_id": 34,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 1,
+        "e": 0,
+        "rooms": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748832,
+        "e": 4318748800,
+        "rooms": 4318748832
+      },
+      "steps": [
+        {
+          "step": 102,
+          "event": "before_statement",
+          "focus": "rooms += 1",
+          "node_id": 35
+        },
+        {
+          "step": 103,
+          "event": "after_statement",
+          "focus": "rooms += 1",
+          "node_id": 35,
+          "locals": {
+            "intervals": [
+              [
+                0,
+                30
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                15,
+                20
+              ]
+            ],
+            "starts": [
+              0,
+              5,
+              15
+            ],
+            "ends": [
+              10,
+              20,
+              30
+            ],
+            "s": 1,
+            "e": 0,
+            "rooms": 2
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            },
+            "4337577088": {
+              "type": "list",
+              "value": [
+                4337577024,
+                4337576960,
+                4337576896
+              ],
+              "isCollection": true
+            },
+            "4343271424": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748960,
+                4318749280
+              ],
+              "isCollection": true
+            },
+            "4344494336": {
+              "type": "list",
+              "value": [
+                4318749120,
+                4318749440,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "intervals": 4337577088,
+            "starts": 4343271424,
+            "ends": 4344494336,
+            "s": 4318748832,
+            "e": 4318748800,
+            "rooms": 4318748864
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 1,
+        "e": 0,
+        "rooms": 2
+      },
+      "delta": {
+        "rooms": 2
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748832,
+        "e": 4318748800,
+        "rooms": 4318748864
+      },
+      "steps": [
+        {
+          "step": 104,
+          "event": "before_statement",
+          "focus": "s += 1",
+          "node_id": 36
+        },
+        {
+          "step": 105,
+          "event": "after_statement",
+          "focus": "s += 1",
+          "node_id": 36,
+          "locals": {
+            "intervals": [
+              [
+                0,
+                30
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                15,
+                20
+              ]
+            ],
+            "starts": [
+              0,
+              5,
+              15
+            ],
+            "ends": [
+              10,
+              20,
+              30
+            ],
+            "s": 2,
+            "e": 0,
+            "rooms": 2
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            },
+            "4337577088": {
+              "type": "list",
+              "value": [
+                4337577024,
+                4337576960,
+                4337576896
+              ],
+              "isCollection": true
+            },
+            "4343271424": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748960,
+                4318749280
+              ],
+              "isCollection": true
+            },
+            "4344494336": {
+              "type": "list",
+              "value": [
+                4318749120,
+                4318749440,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "intervals": 4337577088,
+            "starts": 4343271424,
+            "ends": 4344494336,
+            "s": 4318748864,
+            "e": 4318748800,
+            "rooms": 4318748864
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 2,
+        "e": 0,
+        "rooms": 2
+      },
+      "delta": {
+        "s": 2
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748864,
+        "e": 4318748800,
+        "rooms": 4318748864
+      },
+      "steps": [
+        {
+          "step": 106,
+          "event": "after_statement",
+          "focus": "if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 2,
+        "e": 0,
+        "rooms": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748864,
+        "e": 4318748800,
+        "rooms": 4318748864
+      },
+      "steps": [
+        {
+          "step": 107,
+          "event": "before_expression",
+          "focus": "s < len(intervals)",
+          "node_id": 20
+        },
+        {
+          "step": 108,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 31
+        },
+        {
+          "step": 109,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 31,
+          "value": 2
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "len(intervals)",
+          "node_id": 33
+        },
+        {
+          "step": 111,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 45
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 45,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 113,
+          "event": "after_expression",
+          "focus": "len(intervals)",
+          "node_id": 33,
+          "value": 3
+        },
+        {
+          "step": 114,
+          "event": "after_expression",
+          "focus": "s < len(intervals)",
+          "node_id": 20,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 2,
+        "e": 0,
+        "rooms": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748864,
+        "e": 4318748800,
+        "rooms": 4318748864
+      },
+      "steps": [
+        {
+          "step": 115,
+          "event": "before_statement",
+          "focus": "if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1",
+          "node_id": 21
+        },
+        {
+          "step": 116,
+          "event": "before_expression",
+          "focus": "starts[s] < ends[e]",
+          "node_id": 34
+        },
+        {
+          "step": 117,
+          "event": "before_expression",
+          "focus": "starts[s]",
+          "node_id": 46
+        },
+        {
+          "step": 118,
+          "event": "before_expression",
+          "focus": "starts",
+          "node_id": 65
+        },
+        {
+          "step": 119,
+          "event": "after_expression",
+          "focus": "starts",
+          "node_id": 65,
+          "value": [
+            0,
+            5,
+            15
+          ]
+        },
+        {
+          "step": 120,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 66
+        },
+        {
+          "step": 121,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 66,
+          "value": 2
+        },
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "starts[s]",
+          "node_id": 46,
+          "value": 15
+        },
+        {
+          "step": 123,
+          "event": "before_expression",
+          "focus": "ends[e]",
+          "node_id": 47
+        },
+        {
+          "step": 124,
+          "event": "before_expression",
+          "focus": "ends",
+          "node_id": 67
+        },
+        {
+          "step": 125,
+          "event": "after_expression",
+          "focus": "ends",
+          "node_id": 67,
+          "value": [
+            10,
+            20,
+            30
+          ]
+        },
+        {
+          "step": 126,
+          "event": "before_expression",
+          "focus": "e",
+          "node_id": 68
+        },
+        {
+          "step": 127,
+          "event": "after_expression",
+          "focus": "e",
+          "node_id": 68,
+          "value": 0
+        },
+        {
+          "step": 128,
+          "event": "after_expression",
+          "focus": "ends[e]",
+          "node_id": 47,
+          "value": 10
+        },
+        {
+          "step": 129,
+          "event": "after_expression",
+          "focus": "starts[s] < ends[e]",
+          "node_id": 34,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 2,
+        "e": 0,
+        "rooms": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748864,
+        "e": 4318748800,
+        "rooms": 4318748864
+      },
+      "steps": [
+        {
+          "step": 130,
+          "event": "before_statement",
+          "focus": "e += 1",
+          "node_id": 37
+        },
+        {
+          "step": 131,
+          "event": "after_statement",
+          "focus": "e += 1",
+          "node_id": 37,
+          "locals": {
+            "intervals": [
+              [
+                0,
+                30
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                15,
+                20
+              ]
+            ],
+            "starts": [
+              0,
+              5,
+              15
+            ],
+            "ends": [
+              10,
+              20,
+              30
+            ],
+            "s": 2,
+            "e": 1,
+            "rooms": 2
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            },
+            "4337577088": {
+              "type": "list",
+              "value": [
+                4337577024,
+                4337576960,
+                4337576896
+              ],
+              "isCollection": true
+            },
+            "4343271424": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748960,
+                4318749280
+              ],
+              "isCollection": true
+            },
+            "4344494336": {
+              "type": "list",
+              "value": [
+                4318749120,
+                4318749440,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "intervals": 4337577088,
+            "starts": 4343271424,
+            "ends": 4344494336,
+            "s": 4318748864,
+            "e": 4318748832,
+            "rooms": 4318748864
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 2,
+        "e": 1,
+        "rooms": 2
+      },
+      "delta": {
+        "e": 1
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748864,
+        "e": 4318748832,
+        "rooms": 4318748864
+      },
+      "steps": [
+        {
+          "step": 132,
+          "event": "before_statement",
+          "focus": "s += 1",
+          "node_id": 38
+        },
+        {
+          "step": 133,
+          "event": "after_statement",
+          "focus": "s += 1",
+          "node_id": 38,
+          "locals": {
+            "intervals": [
+              [
+                0,
+                30
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                15,
+                20
+              ]
+            ],
+            "starts": [
+              0,
+              5,
+              15
+            ],
+            "ends": [
+              10,
+              20,
+              30
+            ],
+            "s": 3,
+            "e": 1,
+            "rooms": 2
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337577024": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337576960": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            },
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337576896": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            },
+            "4337577088": {
+              "type": "list",
+              "value": [
+                4337577024,
+                4337576960,
+                4337576896
+              ],
+              "isCollection": true
+            },
+            "4343271424": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748960,
+                4318749280
+              ],
+              "isCollection": true
+            },
+            "4344494336": {
+              "type": "list",
+              "value": [
+                4318749120,
+                4318749440,
+                4318749760
+              ],
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "intervals": 4337577088,
+            "starts": 4343271424,
+            "ends": 4344494336,
+            "s": 4318748896,
+            "e": 4318748832,
+            "rooms": 4318748864
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 3,
+        "e": 1,
+        "rooms": 2
+      },
+      "delta": {
+        "s": 3
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748896,
+        "e": 4318748832,
+        "rooms": 4318748864
+      },
+      "steps": [
+        {
+          "step": 134,
+          "event": "after_statement",
+          "focus": "if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 3,
+        "e": 1,
+        "rooms": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748896,
+        "e": 4318748832,
+        "rooms": 4318748864
+      },
+      "steps": [
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "s < len(intervals)",
+          "node_id": 20
+        },
+        {
+          "step": 136,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 31
+        },
+        {
+          "step": 137,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 31,
+          "value": 3
+        },
+        {
+          "step": 138,
+          "event": "before_expression",
+          "focus": "len(intervals)",
+          "node_id": 33
+        },
+        {
+          "step": 139,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 45
+        },
+        {
+          "step": 140,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 45,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 141,
+          "event": "after_expression",
+          "focus": "len(intervals)",
+          "node_id": 33,
+          "value": 3
+        },
+        {
+          "step": 142,
+          "event": "after_expression",
+          "focus": "s < len(intervals)",
+          "node_id": 20,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 143,
+          "event": "after_statement",
+          "focus": "while s < len(intervals):\n        if starts[s] < ends[e]:\n            rooms += 1\n            s += 1\n        else:\n            e += 1\n            s += 1",
+          "node_id": 7
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "starts": [
+          0,
+          5,
+          15
+        ],
+        "ends": [
+          10,
+          20,
+          30
+        ],
+        "s": 3,
+        "e": 1,
+        "rooms": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337577024": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337576960": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337576896": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337577088": {
+          "type": "list",
+          "value": [
+            4337577024,
+            4337576960,
+            4337576896
+          ],
+          "isCollection": true
+        },
+        "4343271424": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748960,
+            4318749280
+          ],
+          "isCollection": true
+        },
+        "4344494336": {
+          "type": "list",
+          "value": [
+            4318749120,
+            4318749440,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337577088,
+        "starts": 4343271424,
+        "ends": 4344494336,
+        "s": 4318748896,
+        "e": 4318748832,
+        "rooms": 4318748864
+      },
+      "steps": [
+        {
+          "step": 144,
+          "event": "before_statement",
+          "focus": "return rooms",
+          "node_id": 8
+        },
+        {
+          "step": 145,
+          "event": "before_expression",
+          "focus": "rooms",
+          "node_id": 22
+        },
+        {
+          "step": 146,
+          "event": "after_expression",
+          "focus": "rooms",
+          "node_id": 22,
+          "value": 2
+        }
+      ]
+    }
+  ],
+  "result": 2
 }

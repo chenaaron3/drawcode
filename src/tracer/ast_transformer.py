@@ -15,6 +15,7 @@ class ASTTransformer(ast.NodeTransformer):
         """Reset the transformer's state"""
         self.node_id_counter = 0
         self._nodes = {}  # node_id -> node mapping
+        self.tests = {} # node_id -> test mapping
         
     def get_node_id(self, node, problem_key=None):
         """Get a unique ID for an AST node"""
@@ -299,6 +300,10 @@ class ASTTransformer(ast.NodeTransformer):
             # Set parent for all AST nodes for context detection
             for child in ast.iter_child_nodes(node):
                 setattr(child, "parent", node)
+
+            parent = getattr(node, "parent", None)
+            if hasattr(parent, "test") and parent.test == node:
+                self.tests[self.get_node_id(node)] = self.get_node_id(parent.test)
         
         # Transform the AST with markers
         root = self.visit(root)

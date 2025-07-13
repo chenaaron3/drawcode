@@ -8,8 +8,19 @@
         "t": "'nagaram'"
       }
     },
-    "stdout": "<ast.Name object at 0x10424ad50>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "s": "anagram",
+      "t": "nagaram",
+      "char_count": {
+        "a": null,
+        "n": null,
+        "g": null,
+        "r": null,
+        "m": null
+      },
+      "char": "m"
+    }
   },
   "ast": {
     "node_id": 0,
@@ -1509,6 +1520,6827 @@
       "node_id": 58
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None\n    \n    return all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def isAnagram(s, t):\n    if len(s) != len(t):\n        return False\n    \n    char_count = {}\n    \n    for char in s:\n        char_count[char] = char_count.get(char, 0) + 1\n    \n    for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None\n    \n    return all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram"
+      },
+      "delta": {
+        "s": "anagram",
+        "t": "nagaram"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if len(s) != len(t):\n        return False",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "len(s) != len(t)",
+          "node_id": 10
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "len(s)",
+          "node_id": 23
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 41
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 41,
+          "value": "anagram"
+        },
+        {
+          "step": 7,
+          "event": "after_expression",
+          "focus": "len(s)",
+          "node_id": 23,
+          "value": 7
+        },
+        {
+          "step": 8,
+          "event": "before_expression",
+          "focus": "len(t)",
+          "node_id": 25
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "t",
+          "node_id": 43
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "t",
+          "node_id": 43,
+          "value": "nagaram"
+        },
+        {
+          "step": 11,
+          "event": "after_expression",
+          "focus": "len(t)",
+          "node_id": 25,
+          "value": 7
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "len(s) != len(t)",
+          "node_id": 10,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 13,
+          "event": "after_statement",
+          "focus": "if len(s) != len(t):\n        return False",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920
+      },
+      "steps": [
+        {
+          "step": 14,
+          "event": "before_statement",
+          "focus": "char_count = {}",
+          "node_id": 4
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "{}",
+          "node_id": 13
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "{}",
+          "node_id": 13,
+          "value": {}
+        },
+        {
+          "step": 17,
+          "event": "after_statement",
+          "focus": "char_count = {}",
+          "node_id": 4,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {}
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {},
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "s": 4337537872,
+            "t": 4337537920,
+            "char_count": 4337674624
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {}
+      },
+      "delta": {
+        "char_count": {}
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624
+      },
+      "steps": [
+        {
+          "step": 18,
+          "event": "before_statement",
+          "focus": "for char in s:\n        char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 5
+        },
+        {
+          "step": 19,
+          "event": "before_expression",
+          "focus": "s",
+          "node_id": 15
+        },
+        {
+          "step": 20,
+          "event": "after_expression",
+          "focus": "s",
+          "node_id": 15,
+          "value": "anagram"
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {},
+        "char": "a"
+      },
+      "delta": {
+        "char": "a"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 21,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 62
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 63
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 63,
+          "value": "a"
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30,
+          "value": 1
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 44
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 44,
+          "value": {}
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 45
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 45,
+          "value": "a"
+        },
+        {
+          "step": 33,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1
+            },
+            "char": "a"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1
+        },
+        "char": "n"
+      },
+      "delta": {
+        "char_count": {
+          "a": 1
+        },
+        "char": "n"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814024": {
+          "type": "str",
+          "value": "n",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814024
+      },
+      "steps": [
+        {
+          "step": 34,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 62
+        },
+        {
+          "step": 38,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 63
+        },
+        {
+          "step": 39,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 63,
+          "value": "n"
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30,
+          "value": 1
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 44
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 44,
+          "value": {
+            "a": 1
+          }
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 45
+        },
+        {
+          "step": 45,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 45,
+          "value": "n"
+        },
+        {
+          "step": 46,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": 1
+            },
+            "char": "n"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748832,
+                "n": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318814024": {
+              "type": "str",
+              "value": "n",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char_count": {
+          "n": 1
+        },
+        "char": "a"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832,
+            "n": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 47,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16
+        },
+        {
+          "step": 48,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 62
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 63
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 63,
+          "value": "a"
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46,
+          "value": 1
+        },
+        {
+          "step": 54,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30,
+          "value": 2
+        },
+        {
+          "step": 55,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 44
+        },
+        {
+          "step": 56,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 44,
+          "value": {
+            "a": 1,
+            "n": 1
+          }
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 45
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 45,
+          "value": "a"
+        },
+        {
+          "step": 59,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1
+            },
+            "char": "a"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748864,
+                "n": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": 1
+        },
+        "char": "g"
+      },
+      "delta": {
+        "char_count": {
+          "a": 2
+        },
+        "char": "g"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813688
+      },
+      "steps": [
+        {
+          "step": 60,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 62
+        },
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 63
+        },
+        {
+          "step": 65,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 63,
+          "value": "g"
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30,
+          "value": 1
+        },
+        {
+          "step": 68,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 44
+        },
+        {
+          "step": 69,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 44,
+          "value": {
+            "a": 2,
+            "n": 1
+          }
+        },
+        {
+          "step": 70,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 45
+        },
+        {
+          "step": 71,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 45,
+          "value": "g"
+        },
+        {
+          "step": 72,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1
+            },
+            "char": "g"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748864,
+                "n": 4318748832,
+                "g": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813688": {
+              "type": "str",
+              "value": "g",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": 1,
+          "g": 1
+        },
+        "char": "r"
+      },
+      "delta": {
+        "char_count": {
+          "g": 1
+        },
+        "char": "r"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318748832,
+            "g": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814216": {
+          "type": "str",
+          "value": "r",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814216
+      },
+      "steps": [
+        {
+          "step": 73,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46
+        },
+        {
+          "step": 76,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 62
+        },
+        {
+          "step": 77,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 63
+        },
+        {
+          "step": 78,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 63,
+          "value": "r"
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30,
+          "value": 1
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 44
+        },
+        {
+          "step": 82,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 44,
+          "value": {
+            "a": 2,
+            "n": 1,
+            "g": 1
+          }
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 45
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 45,
+          "value": "r"
+        },
+        {
+          "step": 85,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "r"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748864,
+                "n": 4318748832,
+                "g": 4318748832,
+                "r": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318814216": {
+              "type": "str",
+              "value": "r",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": 1,
+          "g": 1,
+          "r": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char_count": {
+          "r": 1
+        },
+        "char": "a"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318748832,
+            "g": 4318748832,
+            "r": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 86,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16
+        },
+        {
+          "step": 87,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30
+        },
+        {
+          "step": 88,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 62
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 63
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 63,
+          "value": "a"
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46,
+          "value": 2
+        },
+        {
+          "step": 93,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30,
+          "value": 3
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 44
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 44,
+          "value": {
+            "a": 2,
+            "n": 1,
+            "g": 1,
+            "r": 1
+          }
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 45
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 45,
+          "value": "a"
+        },
+        {
+          "step": 98,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1
+            },
+            "char": "a"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748896,
+                "n": 4318748832,
+                "g": 4318748832,
+                "r": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 8,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1
+        },
+        "char": "m"
+      },
+      "delta": {
+        "char_count": {
+          "a": 3
+        },
+        "char": "m"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318748832,
+            "g": 4318748832,
+            "r": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 99,
+          "event": "before_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16
+        },
+        {
+          "step": 100,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "char_count.get",
+          "node_id": 62
+        },
+        {
+          "step": 103,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 63
+        },
+        {
+          "step": 104,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 63,
+          "value": "m"
+        },
+        {
+          "step": 105,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0)",
+          "node_id": 46,
+          "value": 0
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "char_count.get(char, 0) + 1",
+          "node_id": 30,
+          "value": 1
+        },
+        {
+          "step": 107,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 44
+        },
+        {
+          "step": 108,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 44,
+          "value": {
+            "a": 3,
+            "n": 1,
+            "g": 1,
+            "r": 1
+          }
+        },
+        {
+          "step": 109,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 45
+        },
+        {
+          "step": 110,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 45,
+          "value": "m"
+        },
+        {
+          "step": 111,
+          "event": "after_statement",
+          "focus": "char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 16,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 1,
+              "g": 1,
+              "r": 1,
+              "m": 1
+            },
+            "char": "m"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748896,
+                "n": 4318748832,
+                "g": 4318748832,
+                "r": 4318748832,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813976": {
+              "type": "str",
+              "value": "m",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "m"
+      },
+      "delta": {
+        "char_count": {
+          "m": 1
+        }
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318748832,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 112,
+          "event": "after_statement",
+          "focus": "for char in s:\n        char_count[char] = char_count.get(char, 0) + 1",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318748832,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 113,
+          "event": "before_statement",
+          "focus": "for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 6
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "t",
+          "node_id": 18
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "t",
+          "node_id": 18,
+          "value": "nagaram"
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": {
+        "char": "n"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318748832,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814024": {
+          "type": "str",
+          "value": "n",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814024
+      },
+      "steps": [
+        {
+          "step": 116,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 117,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 31
+        },
+        {
+          "step": 118,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 49
+        },
+        {
+          "step": 119,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 49,
+          "value": "n"
+        },
+        {
+          "step": 120,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 51
+        },
+        {
+          "step": 121,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 51,
+          "value": {
+            "a": 3,
+            "n": 1,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 31,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 123,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 1,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318748832,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814024": {
+          "type": "str",
+          "value": "n",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814024
+      },
+      "steps": [
+        {
+          "step": 124,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 125,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 53
+        },
+        {
+          "step": 126,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 53,
+          "value": {
+            "a": 3,
+            "n": 1,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 127,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 54
+        },
+        {
+          "step": 128,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 54,
+          "value": "n"
+        },
+        {
+          "step": 129,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": 0,
+              "g": 1,
+              "r": 1,
+              "m": 1
+            },
+            "char": "n"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748896,
+                "n": 4318748800,
+                "g": 4318748832,
+                "r": 4318748832,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318814024": {
+              "type": "str",
+              "value": "n",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 0,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": {
+        "char_count": {
+          "n": 0
+        }
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318748800,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814024": {
+          "type": "str",
+          "value": "n",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814024
+      },
+      "steps": [
+        {
+          "step": 130,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 131,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36
+        },
+        {
+          "step": 132,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 55
+        },
+        {
+          "step": 133,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 65
+        },
+        {
+          "step": 134,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 65,
+          "value": {
+            "a": 3,
+            "n": 0,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 135,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 66
+        },
+        {
+          "step": 136,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 66,
+          "value": "n"
+        },
+        {
+          "step": 137,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 55,
+          "value": 0
+        },
+        {
+          "step": 138,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": 0,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318748800,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814024": {
+          "type": "str",
+          "value": "n",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814024
+      },
+      "steps": [
+        {
+          "step": 139,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37
+        },
+        {
+          "step": 140,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 67
+        },
+        {
+          "step": 141,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 67,
+          "value": {
+            "a": 3,
+            "n": 0,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 142,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 68
+        },
+        {
+          "step": 143,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 68,
+          "value": "n"
+        },
+        {
+          "step": 144,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 3,
+              "n": null,
+              "g": 1,
+              "r": 1,
+              "m": 1
+            },
+            "char": "n"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748896,
+                "n": 4318602040,
+                "g": 4318748832,
+                "r": 4318748832,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318814024": {
+              "type": "str",
+              "value": "n",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "n"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318602040,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814024": {
+          "type": "str",
+          "value": "n",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814024
+      },
+      "steps": [
+        {
+          "step": 145,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char": "a"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318602040,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 146,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 147,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 31
+        },
+        {
+          "step": 148,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 49
+        },
+        {
+          "step": 149,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 49,
+          "value": "a"
+        },
+        {
+          "step": 150,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 51
+        },
+        {
+          "step": 151,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 51,
+          "value": {
+            "a": 3,
+            "n": null,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 152,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 31,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 153,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 3,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748896,
+            "n": 4318602040,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 154,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 155,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 53
+        },
+        {
+          "step": 156,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 53,
+          "value": {
+            "a": 3,
+            "n": null,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 157,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 54
+        },
+        {
+          "step": 158,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 54,
+          "value": "a"
+        },
+        {
+          "step": 159,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": null,
+              "g": 1,
+              "r": 1,
+              "m": 1
+            },
+            "char": "a"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748864,
+                "n": 4318602040,
+                "g": 4318748832,
+                "r": 4318748832,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char_count": {
+          "a": 2
+        }
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318602040,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 160,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 161,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36
+        },
+        {
+          "step": 162,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 55
+        },
+        {
+          "step": 163,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 65
+        },
+        {
+          "step": 164,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 65,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 165,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 66
+        },
+        {
+          "step": 166,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 66,
+          "value": "a"
+        },
+        {
+          "step": 167,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 55,
+          "value": 2
+        },
+        {
+          "step": 168,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 169,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": {
+        "char": "g"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318602040,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813688
+      },
+      "steps": [
+        {
+          "step": 170,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 171,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 31
+        },
+        {
+          "step": 172,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 49
+        },
+        {
+          "step": 173,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 49,
+          "value": "g"
+        },
+        {
+          "step": 174,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 51
+        },
+        {
+          "step": 175,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 51,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 176,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 31,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 177,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 1,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318602040,
+            "g": 4318748832,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813688
+      },
+      "steps": [
+        {
+          "step": 178,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 179,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 53
+        },
+        {
+          "step": 180,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 53,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": 1,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 181,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 54
+        },
+        {
+          "step": 182,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 54,
+          "value": "g"
+        },
+        {
+          "step": 183,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": null,
+              "g": 0,
+              "r": 1,
+              "m": 1
+            },
+            "char": "g"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748864,
+                "n": 4318602040,
+                "g": 4318748800,
+                "r": 4318748832,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813688": {
+              "type": "str",
+              "value": "g",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 0,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": {
+        "char_count": {
+          "g": 0
+        }
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318602040,
+            "g": 4318748800,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813688
+      },
+      "steps": [
+        {
+          "step": 184,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 185,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36
+        },
+        {
+          "step": 186,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 55
+        },
+        {
+          "step": 187,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 65
+        },
+        {
+          "step": 188,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 65,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": 0,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 189,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 66
+        },
+        {
+          "step": 190,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 66,
+          "value": "g"
+        },
+        {
+          "step": 191,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 55,
+          "value": 0
+        },
+        {
+          "step": 192,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": 0,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318602040,
+            "g": 4318748800,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813688
+      },
+      "steps": [
+        {
+          "step": 193,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37
+        },
+        {
+          "step": 194,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 67
+        },
+        {
+          "step": 195,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 67,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": 0,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 196,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 68
+        },
+        {
+          "step": 197,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 68,
+          "value": "g"
+        },
+        {
+          "step": 198,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 2,
+              "n": null,
+              "g": null,
+              "r": 1,
+              "m": 1
+            },
+            "char": "g"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748864,
+                "n": 4318602040,
+                "g": 4318602040,
+                "r": 4318748832,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813688": {
+              "type": "str",
+              "value": "g",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "g"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813688": {
+          "type": "str",
+          "value": "g",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813688
+      },
+      "steps": [
+        {
+          "step": 199,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char": "a"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 200,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 201,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 31
+        },
+        {
+          "step": 202,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 49
+        },
+        {
+          "step": 203,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 49,
+          "value": "a"
+        },
+        {
+          "step": 204,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 51
+        },
+        {
+          "step": 205,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 51,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": null,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 206,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 31,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 207,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 2,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748864,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 208,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 209,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 53
+        },
+        {
+          "step": 210,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 53,
+          "value": {
+            "a": 2,
+            "n": null,
+            "g": null,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 211,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 54
+        },
+        {
+          "step": 212,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 54,
+          "value": "a"
+        },
+        {
+          "step": 213,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": null,
+              "g": null,
+              "r": 1,
+              "m": 1
+            },
+            "char": "a"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748832,
+                "n": 4318602040,
+                "g": 4318602040,
+                "r": 4318748832,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char_count": {
+          "a": 1
+        }
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 214,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 215,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36
+        },
+        {
+          "step": 216,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 55
+        },
+        {
+          "step": 217,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 65
+        },
+        {
+          "step": 218,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 65,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 219,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 66
+        },
+        {
+          "step": 220,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 66,
+          "value": "a"
+        },
+        {
+          "step": 221,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 55,
+          "value": 1
+        },
+        {
+          "step": 222,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 223,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": {
+        "char": "r"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814216": {
+          "type": "str",
+          "value": "r",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814216
+      },
+      "steps": [
+        {
+          "step": 224,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 225,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 31
+        },
+        {
+          "step": 226,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 49
+        },
+        {
+          "step": 227,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 49,
+          "value": "r"
+        },
+        {
+          "step": 228,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 51
+        },
+        {
+          "step": 229,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 51,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 230,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 31,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 231,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 1,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318748832,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814216": {
+          "type": "str",
+          "value": "r",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814216
+      },
+      "steps": [
+        {
+          "step": 232,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 233,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 53
+        },
+        {
+          "step": 234,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 53,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": 1,
+            "m": 1
+          }
+        },
+        {
+          "step": 235,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 54
+        },
+        {
+          "step": 236,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 54,
+          "value": "r"
+        },
+        {
+          "step": 237,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": null,
+              "g": null,
+              "r": 0,
+              "m": 1
+            },
+            "char": "r"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748832,
+                "n": 4318602040,
+                "g": 4318602040,
+                "r": 4318748800,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318814216": {
+              "type": "str",
+              "value": "r",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 0,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": {
+        "char_count": {
+          "r": 0
+        }
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318748800,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814216": {
+          "type": "str",
+          "value": "r",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814216
+      },
+      "steps": [
+        {
+          "step": 238,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 239,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36
+        },
+        {
+          "step": 240,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 55
+        },
+        {
+          "step": 241,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 65
+        },
+        {
+          "step": 242,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 65,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": 0,
+            "m": 1
+          }
+        },
+        {
+          "step": 243,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 66
+        },
+        {
+          "step": 244,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 66,
+          "value": "r"
+        },
+        {
+          "step": 245,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 55,
+          "value": 0
+        },
+        {
+          "step": 246,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": 0,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318748800,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814216": {
+          "type": "str",
+          "value": "r",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814216
+      },
+      "steps": [
+        {
+          "step": 247,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37
+        },
+        {
+          "step": 248,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 67
+        },
+        {
+          "step": 249,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 67,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": 0,
+            "m": 1
+          }
+        },
+        {
+          "step": 250,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 68
+        },
+        {
+          "step": 251,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 68,
+          "value": "r"
+        },
+        {
+          "step": 252,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 1,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": 1
+            },
+            "char": "r"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748832,
+                "n": 4318602040,
+                "g": 4318602040,
+                "r": 4318602040,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318814216": {
+              "type": "str",
+              "value": "r",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "r"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318814216": {
+          "type": "str",
+          "value": "r",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318814216
+      },
+      "steps": [
+        {
+          "step": 253,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char": "a"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 254,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 255,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 31
+        },
+        {
+          "step": 256,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 49
+        },
+        {
+          "step": 257,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 49,
+          "value": "a"
+        },
+        {
+          "step": 258,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 51
+        },
+        {
+          "step": 259,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 51,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 1
+          }
+        },
+        {
+          "step": 260,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 31,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 261,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 1,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748832,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 262,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 263,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 53
+        },
+        {
+          "step": 264,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 53,
+          "value": {
+            "a": 1,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 1
+          }
+        },
+        {
+          "step": 265,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 54
+        },
+        {
+          "step": 266,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 54,
+          "value": "a"
+        },
+        {
+          "step": 267,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": 0,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": 1
+            },
+            "char": "a"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318748800,
+                "n": 4318602040,
+                "g": 4318602040,
+                "r": 4318602040,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 0,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": {
+        "char_count": {
+          "a": 0
+        }
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748800,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 268,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 269,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36
+        },
+        {
+          "step": 270,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 55
+        },
+        {
+          "step": 271,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 65
+        },
+        {
+          "step": 272,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 65,
+          "value": {
+            "a": 0,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 1
+          }
+        },
+        {
+          "step": 273,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 66
+        },
+        {
+          "step": 274,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 66,
+          "value": "a"
+        },
+        {
+          "step": 275,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 55,
+          "value": 0
+        },
+        {
+          "step": 276,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": 0,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318748800,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 277,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37
+        },
+        {
+          "step": 278,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 67
+        },
+        {
+          "step": 279,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 67,
+          "value": {
+            "a": 0,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 1
+          }
+        },
+        {
+          "step": 280,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 68
+        },
+        {
+          "step": 281,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 68,
+          "value": "a"
+        },
+        {
+          "step": 282,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": null,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": 1
+            },
+            "char": "a"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318602040,
+                "n": 4318602040,
+                "g": 4318602040,
+                "r": 4318602040,
+                "m": 4318748832
+              },
+              "isCollection": true
+            },
+            "4318813400": {
+              "type": "str",
+              "value": "a",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "a"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318602040,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813400": {
+          "type": "str",
+          "value": "a",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813400
+      },
+      "steps": [
+        {
+          "step": 283,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "m"
+      },
+      "delta": {
+        "char": "m"
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318602040,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 284,
+          "event": "before_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        },
+        {
+          "step": 285,
+          "event": "before_expression",
+          "focus": "char not in char_count",
+          "node_id": 31
+        },
+        {
+          "step": 286,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 49
+        },
+        {
+          "step": 287,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 49,
+          "value": "m"
+        },
+        {
+          "step": 288,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 51
+        },
+        {
+          "step": 289,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 51,
+          "value": {
+            "a": null,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 1
+          }
+        },
+        {
+          "step": 290,
+          "event": "after_expression",
+          "focus": "char not in char_count",
+          "node_id": 31,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 291,
+          "event": "after_statement",
+          "focus": "if char not in char_count:\n            return False",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 1
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318602040,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748832
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 292,
+          "event": "before_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20
+        },
+        {
+          "step": 293,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 53
+        },
+        {
+          "step": 294,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 53,
+          "value": {
+            "a": null,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 1
+          }
+        },
+        {
+          "step": 295,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 54
+        },
+        {
+          "step": 296,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 54,
+          "value": "m"
+        },
+        {
+          "step": 297,
+          "event": "after_statement",
+          "focus": "char_count[char] -= 1",
+          "node_id": 20,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": null,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": 0
+            },
+            "char": "m"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318602040,
+                "n": 4318602040,
+                "g": 4318602040,
+                "r": 4318602040,
+                "m": 4318748800
+              },
+              "isCollection": true
+            },
+            "4318813976": {
+              "type": "str",
+              "value": "m",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 0
+        },
+        "char": "m"
+      },
+      "delta": {
+        "char_count": {
+          "m": 0
+        }
+      },
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318602040,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748800
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 298,
+          "event": "before_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        },
+        {
+          "step": 299,
+          "event": "before_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36
+        },
+        {
+          "step": 300,
+          "event": "before_expression",
+          "focus": "char_count[char]",
+          "node_id": 55
+        },
+        {
+          "step": 301,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 65
+        },
+        {
+          "step": 302,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 65,
+          "value": {
+            "a": null,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 0
+          }
+        },
+        {
+          "step": 303,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 66
+        },
+        {
+          "step": 304,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 66,
+          "value": "m"
+        },
+        {
+          "step": 305,
+          "event": "after_expression",
+          "focus": "char_count[char]",
+          "node_id": 55,
+          "value": 0
+        },
+        {
+          "step": 306,
+          "event": "after_expression",
+          "focus": "char_count[char] == 0",
+          "node_id": 36,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 15,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": 0
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318602040,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318748800
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 307,
+          "event": "before_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37
+        },
+        {
+          "step": 308,
+          "event": "before_expression",
+          "focus": "char_count",
+          "node_id": 67
+        },
+        {
+          "step": 309,
+          "event": "after_expression",
+          "focus": "char_count",
+          "node_id": 67,
+          "value": {
+            "a": null,
+            "n": null,
+            "g": null,
+            "r": null,
+            "m": 0
+          }
+        },
+        {
+          "step": 310,
+          "event": "before_expression",
+          "focus": "char",
+          "node_id": 68
+        },
+        {
+          "step": 311,
+          "event": "after_expression",
+          "focus": "char",
+          "node_id": 68,
+          "value": "m"
+        },
+        {
+          "step": 312,
+          "event": "after_statement",
+          "focus": "char_count[char] = None",
+          "node_id": 37,
+          "locals": {
+            "s": "anagram",
+            "t": "nagaram",
+            "char_count": {
+              "a": null,
+              "n": null,
+              "g": null,
+              "r": null,
+              "m": null
+            },
+            "char": "m"
+          },
+          "object_table": {
+            "4337537872": {
+              "type": "str",
+              "value": "anagram",
+              "isCollection": false
+            },
+            "4337537920": {
+              "type": "str",
+              "value": "nagaram",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            },
+            "4337674624": {
+              "type": "dict",
+              "value": {
+                "a": 4318602040,
+                "n": 4318602040,
+                "g": 4318602040,
+                "r": 4318602040,
+                "m": 4318602040
+              },
+              "isCollection": true
+            },
+            "4318813976": {
+              "type": "str",
+              "value": "m",
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": null
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318602040,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318602040
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 313,
+          "event": "after_statement",
+          "focus": "if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 21
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": null
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318602040,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318602040
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 314,
+          "event": "after_statement",
+          "focus": "for char in t:\n        if char not in char_count:\n            return False\n        char_count[char] -= 1\n        if char_count[char] == 0:\n            char_count[char] = None",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 17,
+      "locals": {
+        "s": "anagram",
+        "t": "nagaram",
+        "char_count": {
+          "a": null,
+          "n": null,
+          "g": null,
+          "r": null,
+          "m": null
+        },
+        "char": "m"
+      },
+      "delta": null,
+      "object_table": {
+        "4337537872": {
+          "type": "str",
+          "value": "anagram",
+          "isCollection": false
+        },
+        "4337537920": {
+          "type": "str",
+          "value": "nagaram",
+          "isCollection": false
+        },
+        "4318602040": {
+          "type": "NoneType",
+          "value": null,
+          "isCollection": false
+        },
+        "4337674624": {
+          "type": "dict",
+          "value": {
+            "a": 4318602040,
+            "n": 4318602040,
+            "g": 4318602040,
+            "r": 4318602040,
+            "m": 4318602040
+          },
+          "isCollection": true
+        },
+        "4318813976": {
+          "type": "str",
+          "value": "m",
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "s": 4337537872,
+        "t": 4337537920,
+        "char_count": 4337674624,
+        "char": 4318813976
+      },
+      "steps": [
+        {
+          "step": 315,
+          "event": "before_statement",
+          "focus": "return all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 7
+        },
+        {
+          "step": 316,
+          "event": "before_expression",
+          "focus": "all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 22
+        },
+        {
+          "step": 317,
+          "event": "before_expression",
+          "focus": "(v is None or v == 0 for v in char_count.values())",
+          "node_id": 39
+        },
+        {
+          "step": 318,
+          "event": "before_expression",
+          "focus": "char_count.values()",
+          "node_id": 73
+        },
+        {
+          "step": 319,
+          "event": "before_expression",
+          "focus": "char_count.values",
+          "node_id": 80
+        },
+        {
+          "step": 320,
+          "event": "after_expression",
+          "focus": "char_count.values()",
+          "node_id": 73,
+          "value": "dict_values([None, None, None, None, None])"
+        },
+        {
+          "step": 321,
+          "event": "after_expression",
+          "focus": "(v is None or v == 0 for v in char_count.values())",
+          "node_id": 39,
+          "value": "<generator object isAnagram.<locals>.<genexpr> at 0x1028e4f20>"
+        },
+        {
+          "step": 322,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 323,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 324,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 325,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": null
+        },
+        {
+          "step": 326,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 327,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 328,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 329,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 330,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 331,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": null
+        },
+        {
+          "step": 332,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 333,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 334,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 335,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 336,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 337,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": null
+        },
+        {
+          "step": 338,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 339,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 340,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 341,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 342,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 343,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": null
+        },
+        {
+          "step": 344,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 345,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 346,
+          "event": "before_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 347,
+          "event": "before_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 348,
+          "event": "before_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          }
+        },
+        {
+          "step": 349,
+          "event": "after_expression",
+          "focus": "v",
+          "node_id": 75,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": null
+        },
+        {
+          "step": 350,
+          "event": "after_expression",
+          "focus": "v is None",
+          "node_id": 70,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 351,
+          "event": "after_expression",
+          "focus": "v is None or v == 0",
+          "node_id": 60,
+          "locals": {
+            ".0": "dict_valueiterator#0f40",
+            "v": null
+          },
+          "object_table": {
+            "4337635136": {
+              "type": "dict_valueiterator",
+              "value": "dict_valueiterator#0f40",
+              "isCollection": false
+            },
+            "4318602040": {
+              "type": "NoneType",
+              "value": null,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            ".0": 4337635136,
+            "v": 4318602040
+          },
+          "value": true
+        },
+        {
+          "step": 352,
+          "event": "after_expression",
+          "focus": "all(v is None or v == 0 for v in char_count.values())",
+          "node_id": 22,
+          "value": true
+        }
+      ]
+    }
+  ],
+  "result": true
 }

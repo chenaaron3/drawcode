@@ -5,8 +5,11 @@
     "inputs": {
       "kwargs": {}
     },
-    "stdout": "<ast.Name object at 0x104d6be50>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "credits": 120,
+      "gpa": 1.9
+    }
   },
   "ast": {
     "node_id": 0,
@@ -369,6 +372,200 @@
     "type_ignores": []
   },
   "relationships": [],
-  "trace": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "credits = 120",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "credits = 120",
+          "node_id": 1,
+          "locals": {
+            "credits": 120
+          },
+          "object_table": {
+            "4318752640": {
+              "type": "int",
+              "value": 120,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "credits": 4318752640
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "credits": 120
+      },
+      "delta": {
+        "credits": 120
+      },
+      "object_table": {
+        "4318752640": {
+          "type": "int",
+          "value": 120,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "credits": 4318752640
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "gpa = 1.9",
+          "node_id": 2
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "gpa = 1.9",
+          "node_id": 2,
+          "locals": {
+            "credits": 120,
+            "gpa": 1.9
+          },
+          "object_table": {
+            "4318752640": {
+              "type": "int",
+              "value": 120,
+              "isCollection": false
+            },
+            "4406527152": {
+              "type": "float",
+              "value": 1.9,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "credits": 4318752640,
+            "gpa": 4406527152
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "credits": 120,
+        "gpa": 1.9
+      },
+      "delta": {
+        "gpa": 1.9
+      },
+      "object_table": {
+        "4318752640": {
+          "type": "int",
+          "value": 120,
+          "isCollection": false
+        },
+        "4406527152": {
+          "type": "float",
+          "value": 1.9,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "credits": 4318752640,
+        "gpa": 4406527152
+      },
+      "steps": [
+        {
+          "step": 4,
+          "event": "before_statement",
+          "focus": "if (credits >= 120) and (gpa >= 2.0):\n  print(\"You meet the requirements to graduate!\")",
+          "node_id": 3
+        },
+        {
+          "step": 5,
+          "event": "before_expression",
+          "focus": "(credits >= 120) and (gpa >= 2.0)",
+          "node_id": 8
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "credits >= 120",
+          "node_id": 12
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "credits",
+          "node_id": 15
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "credits",
+          "node_id": 15,
+          "value": 120
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "credits >= 120",
+          "node_id": 12,
+          "value": true
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "gpa >= 2.0",
+          "node_id": 13
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "gpa",
+          "node_id": 18
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "gpa",
+          "node_id": 18,
+          "value": 1.9
+        },
+        {
+          "step": 13,
+          "event": "after_expression",
+          "focus": "gpa >= 2.0",
+          "node_id": 13,
+          "value": false
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "(credits >= 120) and (gpa >= 2.0)",
+          "node_id": 8,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 15,
+          "event": "after_statement",
+          "focus": "if (credits >= 120) and (gpa >= 2.0):\n  print(\"You meet the requirements to graduate!\")",
+          "node_id": 3
+        }
+      ]
+    }
+  ],
   "result": null
 }

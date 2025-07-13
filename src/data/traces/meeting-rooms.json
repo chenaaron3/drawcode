@@ -7,8 +7,24 @@
         "intervals": "[[0, 30], [5, 10], [15, 20]]"
       }
     },
-    "stdout": "<ast.Name object at 0x1047d2290>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "intervals": [
+        [
+          0,
+          30
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          15,
+          20
+        ]
+      ],
+      "i": 1
+    }
   },
   "ast": {
     "node_id": 0,
@@ -892,6 +908,1269 @@
       "node_id": 39
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def canAttendMeetings(intervals):\n    if not intervals:\n        return True\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    # Check for overlaps\n    for i in range(1, len(intervals)):\n        if intervals[i][0] < intervals[i-1][1]:\n            return False\n    \n    return True",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def canAttendMeetings(intervals):\n    if not intervals:\n        return True\n    \n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    # Check for overlaps\n    for i in range(1, len(intervals)):\n        if intervals[i][0] < intervals[i-1][1]:\n            return False\n    \n    return True",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ]
+      },
+      "delta": {
+        "intervals": {
+          "0": {
+            "0": 0,
+            "1": 30
+          },
+          "1": {
+            "0": 5,
+            "1": 10
+          },
+          "2": {
+            "0": 15,
+            "1": 20
+          }
+        }
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337737920": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337737856": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337737792": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337737984": {
+          "type": "list",
+          "value": [
+            4337737920,
+            4337737856,
+            4337737792
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337737984
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "if not intervals:\n        return True",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "not intervals",
+          "node_id": 8
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 16
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 16,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "not intervals",
+          "node_id": 8,
+          "value": false,
+          "test": false
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "if not intervals:\n        return True",
+          "node_id": 3
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337737920": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337737856": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337737792": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337737984": {
+          "type": "list",
+          "value": [
+            4337737920,
+            4337737856,
+            4337737792
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337737984
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "intervals.sort(key=lambda x: x[0])",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "intervals.sort(key=lambda x: x[0])",
+          "node_id": 10
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "intervals.sort",
+          "node_id": 18
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "lambda x: x[0]",
+          "node_id": 28
+        },
+        {
+          "step": 12,
+          "event": "before_expression",
+          "focus": "x[0]",
+          "node_id": 36,
+          "locals": {
+            "x": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337737920": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737920
+          }
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 42,
+          "locals": {
+            "x": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337737920": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737920
+          }
+        },
+        {
+          "step": 14,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 42,
+          "locals": {
+            "x": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337737920": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737920
+          },
+          "value": [
+            0,
+            30
+          ]
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "x[0]",
+          "node_id": 36,
+          "locals": {
+            "x": [
+              0,
+              30
+            ]
+          },
+          "object_table": {
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318749760": {
+              "type": "int",
+              "value": 30,
+              "isCollection": false
+            },
+            "4337737920": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318749760
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737920
+          },
+          "value": 0
+        },
+        {
+          "step": 16,
+          "event": "before_expression",
+          "focus": "x[0]",
+          "node_id": 36,
+          "locals": {
+            "x": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337737856": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737856
+          }
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 42,
+          "locals": {
+            "x": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337737856": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737856
+          }
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 42,
+          "locals": {
+            "x": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337737856": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737856
+          },
+          "value": [
+            5,
+            10
+          ]
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "x[0]",
+          "node_id": 36,
+          "locals": {
+            "x": [
+              5,
+              10
+            ]
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318749120": {
+              "type": "int",
+              "value": 10,
+              "isCollection": false
+            },
+            "4337737856": {
+              "type": "list",
+              "value": [
+                4318748960,
+                4318749120
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737856
+          },
+          "value": 5
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "x[0]",
+          "node_id": 36,
+          "locals": {
+            "x": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337737792": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737792
+          }
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "x",
+          "node_id": 42,
+          "locals": {
+            "x": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337737792": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737792
+          }
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "x",
+          "node_id": 42,
+          "locals": {
+            "x": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337737792": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737792
+          },
+          "value": [
+            15,
+            20
+          ]
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "x[0]",
+          "node_id": 36,
+          "locals": {
+            "x": [
+              15,
+              20
+            ]
+          },
+          "object_table": {
+            "4318749280": {
+              "type": "int",
+              "value": 15,
+              "isCollection": false
+            },
+            "4318749440": {
+              "type": "int",
+              "value": 20,
+              "isCollection": false
+            },
+            "4337737792": {
+              "type": "list",
+              "value": [
+                4318749280,
+                4318749440
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "x": 4337737792
+          },
+          "value": 15
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "intervals.sort(key=lambda x: x[0])",
+          "node_id": 10,
+          "value": null
+        },
+        {
+          "step": 25,
+          "event": "after_statement",
+          "focus": "intervals.sort(key=lambda x: x[0])",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ]
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337737920": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337737856": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337737792": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337737984": {
+          "type": "list",
+          "value": [
+            4337737920,
+            4337737856,
+            4337737792
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "intervals": 4337737984
+      },
+      "steps": [
+        {
+          "step": 26,
+          "event": "before_statement",
+          "focus": "for i in range(1, len(intervals)):\n        if intervals[i][0] < intervals[i-1][1]:\n            return False",
+          "node_id": 5
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "range(1, len(intervals))",
+          "node_id": 12
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "len(intervals)",
+          "node_id": 23
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 30
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 30,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "len(intervals)",
+          "node_id": 23,
+          "value": 3
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "range(1, len(intervals))",
+          "node_id": 12,
+          "value": [
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 10,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "i": 1
+      },
+      "delta": {
+        "i": 1
+      },
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337737920": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337737856": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337737792": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337737984": {
+          "type": "list",
+          "value": [
+            4337737920,
+            4337737856,
+            4337737792
+          ],
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337737984,
+        "i": 4318748832
+      },
+      "steps": [
+        {
+          "step": 33,
+          "event": "before_statement",
+          "focus": "if intervals[i][0] < intervals[i-1][1]:\n            return False",
+          "node_id": 13
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "intervals[i][0] < intervals[i-1][1]",
+          "node_id": 24
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "intervals[i][0]",
+          "node_id": 31
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "intervals[i]",
+          "node_id": 37
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 44
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 44,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 39,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 45
+        },
+        {
+          "step": 40,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 45,
+          "value": 1
+        },
+        {
+          "step": 41,
+          "event": "after_expression",
+          "focus": "intervals[i]",
+          "node_id": 37,
+          "value": [
+            5,
+            10
+          ]
+        },
+        {
+          "step": 42,
+          "event": "after_expression",
+          "focus": "intervals[i][0]",
+          "node_id": 31,
+          "value": 5
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "intervals[i-1][1]",
+          "node_id": 33
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "intervals[i-1]",
+          "node_id": 39
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "intervals",
+          "node_id": 46
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "intervals",
+          "node_id": 46,
+          "value": [
+            [
+              0,
+              30
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        },
+        {
+          "step": 47,
+          "event": "before_expression",
+          "focus": "i-1",
+          "node_id": 47
+        },
+        {
+          "step": 48,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 48
+        },
+        {
+          "step": 49,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 48,
+          "value": 1
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "i-1",
+          "node_id": 47,
+          "value": 0
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "intervals[i-1]",
+          "node_id": 39,
+          "value": [
+            0,
+            30
+          ]
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "intervals[i-1][1]",
+          "node_id": 33,
+          "value": 30
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "intervals[i][0] < intervals[i-1][1]",
+          "node_id": 24,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "intervals": [
+          [
+            0,
+            30
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            15,
+            20
+          ]
+        ],
+        "i": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318749760": {
+          "type": "int",
+          "value": 30,
+          "isCollection": false
+        },
+        "4337737920": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318749760
+          ],
+          "isCollection": true
+        },
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318749120": {
+          "type": "int",
+          "value": 10,
+          "isCollection": false
+        },
+        "4337737856": {
+          "type": "list",
+          "value": [
+            4318748960,
+            4318749120
+          ],
+          "isCollection": true
+        },
+        "4318749280": {
+          "type": "int",
+          "value": 15,
+          "isCollection": false
+        },
+        "4318749440": {
+          "type": "int",
+          "value": 20,
+          "isCollection": false
+        },
+        "4337737792": {
+          "type": "list",
+          "value": [
+            4318749280,
+            4318749440
+          ],
+          "isCollection": true
+        },
+        "4337737984": {
+          "type": "list",
+          "value": [
+            4337737920,
+            4337737856,
+            4337737792
+          ],
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "intervals": 4337737984,
+        "i": 4318748832
+      },
+      "steps": [
+        {
+          "step": 54,
+          "event": "before_statement",
+          "focus": "return False",
+          "node_id": 25
+        }
+      ]
+    }
+  ],
+  "result": false
 }

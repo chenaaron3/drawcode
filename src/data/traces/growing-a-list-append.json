@@ -5,8 +5,13 @@
     "inputs": {
       "kwargs": {}
     },
-    "stdout": "<ast.List object at 0x104d3a390>\nError executing code: 'List' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "orders": [
+        "daisies",
+        "periwinkle"
+      ]
+    }
   },
   "ast": {
     "node_id": 0,
@@ -112,6 +117,98 @@
     "type_ignores": []
   },
   "relationships": [],
-  "trace": [],
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "orders = [\"daisies\", \"periwinkle\"]",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "before_expression",
+          "focus": "[\"daisies\", \"periwinkle\"]",
+          "node_id": 3
+        },
+        {
+          "step": 2,
+          "event": "after_expression",
+          "focus": "[\"daisies\", \"periwinkle\"]",
+          "node_id": 3,
+          "value": [
+            "daisies",
+            "periwinkle"
+          ]
+        },
+        {
+          "step": 3,
+          "event": "after_statement",
+          "focus": "orders = [\"daisies\", \"periwinkle\"]",
+          "node_id": 1,
+          "locals": {
+            "orders": [
+              "daisies",
+              "periwinkle"
+            ]
+          },
+          "object_table": {
+            "4405855888": {
+              "type": "str",
+              "value": "daisies",
+              "isCollection": false
+            },
+            "4344491312": {
+              "type": "str",
+              "value": "periwinkle",
+              "isCollection": false
+            },
+            "4344494400": {
+              "type": "list",
+              "value": [
+                4405855888,
+                4344491312
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "orders": 4344494400
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 1,
+      "locals": {
+        "orders": [
+          "daisies",
+          "periwinkle"
+        ]
+      },
+      "object_table": {},
+      "var_table": {},
+      "delta": {
+        "orders": {
+          "0": "daisies",
+          "1": "periwinkle"
+        }
+      },
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "orders = [\"daisies\", \"periwinkle\"]",
+          "node_id": 1
+        }
+      ]
+    }
+  ],
   "result": null
 }

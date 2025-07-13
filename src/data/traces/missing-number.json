@@ -7,8 +7,17 @@
         "nums": "[3, 0, 1]"
       }
     },
-    "stdout": "<ast.Name object at 0x10446fcd0>\nError executing code: 'Name' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "nums": [
+        3,
+        0,
+        1
+      ],
+      "n": 3,
+      "expected_sum": 6,
+      "actual_sum": 4
+    }
   },
   "ast": {
     "node_id": 0,
@@ -542,6 +551,550 @@
     "type_ignores": []
   },
   "relationships": [],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def missingNumber(nums):\n    n = len(nums)\n    expected_sum = n * (n + 1) // 2\n    actual_sum = sum(nums)\n    return expected_sum - actual_sum",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def missingNumber(nums):\n    n = len(nums)\n    expected_sum = n * (n + 1) // 2\n    actual_sum = sum(nums)\n    return expected_sum - actual_sum",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums": [
+          3,
+          0,
+          1
+        ]
+      },
+      "delta": {
+        "nums": {
+          "0": 3,
+          "1": 0,
+          "2": 1
+        }
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337742784": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748800,
+            4318748832
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337742784
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "n = len(nums)",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "len(nums)",
+          "node_id": 9
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 17
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 17,
+          "value": [
+            3,
+            0,
+            1
+          ]
+        },
+        {
+          "step": 6,
+          "event": "after_expression",
+          "focus": "len(nums)",
+          "node_id": 9,
+          "value": 3
+        },
+        {
+          "step": 7,
+          "event": "after_statement",
+          "focus": "n = len(nums)",
+          "node_id": 3,
+          "locals": {
+            "nums": [
+              3,
+              0,
+              1
+            ],
+            "n": 3
+          },
+          "var_table": {
+            "nums": 4337742784,
+            "n": 4318748896
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums": [
+          3,
+          0,
+          1
+        ],
+        "n": 3
+      },
+      "delta": {
+        "n": 3
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337742784": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748800,
+            4318748832
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums": 4337742784,
+        "n": 4318748896
+      },
+      "steps": [
+        {
+          "step": 8,
+          "event": "before_statement",
+          "focus": "expected_sum = n * (n + 1) // 2",
+          "node_id": 4
+        },
+        {
+          "step": 9,
+          "event": "before_expression",
+          "focus": "n * (n + 1) // 2",
+          "node_id": 11
+        },
+        {
+          "step": 10,
+          "event": "before_expression",
+          "focus": "n * (n + 1)",
+          "node_id": 18
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 27
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 27,
+          "value": 3
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "n + 1",
+          "node_id": 29
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 30
+        },
+        {
+          "step": 15,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 30,
+          "value": 3
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "n + 1",
+          "node_id": 29,
+          "value": 4
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "n * (n + 1)",
+          "node_id": 18,
+          "value": 12
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "n * (n + 1) // 2",
+          "node_id": 11,
+          "value": 6
+        },
+        {
+          "step": 19,
+          "event": "after_statement",
+          "focus": "expected_sum = n * (n + 1) // 2",
+          "node_id": 4,
+          "locals": {
+            "nums": [
+              3,
+              0,
+              1
+            ],
+            "n": 3,
+            "expected_sum": 6
+          },
+          "object_table": {
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337742784": {
+              "type": "list",
+              "value": [
+                4318748896,
+                4318748800,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4318748992": {
+              "type": "int",
+              "value": 6,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "nums": 4337742784,
+            "n": 4318748896,
+            "expected_sum": 4318748992
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "nums": [
+          3,
+          0,
+          1
+        ],
+        "n": 3,
+        "expected_sum": 6
+      },
+      "delta": {
+        "expected_sum": 6
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337742784": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748800,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "nums": 4337742784,
+        "n": 4318748896,
+        "expected_sum": 4318748992
+      },
+      "steps": [
+        {
+          "step": 20,
+          "event": "before_statement",
+          "focus": "actual_sum = sum(nums)",
+          "node_id": 5
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "sum(nums)",
+          "node_id": 13
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "nums",
+          "node_id": 22
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "nums",
+          "node_id": 22,
+          "value": [
+            3,
+            0,
+            1
+          ]
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "sum(nums)",
+          "node_id": 13,
+          "value": 4
+        },
+        {
+          "step": 25,
+          "event": "after_statement",
+          "focus": "actual_sum = sum(nums)",
+          "node_id": 5,
+          "locals": {
+            "nums": [
+              3,
+              0,
+              1
+            ],
+            "n": 3,
+            "expected_sum": 6,
+            "actual_sum": 4
+          },
+          "object_table": {
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4337742784": {
+              "type": "list",
+              "value": [
+                4318748896,
+                4318748800,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4318748992": {
+              "type": "int",
+              "value": 6,
+              "isCollection": false
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            }
+          },
+          "var_table": {
+            "nums": 4337742784,
+            "n": 4318748896,
+            "expected_sum": 4318748992,
+            "actual_sum": 4318748928
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums": [
+          3,
+          0,
+          1
+        ],
+        "n": 3,
+        "expected_sum": 6,
+        "actual_sum": 4
+      },
+      "delta": {
+        "actual_sum": 4
+      },
+      "object_table": {
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4337742784": {
+          "type": "list",
+          "value": [
+            4318748896,
+            4318748800,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4318748992": {
+          "type": "int",
+          "value": 6,
+          "isCollection": false
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "nums": 4337742784,
+        "n": 4318748896,
+        "expected_sum": 4318748992,
+        "actual_sum": 4318748928
+      },
+      "steps": [
+        {
+          "step": 26,
+          "event": "before_statement",
+          "focus": "return expected_sum - actual_sum",
+          "node_id": 6
+        },
+        {
+          "step": 27,
+          "event": "before_expression",
+          "focus": "expected_sum - actual_sum",
+          "node_id": 14
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "expected_sum",
+          "node_id": 23
+        },
+        {
+          "step": 29,
+          "event": "after_expression",
+          "focus": "expected_sum",
+          "node_id": 23,
+          "value": 6
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "actual_sum",
+          "node_id": 25
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "actual_sum",
+          "node_id": 25,
+          "value": 4
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "expected_sum - actual_sum",
+          "node_id": 14,
+          "value": 2
+        }
+      ]
+    }
+  ],
+  "result": 2
 }

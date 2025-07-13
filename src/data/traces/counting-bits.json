@@ -7,8 +7,19 @@
         "n": "5"
       }
     },
-    "stdout": "<ast.List object at 0x1048c4350>\nError executing code: 'List' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "n": 5,
+      "dp": [
+        0,
+        1,
+        1,
+        2,
+        1,
+        2
+      ],
+      "i": 5
+    }
   },
   "ast": {
     "node_id": 0,
@@ -710,6 +721,1680 @@
       "node_id": 31
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def countBits(n):\n    dp = [0] * (n + 1)\n    for i in range(1, n + 1):\n        dp[i] = dp[i >> 1] + (i & 1)\n    return dp",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def countBits(n):\n    dp = [0] * (n + 1)\n    for i in range(1, n + 1):\n        dp[i] = dp[i >> 1] + (i & 1)\n    return dp",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "n": 5
+      },
+      "delta": {
+        "n": 5
+      },
+      "object_table": {
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748960
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "dp = [0] * (n + 1)",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "[0] * (n + 1)",
+          "node_id": 8
+        },
+        {
+          "step": 4,
+          "event": "before_expression",
+          "focus": "[0]",
+          "node_id": 14
+        },
+        {
+          "step": 5,
+          "event": "after_expression",
+          "focus": "[0]",
+          "node_id": 14,
+          "value": [
+            0
+          ]
+        },
+        {
+          "step": 6,
+          "event": "before_expression",
+          "focus": "n + 1",
+          "node_id": 16
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 24
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 24,
+          "value": 5
+        },
+        {
+          "step": 9,
+          "event": "after_expression",
+          "focus": "n + 1",
+          "node_id": 16,
+          "value": 6
+        },
+        {
+          "step": 10,
+          "event": "after_expression",
+          "focus": "[0] * (n + 1)",
+          "node_id": 8,
+          "value": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "step": 11,
+          "event": "after_statement",
+          "focus": "dp = [0] * (n + 1)",
+          "node_id": 3,
+          "locals": {
+            "n": 5,
+            "dp": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4343245312": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748800,
+                4318748800,
+                4318748800,
+                4318748800,
+                4318748800
+              ],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "n": 4318748960,
+            "dp": 4343245312
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "n": 5,
+        "dp": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "delta": {
+        "dp": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0
+        }
+      },
+      "object_table": {
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4343245312": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748800,
+            4318748800,
+            4318748800,
+            4318748800,
+            4318748800
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "n": 4318748960,
+        "dp": 4343245312
+      },
+      "steps": [
+        {
+          "step": 12,
+          "event": "before_statement",
+          "focus": "for i in range(1, n + 1):\n        dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 4
+        },
+        {
+          "step": 13,
+          "event": "before_expression",
+          "focus": "range(1, n + 1)",
+          "node_id": 10
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "n + 1",
+          "node_id": 19
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "n",
+          "node_id": 27
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "n",
+          "node_id": 27,
+          "value": 5
+        },
+        {
+          "step": 17,
+          "event": "after_expression",
+          "focus": "n + 1",
+          "node_id": 19,
+          "value": 6
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "range(1, n + 1)",
+          "node_id": 10,
+          "value": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "n": 5,
+        "dp": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "i": 1
+      },
+      "delta": {
+        "i": 1
+      },
+      "object_table": {
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4343245312": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748800,
+            4318748800,
+            4318748800,
+            4318748800,
+            4318748800
+          ],
+          "isCollection": true
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748960,
+        "dp": 4343245312,
+        "i": 4318748832
+      },
+      "steps": [
+        {
+          "step": 19,
+          "event": "before_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11
+        },
+        {
+          "step": 20,
+          "event": "before_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31
+        },
+        {
+          "step": 22,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 33
+        },
+        {
+          "step": 23,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 33,
+          "value": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "step": 24,
+          "event": "before_expression",
+          "focus": "i >> 1",
+          "node_id": 34
+        },
+        {
+          "step": 25,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 38
+        },
+        {
+          "step": 26,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 38,
+          "value": 1
+        },
+        {
+          "step": 27,
+          "event": "after_expression",
+          "focus": "i >> 1",
+          "node_id": 34,
+          "value": 0
+        },
+        {
+          "step": 28,
+          "event": "after_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31,
+          "value": 0
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "i & 1",
+          "node_id": 32
+        },
+        {
+          "step": 30,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 35
+        },
+        {
+          "step": 31,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 35,
+          "value": 1
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "i & 1",
+          "node_id": 32,
+          "value": 1
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21,
+          "value": 1
+        },
+        {
+          "step": 34,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 29
+        },
+        {
+          "step": 35,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 29,
+          "value": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "step": 36,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 30
+        },
+        {
+          "step": 37,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 30,
+          "value": 1
+        },
+        {
+          "step": 38,
+          "event": "after_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11,
+          "locals": {
+            "n": 5,
+            "dp": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "i": 1
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4343245312": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748832,
+                4318748800,
+                4318748800,
+                4318748800,
+                4318748800
+              ],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "n": 5,
+        "dp": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "i": 2
+      },
+      "delta": {
+        "dp": {
+          "1": 1
+        },
+        "i": 2
+      },
+      "object_table": {
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4343245312": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748832,
+            4318748800,
+            4318748800,
+            4318748800,
+            4318748800
+          ],
+          "isCollection": true
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748960,
+        "dp": 4343245312,
+        "i": 4318748864
+      },
+      "steps": [
+        {
+          "step": 39,
+          "event": "before_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11
+        },
+        {
+          "step": 40,
+          "event": "before_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21
+        },
+        {
+          "step": 41,
+          "event": "before_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 33
+        },
+        {
+          "step": 43,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 33,
+          "value": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "step": 44,
+          "event": "before_expression",
+          "focus": "i >> 1",
+          "node_id": 34
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 38
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 38,
+          "value": 2
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "i >> 1",
+          "node_id": 34,
+          "value": 1
+        },
+        {
+          "step": 48,
+          "event": "after_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "i & 1",
+          "node_id": 32
+        },
+        {
+          "step": 50,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 35
+        },
+        {
+          "step": 51,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 35,
+          "value": 2
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "i & 1",
+          "node_id": 32,
+          "value": 0
+        },
+        {
+          "step": 53,
+          "event": "after_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21,
+          "value": 1
+        },
+        {
+          "step": 54,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 29
+        },
+        {
+          "step": 55,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 29,
+          "value": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 30
+        },
+        {
+          "step": 57,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 30,
+          "value": 2
+        },
+        {
+          "step": 58,
+          "event": "after_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11,
+          "locals": {
+            "n": 5,
+            "dp": [
+              0,
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            "i": 2
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4343245312": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748832,
+                4318748832,
+                4318748800,
+                4318748800,
+                4318748800
+              ],
+              "isCollection": true
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "n": 5,
+        "dp": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "i": 3
+      },
+      "delta": {
+        "dp": {
+          "2": 1
+        },
+        "i": 3
+      },
+      "object_table": {
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4343245312": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748832,
+            4318748832,
+            4318748800,
+            4318748800,
+            4318748800
+          ],
+          "isCollection": true
+        },
+        "4318748896": {
+          "type": "int",
+          "value": 3,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748960,
+        "dp": 4343245312,
+        "i": 4318748896
+      },
+      "steps": [
+        {
+          "step": 59,
+          "event": "before_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11
+        },
+        {
+          "step": 60,
+          "event": "before_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21
+        },
+        {
+          "step": 61,
+          "event": "before_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31
+        },
+        {
+          "step": 62,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 33
+        },
+        {
+          "step": 63,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 33,
+          "value": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "step": 64,
+          "event": "before_expression",
+          "focus": "i >> 1",
+          "node_id": 34
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 38
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 38,
+          "value": 3
+        },
+        {
+          "step": 67,
+          "event": "after_expression",
+          "focus": "i >> 1",
+          "node_id": 34,
+          "value": 1
+        },
+        {
+          "step": 68,
+          "event": "after_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 69,
+          "event": "before_expression",
+          "focus": "i & 1",
+          "node_id": 32
+        },
+        {
+          "step": 70,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 35
+        },
+        {
+          "step": 71,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 35,
+          "value": 3
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "i & 1",
+          "node_id": 32,
+          "value": 1
+        },
+        {
+          "step": 73,
+          "event": "after_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21,
+          "value": 2
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 29
+        },
+        {
+          "step": 75,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 29,
+          "value": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "step": 76,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 30
+        },
+        {
+          "step": 77,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 30,
+          "value": 3
+        },
+        {
+          "step": 78,
+          "event": "after_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11,
+          "locals": {
+            "n": 5,
+            "dp": [
+              0,
+              1,
+              1,
+              2,
+              0,
+              0
+            ],
+            "i": 3
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4343245312": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748832,
+                4318748832,
+                4318748864,
+                4318748800,
+                4318748800
+              ],
+              "isCollection": true
+            },
+            "4318748896": {
+              "type": "int",
+              "value": 3,
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "n": 5,
+        "dp": [
+          0,
+          1,
+          1,
+          2,
+          0,
+          0
+        ],
+        "i": 4
+      },
+      "delta": {
+        "dp": {
+          "3": 2
+        },
+        "i": 4
+      },
+      "object_table": {
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4343245312": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748832,
+            4318748832,
+            4318748864,
+            4318748800,
+            4318748800
+          ],
+          "isCollection": true
+        },
+        "4318748928": {
+          "type": "int",
+          "value": 4,
+          "isCollection": false
+        }
+      },
+      "var_table": {
+        "n": 4318748960,
+        "dp": 4343245312,
+        "i": 4318748928
+      },
+      "steps": [
+        {
+          "step": 79,
+          "event": "before_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11
+        },
+        {
+          "step": 80,
+          "event": "before_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 33
+        },
+        {
+          "step": 83,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 33,
+          "value": [
+            0,
+            1,
+            1,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "step": 84,
+          "event": "before_expression",
+          "focus": "i >> 1",
+          "node_id": 34
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 38
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 38,
+          "value": 4
+        },
+        {
+          "step": 87,
+          "event": "after_expression",
+          "focus": "i >> 1",
+          "node_id": 34,
+          "value": 2
+        },
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 89,
+          "event": "before_expression",
+          "focus": "i & 1",
+          "node_id": 32
+        },
+        {
+          "step": 90,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 35
+        },
+        {
+          "step": 91,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 35,
+          "value": 4
+        },
+        {
+          "step": 92,
+          "event": "after_expression",
+          "focus": "i & 1",
+          "node_id": 32,
+          "value": 0
+        },
+        {
+          "step": 93,
+          "event": "after_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21,
+          "value": 1
+        },
+        {
+          "step": 94,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 29
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 29,
+          "value": [
+            0,
+            1,
+            1,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "step": 96,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 30
+        },
+        {
+          "step": 97,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 30,
+          "value": 4
+        },
+        {
+          "step": 98,
+          "event": "after_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11,
+          "locals": {
+            "n": 5,
+            "dp": [
+              0,
+              1,
+              1,
+              2,
+              1,
+              0
+            ],
+            "i": 4
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4343245312": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748832,
+                4318748832,
+                4318748864,
+                4318748832,
+                4318748800
+              ],
+              "isCollection": true
+            },
+            "4318748928": {
+              "type": "int",
+              "value": 4,
+              "isCollection": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 4,
+      "locals": {
+        "n": 5,
+        "dp": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          0
+        ],
+        "i": 5
+      },
+      "delta": {
+        "dp": {
+          "4": 1
+        },
+        "i": 5
+      },
+      "object_table": {
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4343245312": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748832,
+            4318748832,
+            4318748864,
+            4318748832,
+            4318748800
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "n": 4318748960,
+        "dp": 4343245312,
+        "i": 4318748960
+      },
+      "steps": [
+        {
+          "step": 99,
+          "event": "before_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11
+        },
+        {
+          "step": 100,
+          "event": "before_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21
+        },
+        {
+          "step": 101,
+          "event": "before_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31
+        },
+        {
+          "step": 102,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 33
+        },
+        {
+          "step": 103,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 33,
+          "value": [
+            0,
+            1,
+            1,
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "step": 104,
+          "event": "before_expression",
+          "focus": "i >> 1",
+          "node_id": 34
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 38
+        },
+        {
+          "step": 106,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 38,
+          "value": 5
+        },
+        {
+          "step": 107,
+          "event": "after_expression",
+          "focus": "i >> 1",
+          "node_id": 34,
+          "value": 2
+        },
+        {
+          "step": 108,
+          "event": "after_expression",
+          "focus": "dp[i >> 1]",
+          "node_id": 31,
+          "value": 1
+        },
+        {
+          "step": 109,
+          "event": "before_expression",
+          "focus": "i & 1",
+          "node_id": 32
+        },
+        {
+          "step": 110,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 35
+        },
+        {
+          "step": 111,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 35,
+          "value": 5
+        },
+        {
+          "step": 112,
+          "event": "after_expression",
+          "focus": "i & 1",
+          "node_id": 32,
+          "value": 1
+        },
+        {
+          "step": 113,
+          "event": "after_expression",
+          "focus": "dp[i >> 1] + (i & 1)",
+          "node_id": 21,
+          "value": 2
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 29
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 29,
+          "value": [
+            0,
+            1,
+            1,
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "step": 116,
+          "event": "before_expression",
+          "focus": "i",
+          "node_id": 30
+        },
+        {
+          "step": 117,
+          "event": "after_expression",
+          "focus": "i",
+          "node_id": 30,
+          "value": 5
+        },
+        {
+          "step": 118,
+          "event": "after_statement",
+          "focus": "dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 11,
+          "locals": {
+            "n": 5,
+            "dp": [
+              0,
+              1,
+              1,
+              2,
+              1,
+              2
+            ],
+            "i": 5
+          },
+          "object_table": {
+            "4318748960": {
+              "type": "int",
+              "value": 5,
+              "isCollection": false
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4343245312": {
+              "type": "list",
+              "value": [
+                4318748800,
+                4318748832,
+                4318748832,
+                4318748864,
+                4318748832,
+                4318748864
+              ],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "n": 5,
+        "dp": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          2
+        ],
+        "i": 5
+      },
+      "delta": {
+        "dp": {
+          "5": 2
+        }
+      },
+      "object_table": {
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4343245312": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748832,
+            4318748832,
+            4318748864,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "n": 4318748960,
+        "dp": 4343245312,
+        "i": 4318748960
+      },
+      "steps": [
+        {
+          "step": 119,
+          "event": "after_statement",
+          "focus": "for i in range(1, n + 1):\n        dp[i] = dp[i >> 1] + (i & 1)",
+          "node_id": 4
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "n": 5,
+        "dp": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          2
+        ],
+        "i": 5
+      },
+      "delta": null,
+      "object_table": {
+        "4318748960": {
+          "type": "int",
+          "value": 5,
+          "isCollection": false
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4343245312": {
+          "type": "list",
+          "value": [
+            4318748800,
+            4318748832,
+            4318748832,
+            4318748864,
+            4318748832,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "n": 4318748960,
+        "dp": 4343245312,
+        "i": 4318748960
+      },
+      "steps": [
+        {
+          "step": 120,
+          "event": "before_statement",
+          "focus": "return dp",
+          "node_id": 5
+        },
+        {
+          "step": 121,
+          "event": "before_expression",
+          "focus": "dp",
+          "node_id": 12
+        },
+        {
+          "step": 122,
+          "event": "after_expression",
+          "focus": "dp",
+          "node_id": 12,
+          "value": [
+            0,
+            1,
+            1,
+            2,
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "result": [
+    0,
+    1,
+    1,
+    2,
+    1,
+    2
+  ]
 }

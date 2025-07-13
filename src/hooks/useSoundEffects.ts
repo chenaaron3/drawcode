@@ -47,13 +47,7 @@ export function useSoundEffects() {
     if (currentStep == undefined) {
       return;
     }
-    const firstStep = steps[0];
-    if (firstStep == undefined) {
-      return;
-    }
-    const is_last_step = stepIndex === steps.length - 1;
-    const is_if_statement = firstStep.ast?.type === "If";
-    if (is_last_step && is_if_statement && currentStep.value !== undefined) {
+    if (currentStep.test !== undefined) {
       if (currentStep.value) {
         const audio = new Audio("/audio/success.wav");
         audio.volume = 0.3;

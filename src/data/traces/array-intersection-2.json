@@ -8,8 +8,28 @@
         "nums2": "[2, 2]"
       }
     },
-    "stdout": "<ast.Dict object at 0x10465bb10>\nError executing code: 'Dict' object has no attribute 'type'\n",
-    "finalLocals": {}
+    "stdout": "",
+    "finalLocals": {
+      "nums1": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "nums2": [
+        2,
+        2
+      ],
+      "freq": {
+        "1": 2,
+        "2": 0
+      },
+      "result": [
+        2,
+        2
+      ],
+      "num": 2
+    }
   },
   "ast": {
     "node_id": 0,
@@ -1145,6 +1165,3754 @@
       "node_id": 50
     }
   ],
-  "trace": [],
-  "result": null
+  "trace": [
+    {
+      "line_number": 1,
+      "locals": {},
+      "delta": null,
+      "object_table": {},
+      "var_table": {},
+      "steps": [
+        {
+          "step": 0,
+          "event": "before_statement",
+          "focus": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    \n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    \n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    \n    return result",
+          "node_id": 1
+        },
+        {
+          "step": 1,
+          "event": "after_statement",
+          "focus": "def intersect(nums1, nums2):\n    freq = {}\n    result = []\n    \n    for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    \n    for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1\n    \n    return result",
+          "node_id": 1
+        }
+      ]
+    },
+    {
+      "line_number": 2,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ]
+      },
+      "delta": {
+        "nums1": {
+          "0": 1,
+          "1": 2,
+          "2": 2,
+          "3": 1
+        },
+        "nums2": {
+          "0": 2,
+          "1": 2
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496
+      },
+      "steps": [
+        {
+          "step": 2,
+          "event": "before_statement",
+          "focus": "freq = {}",
+          "node_id": 3
+        },
+        {
+          "step": 3,
+          "event": "before_expression",
+          "focus": "{}",
+          "node_id": 11
+        },
+        {
+          "step": 4,
+          "event": "after_expression",
+          "focus": "{}",
+          "node_id": 11,
+          "value": {}
+        },
+        {
+          "step": 5,
+          "event": "after_statement",
+          "focus": "freq = {}",
+          "node_id": 3,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {}
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {},
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "nums1": 4337682560,
+            "nums2": 4337682496,
+            "freq": 4341636288
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 3,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {}
+      },
+      "delta": {
+        "freq": {}
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288
+      },
+      "steps": [
+        {
+          "step": 6,
+          "event": "before_statement",
+          "focus": "result = []",
+          "node_id": 4
+        },
+        {
+          "step": 7,
+          "event": "before_expression",
+          "focus": "[]",
+          "node_id": 13
+        },
+        {
+          "step": 8,
+          "event": "after_expression",
+          "focus": "[]",
+          "node_id": 13,
+          "value": []
+        },
+        {
+          "step": 9,
+          "event": "after_statement",
+          "focus": "result = []",
+          "node_id": 4,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {},
+            "result": []
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {},
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [],
+              "isCollection": true
+            }
+          },
+          "var_table": {
+            "nums1": 4337682560,
+            "nums2": 4337682496,
+            "freq": 4341636288,
+            "result": 4341636928
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {},
+        "result": []
+      },
+      "delta": {
+        "result": []
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928
+      },
+      "steps": [
+        {
+          "step": 10,
+          "event": "before_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5
+        },
+        {
+          "step": 11,
+          "event": "before_expression",
+          "focus": "nums1",
+          "node_id": 15
+        },
+        {
+          "step": 12,
+          "event": "after_expression",
+          "focus": "nums1",
+          "node_id": 15,
+          "value": [
+            1,
+            2,
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {},
+        "result": [],
+        "num": 1
+      },
+      "delta": {
+        "num": 1
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748832
+      },
+      "steps": [
+        {
+          "step": 13,
+          "event": "before_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        },
+        {
+          "step": 14,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 23
+        },
+        {
+          "step": 15,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 29
+        },
+        {
+          "step": 16,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 29,
+          "value": 1
+        },
+        {
+          "step": 17,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 31
+        },
+        {
+          "step": 18,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 31,
+          "value": {}
+        },
+        {
+          "step": 19,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 23,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {},
+        "result": [],
+        "num": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {},
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748832
+      },
+      "steps": [
+        {
+          "step": 20,
+          "event": "before_statement",
+          "focus": "freq[num] = 1",
+          "node_id": 25
+        },
+        {
+          "step": 21,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 46
+        },
+        {
+          "step": 22,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 46,
+          "value": {}
+        },
+        {
+          "step": 23,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 47
+        },
+        {
+          "step": 24,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 47,
+          "value": 1
+        },
+        {
+          "step": 25,
+          "event": "after_statement",
+          "focus": "freq[num] = 1",
+          "node_id": 25,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 1
+            },
+            "result": [],
+            "num": 1
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748832
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": {
+        "freq": {
+          "1": 1
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748832
+      },
+      "steps": [
+        {
+          "step": 26,
+          "event": "after_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": {
+        "num": 2
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 27,
+          "event": "before_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        },
+        {
+          "step": 28,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 23
+        },
+        {
+          "step": 29,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 29
+        },
+        {
+          "step": 30,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 29,
+          "value": 2
+        },
+        {
+          "step": 31,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 31
+        },
+        {
+          "step": 32,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 31,
+          "value": {
+            "1": 1
+          }
+        },
+        {
+          "step": 33,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 23,
+          "value": false,
+          "test": false
+        }
+      ]
+    },
+    {
+      "line_number": 9,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 34,
+          "event": "before_statement",
+          "focus": "freq[num] = 1",
+          "node_id": 25
+        },
+        {
+          "step": 35,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 46
+        },
+        {
+          "step": 36,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 46,
+          "value": {
+            "1": 1
+          }
+        },
+        {
+          "step": 37,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 47
+        },
+        {
+          "step": 38,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 47,
+          "value": 2
+        },
+        {
+          "step": 39,
+          "event": "after_statement",
+          "focus": "freq[num] = 1",
+          "node_id": 25,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 1,
+              "2": 1
+            },
+            "result": [],
+            "num": 2
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748832,
+                "2": 4318748832
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": {
+        "freq": {
+          "2": 1
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748832,
+            "2": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 40,
+          "event": "after_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748832,
+            "2": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 41,
+          "event": "before_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        },
+        {
+          "step": 42,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 23
+        },
+        {
+          "step": 43,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 29
+        },
+        {
+          "step": 44,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 29,
+          "value": 2
+        },
+        {
+          "step": 45,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 31
+        },
+        {
+          "step": 46,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 31,
+          "value": {
+            "1": 1,
+            "2": 1
+          }
+        },
+        {
+          "step": 47,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 23,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 1
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748832,
+            "2": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 48,
+          "event": "before_statement",
+          "focus": "freq[num] += 1",
+          "node_id": 24
+        },
+        {
+          "step": 49,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 44
+        },
+        {
+          "step": 50,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 44,
+          "value": {
+            "1": 1,
+            "2": 1
+          }
+        },
+        {
+          "step": 51,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 45
+        },
+        {
+          "step": 52,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 45,
+          "value": 2
+        },
+        {
+          "step": 53,
+          "event": "after_statement",
+          "focus": "freq[num] += 1",
+          "node_id": 24,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 1,
+              "2": 2
+            },
+            "result": [],
+            "num": 2
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748832,
+                "2": 4318748864
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 2
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": {
+        "freq": {
+          "2": 2
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748832,
+            "2": 4318748864
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 54,
+          "event": "after_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": {
+        "num": 1
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748832,
+            "2": 4318748864
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748832
+      },
+      "steps": [
+        {
+          "step": 55,
+          "event": "before_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        },
+        {
+          "step": 56,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 23
+        },
+        {
+          "step": 57,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 29
+        },
+        {
+          "step": 58,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 29,
+          "value": 1
+        },
+        {
+          "step": 59,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 31
+        },
+        {
+          "step": 60,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 31,
+          "value": {
+            "1": 1,
+            "2": 2
+          }
+        },
+        {
+          "step": 61,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 23,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 7,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 1,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748832,
+            "2": 4318748864
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748832
+      },
+      "steps": [
+        {
+          "step": 62,
+          "event": "before_statement",
+          "focus": "freq[num] += 1",
+          "node_id": 24
+        },
+        {
+          "step": 63,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 44
+        },
+        {
+          "step": 64,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 44,
+          "value": {
+            "1": 1,
+            "2": 2
+          }
+        },
+        {
+          "step": 65,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 45
+        },
+        {
+          "step": 66,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 45,
+          "value": 1
+        },
+        {
+          "step": 67,
+          "event": "after_statement",
+          "focus": "freq[num] += 1",
+          "node_id": 24,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 2
+            },
+            "result": [],
+            "num": 1
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748864,
+                "2": 4318748864
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 6,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": {
+        "freq": {
+          "1": 2
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748864
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748832
+      },
+      "steps": [
+        {
+          "step": 68,
+          "event": "after_statement",
+          "focus": "if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 16
+        }
+      ]
+    },
+    {
+      "line_number": 5,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748864
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748832
+      },
+      "steps": [
+        {
+          "step": 69,
+          "event": "after_statement",
+          "focus": "for num in nums1:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1",
+          "node_id": 5
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 1
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748864
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748832
+      },
+      "steps": [
+        {
+          "step": 70,
+          "event": "before_statement",
+          "focus": "for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 6
+        },
+        {
+          "step": 71,
+          "event": "before_expression",
+          "focus": "nums2",
+          "node_id": 18
+        },
+        {
+          "step": 72,
+          "event": "after_expression",
+          "focus": "nums2",
+          "node_id": 18,
+          "value": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": {
+        "num": 2
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748864
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 73,
+          "event": "before_statement",
+          "focus": "if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 19
+        },
+        {
+          "step": 74,
+          "event": "before_expression",
+          "focus": "num in freq and freq[num] > 0",
+          "node_id": 26
+        },
+        {
+          "step": 75,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 38
+        },
+        {
+          "step": 76,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 48
+        },
+        {
+          "step": 77,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 48,
+          "value": 2
+        },
+        {
+          "step": 78,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 49
+        },
+        {
+          "step": 79,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 49,
+          "value": {
+            "1": 2,
+            "2": 2
+          }
+        },
+        {
+          "step": 80,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 38,
+          "value": true
+        },
+        {
+          "step": 81,
+          "event": "before_expression",
+          "focus": "freq[num] > 0",
+          "node_id": 39
+        },
+        {
+          "step": 82,
+          "event": "before_expression",
+          "focus": "freq[num]",
+          "node_id": 50
+        },
+        {
+          "step": 83,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 57
+        },
+        {
+          "step": 84,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 57,
+          "value": {
+            "1": 2,
+            "2": 2
+          }
+        },
+        {
+          "step": 85,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 58
+        },
+        {
+          "step": 86,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 58,
+          "value": 2
+        },
+        {
+          "step": 87,
+          "event": "after_expression",
+          "focus": "freq[num]",
+          "node_id": 50,
+          "value": 2
+        },
+        {
+          "step": 88,
+          "event": "after_expression",
+          "focus": "freq[num] > 0",
+          "node_id": 39,
+          "value": true
+        },
+        {
+          "step": 89,
+          "event": "after_expression",
+          "focus": "num in freq and freq[num] > 0",
+          "node_id": 26,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [],
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748864
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 90,
+          "event": "before_statement",
+          "focus": "result.append(num)",
+          "node_id": 27
+        },
+        {
+          "step": 91,
+          "event": "before_expression",
+          "focus": "result.append(num)",
+          "node_id": 40
+        },
+        {
+          "step": 92,
+          "event": "before_expression",
+          "focus": "result.append",
+          "node_id": 53
+        },
+        {
+          "step": 93,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 54
+        },
+        {
+          "step": 94,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 54,
+          "value": 2
+        },
+        {
+          "step": 95,
+          "event": "after_expression",
+          "focus": "result.append(num)",
+          "node_id": 40,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 2
+            },
+            "result": [
+              2
+            ],
+            "num": 2
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748864,
+                "2": 4318748864
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [
+                4318748864
+              ],
+              "isCollection": true
+            }
+          },
+          "value": null
+        },
+        {
+          "step": 96,
+          "event": "after_statement",
+          "focus": "result.append(num)",
+          "node_id": 27,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 2
+            },
+            "result": [
+              2
+            ],
+            "num": 2
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748864,
+                "2": 4318748864
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [
+                4318748864
+              ],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 2
+        },
+        "result": [
+          2
+        ],
+        "num": 2
+      },
+      "delta": {
+        "result": {
+          "0": 2
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748864
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 97,
+          "event": "before_statement",
+          "focus": "freq[num] -= 1",
+          "node_id": 28
+        },
+        {
+          "step": 98,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 55
+        },
+        {
+          "step": 99,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 55,
+          "value": {
+            "1": 2,
+            "2": 2
+          }
+        },
+        {
+          "step": 100,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 56
+        },
+        {
+          "step": 101,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 56,
+          "value": 2
+        },
+        {
+          "step": 102,
+          "event": "after_statement",
+          "focus": "freq[num] -= 1",
+          "node_id": 28,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 1
+            },
+            "result": [
+              2
+            ],
+            "num": 2
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748864,
+                "2": 4318748832
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [
+                4318748864
+              ],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 1
+        },
+        "result": [
+          2
+        ],
+        "num": 2
+      },
+      "delta": {
+        "freq": {
+          "2": 1
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 103,
+          "event": "after_statement",
+          "focus": "if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 1
+        },
+        "result": [
+          2
+        ],
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 104,
+          "event": "before_statement",
+          "focus": "if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 19
+        },
+        {
+          "step": 105,
+          "event": "before_expression",
+          "focus": "num in freq and freq[num] > 0",
+          "node_id": 26
+        },
+        {
+          "step": 106,
+          "event": "before_expression",
+          "focus": "num in freq",
+          "node_id": 38
+        },
+        {
+          "step": 107,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 48
+        },
+        {
+          "step": 108,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 48,
+          "value": 2
+        },
+        {
+          "step": 109,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 49
+        },
+        {
+          "step": 110,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 49,
+          "value": {
+            "1": 2,
+            "2": 1
+          }
+        },
+        {
+          "step": 111,
+          "event": "after_expression",
+          "focus": "num in freq",
+          "node_id": 38,
+          "value": true
+        },
+        {
+          "step": 112,
+          "event": "before_expression",
+          "focus": "freq[num] > 0",
+          "node_id": 39
+        },
+        {
+          "step": 113,
+          "event": "before_expression",
+          "focus": "freq[num]",
+          "node_id": 50
+        },
+        {
+          "step": 114,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 57
+        },
+        {
+          "step": 115,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 57,
+          "value": {
+            "1": 2,
+            "2": 1
+          }
+        },
+        {
+          "step": 116,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 58
+        },
+        {
+          "step": 117,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 58,
+          "value": 2
+        },
+        {
+          "step": 118,
+          "event": "after_expression",
+          "focus": "freq[num]",
+          "node_id": 50,
+          "value": 1
+        },
+        {
+          "step": 119,
+          "event": "after_expression",
+          "focus": "freq[num] > 0",
+          "node_id": 39,
+          "value": true
+        },
+        {
+          "step": 120,
+          "event": "after_expression",
+          "focus": "num in freq and freq[num] > 0",
+          "node_id": 26,
+          "value": true,
+          "test": true
+        }
+      ]
+    },
+    {
+      "line_number": 13,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 1
+        },
+        "result": [
+          2
+        ],
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 121,
+          "event": "before_statement",
+          "focus": "result.append(num)",
+          "node_id": 27
+        },
+        {
+          "step": 122,
+          "event": "before_expression",
+          "focus": "result.append(num)",
+          "node_id": 40
+        },
+        {
+          "step": 123,
+          "event": "before_expression",
+          "focus": "result.append",
+          "node_id": 53
+        },
+        {
+          "step": 124,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 54
+        },
+        {
+          "step": 125,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 54,
+          "value": 2
+        },
+        {
+          "step": 126,
+          "event": "after_expression",
+          "focus": "result.append(num)",
+          "node_id": 40,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 1
+            },
+            "result": [
+              2,
+              2
+            ],
+            "num": 2
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748864,
+                "2": 4318748832
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            }
+          },
+          "value": null
+        },
+        {
+          "step": 127,
+          "event": "after_statement",
+          "focus": "result.append(num)",
+          "node_id": 27,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 1
+            },
+            "result": [
+              2,
+              2
+            ],
+            "num": 2
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748864,
+                "2": 4318748832
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 14,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 1
+        },
+        "result": [
+          2,
+          2
+        ],
+        "num": 2
+      },
+      "delta": {
+        "result": {
+          "1": 2
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748832
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 128,
+          "event": "before_statement",
+          "focus": "freq[num] -= 1",
+          "node_id": 28
+        },
+        {
+          "step": 129,
+          "event": "before_expression",
+          "focus": "freq",
+          "node_id": 55
+        },
+        {
+          "step": 130,
+          "event": "after_expression",
+          "focus": "freq",
+          "node_id": 55,
+          "value": {
+            "1": 2,
+            "2": 1
+          }
+        },
+        {
+          "step": 131,
+          "event": "before_expression",
+          "focus": "num",
+          "node_id": 56
+        },
+        {
+          "step": 132,
+          "event": "after_expression",
+          "focus": "num",
+          "node_id": 56,
+          "value": 2
+        },
+        {
+          "step": 133,
+          "event": "after_statement",
+          "focus": "freq[num] -= 1",
+          "node_id": 28,
+          "locals": {
+            "nums1": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "nums2": [
+              2,
+              2
+            ],
+            "freq": {
+              "1": 2,
+              "2": 0
+            },
+            "result": [
+              2,
+              2
+            ],
+            "num": 2
+          },
+          "object_table": {
+            "4318748832": {
+              "type": "int",
+              "value": 1,
+              "isCollection": false
+            },
+            "4318748864": {
+              "type": "int",
+              "value": 2,
+              "isCollection": false
+            },
+            "4337682560": {
+              "type": "list",
+              "value": [
+                4318748832,
+                4318748864,
+                4318748864,
+                4318748832
+              ],
+              "isCollection": true
+            },
+            "4337682496": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            },
+            "4318748800": {
+              "type": "int",
+              "value": 0,
+              "isCollection": false
+            },
+            "4341636288": {
+              "type": "dict",
+              "value": {
+                "1": 4318748864,
+                "2": 4318748800
+              },
+              "isCollection": true
+            },
+            "4341636928": {
+              "type": "list",
+              "value": [
+                4318748864,
+                4318748864
+              ],
+              "isCollection": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "line_number": 12,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 0
+        },
+        "result": [
+          2,
+          2
+        ],
+        "num": 2
+      },
+      "delta": {
+        "freq": {
+          "2": 0
+        }
+      },
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748800
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 134,
+          "event": "after_statement",
+          "focus": "if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 19
+        }
+      ]
+    },
+    {
+      "line_number": 11,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 0
+        },
+        "result": [
+          2,
+          2
+        ],
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748800
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 135,
+          "event": "after_statement",
+          "focus": "for num in nums2:\n        if num in freq and freq[num] > 0:\n            result.append(num)\n            freq[num] -= 1",
+          "node_id": 6
+        }
+      ]
+    },
+    {
+      "line_number": 16,
+      "locals": {
+        "nums1": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "freq": {
+          "1": 2,
+          "2": 0
+        },
+        "result": [
+          2,
+          2
+        ],
+        "num": 2
+      },
+      "delta": null,
+      "object_table": {
+        "4318748832": {
+          "type": "int",
+          "value": 1,
+          "isCollection": false
+        },
+        "4318748864": {
+          "type": "int",
+          "value": 2,
+          "isCollection": false
+        },
+        "4337682560": {
+          "type": "list",
+          "value": [
+            4318748832,
+            4318748864,
+            4318748864,
+            4318748832
+          ],
+          "isCollection": true
+        },
+        "4337682496": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        },
+        "4318748800": {
+          "type": "int",
+          "value": 0,
+          "isCollection": false
+        },
+        "4341636288": {
+          "type": "dict",
+          "value": {
+            "1": 4318748864,
+            "2": 4318748800
+          },
+          "isCollection": true
+        },
+        "4341636928": {
+          "type": "list",
+          "value": [
+            4318748864,
+            4318748864
+          ],
+          "isCollection": true
+        }
+      },
+      "var_table": {
+        "nums1": 4337682560,
+        "nums2": 4337682496,
+        "freq": 4341636288,
+        "result": 4341636928,
+        "num": 4318748864
+      },
+      "steps": [
+        {
+          "step": 136,
+          "event": "before_statement",
+          "focus": "return result",
+          "node_id": 7
+        },
+        {
+          "step": 137,
+          "event": "before_expression",
+          "focus": "result",
+          "node_id": 20
+        },
+        {
+          "step": 138,
+          "event": "after_expression",
+          "focus": "result",
+          "node_id": 20,
+          "value": [
+            2,
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "result": [
+    2,
+    2
+  ]
 }
