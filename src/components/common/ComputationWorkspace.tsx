@@ -1,7 +1,9 @@
+import { hash } from 'crypto';
 import { useEffect, useState } from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { useNextFrameEffect } from '@/hooks/useNextFrame';
+import { simpleHash } from '@/utils/utils';
 
 import { selectCurrentLine, useTraceStore } from '../../store/traceStore';
 import { AnimatedCopies } from '../workspace/AnimatedCopies';
@@ -142,15 +144,26 @@ export default function ComputationWorkspace({ overlayMode = false }: Computatio
                 // Check if this is the last step of a line with Assign AST and non-null locals
                 // We'll determine this by checking if the next step is from a different line
                 const isLastStepOfLine = stepIndex === steps.length - 1;
-                const isAssignAST = currentStep.ast.type === 'Assign';
+                const isAssignAST = ["Assign", "AugAssign"].includes(currentStep.ast.type);
 
                 if (currentStep.event === 'after_statement' && isLastStepOfLine && isAssignAST && currentStep.locals) {
                     setIsAssign(true);
                     // Get the last node_id
                     const lastNodeId = steps[stepIndex - 1]!.node_id;
                     let sourceElement = document.querySelector(`[data-node-id="${lastNodeId}"]`);
-                    const variableName = currentStep!['focus']!.split("=")![0]!.trim();
+                    // We try to target the expression if it exists, but fallback to the whole line
+                    if (sourceElement === null) {
+                        sourceElement = document.querySelector(`[data-node-id="-1"]`);
+                    }
+                    // Extract variable name using regex for valid Python identifiers
+                    const focus = currentStep && currentStep['focus'] ? currentStep['focus'] : '';
+                    const match = focus.match(/^([a-zA-Z_][a-zA-Z0-9_]*)/);
+                    if (match === null) return;
+                    const variableName = match[1];
+                    if (variableName === undefined) { return; }
                     const variableValue = currentStep.locals[variableName];
+                    if (variableValue === undefined) { return; }
+                    // debugger;
                     let targetLambda = () => {
                         const targetElement = document.querySelector(`[data-variable="${variableName}"]`);
                         return targetElement?.getBoundingClientRect();
