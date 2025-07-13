@@ -43,7 +43,7 @@ class PythonTracer:
             if not hasattr(builtins, name):
                 setattr(builtins, name, func)
                 
-    def _record_step(self, frame, event, has_value=False, value=None, node=None):
+    def _record_step(self, frame, event, value=None, node=None):
         """Record a step in the execution"""
         if node is None or not hasattr(node, "lineno"):
             return
@@ -90,7 +90,7 @@ class PythonTracer:
         }
 
         # if a value was evaluated
-        if has_value:
+        if value is not None:
             step["value"] = serialize_value(value)
             if node_id in self.transformer.tests:
                 step["test"] = bool(value)
@@ -140,7 +140,7 @@ class PythonTracer:
         if callable(value):
             return value
         frame = sys._getframe(1)
-        self._record_step(frame, "after_expression", has_value=True, value=value, node=node)
+        self._record_step(frame, "after_expression", value=value, node=node)
         return value
     
     def transform_inputs(self, kwargs, special_inputs):

@@ -199,13 +199,14 @@ export default function ComputationWorkspace({ overlayMode = false }: Computatio
         // Calculate how much whitespace was stripped from the beginning
         const strippedWhitespace = originalLine.length - originalLine.trimStart().length;
 
-        return {
-            nodeId: firstStatement.node_id,
+        const initialTree = {
+            nodeId: -1,
             hasValue: false,
             children: [trimmedLine],
             isHighlighted: false,
             offset: strippedWhitespace // Start offset accounts for stripped whitespace
         };
+        return initialTree;
     };
 
     // Find and wrap substring in tree using offset calculations
